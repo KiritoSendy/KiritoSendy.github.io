@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/icon/logo.svg" color="#222">
+  <meta name="google-site-verification" content="UtyDAPkH1wac_9oyOpkJSRJ1JE7hPHvMFl9d2jPe5cQ">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  
+  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kuroha.vip","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+
+  <meta name="description" content="开发 2D 游戏时, 可能需要使用到 3D 物体实现一些特效, 此时就要考虑 2D 精灵 和 3D 物体的渲染顺序.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity - 2D 精灵 和 3D 物体的渲染顺序">
+<meta property="og:url" content="https://kuroha.vip/unity/unity_render_order.html">
+<meta property="og:site_name" content="二次元游宅客">
+<meta property="og:description" content="开发 2D 游戏时, 可能需要使用到 3D 物体实现一些特效, 此时就要考虑 2D 精灵 和 3D 物体的渲染顺序.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kuroha.vip/images/unity_render_order/unity_render_order_1.png">
+<meta property="og:image" content="https://kuroha.vip/images/unity_render_order/unity_render_order_2.png">
+<meta property="article:published_time" content="2020-06-22T14:23:03.000Z">
+<meta property="article:modified_time" content="2020-08-28T14:26:08.382Z">
+<meta property="article:author" content="Kuroha">
+<meta property="article:tag" content="Unity">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kuroha.vip/images/unity_render_order/unity_render_order_1.png">
+
+<link rel="canonical" href="https://kuroha.vip/unity/unity_render_order.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+
+    <script>
+        (function () {
+            if ('') {
+                var str = prompt('😈 私密日记, 查看请输入密码!');
+                if (str == "" || str == null) {
+                    history.back();
+                } else if (str !== '') {
+                    alert('😥 这个密码好像不太对, 再试试...');
+                    history.back();
+                }
+            }
+        })();
+    </script>
+
+  <title>Unity - 2D 精灵 和 3D 物体的渲染顺序 | 二次元游宅客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">二次元游宅客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个热爱二次元和游戏开发的宅极客!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">15</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">问题:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MeshRenderer-%E4%B8%8E-SpriteRenderer-%E7%9A%84%E6%B8%B2%E6%9F%93%E9%A1%BA%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">MeshRenderer 与 SpriteRenderer 的渲染顺序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E5%90%8E%E6%95%88%E6%9E%9C"><span class="nav-number">3.</span> <span class="nav-text">问题解决后效果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kuroha"
+      src="/images/avatar/avatar.gif">
+  <p class="site-author-name" itemprop="name">Kuroha</p>
+  <div class="site-description" itemprop="description">本人是一个热爱二次元和游戏开发的宅极客, 这是我的个人博客! 主要记录我学习的经历以及自己喜欢的动漫、音乐, 偶尔也会写一些异想天开的脑洞, 哈哈!</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90Lm1lL0t1cm9oYUtpcml0bw==" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;KurohaKirito"><i class="fab fa-telegram fa-fw"></i>Telegram</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="dGVuY2VudDovL0FkZENvbnRhY3QvP2Zyb21JZD00NSZmcm9tU3ViSWQ9MSZzdWJjbWQ9YWxsJnVpbj0xODMyNjEzMDAx" title="QQ → tencent:&#x2F;&#x2F;AddContact&#x2F;?fromId&#x3D;45&amp;fromSubId&#x3D;1&amp;subcmd&#x3D;all&amp;uin&#x3D;1832613001"><i class="fab fa-qq fa-fw"></i>QQ</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zdGVhbWNvbW11bml0eS5jb20vcHJvZmlsZXMvNzY1NjExOTgzOTQxNDcwMDUv" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198394147005&#x2F;"><i class="fab fa-steam fa-fw"></i>Steam</span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://kuroha.vip/images/weixin.png" title="WeChat → https:&#x2F;&#x2F;kuroha.vip&#x2F;images&#x2F;weixin.png"><i class="fab fa-weixin fa-fw"></i>WeChat</a>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmt1cm9oYWtpcml0b0BnbWFpbC5jb20=" title="E-Mail → mailto:kurohakirito@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0t1cm9oYUtpcml0bw==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;KurohaKirito"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      我的朋友们
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <span class="exturl" data-url="aHR0cHM6Ly9zaHlhcmNoZXIuZ2l0aHViLmlvLw==" title="https:&#x2F;&#x2F;shyarcher.github.io&#x2F;">ShyArcher</span>
+        </li>
+        <li class="links-of-blogroll-item">
+          <span class="exturl" data-url="aHR0cHM6Ly9ub2FoYXBwcy5naXRodWIuaW8v" title="https:&#x2F;&#x2F;noahapps.github.io&#x2F;">Noah</span>
+        </li>
+    </ul>
+  </div>
+
+
+    <div>
+        <canvas id="canvasDiyBlock" style="width:60%;">您的浏览器不支持 Canvas, 请更换浏览器!</canvas>
+        <script type="text/javascript" src="/js/clock.js"></script>
+    </div>
+
+      </section>
+        <div class="back-to-top animated">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2t1cm9oYWtpcml0bw==" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kuroha.vip/unity/unity_render_order.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.gif">
+      <meta itemprop="name" content="Kuroha">
+      <meta itemprop="description" content="本人是一个热爱二次元和游戏开发的宅极客, 这是我的个人博客! 主要记录我学习的经历以及自己喜欢的动漫、音乐, 偶尔也会写一些异想天开的脑洞, 哈哈!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="二次元游宅客">
+    </span>
+
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Unity - 2D 精灵 和 3D 物体的渲染顺序
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-22 22:23:03" itemprop="dateCreated datePublished" datetime="2020-06-22T22:23:03+08:00">2020-06-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-28 22:26:08" itemprop="dateModified" datetime="2020-08-28T22:26:08+08:00">2020-08-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+            <div class="post-description">开发 2D 游戏时, 可能需要使用到 3D 物体实现一些特效, 此时就要考虑 2D 精灵 和 3D 物体的渲染顺序.</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <a id="more"></a>
+
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h1><p>我在学习 SiKi 学院出的一款捕鱼达人的游戏教程时, 教程中使用了一个 3D 物体, 在其上面制作水波纹特效, 为了容易观察渲染层级, 我还特意将同一个层级 (Sorting Layer) 的精灵全部放到同一个 Z 位置上, 一共分了四层.</p>
+<p><img data-src="/images/unity_render_order/unity_render_order_1.png" alt="3D 游戏物体被遮挡"></p>
+<p>但是从相机预览效果中可以看出, 水波纹效果被遮挡了. 在这个场景中所有的 Canvas 的渲染层级都是一个自定义的 UI 层, 但是这个 3D 游戏物体的层级该怎么设置呢? 根本找不到设置的地方啊? 😥</p>
+<h1 id="MeshRenderer-与-SpriteRenderer-的渲染顺序"><a href="#MeshRenderer-与-SpriteRenderer-的渲染顺序" class="headerlink" title="MeshRenderer 与 SpriteRenderer 的渲染顺序"></a>MeshRenderer 与 SpriteRenderer 的渲染顺序</h1><p>3D 游戏物体使用的是 MeshRenderer, 2D 精灵使用的是 SpriteRenderer, 两者都是继承自 Renderer, 在 Renderer 中渲染层级是 <code>sortingLayerName</code> 字段, 渲染顺序是 <code>sortingOrder</code> 字段.</p>
+<ol>
+<li><p>SpriteRenderer 中的 <code>Sorting Layer</code> 对应的是 sortingLayerName 字段, <code>Order in Layer</code> 对应的是 sortingOrder 字段.</p>
+</li>
+<li><p>在 MeshrRenderer 中这两个字段并没有做处理, 只是在面板上隐藏了而已, 因此可以在脚本中直接使用.</p>
+ <pre class="line-numbers language-C#" data-language="C#"><code class="language-C#">public int orderinLayer &#x3D; 15;
+public string sortingLayer &#x3D; &quot;UI&quot;;
+
+private MeshRenderer meshRenderer;
+
+private void Awake()
+&#123;
+    meshRenderer &#x3D; GetComponent&lt;MeshRenderer&gt;();
+&#125;
+
+private void Start() 
+&#123;
+    &#x2F;&#x2F;设定 3D 游戏物体的渲染层级
+    meshRenderer.sortingLayerName &#x3D; sortingLayer;
+    meshRenderer.sortingOrder &#x3D; orderinLayer;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>在 ParticleSystem 中同样也有 Renderer 组件控制粒子特效的渲染顺序, 同样可以使用脚本控制, 也可以直接在面板上设置.</p>
+</li>
+</ol>
+<pre><code><pre class="line-numbers language-C#" data-language="C#"><code class="language-C#">public int orderinLayer &#x3D; 15;
+public string sortingLayer &#x3D; &quot;UI&quot;;
+
+public ParticleSystem[] particleSystems;
+
+private void Start() 
+&#123;
+    &#x2F;&#x2F;设定粒子特效的渲染层级
+    for (int index &#x3D; 0; index &lt; particleSystems.Length; index++)
+    &#123;
+        rendererParticle &#x3D; particleSystems[index].GetComponent&lt;Renderer&gt;();
+        rendererParticle.sortingLayerName &#x3D; sortingLayer;
+        rendererParticle.sortingOrder &#x3D; orderinLayer;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></code></pre>
+<h1 id="问题解决后效果"><a href="#问题解决后效果" class="headerlink" title="问题解决后效果"></a>问题解决后效果</h1><p>使用上面脚本中的设置就可以让 MeshRenderer 也参与到 2D UI 的排序中来了, 效果还是不错的.</p>
+<p><img data-src="/images/unity_render_order/unity_render_order_2.png" alt="修复后效果"></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82YmNjZjc5ZmEzNjc=">SpriteRenderer 与 MeshRenderer的渲染排序层级<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>咕噜咕噜~</div>
+  <button onclick="document.getElementById('post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div id="post-reward">
+      
+      <div>
+        <img src="/images/donate/alipay.png" alt="Kuroha 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Kuroha
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://kuroha.vip/unity/unity_render_order.html" title="Unity - 2D 精灵 和 3D 物体的渲染顺序">https://kuroha.vip/unity/unity_render_order.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aF9DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/KurohaKirito">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/KurohaKirito">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/followme/wechat.png">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Unity/" rel="tag"><i class="fa fa-tag"></i> Unity</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/programbasics/json_notes.html" rel="prev" title="JSON 参考手册">
+      <i class="fa fa-chevron-left"></i> JSON 参考手册
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/programbasics/oracle_gateways.html" rel="next" title="Oracle 异构数据库访问">
+      Oracle 异构数据库访问 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-leaf"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kuroha</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">122k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:51</span>
+</div>
+
+    <div id="days"></div>
+    <script type="text/javascript" src="/js/website_runtime.js"></script>
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/npm/ribbon.js@1/dist/ribbon.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments('#gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '29ff88cf54f1cbcbc7b5',
+      clientSecret: 'e68fb1037811f8fb3acd5ca30d3c6a955e1c90e0',
+      repo        : 'MyBlogCommentSystem',
+      owner       : 'KurohaKirito',
+      admin       : ['KurohaKirito'],
+      id          : '72c2dfe80a9c48a28f3d32d7b67205d8',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+<!--Aplayer 吸底式音乐播放功能-->
+
+    <link rel="stylesheet" href="/js/aplayer/APlayer.min.css">
+    <div id="aplayer_fixed"></div>
+    <script type="text/javascript" src="/js/aplayer/APlayer.min.js"></script>
+    <script type="text/javascript" src="/js/fixedAplayer.js"></script>
+
+
+<!--崩溃欺骗-->
+
+    <script type="text/javascript" src="/js/crash_cheat.js"></script>
+
+
+<!--看板娘-->
+
+
+<!--究极看板娘-->
+
+
+<!--鼠标红心效果-->
+
+    <script type="text/javascript" src="/js/love.js"></script>
+
+</body>
+</html>
+
