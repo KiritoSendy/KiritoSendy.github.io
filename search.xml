@@ -659,9 +659,12 @@ int main()
 <h1 id="如何部署网站程序"><a href="#如何部署网站程序" class="headerlink" title="如何部署网站程序"></a>如何部署网站程序</h1><ol>
 <li><p>打开 IIS 管理器 (Internet Information Service), 在 &quot;网站&quot; 处右键, 添加网站.</p>
 </li>
-<li><p>输入网站名, 物理路径, 修改端口号, 其他的像 &quot;&quot;类型&quot;&quot;, &quot;IP 地址&quot;, &quot;主机名&quot; 都不用动. </p>
+<li><p>输入 <font color='red'><strong>网站名称, 物理路径, 修改端口号</strong></font>, 其他的像 &quot;&quot;类型&quot;&quot;, &quot;IP 地址&quot;, &quot;主机名&quot; 都不用动.</p>
 <p>[<strong>注意</strong>] 物理路径填写时要多添加 <code>程序版本</code> 这一级别, 因为程序中有一个 js 用到了这一路径级别, 如果不添加 js 会返回错误的执行结果. 之后在这一层路径下再添加具体的程序文件, 如图:</p>
 <p><img data-src="/images/deploy_website/WebsitePath.png" alt="目录设置"></p>
+</li>
+<li><p>选中具体的程序文件的顶层文件夹, <strong>右键</strong> =&gt; <strong>转换为应用程序</strong>.</p>
+<p><img data-src="/images/deploy_website/ToApplication.png" alt="转换为应用程序"></p>
 </li>
 <li><p>选中网站, 双击 <code>MIME 类型</code> (图标由一个音符 ico, 一个图片 ico, 还有一个文本 ico 组成), 在右侧窗口单击 &quot;添加...&quot;, 输入: </p>
 <p><code>.dmp application/x-dmp</code></p>
@@ -673,7 +676,7 @@ int main()
 </li>
 <li><p>双击 &quot;身份验证&quot;, 将 &quot;匿名身份验证&quot; 启用. (默认启用)</p>
 </li>
-<li><p>双击 &quot;默认文档&quot;, 添加 &quot;default.aspx&quot; 文件. (默认已添加) 当访问网站时如果不写明要访问的页面, 这时 IIS 就会从默认文档列表中从上往下依次寻找, 一旦找到存在的页面便会进行渲染, 因此假设你的网站默认开始页面是 StartPage.aspx, 那么你就需要将 StartPage.aspx 添加到默认文档列表中, 并将位置设置在第一位. (默认新添加的页面都在第一位)</p>
+<li><p>双击 &quot;默认文档&quot;, 添加 &quot;default5.aspx&quot; 文件. 当访问网站时如果不写明要访问的页面, 这时 IIS 就会从默认文档列表中从上往下依次寻找, 一旦找到存在的页面便会进行渲染, 因此假设你的网站默认开始页面是 StartPage.aspx, 那么你就需要将 StartPage.aspx 添加到默认文档列表中, 并将位置设置在第一位. (默认新添加的页面都在第一位)</p>
 </li>
 <li><p>选中 &quot;网站&quot; 上方的 &quot;应用程序池&quot;, 找到刚刚建好的网站, 右键, 基本设置:</p>
 <p>.NET CLR 版本设置为: v2.0.50727, 托管管道模式设置为: 经典.</p>
@@ -685,7 +688,8 @@ int main()
 </li>
 <li><p>修改 Web.config 文件中 impersonate=&quot;true&quot; 为 &quot;false&quot;.</p>
 </li>
-<li><p>设置目录权限. 网站右键, 编辑权限, 添加 EVERYONE, NETWORK, NETWORK SERVICE, 全部给予读写权限, 应用, 确认.</p>
+<li><p>设置目录权限. 网站右键, 编辑权限, 添加以下用户, 并给予完全控制权限, 确认.</p>
+<p>  <strong><code>Everyone; NETWORK; NETWORK SERVICE</code></strong></p>
 </li>
 <li><p>防火墙添加入站规则, 否则他人无法访问. 控制面板-&gt;防火墙-&gt;高级设置-&gt;入站规则-&gt;新建规则-&gt;端口-&gt;TCP, 填入新建网站的端口-&gt;后面默认即可. (最后给这个规则起一个规范, 易识别的名字).</p>
 </li>
@@ -1746,8 +1750,8 @@ deploy:
     <url>/hexo/hexo_update.html</url>
     <content><![CDATA[<a id="more"></a>
 
-<h1 id="🏳‍🌈惨案"><a href="#🏳‍🌈惨案" class="headerlink" title="🏳‍🌈惨案"></a>🏳‍🌈惨案</h1><p>一个 <mark>warning</mark> 引发的惨案!</p>
-<h1 id="升级方式"><a href="#升级方式" class="headerlink" title="升级方式"></a>升级方式</h1><p>全新安装</p>
+<h1 id="🏳‍🌈惨案"><a href="#🏳‍🌈惨案" class="headerlink" title="🏳‍🌈惨案"></a>🏳‍🌈惨案</h1><p>一个 <font color='red'>Warning</font> 引发的惨案!</p>
+<h1 id="升级方式"><a href="#升级方式" class="headerlink" title="升级方式"></a>升级方式</h1><p>全新安装, 因为我不会升级啊~~😂</p>
 <h1 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h1><p>进入 <span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS8=">Git 官方网站<i class="fa fa-external-link-alt"></i></span> 下载安装. </p>
 <p>可以使用 <code>git --version</code> 进行验证, 出现版本号就说明成功了. </p>
 <h1 id="安装-Nodejs"><a href="#安装-Nodejs" class="headerlink" title="安装 Nodejs"></a>安装 Nodejs</h1><p>进入 <span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL2VuLw==">Nodejs 官方网站<i class="fa fa-external-link-alt"></i></span> 下载安装. </p>
@@ -3489,11 +3493,14 @@ private void Start()
 <span class="token comment">--查询当前登录用户的信息</span>
 <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> user_users<span class="token punctuation">;</span>
 
-<span class="token comment">--查询最近执行过的语句 </span>
-<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> v$<span class="token keyword">sql</span> <span class="token keyword">where</span> sql_fulltext <span class="token operator">like</span> <span class="token string">'%%'</span> <span class="token keyword">order</span> <span class="token keyword">by</span> last_active_time <span class="token keyword">desc</span><span class="token punctuation">;</span>
+<span class="token comment">--查询最近执行过的语句</span>
+<span class="token keyword">select</span> sql_text<span class="token punctuation">,</span> sql_fulltext<span class="token punctuation">,</span> first_load_time
+  <span class="token keyword">from</span> v$<span class="token keyword">sql</span>
+ <span class="token keyword">where</span> sql_fulltext <span class="token operator">like</span> <span class="token string">'%from zccz_sbxgwdb where saasdm%'</span>
+ <span class="token keyword">order</span> <span class="token keyword">by</span> last_active_time <span class="token keyword">desc</span><span class="token punctuation">;</span>
 
 <span class="token comment">--查看数据库的位数</span>
-<span class="token keyword">select</span> <span class="token keyword">case</span> length<span class="token punctuation">(</span>address<span class="token punctuation">)</span> <span class="token keyword">when</span> <span class="token number">8</span> <span class="token keyword">then</span> <span class="token string">'32 位数据库'</span> <span class="token keyword">when</span> <span class="token number">16</span> <span class="token keyword">then</span> <span class="token string">'64 位数据库'</span> <span class="token keyword">end</span> <span class="token keyword">as</span> 数据库版本 <span class="token keyword">from</span> v$<span class="token keyword">sql</span> <span class="token keyword">where</span> rownum <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">select</span> <span class="token keyword">case</span> length<span class="token punctuation">(</span>address<span class="token punctuation">)</span> <span class="token keyword">when</span> <span class="token number">8</span> <span class="token keyword">then</span> <span class="token string">'32 位数据库'</span> <span class="token keyword">when</span> <span class="token number">16</span> <span class="token keyword">then</span> <span class="token string">'64 位数据库'</span> <span class="token keyword">end</span> <span class="token keyword">as</span> 数据库版本 <span class="token keyword">from</span> v$<span class="token keyword">sql</span> <span class="token keyword">where</span> rownum <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="Oracle-用户操作语句"><a href="#Oracle-用户操作语句" class="headerlink" title="Oracle 用户操作语句"></a>Oracle 用户操作语句</h1><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">--创建新用户</span>
 <span class="token keyword">create</span> <span class="token keyword">user</span> nkgl identified <span class="token keyword">by</span> nkgl123<span class="token punctuation">;</span>
@@ -3766,9 +3773,7 @@ cache <span class="token number">2</span>         <span class="token comment">--
 </ul>
 <h1 id="SQL-中常用的函数"><a href="#SQL-中常用的函数" class="headerlink" title="SQL 中常用的函数"></a>SQL 中常用的函数</h1><ol>
 <li><p><code>avg()</code> 返回数值列的平均值. 括号中的列必须是数值列. 多用于比较条件中的参数. </p>
-<ul>
-<li><code>select student_id from table_student group by student_id having avg(student_score) &gt; 80</code> 查出平均分大于 80 分的学生的 id.</li>
-</ul>
+<p><code>select student_id from table_student group by student_id having avg(student_score) &gt; 80</code> 查出平均分大于 80 分的学生的 id.</p>
 </li>
 <li><p><code>count()</code> 有多种用法.</p>
 <ul>
@@ -3795,9 +3800,7 @@ cache <span class="token number">2</span>         <span class="token comment">--
 </ul>
 </li>
 <li><p><code>sum()</code> 返回数值列的和.</p>
-<ul>
-<li><code>select sum(score) from table_student group by student_id;</code> 求出每个学生的总分.</li>
-</ul>
+<p><code>select sum(score) from table_student group by student_id;</code> 求出每个学生的总分.</p>
 </li>
 <li><p><code>group by</code> 根据一个或多个列, 对查询出来的结果集进行分组.</p>
 <ul>
@@ -3808,13 +3811,46 @@ cache <span class="token number">2</span>         <span class="token comment">--
 </ul>
 </li>
 <li><p><code>having</code> 关键字的出现就是为了解决 &quot;<code>where</code> 不能处理分组后的结果集&quot; 这个问题. </p>
-<ul>
-<li><code>having</code> 可以对 <code>group by</code> 分组后的数据进行筛选.</li>
-</ul>
+<p><code>having</code> 可以对 <code>group by</code> 分组后的数据进行筛选.</p>
 </li>
 <li><p><code>exists()</code> 对括号中的子句进行判断, 如果子句中有数据, 返回 true, 没有数据返回 false.</p>
 </li>
+<li><p><code>substr(parame1, parame2, parame3)</code> 截取字符串</p>
+<ul>
+<li><p>parame1: 待处理字符串</p>
+</li>
+<li><p>parame2: 起始位置, 0 1 都代表第一个字符</p>
+</li>
+<li><p>parame3: 截取长度</p>
+</li>
+<li><p>substr(parame1, parame2) : 取出 parame1 中 parame2 位置之后的整个字符串</p>
+</li>
+</ul>
+</li>
+<li><p><code>instr(parame1, parame2)</code> 检索字符串</p>
+<ul>
+<li><p>parame1: 元字符串</p>
+</li>
+<li><p>parame2: 待查找字符串</p>
+</li>
+<li><p>parame3 (可选) : 查找的起始位置, 正数为从左向右检索, 负数为从右向左检索</p>
+</li>
+<li><p>parame4 (可选) : 返回第几次的检索位置</p>
+</li>
+</ul>
+</li>
+<li><p><code>replace(parame1, parame2, parame3)</code> 替换字符串</p>
+<ul>
+<li><p>replace(parame1, parame2, parame3): 将 parame1 中所有的 parame2 全部替换成 parame3.</p>
+</li>
+<li><p>replace(parame1, parame2) : 将 parame1 中所有的 parame2 全部删除.</p>
+</li>
+</ul>
+</li>
 </ol>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">--只取出 name 中 / 后面的字符串</span>
+<span class="token keyword">select</span> substr<span class="token punctuation">(</span>name<span class="token punctuation">,</span> instr<span class="token punctuation">(</span>name<span class="token punctuation">,</span> <span class="token string">'/'</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">from</span> dmb <span class="token keyword">where</span> saasdm <span class="token operator">=</span> <span class="token string">'test'</span> <span class="token keyword">order</span> <span class="token keyword">by</span> dmxh<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 <h2 id="SQL-中的大小写转换"><a href="#SQL-中的大小写转换" class="headerlink" title="SQL 中的大小写转换"></a>SQL 中的大小写转换</h2><ol>
 <li><p><code>ucase()</code> 方法可以将查询出来的字符串数据全部转为大写字母. </p>
 </li>
