@@ -3425,10 +3425,11 @@ private void Start()
 <li><p>解压之后放到 <code>source/js/</code> 目录下, 完成这一步之后, 在 <code>source/js/live2d_demo/</code> 目录下应该有 9 个文件.</p>
 </li>
 <li><p>在 <code>source/_data/body-end.njk</code> 文件的最后添加:</p>
-<p>``html</p>
-<!--究极看板娘效果-->
-
-<pre><code></code></pre>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token comment">&lt;!--萌萌看板娘--></span>
+&#123;% if theme.live2d_demo %&#125;
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/js/live2d_demo/jquery-ui.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span class="token comment">&lt;!-- 实现拖动效果，需引入 JQuery UI --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/js/live2d_demo/autoload.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span class="token comment">&lt;!-- 使用 autoload.js 自动引入看板娘 --></span>
+&#123;% endif %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>最后在 <strong>主题配置文件</strong> 中写入 <code>live2d_demo: true</code>, 启用看板娘!</p>
 </li>
