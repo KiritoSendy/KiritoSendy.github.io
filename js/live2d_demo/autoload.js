@@ -98,10 +98,10 @@ $.ajax({url: live2d_path + "waifu-tips.js", dataType:"script", cache: true, succ
 		live2d_settings['waifuToolLine'] = '24px';
 			
 		//面页小于 指定宽度 隐藏看板娘, 例如 'disable' (停用), '768px'
-		live2d_settings['waifuMinWidth'] = '1900px';
+		live2d_settings['waifuMinWidth'] = '400px';
 			
 		//看板娘贴边方向, 例如 'left:0' (靠左 0px), 'right:30' (靠右 30px)
-		live2d_settings['waifuEdgeSide'] = 'left:150';
+		live2d_settings['waifuEdgeSide'] = 'left:200';
 			
 		//拖拽样式, 可选 'disable' (禁用), 'axis-x' (只能水平拖拽), 'unlimited' (自由拖拽)
 		live2d_settings['waifuDraggable'] = 'unlimited';

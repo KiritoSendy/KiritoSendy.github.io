@@ -3436,7 +3436,7 @@ private void Start()
 </ol>
 <p>[<strong>注</strong>] </p>
 <ol>
-<li><p>要定制自己的看板娘, 可以修改 <code>autoload.js</code> 中的参数配置, 这里的配置基本足够了! </p>
+<li><p>要定制自己的看板娘, 可以修改 <code>autoload.js</code> 中的参数配置, 还可以在 <code>waifu-tips.json</code> 中修改对话, 这两处的配置足够定制自己独特的看板娘了! </p>
 </li>
 <li><p>经过以上操作如果还是不能达到效果, 请检查 <code>autoload.js</code> 中的路径设置是否正确! (虽然我已经配置好了, 可以直接拿来用, 不过既然出问题了, 就自己检查一下吧!)</p>
 </li>
