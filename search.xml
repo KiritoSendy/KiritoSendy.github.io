@@ -105,7 +105,7 @@
 <p>数据结构中, 怎么判断链表里面有环? </p>
 <blockquote>
 <p>马后炮解答: </p>
-<p><strong>如何判断一个链表中是否有环</strong>: 使用追赶法, 设定两个指针 slow、fast, 从头指针开始, 每次分别前进1步、2步. 如存在环, 则两者必定相遇；如不存在环, fast 遇到 NULL 退出. </p>
+<p><strong>如何判断一个链表中是否有环</strong>: 使用追赶法, 设定两个指针 slow、fast, 从头指针开始, 每次分别前进1步、2步. 如存在环, 则两者必定相遇, 如不存在环, fast 遇到 NULL 退出. </p>
 <p><strong>如何知道环的长度</strong>: 依旧先使用追赶法(双指针法), 求出 slow、fast 两指针的碰撞点 P (相遇点), 之后 slow、fast 指针再次从碰撞点 P 出发, 直到两者再次碰撞, 期间 slow 经过的结点数量就是环的长度. <strong>碰撞点不一定是环的连接结点</strong></p>
 <p><strong>如何找出环的连接结点</strong>: 设置每次都只前进 1 步的两个指针, 分别从头结点和碰撞点出发, 他们所相遇的结点就是连接点. </p>
 <p><strong>如何求出头结点到连接点的长度</strong>: 求连接点的时候, 从头结点出发的指针直到和另外一个指针相遇, 中间经过的结点的数量就是头结点到连接点的长度. </p>
@@ -838,7 +838,7 @@ int main()
 <h1 id="资源管理器没有启动"><a href="#资源管理器没有启动" class="headerlink" title="资源管理器没有启动"></a>资源管理器没有启动</h1><p>资源管理器没有启动, 表现为没有桌面, 没有任务栏, 这样就无法通过鼠标操作电脑, 只能通过键盘操作. </p>
 <p>解决办法有两种: </p>
 <ol>
-<li><p>Win R, 输入 <code>explorer</code>, 开启资源管理器；</p>
+<li><p>Win R, 输入 <code>explorer</code>, 开启资源管理器, </p>
 </li>
 <li><p>打开任务管理器, 新建任务, 输入 <code>explorer</code>, 开启资源管理器. </p>
 </li>
@@ -1595,9 +1595,9 @@ npm config get cache<span aria-hidden="true" class="line-numbers-rows"><span></s
 <h1 id="关联-GitHub-和-Hexo"><a href="#关联-GitHub-和-Hexo" class="headerlink" title="关联 GitHub 和 Hexo"></a>关联 GitHub 和 Hexo</h1><p>经过前面两个步骤, 我们已经在本地创建好了博客, 也可以通过本地服务进行预览, 但是这样网页仅仅保存在本地, 网络上的人无法查看的, 此时我们就要将本地博客和 GitHub Pages 关联, 或者说上传到 GitHub 上, 这样所有人都可以查看了. </p>
 <h2 id="开启-GitHub-Pages"><a href="#开启-GitHub-Pages" class="headerlink" title="开启 GitHub Pages"></a>开启 GitHub Pages</h2><p>GitHub Pages: 其本来用于介绍托管在 GitHub 上的项目, 由于它的空间免费稳定, 因此适合用来搭建个人博客, 但是有以下注意点: </p>
 <ul>
-<li>每个 GitHub 账号只能有一个仓库来存放个人主页；</li>
-<li>仓库的名字必须是 <code>username.github.io</code>；</li>
-<li>通过 <code>http://username.github.io</code> 来访问个人主页；</li>
+<li>每个 GitHub 账号只能有一个仓库来存放个人主页, </li>
+<li>仓库的名字必须是 <code>username.github.io</code>, </li>
+<li>通过 <code>http://username.github.io</code> 来访问个人主页, </li>
 <li>个人主页的网站内容是在 master 分支下. </li>
 </ul>
 <p>接下来我们创建个人主页仓库: 在 GitHub 首页右上角头像左侧的加号处, 点击: New repository, 仓库名字必须是: <code>你的 Github 用户名.github.io</code>, 下面选择 Public, 下面的选项是让你是否在仓库中初始化一个 README.md 文件, 自己随意. 最后点击创建仓库, 这样 GitHub Pages 就创建好了. </p>
@@ -1737,337 +1737,6 @@ deploy:
 
 <p>重启浏览器或者刷新 DNS 缓存, 告诉电脑 hosts 文件已经被修改. </p>
 <p>刷新 DNS 缓存的方法: 在命令行中输入 <code>ipconfig /flushdns</code> 刷新 DNS 缓存. </p>
-]]></content>
-      <categories>
-        <category>Hexo_Blog</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo 3.9.0 + NexT 7.2.0 =&gt; Hexo 5.1.0 + NexT 8.0.0</title>
-    <url>/hexo/hexo_update.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="🏳‍🌈惨案"><a href="#🏳‍🌈惨案" class="headerlink" title="🏳‍🌈惨案"></a>🏳‍🌈惨案</h1><p>一个 <font color='red'>Warning</font> 引发的惨案!</p>
-<h1 id="升级方式"><a href="#升级方式" class="headerlink" title="升级方式"></a>升级方式</h1><p>全新安装, 因为我不会升级啊~~😂</p>
-<h1 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h1><p>进入 <span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS8=">Git 官方网站<i class="fa fa-external-link-alt"></i></span> 下载安装. </p>
-<p>可以使用 <code>git --version</code> 进行验证, 出现版本号就说明成功了. </p>
-<h1 id="安装-Nodejs"><a href="#安装-Nodejs" class="headerlink" title="安装 Nodejs"></a>安装 Nodejs</h1><p>进入 <span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL2VuLw==">Nodejs 官方网站<i class="fa fa-external-link-alt"></i></span> 下载安装. </p>
-<p>尽量长期支持版本 (LTS), 最新发布版可能会有警报, 甚至会有错误发生!</p>
-<p>可以使用 <code>node -v</code> 和 <code>npm -v</code> 进行验证, 出现版本号就说明成功了. </p>
-<h1 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h1><p>安装 Hexo 之前, 设置 Hexo 的安装位置. 具体见我的另一篇博客: <a href="https://kuroha.vip/hexo/hexo_blog.html">Hexo + Github Pages 搭建个人博客</a> 这里不再赘述!</p>
-<p>安装 Hexo: <strong><code>npm install hexo-cli -g</code></strong></p>
-<h1 id="创建本地博客-初始化-Hexo"><a href="#创建本地博客-初始化-Hexo" class="headerlink" title="创建本地博客 (初始化 Hexo)"></a>创建本地博客 (初始化 Hexo)</h1><ol>
-<li><p>新建文件夹, 放置本地博客, 名称随意. <code>F:\WorkSpace\Hexo</code></p>
-</li>
-<li><p>初始化本地博客, 在 Git Bash Here 中输入: <code>hexo init</code> </p>
-</li>
-</ol>
-<p>[<strong>注</strong>] <font color='red'><strong>此步骤需要耗费较长一段时间, 我大概用了 25 分钟! 慢慢等吧!</strong></font></p>
-<blockquote>
-<p><code>hexo init</code> 是这次升级遇到的第一个大坑, 忘记了这个要执行好长一段时间, 好几次自己等不耐烦了, 直接 <code>Ctrl + C</code> 了! 😂</p>
-</blockquote>
-<ol start="3">
-<li>安装默认依赖包, 在 Git Bash Here 中输入: <code>npm install</code></li>
-</ol>
-<p>[<strong>注</strong>] 在上一步中大部分的依赖其实已经安装了, 这里只是安装一小部分, 所以很快!</p>
-<ol start="4">
-<li><p>生成静态文件, 在 Git Bash Here 中输入: <code>hexo generate</code></p>
-</li>
-<li><p>开启服务, 在 Git Bash Here 中输入 <code>hexo server</code></p>
-</li>
-</ol>
-<h1 id="部署-Hexo"><a href="#部署-Hexo" class="headerlink" title="部署 Hexo"></a>部署 Hexo</h1><ol>
-<li><p>安装 Hexo deploy 插件, 在 Git Bash Here 中输入: <code>npm install hexo-deployer-git --no-optional</code></p>
-</li>
-<li><p>在站点配置文件中配置:</p>
-</li>
-</ol>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">deploy:
-  type: git
-  repo: git@github.com:KurohaKirito&#x2F;KurohaKirito.github.io.git
-  branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>[<strong>注</strong>] repo 仓库的地址: 有 SSH 和 HTTPS 两种格式, 推荐选择 SSH 格式, 如果选择 Https 格式, <font color='red'>每次发布时都必须输入账号密码</font>, 不嫌麻烦的可以用!</p>
-<h2 id="安装-NexT-主题"><a href="#安装-NexT-主题" class="headerlink" title="安装 NexT 主题"></a>安装 NexT 主题</h2><blockquote>
-<p>这里是第二个大坑, 最新版的 NexT 的仓库已经换地址了, 我还傻乎乎地用之前的地址, 唉...😔</p>
-</blockquote>
-<ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lpc3NuYW4vaGV4by10aGVtZS1uZXh0">2014-2017<i class="fa fa-external-link-alt"></i></span> <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lpc3NuYW4vaGV4by10aGVtZS1uZXh0">https://github.com/iissnan/hexo-theme-next<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvaGV4by10aGVtZS1uZXh0">2018-2019<i class="fa fa-external-link-alt"></i></span> <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvaGV4by10aGVtZS1uZXh0">https://github.com/theme-next/hexo-theme-next<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0">2020-2020<i class="fa fa-external-link-alt"></i></span> <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0">https://github.com/next-theme/hexo-theme-next<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ul>
-<blockquote>
-<p>新版的 NexT 推荐使用 <code>npm install hexo-theme-next --no-optional</code> 进行安装, 作为一个 node_module 存在! 安装之后路径为: node_module/hexo-theme-next.</p>
-</blockquote>
-<blockquote>
-<p>新版的 NexT 推荐用户不要修改主题目录下的配置文件, 而是在站点根目录下新建一个 <font color='red'><strong>_config[.主题名称].yml</strong></font> 文件, 作为新的主题配置文件.</p>
-</blockquote>
-<p><img data-src="/images/hexo_update/next_theme_config.png" alt="next_theme_config"></p>
-<p>可以先从 node_module/hexo-theme-next 文件夹中复制一份配置文件出来, 然后按照规则重命名, 最后修改其中的设置即可!</p>
-<h1 id="自定义站点配置文件"><a href="#自定义站点配置文件" class="headerlink" title="自定义站点配置文件"></a>自定义站点配置文件</h1><p>修改 theme 的值为 next, 这里的名字要和之前新建主题配置文件时使用的名称一致! </p>
-<h1 id="自定义主题配置文件"><a href="#自定义主题配置文件" class="headerlink" title="自定义主题配置文件"></a>自定义主题配置文件</h1><p>配置文件中只需要改改设置就可以出现效果的就不提了, 说一下注意事项:</p>
-<h2 id="开启自定义配置"><a href="#开启自定义配置" class="headerlink" title="开启自定义配置"></a>开启自定义配置</h2><p>取消自定义配置文件的注释, 并且要在对应的路径下创建对应的文件.</p>
-<h2 id="开启标签-分类-关于菜单"><a href="#开启标签-分类-关于菜单" class="headerlink" title="开启标签, 分类, 关于菜单"></a>开启标签, 分类, 关于菜单</h2><p>取消相应的设置选项后, 必须在 <code>source</code> 文件夹下创建相应的路径, 并创建相应的 markdown 文件, 文件中的内容虽然很简单, 但是也必须添加! <code>comments : false</code> 可以使当前页面禁用评论系统.</p>
-<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">---
-type: &quot;categories&quot;
-comments: false
----<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">---
-type: &quot;tags&quot;
-comments: false
----<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="设置-Favicon-图标"><a href="#设置-Favicon-图标" class="headerlink" title="设置 Favicon 图标"></a>设置 Favicon 图标</h2><p>在 favicon 属性后设置路径之后, 必须在相应的路径下创建图片, 否则找不到文件会报错! 设置侧边栏头像时同理.</p>
-<h2 id="添加预计阅读时间功能"><a href="#添加预计阅读时间功能" class="headerlink" title="添加预计阅读时间功能"></a>添加预计阅读时间功能</h2><p>需要安装依赖: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by13b3JkLWNvdW50ZXI=">hexo-word-counter<i class="fa fa-external-link-alt"></i></span></p>
-<p><code>npm install hexo-word-counter --no-optional</code></p>
-<p>[<strong>注</strong>] <font color='red'>所有需要安装依赖才能出现效果的, 安装完依赖并设置好之后, 必须清理缓存重新生成才会生效!</font></p>
-<p>[<strong>注</strong>] <font color='red'>某些特效需要关闭新版 NexT 中的 Pjax</font></p>
-<h2 id="关闭最受欢迎文章功能"><a href="#关闭最受欢迎文章功能" class="headerlink" title="关闭最受欢迎文章功能"></a>关闭最受欢迎文章功能</h2><p>NexT 中有这么一个设置: related_posts, 可以当作 &quot;最近受欢迎的文章&quot;, &quot;相关博客&quot; 或者 &quot;推荐阅读&quot; 使用, 但是由于其依赖有点过时, 推荐关闭此功能!</p>
-<h2 id="代码高亮风格设置"><a href="#代码高亮风格设置" class="headerlink" title="代码高亮风格设置"></a>代码高亮风格设置</h2><p>如果使用 <code>Prism</code> 进行代码高亮渲染, 并且选择较高级的一些效果, 需要安装依赖.</p>
-<p><code>npm install prism-themes --no-optional</code></p>
-<p>并且要在 <strong>站点配置文件</strong> 中将 highlight 设为 false, prismjs 设为 true.</p>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml">highlight:
-  enable: false
-  line_number: true
-  auto_detect: false
-  tab_replace: &#39;&#39;
-  wrap: true
-  hljs: false
-prismjs:
-  enable: true
-  preprocess: true
-  line_number: true
-  tab_replace: &#39;&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>最后在 <strong>主题配置文件</strong> 的 prism 后设置使用的渲染风格.</p>
-<h2 id="本地搜索"><a href="#本地搜索" class="headerlink" title="本地搜索"></a>本地搜索</h2><p>需要安装依赖: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by1nZW5lcmF0b3Itc2VhcmNoZGI=">hexo-generator-searchdb<i class="fa fa-external-link-alt"></i></span></p>
-<p><code>npm install hexo-generator-searchdb --no-optional</code></p>
-<h2 id="音乐播放器-APlayer"><a href="#音乐播放器-APlayer" class="headerlink" title="音乐播放器 APlayer"></a>音乐播放器 APlayer</h2><blockquote>
-<p>APlayer 源码地址: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vZVBsYXllci9BUGxheWVy">APlayer<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p>新建目录: <code>source/js/aplayer</code>, 下载并解压源码, 将 <code>dist</code> 文件夹中的四个文件复制到 <code>source/js/aplayer</code> 中. </p>
-<p>返回 <code>source/js</code> 文件夹, 新建一个 <code>fixedAplayer.js</code> 文件, 输入以下代码:</p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">const ap &#x3D; new APlayer(&#123;
-    container: document.getElementById(&#39;aplayer&#39;),
-    fixed: true,
-    autoplay: false,
-    audio: [
-      &#123;
-        name: &#39;歌曲的名字&#39;,
-        artist: &#39;歌手&#39;,
-        url: &#39;音乐文件的地址&#39;,
-        cover: &#39;封面图片的地址&#39;,
-      &#125;
-    ]
-&#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>之后在 <code>source/_data/body-end.njk</code> 中添加: </p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&lt;!--APlayer 吸底式音乐播放功能--&gt;
-&#123;% if theme.aplayer_fixed %&#125;
-    &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#x2F;js&#x2F;aplayer&#x2F;APlayer.min.css&quot;&gt;
-    &lt;div id&#x3D;&quot;aplayer&quot;&gt;&lt;&#x2F;div&gt;
-    &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;aplayer&#x2F;APlayer.min.js&quot;&gt;&lt;&#x2F;script&gt;
-    &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;fixedAplayer.js&quot;&gt;&lt;&#x2F;script&gt;
-&#123;% endif %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>最后在 <strong>主题配置文件</strong> 中写入 <code>aplayer_fixed: true</code>.</p>
-<h2 id="视频播放器-DPlayer"><a href="#视频播放器-DPlayer" class="headerlink" title="视频播放器 DPlayer"></a>视频播放器 DPlayer</h2><blockquote>
-<p>DPlayer 源码地址: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vZVBsYXllci9EUGxheWVy">DPlayer<i class="fa fa-external-link-alt"></i></span></p>
-</blockquote>
-<p>新建目录: <code>source/js/dplayer</code>, 下载并解压源码, 将 <code>dist</code> 文件夹中的四个文件复制到 <code>source/js/dplayer</code> 中.</p>
-<p>在待添加视频博客的所需位置中添加以下代码:</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dplayer<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/js/dplayer/DPlayer.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
-<span class="token keyword">const</span> dp_update <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DPlayer</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-    container<span class="token operator">:</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'dplayer'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    screenshot<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    video<span class="token operator">:</span>
-    <span class="token punctuation">&#123;</span>
-        url<span class="token operator">:</span> <span class="token string">'/video/hexo_update/hexo_update.mp4'</span><span class="token punctuation">,</span> <span class="token comment">//视频文件</span>
-        pic<span class="token operator">:</span> <span class="token string">'/video/hexo_update/hexo_update.jpg'</span><span class="token punctuation">,</span> <span class="token comment">//视频封面</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-<h2 id="鼠标红心效果"><a href="#鼠标红心效果" class="headerlink" title="鼠标红心效果"></a>鼠标红心效果</h2><p>在 <code>source/js</code> 下创建 <code>love.js</code> 文件, 内容具体见我的另一篇博客: <a href="https://kuroha.vip/hexo/next_theme_beautify.html">Hexo + NexT 主题美化 (NexT v7.2.0)</a> 这里不再赘述!</p>
-<p>之后在 <code>source/_data/body-end.njk</code> 中添加: </p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&lt;!--鼠标红心效果--&gt;
-&#123;% if theme.love %&#125;
-  &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;love.js&quot;&gt;&lt;&#x2F;script&gt;
-&#123;% endif %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>最后在 <strong>主题配置文件</strong> 中写入 <code>love: true</code>.</p>
-<h2 id="页面标题欺诈"><a href="#页面标题欺诈" class="headerlink" title="页面标题欺诈"></a>页面标题欺诈</h2><p>在 <code>source/js</code> 下创建 <code>crash_cheat.js</code> 文件, 内容具体见我的另一篇博客: <a href="https://kuroha.vip/hexo/next_theme_beautify.html">Hexo + NexT 主题美化 (NexT v7.2.0)</a> 这里不再赘述!</p>
-<p>之后在 <code>source/_data/body-end.njk</code> 中添加: </p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&lt;!--崩溃欺骗--&gt;
-&#123;% if theme.crashcheat %&#125;
-  &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;crash_cheat.js&quot;&gt;&lt;&#x2F;script&gt;
-&#123;% endif %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>最后在 <strong>主题配置文件</strong> 中写入 <code>crashcheat: true</code>.</p>
-<h2 id="球形标签云"><a href="#球形标签云" class="headerlink" title="球形标签云"></a>球形标签云</h2><p>球形标签云其实就是用这个插件 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZ29hdDEwMDAuY29tL3RhZ2NhbnZhcy5waHA=">TagCanvas<i class="fa fa-external-link-alt"></i></span> 实现的, 点击进入官网. </p>
-<p>进入官网后下载 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZ29hdDEwMDAuY29tL3RhZ2NhbnZhcy5qcw==">tagcanvas.js<i class="fa fa-external-link-alt"></i></span> 文件, 也可以直接在左面我给出的链接那里 &quot;右键 =&gt; 链接另存为&quot;, 保存到: <code>source\js</code> 目录下. 需要的就是这一个 <code>tagcanvas.js</code> 文件!</p>
-<p>打开 <code>source/js</code> 文件夹中再新建一个 <code>tagcloud.js</code> 文件, 写入以下内容:</p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">window.onload &#x3D; function () &#123;
-    try &#123;
-        TagCanvas.Start(&#39;my3DTags&#39;, &#39;tags&#39;,
-            &#123;
-                textFont: &#39;Georgia,Optima&#39;,
-                textColour: null,
-                outlineColour: &#39;black&#39;,
-                weight: true,
-                reverse: true,
-                depth: 0.8,
-                maxSpeed: 0.05,
-                bgRadius: 1,
-                freezeDecel: true
-            &#125;);
-    &#125;
-    catch (e) &#123;
-        document
-            .getElementById(&#39;myTags&#39;)
-            .style
-            .display &#x3D; &#39;none&#39;;
-    &#125;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>[<strong>题外话</strong>] 新版的 NexT 推荐用户不要再修改主题目录中的任何文件, 虽然我是一个前端纯小白, 但是我也在尽力去遵守这条约定, 但是我发现如果我想要实现这个标签云, 就必须修改主题目录中的文件! 如果有人知道可以不修改主题目录中的文件便可以实现相同的效果, 请务必告知, 十分感谢!</p>
-<p>打开文件 <code>node_modules\hexo-theme-next\layout\page.njk</code>, 在这个 <code>&lt;div class=&quot;tag-cloud-tags&quot;&gt;</code> 的前面加上如下代码:</p>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html">&#123;# 球形云标签 #&#125;
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tags<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>myTags<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>720<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>720<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>my3DTags<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tags<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tags<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">display</span><span class="token punctuation">:</span> none</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    &#123;&#123; tagcloud(&#123;
-        min_font   : 16,
-        max_font   : 35,
-        amount     : 999,
-        color      : true,
-        start_color: 'black',
-        end_color  : 'green'
-      &#125;)
-    &#125;&#125;
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/js/tagcanvas.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/js/tagcloud.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-&#123;# 普通云标签 #&#125;
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>最后在 <strong>主题配置文件</strong> 中写入 <code>crashcheat: true</code>.<code>tagcanvas: true</code>.</p>
-<blockquote>
-<p>[<strong>注</strong>] 球形标签云也可以使用 Hexo 的插件 <code>hexo-tag-cloud</code> 来实现, 其实最终都是依赖于 <code>tagcanvas.js</code> 文件的, 而且我尝试  <code>hexo-tag-cloud</code> 后发现我不会改效果...😂 所以还是用了之前的老方法!</p>
-<p>另外, 执行上面的操作后, 球形标签云和普通标签云是同时存在的, 如果只想要显示球形标签云, 把后面那个 <code>普通云标签</code> 的 <code>div</code> 标签注释掉就行了. 就像这样:</p>
-</blockquote>
-<pre class="line-numbers language-html" data-language="html"><code class="language-html">&#123;# 普通云标签 #&#125;
-&#123;# <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tag-cloud-tags<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    &#123;&#123; tagcloud(&#123;
-      min_font: theme.tagcloud.min,
-      max_font: theme.tagcloud.max,
-      amount  : theme.tagcloud.amount,
-      orderby : theme.tagcloud.orderby,
-      order   : theme.tagcloud.order,
-      class   : 'tag-cloud'
-      &#125;)
-    &#125;&#125;
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span> #&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="粒子时钟"><a href="#粒子时钟" class="headerlink" title="粒子时钟"></a>粒子时钟</h1><p>下载文件 <a href="https://kuroha.vip/js/clock.js">clock.js</a>, 可以直接在链接上 &quot;右键 =&gt; 链接另存为&quot;, 放到 <code>source/js/</code> 路径下.</p>
-<p>之后在 <code>source/_data/sidebar.njk</code> 中添加:</p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&#123;# 粒子时钟 #&#125;
-&#123;% if theme.clock %&#125;
-    &lt;div&gt;
-        &lt;canvas id&#x3D;&quot;canvasDiyBlock&quot; style&#x3D;&quot;width:60%;&quot;&gt;您的浏览器不支持 Canvas, 请更换浏览器!&lt;&#x2F;canvas&gt;
-        &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;clock.js&quot;&gt;&lt;&#x2F;script&gt;
-    &lt;&#x2F;div&gt;
-&#123;% endif %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>最后在 <strong>主题配置文件</strong> 中写入 <code>clock: true</code>.</p>
-<h1 id="站点运行时间"><a href="#站点运行时间" class="headerlink" title="站点运行时间"></a>站点运行时间</h1><p>下载文件 <a href="https://kuroha.vip/js/website_runtime.js">website_runtime.js</a>, 可以直接在链接上 &quot;右键 =&gt; 链接另存为&quot;, 放到 <code>source/js/</code> 路径下.</p>
-<p>之后在 <code>source/_data/footer.njk</code> 中添加:</p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&#123;# 站点已运行时间 #&#125;
-&#123;% if theme.websiteruntime %&#125;
-    &lt;div id&#x3D;&quot;days&quot;&gt;&lt;&#x2F;div&gt;
-    &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;website_runtime.js&quot;&gt;&lt;&#x2F;script&gt;
-&#123;% endif %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>最后在 <strong>主题配置文件</strong> 中写入 <code>websiteruntime: true</code>.</p>
-<h1 id="aplayer-音乐效果展示"><a href="#aplayer-音乐效果展示" class="headerlink" title="aplayer 音乐效果展示"></a>aplayer 音乐效果展示</h1><link rel="stylesheet" href="/js/aplayer/APlayer.min.css">
-<div id="aplayer_update"></div>
-<script type="text/javascript" src="/js/aplayer/APlayer.min.js"></script>
-
-<script>
-const aplayer_update = new APlayer(
-{
-  container: document.getElementById('aplayer_update'),
-  //fixed: true, // 吸底模式
-  //mini: false, // 迷你模式
-  autoplay: false, //自动播放
-  theme: 'red', //主题色
-  loop: 'all', //循环模式: all one none
-  order: 'list', //循环顺序: list random
-  preload: 'none', //预加载: auto none metadata
-  volume: 0.7, //音量设置 会导致用户设置的自定义音量失效
-  //customAudioType: mysudio, //自定义音乐类型
-  mutex: true, //播放器之间互斥 当一个在播放时 暂停其他所有播放器
-  //lrcType: 3, //歌词类型
-  listFolded: false, //false: 列表默认展开 true: 列表默认折叠
-  listMaxHeight: 90, //列表最大数目
-  audio:
-  [
-    {
-      name: '绯色之空', //歌曲名
-      artist: '川田真美', //演唱者
-      url: 'https://od.lk/s/NzNfMjUyMzcyNzVf/%E7%B7%8B%E8%89%B2%E3%81%AE%E7%A9%BA.mp3', //音乐文件
-      cover: 'https://od.lk/s/NzNfMjUyMzcyODFf/%E7%B7%8B%E8%89%B2%E3%81%AE%E7%A9%BA.jpg', //音乐封面
-    },
-    {
-      name: '光るなら', //歌曲名
-      artist: 'Goose house', //演唱者
-      url: 'https://od.lk/s/NzNfMjUyMzcyNzdf/%E5%85%89%E3%82%8B%E3%81%AA%E3%82%89.mp3', //音乐文件
-      cover: 'https://od.lk/s/NzNfMjUyMzcyNzhf/%E5%85%89%E3%82%8B%E3%81%AA%E3%82%89.jpg', //音乐封面
-    },
-  ]
-});
-</script>
-
-<h1 id="dplayer-视频效果展示"><a href="#dplayer-视频效果展示" class="headerlink" title="dplayer 视频效果展示"></a>dplayer 视频效果展示</h1><div id="dplayer"></div>
-<script src="/js/dplayer/DPlayer.min.js"></script>
-
-<script>
-const dp_update = new DPlayer({
-    container: document.getElementById('dplayer'),
-    screenshot: true,
-    video:
-    {
-        url: '/video/hexo_update/hexo_update.mp4',
-        pic: '/video/hexo_update/hexo_update.jpg',
-        //thumbnails: 'thumbnails.jpg',
-    },
-    // subtitle: {
-    //     url: 'webvtt.vtt',
-    // },
-    // danmaku: {
-    //     id: 'demo',
-    //     api: 'https://api.prprpr.me/dplayer/',
-    // },
-});
-</script>
-
-
-
 ]]></content>
       <categories>
         <category>Hexo_Blog</category>
@@ -3480,6 +3149,372 @@ private void Start()
       </tags>
   </entry>
   <entry>
+    <title>Hexo 3.9.0 + NexT 7.2.0 =&gt; Hexo 5.1.0 + NexT 8.0.0</title>
+    <url>/hexo/hexo_update.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="🏳‍🌈惨案"><a href="#🏳‍🌈惨案" class="headerlink" title="🏳‍🌈惨案"></a>🏳‍🌈惨案</h1><p>一个 <font color='red'>Warning</font> 引发的惨案!</p>
+<h1 id="升级方式"><a href="#升级方式" class="headerlink" title="升级方式"></a>升级方式</h1><p>全新安装, 因为我不会升级啊~~😂</p>
+<h1 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h1><p>进入 <span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS8=">Git 官方网站<i class="fa fa-external-link-alt"></i></span> 下载安装. </p>
+<p>可以使用 <code>git --version</code> 进行验证, 出现版本号就说明成功了. </p>
+<h1 id="安装-Nodejs"><a href="#安装-Nodejs" class="headerlink" title="安装 Nodejs"></a>安装 Nodejs</h1><p>进入 <span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL2VuLw==">Nodejs 官方网站<i class="fa fa-external-link-alt"></i></span> 下载安装. </p>
+<p>尽量长期支持版本 (LTS), 最新发布版可能会有警报, 甚至会有错误发生!</p>
+<p>可以使用 <code>node -v</code> 和 <code>npm -v</code> 进行验证, 出现版本号就说明成功了. </p>
+<h1 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h1><p>安装 Hexo 之前, 设置 Hexo 的安装位置. 具体见我的另一篇博客: <a href="https://kuroha.vip/hexo/hexo_blog.html">Hexo + Github Pages 搭建个人博客</a> 这里不再赘述!</p>
+<p>安装 Hexo: <strong><code>npm install hexo-cli -g</code></strong></p>
+<h1 id="创建本地博客-初始化-Hexo"><a href="#创建本地博客-初始化-Hexo" class="headerlink" title="创建本地博客 (初始化 Hexo)"></a>创建本地博客 (初始化 Hexo)</h1><ol>
+<li><p>新建文件夹, 放置本地博客, 名称随意. <code>F:\WorkSpace\Hexo</code></p>
+</li>
+<li><p>初始化本地博客, 在 Git Bash Here 中输入: <code>hexo init</code> </p>
+</li>
+</ol>
+<p>[<strong>注</strong>] <font color='red'><strong>此步骤需要耗费较长一段时间, 我大概用了 25 分钟! 慢慢等吧!</strong></font></p>
+<blockquote>
+<p><code>hexo init</code> 是这次升级遇到的第一个大坑, 忘记了这个要执行好长一段时间, 好几次自己等不耐烦了, 直接 <code>Ctrl + C</code> 了! 😂</p>
+</blockquote>
+<ol start="3">
+<li>安装默认依赖包, 在 Git Bash Here 中输入: <code>npm install</code></li>
+</ol>
+<p>[<strong>注</strong>] 在上一步中大部分的依赖其实已经安装了, 这里只是安装一小部分, 所以很快!</p>
+<ol start="4">
+<li><p>生成静态文件, 在 Git Bash Here 中输入: <code>hexo generate</code></p>
+</li>
+<li><p>开启服务, 在 Git Bash Here 中输入 <code>hexo server</code></p>
+</li>
+</ol>
+<h1 id="部署-Hexo"><a href="#部署-Hexo" class="headerlink" title="部署 Hexo"></a>部署 Hexo</h1><ol>
+<li><p>安装 Hexo deploy 插件, 在 Git Bash Here 中输入: <code>npm install hexo-deployer-git --no-optional</code></p>
+</li>
+<li><p>在站点配置文件中配置:</p>
+</li>
+</ol>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> git
+  <span class="token key atrule">repo</span><span class="token punctuation">:</span> git@github.com<span class="token punctuation">:</span>KurohaKirito/KurohaKirito.github.io.git
+  <span class="token key atrule">branch</span><span class="token punctuation">:</span> master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>[<strong>注</strong>] repo 仓库的地址: 有 SSH 和 HTTPS 两种格式, 推荐选择 SSH 格式, 如果选择 Https 格式, <font color='red'>每次发布时都必须输入账号密码</font>, 不嫌麻烦的可以用!</p>
+<h2 id="安装-NexT-主题"><a href="#安装-NexT-主题" class="headerlink" title="安装 NexT 主题"></a>安装 NexT 主题</h2><blockquote>
+<p>这里是第二个大坑, 最新版的 NexT 的仓库已经换地址了, 我还傻乎乎地用之前的地址, 唉...😔</p>
+</blockquote>
+<ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lpc3NuYW4vaGV4by10aGVtZS1uZXh0">2014-2017<i class="fa fa-external-link-alt"></i></span> <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lpc3NuYW4vaGV4by10aGVtZS1uZXh0">https://github.com/iissnan/hexo-theme-next<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvaGV4by10aGVtZS1uZXh0">2018-2019<i class="fa fa-external-link-alt"></i></span> <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQvaGV4by10aGVtZS1uZXh0">https://github.com/theme-next/hexo-theme-next<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0">2020-2020<i class="fa fa-external-link-alt"></i></span> <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by10aGVtZS1uZXh0">https://github.com/next-theme/hexo-theme-next<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+<blockquote>
+<p>新版的 NexT 推荐使用 <code>npm install hexo-theme-next --no-optional</code> 进行安装, 作为一个 node_module 存在! 安装之后路径为: node_module/hexo-theme-next.</p>
+</blockquote>
+<blockquote>
+<p>新版的 NexT 推荐用户不要修改主题目录下的配置文件, 而是在站点根目录下新建一个 <font color='red'><strong>_config[.主题名称].yml</strong></font> 文件, 作为新的主题配置文件.</p>
+</blockquote>
+<p><img data-src="/images/hexo_update/next_theme_config.png" alt="next_theme_config"></p>
+<p>可以先从 node_module/hexo-theme-next 文件夹中复制一份配置文件出来, 然后按照规则重命名, 最后修改其中的设置即可!</p>
+<h1 id="自定义站点配置文件"><a href="#自定义站点配置文件" class="headerlink" title="自定义站点配置文件"></a>自定义站点配置文件</h1><p>修改 theme 的值为 next, 这里的名字要和之前新建主题配置文件时使用的名称一致! </p>
+<h1 id="自定义主题配置文件"><a href="#自定义主题配置文件" class="headerlink" title="自定义主题配置文件"></a>自定义主题配置文件</h1><p>配置文件中只需要改改设置就可以出现效果的就不提了, 说一下注意事项:</p>
+<h2 id="开启自定义配置"><a href="#开启自定义配置" class="headerlink" title="开启自定义配置"></a>开启自定义配置</h2><p>取消自定义配置文件的注释, 并且要在对应的路径下创建对应的文件.</p>
+<h2 id="开启标签-分类-关于菜单"><a href="#开启标签-分类-关于菜单" class="headerlink" title="开启标签, 分类, 关于菜单"></a>开启标签, 分类, 关于菜单</h2><p>取消相应的设置选项后, 必须在 <code>source</code> 文件夹下创建相应的路径, 并创建相应的 markdown 文件, 文件中的内容虽然很简单, 但是也必须添加! <code>comments : false</code> 可以使当前页面禁用评论系统.</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token punctuation">---</span>
+<span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">"categories"</span>
+<span class="token key atrule">comments</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+<span class="token punctuation">---</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token punctuation">---</span>
+<span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">"tags"</span>
+<span class="token key atrule">comments</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+<span class="token punctuation">---</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="设置-Favicon-图标"><a href="#设置-Favicon-图标" class="headerlink" title="设置 Favicon 图标"></a>设置 Favicon 图标</h2><p>在 favicon 属性后设置路径之后, 必须在相应的路径下创建图片, 否则找不到文件会报错! 设置侧边栏头像时同理.</p>
+<h2 id="添加预计阅读时间功能"><a href="#添加预计阅读时间功能" class="headerlink" title="添加预计阅读时间功能"></a>添加预计阅读时间功能</h2><p>需要安装依赖: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by13b3JkLWNvdW50ZXI=">hexo-word-counter<i class="fa fa-external-link-alt"></i></span></p>
+<p><code>npm install hexo-word-counter --no-optional</code></p>
+<p>[<strong>注</strong>] <font color='red'>所有需要安装依赖才能出现效果的, 安装完依赖并设置好之后, 必须清理缓存重新生成才会生效!</font></p>
+<p>[<strong>注</strong>] <font color='red'>某些特效需要关闭新版 NexT 中的 Pjax</font></p>
+<h2 id="关闭最受欢迎文章功能"><a href="#关闭最受欢迎文章功能" class="headerlink" title="关闭最受欢迎文章功能"></a>关闭最受欢迎文章功能</h2><p>NexT 中有这么一个设置: related_posts, 可以当作 &quot;最近受欢迎的文章&quot;, &quot;相关博客&quot; 或者 &quot;推荐阅读&quot; 使用, 但是由于其依赖有点过时, 推荐关闭此功能!</p>
+<h2 id="代码高亮风格设置"><a href="#代码高亮风格设置" class="headerlink" title="代码高亮风格设置"></a>代码高亮风格设置</h2><p>如果使用 <code>Prism</code> 进行代码高亮渲染, 并且选择较高级的一些效果, 需要安装依赖.</p>
+<p><code>npm install prism-themes --no-optional</code></p>
+<p>并且要在 <strong>站点配置文件</strong> 中将 highlight 设为 false, prismjs 设为 true.</p>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">highlight</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">line_number</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">auto_detect</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+  <span class="token key atrule">tab_replace</span><span class="token punctuation">:</span> <span class="token string">''</span>
+  <span class="token key atrule">wrap</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">hljs</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+<span class="token key atrule">prismjs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">preprocess</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">line_number</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+  <span class="token key atrule">tab_replace</span><span class="token punctuation">:</span> <span class="token string">''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后在 <strong>主题配置文件</strong> 的 prism 后设置使用的渲染风格.</p>
+<h2 id="本地搜索"><a href="#本地搜索" class="headerlink" title="本地搜索"></a>本地搜索</h2><p>需要安装依赖: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL25leHQtdGhlbWUvaGV4by1nZW5lcmF0b3Itc2VhcmNoZGI=">hexo-generator-searchdb<i class="fa fa-external-link-alt"></i></span></p>
+<p><code>npm install hexo-generator-searchdb --no-optional</code></p>
+<h2 id="音乐播放器-APlayer"><a href="#音乐播放器-APlayer" class="headerlink" title="音乐播放器 APlayer"></a>音乐播放器 APlayer</h2><blockquote>
+<p>APlayer 源码地址: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vZVBsYXllci9BUGxheWVy">APlayer<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>新建目录: <code>source/js/aplayer</code>, 下载并解压源码, 将 <code>dist</code> 文件夹中的四个文件复制到 <code>source/js/aplayer</code> 中. </p>
+<p>返回 <code>source/js</code> 文件夹, 新建一个 <code>fixedAplayer.js</code> 文件, 输入以下代码:</p>
+<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">const ap &#x3D; new APlayer(&#123;
+    container: document.getElementById(&#39;aplayer&#39;),
+    fixed: true,
+    autoplay: false,
+    audio: [
+      &#123;
+        name: &#39;歌曲的名字&#39;,
+        artist: &#39;歌手&#39;,
+        url: &#39;音乐文件的地址&#39;,
+        cover: &#39;封面图片的地址&#39;,
+      &#125;
+    ]
+&#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>之后在 <code>source/_data/body-end.njk</code> 中添加: </p>
+<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&lt;!--APlayer 吸底式音乐播放功能--&gt;
+&#123;% if theme.aplayer_fixed %&#125;
+    &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#x2F;js&#x2F;aplayer&#x2F;APlayer.min.css&quot;&gt;
+    &lt;div id&#x3D;&quot;aplayer&quot;&gt;&lt;&#x2F;div&gt;
+    &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;aplayer&#x2F;APlayer.min.js&quot;&gt;&lt;&#x2F;script&gt;
+    &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;fixedAplayer.js&quot;&gt;&lt;&#x2F;script&gt;
+&#123;% endif %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后在 <strong>主题配置文件</strong> 中写入 <code>aplayer_fixed: true</code>.</p>
+<h2 id="视频播放器-DPlayer"><a href="#视频播放器-DPlayer" class="headerlink" title="视频播放器 DPlayer"></a>视频播放器 DPlayer</h2><blockquote>
+<p>DPlayer 源码地址: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vZVBsYXllci9EUGxheWVy">DPlayer<i class="fa fa-external-link-alt"></i></span></p>
+</blockquote>
+<p>新建目录: <code>source/js/dplayer</code>, 下载并解压源码, 将 <code>dist</code> 文件夹中的四个文件复制到 <code>source/js/dplayer</code> 中.</p>
+<p>在待添加视频博客的所需位置中添加以下代码:</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dplayer<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/js/dplayer/DPlayer.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">const</span> dp_update <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DPlayer</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+    container<span class="token operator">:</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'dplayer'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    screenshot<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    video<span class="token operator">:</span>
+    <span class="token punctuation">&#123;</span>
+        url<span class="token operator">:</span> <span class="token string">'/video/hexo_update/hexo_update.mp4'</span><span class="token punctuation">,</span> <span class="token comment">//视频文件</span>
+        pic<span class="token operator">:</span> <span class="token string">'/video/hexo_update/hexo_update.jpg'</span><span class="token punctuation">,</span> <span class="token comment">//视频封面</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="鼠标红心效果"><a href="#鼠标红心效果" class="headerlink" title="鼠标红心效果"></a>鼠标红心效果</h2><p>在 <code>source/js</code> 下创建 <code>love.js</code> 文件, 内容具体见我的另一篇博客: <a href="https://kuroha.vip/hexo/next_theme_beautify.html">Hexo + NexT 主题美化 (NexT v7.2.0)</a> 这里不再赘述!</p>
+<p>之后在 <code>source/_data/body-end.njk</code> 中添加: </p>
+<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&lt;!--鼠标红心效果--&gt;
+&#123;% if theme.love %&#125;
+  &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;love.js&quot;&gt;&lt;&#x2F;script&gt;
+&#123;% endif %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后在 <strong>主题配置文件</strong> 中写入 <code>love: true</code>.</p>
+<h2 id="页面标题欺诈"><a href="#页面标题欺诈" class="headerlink" title="页面标题欺诈"></a>页面标题欺诈</h2><p>在 <code>source/js</code> 下创建 <code>crash_cheat.js</code> 文件, 内容具体见我的另一篇博客: <a href="https://kuroha.vip/hexo/next_theme_beautify.html">Hexo + NexT 主题美化 (NexT v7.2.0)</a> 这里不再赘述!</p>
+<p>之后在 <code>source/_data/body-end.njk</code> 中添加: </p>
+<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&lt;!--崩溃欺骗--&gt;
+&#123;% if theme.crashcheat %&#125;
+  &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;crash_cheat.js&quot;&gt;&lt;&#x2F;script&gt;
+&#123;% endif %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后在 <strong>主题配置文件</strong> 中写入 <code>crashcheat: true</code>.</p>
+<h2 id="球形标签云"><a href="#球形标签云" class="headerlink" title="球形标签云"></a>球形标签云</h2><p>球形标签云其实就是用这个插件 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZ29hdDEwMDAuY29tL3RhZ2NhbnZhcy5waHA=">TagCanvas<i class="fa fa-external-link-alt"></i></span> 实现的, 点击进入官网. </p>
+<p>进入官网后下载 <span class="exturl" data-url="aHR0cHM6Ly93d3cuZ29hdDEwMDAuY29tL3RhZ2NhbnZhcy5qcw==">tagcanvas.js<i class="fa fa-external-link-alt"></i></span> 文件, 也可以直接在左面我给出的链接那里 &quot;右键 =&gt; 链接另存为&quot;, 保存到: <code>source\js</code> 目录下. 需要的就是这一个 <code>tagcanvas.js</code> 文件!</p>
+<p>打开 <code>source/js</code> 文件夹中再新建一个 <code>tagcloud.js</code> 文件, 写入以下内容:</p>
+<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">window.onload &#x3D; function () &#123;
+    try &#123;
+        TagCanvas.Start(&#39;my3DTags&#39;, &#39;tags&#39;,
+            &#123;
+                textFont: &#39;Georgia,Optima&#39;,
+                textColour: null,
+                outlineColour: &#39;black&#39;,
+                weight: true,
+                reverse: true,
+                depth: 0.8,
+                maxSpeed: 0.05,
+                bgRadius: 1,
+                freezeDecel: true
+            &#125;);
+    &#125;
+    catch (e) &#123;
+        document
+            .getElementById(&#39;myTags&#39;)
+            .style
+            .display &#x3D; &#39;none&#39;;
+    &#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>[<strong>题外话</strong>] 新版的 NexT 推荐用户不要再修改主题目录中的任何文件, 虽然我是一个前端纯小白, 但是我也在尽力去遵守这条约定, 但是我发现如果我想要实现这个标签云, 就必须修改主题目录中的文件! 如果有人知道可以不修改主题目录中的文件便可以实现相同的效果, 请务必告知, 十分感谢!</p>
+<p>打开文件 <code>node_modules\hexo-theme-next\layout\page.njk</code>, 在这个 <code>&lt;div class=&quot;tag-cloud-tags&quot;&gt;</code> 的前面加上如下代码:</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html">&#123;# 球形云标签 #&#125;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tags<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>myTags<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>720<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>720<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>my3DTags<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tags<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tags<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">display</span><span class="token punctuation">:</span> none</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    &#123;&#123; tagcloud(&#123;
+        min_font   : 16,
+        max_font   : 35,
+        amount     : 999,
+        color      : true,
+        start_color: 'black',
+        end_color  : 'green'
+      &#125;)
+    &#125;&#125;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/js/tagcanvas.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/js/tagcloud.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+&#123;# 普通云标签 #&#125;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后在 <strong>主题配置文件</strong> 中写入 <code>crashcheat: true</code>.<code>tagcanvas: true</code>.</p>
+<blockquote>
+<p>[<strong>注</strong>] 球形标签云也可以使用 Hexo 的插件 <code>hexo-tag-cloud</code> 来实现, 其实最终都是依赖于 <code>tagcanvas.js</code> 文件的, 而且我尝试  <code>hexo-tag-cloud</code> 后发现我不会改效果...😂 所以还是用了之前的老方法!</p>
+<p>另外, 执行上面的操作后, 球形标签云和普通标签云是同时存在的, 如果只想要显示球形标签云, 把后面那个 <code>普通云标签</code> 的 <code>div</code> 标签注释掉就行了. 就像这样:</p>
+</blockquote>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html">&#123;# 普通云标签 #&#125;
+&#123;# <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tag-cloud-tags<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    &#123;&#123; tagcloud(&#123;
+      min_font: theme.tagcloud.min,
+      max_font: theme.tagcloud.max,
+      amount  : theme.tagcloud.amount,
+      orderby : theme.tagcloud.orderby,
+      order   : theme.tagcloud.order,
+      class   : 'tag-cloud'
+      &#125;)
+    &#125;&#125;
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span> #&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="粒子时钟"><a href="#粒子时钟" class="headerlink" title="粒子时钟"></a>粒子时钟</h1><p>下载文件 <a href="https://kuroha.vip/js/clock.js">clock.js</a>, 可以直接在链接上 &quot;右键 =&gt; 链接另存为&quot;, 放到 <code>source/js/</code> 路径下.</p>
+<p>之后在 <code>source/_data/sidebar.njk</code> 中添加:</p>
+<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&#123;# 粒子时钟 #&#125;
+&#123;% if theme.clock %&#125;
+    &lt;div&gt;
+        &lt;canvas id&#x3D;&quot;canvasDiyBlock&quot; style&#x3D;&quot;width:60%;&quot;&gt;您的浏览器不支持 Canvas, 请更换浏览器!&lt;&#x2F;canvas&gt;
+        &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;clock.js&quot;&gt;&lt;&#x2F;script&gt;
+    &lt;&#x2F;div&gt;
+&#123;% endif %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后在 <strong>主题配置文件</strong> 中写入 <code>clock: true</code>.</p>
+<h1 id="站点运行时间"><a href="#站点运行时间" class="headerlink" title="站点运行时间"></a>站点运行时间</h1><p>下载文件 <a href="https://kuroha.vip/js/website_runtime.js">website_runtime.js</a>, 可以直接在链接上 &quot;右键 =&gt; 链接另存为&quot;, 放到 <code>source/js/</code> 路径下.</p>
+<p>之后在 <code>source/_data/footer.njk</code> 中添加:</p>
+<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&#123;# 站点已运行时间 #&#125;
+&#123;% if theme.websiteruntime %&#125;
+    &lt;div id&#x3D;&quot;days&quot;&gt;&lt;&#x2F;div&gt;
+    &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;website_runtime.js&quot;&gt;&lt;&#x2F;script&gt;
+&#123;% endif %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>最后在 <strong>主题配置文件</strong> 中写入 <code>websiteruntime: true</code>.</p>
+<h1 id="萌萌的看板娘"><a href="#萌萌的看板娘" class="headerlink" title="萌萌的看板娘"></a>萌萌的看板娘</h1><ul>
+<li>第一种: <code>hexo-helper-live2d</code> 优点: 有声音, 缺点: 无法换装, 无法换模型, 响应事件少.</li>
+</ul>
+<p>使用方法见官方网址: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0VZSE4vaGV4by1oZWxwZXItbGl2ZTJk">hexo-helper-live2d<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li>第二种: <code>live2d-widget</code> 优点: 能换装, 能切换模型, 响应事件多, 缺点: 无声音, 配置较复杂. (现在可能已经有声音了)</li>
+</ul>
+<p>使用方法见官方网址: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3N0ZXZlbmpvZXpoYW5nL2xpdmUyZC13aWRnZXQ=">live2d-widget<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li>第三种: <code>live2d_demo</code> 优点: 能换装, 能切换模型, 响应事件多, 缺点: 无声音, 配置较复杂. (现在可能已经有声音了)</li>
+</ul>
+<p>使用方法见官方网址: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZnaHJzaC9saXZlMmRfZGVtbw==">live2d_demo<i class="fa fa-external-link-alt"></i></span></p>
+<p>我是用的是第 3 种 <strong>live2d_demo</strong></p>
+<ol>
+<li><p>下载 <code>live2d_demo</code>: <span class="exturl" data-url="aHR0cHM6Ly9vZC5say9kL056TmZNalV5TkRjMU5USmYvbGl2ZTJkX2RlbW8uN3o=">live2d_demo<i class="fa fa-external-link-alt"></i></span>, 解压密码是: <code>https://kuroha.vip/</code></p>
+</li>
+<li><p>解压之后放到 <code>source/js/</code> 目录下, 完成这一步之后, 在 <code>source/js/live2d_demo/</code> 目录下应该有 9 个文件.</p>
+</li>
+<li><p>在 <code>source/_data/body-end.njk</code> 文件的最后添加:</p>
+<p>``html</p>
+<!--究极看板娘效果-->
+
+<pre><code></code></pre>
+</li>
+<li><p>最后在 <strong>主题配置文件</strong> 中写入 <code>live2d_demo: true</code>, 启用看板娘!</p>
+</li>
+</ol>
+<p>[<strong>注</strong>] </p>
+<ol>
+<li><p>要定制自己的看板娘, 可以修改 <code>autoload.js</code> 中的参数配置, 这里的配置基本足够了! </p>
+</li>
+<li><p>经过以上操作如果还是不能达到效果, 请检查 <code>autoload.js</code> 中的路径设置是否正确! (虽然我已经配置好了, 可以直接拿来用, 不过既然出问题了, 就自己检查一下吧!)</p>
+</li>
+</ol>
+<h1 id="aplayer-音乐效果展示"><a href="#aplayer-音乐效果展示" class="headerlink" title="aplayer 音乐效果展示"></a>aplayer 音乐效果展示</h1><link rel="stylesheet" href="/js/aplayer/APlayer.min.css">
+<div id="aplayer_update"></div>
+<script type="text/javascript" src="/js/aplayer/APlayer.min.js"></script>
+
+<script>
+const aplayer_update = new APlayer(
+{
+  container: document.getElementById('aplayer_update'),
+  //fixed: true, // 吸底模式
+  //mini: false, // 迷你模式
+  autoplay: false, //自动播放
+  theme: 'red', //主题色
+  loop: 'all', //循环模式: all one none
+  order: 'list', //循环顺序: list random
+  preload: 'none', //预加载: auto none metadata
+  volume: 0.7, //音量设置 会导致用户设置的自定义音量失效
+  //customAudioType: mysudio, //自定义音乐类型
+  mutex: true, //播放器之间互斥 当一个在播放时 暂停其他所有播放器
+  //lrcType: 3, //歌词类型
+  listFolded: false, //false: 列表默认展开 true: 列表默认折叠
+  listMaxHeight: 90, //列表最大数目
+  audio:
+  [
+    {
+      name: '绯色之空', //歌曲名
+      artist: '川田真美', //演唱者
+      url: 'https://od.lk/s/NzNfMjUyMzcyNzVf/%E7%B7%8B%E8%89%B2%E3%81%AE%E7%A9%BA.mp3', //音乐文件
+      cover: 'https://od.lk/s/NzNfMjUyMzcyODFf/%E7%B7%8B%E8%89%B2%E3%81%AE%E7%A9%BA.jpg', //音乐封面
+    },
+    {
+      name: '光るなら', //歌曲名
+      artist: 'Goose house', //演唱者
+      url: 'https://od.lk/s/NzNfMjUyMzcyNzdf/%E5%85%89%E3%82%8B%E3%81%AA%E3%82%89.mp3', //音乐文件
+      cover: 'https://od.lk/s/NzNfMjUyMzcyNzhf/%E5%85%89%E3%82%8B%E3%81%AA%E3%82%89.jpg', //音乐封面
+    },
+  ]
+});
+</script>
+
+<h1 id="dplayer-视频效果展示"><a href="#dplayer-视频效果展示" class="headerlink" title="dplayer 视频效果展示"></a>dplayer 视频效果展示</h1><div id="dplayer"></div>
+<script src="/js/dplayer/DPlayer.min.js"></script>
+
+<script>
+const dp_update = new DPlayer({
+    container: document.getElementById('dplayer'),
+    screenshot: true,
+    video:
+    {
+        url: '/video/hexo_update/hexo_update.mp4',
+        pic: '/video/hexo_update/hexo_update.jpg',
+        //thumbnails: 'thumbnails.jpg',
+    },
+    // 外挂字幕
+    // subtitle: {
+    //     url: 'webvtt.vtt',
+    // },
+    // 弹幕
+    // danmaku: {
+    //     id: 'demo',
+    //     api: 'https://api.prprpr.me/dplayer/',
+    // },
+});
+</script>
+
+
+
+]]></content>
+      <categories>
+        <category>Hexo_Blog</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Oracle SQL 基础</title>
     <url>/programbasics/oracle_notes.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -4385,10 +4420,12 @@ canvas_ribbon:
   theme<span class="token operator">:</span> loading-bar<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>博客在加载的时候, 一般是先加载文章, 之后加载附加功能, 像: Live2D、音乐播放器、即时聊天服务等. 所以不使用进度条的话, 在加载完文章后, 访客就可以开始浏览文章了, 这时后台再继续默默加载附加功能. 但是进度条是在博客<strong>完全加载</strong>完成后才会消失的, 所以, 如果使用了进度条功能, 访客就要继续等待, 直到附加功能也完全加载完毕才能开始浏览博客......我想如果我是访客, 我直接就切换标签页, 去逛别人的博客去了. </p>
-<h1 id="手动添加华丽效果"><a href="#手动添加华丽效果" class="headerlink" title="手动添加华丽效果"></a>手动添加华丽效果</h1><h2 id="看板娘-Live2D"><a href="#看板娘-Live2D" class="headerlink" title="看板娘 Live2D"></a>看板娘 Live2D</h2><p>第一种: Hexo 官方支持的 Live-2D, 优点: 有声音；缺点: 功能比较少. </p>
-<p>使用方法见官方网址: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0VZSE4vaGV4by1oZWxwZXItbGl2ZTJk">https://github.com/EYHN/hexo-helper-live2d<i class="fa fa-external-link-alt"></i></span></p>
-<p>第二种: 多功能 Live-2D, 优点: 能换装, 能简单对话, 能切换模型；缺点: 无声音. </p>
-<p>使用方法见官方网址: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3N0ZXZlbmpvZXpoYW5nL2xpdmUyZC13aWRnZXQ=">https://github.com/stevenjoezhang/live2d-widget<i class="fa fa-external-link-alt"></i></span></p>
+<h1 id="手动添加华丽效果"><a href="#手动添加华丽效果" class="headerlink" title="手动添加华丽效果"></a>手动添加华丽效果</h1><h2 id="看板娘-Live2D"><a href="#看板娘-Live2D" class="headerlink" title="看板娘 Live2D"></a>看板娘 Live2D</h2><p>第一种: <code>hexo-helper-live2d</code> 优点: 有声音, 缺点: 无法换装, 无法换模型, 响应事件少.</p>
+<p>使用方法见官方网址: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0VZSE4vaGV4by1oZWxwZXItbGl2ZTJk">hexo-helper-live2d<i class="fa fa-external-link-alt"></i></span></p>
+<p>第二种: <code>live2d-widget</code> 优点: 能换装, 能切换模型, 响应事件多, 缺点: 无声音, 配置较复杂.  (现在可能已经有声音了)</p>
+<p>使用方法见官方网址: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3N0ZXZlbmpvZXpoYW5nL2xpdmUyZC13aWRnZXQ=">live2d-widget<i class="fa fa-external-link-alt"></i></span></p>
+<p>第三种: <code>live2d_demo</code> 优点: 能换装, 能切换模型, 响应事件多, 缺点: 无声音, 配置较复杂.  (现在可能已经有声音了)</p>
+<p>使用方法见官方网址: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZnaHJzaC9saXZlMmRfZGVtbw==">live2d_demo<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="音乐播放器-Aplayer"><a href="#音乐播放器-Aplayer" class="headerlink" title="音乐播放器 Aplayer"></a>音乐播放器 Aplayer</h2><blockquote>
 <p>Aplayer 源码地址: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vZVBsYXllci9BUGxheWVy">APlayer<i class="fa fa-external-link-alt"></i></span></p>
 </blockquote>
