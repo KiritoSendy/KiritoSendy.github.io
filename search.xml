@@ -3301,14 +3301,31 @@ private void Start()
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="鼠标红心效果"><a href="#鼠标红心效果" class="headerlink" title="鼠标红心效果"></a>鼠标红心效果</h2><p>在 <code>source/js</code> 下创建 <code>love.js</code> 文件, 内容具体见我的另一篇博客: <a href="https://kuroha.vip/hexo/next_theme_beautify.html">Hexo + NexT 主题美化 (NexT v7.2.0)</a> 这里不再赘述!</p>
+<h2 id="鼠标单击之心形图案特效"><a href="#鼠标单击之心形图案特效" class="headerlink" title="鼠标单击之心形图案特效"></a>鼠标单击之心形图案特效</h2><p>在 <code>source/js</code> 下创建 <code>love.js</code> 文件, 内容具体见我的另一篇博客: <a href="https://kuroha.vip/hexo/next_theme_beautify.html">Hexo + NexT 主题美化 (NexT v7.2.0)</a> 这里不再赘述!</p>
 <p>之后在 <code>source/_data/body-end.njk</code> 中添加: </p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&lt;!--鼠标红心效果--&gt;
+<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&lt;!--心形图案效果--&gt;
 &#123;% if theme.love %&#125;
   &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;love.js&quot;&gt;&lt;&#x2F;script&gt;
 &#123;% endif %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>最后在 <strong>主题配置文件</strong> 中写入 <code>love: true</code>.</p>
+<h2 id="鼠标单击之烟花爆炸特效"><a href="#鼠标单击之烟花爆炸特效" class="headerlink" title="鼠标单击之烟花爆炸特效"></a>鼠标单击之烟花爆炸特效</h2><ol>
+<li><p>下载 <code>fireworks.js</code> 文件到 <code>source/js</code> 文件夹下</p>
+</li>
+<li><p>在 <code>source/_data/body-end.njk</code> 中添加: </p>
+</li>
+</ol>
+<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&lt;!--烟花爆炸特效--&gt;
+&#123;% if theme.fireworks %&#125;
+    &lt;canvas class&#x3D;&quot;fireworks&quot; style&#x3D;&quot;position:fixed;left:0;top:0;z-index:99999999;pointer-events:none;&quot;&gt;&lt;&#x2F;canvas&gt;
+    &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;js&#x2F;fireworks.js&quot;&gt;&lt;&#x2F;script&gt;
+&#123;% endif %&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="3">
+<li>在 <strong>主题配置文件</strong> 中写入 <code>fireworks: true</code>.</li>
+</ol>
+<p><strong>下载地址:</strong> <span class="exturl" data-url="aHR0cHM6Ly9vZC5say9kL056TmZNalV6TURreE1qZGYvZmlyZXdvcmtzLjd6">fireworks.7z<i class="fa fa-external-link-alt"></i></span>, 解压密码是: <code>https://kuroha.vip/</code>.</p>
+<p>[<strong>注</strong>] 都读到这里了, 我想你肯定早就知道了, 想要获取文章中提到的所有资源文件, 只要 F12 就可以了! 😂 当然我还是提供了下载地址的...</p>
 <h2 id="页面标题欺诈"><a href="#页面标题欺诈" class="headerlink" title="页面标题欺诈"></a>页面标题欺诈</h2><p>在 <code>source/js</code> 下创建 <code>crash_cheat.js</code> 文件, 内容具体见我的另一篇博客: <a href="https://kuroha.vip/hexo/next_theme_beautify.html">Hexo + NexT 主题美化 (NexT v7.2.0)</a> 这里不再赘述!</p>
 <p>之后在 <code>source/_data/body-end.njk</code> 中添加: </p>
 <pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&lt;!--崩溃欺骗--&gt;
