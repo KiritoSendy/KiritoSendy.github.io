@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://kuroha.vip/hexo/hexo_update.html</loc>
+    <loc>https://kuroha.vip/oracle/oracle_notes.html</loc>
     
     <lastmod>2020-09-07</lastmod>
     
   </url>
   
   <url>
-    <loc>https://kuroha.vip/programbasics/oracle_notes.html</loc>
+    <loc>https://kuroha.vip/oracle/oracle_gateways.html</loc>
     
-    <lastmod>2020-09-05</lastmod>
+    <lastmod>2020-09-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/hexo/hexo_update.html</loc>
+    
+    <lastmod>2020-09-07</lastmod>
     
   </url>
   
@@ -198,13 +205,6 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/programbasics/oracle_gateways.html</loc>
-    
-    <lastmod>2020-08-04</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://kuroha.vip/programbasics/json_notes.html</loc>
     
     <lastmod>2020-06-22</lastmod>
@@ -298,13 +298,6 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/JSON/</loc>
-    <lastmod>2020-09-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kuroha.vip/tags/Oracle/</loc>
     <lastmod>2020-09-07</lastmod>
     <changefreq>daily</changefreq>
@@ -312,14 +305,21 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/Program/</loc>
+    <loc>https://kuroha.vip/tags/Unity/</loc>
     <lastmod>2020-09-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/Unity/</loc>
+    <loc>https://kuroha.vip/tags/JSON/</loc>
+    <lastmod>2020-09-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/tags/Program/</loc>
     <lastmod>2020-09-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
