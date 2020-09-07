@@ -6,6 +6,4 @@ Allow: /archives/
 Allow: /categories/
 Allow: /tags/
 
-Disallow: *.xml
-Disallow: *.txt
 Disallow: CNAME
