@@ -9,9 +9,3 @@ Allow: /tags/
 Disallow: *.xml
 Disallow: *.txt
 Disallow: CNAME
-Disallow: /404/
-Disallow: /css/
-Disallow: /images/
-Disallow: /js/
-Disallow: /lib/
-Disallow: /live2dw/
