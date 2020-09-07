@@ -305,13 +305,6 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/Unity/</loc>
-    <lastmod>2020-09-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kuroha.vip/tags/JSON/</loc>
     <lastmod>2020-09-07</lastmod>
     <changefreq>daily</changefreq>
@@ -320,6 +313,13 @@
   
   <url>
     <loc>https://kuroha.vip/tags/Program/</loc>
+    <lastmod>2020-09-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/tags/Unity/</loc>
     <lastmod>2020-09-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
