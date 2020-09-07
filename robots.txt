@@ -1,7 +1,3 @@
 User-agent: *
-
-Allow: /
-
-Disallow: CNAME
-
+Disallow:
 Sitemap: https://kuroha.vip/sitemap.xml
