@@ -3213,24 +3213,26 @@ private void Start()
 </blockquote>
 <p><img data-src="/images/hexo_update/next_theme_config.png" alt="next_theme_config"></p>
 <p>可以先从 node_module/hexo-theme-next 文件夹中复制一份配置文件出来, 然后按照规则重命名, 最后修改其中的设置即可!</p>
-<h1 id="自定义站点配置文件"><a href="#自定义站点配置文件" class="headerlink" title="自定义站点配置文件"></a>自定义站点配置文件</h1><ol>
-<li><p>修改 theme 的值为 next, 这里的名字要和之前新建主题配置文件时使用的名称一致! </p>
-</li>
-<li><p>设置博客网址的格式:</p>
-</li>
-</ol>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">permalink</span><span class="token punctuation">:</span> <span class="token punctuation">:</span>title.html <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="自定义站点配置文件"><a href="#自定义站点配置文件" class="headerlink" title="自定义站点配置文件"></a>自定义站点配置文件</h1><h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><p>修改 theme 的值为 next, 这里的名字要和之前新建主题配置文件时使用的名称一致! </p>
+<h2 id="博客网址样式"><a href="#博客网址样式" class="headerlink" title="博客网址样式"></a>博客网址样式</h2><pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">permalink</span><span class="token punctuation">:</span> <span class="token punctuation">:</span>title.html <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<ol start="3">
-<li>关闭 &quot;半角字符自动转换全角字符&quot;</li>
-</ol>
-<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">marked</span><span class="token punctuation">:</span>
+<h2 id="关闭-quot-半角字符自动转换全角字符-quot"><a href="#关闭-quot-半角字符自动转换全角字符-quot" class="headerlink" title="关闭 &quot;半角字符自动转换全角字符&quot;"></a>关闭 &quot;半角字符自动转换全角字符&quot;</h2><pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">marked</span><span class="token punctuation">:</span>
   <span class="token key atrule">smartypants</span><span class="token punctuation">:</span> <span class="token boolean important">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<ol start="4">
-<li>生成站点地图 (谷歌版)</li>
+<h2 id="生成站点地图-谷歌版"><a href="#生成站点地图-谷歌版" class="headerlink" title="生成站点地图 (谷歌版)"></a>生成站点地图 (谷歌版)</h2><ol>
+<li><p>安装依赖 <code>hexo-generator-sitemap</code>, 命令: <code>npm install hexo-generator-sitemap --no-optional</code>, 之后生成网站时, 便会自动在根目录生成一个 <code>sitemap.xml</code> 文件!</p>
+</li>
+<li><p>在 source 文件夹下新建文本文件: <code>robots.txt</code>, 并写入内容, Allow 为允许谷歌抓取的内容, Disallow 为不允许抓取, Sitemap 为站点地图的链接. 之后便可以提交给 Google Search 了!</p>
+</li>
 </ol>
-<p>安装依赖 <code>hexo-generator-sitemap</code>, 命令: <code>npm install hexo-generator-sitemap --no-optional</code>, 之后生成网站时, 便会自动在根目录生成一个 <code>sitemap.xml</code> 文件!</p>
+<pre class="line-numbers language-yml" data-language="yml"><code class="language-yml"><span class="token key atrule">User-agent</span><span class="token punctuation">:</span> *
+
+<span class="token key atrule">Allow</span><span class="token punctuation">:</span> /
+
+<span class="token key atrule">Disallow</span><span class="token punctuation">:</span> CNAME
+
+<span class="token key atrule">Sitemap</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//kuroha.vip/sitemap.xml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h1 id="自定义主题配置文件"><a href="#自定义主题配置文件" class="headerlink" title="自定义主题配置文件"></a>自定义主题配置文件</h1><p>配置文件中只需要改改设置就可以出现效果的就不提了, 说一下注意事项:</p>
 <h2 id="开启自定义配置"><a href="#开启自定义配置" class="headerlink" title="开启自定义配置"></a>开启自定义配置</h2><p>取消自定义配置文件的注释, 并且要在对应的路径下创建对应的文件.</p>
 <h2 id="开启标签-分类-关于菜单"><a href="#开启标签-分类-关于菜单" class="headerlink" title="开启标签, 分类, 关于菜单"></a>开启标签, 分类, 关于菜单</h2><p>取消相应的设置选项后, 必须在 <code>source</code> 文件夹下创建相应的路径, 并创建相应的 markdown 文件, 文件中的内容虽然很简单, 但是也必须添加! <code>comments : false</code> 可以使当前页面禁用评论系统.</p>
