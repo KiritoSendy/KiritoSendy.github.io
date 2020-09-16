@@ -534,6 +534,124 @@ namespace _02_判断一个数字是不是梦想数
       </tags>
   </entry>
   <entry>
+    <title>游戏开发笔试面试经历之巨人网络</title>
+    <url>/apply/game_apply_giant.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h2 id="巨人网络-2019-09-06-游戏开发工程师-笔试"><a href="#巨人网络-2019-09-06-游戏开发工程师-笔试" class="headerlink" title="巨人网络 2019.09.06 游戏开发工程师 笔试"></a>巨人网络 2019.09.06 游戏开发工程师 笔试</h2><ol>
+<li>选择题</li>
+</ol>
+<ul>
+<li>A 类模板的成员函数都是函数模板, 类模板实例化后, 成员函数都随之实例化.  (❌) </li>
+<li>B 一个类定义中, 只要有一个函数模板, 则这个类是类模板.  (❌) </li>
+<li>C 函数模板必须由程序员实例化为可执行的函数模板.  (❌) </li>
+<li>D 函数模板的实例化是由编译器实现的.  (✔) </li>
+</ul>
+<blockquote>
+<p>马后炮解答: </p>
+<ol>
+<li>类模板的成员函数都是函数模板. </li>
+<li>类模板实例化后, 成员函数 (即函数模板) 会随之实例化, 但是没使用过成员函数 (即函数模板) 的不会随之实例化. </li>
+<li>函数模板必须由 <strong>编译器</strong> 根据 <strong>程序员的调用类型</strong> 实例化为 <strong>可执行的函数</strong>. </li>
+</ol>
+</blockquote>
+<ol start="2">
+<li>选择题</li>
+</ol>
+<ul>
+<li>A 进程是程序运行的最小单位.  (❌) </li>
+<li>B 线程是资源分配的最小单位.  (❌) </li>
+<li>C 在 Linux 中, 进程比线程安全, 进程不会共享数据.  (❌) </li>
+<li>D 进程有独立的地址空间, 线程没有独立的地址空间.  (✔) </li>
+</ul>
+<blockquote>
+<p>马后炮解答: </p>
+<ol>
+<li>进程是资源分配的最小单位. </li>
+<li>线程是程序运行的最小单位. </li>
+<li>Linux 中, 进程可以共享数据. </li>
+</ol>
+</blockquote>
+<ol start="3">
+<li>选择题</li>
+</ol>
+<ul>
+<li>下列编程语句需要加锁的是? </li>
+<li>A ++X; </li>
+<li>B X++; </li>
+<li>C X=Y; </li>
+<li>D X=1; </li>
+</ul>
+<blockquote>
+<p>马后炮解答: </p>
+<p>X=Y: 在 X86 上它包含两个操作: 读取 y 至寄存器, 再把该值写入 x. 读 y 的值这个操作本身是原子的, 把值写入 x 也是原子的, 但是两者合起来不是原子操作, 所以需要进行同步. </p>
+<p>++X 和 X++ 这样的操作在多线程环境下是需要同步的. 因为 X86 会按三条指令的形式来处理这种语句: 从内存中读 x 的值到寄存器中, 对寄存器加 1, 再把新值写回 x 所处的内存地址. </p>
+<p>X=1: 是原子操作, 不可再分. </p>
+<p>答案: ABC</p>
+</blockquote>
+<ol start="4">
+<li>选择题</li>
+</ol>
+<ul>
+<li>A sizeof (指针): 可以得到指针所指向的内容的大小.  (❌) </li>
+<li>B sizeof (数组名): 可以取得数组的容量.  (✔) </li>
+<li>C 指针可以随时指向任意类型的内存块.  (❌) </li>
+<li>D 可以在程序运行中改变数组长度.  (✔) </li>
+</ul>
+<blockquote>
+<p>马后炮解答: </p>
+<ol>
+<li><strong>sizeof 不是函数</strong>. 因为 sizeof 写参数的时候, 有时候可以不加括号, 而且它可以直接以变量类型作为参数: <code>sizeof (int)</code>. </li>
+<li><strong>sizeof 不是一元操作符</strong>. 因为 sizeof 语句是在编译阶段求值的. 比如下面的语句: </li>
+</ol>
+</blockquote>
+<pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">#include&quot;stdio.h&quot; 
+int main() 
+&#123;
+    int a &#x3D; 0;
+    int b &#x3D; sizeof (a &#x3D; 3);
+    
+    printf(&quot;a 的值是: %d, b的值是: %d&quot;, a, b);
+
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>在编译阶段就会被翻译成如下代码, 运行结果自然是: <code>a 的值是: 0, b的值是: 4</code></p>
+</blockquote>
+<pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">#include&quot;stdio.h&quot; 
+int main() 
+&#123;
+    int a &#x3D; 0;
+    &#x2F;&#x2F;int b &#x3D; sizeof (a &#x3D; 3);
+    int b &#x3D; 4; &#x2F;&#x2F; sizeof (a &#x3D; 3); 会被直接编译成 4, 所以 &quot;a &#x3D; 3;&quot; 并不会运行
+    
+    printf(&quot;a 的值是: %d, b的值是: %d&quot;, a, b);
+    
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<ol start="3">
+<li><p>sizeof 的后面直接写数据类型的关键字时, 必须加括号. <code>sizeof (int);</code></p>
+</li>
+<li><p>sizeof 使用时的各种情况: </p>
+<p>sizeof (固有数据类型, 例如 int float double bool): 取得类型的字节长度. 对于拥有自定义 typedef 类型的语言, 返回的是原数据类型的字节长度. </p>
+<p>sizeof (函数类型, 例如 <code>int Add(int a, int b)</code>): 取得返回值的类型的字节长度. 当返回值是 void 类型时, 编译器会报错. </p>
+<p>sizeof (任何指针类型, 例如变量指针, 函数指针)): 取得指针的长度, 也就是 4. </p>
+<p>Sizeof (数组名): 取得数组的容量. </p>
+</li>
+</ol>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Apply</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ASP 开发经验笔记</title>
     <url>/asp/asp_learnnotes.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -791,124 +909,6 @@ function keydown()
       </categories>
       <tags>
         <tag>ASP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>游戏开发笔试面试经历之巨人网络</title>
-    <url>/apply/game_apply_giant.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h2 id="巨人网络-2019-09-06-游戏开发工程师-笔试"><a href="#巨人网络-2019-09-06-游戏开发工程师-笔试" class="headerlink" title="巨人网络 2019.09.06 游戏开发工程师 笔试"></a>巨人网络 2019.09.06 游戏开发工程师 笔试</h2><ol>
-<li>选择题</li>
-</ol>
-<ul>
-<li>A 类模板的成员函数都是函数模板, 类模板实例化后, 成员函数都随之实例化.  (❌) </li>
-<li>B 一个类定义中, 只要有一个函数模板, 则这个类是类模板.  (❌) </li>
-<li>C 函数模板必须由程序员实例化为可执行的函数模板.  (❌) </li>
-<li>D 函数模板的实例化是由编译器实现的.  (✔) </li>
-</ul>
-<blockquote>
-<p>马后炮解答: </p>
-<ol>
-<li>类模板的成员函数都是函数模板. </li>
-<li>类模板实例化后, 成员函数 (即函数模板) 会随之实例化, 但是没使用过成员函数 (即函数模板) 的不会随之实例化. </li>
-<li>函数模板必须由 <strong>编译器</strong> 根据 <strong>程序员的调用类型</strong> 实例化为 <strong>可执行的函数</strong>. </li>
-</ol>
-</blockquote>
-<ol start="2">
-<li>选择题</li>
-</ol>
-<ul>
-<li>A 进程是程序运行的最小单位.  (❌) </li>
-<li>B 线程是资源分配的最小单位.  (❌) </li>
-<li>C 在 Linux 中, 进程比线程安全, 进程不会共享数据.  (❌) </li>
-<li>D 进程有独立的地址空间, 线程没有独立的地址空间.  (✔) </li>
-</ul>
-<blockquote>
-<p>马后炮解答: </p>
-<ol>
-<li>进程是资源分配的最小单位. </li>
-<li>线程是程序运行的最小单位. </li>
-<li>Linux 中, 进程可以共享数据. </li>
-</ol>
-</blockquote>
-<ol start="3">
-<li>选择题</li>
-</ol>
-<ul>
-<li>下列编程语句需要加锁的是? </li>
-<li>A ++X; </li>
-<li>B X++; </li>
-<li>C X=Y; </li>
-<li>D X=1; </li>
-</ul>
-<blockquote>
-<p>马后炮解答: </p>
-<p>X=Y: 在 X86 上它包含两个操作: 读取 y 至寄存器, 再把该值写入 x. 读 y 的值这个操作本身是原子的, 把值写入 x 也是原子的, 但是两者合起来不是原子操作, 所以需要进行同步. </p>
-<p>++X 和 X++ 这样的操作在多线程环境下是需要同步的. 因为 X86 会按三条指令的形式来处理这种语句: 从内存中读 x 的值到寄存器中, 对寄存器加 1, 再把新值写回 x 所处的内存地址. </p>
-<p>X=1: 是原子操作, 不可再分. </p>
-<p>答案: ABC</p>
-</blockquote>
-<ol start="4">
-<li>选择题</li>
-</ol>
-<ul>
-<li>A sizeof (指针): 可以得到指针所指向的内容的大小.  (❌) </li>
-<li>B sizeof (数组名): 可以取得数组的容量.  (✔) </li>
-<li>C 指针可以随时指向任意类型的内存块.  (❌) </li>
-<li>D 可以在程序运行中改变数组长度.  (✔) </li>
-</ul>
-<blockquote>
-<p>马后炮解答: </p>
-<ol>
-<li><strong>sizeof 不是函数</strong>. 因为 sizeof 写参数的时候, 有时候可以不加括号, 而且它可以直接以变量类型作为参数: <code>sizeof (int)</code>. </li>
-<li><strong>sizeof 不是一元操作符</strong>. 因为 sizeof 语句是在编译阶段求值的. 比如下面的语句: </li>
-</ol>
-</blockquote>
-<pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">#include&quot;stdio.h&quot; 
-int main() 
-&#123;
-    int a &#x3D; 0;
-    int b &#x3D; sizeof (a &#x3D; 3);
-    
-    printf(&quot;a 的值是: %d, b的值是: %d&quot;, a, b);
-
-	return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<blockquote>
-<p>在编译阶段就会被翻译成如下代码, 运行结果自然是: <code>a 的值是: 0, b的值是: 4</code></p>
-</blockquote>
-<pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">#include&quot;stdio.h&quot; 
-int main() 
-&#123;
-    int a &#x3D; 0;
-    &#x2F;&#x2F;int b &#x3D; sizeof (a &#x3D; 3);
-    int b &#x3D; 4; &#x2F;&#x2F; sizeof (a &#x3D; 3); 会被直接编译成 4, 所以 &quot;a &#x3D; 3;&quot; 并不会运行
-    
-    printf(&quot;a 的值是: %d, b的值是: %d&quot;, a, b);
-    
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<blockquote>
-<ol start="3">
-<li><p>sizeof 的后面直接写数据类型的关键字时, 必须加括号. <code>sizeof (int);</code></p>
-</li>
-<li><p>sizeof 使用时的各种情况: </p>
-<p>sizeof (固有数据类型, 例如 int float double bool): 取得类型的字节长度. 对于拥有自定义 typedef 类型的语言, 返回的是原数据类型的字节长度. </p>
-<p>sizeof (函数类型, 例如 <code>int Add(int a, int b)</code>): 取得返回值的类型的字节长度. 当返回值是 void 类型时, 编译器会报错. </p>
-<p>sizeof (任何指针类型, 例如变量指针, 函数指针)): 取得指针的长度, 也就是 4. </p>
-<p>Sizeof (数组名): 取得数组的容量. </p>
-</li>
-</ol>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Apply</category>
-      </categories>
-      <tags>
-        <tag>面试</tag>
       </tags>
   </entry>
   <entry>
@@ -1299,8 +1299,8 @@ int main()
 <blockquote>
 <p><code>密码: googosoft@123</code></p>
 </blockquote>
-<h1 id="4-安装-PLSQL"><a href="#4-安装-PLSQL" class="headerlink" title="4, 安装 PLSQL"></a>4, 安装 PLSQL</h1><p>安装 PLSQL, 打开, 进行汉化以及破解. </p>
-<h1 id="5-安装-Oracle"><a href="#5-安装-Oracle" class="headerlink" title="5, 安装 Oracle"></a>5, 安装 Oracle</h1><blockquote>
+<h1 id="安装-PLSQL"><a href="#安装-PLSQL" class="headerlink" title="安装 PLSQL"></a>安装 PLSQL</h1><p>安装 PLSQL, 打开, 进行汉化以及破解. </p>
+<h1 id="安装-Oracle"><a href="#安装-Oracle" class="headerlink" title="安装 Oracle"></a>安装 Oracle</h1><blockquote>
 <p>安装 <code>Oracle Database</code>, <strong>不要修改子路径</strong>, 不要安装 <code>Oracle Client</code>.</p>
 </blockquote>
 <blockquote>
@@ -1317,13 +1317,13 @@ scott123
 scott123
 <span class="token number">192.168</span><span class="token number">.10</span><span class="token number">.237</span><span class="token operator">/</span>sdzc0216<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="6-设置-Windows-功能"><a href="#6-设置-Windows-功能" class="headerlink" title="6, 设置 Windows 功能"></a>6, 设置 Windows 功能</h1><blockquote>
+<h1 id="设置-Windows-功能"><a href="#设置-Windows-功能" class="headerlink" title="设置 Windows 功能"></a>设置 Windows 功能</h1><blockquote>
 <p>打开 Windows 功能. 开启所有的 Internet 功能, 之后重启. </p>
 </blockquote>
 <blockquote>
 <p>打开 .Net Framework 3.5, 包含 2.0, 3.0</p>
 </blockquote>
-<h1 id="8-安装-VS-2005"><a href="#8-安装-VS-2005" class="headerlink" title="8, 安装 VS 2005"></a>8, 安装 VS 2005</h1><blockquote>
+<h1 id="安装-VS-2005"><a href="#安装-VS-2005" class="headerlink" title="安装 VS 2005"></a>安装 VS 2005</h1><blockquote>
 <p>VS 2005, 自定义安装. <font color='red'>切记安装路径中不能带有小括号. 因为 Oracle 数据库不识别小括号. </font></p>
 </blockquote>
 <blockquote>
@@ -1348,7 +1348,7 @@ scott123
 <blockquote>
 <p>用户项模板位置: <code>Microsoft Visual Studio 8/Common7/IDE/ItemTemplates </code></p>
 </blockquote>
-<h1 id="9-安装-VSS-2005"><a href="#9-安装-VSS-2005" class="headerlink" title="9, 安装 VSS 2005"></a>9, 安装 VSS 2005</h1><p>VSS 2005, 项目源码管理器. </p>
+<h1 id="安装-VSS-2005"><a href="#安装-VSS-2005" class="headerlink" title="安装 VSS 2005"></a>安装 VSS 2005</h1><p>VSS 2005, 项目源码管理器. </p>
 ]]></content>
       <categories>
         <category>ComputerBasics</category>
@@ -1416,195 +1416,6 @@ scott123
       </categories>
       <tags>
         <tag>Recovery</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo + Github Pages 搭建个人博客</title>
-    <url>/hexo/hexo_blog.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>搭建个人博客的流程大概是: 先搭建博客环境, 就像你要玩电脑游戏, 首先得先买一台电脑一样. <del>这不废话吗</del> 之后在电脑上创建博客的本地文件, 最后再将创建好的本地文件上传到网上就可以了. 这里我使用的是 Hexo 和 Github Pages 来搭建个人博客. </p>
-<h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><p>进入 <span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS8=">Git 官方网站<i class="fa fa-external-link-alt"></i></span> 下载安装即可. </p>
-<p>验证方法: 在桌面右键, 只要出现 Git GUI Here 和 Git Bash Here 就表示安装成功了. </p>
-<h2 id="安装-Nodejs"><a href="#安装-Nodejs" class="headerlink" title="安装 Nodejs"></a>安装 Nodejs</h2><p>进入 <span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL2VuLw==">Nodejs 官方网站<i class="fa fa-external-link-alt"></i></span> 下载安装即可. </p>
-<p>LTS 版本即可满足使用, 可以在 cmd 中使用 <code>node -v</code> 和 <code>npm -v</code> 进行验证, 出现版本号就说明成功了. </p>
-<h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>安装 Hexo 之前, 如果你想要更改 Hexo 的安装位置 (Hexo 默认会安装在 C 盘), 可以在 cmd 中输入下面的命令, 记得把路径改为自己的: </p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">npm config set prefix &quot;H:\Programs Computer\NodeGobal&quot;
-npm config set cache &quot;H:\Programs Computer\NodeCache&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>之后可以使用以下命令查看设置:</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">npm config get prefix
-npm config get cache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>先切换 npm 源: 打开 cmd, 输入下面的命令:</p>
-<p><code>npm config set registry https://registry.npm.taobao.org</code></p>
-<p>之后安装 Hexo: </p>
-<p><code>npm install -g hexo</code></p>
-<h1 id="创建本地博客"><a href="#创建本地博客" class="headerlink" title="创建本地博客"></a>创建本地博客</h1><ol>
-<li>新建一个文件夹, 来放置本地博客, 名字以及路径自己决定. 我的是: F:\WorkSpace\HexoBlog</li>
-<li>进入这个空的文件夹, 点击鼠标右键, 选择 Git Bash Here, 会弹出一个类似 cmd 的窗口, 这个窗口会一直使用, 不要关闭, 如果不小心关闭了, 再次回到这个文件夹中, 在空白处点击鼠标右键, 选择 Git Bash Here 即可再次打开. </li>
-<li>初始化本地博客, 在 Git Bash Here 中输入: <code>hexo init</code> </li>
-<li>安装默认依赖包, 在 Git Bash Here 中输入: <code>npm install</code></li>
-<li>生成静态文件, 在 Git Bash Here 中输入: <code>hexo generate</code> 或者命令的缩写 <code>hexo g</code>, 此时网页就创建好了, 下面我们来预览一下博客的样子. </li>
-<li>开启服务, 在 Git Bash Here 中输入 <code>hexo server</code> 或者命令的缩写 <code>hexo s</code>, 服务默认开启网址: <span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo0MDAwLw==">http://localhost:4000<i class="fa fa-external-link-alt"></i></span> , 此时在浏览器中即可预览博客. </li>
-</ol>
-<p>【注】</p>
-<ul>
-<li>预览完毕后记得按 <code>Ctrl + C</code> 停止服务. </li>
-<li>如果不小心按了<code>Ctrl + C</code> 停止了服务, 再次输入 <code>hexo s</code> 开启服务即可. </li>
-<li>如果 <span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo0MDAwLw==">http://localhost:4000<i class="fa fa-external-link-alt"></i></span> 无法预览博客, 可能是 4000 端口被占用了, 我们先按 Ctrl + C 停止服务, 然后使用下面的语句切换端口:  <code>hexo server -p 端口号</code> , 这里的端口号从 4000 往上加即可, 如: 4001, 具体使用哪个不用太纠结, 可以预览博客即可. </li>
-</ul>
-<h1 id="关联-GitHub-和-Hexo"><a href="#关联-GitHub-和-Hexo" class="headerlink" title="关联 GitHub 和 Hexo"></a>关联 GitHub 和 Hexo</h1><p>经过前面两个步骤, 我们已经在本地创建好了博客, 也可以通过本地服务进行预览, 但是这样网页仅仅保存在本地, 网络上的人无法查看的, 此时我们就要将本地博客和 GitHub Pages 关联, 或者说上传到 GitHub 上, 这样所有人都可以查看了. </p>
-<h2 id="开启-GitHub-Pages"><a href="#开启-GitHub-Pages" class="headerlink" title="开启 GitHub Pages"></a>开启 GitHub Pages</h2><p>GitHub Pages: 其本来用于介绍托管在 GitHub 上的项目, 由于它的空间免费稳定, 因此适合用来搭建个人博客, 但是有以下注意点: </p>
-<ul>
-<li>每个 GitHub 账号只能有一个仓库来存放个人主页, </li>
-<li>仓库的名字必须是 <code>username.github.io</code>, </li>
-<li>通过 <code>http://username.github.io</code> 来访问个人主页, </li>
-<li>个人主页的网站内容是在 master 分支下. </li>
-</ul>
-<p>接下来我们创建个人主页仓库: 在 GitHub 首页右上角头像左侧的加号处, 点击: New repository, 仓库名字必须是: <code>你的 Github 用户名.github.io</code>, 下面选择 Public, 下面的选项是让你是否在仓库中初始化一个 README.md 文件, 自己随意. 最后点击创建仓库, 这样 GitHub Pages 就创建好了. </p>
-<h2 id="获取-SSH-密钥"><a href="#获取-SSH-密钥" class="headerlink" title="获取 SSH 密钥"></a>获取 SSH 密钥</h2><p>至此, 我们的本地博客和 GitHub Pages 都准备好了, 下面就可以把网页部署 (上传) 到 GitHub Pages 上了. 在部署之前, 我们先设置一下 SSH 密钥. 因为如果不配置 SSH 密钥, 每次部署本地博客到 GitHub Pages 时, 都要输入 Github 账号密码, 非常繁琐. </p>
-<p>获取 SSH 密钥: 如果你是第一次使用 Git, 要先配置 Git 的用户名和邮箱, 在 Git Bash Here 中输入: </p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git config --global user.name &quot;username&quot;
-git config --global user.email &quot;mail&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>上面的 username 改成你 GitHub 的用户名, mail 改成你 GitHub 的邮箱. 之后再次输入: </p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ssh-keygen -t rsa -C &quot;mail&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>mail 要用你自己的 Github 邮箱. 回车后会依次出现三个选项, 直接全部回车即可. 这样 SSH 密钥就生成了, 接下来需要密钥填写到 GitHub 上. </p>
-<p>在 C:\Users\用户名\.ssh目录中, 会出现这样两个文件: <code>id_rsa</code> 和 <code>id_rsa.pub</code></p>
-<p>打开 <code>id_rsa.pub</code> 文件, 复制里面所有的内容. </p>
-<p>之后打开浏览器, 登录 GitHub, 依次点击头像下的 Settings, 左面的 SSH and GPG keys, 右上角的 New SSH key, 填写标题时, 最好和你那个网页文件夹的名字一致, 方便记忆和日后查找.<br>点击 Add SSH key 并且验证 GitHub 密码, 即可完成密钥的添加. </p>
-<h2 id="部署本地博客到-GitHub-Pages"><a href="#部署本地博客到-GitHub-Pages" class="headerlink" title="部署本地博客到 GitHub Pages"></a>部署本地博客到 GitHub Pages</h2><p>之前的步骤中 SSH 密钥已经设置好了, 接下来就可以部署本地博客到 Github Pages 了, 在这里不建议直接使用 Git 进行部署, 而是使用 Hexo 中的 Hexo deploy 插件进行一键式部署, 方便快捷. </p>
-<p>首先要安装 Hexo deploy 插件, 还是在 Git Bash Here 中输入命令: </p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">npm install hexo-deployer-git --save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>之后打开网页根目录下的 _config.yml 文件, 文件的末尾是这样的: </p>
-<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf"># Deployment
-## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html
-deploy:
-  type:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>修改成下面这样: </p>
-<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf"># Deployment
-## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html
-deploy:
-  type: git
-  repo: git@github.com:KurohaKirito&#x2F;KurohaKirito.github.io.git
-  branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>repo 就是你仓库的地址: 有 SSH 和 HTTPS 两种格式, 你选择哪种都可以. 我选择的是 SSH 格式. 在你仓库页面上点击绿色按钮 <code>Clone or download</code> 即可获得仓库地址. </p>
-<p>配置完成之后, 执行部署命令, 还是在 Git Bash Here 中输入命令: <code>hexo deploy</code> 或者命令的缩写: <code>hexo d</code>, 输入 GitHub 用户名, 密码即可. </p>
-<p>验证方法: 在浏览器中输入网址: <span class="exturl" data-url="aHR0cHM6Ly/nlKjmiLflkI0uZ2l0aHViLmlvLw==">https://用户名.github.io<i class="fa fa-external-link-alt"></i></span> , 用户名修改为你自己的 Github 用户名, 如果能看到之前博客的样子, 就说明部署成功了! </p>
-<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="常用-Hexo-命令"><a href="#常用-Hexo-命令" class="headerlink" title="常用 Hexo 命令"></a>常用 Hexo 命令</h2><table>
-<thead>
-<tr>
-<th align="left">命令</th>
-<th align="left">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">hexo help</td>
-<td align="left">查看帮助</td>
-</tr>
-<tr>
-<td align="left">hexo -v</td>
-<td align="left">查看本地环境</td>
-</tr>
-<tr>
-<td align="left">hexo init</td>
-<td align="left">初始化 hexo 目录</td>
-</tr>
-<tr>
-<td align="left">hexo new &quot;postName&quot;</td>
-<td align="left">新建文章</td>
-</tr>
-<tr>
-<td align="left">hexo new page &quot;pageName&quot;</td>
-<td align="left">新建页面</td>
-</tr>
-<tr>
-<td align="left">hexo gernerate</td>
-<td align="left">生成网页</td>
-</tr>
-<tr>
-<td align="left">hexo server</td>
-<td align="left">本地预览</td>
-</tr>
-<tr>
-<td align="left">hexo deploy / hexo d</td>
-<td align="left">部署到远程服务器</td>
-</tr>
-<tr>
-<td align="left">hexo clean</td>
-<td align="left">清除缓存 建议每次执行命令前先清理缓存</td>
-</tr>
-<tr>
-<td align="left">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</td>
-<td align="left">一键生成部署</td>
-</tr>
-<tr>
-<td align="left">hexo clean ; hexo g ; hexo s</td>
-<td align="left">一键生成部署</td>
-</tr>
-</tbody></table>
-<h2 id="hexo-主题"><a href="#hexo-主题" class="headerlink" title="hexo 主题"></a>hexo 主题</h2><p>下面是我搜集的一些主题及其项目开源地址: </p>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1pFUk9LSVNFS0kvaGV4by10aGVtZS1nYWw=">Gal<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lzY29kZXIvaGV4by10aGVtZS1pbmRpZ28=">Indigo<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2x1dW1hbi9oZXhvLXRoZW1lLXNwZms=">Spfk<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NtYWNrZ2cvaGV4by10aGVtZS1zbWFja2Rvd24=">Smackdown<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21hb2NodW5ndWFuZy9ibGFjay1ibHVl">Black-blue<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoYW5hTWFpZC9oZXhvLXRoZW1lLXNoYW5h">Shana<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpdHRlbi9oZXhvLXRoZW1lLXlpbGlh">Yilia<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dpbnRlcmxhbmQxOTg5L2hleG8tdGhlbWUtd2ludGVybGFuZA==">Winterland<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RlY2hsYWhvbWEvaGV4by10aGVtZS1va2Nqcw==">OKCjs<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpbmc1L2hleG8tdGhlbWUtYW5pbWFzdGFycw==">AnimaStars<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NvbmV5Y29kZS9jb25leQ==">Coney<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hzaWhvaHVhbmcva2lkZG9jaGFu">Kiddochan<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW5nbWluZy9sYW5kc2NhcGUtcGx1cw==">Landscapeplus<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lpc3NuYW4vaGV4by10aGVtZS1uZXh0">NexT<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3RoZW1lcy8=">Hexo Themes Net<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h2 id="警告与错误的处理"><a href="#警告与错误的处理" class="headerlink" title="警告与错误的处理"></a>警告与错误的处理</h2><h3 id="Warning-LF-will-be-replaced-by-CRLF"><a href="#Warning-LF-will-be-replaced-by-CRLF" class="headerlink" title="Warning: LF will be replaced by CRLF"></a>Warning: LF will be replaced by CRLF</h3><p>问题原因: 不同操作系统所使用的换行符是不一样的: </p>
-<ul>
-<li><p>Unix / Linux 采用换行符 LF 表示下一行 (LF: LineFeed 换行)</p>
-</li>
-<li><p>Dos / Windows 采用 回车 + 换行 CRLF 表示下一行 (CRLF: CarriageReturn LineFeed 回车换行)</p>
-</li>
-<li><p>Mac OS 采用回车 CR 表示下一行 (CR: CarriageReturn 回车)</p>
-</li>
-</ul>
-<p>在 Git 中, 可以通过以下命令来显示当前你的 Git 中采取哪种对待换行符的方式: </p>
-<p><code>git config core.autocrlf</code></p>
-<p>此命令会有三种输出: <code>true</code>, <code>false</code>, <code>input</code></p>
-<ul>
-<li><p>true: Git 会将你 add 的所有文件视为文本文件, 将结尾的 CRLF 转换为 LF, 而 checkout 时会再将文件的 LF 格式转为 CRLF 格式. </p>
-</li>
-<li><p>false: line endings 不做任何改变, 文本文件保持其原来的样子. </p>
-</li>
-<li><p>input: add 时 Git 会把 CRLF 转换为 LF, 而 check 时仍旧为 LF, 所以 Windows 操作系统不建议设置此值. </p>
-</li>
-</ul>
-<p>解决办法: 将 core.autocrlf 设为 false 即可解决这个问题, 不过如果你跨平台工作的话, 还是需要考虑一下. </p>
-<p>如果你想要将 core autocrlf 设置为 true , 有一个需要慎重的地方, 当你上传一个二进制文件, Git 可能会将二进制文件误以为是文本文件, 从而也会修改你的二进制文件, 从而产生隐患. </p>
-<p>如果你不跨平台的话, 进行如下设置即可: <code>git config --global core.autocrlf false</code></p>
-<h3 id="Error-validation-failed"><a href="#Error-validation-failed" class="headerlink" title="Error: validation failed"></a>Error: validation failed</h3><p>原因: issue 的 id 有长度限制! 最大长度限制是 50 个字符. </p>
-<p>每个 issue 有两个标签, 一个是 gitment, 另一个是 id. 将 id 进行如下配置: <code>id: &#39;&lt;%= page.date %&gt;&#39;</code>, 因为日期是永远不会超出 50 个字符的. </p>
-<h3 id="访问-GitHub-慢的解决方法"><a href="#访问-GitHub-慢的解决方法" class="headerlink" title="访问 GitHub 慢的解决方法"></a>访问 GitHub 慢的解决方法</h3><p>在国内 Github 网站是可以访问, 但是由于网络代理商的原因, 造成访问速度很慢. 可以通过修改本地 host 文件的办法, 可以提高访问速度: </p>
-<p>打开 Windows 下 host 文件 (<code>C:\Windows\System32\drivers\etc\hosts</code>)</p>
-<p>在最后面添加:</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">151.101.13.194 github.global.ssl.fastly.net
-192.30.253.113 github.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>重启浏览器或者刷新 DNS 缓存, 告诉电脑 hosts 文件已经被修改. </p>
-<p>刷新 DNS 缓存的方法: 在命令行中输入 <code>ipconfig /flushdns</code> 刷新 DNS 缓存. </p>
-]]></content>
-      <categories>
-        <category>Hexo_Blog</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -2007,6 +1818,195 @@ deploy:
       </categories>
       <tags>
         <tag>Diary</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo + Github Pages 搭建个人博客</title>
+    <url>/hexo/hexo_blog.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>搭建个人博客的流程大概是: 先搭建博客环境, 就像你要玩电脑游戏, 首先得先买一台电脑一样. <del>这不废话吗</del> 之后在电脑上创建博客的本地文件, 最后再将创建好的本地文件上传到网上就可以了. 这里我使用的是 Hexo 和 Github Pages 来搭建个人博客. </p>
+<h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><p>进入 <span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS8=">Git 官方网站<i class="fa fa-external-link-alt"></i></span> 下载安装即可. </p>
+<p>验证方法: 在桌面右键, 只要出现 Git GUI Here 和 Git Bash Here 就表示安装成功了. </p>
+<h2 id="安装-Nodejs"><a href="#安装-Nodejs" class="headerlink" title="安装 Nodejs"></a>安装 Nodejs</h2><p>进入 <span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL2VuLw==">Nodejs 官方网站<i class="fa fa-external-link-alt"></i></span> 下载安装即可. </p>
+<p>LTS 版本即可满足使用, 可以在 cmd 中使用 <code>node -v</code> 和 <code>npm -v</code> 进行验证, 出现版本号就说明成功了. </p>
+<h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>安装 Hexo 之前, 如果你想要更改 Hexo 的安装位置 (Hexo 默认会安装在 C 盘), 可以在 cmd 中输入下面的命令, 记得把路径改为自己的: </p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">npm config set prefix &quot;H:\Programs Computer\NodeGobal&quot;
+npm config set cache &quot;H:\Programs Computer\NodeCache&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>之后可以使用以下命令查看设置:</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">npm config get prefix
+npm config get cache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>先切换 npm 源: 打开 cmd, 输入下面的命令:</p>
+<p><code>npm config set registry https://registry.npm.taobao.org</code></p>
+<p>之后安装 Hexo: </p>
+<p><code>npm install -g hexo</code></p>
+<h1 id="创建本地博客"><a href="#创建本地博客" class="headerlink" title="创建本地博客"></a>创建本地博客</h1><ol>
+<li>新建一个文件夹, 来放置本地博客, 名字以及路径自己决定. 我的是: F:\WorkSpace\HexoBlog</li>
+<li>进入这个空的文件夹, 点击鼠标右键, 选择 Git Bash Here, 会弹出一个类似 cmd 的窗口, 这个窗口会一直使用, 不要关闭, 如果不小心关闭了, 再次回到这个文件夹中, 在空白处点击鼠标右键, 选择 Git Bash Here 即可再次打开. </li>
+<li>初始化本地博客, 在 Git Bash Here 中输入: <code>hexo init</code> </li>
+<li>安装默认依赖包, 在 Git Bash Here 中输入: <code>npm install</code></li>
+<li>生成静态文件, 在 Git Bash Here 中输入: <code>hexo generate</code> 或者命令的缩写 <code>hexo g</code>, 此时网页就创建好了, 下面我们来预览一下博客的样子. </li>
+<li>开启服务, 在 Git Bash Here 中输入 <code>hexo server</code> 或者命令的缩写 <code>hexo s</code>, 服务默认开启网址: <span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo0MDAwLw==">http://localhost:4000<i class="fa fa-external-link-alt"></i></span> , 此时在浏览器中即可预览博客. </li>
+</ol>
+<p>【注】</p>
+<ul>
+<li>预览完毕后记得按 <code>Ctrl + C</code> 停止服务. </li>
+<li>如果不小心按了<code>Ctrl + C</code> 停止了服务, 再次输入 <code>hexo s</code> 开启服务即可. </li>
+<li>如果 <span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo0MDAwLw==">http://localhost:4000<i class="fa fa-external-link-alt"></i></span> 无法预览博客, 可能是 4000 端口被占用了, 我们先按 Ctrl + C 停止服务, 然后使用下面的语句切换端口:  <code>hexo server -p 端口号</code> , 这里的端口号从 4000 往上加即可, 如: 4001, 具体使用哪个不用太纠结, 可以预览博客即可. </li>
+</ul>
+<h1 id="关联-GitHub-和-Hexo"><a href="#关联-GitHub-和-Hexo" class="headerlink" title="关联 GitHub 和 Hexo"></a>关联 GitHub 和 Hexo</h1><p>经过前面两个步骤, 我们已经在本地创建好了博客, 也可以通过本地服务进行预览, 但是这样网页仅仅保存在本地, 网络上的人无法查看的, 此时我们就要将本地博客和 GitHub Pages 关联, 或者说上传到 GitHub 上, 这样所有人都可以查看了. </p>
+<h2 id="开启-GitHub-Pages"><a href="#开启-GitHub-Pages" class="headerlink" title="开启 GitHub Pages"></a>开启 GitHub Pages</h2><p>GitHub Pages: 其本来用于介绍托管在 GitHub 上的项目, 由于它的空间免费稳定, 因此适合用来搭建个人博客, 但是有以下注意点: </p>
+<ul>
+<li>每个 GitHub 账号只能有一个仓库来存放个人主页, </li>
+<li>仓库的名字必须是 <code>username.github.io</code>, </li>
+<li>通过 <code>http://username.github.io</code> 来访问个人主页, </li>
+<li>个人主页的网站内容是在 master 分支下. </li>
+</ul>
+<p>接下来我们创建个人主页仓库: 在 GitHub 首页右上角头像左侧的加号处, 点击: New repository, 仓库名字必须是: <code>你的 Github 用户名.github.io</code>, 下面选择 Public, 下面的选项是让你是否在仓库中初始化一个 README.md 文件, 自己随意. 最后点击创建仓库, 这样 GitHub Pages 就创建好了. </p>
+<h2 id="获取-SSH-密钥"><a href="#获取-SSH-密钥" class="headerlink" title="获取 SSH 密钥"></a>获取 SSH 密钥</h2><p>至此, 我们的本地博客和 GitHub Pages 都准备好了, 下面就可以把网页部署 (上传) 到 GitHub Pages 上了. 在部署之前, 我们先设置一下 SSH 密钥. 因为如果不配置 SSH 密钥, 每次部署本地博客到 GitHub Pages 时, 都要输入 Github 账号密码, 非常繁琐. </p>
+<p>获取 SSH 密钥: 如果你是第一次使用 Git, 要先配置 Git 的用户名和邮箱, 在 Git Bash Here 中输入: </p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git config --global user.name &quot;username&quot;
+git config --global user.email &quot;mail&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>上面的 username 改成你 GitHub 的用户名, mail 改成你 GitHub 的邮箱. 之后再次输入: </p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ssh-keygen -t rsa -C &quot;mail&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>mail 要用你自己的 Github 邮箱. 回车后会依次出现三个选项, 直接全部回车即可. 这样 SSH 密钥就生成了, 接下来需要密钥填写到 GitHub 上. </p>
+<p>在 C:\Users\用户名\.ssh目录中, 会出现这样两个文件: <code>id_rsa</code> 和 <code>id_rsa.pub</code></p>
+<p>打开 <code>id_rsa.pub</code> 文件, 复制里面所有的内容. </p>
+<p>之后打开浏览器, 登录 GitHub, 依次点击头像下的 Settings, 左面的 SSH and GPG keys, 右上角的 New SSH key, 填写标题时, 最好和你那个网页文件夹的名字一致, 方便记忆和日后查找.<br>点击 Add SSH key 并且验证 GitHub 密码, 即可完成密钥的添加. </p>
+<h2 id="部署本地博客到-GitHub-Pages"><a href="#部署本地博客到-GitHub-Pages" class="headerlink" title="部署本地博客到 GitHub Pages"></a>部署本地博客到 GitHub Pages</h2><p>之前的步骤中 SSH 密钥已经设置好了, 接下来就可以部署本地博客到 Github Pages 了, 在这里不建议直接使用 Git 进行部署, 而是使用 Hexo 中的 Hexo deploy 插件进行一键式部署, 方便快捷. </p>
+<p>首先要安装 Hexo deploy 插件, 还是在 Git Bash Here 中输入命令: </p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">npm install hexo-deployer-git --save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>之后打开网页根目录下的 _config.yml 文件, 文件的末尾是这样的: </p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf"># Deployment
+## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html
+deploy:
+  type:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>修改成下面这样: </p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf"># Deployment
+## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html
+deploy:
+  type: git
+  repo: git@github.com:KurohaKirito&#x2F;KurohaKirito.github.io.git
+  branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>repo 就是你仓库的地址: 有 SSH 和 HTTPS 两种格式, 你选择哪种都可以. 我选择的是 SSH 格式. 在你仓库页面上点击绿色按钮 <code>Clone or download</code> 即可获得仓库地址. </p>
+<p>配置完成之后, 执行部署命令, 还是在 Git Bash Here 中输入命令: <code>hexo deploy</code> 或者命令的缩写: <code>hexo d</code>, 输入 GitHub 用户名, 密码即可. </p>
+<p>验证方法: 在浏览器中输入网址: <span class="exturl" data-url="aHR0cHM6Ly/nlKjmiLflkI0uZ2l0aHViLmlvLw==">https://用户名.github.io<i class="fa fa-external-link-alt"></i></span> , 用户名修改为你自己的 Github 用户名, 如果能看到之前博客的样子, 就说明部署成功了! </p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="常用-Hexo-命令"><a href="#常用-Hexo-命令" class="headerlink" title="常用 Hexo 命令"></a>常用 Hexo 命令</h2><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">hexo help</td>
+<td align="left">查看帮助</td>
+</tr>
+<tr>
+<td align="left">hexo -v</td>
+<td align="left">查看本地环境</td>
+</tr>
+<tr>
+<td align="left">hexo init</td>
+<td align="left">初始化 hexo 目录</td>
+</tr>
+<tr>
+<td align="left">hexo new &quot;postName&quot;</td>
+<td align="left">新建文章</td>
+</tr>
+<tr>
+<td align="left">hexo new page &quot;pageName&quot;</td>
+<td align="left">新建页面</td>
+</tr>
+<tr>
+<td align="left">hexo gernerate</td>
+<td align="left">生成网页</td>
+</tr>
+<tr>
+<td align="left">hexo server</td>
+<td align="left">本地预览</td>
+</tr>
+<tr>
+<td align="left">hexo deploy / hexo d</td>
+<td align="left">部署到远程服务器</td>
+</tr>
+<tr>
+<td align="left">hexo clean</td>
+<td align="left">清除缓存 建议每次执行命令前先清理缓存</td>
+</tr>
+<tr>
+<td align="left">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</td>
+<td align="left">一键生成部署</td>
+</tr>
+<tr>
+<td align="left">hexo clean ; hexo g ; hexo s</td>
+<td align="left">一键生成部署</td>
+</tr>
+</tbody></table>
+<h2 id="hexo-主题"><a href="#hexo-主题" class="headerlink" title="hexo 主题"></a>hexo 主题</h2><p>下面是我搜集的一些主题及其项目开源地址: </p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1pFUk9LSVNFS0kvaGV4by10aGVtZS1nYWw=">Gal<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lzY29kZXIvaGV4by10aGVtZS1pbmRpZ28=">Indigo<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2x1dW1hbi9oZXhvLXRoZW1lLXNwZms=">Spfk<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NtYWNrZ2cvaGV4by10aGVtZS1zbWFja2Rvd24=">Smackdown<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21hb2NodW5ndWFuZy9ibGFjay1ibHVl">Black-blue<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoYW5hTWFpZC9oZXhvLXRoZW1lLXNoYW5h">Shana<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpdHRlbi9oZXhvLXRoZW1lLXlpbGlh">Yilia<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dpbnRlcmxhbmQxOTg5L2hleG8tdGhlbWUtd2ludGVybGFuZA==">Winterland<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RlY2hsYWhvbWEvaGV4by10aGVtZS1va2Nqcw==">OKCjs<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpbmc1L2hleG8tdGhlbWUtYW5pbWFzdGFycw==">AnimaStars<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NvbmV5Y29kZS9jb25leQ==">Coney<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hzaWhvaHVhbmcva2lkZG9jaGFu">Kiddochan<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW5nbWluZy9sYW5kc2NhcGUtcGx1cw==">Landscapeplus<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lpc3NuYW4vaGV4by10aGVtZS1uZXh0">NexT<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3RoZW1lcy8=">Hexo Themes Net<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="警告与错误的处理"><a href="#警告与错误的处理" class="headerlink" title="警告与错误的处理"></a>警告与错误的处理</h2><h3 id="Warning-LF-will-be-replaced-by-CRLF"><a href="#Warning-LF-will-be-replaced-by-CRLF" class="headerlink" title="Warning: LF will be replaced by CRLF"></a>Warning: LF will be replaced by CRLF</h3><p>问题原因: 不同操作系统所使用的换行符是不一样的: </p>
+<ul>
+<li><p>Unix / Linux 采用换行符 LF 表示下一行 (LF: LineFeed 换行)</p>
+</li>
+<li><p>Dos / Windows 采用 回车 + 换行 CRLF 表示下一行 (CRLF: CarriageReturn LineFeed 回车换行)</p>
+</li>
+<li><p>Mac OS 采用回车 CR 表示下一行 (CR: CarriageReturn 回车)</p>
+</li>
+</ul>
+<p>在 Git 中, 可以通过以下命令来显示当前你的 Git 中采取哪种对待换行符的方式: </p>
+<p><code>git config core.autocrlf</code></p>
+<p>此命令会有三种输出: <code>true</code>, <code>false</code>, <code>input</code></p>
+<ul>
+<li><p>true: Git 会将你 add 的所有文件视为文本文件, 将结尾的 CRLF 转换为 LF, 而 checkout 时会再将文件的 LF 格式转为 CRLF 格式. </p>
+</li>
+<li><p>false: line endings 不做任何改变, 文本文件保持其原来的样子. </p>
+</li>
+<li><p>input: add 时 Git 会把 CRLF 转换为 LF, 而 check 时仍旧为 LF, 所以 Windows 操作系统不建议设置此值. </p>
+</li>
+</ul>
+<p>解决办法: 将 core.autocrlf 设为 false 即可解决这个问题, 不过如果你跨平台工作的话, 还是需要考虑一下. </p>
+<p>如果你想要将 core autocrlf 设置为 true , 有一个需要慎重的地方, 当你上传一个二进制文件, Git 可能会将二进制文件误以为是文本文件, 从而也会修改你的二进制文件, 从而产生隐患. </p>
+<p>如果你不跨平台的话, 进行如下设置即可: <code>git config --global core.autocrlf false</code></p>
+<h3 id="Error-validation-failed"><a href="#Error-validation-failed" class="headerlink" title="Error: validation failed"></a>Error: validation failed</h3><p>原因: issue 的 id 有长度限制! 最大长度限制是 50 个字符. </p>
+<p>每个 issue 有两个标签, 一个是 gitment, 另一个是 id. 将 id 进行如下配置: <code>id: &#39;&lt;%= page.date %&gt;&#39;</code>, 因为日期是永远不会超出 50 个字符的. </p>
+<h3 id="访问-GitHub-慢的解决方法"><a href="#访问-GitHub-慢的解决方法" class="headerlink" title="访问 GitHub 慢的解决方法"></a>访问 GitHub 慢的解决方法</h3><p>在国内 Github 网站是可以访问, 但是由于网络代理商的原因, 造成访问速度很慢. 可以通过修改本地 host 文件的办法, 可以提高访问速度: </p>
+<p>打开 Windows 下 host 文件 (<code>C:\Windows\System32\drivers\etc\hosts</code>)</p>
+<p>在最后面添加:</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">151.101.13.194 github.global.ssl.fastly.net
+192.30.253.113 github.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>重启浏览器或者刷新 DNS 缓存, 告诉电脑 hosts 文件已经被修改. </p>
+<p>刷新 DNS 缓存的方法: 在命令行中输入 <code>ipconfig /flushdns</code> 刷新 DNS 缓存. </p>
+]]></content>
+      <categories>
+        <category>Hexo_Blog</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -2890,65 +2890,6 @@ HS_FDS_RECOVERY_PWD&#x3D;RECOVER<span aria-hidden="true" class="line-numbers-row
       </tags>
   </entry>
   <entry>
-    <title>Unity - 2D 精灵 和 3D 物体的渲染顺序</title>
-    <url>/unity/unity_render_order.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h1><p>我在学习 SiKi 学院出的一款捕鱼达人的游戏教程时, 教程中使用了一个 3D 物体, 在其上面制作水波纹特效, 为了容易观察渲染层级, 我还特意将同一个层级 (Sorting Layer) 的精灵全部放到同一个 Z 位置上, 一共分了四层.</p>
-<p><img data-src="/images/unity_render_order/unity_render_order_1.png" alt="3D 游戏物体被遮挡"></p>
-<p>但是从相机预览效果中可以看出, 水波纹效果被遮挡了. 在这个场景中所有的 Canvas 的渲染层级都是一个自定义的 UI 层, 但是这个 3D 游戏物体的层级该怎么设置呢? 根本找不到设置的地方啊? 😥</p>
-<h1 id="MeshRenderer-与-SpriteRenderer-的渲染顺序"><a href="#MeshRenderer-与-SpriteRenderer-的渲染顺序" class="headerlink" title="MeshRenderer 与 SpriteRenderer 的渲染顺序"></a>MeshRenderer 与 SpriteRenderer 的渲染顺序</h1><p>3D 游戏物体使用的是 MeshRenderer, 2D 精灵使用的是 SpriteRenderer, 两者都是继承自 Renderer, 在 Renderer 中渲染层级是 <code>sortingLayerName</code> 字段, 渲染顺序是 <code>sortingOrder</code> 字段.</p>
-<ol>
-<li><p>SpriteRenderer 中的 <code>Sorting Layer</code> 对应的是 sortingLayerName 字段, <code>Order in Layer</code> 对应的是 sortingOrder 字段.</p>
-</li>
-<li><p>在 MeshrRenderer 中这两个字段并没有做处理, 只是在面板上隐藏了而已, 因此可以在脚本中直接使用.</p>
- <pre class="line-numbers language-C#" data-language="C#"><code class="language-C#">public int orderinLayer &#x3D; 15;
-public string sortingLayer &#x3D; &quot;UI&quot;;
-
-private MeshRenderer meshRenderer;
-
-private void Awake()
-&#123;
-    meshRenderer &#x3D; GetComponent&lt;MeshRenderer&gt;();
-&#125;
-
-private void Start() 
-&#123;
-    &#x2F;&#x2F;设定 3D 游戏物体的渲染层级
-    meshRenderer.sortingLayerName &#x3D; sortingLayer;
-    meshRenderer.sortingOrder &#x3D; orderinLayer;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>在 ParticleSystem 中同样也有 Renderer 组件控制粒子特效的渲染顺序, 同样可以使用脚本控制, 也可以直接在面板上设置.</p>
-</li>
-</ol>
-<pre><code><pre class="line-numbers language-C#" data-language="C#"><code class="language-C#">public int orderinLayer &#x3D; 15;
-public string sortingLayer &#x3D; &quot;UI&quot;;
-
-public ParticleSystem[] particleSystems;
-
-private void Start() 
-&#123;
-    &#x2F;&#x2F;设定粒子特效的渲染层级
-    for (int index &#x3D; 0; index &lt; particleSystems.Length; index++)
-    &#123;
-        rendererParticle &#x3D; particleSystems[index].GetComponent&lt;Renderer&gt;();
-        rendererParticle.sortingLayerName &#x3D; sortingLayer;
-        rendererParticle.sortingOrder &#x3D; orderinLayer;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></code></pre>
-<h1 id="问题解决后效果"><a href="#问题解决后效果" class="headerlink" title="问题解决后效果"></a>问题解决后效果</h1><p>使用上面脚本中的设置就可以让 MeshRenderer 也参与到 2D UI 的排序中来了, 效果还是不错的.</p>
-<p><img data-src="/images/unity_render_order/unity_render_order_2.png" alt="修复后效果"></p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82YmNjZjc5ZmEzNjc=">SpriteRenderer 与 MeshRenderer的渲染排序层级<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JSON 参考手册</title>
     <url>/program/json_notes.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -3355,6 +3296,120 @@ if (!string.IsNullOrEmpty(match.Value))
       </categories>
       <tags>
         <tag>Program</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unity - 2D 精灵 和 3D 物体的渲染顺序</title>
+    <url>/unity/unity_render_order.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h1><p>我在学习 SiKi 学院出的一款捕鱼达人的游戏教程时, 教程中使用了一个 3D 物体, 在其上面制作水波纹特效, 为了容易观察渲染层级, 我还特意将同一个层级 (Sorting Layer) 的精灵全部放到同一个 Z 位置上, 一共分了四层.</p>
+<p><img data-src="/images/unity_render_order/unity_render_order_1.png" alt="3D 游戏物体被遮挡"></p>
+<p>但是从相机预览效果中可以看出, 水波纹效果被遮挡了. 在这个场景中所有的 Canvas 的渲染层级都是一个自定义的 UI 层, 但是这个 3D 游戏物体的层级该怎么设置呢? 根本找不到设置的地方啊? 😥</p>
+<h1 id="MeshRenderer-与-SpriteRenderer-的渲染顺序"><a href="#MeshRenderer-与-SpriteRenderer-的渲染顺序" class="headerlink" title="MeshRenderer 与 SpriteRenderer 的渲染顺序"></a>MeshRenderer 与 SpriteRenderer 的渲染顺序</h1><p>3D 游戏物体使用的是 MeshRenderer, 2D 精灵使用的是 SpriteRenderer, 两者都是继承自 Renderer, 在 Renderer 中渲染层级是 <code>sortingLayerName</code> 字段, 渲染顺序是 <code>sortingOrder</code> 字段.</p>
+<ol>
+<li><p>SpriteRenderer 中的 <code>Sorting Layer</code> 对应的是 sortingLayerName 字段, <code>Order in Layer</code> 对应的是 sortingOrder 字段.</p>
+</li>
+<li><p>在 MeshrRenderer 中这两个字段并没有做处理, 只是在面板上隐藏了而已, 因此可以在脚本中直接使用.</p>
+ <pre class="line-numbers language-C#" data-language="C#"><code class="language-C#">public int orderinLayer &#x3D; 15;
+public string sortingLayer &#x3D; &quot;UI&quot;;
+
+private MeshRenderer meshRenderer;
+
+private void Awake()
+&#123;
+    meshRenderer &#x3D; GetComponent&lt;MeshRenderer&gt;();
+&#125;
+
+private void Start() 
+&#123;
+    &#x2F;&#x2F;设定 3D 游戏物体的渲染层级
+    meshRenderer.sortingLayerName &#x3D; sortingLayer;
+    meshRenderer.sortingOrder &#x3D; orderinLayer;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>在 ParticleSystem 中同样也有 Renderer 组件控制粒子特效的渲染顺序, 同样可以使用脚本控制, 也可以直接在面板上设置.</p>
+</li>
+</ol>
+<pre><code><pre class="line-numbers language-C#" data-language="C#"><code class="language-C#">public int orderinLayer &#x3D; 15;
+public string sortingLayer &#x3D; &quot;UI&quot;;
+
+public ParticleSystem[] particleSystems;
+
+private void Start() 
+&#123;
+    &#x2F;&#x2F;设定粒子特效的渲染层级
+    for (int index &#x3D; 0; index &lt; particleSystems.Length; index++)
+    &#123;
+        rendererParticle &#x3D; particleSystems[index].GetComponent&lt;Renderer&gt;();
+        rendererParticle.sortingLayerName &#x3D; sortingLayer;
+        rendererParticle.sortingOrder &#x3D; orderinLayer;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></code></pre>
+<h1 id="问题解决后效果"><a href="#问题解决后效果" class="headerlink" title="问题解决后效果"></a>问题解决后效果</h1><p>使用上面脚本中的设置就可以让 MeshRenderer 也参与到 2D UI 的排序中来了, 效果还是不错的.</p>
+<p><img data-src="/images/unity_render_order/unity_render_order_2.png" alt="修复后效果"></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82YmNjZjc5ZmEzNjc=">SpriteRenderer 与 MeshRenderer的渲染排序层级<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>日记系列--2020年02月</title>
+    <url>/diary/2020_02.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>感觉好久没写日记了, 有好多好多想要记录下来的事情, 这个系列的主题也悄悄地改变了, 日记日记嘛, 是写给未来的自己看的, 之前的我都给犯了一个错误, 那就是把读者当成是来看我博客的人, 这说白了就不是日记了, 那就和在 Twitter 上发表动态一样了, 这是最重要的一个转变, 其他的后面再说, 未来的自己, 你现在过得还好吗? (微笑脸)</p>
+<h1 id="2020-年-02-月-25-号"><a href="#2020-年-02-月-25-号" class="headerlink" title="2020 年 02 月 25 号"></a>2020 年 02 月 25 号</h1><p>2 月 25 号了......哈哈😂, 说出来自己都不敢相信啊, 不知不觉又玩了这么久, 上一篇日记是 2020 年 01 月 18 号, 就是说已经 38 天没写日记了, 哈哈, 拖出去打死...😒</p>
+<h2 id="武汉疫情"><a href="#武汉疫情" class="headerlink" title="武汉疫情"></a>武汉疫情</h2><p>说正题吧, 不知道未来的我, 你现在还记不记得哈, 2020 年春节武汉爆发了新型冠状病毒, 目前的情况是已经累计确诊了 77779 人了, 当前还剩余的确诊人数有 47672 人, 累计死亡人数已经达到了 2666 人, 未来的我, 如果你已经对这个死亡数字没什么感想了, 那我可得狠狠地打你一拳, 把你打醒, 你现在应该已经结婚了吧, 你可以这样想一下: 你设想你最爱的妻子, 现在就在你的面前被人狠狠地刺了一刀, 然后不治身亡. 而这次疫情就意味着 &quot;最爱的人死亡&quot; 这件事在 2020 年 01 月和 02 月这短短的两个月内发生了 2666 次. 你还会觉得少吗? 我现在狠不得一个人都不死.</p>
+<p>好了好了, 这个话题太沉重了, 其实咱们当时山东这边管控的还不错, 每天戴口罩, 尽量不外出, 不和武汉人接触, 电梯每日消毒, 出入小区测体温, 下班回家要出示身份证, 出示上班证明, 公司上班全程带口罩, 基本也就这些了, 接下来说的别的吧.</p>
+<h2 id="博客主题改变的原因"><a href="#博客主题改变的原因" class="headerlink" title="博客主题改变的原因"></a>博客主题改变的原因</h2><p>上面已经和你说了, 这个系列的主题从 &quot;分享&quot; 变成了 &quot;记录&quot;, 记录自己当下遇到的事情, 记录自己对待这些事情时当下的心情, 好让将来的自己回忆起自己的往事, 还能够想起当时的心情. 但是这只是结果, 就是主题改变了, 但是我还没有交代原因哈, 为什么主题会改变呢? 前言里说是自己意识到了这是日记, 不是动态, 所以主题不该是分享, 而是记录, 后来捋了捋发现, 这只是主题改变了之后, 又不想说出自己那丑陋的心态而圆的自己的话而已, 下面说一下真正的原因吧, 但是说原因的时候, 我又必须先说明一下我现在的背景, 因为未来的我, 你现在的背景和现在的我肯定是不一样的, 希望看了下面的话你能想起我现在的心情.</p>
+<p>首先我现在还是单身哈, 然后目前有两个挺在意的女孩, 一个是黎雅倩, 一个是巧巧, 我现在和她们都有交流, 但是交流都开始慢慢变少哈, 不知道未来的我, 你会选择谁哈, 目前以我来看, 我是谁都不会选的, 因为现在的我真的是太糟糕了, 我真的挺好奇的, 如果你现在结婚了, 那么到底是谁看上你了(我并不仅仅指这两位女孩), 哪个女的瞎成这样, TM 能看上你? ? ? 就你那烂脾气, 你那外面一套家里一套的超级糟糕习惯居然有人能受得了你? ? ? 嘛, 可能你现在还单身呢, 哈哈! 扯远了, 回归正题. 在我回顾 1 月份写的日记的时候, 我发现全是负面情绪, 几乎找不到积极乐观的一面, 那你说我写这东西干嘛? 我分享这东西干嘛? 为了降低别人对我的好感度? 为了让别人提起我, 就说我是一个病丧? 整天郁郁寡欢, 没点好情绪, 关键是我发现, 不仅仅是博客, 最近在和其他人的 &quot;聊天&quot; 中也全是负面情感, 不仅仅是上面提到的那两位女孩, 和大学舍友们 (王健, 吴逸然) 也是这样, 于是我就有了断掉这个系列的想法, 因为我总是在向外人传达负面情感, 垃圾情感, 黑色情感, 我再继续这样下去, 不仅朋友们会渐渐远离我, 甚至我自己还会黑化, 然后自暴自弃, 这绝对不行, 于是断掉这个系列的想法越来越强烈.</p>
+<p>带着这种想法, 加上武汉现在的疫情导致几乎不能外出, 于是我又开始了玩游戏, 中间呢也穿插着看动漫, 大部分是哆啦A梦的剧场版, 最开始玩 &quot;时空召唤&quot;, 还打上了 宗师 段位, 相当于 LOL 里面的大师, 最终分数是宗师 16 分, 但是其实刚进入宗师起步就是 25 分哈, 就是说我在 宗师 段位基本全是在输; 之后新赛季开始, 我就不玩了, 去玩最终幻想 6 了, 玩到快通关了, 游戏模式变成了类似开放世界的玩法, 超高自由度, 于是我就又不玩了, 因为自由度太高了, 我不知道该去哪里推进下一部分剧情啊...之后便回济南工作了, 公司在上班这件事情上管得是贼细致, 贼严谨, 上下午的工作状态是在家办公啊还是请假啊记录地是清清楚楚, 明明白白, 提前说好在家办公和请假没有基础工资只有绩效, 但是公司不开空调, 说是为了防止感染病毒, 行, 可以, 我理解, 但是你也总不能一点御寒措施也不做啊, 在公司办公, 做椅子上就能冷的发抖, 止都止不住, 这 TM 怎么干活? ? ? 中午只能吃泡面, 吃火腿肠......我 TM 这是来上班? 我这是来遭罪吧? ? ?让员工冒着感染病毒的危险来上班, 也就是冒着生命危险上班啊, , 但是却一点诚意都没有, 工资一拖再拖, 先拖一周, 然后再拖一周; 吃饭自己解决, 但是就是不能出去买, 不买解决不了? 那我不管, 反正就是不能出去; 冷是吧, 自己多穿点! 我 TM ... 就是说一切不好的事情都是有正当理由的, 那就是 &quot;为了防止感染&quot;, 但是就是必须上班, 话说不上班才是最好的防止感染的措施吧? ? ! !</p>
+<p>之前对自己整天抱有负面情绪的失望, 加上公司那冷的我发抖的办公环境, 让我的心情彻底跌落到了谷底, 再加上学校让写论文的开题报告, 于是我做出了请假的决定, 我和经理说, 我感冒了, 在家办公, 他自然也不好说什么, 在这个病毒扩散期间, 万一我的感冒是感染了病毒所致呢? 对吧? 当然我是没有感冒的. 请假第一天, 我是极其无聊的, 真的是感到了前所未有的巨大寂寞感, 看什么都提不起劲头来, 于是第一天就这么过去了, 我在床上躺了一天, 对, 就是躺了一天.... 第二天醒来嘛, 就好多了, 没有那么严重的空虚感了, 不至于干什么都提不起劲头了, 但是我依旧没有开始开题报告的写作. 我看动漫去了, 先看了 No Game No Life, 我去, 主人公牛批, 无敌! 看的我热血沸腾, 不行, 我要学习! ! ! 于是我又打开一部动漫, 叫做 命运石之门, 呜哇 ~ ~ Kurisu! 助手! 克里斯汀娜! 呜啊, 眼泪止不住啊 ... 作者你知道吗, 明天我就让你的怀表停了!! 然后我抑郁了... 于是我就玩游戏去了, 对, 没错, 我玩游戏去了, 玩的是 游戏王 卡片力量 2, 玩得津津有味, 毒蛇神卡组牛批, 无敌, 艾克佐迪亚, 牛批! 无敌! NPC 们你们很不是牛批吗? 你再打我啊? 你再强夺啊! MD... 晚上玩到凌晨 2 点, 贼 TM 嗨, 哈哈哈, 强无敌! ! 直到周六晚上 10 点我还在玩, 但是我的开题报告也就才写了 1/6, 好在我周日早上 3 点左右就醒了, 起来写报告, 大概早上 10 点才写完, 交上后又稍微修改了一点点, 只改了一下措辞啥的, 基本没啥问题, 就过了. 然后继续我开始不想玩游戏了, 加上看了一期关于生命的视频, 还有一些再次对自己的思考, 我打开了尘封已久的博客, 看了一遍之前写的日记, 我知道我该好好反思一下了.</p>
+<h1 id="2020-年-02-月-26-号"><a href="#2020-年-02-月-26-号" class="headerlink" title="2020 年 02 月 26 号"></a>2020 年 02 月 26 号</h1><h2 id="对于自身产生大量负面情绪的思考"><a href="#对于自身产生大量负面情绪的思考" class="headerlink" title="对于自身产生大量负面情绪的思考"></a>对于自身产生大量负面情绪的思考</h2><p>经过这一段与自己相处的不算短也不算长的时间, 我意识到了我一直生活在矛盾之中, 我追求完美, 追求自己和弟子规中描述的那样完美, 于是对于自己犯下的错误每次都感到十分的羞耻, 开始慢慢的厌恶自己, 一方面想要完善自己, 而另一方面却在厌恶自己, 于是就不停的恶性循环, 激励自己, 追求完美, 然后偶然间沉迷诱惑, 责备自己, 厌恶自己, 之后再想办法激励自己, 追求完美......但是自己的进步是看不到的, 自己只能看到自己的错误, 于是错误越积越多, 对自己的责备也就越来越深, 不知不觉自己的自信心已经被打击的几乎完全消散了, 于是抵制诱惑的能力就越来越低, 然后就造成了现在的这副惨状. 想要改变这个局面, 就必须能够控制这个循环, 因为这个循环是无法打破的, 只能让自己去控制住这个循环. 首先我想了一下, 从记事时开始到今天 (2020-02-25) 为止, 我自己所坚决不能原谅的我所犯过的错误, 以至于今后必须不能再犯的错误: </p>
+<ol>
+<li>小学时和王硕的<strong>游戏王-黑魔导的执行官</strong>卡片事件</li>
+<li>初中时和张雪的<strong>桑尼</strong>事件</li>
+<li><strong>高中班主任</strong>事件</li>
+<li>大学时的<strong>李敏</strong>事件</li>
+</ol>
+<p>想来想去就这四件事了, 这是我一生的污点, 这四件事情我没有和任何人提起过, 就是说在我现在的朋友里面没有任何人知道这四件事, 哪怕是一丁点, 因为在这四件事情上我真的是太不是东西了, 我怕说出去别人直接打我, 唉, 不提了不提了...这样想来, 我朋友少真的是因为我不善于交谈吗? 会不会是我条件反射般的去刻意远离那些可能知道这四件事的人呢? 可能是后者的原因更多一些吧. 由于没有任何人知道这四件事, 而其它我又基本没有犯过什么对不起别人并且之后没有及时道歉解决问题的事, 所以我一直在责备自己什么呢? 我为什么要一直打击自己呢? 就因为自己没有做到完美? 就因为自己在应该学习的时候打游戏了? 因为自己在应该努力的时候看动漫了? 就因为自己又做春梦了? 就因为自己没有克制住自己的性欲? 就因为自己没有遵守时间计划又通宵一晚? 我难道是 M 吗🤣? 想到这里, 我突然就想开了, 我不该过分地纠结于自己犯过的错误, 我该做的是吸取教训, 然后平淡地去看待过去的事情, 而不是一直耿耿于怀, 否则我是无法前进的, 我的时间会停滞, 既然过去的事情都已经过去了, 那么现在往前看就是了. 比如接下来最重要的工作就是毕业设计, 大概六月十号之前就必须弄完, 大概还剩下 100 天的时间, 由于要做一款沙盒游戏, 所以肯定花费的时间很长, 但是我们现在要想的事情不是为什么不早开始干活, 为什么拖到现在, 而是仅仅去思考如何在这 100 天内做出一款自己满意的沙盒求生类游戏就可以了. <font color='red'> 对过去的事耿耿于怀没有任何用处, 只会让自己的时间停滞. </font> 于是我释怀了, 我包容了自己之前所有的负面情绪, 放下过去, 努力面前! </p>
+<h2 id="对于出现了-quot-之前的自己总是想要把事情分享给朋友-但是最近独自生活的这段时间里却从来没有想过要联系朋友-quot-这样的情况的思考"><a href="#对于出现了-quot-之前的自己总是想要把事情分享给朋友-但是最近独自生活的这段时间里却从来没有想过要联系朋友-quot-这样的情况的思考" class="headerlink" title="对于出现了 &quot;之前的自己总是想要把事情分享给朋友, 但是最近独自生活的这段时间里却从来没有想过要联系朋友&quot; 这样的情况的思考"></a>对于出现了 &quot;之前的自己总是想要把事情分享给朋友, 但是最近独自生活的这段时间里却从来没有想过要联系朋友&quot; 这样的情况的思考</h2><p>回顾一月份所写下的前言可以知道, 当时的我是想要满足自己的分享欲望而创建了这个系列, 但是最近独自生活的这几天我却一丁点想要联系朋友的想法都没有, 但是这几天我同样是遇到了很多我认为有意思的事情, 无论是之前看的 No Game No Life 以及命运石之门, 还是玩的 游戏王 和 最终幻想 6, 甚至是昨晚刚看的电影 二之国, 都是非常有意思的或者是相当值得吐槽的, 但是我却一丁点想要分享的意思都没有, 那这说明了什么? 我之前想要分享事情真的是因为我的分享欲望吗? 很显然, 不是. 而我也发现了一个共通点, 那就是我之前想要分享的人就是前面所提到的巧巧和黎雅倩, 说白了点就是, 那只是性激素影响下的结果, 就是说我可能在不知不觉地情况下喜欢上她们了, (她? ! 们 ? ! 这个 &quot;们&quot; 是什么情况? ?)所以才想要找话题和她们聊天, 真是万恶的性激素啊! 至此我终于弄明白了自己脑子里的那点小算盘, 你以为我会让你得逞吗? 做梦吧你, 你自己适不适合恋爱, 你自己心里没点 B 数吗?</p>
+<p>于是出于前面这两点的思考, 我决定了, 重开这个系列, 并且将主题改为 &quot;记录&quot;, 将读者换成了未来的自己.</p>
+<h1 id="2020-年-02-月-27-号"><a href="#2020-年-02-月-27-号" class="headerlink" title="2020 年 02 月 27 号"></a>2020 年 02 月 27 号</h1><h2 id="对理性人的看法-同时也是对-quot-爱-quot-这个词的看法以及对目前的自己适不适合结婚的看法"><a href="#对理性人的看法-同时也是对-quot-爱-quot-这个词的看法以及对目前的自己适不适合结婚的看法" class="headerlink" title="对理性人的看法, 同时也是对 &quot;爱&quot; 这个词的看法以及对目前的自己适不适合结婚的看法"></a>对理性人的看法, 同时也是对 &quot;爱&quot; 这个词的看法以及对目前的自己适不适合结婚的看法</h2><p>&quot;自己适不适合结婚&quot; 这个问题, 我从很早之前就开始思考了, 也一直认为我自己不适合结婚哈, 这个结论到现在都还没有变, 甚至我对此的看法更加坚定了, 这源自最近在家看的哆啦A梦剧场版以及二之国还有命运石之门. 未来的我, 如果你已经忘记了自己关于这件事情的看法, 那么我现在来提醒你一下. 先说一个结论, 如果我是静香, 那么我也会选择大雄作为自己的伴侣, 而不是选择出木衫. 未来的我, 你现在还记得原因吗?</p>
+<ul>
+<li><p>第一: 在一个以静香为赌注的游戏中, 出木衫为了能够触发所有剧情最后战胜恶龙, 遵守了这个游戏里所有的规则, 达到了所谓的完美, 但是大雄想到的却是用任意门在第一时间赶到忐忑不安的静香身边.</p>
+</li>
+<li><p>当世界末日真的要来临的时候, 大雄想到的是什么呢? 对, 是静香, 哪怕世界末日没有时间逃跑了, 都不能丢下静香不管, 还有什么好说的? 你是静香, 你不嫁给他吗?</p>
+</li>
+<li><p>二之国中, 当自己心爱的人面临死亡的时候, 佑是怎么做的, 他是用身体挡住了落下来的尖椎, 即使自己会死, 也要保护了自己心爱的人.</p>
+</li>
+<li><p>命运石之门中从 α 线过渡到 β 线的时候, 冈部伦太郎是怎么做的, 用自己的鲜血来欺骗整个世界, 救回自己心爱的人. </p>
+</li>
+</ul>
+<p>这么想来, 出木杉就是这里的理性人, 理性人在关键时刻选择的是能保护最大利益的做法, 而真正爱你的人却只会做出能让你幸福的选择, 哪怕会牺牲自己. 试想一下, 未来的我啊, 你试想一下, 即便是未来的你, 如果将来你结婚了, 你的妻子面临生命危险的时候, 哪怕自己的生命也会面临危险, 你也会不顾一切地去救她吗? 如果不会, 那你还是暂时不要结婚了. 如果你已经结婚了. 那就一定要树立这份信念, 树立这份无论如何都要让她幸福的信念. 算是过去的你对你的一份期望吧. 所以我认为现在的我不适合结婚, 我还没有那份即使失去生命也要保护爱人的信念. 这也解释了为什么当我询问巧巧会找什么样的人作为伴侣的时候, 她的回复是 &quot;对我好的人&quot;, 或许这就是 &quot;爱&quot; 吧. 之前总是说两人在一起最需要的是什么门当户对, 什么价值观相同, 什么兴趣爱好一致, 现在想想, 那些都不过是次要因素罢了, 真正需要的还是那个老生常谈的字: &quot;爱&quot;.</p>
+<p>借用朋友一句话: <font color='red'><strong>欣赏一个人, 始于颜值, 敬于才华, 合于性格, 久于善良, 终于人品</strong></font>.</p>
+<h1 id="2020-年-02-月-28-号"><a href="#2020-年-02-月-28-号" class="headerlink" title="2020 年 02 月 28 号"></a>2020 年 02 月 28 号</h1><h2 id="对于自己-quot-玩游戏时欢-玩过之后又非常懊悔-quot-这种心态的思考"><a href="#对于自己-quot-玩游戏时欢-玩过之后又非常懊悔-quot-这种心态的思考" class="headerlink" title="对于自己 &quot;玩游戏时欢, 玩过之后又非常懊悔&quot; 这种心态的思考."></a>对于自己 &quot;玩游戏时欢, 玩过之后又非常懊悔&quot; 这种心态的思考.</h2><p>当时请假那段时间, 在家迷上了 &quot;游戏王 卡片力量 2&quot;, 玩得不亦乐乎, 好几次玩到晚上24点, 搭建毒蛇神卡组和黑暗大法师卡组, 当时的想法是: 我就不信打不过你! 我就不行我的黑暗大法师出不来! 我就不信我的毒蛇神出不来! 于是便一次又一次地将时间忽略, 其实每次保存的时候, 是有时间提醒的, 当时也注意到挺晚的了, 但还是止不住啊...不过, 玩了一段时间之后呢, 就变得懊悔, 觉得当时咋就傻乎乎地玩游戏不干正事呢? ! 明明有那么多的事情等着做呢! </p>
+<p>但是这种事情在我身上已经发生很多很多次了, 我都数不清了, 于是我就趁请假那段时间考虑了一下这个问题. 首先我玩游戏耗费了一段时间, 没有应该做的其他事情, 于是事后感到了懊悔, 但是这时候我想到一个问题, 我问自己: 那是不是我只要玩游戏或者看动漫耗费了时间, 我都会感到懊悔呢? 我仔细思考了一下, 以目前的情况看, 还真是这样! 于是我又联系自己的生活安排发现了大致有两个原因:</p>
+<ol>
+<li>我现在没有符合自己规定的, 自己许可的看动漫, 看电影或者玩游戏之类的休息时间.</li>
+<li>自己的思想意识还没有清晰地认识到现在的局面, 现在这个根本没有时间去娱乐的局面.</li>
+</ol>
+<p>就导致无论我做什么娱乐, 只要耗费了时间我就会事后感到懊悔.</p>
+<p>未来的我, 如果你现在还是处于这种恶性循环中, 建议你赶紧制定带有 &quot;休息时间&quot; 的计划. 空出一段自己允许的时间休息, 只有这样才能既满足自己的休息欲望, 又能够很好的控制情绪以及生活节奏. </p>
+<blockquote>
+<p><font color='red'><strong>有压迫的地方就会有反抗, 压迫越重, 反抗越重!</strong></font> 切记切记! </p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Diary</category>
+      </categories>
+      <tags>
+        <tag>Diary</tag>
       </tags>
   </entry>
   <entry>
@@ -3773,61 +3828,6 @@ const dp_update = new DPlayer({
       </categories>
       <tags>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>日记系列--2020年02月</title>
-    <url>/diary/2020_02.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>感觉好久没写日记了, 有好多好多想要记录下来的事情, 这个系列的主题也悄悄地改变了, 日记日记嘛, 是写给未来的自己看的, 之前的我都给犯了一个错误, 那就是把读者当成是来看我博客的人, 这说白了就不是日记了, 那就和在 Twitter 上发表动态一样了, 这是最重要的一个转变, 其他的后面再说, 未来的自己, 你现在过得还好吗? (微笑脸)</p>
-<h1 id="2020-年-02-月-25-号"><a href="#2020-年-02-月-25-号" class="headerlink" title="2020 年 02 月 25 号"></a>2020 年 02 月 25 号</h1><p>2 月 25 号了......哈哈😂, 说出来自己都不敢相信啊, 不知不觉又玩了这么久, 上一篇日记是 2020 年 01 月 18 号, 就是说已经 38 天没写日记了, 哈哈, 拖出去打死...😒</p>
-<h2 id="武汉疫情"><a href="#武汉疫情" class="headerlink" title="武汉疫情"></a>武汉疫情</h2><p>说正题吧, 不知道未来的我, 你现在还记不记得哈, 2020 年春节武汉爆发了新型冠状病毒, 目前的情况是已经累计确诊了 77779 人了, 当前还剩余的确诊人数有 47672 人, 累计死亡人数已经达到了 2666 人, 未来的我, 如果你已经对这个死亡数字没什么感想了, 那我可得狠狠地打你一拳, 把你打醒, 你现在应该已经结婚了吧, 你可以这样想一下: 你设想你最爱的妻子, 现在就在你的面前被人狠狠地刺了一刀, 然后不治身亡. 而这次疫情就意味着 &quot;最爱的人死亡&quot; 这件事在 2020 年 01 月和 02 月这短短的两个月内发生了 2666 次. 你还会觉得少吗? 我现在狠不得一个人都不死.</p>
-<p>好了好了, 这个话题太沉重了, 其实咱们当时山东这边管控的还不错, 每天戴口罩, 尽量不外出, 不和武汉人接触, 电梯每日消毒, 出入小区测体温, 下班回家要出示身份证, 出示上班证明, 公司上班全程带口罩, 基本也就这些了, 接下来说的别的吧.</p>
-<h2 id="博客主题改变的原因"><a href="#博客主题改变的原因" class="headerlink" title="博客主题改变的原因"></a>博客主题改变的原因</h2><p>上面已经和你说了, 这个系列的主题从 &quot;分享&quot; 变成了 &quot;记录&quot;, 记录自己当下遇到的事情, 记录自己对待这些事情时当下的心情, 好让将来的自己回忆起自己的往事, 还能够想起当时的心情. 但是这只是结果, 就是主题改变了, 但是我还没有交代原因哈, 为什么主题会改变呢? 前言里说是自己意识到了这是日记, 不是动态, 所以主题不该是分享, 而是记录, 后来捋了捋发现, 这只是主题改变了之后, 又不想说出自己那丑陋的心态而圆的自己的话而已, 下面说一下真正的原因吧, 但是说原因的时候, 我又必须先说明一下我现在的背景, 因为未来的我, 你现在的背景和现在的我肯定是不一样的, 希望看了下面的话你能想起我现在的心情.</p>
-<p>首先我现在还是单身哈, 然后目前有两个挺在意的女孩, 一个是黎雅倩, 一个是巧巧, 我现在和她们都有交流, 但是交流都开始慢慢变少哈, 不知道未来的我, 你会选择谁哈, 目前以我来看, 我是谁都不会选的, 因为现在的我真的是太糟糕了, 我真的挺好奇的, 如果你现在结婚了, 那么到底是谁看上你了(我并不仅仅指这两位女孩), 哪个女的瞎成这样, TM 能看上你? ? ? 就你那烂脾气, 你那外面一套家里一套的超级糟糕习惯居然有人能受得了你? ? ? 嘛, 可能你现在还单身呢, 哈哈! 扯远了, 回归正题. 在我回顾 1 月份写的日记的时候, 我发现全是负面情绪, 几乎找不到积极乐观的一面, 那你说我写这东西干嘛? 我分享这东西干嘛? 为了降低别人对我的好感度? 为了让别人提起我, 就说我是一个病丧? 整天郁郁寡欢, 没点好情绪, 关键是我发现, 不仅仅是博客, 最近在和其他人的 &quot;聊天&quot; 中也全是负面情感, 不仅仅是上面提到的那两位女孩, 和大学舍友们 (王健, 吴逸然) 也是这样, 于是我就有了断掉这个系列的想法, 因为我总是在向外人传达负面情感, 垃圾情感, 黑色情感, 我再继续这样下去, 不仅朋友们会渐渐远离我, 甚至我自己还会黑化, 然后自暴自弃, 这绝对不行, 于是断掉这个系列的想法越来越强烈.</p>
-<p>带着这种想法, 加上武汉现在的疫情导致几乎不能外出, 于是我又开始了玩游戏, 中间呢也穿插着看动漫, 大部分是哆啦A梦的剧场版, 最开始玩 &quot;时空召唤&quot;, 还打上了 宗师 段位, 相当于 LOL 里面的大师, 最终分数是宗师 16 分, 但是其实刚进入宗师起步就是 25 分哈, 就是说我在 宗师 段位基本全是在输; 之后新赛季开始, 我就不玩了, 去玩最终幻想 6 了, 玩到快通关了, 游戏模式变成了类似开放世界的玩法, 超高自由度, 于是我就又不玩了, 因为自由度太高了, 我不知道该去哪里推进下一部分剧情啊...之后便回济南工作了, 公司在上班这件事情上管得是贼细致, 贼严谨, 上下午的工作状态是在家办公啊还是请假啊记录地是清清楚楚, 明明白白, 提前说好在家办公和请假没有基础工资只有绩效, 但是公司不开空调, 说是为了防止感染病毒, 行, 可以, 我理解, 但是你也总不能一点御寒措施也不做啊, 在公司办公, 做椅子上就能冷的发抖, 止都止不住, 这 TM 怎么干活? ? ? 中午只能吃泡面, 吃火腿肠......我 TM 这是来上班? 我这是来遭罪吧? ? ?让员工冒着感染病毒的危险来上班, 也就是冒着生命危险上班啊, , 但是却一点诚意都没有, 工资一拖再拖, 先拖一周, 然后再拖一周; 吃饭自己解决, 但是就是不能出去买, 不买解决不了? 那我不管, 反正就是不能出去; 冷是吧, 自己多穿点! 我 TM ... 就是说一切不好的事情都是有正当理由的, 那就是 &quot;为了防止感染&quot;, 但是就是必须上班, 话说不上班才是最好的防止感染的措施吧? ? ! !</p>
-<p>之前对自己整天抱有负面情绪的失望, 加上公司那冷的我发抖的办公环境, 让我的心情彻底跌落到了谷底, 再加上学校让写论文的开题报告, 于是我做出了请假的决定, 我和经理说, 我感冒了, 在家办公, 他自然也不好说什么, 在这个病毒扩散期间, 万一我的感冒是感染了病毒所致呢? 对吧? 当然我是没有感冒的. 请假第一天, 我是极其无聊的, 真的是感到了前所未有的巨大寂寞感, 看什么都提不起劲头来, 于是第一天就这么过去了, 我在床上躺了一天, 对, 就是躺了一天.... 第二天醒来嘛, 就好多了, 没有那么严重的空虚感了, 不至于干什么都提不起劲头了, 但是我依旧没有开始开题报告的写作. 我看动漫去了, 先看了 No Game No Life, 我去, 主人公牛批, 无敌! 看的我热血沸腾, 不行, 我要学习! ! ! 于是我又打开一部动漫, 叫做 命运石之门, 呜哇 ~ ~ Kurisu! 助手! 克里斯汀娜! 呜啊, 眼泪止不住啊 ... 作者你知道吗, 明天我就让你的怀表停了!! 然后我抑郁了... 于是我就玩游戏去了, 对, 没错, 我玩游戏去了, 玩的是 游戏王 卡片力量 2, 玩得津津有味, 毒蛇神卡组牛批, 无敌, 艾克佐迪亚, 牛批! 无敌! NPC 们你们很不是牛批吗? 你再打我啊? 你再强夺啊! MD... 晚上玩到凌晨 2 点, 贼 TM 嗨, 哈哈哈, 强无敌! ! 直到周六晚上 10 点我还在玩, 但是我的开题报告也就才写了 1/6, 好在我周日早上 3 点左右就醒了, 起来写报告, 大概早上 10 点才写完, 交上后又稍微修改了一点点, 只改了一下措辞啥的, 基本没啥问题, 就过了. 然后继续我开始不想玩游戏了, 加上看了一期关于生命的视频, 还有一些再次对自己的思考, 我打开了尘封已久的博客, 看了一遍之前写的日记, 我知道我该好好反思一下了.</p>
-<h1 id="2020-年-02-月-26-号"><a href="#2020-年-02-月-26-号" class="headerlink" title="2020 年 02 月 26 号"></a>2020 年 02 月 26 号</h1><h2 id="对于自身产生大量负面情绪的思考"><a href="#对于自身产生大量负面情绪的思考" class="headerlink" title="对于自身产生大量负面情绪的思考"></a>对于自身产生大量负面情绪的思考</h2><p>经过这一段与自己相处的不算短也不算长的时间, 我意识到了我一直生活在矛盾之中, 我追求完美, 追求自己和弟子规中描述的那样完美, 于是对于自己犯下的错误每次都感到十分的羞耻, 开始慢慢的厌恶自己, 一方面想要完善自己, 而另一方面却在厌恶自己, 于是就不停的恶性循环, 激励自己, 追求完美, 然后偶然间沉迷诱惑, 责备自己, 厌恶自己, 之后再想办法激励自己, 追求完美......但是自己的进步是看不到的, 自己只能看到自己的错误, 于是错误越积越多, 对自己的责备也就越来越深, 不知不觉自己的自信心已经被打击的几乎完全消散了, 于是抵制诱惑的能力就越来越低, 然后就造成了现在的这副惨状. 想要改变这个局面, 就必须能够控制这个循环, 因为这个循环是无法打破的, 只能让自己去控制住这个循环. 首先我想了一下, 从记事时开始到今天 (2020-02-25) 为止, 我自己所坚决不能原谅的我所犯过的错误, 以至于今后必须不能再犯的错误: </p>
-<ol>
-<li>小学时和王硕的<strong>游戏王-黑魔导的执行官</strong>卡片事件</li>
-<li>初中时和张雪的<strong>桑尼</strong>事件</li>
-<li><strong>高中班主任</strong>事件</li>
-<li>大学时的<strong>李敏</strong>事件</li>
-</ol>
-<p>想来想去就这四件事了, 这是我一生的污点, 这四件事情我没有和任何人提起过, 就是说在我现在的朋友里面没有任何人知道这四件事, 哪怕是一丁点, 因为在这四件事情上我真的是太不是东西了, 我怕说出去别人直接打我, 唉, 不提了不提了...这样想来, 我朋友少真的是因为我不善于交谈吗? 会不会是我条件反射般的去刻意远离那些可能知道这四件事的人呢? 可能是后者的原因更多一些吧. 由于没有任何人知道这四件事, 而其它我又基本没有犯过什么对不起别人并且之后没有及时道歉解决问题的事, 所以我一直在责备自己什么呢? 我为什么要一直打击自己呢? 就因为自己没有做到完美? 就因为自己在应该学习的时候打游戏了? 因为自己在应该努力的时候看动漫了? 就因为自己又做春梦了? 就因为自己没有克制住自己的性欲? 就因为自己没有遵守时间计划又通宵一晚? 我难道是 M 吗🤣? 想到这里, 我突然就想开了, 我不该过分地纠结于自己犯过的错误, 我该做的是吸取教训, 然后平淡地去看待过去的事情, 而不是一直耿耿于怀, 否则我是无法前进的, 我的时间会停滞, 既然过去的事情都已经过去了, 那么现在往前看就是了. 比如接下来最重要的工作就是毕业设计, 大概六月十号之前就必须弄完, 大概还剩下 100 天的时间, 由于要做一款沙盒游戏, 所以肯定花费的时间很长, 但是我们现在要想的事情不是为什么不早开始干活, 为什么拖到现在, 而是仅仅去思考如何在这 100 天内做出一款自己满意的沙盒求生类游戏就可以了. <font color='red'> 对过去的事耿耿于怀没有任何用处, 只会让自己的时间停滞. </font> 于是我释怀了, 我包容了自己之前所有的负面情绪, 放下过去, 努力面前! </p>
-<h2 id="对于出现了-quot-之前的自己总是想要把事情分享给朋友-但是最近独自生活的这段时间里却从来没有想过要联系朋友-quot-这样的情况的思考"><a href="#对于出现了-quot-之前的自己总是想要把事情分享给朋友-但是最近独自生活的这段时间里却从来没有想过要联系朋友-quot-这样的情况的思考" class="headerlink" title="对于出现了 &quot;之前的自己总是想要把事情分享给朋友, 但是最近独自生活的这段时间里却从来没有想过要联系朋友&quot; 这样的情况的思考"></a>对于出现了 &quot;之前的自己总是想要把事情分享给朋友, 但是最近独自生活的这段时间里却从来没有想过要联系朋友&quot; 这样的情况的思考</h2><p>回顾一月份所写下的前言可以知道, 当时的我是想要满足自己的分享欲望而创建了这个系列, 但是最近独自生活的这几天我却一丁点想要联系朋友的想法都没有, 但是这几天我同样是遇到了很多我认为有意思的事情, 无论是之前看的 No Game No Life 以及命运石之门, 还是玩的 游戏王 和 最终幻想 6, 甚至是昨晚刚看的电影 二之国, 都是非常有意思的或者是相当值得吐槽的, 但是我却一丁点想要分享的意思都没有, 那这说明了什么? 我之前想要分享事情真的是因为我的分享欲望吗? 很显然, 不是. 而我也发现了一个共通点, 那就是我之前想要分享的人就是前面所提到的巧巧和黎雅倩, 说白了点就是, 那只是性激素影响下的结果, 就是说我可能在不知不觉地情况下喜欢上她们了, (她? ! 们 ? ! 这个 &quot;们&quot; 是什么情况? ?)所以才想要找话题和她们聊天, 真是万恶的性激素啊! 至此我终于弄明白了自己脑子里的那点小算盘, 你以为我会让你得逞吗? 做梦吧你, 你自己适不适合恋爱, 你自己心里没点 B 数吗?</p>
-<p>于是出于前面这两点的思考, 我决定了, 重开这个系列, 并且将主题改为 &quot;记录&quot;, 将读者换成了未来的自己.</p>
-<h1 id="2020-年-02-月-27-号"><a href="#2020-年-02-月-27-号" class="headerlink" title="2020 年 02 月 27 号"></a>2020 年 02 月 27 号</h1><h2 id="对理性人的看法-同时也是对-quot-爱-quot-这个词的看法以及对目前的自己适不适合结婚的看法"><a href="#对理性人的看法-同时也是对-quot-爱-quot-这个词的看法以及对目前的自己适不适合结婚的看法" class="headerlink" title="对理性人的看法, 同时也是对 &quot;爱&quot; 这个词的看法以及对目前的自己适不适合结婚的看法"></a>对理性人的看法, 同时也是对 &quot;爱&quot; 这个词的看法以及对目前的自己适不适合结婚的看法</h2><p>&quot;自己适不适合结婚&quot; 这个问题, 我从很早之前就开始思考了, 也一直认为我自己不适合结婚哈, 这个结论到现在都还没有变, 甚至我对此的看法更加坚定了, 这源自最近在家看的哆啦A梦剧场版以及二之国还有命运石之门. 未来的我, 如果你已经忘记了自己关于这件事情的看法, 那么我现在来提醒你一下. 先说一个结论, 如果我是静香, 那么我也会选择大雄作为自己的伴侣, 而不是选择出木衫. 未来的我, 你现在还记得原因吗?</p>
-<ul>
-<li><p>第一: 在一个以静香为赌注的游戏中, 出木衫为了能够触发所有剧情最后战胜恶龙, 遵守了这个游戏里所有的规则, 达到了所谓的完美, 但是大雄想到的却是用任意门在第一时间赶到忐忑不安的静香身边.</p>
-</li>
-<li><p>当世界末日真的要来临的时候, 大雄想到的是什么呢? 对, 是静香, 哪怕世界末日没有时间逃跑了, 都不能丢下静香不管, 还有什么好说的? 你是静香, 你不嫁给他吗?</p>
-</li>
-<li><p>二之国中, 当自己心爱的人面临死亡的时候, 佑是怎么做的, 他是用身体挡住了落下来的尖椎, 即使自己会死, 也要保护了自己心爱的人.</p>
-</li>
-<li><p>命运石之门中从 α 线过渡到 β 线的时候, 冈部伦太郎是怎么做的, 用自己的鲜血来欺骗整个世界, 救回自己心爱的人. </p>
-</li>
-</ul>
-<p>这么想来, 出木杉就是这里的理性人, 理性人在关键时刻选择的是能保护最大利益的做法, 而真正爱你的人却只会做出能让你幸福的选择, 哪怕会牺牲自己. 试想一下, 未来的我啊, 你试想一下, 即便是未来的你, 如果将来你结婚了, 你的妻子面临生命危险的时候, 哪怕自己的生命也会面临危险, 你也会不顾一切地去救她吗? 如果不会, 那你还是暂时不要结婚了. 如果你已经结婚了. 那就一定要树立这份信念, 树立这份无论如何都要让她幸福的信念. 算是过去的你对你的一份期望吧. 所以我认为现在的我不适合结婚, 我还没有那份即使失去生命也要保护爱人的信念. 这也解释了为什么当我询问巧巧会找什么样的人作为伴侣的时候, 她的回复是 &quot;对我好的人&quot;, 或许这就是 &quot;爱&quot; 吧. 之前总是说两人在一起最需要的是什么门当户对, 什么价值观相同, 什么兴趣爱好一致, 现在想想, 那些都不过是次要因素罢了, 真正需要的还是那个老生常谈的字: &quot;爱&quot;.</p>
-<p>借用朋友一句话: <font color='red'><strong>欣赏一个人, 始于颜值, 敬于才华, 合于性格, 久于善良, 终于人品</strong></font>.</p>
-<h1 id="2020-年-02-月-28-号"><a href="#2020-年-02-月-28-号" class="headerlink" title="2020 年 02 月 28 号"></a>2020 年 02 月 28 号</h1><h2 id="对于自己-quot-玩游戏时欢-玩过之后又非常懊悔-quot-这种心态的思考"><a href="#对于自己-quot-玩游戏时欢-玩过之后又非常懊悔-quot-这种心态的思考" class="headerlink" title="对于自己 &quot;玩游戏时欢, 玩过之后又非常懊悔&quot; 这种心态的思考."></a>对于自己 &quot;玩游戏时欢, 玩过之后又非常懊悔&quot; 这种心态的思考.</h2><p>当时请假那段时间, 在家迷上了 &quot;游戏王 卡片力量 2&quot;, 玩得不亦乐乎, 好几次玩到晚上24点, 搭建毒蛇神卡组和黑暗大法师卡组, 当时的想法是: 我就不信打不过你! 我就不行我的黑暗大法师出不来! 我就不信我的毒蛇神出不来! 于是便一次又一次地将时间忽略, 其实每次保存的时候, 是有时间提醒的, 当时也注意到挺晚的了, 但还是止不住啊...不过, 玩了一段时间之后呢, 就变得懊悔, 觉得当时咋就傻乎乎地玩游戏不干正事呢? ! 明明有那么多的事情等着做呢! </p>
-<p>但是这种事情在我身上已经发生很多很多次了, 我都数不清了, 于是我就趁请假那段时间考虑了一下这个问题. 首先我玩游戏耗费了一段时间, 没有应该做的其他事情, 于是事后感到了懊悔, 但是这时候我想到一个问题, 我问自己: 那是不是我只要玩游戏或者看动漫耗费了时间, 我都会感到懊悔呢? 我仔细思考了一下, 以目前的情况看, 还真是这样! 于是我又联系自己的生活安排发现了大致有两个原因:</p>
-<ol>
-<li>我现在没有符合自己规定的, 自己许可的看动漫, 看电影或者玩游戏之类的休息时间.</li>
-<li>自己的思想意识还没有清晰地认识到现在的局面, 现在这个根本没有时间去娱乐的局面.</li>
-</ol>
-<p>就导致无论我做什么娱乐, 只要耗费了时间我就会事后感到懊悔.</p>
-<p>未来的我, 如果你现在还是处于这种恶性循环中, 建议你赶紧制定带有 &quot;休息时间&quot; 的计划. 空出一段自己允许的时间休息, 只有这样才能既满足自己的休息欲望, 又能够很好的控制情绪以及生活节奏. </p>
-<blockquote>
-<p><font color='red'><strong>有压迫的地方就会有反抗, 压迫越重, 反抗越重!</strong></font> 切记切记! </p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Diary</category>
-      </categories>
-      <tags>
-        <tag>Diary</tag>
       </tags>
   </entry>
   <entry>

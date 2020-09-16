@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kuroha.vip/computer/recovery_personal_computer.html</loc>
+    
+    <lastmod>2020-09-16</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/computer/recovery_googosoft_computer.html</loc>
+    
+    <lastmod>2020-09-16</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kuroha.vip/unity/unity_render_order.html</loc>
     
     <lastmod>2020-09-15</lastmod>
@@ -59,20 +73,6 @@
   
   <url>
     <loc>https://kuroha.vip/apply/game_apply_giant.html</loc>
-    
-    <lastmod>2020-09-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kuroha.vip/computer/recovery_googosoft_computer.html</loc>
-    
-    <lastmod>2020-09-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kuroha.vip/computer/recovery_personal_computer.html</loc>
     
     <lastmod>2020-09-15</lastmod>
     
@@ -284,14 +284,14 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/Hexo/</loc>
+    <loc>https://kuroha.vip/tags/Diary/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/Diary/</loc>
+    <loc>https://kuroha.vip/tags/Hexo/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -319,13 +319,6 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/Unity/</loc>
-    <lastmod>2020-09-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kuroha.vip/tags/JSON/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
@@ -334,6 +327,13 @@
   
   <url>
     <loc>https://kuroha.vip/tags/Program/</loc>
+    <lastmod>2020-09-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/tags/Unity/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -377,14 +377,14 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/Hexo-Blog/</loc>
+    <loc>https://kuroha.vip/categories/Diary/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/Diary/</loc>
+    <loc>https://kuroha.vip/categories/Hexo-Blog/</loc>
     <lastmod>2020-09-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
