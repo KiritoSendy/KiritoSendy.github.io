@@ -24,20 +24,20 @@
     var CONFIG = {"hostname":"kuroha.vip","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="记录一下个人电脑重装时的步骤, 以备不时之需.">
+  <meta name="description" content="来试试传闻中极其厉害的 AHK.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="重装系统-Personal">
-<meta property="og:url" content="https://kuroha.vip/computerbasics/recovery_personal_computer.html">
+<meta property="og:title" content="AHK 基础">
+<meta property="og:url" content="https://kuroha.vip/ahk/ahk_01.html">
 <meta property="og:site_name" content="二次元游宅客">
-<meta property="og:description" content="记录一下个人电脑重装时的步骤, 以备不时之需.">
+<meta property="og:description" content="来试试传闻中极其厉害的 AHK.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-02T13:49:40.000Z">
-<meta property="article:modified_time" content="2020-08-28T14:52:57.699Z">
+<meta property="article:published_time" content="2020-03-02T14:53:55.000Z">
+<meta property="article:modified_time" content="2020-09-15T23:39:55.011Z">
 <meta property="article:author" content="Kuroha">
-<meta property="article:tag" content="Recovery">
+<meta property="article:tag" content="AHK">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://kuroha.vip/computerbasics/recovery_personal_computer.html">
+<link rel="canonical" href="https://kuroha.vip/ahk/ahk_01.html">
 
 
 <script class="page-configurations">
@@ -68,7 +68,7 @@
 
 
 
-  <title>重装系统-Personal | 二次元游宅客</title>
+  <title>AHK 基础 | 二次元游宅客</title>
   
 
 
@@ -156,12 +156,12 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">28</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">15</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">16</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -230,7 +230,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%A6%E6%88%B7%E5%90%8D%E7%A7%B0%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">账户名称设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%AD%A3%E7%9B%98%E7%AC%A6"><span class="nav-number">2.</span> <span class="nav-text">修正盘符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows-10-%E5%9F%BA%E7%A1%80%E8%AE%BE%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">Windows 10 基础设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86-quot-%E5%9B%9E%E6%94%B6%E7%AB%99-quot-%E6%B7%BB%E5%8A%A0%E8%BF%9B-quot-%E5%BF%AB%E9%80%9F%E8%AE%BF%E9%97%AE-quot"><span class="nav-number">4.</span> <span class="nav-text">将 &quot;回收站&quot; 添加进 &quot;快速访问&quot;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE-quot-%E6%96%87%E4%BB%B6%E5%A4%B9%E9%80%89%E9%A1%B9-quot"><span class="nav-number">5.</span> <span class="nav-text">设置 &quot;文件夹选项&quot;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9-quot-%E9%AB%98%E7%BA%A7%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE-quot"><span class="nav-number">6.</span> <span class="nav-text">更改 &quot;高级系统设置&quot;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A6%81%E7%94%A8-Windows-Defender"><span class="nav-number">7.</span> <span class="nav-text">禁用 Windows Defender</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%9F%BA%E7%A1%80%E8%BD%AF%E4%BB%B6"><span class="nav-number">8.</span> <span class="nav-text">安装基础软件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%AD%97%E4%BD%93%E5%BA%93"><span class="nav-number">9.</span> <span class="nav-text">安装字体库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%BF%85%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="nav-number">10.</span> <span class="nav-text">安装必装软件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%8E%8B%E5%8D%B3%E7%94%A8"><span class="nav-number">10.1.</span> <span class="nav-text">解压即用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E8%BD%AF%E4%BB%B6"><span class="nav-number">10.2.</span> <span class="nav-text">重要软件</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-AutoHotkey"><span class="nav-number">1.</span> <span class="nav-text">安装 AutoHotkey</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%83%AD%E9%94%AE-amp-%E7%83%AD%E5%AD%97%E4%B8%B2"><span class="nav-number">2.</span> <span class="nav-text">热键 &amp; 热字串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E4%BF%AE%E9%A5%B0%E9%94%AE-amp-%E7%AC%A6%E5%8F%B7"><span class="nav-number">2.1.</span> <span class="nav-text">常用的修饰键 &amp; 符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E8%84%9A%E6%9C%AC%E5%8F%AA%E5%9C%A8%E7%89%B9%E5%AE%9A%E7%AA%97%E5%8F%A3%E7%94%9F%E6%95%88"><span class="nav-number">2.2.</span> <span class="nav-text">如何设置脚本只在特定窗口生效</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E6%8C%89%E9%94%AE-%E6%A8%A1%E6%8B%9F%E9%94%AE%E7%9B%98%E8%BE%93%E5%85%A5"><span class="nav-number">3.</span> <span class="nav-text">发送按键, 模拟键盘输入</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -239,14 +239,14 @@
     <img class="site-author-image" itemprop="image" alt="Kuroha"
       src="/images/avatar/avatar.gif">
   <p class="site-author-name" itemprop="name">Kuroha</p>
-  <div class="site-description" itemprop="description">本人是一个热爱二次元和游戏开发的宅极客, 这是我的个人博客! 主要记录我学习的经历以及自己喜欢的动漫、音乐, 偶尔也会写一些异想天开的脑洞, 哈哈!</div>
+  <div class="site-description" itemprop="description">本人是一个热爱二次元和游戏开发的宅极客, 这是我的个人博客! 主要记录我学习的经历以及自己喜欢的动漫, 音乐, 偶尔也会写一些异想天开的脑洞, 哈哈!</div>
 </div>
 <div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -259,7 +259,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -339,12 +339,12 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kuroha.vip/computerbasics/recovery_personal_computer.html">
+    <link itemprop="mainEntityOfPage" href="https://kuroha.vip/ahk/ahk_01.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar/avatar.gif">
       <meta itemprop="name" content="Kuroha">
-      <meta itemprop="description" content="本人是一个热爱二次元和游戏开发的宅极客, 这是我的个人博客! 主要记录我学习的经历以及自己喜欢的动漫、音乐, 偶尔也会写一些异想天开的脑洞, 哈哈!">
+      <meta itemprop="description" content="本人是一个热爱二次元和游戏开发的宅极客, 这是我的个人博客! 主要记录我学习的经历以及自己喜欢的动漫, 音乐, 偶尔也会写一些异想天开的脑洞, 哈哈!">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -354,7 +354,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          重装系统-Personal
+          AHK 基础
         </h1>
 
         <div class="post-meta">
@@ -364,14 +364,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-03-02 21:49:40" itemprop="dateCreated datePublished" datetime="2020-03-02T21:49:40+08:00">2020-03-02</time>
+              <time title="创建时间：2020-03-02 22:53:55" itemprop="dateCreated datePublished" datetime="2020-03-02T22:53:55+08:00">2020-03-02</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-28 22:52:57" itemprop="dateModified" datetime="2020-08-28T22:52:57+08:00">2020-08-28</time>
+                <time title="修改时间：2020-09-16 07:39:55" itemprop="dateModified" datetime="2020-09-16T07:39:55+08:00">2020-09-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -379,7 +379,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ComputerBasics/" itemprop="url" rel="index"><span itemprop="name">ComputerBasics</span></a>
+                  <a href="/categories/AutoHotKey/" itemprop="url" rel="index"><span itemprop="name">AutoHotKey</span></a>
                 </span>
             </span>
 
@@ -389,7 +389,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>770</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -398,7 +398,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>1 分钟</span>
             </span>
-            <div class="post-description">记录一下个人电脑重装时的步骤, 以备不时之需.</div>
+            <div class="post-description">来试试传闻中极其厉害的 AHK.</div>
 
         </div>
       </header>
@@ -407,56 +407,59 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <a id="more"></a>
-
-<h1 id="账户名称设置"><a href="#账户名称设置" class="headerlink" title="账户名称设置"></a>账户名称设置</h1><p>重装系统时, <font color='red'> <strong>不要用微软账户登录, 而是使用本地账户登陆</strong> </font>, 此时系统盘中账户文件夹的名称就是本地账户的名称, 之后再用微软账户登陆, 用户文件夹的名字就不会采用微软账户邮箱的前四个字母了. </p>
-<h1 id="修正盘符"><a href="#修正盘符" class="headerlink" title="修正盘符"></a>修正盘符</h1><blockquote>
-<p>右键 &quot;此电脑&quot; -&gt; &quot;管理&quot; -&gt; &quot;磁盘管理&quot;, 修正磁盘盘符. </p>
-</blockquote>
-<h1 id="Windows-10-基础设置"><a href="#Windows-10-基础设置" class="headerlink" title="Windows 10 基础设置"></a>Windows 10 基础设置</h1><blockquote>
-<p>进入设置, 对 Windows 10 进行基础设置, 更改桌面图标, 更改鼠标样式.</p>
-</blockquote>
-<h1 id="将-quot-回收站-quot-添加进-quot-快速访问-quot"><a href="#将-quot-回收站-quot-添加进-quot-快速访问-quot" class="headerlink" title="将 &quot;回收站&quot; 添加进 &quot;快速访问&quot;"></a>将 &quot;回收站&quot; 添加进 &quot;快速访问&quot;</h1><blockquote>
-<p>向快速访问中添加 &quot;回收站&quot;. </p>
-</blockquote>
-<h1 id="设置-quot-文件夹选项-quot"><a href="#设置-quot-文件夹选项-quot" class="headerlink" title="设置 &quot;文件夹选项&quot;"></a>设置 &quot;文件夹选项&quot;</h1><p>设置&quot;文件夹选项&quot;. 包括: </p>
-<ul>
-<li>设置 Win+E 打开 &quot;此电脑&quot;. </li>
-<li>清除文件资源管理器的历史纪录. </li>
-<li>设置 &quot;快速访问&quot; 不显示最近使用的文件、文件夹. </li>
-<li>显示文件后缀名、始终显示隐藏文件. </li>
-<li>用彩色显示加密或压缩的 NTFS 文件. </li>
-<li>在标题栏中显示完整路径. </li>
-</ul>
-<h1 id="更改-quot-高级系统设置-quot"><a href="#更改-quot-高级系统设置-quot" class="headerlink" title="更改 &quot;高级系统设置&quot;"></a>更改 &quot;高级系统设置&quot;</h1><ul>
-<li>计算机名称</li>
-<li>将虚拟内存放置到固态硬盘, 空间大小 20G. </li>
-<li>在系统保护中, 开启系统盘系统保护, 空间大小最大 8G. </li>
-</ul>
-<h1 id="禁用-Windows-Defender"><a href="#禁用-Windows-Defender" class="headerlink" title="禁用 Windows Defender"></a>禁用 Windows Defender</h1><p>组策略: gpedit.msc</p>
-<h1 id="安装基础软件"><a href="#安装基础软件" class="headerlink" title="安装基础软件"></a>安装基础软件</h1><p>Bandzip, HoneyView, Chrome</p>
-<h1 id="安装字体库"><a href="#安装字体库" class="headerlink" title="安装字体库"></a>安装字体库</h1><h1 id="安装必装软件"><a href="#安装必装软件" class="headerlink" title="安装必装软件"></a>安装必装软件</h1><h2 id="解压即用"><a href="#解压即用" class="headerlink" title="解压即用"></a>解压即用</h2><ul>
-<li>Bandicam Portable  </li>
-<li>EBWin</li>
-<li>Snipaste</li>
-<li>Uninstall Tool</li>
-<li>GoldWave</li>
-<li>Clash for Windows</li>
-<li>Mp3tag</li>
-<li>Wise Registry Cleaner</li>
-</ul>
-<h2 id="重要软件"><a href="#重要软件" class="headerlink" title="重要软件"></a>重要软件</h2><ul>
-<li>Steam</li>
-<li>Microsoft Office</li>
-<li>Photoshop</li>
-<li>Microsoft Visual Studio</li>
-<li>Unity</li>
-<li>ToDesk</li>
-</ul>
-<p>[<strong>注</strong>]</p>
-<ol>
-<li>Microsoft Visual Studio 安装背景图片插件.</li>
+        <h1 id="安装-AutoHotkey"><a href="#安装-AutoHotkey" class="headerlink" title="安装 AutoHotkey"></a>安装 AutoHotkey</h1><p>在安装 <code>Autohotkey</code> 过程中, 需要选择安装 <code>UNICODE</code> 或者 <code>ANSI</code> 版本. </p>
+<p>简单点说, 如果你想要它支持非英文字符和数字, 那就选择 <code>UNICODE</code> 版. </p>
+<p><strong>[注]</strong> <font color='red'>AHK 脚本文件的命名中不能包含空格! 切记! 切记!</font></p>
+<h1 id="热键-amp-热字串"><a href="#热键-amp-热字串" class="headerlink" title="热键 &amp; 热字串"></a>热键 &amp; 热字串</h1><ol>
+<li>热键是用来触发某些动作的按键或组合按键. 如: <code>^j::</code></li>
 </ol>
+<p>热键是通过一对 <code>::</code> 创建的. 按键名或组合按键名必须在 <code>::</code> 左边. 代码则跟在后面, 以 <code>Return</code> 结束.</p>
+<ol start="2">
+<li>热字串主要用于扩展缩写(自动替换). 如: <code>::js::</code></li>
+</ol>
+<p>热字串在要触发的文本两边各有一对 <code>::</code>. 替换后的文本在第二对 <code>::</code> 的右边.</p>
+<h2 id="常用的修饰键-amp-符号"><a href="#常用的修饰键-amp-符号" class="headerlink" title="常用的修饰键 &amp; 符号"></a>常用的修饰键 &amp; 符号</h2><table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">#</td>
+<td align="left">Win</td>
+</tr>
+<tr>
+<td align="center">!</td>
+<td align="left">Alt</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="left">Control</td>
+</tr>
+<tr>
+<td align="center">+</td>
+<td align="left">Shift</td>
+</tr>
+</tbody></table>
+<ol>
+<li>可以通过在两个按键 (除手柄键) 之间, 使用 <code>&amp;</code> 来定义一个组合热键, 注意按键和 <code>&amp;</code> 之间必须加空格. 如: <code>Numpad1 &amp; Numpad2::</code></li>
+</ol>
+<blockquote>
+<p><strong>[注意]</strong> 使用 <code>&amp;</code> 的时候记得在左面按键的前面加上 <code>~</code>, 表示当左面的按键单独按下的时候也要进行处理, 不然左面的按键就失效了. 比如上面的例子中, <code>Numpad1</code> 就会失效. 但是加上 <code>~</code> 符号后, 像这样: <code>~Numpad1 &amp; Numpad2::</code>, 这样 <code>Numpad1</code> 就不会失效了.</p>
+</blockquote>
+<ol start="2">
+<li>热字串的修饰符在第一对 <code>::</code> 之间, 用 <code>*</code> 号进行修饰时, 无需按下结束符, 文本便会自动替换. 如: <code>:*:ftw::</code>.</li>
+</ol>
+<h2 id="如何设置脚本只在特定窗口生效"><a href="#如何设置脚本只在特定窗口生效" class="headerlink" title="如何设置脚本只在特定窗口生效"></a>如何设置脚本只在特定窗口生效</h2><p>在脚本代码的最上方添加高级命令: <code>#IfWinActive</code> 或者 <code>#IfWinExist</code>. </p>
+<h1 id="发送按键-模拟键盘输入"><a href="#发送按键-模拟键盘输入" class="headerlink" title="发送按键, 模拟键盘输入"></a>发送按键, 模拟键盘输入</h1><blockquote>
+<p><strong>[注意]</strong> <code>Send</code> 方法发送文本的时候, 如果要发送这些字符: <code>! + # ^</code>, 这些代表键盘按键的特殊字符, 需要用大括号 <code>&#123; &#125;</code> 括起来. 比如: <code>Send, my first &#123;+&#125; script&#123;!&#125;</code>.</p>
+<p><strong>[注意]</strong> 当然也有代表键盘按键的字串, 如: <code>Space</code>, <code>Enter</code>, 这些也要用大括号 <code>&#123; &#125;</code> 括起来. 如: </p>
+<p><code>Send, Multiple Enter lines have Enter been sent. ; 错误</code></p>
+<p><code>Send, Multiple&#123;Enter&#125;lines have&#123;Enter&#125;been sent. ; 正确</code></p>
+<p><strong>[注意]</strong> 如果模拟键盘输入时遇到了中文输入法的问题, 可以使用 {Text} 参数, 在 SendInput 后面加入这个参数后, 后面的文本就不会以键盘输入的方式进行输出, 而是直接以文本的形式输出, 避免中文输入法导致的问题. 如: </p>
+<p><code>SendInput, &#123;Text&#125;administrator</code></p>
+</blockquote>
 
     </div>
 
@@ -487,7 +490,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://kuroha.vip/computerbasics/recovery_personal_computer.html" title="重装系统-Personal">https://kuroha.vip/computerbasics/recovery_personal_computer.html</a>
+    <a href="https://kuroha.vip/ahk/ahk_01.html" title="AHK 基础">https://kuroha.vip/ahk/ahk_01.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aF9DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -547,7 +550,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Recovery/" rel="tag"><i class="fa fa-tag"></i> Recovery</a>
+              <a href="/tags/AHK/" rel="tag"><i class="fa fa-tag"></i> AHK</a>
           </div>
 
         
@@ -556,12 +559,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/computerbasics/recovery_googosoft_computer.html" rel="prev" title="重装系统-Googosoft">
-      <i class="fa fa-chevron-left"></i> 重装系统-Googosoft
+    <a href="/computer/recovery_personal_computer.html" rel="prev" title="重装系统-Personal">
+      <i class="fa fa-chevron-left"></i> 重装系统-Personal
     </a></div>
       <div class="post-nav-item">
-    <a href="/ahk/ahk_000.html" rel="next" title="AHK 基础">
-      AHK 基础 <i class="fa fa-chevron-right"></i>
+    <a href="/computer/computer_char_code.html" rel="next" title="理解计算机中的字符编码">
+      理解计算机中的字符编码 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -621,13 +624,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">125k</span>
+    <span title="站点总字数">134k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:54</span>
+    <span title="站点阅读时长">2:01</span>
 </div>
 
     <div id="days"></div>
@@ -699,7 +702,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'MyBlogCommentSystem',
       owner       : 'KurohaKirito',
       admin       : ['KurohaKirito'],
-      id          : '45672e28becc0ca323eb6bc394896d7b',
+      id          : '070103e88921cc9dd671e86208d85499',
         language: 'zh-CN',
       distractionFreeMode: true
     });

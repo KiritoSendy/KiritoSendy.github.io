@@ -2,10 +2,10 @@
 <search>
   <entry>
     <title>AHK 基础</title>
-    <url>/ahk/ahk_000.html</url>
-    <content><![CDATA[<h1 id="安装-AutoHotkey"><a href="#安装-AutoHotkey" class="headerlink" title="安装 AutoHotkey"></a>安装 AutoHotkey</h1><p>在安装 <code>Autohotkey</code> 过程中, 需要你选择安装 <code>UNICODE</code> 或者 <code>ANSI</code> 版本. </p>
+    <url>/ahk/ahk_01.html</url>
+    <content><![CDATA[<h1 id="安装-AutoHotkey"><a href="#安装-AutoHotkey" class="headerlink" title="安装 AutoHotkey"></a>安装 AutoHotkey</h1><p>在安装 <code>Autohotkey</code> 过程中, 需要选择安装 <code>UNICODE</code> 或者 <code>ANSI</code> 版本. </p>
 <p>简单点说, 如果你想要它支持非英文字符和数字, 那就选择 <code>UNICODE</code> 版. </p>
-<p><strong>[注]</strong> AHK 文件的命名中不能包含空格! 切记! 切记!</p>
+<p><strong>[注]</strong> <font color='red'>AHK 脚本文件的命名中不能包含空格! 切记! 切记!</font></p>
 <h1 id="热键-amp-热字串"><a href="#热键-amp-热字串" class="headerlink" title="热键 &amp; 热字串"></a>热键 &amp; 热字串</h1><ol>
 <li>热键是用来触发某些动作的按键或组合按键. 如: <code>^j::</code></li>
 </ol>
@@ -45,17 +45,17 @@
 <p><strong>[注意]</strong> 使用 <code>&amp;</code> 的时候记得在左面按键的前面加上 <code>~</code>, 表示当左面的按键单独按下的时候也要进行处理, 不然左面的按键就失效了. 比如上面的例子中, <code>Numpad1</code> 就会失效. 但是加上 <code>~</code> 符号后, 像这样: <code>~Numpad1 &amp; Numpad2::</code>, 这样 <code>Numpad1</code> 就不会失效了.</p>
 </blockquote>
 <ol start="2">
-<li>热字串的修饰符在第一对 <code>::</code> 之间. 如: <code>:*:ftw::</code>. 用 <code>*</code> 号进行修饰时, 无需按下结束符文本便会自动替换. </li>
+<li>热字串的修饰符在第一对 <code>::</code> 之间, 用 <code>*</code> 号进行修饰时, 无需按下结束符, 文本便会自动替换. 如: <code>:*:ftw::</code>.</li>
 </ol>
 <h2 id="如何设置脚本只在特定窗口生效"><a href="#如何设置脚本只在特定窗口生效" class="headerlink" title="如何设置脚本只在特定窗口生效"></a>如何设置脚本只在特定窗口生效</h2><p>在脚本代码的最上方添加高级命令: <code>#IfWinActive</code> 或者 <code>#IfWinExist</code>. </p>
 <h1 id="发送按键-模拟键盘输入"><a href="#发送按键-模拟键盘输入" class="headerlink" title="发送按键, 模拟键盘输入"></a>发送按键, 模拟键盘输入</h1><blockquote>
 <p><strong>[注意]</strong> <code>Send</code> 方法发送文本的时候, 如果要发送这些字符: <code>! + # ^</code>, 这些代表键盘按键的特殊字符, 需要用大括号 <code>&#123; &#125;</code> 括起来. 比如: <code>Send, my first &#123;+&#125; script&#123;!&#125;</code>.</p>
-</blockquote>
-<blockquote>
 <p><strong>[注意]</strong> 当然也有代表键盘按键的字串, 如: <code>Space</code>, <code>Enter</code>, 这些也要用大括号 <code>&#123; &#125;</code> 括起来. 如: </p>
-</blockquote>
 <p><code>Send, Multiple Enter lines have Enter been sent. ; 错误</code></p>
 <p><code>Send, Multiple&#123;Enter&#125;lines have&#123;Enter&#125;been sent. ; 正确</code></p>
+<p><strong>[注意]</strong> 如果模拟键盘输入时遇到了中文输入法的问题, 可以使用 {Text} 参数, 在 SendInput 后面加入这个参数后, 后面的文本就不会以键盘输入的方式进行输出, 而是直接以文本的形式输出, 避免中文输入法导致的问题. 如: </p>
+<p><code>SendInput, &#123;Text&#125;administrator</code></p>
+</blockquote>
 ]]></content>
       <categories>
         <category>AutoHotKey</category>
@@ -71,14 +71,14 @@
 <a id="more"></a> 
 
 <h2 id="字节跳动-2019-09-19-游戏客户端开发实习生-面试"><a href="#字节跳动-2019-09-19-游戏客户端开发实习生-面试" class="headerlink" title="字节跳动 2019.09.19 游戏客户端开发实习生 面试"></a>字节跳动 2019.09.19 游戏客户端开发实习生 面试</h2><p>面试方式: 使用 牛客网 在线面试, 但是由于自己的笔记本电脑不给力, 音频调试过了, 但是视频调试怎么也过不了, 于是换用了 Zoom 视频通话. 面试官是技术员, 怎么说呢～ 真 <strong>·</strong> 一拳超人! 一根都不剩! </p>
-<h3 id="1、自我介绍"><a href="#1、自我介绍" class="headerlink" title="1、自我介绍"></a>1、自我介绍</h3><p>说了自己的个人信息: 姓名, 年龄, 学校, 专业等. 之后说了些和自己的性格爱好相关的事, 再往后说了自己主要学习的课程, 最后说自己在校的一些经历. 不过可能是面试官不太想听我在学校的经历, 反正我就说了一点点, 面试官就直接问我了. (就是说我的自我介绍直接被打断了...)</p>
+<h3 id="1-自我介绍"><a href="#1-自我介绍" class="headerlink" title="1, 自我介绍"></a>1, 自我介绍</h3><p>说了自己的个人信息: 姓名, 年龄, 学校, 专业等. 之后说了些和自己的性格爱好相关的事, 再往后说了自己主要学习的课程, 最后说自己在校的一些经历. 不过可能是面试官不太想听我在学校的经历, 反正我就说了一点点, 面试官就直接问我了. (就是说我的自我介绍直接被打断了...)</p>
 <h4 id="教训"><a href="#教训" class="headerlink" title="教训"></a>教训</h4><blockquote>
 <p>说自我介绍的时候, 一定要只说自己已经充分准备了的东西.</p>
 </blockquote>
 <blockquote>
 <p>我就实在了, 因为学过C语言, 我就直接说了在校学过C语言, 但是我已经好几年没用过C语言了, 于是接下来的事可想而知, 太尴尬了...</p>
 </blockquote>
-<h3 id="2、专业知识"><a href="#2、专业知识" class="headerlink" title="2、专业知识"></a>2、专业知识</h3><ol>
+<h3 id="2-专业知识"><a href="#2-专业知识" class="headerlink" title="2, 专业知识"></a>2, 专业知识</h3><ol>
 <li>C语言常量指针和指针常量的区别, 并写出一个常量指针和指针常量. </li>
 </ol>
 <blockquote>
@@ -95,7 +95,7 @@
 </ol>
 <blockquote>
 <p>马后炮解答: </p>
-<p>对于一个由C语言编写的程序而言, 内存主要可以分为以下5个部分组成: 栈、堆、BSS段、数据段、代码段. 栈和堆在程序运行中由系统分配空间, BSS段、数据段、代码段在程序编译期间由编译器分配空间. </p>
+<p>对于一个由C语言编写的程序而言, 内存主要可以分为以下5个部分组成: 栈, 堆, BSS段, 数据段, 代码段. 栈和堆在程序运行中由系统分配空间, BSS段, 数据段, 代码段在程序编译期间由编译器分配空间. </p>
 <p>(运行时)栈: 栈是一种由高地址向低地址扩展的数据结构, 是一块连续的内存区域, 通常存放程序临时创建的局部变量, 其中还包括函数调用时所用到的形参, 调用后的返回值等. </p>
 <p>(运行时)堆: 堆是一种由低地址向高地址扩展的数据结构, 是一块不连续的内存区域. 通常存放程序运行中动态分配的存储空间. </p>
 <p>(编译时)BSS段: Block Started by Symbol 的简称, 通常是指用来存放程序中未初始化的全局变量和静态变量. </p>
@@ -105,8 +105,8 @@
 <p>数据结构中, 怎么判断链表里面有环? </p>
 <blockquote>
 <p>马后炮解答: </p>
-<p><strong>如何判断一个链表中是否有环</strong>: 使用追赶法, 设定两个指针 slow、fast, 从头指针开始, 每次分别前进1步、2步. 如存在环, 则两者必定相遇, 如不存在环, fast 遇到 NULL 退出. </p>
-<p><strong>如何知道环的长度</strong>: 依旧先使用追赶法(双指针法), 求出 slow、fast 两指针的碰撞点 P (相遇点), 之后 slow、fast 指针再次从碰撞点 P 出发, 直到两者再次碰撞, 期间 slow 经过的结点数量就是环的长度. <strong>碰撞点不一定是环的连接结点</strong></p>
+<p><strong>如何判断一个链表中是否有环</strong>: 使用追赶法, 设定两个指针 slow, fast, 从头指针开始, 每次分别前进1步, 2步. 如存在环, 则两者必定相遇, 如不存在环, fast 遇到 NULL 退出. </p>
+<p><strong>如何知道环的长度</strong>: 依旧先使用追赶法(双指针法), 求出 slow, fast 两指针的碰撞点 P (相遇点), 之后 slow, fast 指针再次从碰撞点 P 出发, 直到两者再次碰撞, 期间 slow 经过的结点数量就是环的长度. <strong>碰撞点不一定是环的连接结点</strong></p>
 <p><strong>如何找出环的连接结点</strong>: 设置每次都只前进 1 步的两个指针, 分别从头结点和碰撞点出发, 他们所相遇的结点就是连接点. </p>
 <p><strong>如何求出头结点到连接点的长度</strong>: 求连接点的时候, 从头结点出发的指针直到和另外一个指针相遇, 中间经过的结点的数量就是头结点到连接点的长度. </p>
 <p><strong>带环链表的长度是多少</strong>: 头结点到连接点的长度 + 环的长度. </p>
@@ -184,7 +184,7 @@
 </li>
 <li><p>sizeof(指针) 所得到的值是指针所指向的变量的大小 (❌) </p>
 </li>
-<li><p>树的前序遍历、中序遍历、后序遍历中, 叶子结点的前后顺序是一样的.  (✔) </p>
+<li><p>树的前序遍历, 中序遍历, 后序遍历中, 叶子结点的前后顺序是一样的.  (✔) </p>
 </li>
 </ul>
 <ol start="5">
@@ -242,7 +242,7 @@
 </li>
 </ul>
 <blockquote>
-<p>进程互斥、同步的概念是并发进程下存在的概念, 有了并发进程, 就产生了资源的竞争与协作, 从而就要通过进程的互斥、同步、通信来解决资源的竞争与协作问题, 选 B. </p>
+<p>进程互斥, 同步的概念是并发进程下存在的概念, 有了并发进程, 就产生了资源的竞争与协作, 从而就要通过进程的互斥, 同步, 通信来解决资源的竞争与协作问题, 选 B. </p>
 <p>进程的互斥 (mutual exclusion ) 是解决进程间竞争关系( 间接制约关系) 的手段.  进程互斥指若干个进程要使用同一共享资源时, 任何时刻最多允许一个进程去使用, 其他要使用该资源的进程必须等待, 直到占有资源的进程释放该资源. </p>
 <p>进程的同步 (Synchronization) 是解决进程间协作关系( 直接制约关系) 的手段. 进程同步指两个以上进程基于某个条件来协调它们的活动. 一个进程的执行依赖于另一个协作进程的消息或信号, 当一个进程没有得到来自于另一个进程的消息或信号时则需等待, 直到消息或信号到达才被唤醒. </p>
 </blockquote>
@@ -421,7 +421,7 @@
 <li><p><strong>判断两链表最后一个节点是否相同</strong>, 如果相交, 则尾节点肯定是同一节点. (答案)</p>
 <p>引申问题: 如何找出两个交叉链表的相交结点? </p>
 </li>
-<li><p>首先遍历两个链表到表尾(NULL), 记录下两个链表的长度: LA、LB, 并求出两个链表的长度差(绝对值) |LA - LB|. </p>
+<li><p>首先遍历两个链表到表尾(NULL), 记录下两个链表的长度: LA, LB, 并求出两个链表的长度差(绝对值) |LA - LB|. </p>
 </li>
 <li><p>之后再次遍历两个链表, 让长的那个链表先行遍历 |LA - LB| 个结点, 之后两者同步遍历并判断结点是否相等, 即可找出相交结点. </p>
 <p>引申问题: 如何判断一个单链表是否存在环? </p>
@@ -429,7 +429,7 @@
 <li><p>使用追赶法. 设置两个指针 slow 和 fast, slow 的速度是每次移动 1 个单位, fast 的速度是每次移动 2 个单位, 这样如果存在环, 两者必定会在某处相遇. 如果 fast 指针走到了 NULL 都没有和 slow 相遇, 说明没有环. </p>
 <p>引申问题: 如何得到这个环的长度? </p>
 </li>
-<li><p>先使用追赶法, 记录下两个指针相遇的位置 P (碰撞点、相遇点). </p>
+<li><p>先使用追赶法, 记录下两个指针相遇的位置 P (碰撞点, 相遇点). </p>
 </li>
 <li><p>之后从 碰撞点 P 出发, 依旧使用追赶法, slow 每次一个单位, fast 每次 2 个单位, 当他们两个再次相遇时, slow 经过的结点数就是环的长度. </p>
 </li>
@@ -446,7 +446,7 @@
 <li>数据库保护分为哪四部分? </li>
 </ol>
 <blockquote>
-<p> 安全性控制、完整性控制、并发性控制、数据恢复</p>
+<p> 安全性控制, 完整性控制, 并发性控制, 数据恢复</p>
 </blockquote>
 <ol start="16">
 <li><p>说明 Linux 下多路复用 IO 接口 epoll 和 select 的区别及其适用场景. </p>
@@ -531,6 +531,266 @@ namespace _02_判断一个数字是不是梦想数
       </categories>
       <tags>
         <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ASP 开发经验笔记</title>
+    <url>/asp/asp_learnnotes.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="获取配置文件中的信息"><a href="#获取配置文件中的信息" class="headerlink" title="获取配置文件中的信息"></a>获取配置文件中的信息</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F;获取 web.config 的信息
+System.Configuration.ConfigurationManager.AppSettings[&quot;KeyName&quot;].ToString();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="控制-DataGrid-模板列中-quot-文本框-quot-的只读"><a href="#控制-DataGrid-模板列中-quot-文本框-quot-的只读" class="headerlink" title="控制 DataGrid 模板列中 &quot;文本框&quot; 的只读"></a>控制 DataGrid 模板列中 &quot;文本框&quot; 的只读</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">TextBox tb10 &#x3D; (TextBox)myCardDataGrid.Items[i].FindControl(&quot;txt_cbbh&quot;);
+tb10.Attributes.Add(&quot;readonly&quot;, &quot;ture&quot;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="Oracle-存储过程调试时输出信息"><a href="#Oracle-存储过程调试时输出信息" class="headerlink" title="Oracle 存储过程调试时输出信息"></a>Oracle 存储过程调试时输出信息</h1><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">--存储过程调试输出</span>
+dbms_output<span class="token punctuation">.</span>put_line<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="调用前台-JavaScript-方法"><a href="#调用前台-JavaScript-方法" class="headerlink" title="调用前台 JavaScript 方法"></a>调用前台 JavaScript 方法</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F;后台 C# 调用前台 JavaScript 的自定义方法
+ClientScript.RegisterStartupScript(this.GetType(), &quot;&quot;, &quot;&lt;script&gt;myFunction();&lt;&#x2F;script&gt;&quot;);
+
+&#x2F;&#x2F;后台 C# 调用前台 JavaScript 弹窗提示
+ClientScript.RegisterStartupScript(this.GetType(), &quot;&quot;, &quot;&lt;script&gt;alert(&#39;弹窗信息!&#39;);&lt;&#x2F;script&gt;&quot;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="获取电脑-IP"><a href="#获取电脑-IP" class="headerlink" title="获取电脑 IP"></a>获取电脑 IP</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F;记录下电脑 IP 的方法
+string ip &#x3D; string.Empty;
+
+if(System.Web.HttpContext.Current.Request.ServerVariables[&quot;HTTP_VIA&quot;] !&#x3D; null)
+&#123;
+    ip &#x3D; System.Web.HttpContext.Current.Request.ServerVariables[&quot;HTTP_X_FORWARDED_FOR&quot;].Split(new char[] &#123; &#39;,&#39; &#125;)[0].ToString();
+&#125;
+else
+&#123;
+    ip &#x3D; System.Web.HttpContext.Current.Request.ServerVariables[&quot;REMOTE_ADDR&quot;].ToString();
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="文件下载-模板下载功能"><a href="#文件下载-模板下载功能" class="headerlink" title="文件下载, 模板下载功能"></a>文件下载, 模板下载功能</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F;&#x2F; &lt;summary&gt;
+&#x2F;&#x2F;&#x2F; 浏览器下载文件
+&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;
+&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;modifyName&quot;&gt;自定义文件名, 附带后缀&lt;&#x2F;param&gt;
+public void DownloadFile(string modifyName)
+&#123;
+    &#x2F;&#x2F; 定义变量: 文件名
+    string fileName &#x3D; string.Empty;
+
+    &#x2F;&#x2F; 获取文件在服务器的地址
+    string url &#x3D; Server.MapPath(&quot;..&#x2F;searchZclbList.xls&quot;);
+
+    &#x2F;&#x2F; 判断地址是否为空
+    if (string.IsNullOrEmpty(url))
+    &#123;
+        &#x2F;&#x2F; 提示 &quot;该文件暂不提供下载&quot;
+        Page.ClientScript.RegisterStartupScript(Page.GetType(), &quot;message&quot;, &quot;&lt;script defer&gt;alert(&#39;该文件暂不提供下载!&#39;);&lt;&#x2F;script&gt;&quot;);
+        return;
+    &#125;
+
+    &#x2F;&#x2F; 判断获取的是否为地址  
+    if (url.IndexOf(&quot;\\&quot;) &gt; -1)
+    &#123;
+        &#x2F;&#x2F; url 为地址时, 则截取 url 中的文件名作为文件名
+        fileName &#x3D; url.Substring(url.LastIndexOf(&quot;\\&quot;) + 1);
+    &#125;
+    else
+    &#123;
+        &#x2F;&#x2F; url 为文件名时, 直接获取文件名  
+        fileName &#x3D; url;
+    &#125;
+
+    &#x2F;&#x2F; 自定义文件名, 附带后缀
+    if (!string.IsNullOrEmpty(modifyName))
+    &#123;
+        fileName &#x3D; modifyName;
+    &#125;
+
+    &#x2F;&#x2F; 以字符流的方式下载文件  
+    FileStream fileStream &#x3D; new FileStream(@url, FileMode.Open);
+    byte[] bytes &#x3D; new byte[(int)fileStream.Length];
+    fileStream.Read(bytes, 0, bytes.Length);
+    fileStream.Close();
+    Response.ContentType &#x3D; &quot;application&#x2F;octet-stream&quot;;
+
+    &#x2F;&#x2F; 通知浏览器下载 
+    Response.AddHeader(&quot;Content-Disposition&quot;, &quot;attachment; filename&#x3D;&quot; + fileName);
+    Response.BinaryWrite(bytes);
+    Response.Flush();
+    Response.End();
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="参数化-insert-语句的写法"><a href="#参数化-insert-语句的写法" class="headerlink" title="参数化 insert 语句的写法"></a>参数化 insert 语句的写法</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F;&#x2F; &lt;summary&gt;
+&#x2F;&#x2F;&#x2F; 参数化 insert 语句
+&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;
+&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;ModelInfo&quot;&gt;insert 语句中用到的参数&lt;&#x2F;param&gt;
+&#x2F;&#x2F;&#x2F; &lt;returns&gt;&lt;&#x2F;returns&gt;
+public int AddModel(MHtgl_Htbhgz ModelInfo)
+&#123;
+    &#x2F;&#x2F;添加业务处理
+    List&lt;SqlParameter&gt; ParaList &#x3D; new List&lt;SqlParameter&gt;();
+
+    &#x2F;&#x2F;添加信息
+    StringBuilder sqlbuild &#x3D; new StringBuilder();
+    StringBuilder valbuild &#x3D; new StringBuilder();
+
+    sqlbuild.Append(&quot;Insert into Htgl_Htbhgz(&quot;);
+
+    &#x2F;&#x2F;合同类型
+    sqlbuild.Append(&quot;htlx,&quot;);
+    valbuild.Append(&quot;@htlx,&quot;);
+    SqlParameter parm_htlx &#x3D; new SqlParameter(&quot;@htlx&quot;, SqlDbType.VarChar, 10);
+    Common.SqlParameterExtend.StringSqlParameter(ref parm_htlx, ref ParaList, ModelInfo.Htlx);
+
+    &#x2F;&#x2F;合同年月
+    sqlbuild.Append(&quot;htny,&quot;);
+    valbuild.Append(&quot;@htny,&quot;);
+    SqlParameter parm_htny &#x3D; new SqlParameter(&quot;@htny&quot;, SqlDbType.VarChar, 10);
+    Common.SqlParameterExtend.StringSqlParameter(ref parm_htny, ref ParaList, ModelInfo.Htny);
+
+    &#x2F;&#x2F;执行SQL语句
+    try
+    &#123;
+        SqlHelper.ExecuteNonQuery(CommandType.Text, sqlbuild.ToString() + valbuild.ToString(), ParaList.ToArray());
+        return 1;
+    &#125;
+    catch
+    &#123;
+        return -1;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="最基本的图片查看器功能"><a href="#最基本的图片查看器功能" class="headerlink" title="最基本的图片查看器功能"></a>最基本的图片查看器功能</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F; 前台
+&lt;asp:Image ID&#x3D;&quot;Image&quot; runat&#x3D;&quot;server&quot; ImageUrl&#x3D;&quot;~&#x2F;imagelook.jpg&quot;&#x2F;&gt;
+
+&#x2F;&#x2F; 后台
+protected void Page_Load(object sender, System.EventArgs e)
+&#123;
+    try
+    &#123;
+        &#x2F;&#x2F; 读取图片
+        int ImgID &#x3D; Convert.ToInt32(Request.QueryString[&quot;imageid&quot;] as string);
+        OracleConnection Con &#x3D; new googoSoftEAM.SQLServerDAL.SqlHelper().Connection;
+        String SqlCmd &#x3D; &quot;select * from zc_image where imageid &#x3D; :imageid and saasdm&#x3D;&#39;&quot; + Session[&quot;saasdm&quot;].ToString() + &quot;&#39;&quot;;
+        OracleCommand CmdObj &#x3D; new OracleCommand(SqlCmd, Con);
+        CmdObj.Parameters.Add(&quot;:ImageID&quot;, OracleType.UInt32).Value &#x3D; ImgID;
+        Con.Open();
+        OracleDataReader SqlReader &#x3D; CmdObj.ExecuteReader();
+        SqlReader.Read();
+
+        &#x2F;&#x2F; 图片类型
+        string imageType &#x3D; (string)SqlReader[&quot;imagecontenttype&quot;];
+
+        &#x2F;&#x2F; 原版图片内容 [字节流]
+        MemoryStream bufferByte &#x3D; new MemoryStream((byte[])SqlReader[&quot;imageData&quot;]);
+        System.Drawing.Image imageOrigin &#x3D; System.Drawing.Image.FromStream(bufferByte, true);
+
+        &#x2F;&#x2F; 缩小文件 (计算缩小倍率) 缩小至 高度 targetHeight 左右
+        float targetHeight &#x3D; 600.0f;
+        float shrink &#x3D; targetHeight &#x2F; imageOrigin.Height;
+        float w &#x3D; shrink, h &#x3D; shrink;
+
+        &#x2F;&#x2F; 目标图形
+        System.Drawing.Bitmap imageSmall &#x3D; new System.Drawing.Bitmap((int)(imageOrigin.Width * shrink), (int)(imageOrigin.Height * shrink));
+
+        &#x2F;&#x2F; 创建一个图形对象
+        Graphics graphics &#x3D; Graphics.FromImage(imageSmall);
+        graphics.DrawImage(imageOrigin, new Rectangle(0, 0, imageSmall.Width, imageSmall.Height), new Rectangle(0, 0, imageOrigin.Width, imageOrigin.Height), GraphicsUnit.Pixel);
+
+        string ret_type &#x3D; string.Empty;
+        GetImageType(imageType, out ret_type);
+        string imagePath &#x3D; Server.MapPath(&quot;..&#x2F;imagelook.&quot; + ret_type);
+        if (File.Exists(imagePath))
+        &#123;
+            File.Delete(imagePath);
+        &#125;
+
+        imageSmall.Save(imagePath);
+        Image.ImageUrl &#x3D; &quot;~&#x2F;imagelook.&quot; + ret_type + &quot;?&quot; + new Random().Next(100).ToString();
+        Con.Close();
+    &#125;
+    catch (Exception ex)
+    &#123;
+        Trace.Write(ex.Message);
+    &#125;
+&#125;
+
+&#x2F;&#x2F;&#x2F; &lt;summary&gt;
+&#x2F;&#x2F;&#x2F; 根据所存图片类型返回图片格式
+&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;
+&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;imageType&quot;&gt;图片类型&lt;&#x2F;param&gt;
+&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;ret_type&quot;&gt;返回的图片类型 (string)&lt;&#x2F;param&gt;
+&#x2F;&#x2F;&#x2F; &lt;returns&gt;返回的图片类型 (ImageFormat)&lt;&#x2F;returns&gt;
+private System.Drawing.Imaging.ImageFormat GetImageType(string imageType, out string ret_type)
+&#123;
+    switch (imageType)
+    &#123;
+        case &quot;image&#x2F;gif&quot;:
+            ret_type &#x3D; &quot;gif&quot;;
+            return System.Drawing.Imaging.ImageFormat.Gif;
+            break;
+        case &quot;image&#x2F;bmp&quot;:
+            ret_type &#x3D; &quot;bmp&quot;;
+            return System.Drawing.Imaging.ImageFormat.Bmp;
+            break;
+        case &quot;image&#x2F;x-png&quot;:
+        case &quot;image&#x2F;png&quot;:
+            ret_type &#x3D; &quot;png&quot;;
+            return System.Drawing.Imaging.ImageFormat.Png;
+            break;
+        case &quot;image&#x2F;pjpeg&quot;:
+        case &quot;image&#x2F;jpeg&quot;:
+            ret_type &#x3D; &quot;jpg&quot;;
+            return System.Drawing.Imaging.ImageFormat.Jpeg;
+            break;
+        default:
+            ret_type &#x3D; &quot;jpg&quot;;
+            return System.Drawing.Imaging.ImageFormat.Jpeg;
+            break;
+    &#125;   
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="错误-超时时间已到-但是尚未从池中获取连接"><a href="#错误-超时时间已到-但是尚未从池中获取连接" class="headerlink" title="错误: 超时时间已到, 但是尚未从池中获取连接."></a>错误: 超时时间已到, 但是尚未从池中获取连接.</h1><p>出现这种情况可能是因为所有池连接均在使用, 并且达到了最大池大小, 解决办法: 在数据库连接配置中加上 <code>Max Pool Size = 512;</code>.</p>
+<h1 id="合并两个表结构完全一致的-DataTable"><a href="#合并两个表结构完全一致的-DataTable" class="headerlink" title="合并两个表结构完全一致的 DataTable"></a>合并两个表结构完全一致的 DataTable</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F;&#x2F; &lt;summary&gt;
+&#x2F;&#x2F;&#x2F; 将 sum 表和 para 表合并到 sum 表中, 要求: &quot;sum 表&quot; 和 &quot;para 表&quot; 的表结构必须完全一样!
+&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;
+&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;sum&quot;&gt;待合并表之一, 同时也是结果表&lt;&#x2F;param&gt;
+&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;para&quot;&gt;仅作为待合并表之一&lt;&#x2F;param&gt;
+&#x2F;&#x2F;&#x2F; &lt;returns&gt;&lt;&#x2F;returns&gt;
+private static void AddTableToTable(DataTable sum, DataTable para)
+&#123;
+    &#x2F;&#x2F;遍历 para 表的每一行
+    foreach (DataRow dataRow_para in para.Rows)
+    &#123;
+        &#x2F;&#x2F;新建 sum 表的一行
+        DataRow dataRow_sum &#x3D; sum.NewRow();
+
+        &#x2F;&#x2F;新建的这一行取 para 表的数据
+        dataRow_sum.ItemArray &#x3D; dataRow_para.ItemArray;
+
+        &#x2F;&#x2F;将新建的这一样加到 sum 表中
+        sum.Rows.Add(dataRow_sum);
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="网页实现-Enter-快捷键"><a href="#网页实现-Enter-快捷键" class="headerlink" title="网页实现 Enter 快捷键"></a>网页实现 Enter 快捷键</h1><pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">
+&#x2F;&#x2F;浏览器中 Enter 键有一个默认行为, 用户焦点在文本框中时键入 Enter, 会触发第一个按钮的 Click 事件.
+
+document.onkeydown &#x3D; keydown;
+
+function keydown() 
+&#123;
+    if (event.keyCode &#x3D;&#x3D; 13) &#x2F;&#x2F; Enter 快捷键
+    &#123;
+        document.getElementById(&quot;btn_cx&quot;).click();
+
+        return false; &#x2F;&#x2F; 阻止 IE 浏览器的默认 Enter 行为
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="获取服务器绝对路径"><a href="#获取服务器绝对路径" class="headerlink" title="获取服务器绝对路径"></a>获取服务器绝对路径</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">string rootDir &#x3D; Server.MapPath(&quot;text.txt&quot;);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+      <categories>
+        <category>ASP</category>
+      </categories>
+      <tags>
+        <tag>ASP</tag>
       </tags>
   </entry>
   <entry>
@@ -638,7 +898,7 @@ int main()
 <li><p>sizeof 使用时的各种情况: </p>
 <p>sizeof (固有数据类型, 例如 int float double bool): 取得类型的字节长度. 对于拥有自定义 typedef 类型的语言, 返回的是原数据类型的字节长度. </p>
 <p>sizeof (函数类型, 例如 <code>int Add(int a, int b)</code>): 取得返回值的类型的字节长度. 当返回值是 void 类型时, 编译器会报错. </p>
-<p>sizeof (任何指针类型, 例如变量指针、函数指针)): 取得指针的长度, 也就是 4. </p>
+<p>sizeof (任何指针类型, 例如变量指针, 函数指针)): 取得指针的长度, 也就是 4. </p>
 <p>Sizeof (数组名): 取得数组的容量. </p>
 </li>
 </ol>
@@ -714,7 +974,7 @@ int main()
   </entry>
   <entry>
     <title>理解计算机中的字符编码</title>
-    <url>/computerbasics/computer_char_code.html</url>
+    <url>/computer/computer_char_code.html</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天再一次体会到了 <strong>基础知识不扎实会带来无数的问题与困扰</strong> 这句话是多么地真实 ! ! 事情起因是我想巩固一下 SQL 知识, 于是用 SQL Developer 工具开始写 SQL, 但是当我用 SQL Developer 打开一个之前在 PL/SQL 上编辑的 SQL 文件的时候, 里面所有的中文全部乱码了 ! ! 我就知道我必须要解决 <code>编码</code> 这个困扰我许久的问题了. 于是上网搜索资料, 最后总结如下, 我使用了编码的发展顺序来组织文章结构 ( 大概, 或许, 应该, 差不多是这么个发展顺序吧, 哈哈 ! ), OK, 我们开始.</p>
 <h1 id="字符集-和-编码规则"><a href="#字符集-和-编码规则" class="headerlink" title="字符集 和 编码规则"></a>字符集 和 编码规则</h1><p>这两个概念必须在最开始就要点出, 这也是这篇文章的重心所在. 字符集和编码规则是完全不同的两种事物: </p>
 <p><strong>字符集</strong>: 为每一个字符分配一个唯一的 ID. </p>
@@ -793,7 +1053,7 @@ int main()
   </entry>
   <entry>
     <title>电脑使用技巧及常见问题</title>
-    <url>/computerbasics/computer_issues.html</url>
+    <url>/computer/computer_issues.html</url>
     <content><![CDATA[<h1 id="PowerShell-出现-quot-因为在此系统中禁止执行脚本-quot-的解决方法"><a href="#PowerShell-出现-quot-因为在此系统中禁止执行脚本-quot-的解决方法" class="headerlink" title="PowerShell 出现 &quot;因为在此系统中禁止执行脚本&quot; 的解决方法"></a>PowerShell 出现 &quot;因为在此系统中禁止执行脚本&quot; 的解决方法</h1><p>新装的系统在 Powershell 直接执行 hexo 命令的时候可能会出现这种情况: <code>****, 因为在此系统中禁止执行脚本. 有关详细信息, 请参阅 &quot;get-help about_signing&quot;</code>. 这是由于脚本的签名不符合 Windows PowerShell 的执行策略导致的, 我们要做的就是修改 Windows Power Shell 的脚本执行策略. Windows Power Shell 提供了六种执行策略: <code>Restricted</code>, <code>AllSigned</code>, <code>RemoteSigned</code>, <code>Unrestricted</code>, <code>Bypass</code>, <code>Undefined</code>. </p>
 <ul>
 <li>Restricted: 可以执行单个的命令, 但是不能执行脚本.</li>
@@ -834,7 +1094,7 @@ int main()
 <p>它会询问是否要更改执行策略? 键入 <code>y</code> 确认即可. </p>
 <p>更多详细信息请参考博客: <span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vc3BhcmtkZXYvcC83NDYwNTE4Lmh0bWw=">sparkdev<i class="fa fa-external-link-alt"></i></span></p>
 <h1 id="「打开方式」中残留已卸载的应用程序"><a href="#「打开方式」中残留已卸载的应用程序" class="headerlink" title="「打开方式」中残留已卸载的应用程序"></a>「打开方式」中残留已卸载的应用程序</h1><p>注册表里面 HKEY_CLASSES_ROOT 文件中, 删除对应程序名称的文件夹即可. </p>
-<h1 id="文件、程序的图标显示不正确或丢失"><a href="#文件、程序的图标显示不正确或丢失" class="headerlink" title="文件、程序的图标显示不正确或丢失"></a>文件、程序的图标显示不正确或丢失</h1><p>Win R 打开 「运行」, 然后输入 <code>%localappdata%</code>, 删掉里面的「IconCache.db」文件, 重启「资源管理器」. 「注意, IconCache.db 是隐藏文件哦~」</p>
+<h1 id="文件-程序的图标显示不正确或丢失"><a href="#文件-程序的图标显示不正确或丢失" class="headerlink" title="文件, 程序的图标显示不正确或丢失"></a>文件, 程序的图标显示不正确或丢失</h1><p>Win R 打开 「运行」, 然后输入 <code>%localappdata%</code>, 删掉里面的「IconCache.db」文件, 重启「资源管理器」. 「注意, IconCache.db 是隐藏文件哦~」</p>
 <h1 id="资源管理器没有启动"><a href="#资源管理器没有启动" class="headerlink" title="资源管理器没有启动"></a>资源管理器没有启动</h1><p>资源管理器没有启动, 表现为没有桌面, 没有任务栏, 这样就无法通过鼠标操作电脑, 只能通过键盘操作. </p>
 <p>解决办法有两种: </p>
 <ol>
@@ -845,7 +1105,7 @@ int main()
 </ol>
 <h1 id="chm-文件打开后无法显示内容"><a href="#chm-文件打开后无法显示内容" class="headerlink" title=".chm 文件打开后无法显示内容"></a>.chm 文件打开后无法显示内容</h1><p>从网上下载的离线技术文档很多都是.chm后缀, 打开后不显示内容是因为文件被锁定了. </p>
 <p>右键-&gt;属性-&gt;在「解除锁定」前面打勾-&gt;应用-&gt;确定</p>
-<h1 id="如何彻底卸载掉-QQ、搜狗、360、百度-等「安全」软件"><a href="#如何彻底卸载掉-QQ、搜狗、360、百度-等「安全」软件" class="headerlink" title="如何彻底卸载掉 QQ、搜狗、360、百度 等「安全」软件"></a>如何彻底卸载掉 QQ、搜狗、360、百度 等「安全」软件</h1><p>解决办法: 不安装这些软件. </p>
+<h1 id="如何彻底卸载掉-QQ-搜狗-360-百度-等「安全」软件"><a href="#如何彻底卸载掉-QQ-搜狗-360-百度-等「安全」软件" class="headerlink" title="如何彻底卸载掉 QQ, 搜狗, 360, 百度 等「安全」软件"></a>如何彻底卸载掉 QQ, 搜狗, 360, 百度 等「安全」软件</h1><p>解决办法: 不安装这些软件. </p>
 <h1 id="使用-DOS-命令合并多个-TS-流文件「-ts文件」"><a href="#使用-DOS-命令合并多个-TS-流文件「-ts文件」" class="headerlink" title="使用 DOS 命令合并多个 TS 流文件「.ts文件」"></a>使用 DOS 命令合并多个 TS 流文件「.ts文件」</h1><p><code>copy/b 待合并文件绝对目录 新文件的绝对目录</code> 「<strong>路径中不能存在空格</strong>」</p>
 <ul>
 <li><p>示例: <code>copy/b  E:\temps\*.ts  E:\temps\new.ts</code></p>
@@ -904,7 +1164,15 @@ int main()
 <h1 id="如何比较两个超大的-包含几万条数据的-Excel-文件"><a href="#如何比较两个超大的-包含几万条数据的-Excel-文件" class="headerlink" title="如何比较两个超大的, 包含几万条数据的 Excel 文件"></a>如何比较两个超大的, 包含几万条数据的 Excel 文件</h1><ol>
 <li><p>打开 Excel 文件, 将文件另存为 <code>.CSV</code> 文件.</p>
 </li>
-<li><p>使用第三方的文本对比软件对比即可. 推荐使用 <code>Diffinity</code>, 官网: <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJ1ZWh1bWFuZGVzaWduLnNlL3NfZGlmZmluaXR5LnBocA==">Diffinity<i class="fa fa-external-link-alt"></i></span>.</p>
+<li><p>使用第三方的文本对比软件对比即可. 推荐使用 <code>Diffinity</code>, 官网: <span class="exturl" data-url="aHR0cHM6Ly93d3cudHJ1ZWh1bWFuZGVzaWduLnNlL3NfZGlmZmluaXR5LnBocA==">Diffinity<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ol>
+<h1 id="Excel-中数字最后几位总是-0-无法修改"><a href="#Excel-中数字最后几位总是-0-无法修改" class="headerlink" title="Excel 中数字最后几位总是 0, 无法修改!"></a>Excel 中数字最后几位总是 0, 无法修改!</h1><ol>
+<li><p>出现这个问题的原因是: Excepl 对数字只保留前 15 位为有效数字, 后面的数字就只保存为 0 了.</p>
+</li>
+<li><p>解决方案: 在数字最前面加一个单引号: <code>&#39;</code>. 如: <code>&#39;827389791635671528358</code>.</p>
+</li>
+<li><p>Excel 的单元格中, 如果第一个字符是单引号, Excel 并不会将其解释为单引号, 而是解释为特殊字符, 功能是将其后的文本强制使用字符串形式进行保存.</p>
 </li>
 </ol>
 <h1 id="设置-Windows-访问不同-IP-时使用不同的网络"><a href="#设置-Windows-访问不同-IP-时使用不同的网络" class="headerlink" title="设置 Windows 访问不同 IP 时使用不同的网络"></a>设置 Windows 访问不同 IP 时使用不同的网络</h1><p>这个效果是通过设置 Windows 路由表实现的.</p>
@@ -947,7 +1215,7 @@ int main()
 <p>作用: 添加<strong>普通</strong>路由规则, 指向内网网关. 用于访问内网.</p>
 </li>
 </ol>
-<h1 id="桌面上的文件不能拖动"><a href="#桌面上的文件不能拖动" class="headerlink" title="桌面上的文件不能拖动"></a>桌面上的文件不能拖动</h1><p>有时候桌面上的文件会变得无法拖动, 当然绝对不是设置了 &quot;自动排列&quot; 这种低级失误, 这时候按 2 下 Esc 键, 有奇效哦! (如果不行, 别打我, 反正我电脑可以!)</p>
+<h1 id="桌面上的文件不能拖动"><a href="#桌面上的文件不能拖动" class="headerlink" title="桌面上的文件不能拖动"></a>桌面上的文件不能拖动</h1><p>有时候桌面上的文件会变得无法拖动, 当然绝对不是设置了 &quot;自动排列&quot; 这种低级失误, 这时候按 2 下 <kbd>ESC</kbd> 键, 有奇效哦! (如果不行, 别打我, 反正我电脑可以!)</p>
 <h1 id="常用-Win-组合快捷键-Windows-10"><a href="#常用-Win-组合快捷键-Windows-10" class="headerlink" title="常用 Win 组合快捷键 ( Windows 10)"></a>常用 Win 组合快捷键 ( Windows 10)</h1><p>Win 键可以说就是 Windows 的系统按键, 所以 Win 的组合快捷键都是和 Windows 操作相关的. </p>
 <ul>
 <li><code>Win Q</code> : 打开 搜索. </li>
@@ -962,7 +1230,7 @@ int main()
 <li><code>Win S</code> : 打开 搜索. </li>
 <li><code>Win D</code> : <font color=red>显示 Windows 桌面, 再次按下 <code>Win D</code> 返回之前的页面. </font></li>
 <li><code>Win F</code> : 打开 反馈中心. </li>
-<li><code>Win H</code> : 进行 Windows 语音听写, 前提是当前焦点在一个文本编辑器上, 如记事本.  ( 这个功能&quot;超棒&quot;, 只是语音识别不准确而已, 只是支持的应用特少而已, 只是使用语音输入后不能进行手动输入, 必须要关闭文件重新打开之后才能正常输入而已...呃...) </li>
+<li><code>Win H</code> : 进行 Windows 语音听写, 前提是当前焦点在一个文本编辑器上, 如记事本.  ( 这个功能 &quot;超棒&quot;, 只是语音识别不准确而已, 只是支持的应用特别少而已, 只是使用语音输入后必须关闭文件重新打开之后才能正常使用键盘输入而已...嗯...就这样...) </li>
 <li><code>Win K</code> : 打开 连接, 检测外部显示设备. </li>
 <li><code>Win L</code> : 实现 快速锁屏. </li>
 <li><code>Win ;</code> : 打开 Windows 表情输入. </li>
@@ -993,15 +1261,11 @@ int main()
 </ul>
 <h1 id="常用-Alt-组合快捷键"><a href="#常用-Alt-组合快捷键" class="headerlink" title="常用 Alt 组合快捷键"></a>常用 Alt 组合快捷键</h1><p>Alt 主要和软件的菜单相关. </p>
 <ul>
-<li><code>Alt 双击</code> : <font color=red>快速查看文件、文件夹的属性. </font></li>
+<li><code>Alt 左键双击</code> : <font color=red>快速查看文件, 文件夹的属性.</font></li>
 <li><code>Alt Table</code> : 切换应用程序. </li>
 </ul>
-<h1 id="定制化"><a href="#定制化" class="headerlink" title="定制化"></a>定制化</h1><p>1、按下 Win R, 输入 <code>shell:sendto</code>, 在之后的页面中就可以修改右键菜单中的「发送到」了. </p>
-<h1 id="提高效率"><a href="#提高效率" class="headerlink" title="提高效率"></a>提高效率</h1><ul>
-<li>在高级文本编辑器中, 按住 Shift, 再按「←」「→」方向键, 可以选中单个字符, 「↑」「↓」方向键可以换行选中. 用于快速剪切. </li>
-<li>在资源管理器中, 选择文件时, 按住 Ctrl 可以选择任意文件. 按住 Shift 可以选择两次点击位置中间所有的文件. </li>
-<li>F2 重命名. </li>
-<li>F5 刷新. </li>
+<h1 id="定制化"><a href="#定制化" class="headerlink" title="定制化"></a>定制化</h1><ul>
+<li>按下 Win R, 输入 <code>shell:sendto</code>, 在之后的页面中就可以修改右键菜单中的「发送到」了. </li>
 </ul>
 ]]></content>
       <categories>
@@ -1013,7 +1277,7 @@ int main()
   </entry>
   <entry>
     <title>重装系统-Googosoft</title>
-    <url>/computerbasics/recovery_googosoft_computer.html</url>
+    <url>/computer/recovery_googosoft_computer.html</url>
     <content><![CDATA[<a id="more"></a>
 
 <h1 id="启用-Administrator-账号"><a href="#启用-Administrator-账号" class="headerlink" title="启用 Administrator 账号"></a>启用 Administrator 账号</h1><h1 id="修改-IP"><a href="#修改-IP" class="headerlink" title="修改 IP"></a>修改 IP</h1><blockquote>
@@ -1035,8 +1299,8 @@ int main()
 <blockquote>
 <p><code>密码: googosoft@123</code></p>
 </blockquote>
-<h1 id="4、安装-PLSQL"><a href="#4、安装-PLSQL" class="headerlink" title="4、安装 PLSQL"></a>4、安装 PLSQL</h1><p>安装 PLSQL, 打开, 进行汉化以及破解. </p>
-<h1 id="5、安装-Oracle"><a href="#5、安装-Oracle" class="headerlink" title="5、安装 Oracle"></a>5、安装 Oracle</h1><blockquote>
+<h1 id="4-安装-PLSQL"><a href="#4-安装-PLSQL" class="headerlink" title="4, 安装 PLSQL"></a>4, 安装 PLSQL</h1><p>安装 PLSQL, 打开, 进行汉化以及破解. </p>
+<h1 id="5-安装-Oracle"><a href="#5-安装-Oracle" class="headerlink" title="5, 安装 Oracle"></a>5, 安装 Oracle</h1><blockquote>
 <p>安装 <code>Oracle Database</code>, <strong>不要修改子路径</strong>, 不要安装 <code>Oracle Client</code>.</p>
 </blockquote>
 <blockquote>
@@ -1053,17 +1317,17 @@ scott123
 scott123
 <span class="token number">192.168</span><span class="token number">.10</span><span class="token number">.237</span><span class="token operator">/</span>sdzc0216<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="6、设置-Windows-功能"><a href="#6、设置-Windows-功能" class="headerlink" title="6、设置 Windows 功能"></a>6、设置 Windows 功能</h1><blockquote>
+<h1 id="6-设置-Windows-功能"><a href="#6-设置-Windows-功能" class="headerlink" title="6, 设置 Windows 功能"></a>6, 设置 Windows 功能</h1><blockquote>
 <p>打开 Windows 功能. 开启所有的 Internet 功能, 之后重启. </p>
 </blockquote>
 <blockquote>
 <p>打开 .Net Framework 3.5, 包含 2.0, 3.0</p>
 </blockquote>
-<h1 id="8、安装-VS-2005"><a href="#8、安装-VS-2005" class="headerlink" title="8、安装 VS 2005"></a>8、安装 VS 2005</h1><blockquote>
+<h1 id="8-安装-VS-2005"><a href="#8-安装-VS-2005" class="headerlink" title="8, 安装 VS 2005"></a>8, 安装 VS 2005</h1><blockquote>
 <p>VS 2005, 自定义安装. <font color='red'>切记安装路径中不能带有小括号. 因为 Oracle 数据库不识别小括号. </font></p>
 </blockquote>
 <blockquote>
-<p><strong>只安装 Web、C#、水晶报表</strong>.</p>
+<p><strong>只安装 Web, C#, 水晶报表</strong>.</p>
 </blockquote>
 <blockquote>
 <p>使用 <code>VS 2005</code>, 尝试连接: </p>
@@ -1084,7 +1348,7 @@ scott123
 <blockquote>
 <p>用户项模板位置: <code>Microsoft Visual Studio 8/Common7/IDE/ItemTemplates </code></p>
 </blockquote>
-<h1 id="9、安装-VSS-2005"><a href="#9、安装-VSS-2005" class="headerlink" title="9、安装 VSS 2005"></a>9、安装 VSS 2005</h1><p>VSS 2005, 项目源码管理器. </p>
+<h1 id="9-安装-VSS-2005"><a href="#9-安装-VSS-2005" class="headerlink" title="9, 安装 VSS 2005"></a>9, 安装 VSS 2005</h1><p>VSS 2005, 项目源码管理器. </p>
 ]]></content>
       <categories>
         <category>ComputerBasics</category>
@@ -1095,7 +1359,7 @@ scott123
   </entry>
   <entry>
     <title>重装系统-Personal</title>
-    <url>/computerbasics/recovery_personal_computer.html</url>
+    <url>/computer/recovery_personal_computer.html</url>
     <content><![CDATA[<a id="more"></a>
 
 <h1 id="账户名称设置"><a href="#账户名称设置" class="headerlink" title="账户名称设置"></a>账户名称设置</h1><p>重装系统时, <font color='red'> <strong>不要用微软账户登录, 而是使用本地账户登陆</strong> </font>, 此时系统盘中账户文件夹的名称就是本地账户的名称, 之后再用微软账户登陆, 用户文件夹的名字就不会采用微软账户邮箱的前四个字母了. </p>
@@ -1112,8 +1376,8 @@ scott123
 <ul>
 <li>设置 Win+E 打开 &quot;此电脑&quot;. </li>
 <li>清除文件资源管理器的历史纪录. </li>
-<li>设置 &quot;快速访问&quot; 不显示最近使用的文件、文件夹. </li>
-<li>显示文件后缀名、始终显示隐藏文件. </li>
+<li>设置 &quot;快速访问&quot; 不显示最近使用的文件, 文件夹. </li>
+<li>显示文件后缀名, 始终显示隐藏文件. </li>
 <li>用彩色显示加密或压缩的 NTFS 文件. </li>
 <li>在标题栏中显示完整路径. </li>
 </ul>
@@ -1152,6 +1416,195 @@ scott123
       </categories>
       <tags>
         <tag>Recovery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo + Github Pages 搭建个人博客</title>
+    <url>/hexo/hexo_blog.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>搭建个人博客的流程大概是: 先搭建博客环境, 就像你要玩电脑游戏, 首先得先买一台电脑一样. <del>这不废话吗</del> 之后在电脑上创建博客的本地文件, 最后再将创建好的本地文件上传到网上就可以了. 这里我使用的是 Hexo 和 Github Pages 来搭建个人博客. </p>
+<h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><p>进入 <span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS8=">Git 官方网站<i class="fa fa-external-link-alt"></i></span> 下载安装即可. </p>
+<p>验证方法: 在桌面右键, 只要出现 Git GUI Here 和 Git Bash Here 就表示安装成功了. </p>
+<h2 id="安装-Nodejs"><a href="#安装-Nodejs" class="headerlink" title="安装 Nodejs"></a>安装 Nodejs</h2><p>进入 <span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL2VuLw==">Nodejs 官方网站<i class="fa fa-external-link-alt"></i></span> 下载安装即可. </p>
+<p>LTS 版本即可满足使用, 可以在 cmd 中使用 <code>node -v</code> 和 <code>npm -v</code> 进行验证, 出现版本号就说明成功了. </p>
+<h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>安装 Hexo 之前, 如果你想要更改 Hexo 的安装位置 (Hexo 默认会安装在 C 盘), 可以在 cmd 中输入下面的命令, 记得把路径改为自己的: </p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">npm config set prefix &quot;H:\Programs Computer\NodeGobal&quot;
+npm config set cache &quot;H:\Programs Computer\NodeCache&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>之后可以使用以下命令查看设置:</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">npm config get prefix
+npm config get cache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>先切换 npm 源: 打开 cmd, 输入下面的命令:</p>
+<p><code>npm config set registry https://registry.npm.taobao.org</code></p>
+<p>之后安装 Hexo: </p>
+<p><code>npm install -g hexo</code></p>
+<h1 id="创建本地博客"><a href="#创建本地博客" class="headerlink" title="创建本地博客"></a>创建本地博客</h1><ol>
+<li>新建一个文件夹, 来放置本地博客, 名字以及路径自己决定. 我的是: F:\WorkSpace\HexoBlog</li>
+<li>进入这个空的文件夹, 点击鼠标右键, 选择 Git Bash Here, 会弹出一个类似 cmd 的窗口, 这个窗口会一直使用, 不要关闭, 如果不小心关闭了, 再次回到这个文件夹中, 在空白处点击鼠标右键, 选择 Git Bash Here 即可再次打开. </li>
+<li>初始化本地博客, 在 Git Bash Here 中输入: <code>hexo init</code> </li>
+<li>安装默认依赖包, 在 Git Bash Here 中输入: <code>npm install</code></li>
+<li>生成静态文件, 在 Git Bash Here 中输入: <code>hexo generate</code> 或者命令的缩写 <code>hexo g</code>, 此时网页就创建好了, 下面我们来预览一下博客的样子. </li>
+<li>开启服务, 在 Git Bash Here 中输入 <code>hexo server</code> 或者命令的缩写 <code>hexo s</code>, 服务默认开启网址: <span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo0MDAwLw==">http://localhost:4000<i class="fa fa-external-link-alt"></i></span> , 此时在浏览器中即可预览博客. </li>
+</ol>
+<p>【注】</p>
+<ul>
+<li>预览完毕后记得按 <code>Ctrl + C</code> 停止服务. </li>
+<li>如果不小心按了<code>Ctrl + C</code> 停止了服务, 再次输入 <code>hexo s</code> 开启服务即可. </li>
+<li>如果 <span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo0MDAwLw==">http://localhost:4000<i class="fa fa-external-link-alt"></i></span> 无法预览博客, 可能是 4000 端口被占用了, 我们先按 Ctrl + C 停止服务, 然后使用下面的语句切换端口:  <code>hexo server -p 端口号</code> , 这里的端口号从 4000 往上加即可, 如: 4001, 具体使用哪个不用太纠结, 可以预览博客即可. </li>
+</ul>
+<h1 id="关联-GitHub-和-Hexo"><a href="#关联-GitHub-和-Hexo" class="headerlink" title="关联 GitHub 和 Hexo"></a>关联 GitHub 和 Hexo</h1><p>经过前面两个步骤, 我们已经在本地创建好了博客, 也可以通过本地服务进行预览, 但是这样网页仅仅保存在本地, 网络上的人无法查看的, 此时我们就要将本地博客和 GitHub Pages 关联, 或者说上传到 GitHub 上, 这样所有人都可以查看了. </p>
+<h2 id="开启-GitHub-Pages"><a href="#开启-GitHub-Pages" class="headerlink" title="开启 GitHub Pages"></a>开启 GitHub Pages</h2><p>GitHub Pages: 其本来用于介绍托管在 GitHub 上的项目, 由于它的空间免费稳定, 因此适合用来搭建个人博客, 但是有以下注意点: </p>
+<ul>
+<li>每个 GitHub 账号只能有一个仓库来存放个人主页, </li>
+<li>仓库的名字必须是 <code>username.github.io</code>, </li>
+<li>通过 <code>http://username.github.io</code> 来访问个人主页, </li>
+<li>个人主页的网站内容是在 master 分支下. </li>
+</ul>
+<p>接下来我们创建个人主页仓库: 在 GitHub 首页右上角头像左侧的加号处, 点击: New repository, 仓库名字必须是: <code>你的 Github 用户名.github.io</code>, 下面选择 Public, 下面的选项是让你是否在仓库中初始化一个 README.md 文件, 自己随意. 最后点击创建仓库, 这样 GitHub Pages 就创建好了. </p>
+<h2 id="获取-SSH-密钥"><a href="#获取-SSH-密钥" class="headerlink" title="获取 SSH 密钥"></a>获取 SSH 密钥</h2><p>至此, 我们的本地博客和 GitHub Pages 都准备好了, 下面就可以把网页部署 (上传) 到 GitHub Pages 上了. 在部署之前, 我们先设置一下 SSH 密钥. 因为如果不配置 SSH 密钥, 每次部署本地博客到 GitHub Pages 时, 都要输入 Github 账号密码, 非常繁琐. </p>
+<p>获取 SSH 密钥: 如果你是第一次使用 Git, 要先配置 Git 的用户名和邮箱, 在 Git Bash Here 中输入: </p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git config --global user.name &quot;username&quot;
+git config --global user.email &quot;mail&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>上面的 username 改成你 GitHub 的用户名, mail 改成你 GitHub 的邮箱. 之后再次输入: </p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ssh-keygen -t rsa -C &quot;mail&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>mail 要用你自己的 Github 邮箱. 回车后会依次出现三个选项, 直接全部回车即可. 这样 SSH 密钥就生成了, 接下来需要密钥填写到 GitHub 上. </p>
+<p>在 C:\Users\用户名\.ssh目录中, 会出现这样两个文件: <code>id_rsa</code> 和 <code>id_rsa.pub</code></p>
+<p>打开 <code>id_rsa.pub</code> 文件, 复制里面所有的内容. </p>
+<p>之后打开浏览器, 登录 GitHub, 依次点击头像下的 Settings, 左面的 SSH and GPG keys, 右上角的 New SSH key, 填写标题时, 最好和你那个网页文件夹的名字一致, 方便记忆和日后查找.<br>点击 Add SSH key 并且验证 GitHub 密码, 即可完成密钥的添加. </p>
+<h2 id="部署本地博客到-GitHub-Pages"><a href="#部署本地博客到-GitHub-Pages" class="headerlink" title="部署本地博客到 GitHub Pages"></a>部署本地博客到 GitHub Pages</h2><p>之前的步骤中 SSH 密钥已经设置好了, 接下来就可以部署本地博客到 Github Pages 了, 在这里不建议直接使用 Git 进行部署, 而是使用 Hexo 中的 Hexo deploy 插件进行一键式部署, 方便快捷. </p>
+<p>首先要安装 Hexo deploy 插件, 还是在 Git Bash Here 中输入命令: </p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">npm install hexo-deployer-git --save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>之后打开网页根目录下的 _config.yml 文件, 文件的末尾是这样的: </p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf"># Deployment
+## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html
+deploy:
+  type:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>修改成下面这样: </p>
+<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf"># Deployment
+## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html
+deploy:
+  type: git
+  repo: git@github.com:KurohaKirito&#x2F;KurohaKirito.github.io.git
+  branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>repo 就是你仓库的地址: 有 SSH 和 HTTPS 两种格式, 你选择哪种都可以. 我选择的是 SSH 格式. 在你仓库页面上点击绿色按钮 <code>Clone or download</code> 即可获得仓库地址. </p>
+<p>配置完成之后, 执行部署命令, 还是在 Git Bash Here 中输入命令: <code>hexo deploy</code> 或者命令的缩写: <code>hexo d</code>, 输入 GitHub 用户名, 密码即可. </p>
+<p>验证方法: 在浏览器中输入网址: <span class="exturl" data-url="aHR0cHM6Ly/nlKjmiLflkI0uZ2l0aHViLmlvLw==">https://用户名.github.io<i class="fa fa-external-link-alt"></i></span> , 用户名修改为你自己的 Github 用户名, 如果能看到之前博客的样子, 就说明部署成功了! </p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="常用-Hexo-命令"><a href="#常用-Hexo-命令" class="headerlink" title="常用 Hexo 命令"></a>常用 Hexo 命令</h2><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">hexo help</td>
+<td align="left">查看帮助</td>
+</tr>
+<tr>
+<td align="left">hexo -v</td>
+<td align="left">查看本地环境</td>
+</tr>
+<tr>
+<td align="left">hexo init</td>
+<td align="left">初始化 hexo 目录</td>
+</tr>
+<tr>
+<td align="left">hexo new &quot;postName&quot;</td>
+<td align="left">新建文章</td>
+</tr>
+<tr>
+<td align="left">hexo new page &quot;pageName&quot;</td>
+<td align="left">新建页面</td>
+</tr>
+<tr>
+<td align="left">hexo gernerate</td>
+<td align="left">生成网页</td>
+</tr>
+<tr>
+<td align="left">hexo server</td>
+<td align="left">本地预览</td>
+</tr>
+<tr>
+<td align="left">hexo deploy / hexo d</td>
+<td align="left">部署到远程服务器</td>
+</tr>
+<tr>
+<td align="left">hexo clean</td>
+<td align="left">清除缓存 建议每次执行命令前先清理缓存</td>
+</tr>
+<tr>
+<td align="left">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</td>
+<td align="left">一键生成部署</td>
+</tr>
+<tr>
+<td align="left">hexo clean ; hexo g ; hexo s</td>
+<td align="left">一键生成部署</td>
+</tr>
+</tbody></table>
+<h2 id="hexo-主题"><a href="#hexo-主题" class="headerlink" title="hexo 主题"></a>hexo 主题</h2><p>下面是我搜集的一些主题及其项目开源地址: </p>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1pFUk9LSVNFS0kvaGV4by10aGVtZS1nYWw=">Gal<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lzY29kZXIvaGV4by10aGVtZS1pbmRpZ28=">Indigo<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2x1dW1hbi9oZXhvLXRoZW1lLXNwZms=">Spfk<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NtYWNrZ2cvaGV4by10aGVtZS1zbWFja2Rvd24=">Smackdown<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21hb2NodW5ndWFuZy9ibGFjay1ibHVl">Black-blue<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoYW5hTWFpZC9oZXhvLXRoZW1lLXNoYW5h">Shana<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpdHRlbi9oZXhvLXRoZW1lLXlpbGlh">Yilia<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dpbnRlcmxhbmQxOTg5L2hleG8tdGhlbWUtd2ludGVybGFuZA==">Winterland<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RlY2hsYWhvbWEvaGV4by10aGVtZS1va2Nqcw==">OKCjs<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpbmc1L2hleG8tdGhlbWUtYW5pbWFzdGFycw==">AnimaStars<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NvbmV5Y29kZS9jb25leQ==">Coney<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hzaWhvaHVhbmcva2lkZG9jaGFu">Kiddochan<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW5nbWluZy9sYW5kc2NhcGUtcGx1cw==">Landscapeplus<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lpc3NuYW4vaGV4by10aGVtZS1uZXh0">NexT<i class="fa fa-external-link-alt"></i></span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3RoZW1lcy8=">Hexo Themes Net<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+<h2 id="警告与错误的处理"><a href="#警告与错误的处理" class="headerlink" title="警告与错误的处理"></a>警告与错误的处理</h2><h3 id="Warning-LF-will-be-replaced-by-CRLF"><a href="#Warning-LF-will-be-replaced-by-CRLF" class="headerlink" title="Warning: LF will be replaced by CRLF"></a>Warning: LF will be replaced by CRLF</h3><p>问题原因: 不同操作系统所使用的换行符是不一样的: </p>
+<ul>
+<li><p>Unix / Linux 采用换行符 LF 表示下一行 (LF: LineFeed 换行)</p>
+</li>
+<li><p>Dos / Windows 采用 回车 + 换行 CRLF 表示下一行 (CRLF: CarriageReturn LineFeed 回车换行)</p>
+</li>
+<li><p>Mac OS 采用回车 CR 表示下一行 (CR: CarriageReturn 回车)</p>
+</li>
+</ul>
+<p>在 Git 中, 可以通过以下命令来显示当前你的 Git 中采取哪种对待换行符的方式: </p>
+<p><code>git config core.autocrlf</code></p>
+<p>此命令会有三种输出: <code>true</code>, <code>false</code>, <code>input</code></p>
+<ul>
+<li><p>true: Git 会将你 add 的所有文件视为文本文件, 将结尾的 CRLF 转换为 LF, 而 checkout 时会再将文件的 LF 格式转为 CRLF 格式. </p>
+</li>
+<li><p>false: line endings 不做任何改变, 文本文件保持其原来的样子. </p>
+</li>
+<li><p>input: add 时 Git 会把 CRLF 转换为 LF, 而 check 时仍旧为 LF, 所以 Windows 操作系统不建议设置此值. </p>
+</li>
+</ul>
+<p>解决办法: 将 core.autocrlf 设为 false 即可解决这个问题, 不过如果你跨平台工作的话, 还是需要考虑一下. </p>
+<p>如果你想要将 core autocrlf 设置为 true , 有一个需要慎重的地方, 当你上传一个二进制文件, Git 可能会将二进制文件误以为是文本文件, 从而也会修改你的二进制文件, 从而产生隐患. </p>
+<p>如果你不跨平台的话, 进行如下设置即可: <code>git config --global core.autocrlf false</code></p>
+<h3 id="Error-validation-failed"><a href="#Error-validation-failed" class="headerlink" title="Error: validation failed"></a>Error: validation failed</h3><p>原因: issue 的 id 有长度限制! 最大长度限制是 50 个字符. </p>
+<p>每个 issue 有两个标签, 一个是 gitment, 另一个是 id. 将 id 进行如下配置: <code>id: &#39;&lt;%= page.date %&gt;&#39;</code>, 因为日期是永远不会超出 50 个字符的. </p>
+<h3 id="访问-GitHub-慢的解决方法"><a href="#访问-GitHub-慢的解决方法" class="headerlink" title="访问 GitHub 慢的解决方法"></a>访问 GitHub 慢的解决方法</h3><p>在国内 Github 网站是可以访问, 但是由于网络代理商的原因, 造成访问速度很慢. 可以通过修改本地 host 文件的办法, 可以提高访问速度: </p>
+<p>打开 Windows 下 host 文件 (<code>C:\Windows\System32\drivers\etc\hosts</code>)</p>
+<p>在最后面添加:</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">151.101.13.194 github.global.ssl.fastly.net
+192.30.253.113 github.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>重启浏览器或者刷新 DNS 缓存, 告诉电脑 hosts 文件已经被修改. </p>
+<p>刷新 DNS 缓存的方法: 在命令行中输入 <code>ipconfig /flushdns</code> 刷新 DNS 缓存. </p>
+]]></content>
+      <categories>
+        <category>Hexo_Blog</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1557,200 +2010,11 @@ scott123
       </tags>
   </entry>
   <entry>
-    <title>Hexo + Github Pages 搭建个人博客</title>
-    <url>/hexo/hexo_blog.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>搭建个人博客的流程大概是: 先搭建博客环境, 就像你要玩电脑游戏, 首先得先买一台电脑一样. <del>这不废话吗</del> 之后在电脑上创建博客的本地文件, 最后再将创建好的本地文件上传到网上就可以了. 这里我使用的是 Hexo 和 Github Pages 来搭建个人博客. </p>
-<h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><p>进入 <span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS8=">Git 官方网站<i class="fa fa-external-link-alt"></i></span> 下载安装即可. </p>
-<p>验证方法: 在桌面右键, 只要出现 Git GUI Here 和 Git Bash Here 就表示安装成功了. </p>
-<h2 id="安装-Nodejs"><a href="#安装-Nodejs" class="headerlink" title="安装 Nodejs"></a>安装 Nodejs</h2><p>进入 <span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL2VuLw==">Nodejs 官方网站<i class="fa fa-external-link-alt"></i></span> 下载安装即可. </p>
-<p>LTS 版本即可满足使用, 可以在 cmd 中使用 <code>node -v</code> 和 <code>npm -v</code> 进行验证, 出现版本号就说明成功了. </p>
-<h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>安装 Hexo 之前, 如果你想要更改 Hexo 的安装位置 (Hexo 默认会安装在 C 盘), 可以在 cmd 中输入下面的命令, 记得把路径改为自己的: </p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">npm config set prefix &quot;H:\Programs Computer\NodeGobal&quot;
-npm config set cache &quot;H:\Programs Computer\NodeCache&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>之后可以使用以下命令查看设置:</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">npm config get prefix
-npm config get cache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>先切换 npm 源: 打开 cmd, 输入下面的命令:</p>
-<p><code>npm config set registry https://registry.npm.taobao.org</code></p>
-<p>之后安装 Hexo: </p>
-<p><code>npm install -g hexo</code></p>
-<h1 id="创建本地博客"><a href="#创建本地博客" class="headerlink" title="创建本地博客"></a>创建本地博客</h1><ol>
-<li>新建一个文件夹, 来放置本地博客, 名字以及路径自己决定. 我的是: F:\WorkSpace\HexoBlog</li>
-<li>进入这个空的文件夹, 点击鼠标右键, 选择 Git Bash Here, 会弹出一个类似 cmd 的窗口, 这个窗口会一直使用, 不要关闭, 如果不小心关闭了, 再次回到这个文件夹中, 在空白处点击鼠标右键, 选择 Git Bash Here 即可再次打开. </li>
-<li>初始化本地博客, 在 Git Bash Here 中输入: <code>hexo init</code> </li>
-<li>安装默认依赖包, 在 Git Bash Here 中输入: <code>npm install</code></li>
-<li>生成静态文件, 在 Git Bash Here 中输入: <code>hexo generate</code> 或者命令的缩写 <code>hexo g</code>, 此时网页就创建好了, 下面我们来预览一下博客的样子. </li>
-<li>开启服务, 在 Git Bash Here 中输入 <code>hexo server</code> 或者命令的缩写 <code>hexo s</code>, 服务默认开启网址: <span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo0MDAwLw==">http://localhost:4000<i class="fa fa-external-link-alt"></i></span> , 此时在浏览器中即可预览博客. </li>
-</ol>
-<p>【注】</p>
-<ul>
-<li>预览完毕后记得按 <code>Ctrl + C</code> 停止服务. </li>
-<li>如果不小心按了<code>Ctrl + C</code> 停止了服务, 再次输入 <code>hexo s</code> 开启服务即可. </li>
-<li>如果 <span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo0MDAwLw==">http://localhost:4000<i class="fa fa-external-link-alt"></i></span> 无法预览博客, 可能是 4000 端口被占用了, 我们先按 Ctrl + C 停止服务, 然后使用下面的语句切换端口:  <code>hexo server -p 端口号</code> , 这里的端口号从 4000 往上加即可, 如: 4001, 具体使用哪个不用太纠结, 可以预览博客即可. </li>
-</ul>
-<h1 id="关联-GitHub-和-Hexo"><a href="#关联-GitHub-和-Hexo" class="headerlink" title="关联 GitHub 和 Hexo"></a>关联 GitHub 和 Hexo</h1><p>经过前面两个步骤, 我们已经在本地创建好了博客, 也可以通过本地服务进行预览, 但是这样网页仅仅保存在本地, 网络上的人无法查看的, 此时我们就要将本地博客和 GitHub Pages 关联, 或者说上传到 GitHub 上, 这样所有人都可以查看了. </p>
-<h2 id="开启-GitHub-Pages"><a href="#开启-GitHub-Pages" class="headerlink" title="开启 GitHub Pages"></a>开启 GitHub Pages</h2><p>GitHub Pages: 其本来用于介绍托管在 GitHub 上的项目, 由于它的空间免费稳定, 因此适合用来搭建个人博客, 但是有以下注意点: </p>
-<ul>
-<li>每个 GitHub 账号只能有一个仓库来存放个人主页, </li>
-<li>仓库的名字必须是 <code>username.github.io</code>, </li>
-<li>通过 <code>http://username.github.io</code> 来访问个人主页, </li>
-<li>个人主页的网站内容是在 master 分支下. </li>
-</ul>
-<p>接下来我们创建个人主页仓库: 在 GitHub 首页右上角头像左侧的加号处, 点击: New repository, 仓库名字必须是: <code>你的 Github 用户名.github.io</code>, 下面选择 Public, 下面的选项是让你是否在仓库中初始化一个 README.md 文件, 自己随意. 最后点击创建仓库, 这样 GitHub Pages 就创建好了. </p>
-<h2 id="获取-SSH-密钥"><a href="#获取-SSH-密钥" class="headerlink" title="获取 SSH 密钥"></a>获取 SSH 密钥</h2><p>至此, 我们的本地博客和 GitHub Pages 都准备好了, 下面就可以把网页部署 (上传) 到 GitHub Pages 上了. 在部署之前, 我们先设置一下 SSH 密钥. 因为如果不配置 SSH 密钥, 每次部署本地博客到 GitHub Pages 时, 都要输入 Github 账号密码, 非常繁琐. </p>
-<p>获取 SSH 密钥: 如果你是第一次使用 Git, 要先配置 Git 的用户名和邮箱, 在 Git Bash Here 中输入: </p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git config --global user.name &quot;username&quot;
-git config --global user.email &quot;mail&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>上面的 username 改成你 GitHub 的用户名, mail 改成你 GitHub 的邮箱. 之后再次输入: </p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ssh-keygen -t rsa -C &quot;mail&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>mail 要用你自己的 Github 邮箱. 回车后会依次出现三个选项, 直接全部回车即可. 这样 SSH 密钥就生成了, 接下来需要密钥填写到 GitHub 上. </p>
-<p>在 C:\Users\用户名\.ssh目录中, 会出现这样两个文件: <code>id_rsa</code> 和 <code>id_rsa.pub</code></p>
-<p>打开 <code>id_rsa.pub</code> 文件, 复制里面所有的内容. </p>
-<p>之后打开浏览器, 登录 GitHub, 依次点击头像下的 Settings, 左面的 SSH and GPG keys, 右上角的 New SSH key, 填写标题时, 最好和你那个网页文件夹的名字一致, 方便记忆和日后查找.<br>点击 Add SSH key 并且验证 GitHub 密码, 即可完成密钥的添加. </p>
-<h2 id="部署本地博客到-GitHub-Pages"><a href="#部署本地博客到-GitHub-Pages" class="headerlink" title="部署本地博客到 GitHub Pages"></a>部署本地博客到 GitHub Pages</h2><p>之前的步骤中 SSH 密钥已经设置好了, 接下来就可以部署本地博客到 Github Pages 了, 在这里不建议直接使用 Git 进行部署, 而是使用 Hexo 中的 Hexo deploy 插件进行一键式部署, 方便快捷. </p>
-<p>首先要安装 Hexo deploy 插件, 还是在 Git Bash Here 中输入命令: </p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">npm install hexo-deployer-git --save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>之后打开网页根目录下的 _config.yml 文件, 文件的末尾是这样的: </p>
-<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf"># Deployment
-## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html
-deploy:
-  type:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>修改成下面这样: </p>
-<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf"># Deployment
-## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html
-deploy:
-  type: git
-  repo: git@github.com:KurohaKirito&#x2F;KurohaKirito.github.io.git
-  branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>repo 就是你仓库的地址: 有 SSH 和 HTTPS 两种格式, 你选择哪种都可以. 我选择的是 SSH 格式. 在你仓库页面上点击绿色按钮 <code>Clone or download</code> 即可获得仓库地址. </p>
-<p>配置完成之后, 执行部署命令, 还是在 Git Bash Here 中输入命令: <code>hexo deploy</code> 或者命令的缩写: <code>hexo d</code>, 输入 GitHub 用户名、密码即可. </p>
-<p>验证方法: 在浏览器中输入网址: <span class="exturl" data-url="aHR0cHM6Ly/nlKjmiLflkI0uZ2l0aHViLmlvLw==">https://用户名.github.io<i class="fa fa-external-link-alt"></i></span> , 用户名修改为你自己的 Github 用户名, 如果能看到之前博客的样子, 就说明部署成功了! </p>
-<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="常用-Hexo-命令"><a href="#常用-Hexo-命令" class="headerlink" title="常用 Hexo 命令"></a>常用 Hexo 命令</h2><table>
-<thead>
-<tr>
-<th align="left">命令</th>
-<th align="left">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">hexo help</td>
-<td align="left">查看帮助</td>
-</tr>
-<tr>
-<td align="left">hexo -v</td>
-<td align="left">查看本地环境</td>
-</tr>
-<tr>
-<td align="left">hexo init</td>
-<td align="left">初始化 hexo 目录</td>
-</tr>
-<tr>
-<td align="left">hexo new &quot;postName&quot;</td>
-<td align="left">新建文章</td>
-</tr>
-<tr>
-<td align="left">hexo new page &quot;pageName&quot;</td>
-<td align="left">新建页面</td>
-</tr>
-<tr>
-<td align="left">hexo gernerate</td>
-<td align="left">生成网页</td>
-</tr>
-<tr>
-<td align="left">hexo server</td>
-<td align="left">本地预览</td>
-</tr>
-<tr>
-<td align="left">hexo deploy / hexo d</td>
-<td align="left">部署到远程服务器</td>
-</tr>
-<tr>
-<td align="left">hexo clean</td>
-<td align="left">清除缓存 建议每次执行命令前先清理缓存</td>
-</tr>
-<tr>
-<td align="left">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</td>
-<td align="left">一键生成部署</td>
-</tr>
-<tr>
-<td align="left">hexo clean ; hexo g ; hexo s</td>
-<td align="left">一键生成部署</td>
-</tr>
-</tbody></table>
-<h2 id="hexo-主题"><a href="#hexo-主题" class="headerlink" title="hexo 主题"></a>hexo 主题</h2><p>下面是我搜集的一些主题及其项目开源地址: </p>
-<ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1pFUk9LSVNFS0kvaGV4by10aGVtZS1nYWw=">Gal<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3lzY29kZXIvaGV4by10aGVtZS1pbmRpZ28=">Indigo<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2x1dW1hbi9oZXhvLXRoZW1lLXNwZms=">Spfk<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3NtYWNrZ2cvaGV4by10aGVtZS1zbWFja2Rvd24=">Smackdown<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL21hb2NodW5ndWFuZy9ibGFjay1ibHVl">Black-blue<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1NoYW5hTWFpZC9oZXhvLXRoZW1lLXNoYW5h">Shana<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xpdHRlbi9oZXhvLXRoZW1lLXlpbGlh">Yilia<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3dpbnRlcmxhbmQxOTg5L2hleG8tdGhlbWUtd2ludGVybGFuZA==">Winterland<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RlY2hsYWhvbWEvaGV4by10aGVtZS1va2Nqcw==">OKCjs<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpbmc1L2hleG8tdGhlbWUtYW5pbWFzdGFycw==">AnimaStars<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2NvbmV5Y29kZS9jb25leQ==">Coney<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hzaWhvaHVhbmcva2lkZG9jaGFu">Kiddochan<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3hpYW5nbWluZy9sYW5kc2NhcGUtcGx1cw==">Landscapeplus<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lpc3NuYW4vaGV4by10aGVtZS1uZXh0">NexT<i class="fa fa-external-link-alt"></i></span></li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3RoZW1lcy8=">Hexo Themes Net<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-<h2 id="警告与错误的处理"><a href="#警告与错误的处理" class="headerlink" title="警告与错误的处理"></a>警告与错误的处理</h2><h3 id="Warning-LF-will-be-replaced-by-CRLF"><a href="#Warning-LF-will-be-replaced-by-CRLF" class="headerlink" title="Warning: LF will be replaced by CRLF"></a>Warning: LF will be replaced by CRLF</h3><p>问题原因: 不同操作系统所使用的换行符是不一样的: </p>
-<ul>
-<li><p>Unix / Linux 采用换行符 LF 表示下一行 (LF: LineFeed 换行)</p>
-</li>
-<li><p>Dos / Windows 采用 回车 + 换行 CRLF 表示下一行 (CRLF: CarriageReturn LineFeed 回车换行)</p>
-</li>
-<li><p>Mac OS 采用回车 CR 表示下一行 (CR: CarriageReturn 回车)</p>
-</li>
-</ul>
-<p>在 Git 中, 可以通过以下命令来显示当前你的 Git 中采取哪种对待换行符的方式: </p>
-<p><code>git config core.autocrlf</code></p>
-<p>此命令会有三种输出: <code>true</code>、<code>false</code>、<code>input</code></p>
-<ul>
-<li><p>true: Git 会将你 add 的所有文件视为文本文件, 将结尾的 CRLF 转换为 LF, 而 checkout 时会再将文件的 LF 格式转为 CRLF 格式. </p>
-</li>
-<li><p>false: line endings 不做任何改变, 文本文件保持其原来的样子. </p>
-</li>
-<li><p>input: add 时 Git 会把 CRLF 转换为 LF, 而 check 时仍旧为 LF, 所以 Windows 操作系统不建议设置此值. </p>
-</li>
-</ul>
-<p>解决办法: 将 core.autocrlf 设为 false 即可解决这个问题, 不过如果你跨平台工作的话, 还是需要考虑一下. </p>
-<p>如果你想要将 core autocrlf 设置为 true , 有一个需要慎重的地方, 当你上传一个二进制文件, Git 可能会将二进制文件误以为是文本文件, 从而也会修改你的二进制文件, 从而产生隐患. </p>
-<p>如果你不跨平台的话, 进行如下设置即可: <code>git config --global core.autocrlf false</code></p>
-<h3 id="Error-validation-failed"><a href="#Error-validation-failed" class="headerlink" title="Error: validation failed"></a>Error: validation failed</h3><p>原因: issue 的 id 有长度限制! 最大长度限制是 50 个字符. </p>
-<p>每个 issue 有两个标签, 一个是 gitment, 另一个是 id. 将 id 进行如下配置: <code>id: &#39;&lt;%= page.date %&gt;&#39;</code>, 因为日期是永远不会超出 50 个字符的. </p>
-<h3 id="访问-GitHub-慢的解决方法"><a href="#访问-GitHub-慢的解决方法" class="headerlink" title="访问 GitHub 慢的解决方法"></a>访问 GitHub 慢的解决方法</h3><p>在国内 Github 网站是可以访问, 但是由于网络代理商的原因, 造成访问速度很慢. 可以通过修改本地 host 文件的办法, 可以提高访问速度: </p>
-<p>打开 Windows 下 host 文件 (<code>C:\Windows\System32\drivers\etc\hosts</code>)</p>
-<p>在最后面添加:</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">151.101.13.194 github.global.ssl.fastly.net
-192.30.253.113 github.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>重启浏览器或者刷新 DNS 缓存, 告诉电脑 hosts 文件已经被修改. </p>
-<p>刷新 DNS 缓存的方法: 在命令行中输入 <code>ipconfig /flushdns</code> 刷新 DNS 缓存. </p>
-]]></content>
-      <categories>
-        <category>Hexo_Blog</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何购买一款好的路由器</title>
     <url>/lifetips/how_to_buy_a_router.html</url>
     <content><![CDATA[<a id="more"></a>
 
-<h1 id="考虑因素一-频段与带宽"><a href="#考虑因素一-频段与带宽" class="headerlink" title="考虑因素一: 频段与带宽"></a>考虑因素一: 频段与带宽</h1><h2 id="单频、双频、三频"><a href="#单频、双频、三频" class="headerlink" title="单频、双频、三频"></a>单频、双频、三频</h2><p>早期的无线路由器只支持 2.4GHz 一个频段, 现在的主流无线路由器都支持 2.4GHz 和 5GHz 两个频段, 就是所谓的<strong>双频路由器</strong>. 也有部分高端路由器支持一个 2.4GHz 和两个 5GHz 频段, 就是<strong>三频路由器</strong>. </p>
+<h1 id="考虑因素一-频段与带宽"><a href="#考虑因素一-频段与带宽" class="headerlink" title="考虑因素一: 频段与带宽"></a>考虑因素一: 频段与带宽</h1><h2 id="单频-双频-三频"><a href="#单频-双频-三频" class="headerlink" title="单频, 双频, 三频"></a>单频, 双频, 三频</h2><p>早期的无线路由器只支持 2.4GHz 一个频段, 现在的主流无线路由器都支持 2.4GHz 和 5GHz 两个频段, 就是所谓的<strong>双频路由器</strong>. 也有部分高端路由器支持一个 2.4GHz 和两个 5GHz 频段, 就是<strong>三频路由器</strong>. </p>
 <ul>
 <li><strong>单频路由器</strong>: 只支持 2.4GHz 一个频段. </li>
 <li><strong>双频路由器</strong>: 支持一个 2.4GHz 和一个 5Ghz 共两个频段. </li>
@@ -1766,7 +2030,7 @@ deploy:
 <h1 id="考虑因素二-协议"><a href="#考虑因素二-协议" class="headerlink" title="考虑因素二: 协议"></a>考虑因素二: 协议</h1><h2 id="IEEE-802-11-协议簇是用于无线局域网通用的标准"><a href="#IEEE-802-11-协议簇是用于无线局域网通用的标准" class="headerlink" title="IEEE 802.11 协议簇是用于无线局域网通用的标准."></a>IEEE 802.11 协议簇是用于无线局域网通用的标准.</h2><p>常用的协议包括: </p>
 <ul>
 <li><strong>802.11a</strong>: 工作频率为 5GHz, 最大原始数据传输率为 54Mb/s. </li>
-<li><strong>802.11b</strong>: 其载波的频率为 2.4GHz, 可提供 1、2、5.5 及 11Mbit/s 的多重传送速度. </li>
+<li><strong>802.11b</strong>: 其载波的频率为 2.4GHz, 可提供 1, 2, 5.5 及 11Mbit/s 的多重传送速度. </li>
 <li><strong>802.11g</strong>: 其载波的频率为 2.4GHz（跟802.11b相同）, 共14个频段, 原始传送速度为 54Mbit/s, 净传输速度约为 24.7Mbit/s（跟802.11a相同）. 802.11g 的设备向下与 802.11b 兼容. </li>
 <li><strong>802.11n</strong>: 增加了对 MIMO (多用户输入多用户输出) 的支持, 允许 40MHz 的无线频宽, 最大传输速度理论值为 600Mbit/s. </li>
 <li><strong>802.11ac</strong>: 通过 5GHz 频带进行无线局域网通信. 理论上: </li>
@@ -1970,12 +2234,12 @@ deploy:
 </ul>
 <h2 id="千万不要一味追求高端"><a href="#千万不要一味追求高端" class="headerlink" title="千万不要一味追求高端"></a>千万不要一味追求高端</h2><h3 id="路由器在实际使用中是很难达到理论最高速度的"><a href="#路由器在实际使用中是很难达到理论最高速度的" class="headerlink" title="路由器在实际使用中是很难达到理论最高速度的."></a>路由器在实际使用中是很难达到理论最高速度的.</h3><ul>
 <li>因为会有其他无线路由器的信号干扰</li>
-<li>因为终端设备 (手机、空调、冰箱、电脑等可以连接路由器 WiFi 的设备) 并没有那么多组天线支持 MIMO. 一般来说低端手机是 1 组天线, iPhone 是2 组, iMac 和一些高端笔记本是 3 组, 支持 4 组天线的终端屈指可数.<br>所以根本没有必要刻意追求高端路由器, 一般来说 2.4GHz 和 5GHz 各有 2 组天线, 即标称 1200M 的路由器已经足够一般家庭日常使用. </li>
+<li>因为终端设备 (手机, 空调, 冰箱, 电脑等可以连接路由器 WiFi 的设备) 并没有那么多组天线支持 MIMO. 一般来说低端手机是 1 组天线, iPhone 是2 组, iMac 和一些高端笔记本是 3 组, 支持 4 组天线的终端屈指可数.<br>所以根本没有必要刻意追求高端路由器, 一般来说 2.4GHz 和 5GHz 各有 2 组天线, 即标称 1200M 的路由器已经足够一般家庭日常使用. </li>
 <li>若终端多, 则可以适度提高选购型号<br>因为高端路由内存大, CPU 性能好, 能够保证在多个设备连接的场景下也不会卡顿. </li>
 </ul>
 <p> </p>
 <h1 id="噱头-常见误区"><a href="#噱头-常见误区" class="headerlink" title="噱头 (常见误区)"></a>噱头 (常见误区)</h1><h2 id="天线内置与外置"><a href="#天线内置与外置" class="headerlink" title="天线内置与外置! ?"></a>天线内置与外置! ?</h2><p>结论1: <font color='red'><strong>天线内置或外置并不影响信号的强度</strong></font></p>
-<p>国内市场消费者更倾向于购买多外置天线的路由器, 动辄 6 个以上外置天线. 在这点上 TP-Link 品牌尤其明显. 其在国内的产品, 300 元就能做到外置 6 天线, 而其在国外的产品, 价格 2000+ 的高端产品也只是 3 个可见的外置天线. 但显然后者的信号更强、更稳. </p>
+<p>国内市场消费者更倾向于购买多外置天线的路由器, 动辄 6 个以上外置天线. 在这点上 TP-Link 品牌尤其明显. 其在国内的产品, 300 元就能做到外置 6 天线, 而其在国外的产品, 价格 2000+ 的高端产品也只是 3 个可见的外置天线. 但显然后者的信号更强, 更稳. </p>
 <p>结论2: <font color='red'><strong>外置天线的数量和信号的强度没有正相关</strong></font></p>
 <p>结论3: <font color='red'><strong>全部天线的数量和信号的强度正相关 ( 天线数量 = 内置天线数量 + 外置天线数量 )</strong></font></p>
 <p><img data-src="/images/how_to_buy_a_router/how_to_buy_a_router_3.png" alt="外置天线的数量和信号的强度没有正相关"></p>
@@ -2000,7 +2264,7 @@ deploy:
     <url>/lifetips/how_to_use_mpv_player.html</url>
     <content><![CDATA[<a id="more"></a>
 
-<h1 id="播放器简介"><a href="#播放器简介" class="headerlink" title="播放器简介"></a>播放器简介</h1><p>默认情况下, MPV 播放器并不提供 GUI 界面, 需要通过命令行或配置文件进行设置, 它配置灵活、性能优秀, 支持硬件解码. 基于开源, MPV 衍生出来一大批第三方播放器, 比如 Mac 平台上的 IINA, 以及 Baka MPlayer、bomi、mpc-qt、xt7-player-mpv 等, 它们的核心都是 MPV. </p>
+<h1 id="播放器简介"><a href="#播放器简介" class="headerlink" title="播放器简介"></a>播放器简介</h1><p>默认情况下, MPV 播放器并不提供 GUI 界面, 需要通过命令行或配置文件进行设置, 它配置灵活, 性能优秀, 支持硬件解码. 基于开源, MPV 衍生出来一大批第三方播放器, 比如 Mac 平台上的 IINA, 以及 Baka MPlayer, bomi, mpc-qt, xt7-player-mpv 等, 它们的核心都是 MPV. </p>
 <h1 id="播放列表"><a href="#播放列表" class="headerlink" title="播放列表"></a>播放列表</h1><ol>
 <li>MPV 支持播放列表文件（如: m3u）. </li>
 <li>如果需要临时播放多个文件, 打开MPV, 选中多个文件拖入窗口. </li>
@@ -2010,7 +2274,7 @@ deploy:
 <h1 id="文件关联"><a href="#文件关联" class="headerlink" title="文件关联"></a>文件关联</h1><ol>
 <li><p>解压 <code>mpv-install-master.zip</code> 文件, 这里是<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3Jvc3N5L21wdi1pbnN0YWxsL2FyY2hpdmUvbWFzdGVyLnppcA==">下载地址<i class="fa fa-external-link-alt"></i></span>. </p>
 </li>
-<li><p>将三个文件（<code>mpv-document</code>、<code>mpv-install.bat</code>、<code>mpv-uninstall.bat</code>）移动到自定义的 MPV 程序目录下. </p>
+<li><p>将三个文件（<code>mpv-document</code>, <code>mpv-install.bat</code>, <code>mpv-uninstall.bat</code>）移动到自定义的 MPV 程序目录下. </p>
 </li>
 <li><p>以管理员身份运行 <code>mpv-install.bat</code> 进行文件关联. <code>mpv-uninstall.bat</code> 则是用来解除文件关联的. </p>
 </li>
@@ -2028,7 +2292,7 @@ deploy:
 <tbody><tr>
 <td align="center">p</td>
 <td align="center">Space</td>
-<td align="right">暂停、继续播放</td>
+<td align="right">暂停, 继续播放</td>
 </tr>
 <tr>
 <td align="center">Num/</td>
@@ -2311,9 +2575,9 @@ WHEEL_DOWN add volume <span class="token punctuation">-</span><span class="token
 </li>
 <li><p>&quot;社保&quot; 分为两个大类: 一个是针对就业群体的 &quot;职保&quot;, 另一个是针对无业人群的 &quot;居保&quot;. </p>
 </li>
-<li><p>&quot;职保&quot; 全称: &quot;城镇职工社会保险&quot;, 它包含五种保险: &quot;城镇职工基本养老保险&quot;、&quot;城镇职工基本医疗保险&quot;、&quot;城镇职工失业保险&quot;、&quot;城镇职工工伤保险&quot;、&quot;城镇职工生育保险&quot;. </p>
+<li><p>&quot;职保&quot; 全称: &quot;城镇职工社会保险&quot;, 它包含五种保险: &quot;城镇职工基本养老保险&quot;, &quot;城镇职工基本医疗保险&quot;, &quot;城镇职工失业保险&quot;, &quot;城镇职工工伤保险&quot;, &quot;城镇职工生育保险&quot;. </p>
 </li>
-<li><p>&quot;居保&quot; 全称: &quot;城乡居民社会保险&quot;, 它只包含两种保险: &quot;城乡居民基本养老保险&quot; 和 &quot;城乡居民基本医疗保险&quot;. 由于 &quot;失业保险&quot;、&quot;工伤保险&quot;、&quot;生育保险&quot; 都是和工作息息相关的, 所以 &quot;居保&quot; 自然不包含这三种保险. </p>
+<li><p>&quot;居保&quot; 全称: &quot;城乡居民社会保险&quot;, 它只包含两种保险: &quot;城乡居民基本养老保险&quot; 和 &quot;城乡居民基本医疗保险&quot;. 由于 &quot;失业保险&quot;, &quot;工伤保险&quot;, &quot;生育保险&quot; 都是和工作息息相关的, 所以 &quot;居保&quot; 自然不包含这三种保险. </p>
 </li>
 <li><p>&quot;医保&quot; 一词非常容易混淆, 它指代两种保险: &quot;城镇职工基本医疗保险&quot; 和 &quot;城乡居民基本医疗保险&quot;, 不同情况下要弄清具体含义. </p>
 </li>
@@ -2337,7 +2601,7 @@ WHEEL_DOWN add volume <span class="token punctuation">-</span><span class="token
 </li>
 </ul>
 <h2 id="城镇职工失业保险"><a href="#城镇职工失业保险" class="headerlink" title="城镇职工失业保险"></a>城镇职工失业保险</h2><ul>
-<li><p>&quot;城镇职工失业保险&quot; 的目的是为那些因失业而暂时中断生活经济来源的劳动者提供物质帮助以保障其基本生活, 并通过专业训练、职业介绍等手段为其再就业创造条件. </p>
+<li><p>&quot;城镇职工失业保险&quot; 的目的是为那些因失业而暂时中断生活经济来源的劳动者提供物质帮助以保障其基本生活, 并通过专业训练, 职业介绍等手段为其再就业创造条件. </p>
 </li>
 <li><p>&quot;城镇职工失业保险&quot; 也是由企业和我们按照不同的缴费比例共同缴纳费用的. <font color=red>按月缴纳</font>. </p>
 </li>
@@ -2626,8 +2890,67 @@ HS_FDS_RECOVERY_PWD&#x3D;RECOVER<span aria-hidden="true" class="line-numbers-row
       </tags>
   </entry>
   <entry>
+    <title>Unity - 2D 精灵 和 3D 物体的渲染顺序</title>
+    <url>/unity/unity_render_order.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h1><p>我在学习 SiKi 学院出的一款捕鱼达人的游戏教程时, 教程中使用了一个 3D 物体, 在其上面制作水波纹特效, 为了容易观察渲染层级, 我还特意将同一个层级 (Sorting Layer) 的精灵全部放到同一个 Z 位置上, 一共分了四层.</p>
+<p><img data-src="/images/unity_render_order/unity_render_order_1.png" alt="3D 游戏物体被遮挡"></p>
+<p>但是从相机预览效果中可以看出, 水波纹效果被遮挡了. 在这个场景中所有的 Canvas 的渲染层级都是一个自定义的 UI 层, 但是这个 3D 游戏物体的层级该怎么设置呢? 根本找不到设置的地方啊? 😥</p>
+<h1 id="MeshRenderer-与-SpriteRenderer-的渲染顺序"><a href="#MeshRenderer-与-SpriteRenderer-的渲染顺序" class="headerlink" title="MeshRenderer 与 SpriteRenderer 的渲染顺序"></a>MeshRenderer 与 SpriteRenderer 的渲染顺序</h1><p>3D 游戏物体使用的是 MeshRenderer, 2D 精灵使用的是 SpriteRenderer, 两者都是继承自 Renderer, 在 Renderer 中渲染层级是 <code>sortingLayerName</code> 字段, 渲染顺序是 <code>sortingOrder</code> 字段.</p>
+<ol>
+<li><p>SpriteRenderer 中的 <code>Sorting Layer</code> 对应的是 sortingLayerName 字段, <code>Order in Layer</code> 对应的是 sortingOrder 字段.</p>
+</li>
+<li><p>在 MeshrRenderer 中这两个字段并没有做处理, 只是在面板上隐藏了而已, 因此可以在脚本中直接使用.</p>
+ <pre class="line-numbers language-C#" data-language="C#"><code class="language-C#">public int orderinLayer &#x3D; 15;
+public string sortingLayer &#x3D; &quot;UI&quot;;
+
+private MeshRenderer meshRenderer;
+
+private void Awake()
+&#123;
+    meshRenderer &#x3D; GetComponent&lt;MeshRenderer&gt;();
+&#125;
+
+private void Start() 
+&#123;
+    &#x2F;&#x2F;设定 3D 游戏物体的渲染层级
+    meshRenderer.sortingLayerName &#x3D; sortingLayer;
+    meshRenderer.sortingOrder &#x3D; orderinLayer;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>在 ParticleSystem 中同样也有 Renderer 组件控制粒子特效的渲染顺序, 同样可以使用脚本控制, 也可以直接在面板上设置.</p>
+</li>
+</ol>
+<pre><code><pre class="line-numbers language-C#" data-language="C#"><code class="language-C#">public int orderinLayer &#x3D; 15;
+public string sortingLayer &#x3D; &quot;UI&quot;;
+
+public ParticleSystem[] particleSystems;
+
+private void Start() 
+&#123;
+    &#x2F;&#x2F;设定粒子特效的渲染层级
+    for (int index &#x3D; 0; index &lt; particleSystems.Length; index++)
+    &#123;
+        rendererParticle &#x3D; particleSystems[index].GetComponent&lt;Renderer&gt;();
+        rendererParticle.sortingLayerName &#x3D; sortingLayer;
+        rendererParticle.sortingOrder &#x3D; orderinLayer;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></code></pre>
+<h1 id="问题解决后效果"><a href="#问题解决后效果" class="headerlink" title="问题解决后效果"></a>问题解决后效果</h1><p>使用上面脚本中的设置就可以让 MeshRenderer 也参与到 2D UI 的排序中来了, 效果还是不错的.</p>
+<p><img data-src="/images/unity_render_order/unity_render_order_2.png" alt="修复后效果"></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82YmNjZjc5ZmEzNjc=">SpriteRenderer 与 MeshRenderer的渲染排序层级<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JSON 参考手册</title>
-    <url>/programbasics/json_notes.html</url>
+    <url>/program/json_notes.html</url>
     <content><![CDATA[<a id="more"></a>
 
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在实现毕业设计游戏的存档读档功能时选用了 JSON 文件进行读取和存储, 于是赶紧学习了一下 JSON 是啥...</p>
@@ -2715,7 +3038,7 @@ HS_FDS_RECOVERY_PWD&#x3D;RECOVER<span aria-hidden="true" class="line-numbers-row
   </entry>
   <entry>
     <title>正则表达式</title>
-    <url>/programbasics/regular_expression.html</url>
+    <url>/program/regular_expression.html</url>
     <content><![CDATA[<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式?"></a>正则表达式?</h1><blockquote>
 <p>正则表达式是一种被用于从文本中检索符合某些特定模式的文本, 英文为 &quot;Regular Expression&quot;, 缩写 &quot;regex&quot; 或者 &quot;regexp&quot;.</p>
 </blockquote>
@@ -2807,7 +3130,7 @@ HS_FDS_RECOVERY_PWD&#x3D;RECOVER<span aria-hidden="true" class="line-numbers-row
 </tr>
 <tr>
 <td align="center">\s</td>
-<td>匹配任何空白字符, 包括空格、制表符、换页符等</td>
+<td>匹配任何空白字符, 包括空格, 制表符, 换页符等</td>
 </tr>
 <tr>
 <td align="center">\S</td>
@@ -3035,120 +3358,6 @@ if (!string.IsNullOrEmpty(match.Value))
       </tags>
   </entry>
   <entry>
-    <title>Unity - 2D 精灵 和 3D 物体的渲染顺序</title>
-    <url>/unity/unity_render_order.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h1><p>我在学习 SiKi 学院出的一款捕鱼达人的游戏教程时, 教程中使用了一个 3D 物体, 在其上面制作水波纹特效, 为了容易观察渲染层级, 我还特意将同一个层级 (Sorting Layer) 的精灵全部放到同一个 Z 位置上, 一共分了四层.</p>
-<p><img data-src="/images/unity_render_order/unity_render_order_1.png" alt="3D 游戏物体被遮挡"></p>
-<p>但是从相机预览效果中可以看出, 水波纹效果被遮挡了. 在这个场景中所有的 Canvas 的渲染层级都是一个自定义的 UI 层, 但是这个 3D 游戏物体的层级该怎么设置呢? 根本找不到设置的地方啊? 😥</p>
-<h1 id="MeshRenderer-与-SpriteRenderer-的渲染顺序"><a href="#MeshRenderer-与-SpriteRenderer-的渲染顺序" class="headerlink" title="MeshRenderer 与 SpriteRenderer 的渲染顺序"></a>MeshRenderer 与 SpriteRenderer 的渲染顺序</h1><p>3D 游戏物体使用的是 MeshRenderer, 2D 精灵使用的是 SpriteRenderer, 两者都是继承自 Renderer, 在 Renderer 中渲染层级是 <code>sortingLayerName</code> 字段, 渲染顺序是 <code>sortingOrder</code> 字段.</p>
-<ol>
-<li><p>SpriteRenderer 中的 <code>Sorting Layer</code> 对应的是 sortingLayerName 字段, <code>Order in Layer</code> 对应的是 sortingOrder 字段.</p>
-</li>
-<li><p>在 MeshrRenderer 中这两个字段并没有做处理, 只是在面板上隐藏了而已, 因此可以在脚本中直接使用.</p>
- <pre class="line-numbers language-C#" data-language="C#"><code class="language-C#">public int orderinLayer &#x3D; 15;
-public string sortingLayer &#x3D; &quot;UI&quot;;
-
-private MeshRenderer meshRenderer;
-
-private void Awake()
-&#123;
-    meshRenderer &#x3D; GetComponent&lt;MeshRenderer&gt;();
-&#125;
-
-private void Start() 
-&#123;
-    &#x2F;&#x2F;设定 3D 游戏物体的渲染层级
-    meshRenderer.sortingLayerName &#x3D; sortingLayer;
-    meshRenderer.sortingOrder &#x3D; orderinLayer;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li><p>在 ParticleSystem 中同样也有 Renderer 组件控制粒子特效的渲染顺序, 同样可以使用脚本控制, 也可以直接在面板上设置.</p>
-</li>
-</ol>
-<pre><code><pre class="line-numbers language-C#" data-language="C#"><code class="language-C#">public int orderinLayer &#x3D; 15;
-public string sortingLayer &#x3D; &quot;UI&quot;;
-
-public ParticleSystem[] particleSystems;
-
-private void Start() 
-&#123;
-    &#x2F;&#x2F;设定粒子特效的渲染层级
-    for (int index &#x3D; 0; index &lt; particleSystems.Length; index++)
-    &#123;
-        rendererParticle &#x3D; particleSystems[index].GetComponent&lt;Renderer&gt;();
-        rendererParticle.sortingLayerName &#x3D; sortingLayer;
-        rendererParticle.sortingOrder &#x3D; orderinLayer;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></code></pre>
-<h1 id="问题解决后效果"><a href="#问题解决后效果" class="headerlink" title="问题解决后效果"></a>问题解决后效果</h1><p>使用上面脚本中的设置就可以让 MeshRenderer 也参与到 2D UI 的排序中来了, 效果还是不错的.</p>
-<p><img data-src="/images/unity_render_order/unity_render_order_2.png" alt="修复后效果"></p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82YmNjZjc5ZmEzNjc=">SpriteRenderer 与 MeshRenderer的渲染排序层级<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>日记系列--2020年02月</title>
-    <url>/diary/2020_02.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>感觉好久没写日记了, 有好多好多想要记录下来的事情, 这个系列的主题也悄悄地改变了, 日记日记嘛, 是写给未来的自己看的, 之前的我都给犯了一个错误, 那就是把读者当成是来看我博客的人, 这说白了就不是日记了, 那就和在 Twitter 上发表动态一样了, 这是最重要的一个转变, 其他的后面再说, 未来的自己, 你现在过得还好吗? (微笑脸)</p>
-<h1 id="2020-年-02-月-25-号"><a href="#2020-年-02-月-25-号" class="headerlink" title="2020 年 02 月 25 号"></a>2020 年 02 月 25 号</h1><p>2 月 25 号了......哈哈😂, 说出来自己都不敢相信啊, 不知不觉又玩了这么久, 上一篇日记是 2020 年 01 月 18 号, 就是说已经 38 天没写日记了, 哈哈, 拖出去打死...😒</p>
-<h2 id="武汉疫情"><a href="#武汉疫情" class="headerlink" title="武汉疫情"></a>武汉疫情</h2><p>说正题吧, 不知道未来的我, 你现在还记不记得哈, 2020 年春节武汉爆发了新型冠状病毒, 目前的情况是已经累计确诊了 77779 人了, 当前还剩余的确诊人数有 47672 人, 累计死亡人数已经达到了 2666 人, 未来的我, 如果你已经对这个死亡数字没什么感想了, 那我可得狠狠地打你一拳, 把你打醒, 你现在应该已经结婚了吧, 你可以这样想一下: 你设想你最爱的妻子, 现在就在你的面前被人狠狠地刺了一刀, 然后不治身亡. 而这次疫情就意味着 &quot;最爱的人死亡&quot; 这件事在 2020 年 01 月和 02 月这短短的两个月内发生了 2666 次. 你还会觉得少吗? 我现在狠不得一个人都不死.</p>
-<p>好了好了, 这个话题太沉重了, 其实咱们当时山东这边管控的还不错, 每天戴口罩, 尽量不外出, 不和武汉人接触, 电梯每日消毒, 出入小区测体温, 下班回家要出示身份证, 出示上班证明, 公司上班全程带口罩, 基本也就这些了, 接下来说的别的吧.</p>
-<h2 id="博客主题改变的原因"><a href="#博客主题改变的原因" class="headerlink" title="博客主题改变的原因"></a>博客主题改变的原因</h2><p>上面已经和你说了, 这个系列的主题从 &quot;分享&quot; 变成了 &quot;记录&quot;, 记录自己当下遇到的事情, 记录自己对待这些事情时当下的心情, 好让将来的自己回忆起自己的往事, 还能够想起当时的心情. 但是这只是结果, 就是主题改变了, 但是我还没有交代原因哈, 为什么主题会改变呢? 前言里说是自己意识到了这是日记, 不是动态, 所以主题不该是分享, 而是记录, 后来捋了捋发现, 这只是主题改变了之后, 又不想说出自己那丑陋的心态而圆的自己的话而已, 下面说一下真正的原因吧, 但是说原因的时候, 我又必须先说明一下我现在的背景, 因为未来的我, 你现在的背景和现在的我肯定是不一样的, 希望看了下面的话你能想起我现在的心情.</p>
-<p>首先我现在还是单身哈, 然后目前有两个挺在意的女孩, 一个是黎雅倩, 一个是巧巧, 我现在和她们都有交流, 但是交流都开始慢慢变少哈, 不知道未来的我, 你会选择谁哈, 目前以我来看, 我是谁都不会选的, 因为现在的我真的是太糟糕了, 我真的挺好奇的, 如果你现在结婚了, 那么到底是谁看上你了(我并不仅仅指这两位女孩), 哪个女的瞎成这样, TM 能看上你? ? ? 就你那烂脾气, 你那外面一套家里一套的超级糟糕习惯居然有人能受得了你? ? ? 嘛, 可能你现在还单身呢, 哈哈! 扯远了, 回归正题. 在我回顾 1 月份写的日记的时候, 我发现全是负面情绪, 几乎找不到积极乐观的一面, 那你说我写这东西干嘛? 我分享这东西干嘛? 为了降低别人对我的好感度? 为了让别人提起我, 就说我是一个病丧? 整天郁郁寡欢, 没点好情绪, 关键是我发现, 不仅仅是博客, 最近在和其他人的 &quot;聊天&quot; 中也全是负面情感, 不仅仅是上面提到的那两位女孩, 和大学舍友们 (王健, 吴逸然) 也是这样, 于是我就有了断掉这个系列的想法, 因为我总是在向外人传达负面情感, 垃圾情感, 黑色情感, 我再继续这样下去, 不仅朋友们会渐渐远离我, 甚至我自己还会黑化, 然后自暴自弃, 这绝对不行, 于是断掉这个系列的想法越来越强烈.</p>
-<p>带着这种想法, 加上武汉现在的疫情导致几乎不能外出, 于是我又开始了玩游戏, 中间呢也穿插着看动漫, 大部分是哆啦A梦的剧场版, 最开始玩 &quot;时空召唤&quot;, 还打上了 宗师 段位, 相当于 LOL 里面的大师, 最终分数是宗师 16 分, 但是其实刚进入宗师起步就是 25 分哈, 就是说我在 宗师 段位基本全是在输; 之后新赛季开始, 我就不玩了, 去玩最终幻想 6 了, 玩到快通关了, 游戏模式变成了类似开放世界的玩法, 超高自由度, 于是我就又不玩了, 因为自由度太高了, 我不知道该去哪里推进下一部分剧情啊...之后便回济南工作了, 公司在上班这件事情上管得是贼细致, 贼严谨, 上下午的工作状态是在家办公啊还是请假啊记录地是清清楚楚, 明明白白, 提前说好在家办公和请假没有基础工资只有绩效, 但是公司不开空调, 说是为了防止感染病毒, 行, 可以, 我理解, 但是你也总不能一点御寒措施也不做啊, 在公司办公, 做椅子上就能冷的发抖, 止都止不住, 这 TM 怎么干活? ? ? 中午只能吃泡面, 吃火腿肠......我 TM 这是来上班? 我这是来遭罪吧? ? ?让员工冒着感染病毒的危险来上班, 也就是冒着生命危险上班啊, , 但是却一点诚意都没有, 工资一拖再拖, 先拖一周, 然后再拖一周; 吃饭自己解决, 但是就是不能出去买, 不买解决不了? 那我不管, 反正就是不能出去; 冷是吧, 自己多穿点! 我 TM ... 就是说一切不好的事情都是有正当理由的, 那就是 &quot;为了防止感染&quot;, 但是就是必须上班, 话说不上班才是最好的防止感染的措施吧? ? ! !</p>
-<p>之前对自己整天抱有负面情绪的失望, 加上公司那冷的我发抖的办公环境, 让我的心情彻底跌落到了谷底, 再加上学校让写论文的开题报告, 于是我做出了请假的决定, 我和经理说, 我感冒了, 在家办公, 他自然也不好说什么, 在这个病毒扩散期间, 万一我的感冒是感染了病毒所致呢? 对吧? 当然我是没有感冒的. 请假第一天, 我是极其无聊的, 真的是感到了前所未有的巨大寂寞感, 看什么都提不起劲头来, 于是第一天就这么过去了, 我在床上躺了一天, 对, 就是躺了一天.... 第二天醒来嘛, 就好多了, 没有那么严重的空虚感了, 不至于干什么都提不起劲头了, 但是我依旧没有开始开题报告的写作. 我看动漫去了, 先看了 No Game No Life, 我去, 主人公牛批, 无敌! 看的我热血沸腾, 不行, 我要学习! ! ! 于是我又打开一部动漫, 叫做 命运石之门, 呜哇 ~ ~ Kurisu! 助手! 克里斯汀娜! 呜啊, 眼泪止不住啊 ... 作者你知道吗, 明天我就让你的怀表停了!! 然后我抑郁了... 于是我就玩游戏去了, 对, 没错, 我玩游戏去了, 玩的是 游戏王 卡片力量 2, 玩得津津有味, 毒蛇神卡组牛批, 无敌, 艾克佐迪亚, 牛批! 无敌! NPC 们你们很不是牛批吗? 你再打我啊? 你再强夺啊! MD... 晚上玩到凌晨 2 点, 贼 TM 嗨, 哈哈哈, 强无敌! ! 直到周六晚上 10 点我还在玩, 但是我的开题报告也就才写了 1/6, 好在我周日早上 3 点左右就醒了, 起来写报告, 大概早上 10 点才写完, 交上后又稍微修改了一点点, 只改了一下措辞啥的, 基本没啥问题, 就过了. 然后继续我开始不想玩游戏了, 加上看了一期关于生命的视频, 还有一些再次对自己的思考, 我打开了尘封已久的博客, 看了一遍之前写的日记, 我知道我该好好反思一下了.</p>
-<h1 id="2020-年-02-月-26-号"><a href="#2020-年-02-月-26-号" class="headerlink" title="2020 年 02 月 26 号"></a>2020 年 02 月 26 号</h1><h2 id="对于自身产生大量负面情绪的思考"><a href="#对于自身产生大量负面情绪的思考" class="headerlink" title="对于自身产生大量负面情绪的思考"></a>对于自身产生大量负面情绪的思考</h2><p>经过这一段与自己相处的不算短也不算长的时间, 我意识到了我一直生活在矛盾之中, 我追求完美, 追求自己和弟子规中描述的那样完美, 于是对于自己犯下的错误每次都感到十分的羞耻, 开始慢慢的厌恶自己, 一方面想要完善自己, 而另一方面却在厌恶自己, 于是就不停的恶性循环, 激励自己, 追求完美, 然后偶然间沉迷诱惑, 责备自己, 厌恶自己, 之后再想办法激励自己, 追求完美......但是自己的进步是看不到的, 自己只能看到自己的错误, 于是错误越积越多, 对自己的责备也就越来越深, 不知不觉自己的自信心已经被打击的几乎完全消散了, 于是抵制诱惑的能力就越来越低, 然后就造成了现在的这副惨状. 想要改变这个局面, 就必须能够控制这个循环, 因为这个循环是无法打破的, 只能让自己去控制住这个循环. 首先我想了一下, 从记事时开始到今天 (2020-02-25) 为止, 我自己所坚决不能原谅的我所犯过的错误, 以至于今后必须不能再犯的错误: </p>
-<ol>
-<li>小学时和王硕的<strong>游戏王-黑魔导的执行官</strong>卡片事件</li>
-<li>初中时和张雪的<strong>桑尼</strong>事件</li>
-<li><strong>高中班主任</strong>事件</li>
-<li>大学时的<strong>李敏</strong>事件</li>
-</ol>
-<p>想来想去就这四件事了, 这是我一生的污点, 这四件事情我没有和任何人提起过, 就是说在我现在的朋友里面没有任何人知道这四件事, 哪怕是一丁点, 因为在这四件事情上我真的是太不是东西了, 我怕说出去别人直接打我, 唉, 不提了不提了...这样想来, 我朋友少真的是因为我不善于交谈吗? 会不会是我条件反射般的去刻意远离那些可能知道这四件事的人呢? 可能是后者的原因更多一些吧. 由于没有任何人知道这四件事, 而其它我又基本没有犯过什么对不起别人并且之后没有及时道歉解决问题的事, 所以我一直在责备自己什么呢? 我为什么要一直打击自己呢? 就因为自己没有做到完美? 就因为自己在应该学习的时候打游戏了? 因为自己在应该努力的时候看动漫了? 就因为自己又做春梦了? 就因为自己没有克制住自己的性欲? 就因为自己没有遵守时间计划又通宵一晚? 我难道是 M 吗🤣? 想到这里, 我突然就想开了, 我不该过分地纠结于自己犯过的错误, 我该做的是吸取教训, 然后平淡地去看待过去的事情, 而不是一直耿耿于怀, 否则我是无法前进的, 我的时间会停滞, 既然过去的事情都已经过去了, 那么现在往前看就是了. 比如接下来最重要的工作就是毕业设计, 大概六月十号之前就必须弄完, 大概还剩下 100 天的时间, 由于要做一款沙盒游戏, 所以肯定花费的时间很长, 但是我们现在要想的事情不是为什么不早开始干活, 为什么拖到现在, 而是仅仅去思考如何在这 100 天内做出一款自己满意的沙盒求生类游戏就可以了. <font color='red'> 对过去的事耿耿于怀没有任何用处, 只会让自己的时间停滞. </font> 于是我释怀了, 我包容了自己之前所有的负面情绪, 放下过去, 努力面前! </p>
-<h2 id="对于出现了-quot-之前的自己总是想要把事情分享给朋友-但是最近独自生活的这段时间里却从来没有想过要联系朋友-quot-这样的情况的思考"><a href="#对于出现了-quot-之前的自己总是想要把事情分享给朋友-但是最近独自生活的这段时间里却从来没有想过要联系朋友-quot-这样的情况的思考" class="headerlink" title="对于出现了 &quot;之前的自己总是想要把事情分享给朋友, 但是最近独自生活的这段时间里却从来没有想过要联系朋友&quot; 这样的情况的思考"></a>对于出现了 &quot;之前的自己总是想要把事情分享给朋友, 但是最近独自生活的这段时间里却从来没有想过要联系朋友&quot; 这样的情况的思考</h2><p>回顾一月份所写下的前言可以知道, 当时的我是想要满足自己的分享欲望而创建了这个系列, 但是最近独自生活的这几天我却一丁点想要联系朋友的想法都没有, 但是这几天我同样是遇到了很多我认为有意思的事情, 无论是之前看的 No Game No Life 以及命运石之门, 还是玩的 游戏王 和 最终幻想 6, 甚至是昨晚刚看的电影 二之国, 都是非常有意思的或者是相当值得吐槽的, 但是我却一丁点想要分享的意思都没有, 那这说明了什么? 我之前想要分享事情真的是因为我的分享欲望吗? 很显然, 不是. 而我也发现了一个共通点, 那就是我之前想要分享的人就是前面所提到的巧巧和黎雅倩, 说白了点就是, 那只是性激素影响下的结果, 就是说我可能在不知不觉地情况下喜欢上她们了, (她? ! 们 ? ! 这个 &quot;们&quot; 是什么情况? ?)所以才想要找话题和她们聊天, 真是万恶的性激素啊! 至此我终于弄明白了自己脑子里的那点小算盘, 你以为我会让你得逞吗? 做梦吧你, 你自己适不适合恋爱, 你自己心里没点 B 数吗?</p>
-<p>于是出于前面这两点的思考, 我决定了, 重开这个系列, 并且将主题改为 &quot;记录&quot;, 将读者换成了未来的自己.</p>
-<h1 id="2020-年-02-月-27-号"><a href="#2020-年-02-月-27-号" class="headerlink" title="2020 年 02 月 27 号"></a>2020 年 02 月 27 号</h1><h2 id="对理性人的看法-同时也是对-quot-爱-quot-这个词的看法以及对目前的自己适不适合结婚的看法"><a href="#对理性人的看法-同时也是对-quot-爱-quot-这个词的看法以及对目前的自己适不适合结婚的看法" class="headerlink" title="对理性人的看法, 同时也是对 &quot;爱&quot; 这个词的看法以及对目前的自己适不适合结婚的看法"></a>对理性人的看法, 同时也是对 &quot;爱&quot; 这个词的看法以及对目前的自己适不适合结婚的看法</h2><p>&quot;自己适不适合结婚&quot; 这个问题, 我从很早之前就开始思考了, 也一直认为我自己不适合结婚哈, 这个结论到现在都还没有变, 甚至我对此的看法更加坚定了, 这源自最近在家看的哆啦A梦剧场版以及二之国还有命运石之门. 未来的我, 如果你已经忘记了自己关于这件事情的看法, 那么我现在来提醒你一下. 先说一个结论, 如果我是静香, 那么我也会选择大雄作为自己的伴侣, 而不是选择出木衫. 未来的我, 你现在还记得原因吗?</p>
-<ul>
-<li><p>第一: 在一个以静香为赌注的游戏中, 出木衫为了能够触发所有剧情最后战胜恶龙, 遵守了这个游戏里所有的规则, 达到了所谓的完美, 但是大雄想到的却是用任意门在第一时间赶到忐忑不安的静香身边.</p>
-</li>
-<li><p>当世界末日真的要来临的时候, 大雄想到的是什么呢? 对, 是静香, 哪怕世界末日没有时间逃跑了, 都不能丢下静香不管, 还有什么好说的? 你是静香, 你不嫁给他吗?</p>
-</li>
-<li><p>二之国中, 当自己心爱的人面临死亡的时候, 佑是怎么做的, 他是用身体挡住了落下来的尖椎, 即使自己会死, 也要保护了自己心爱的人.</p>
-</li>
-<li><p>命运石之门中从 α 线过渡到 β 线的时候, 冈部伦太郎是怎么做的, 用自己的鲜血来欺骗整个世界, 救回自己心爱的人. </p>
-</li>
-</ul>
-<p>这么想来, 出木杉就是这里的理性人, 理性人在关键时刻选择的是能保护最大利益的做法, 而真正爱你的人却只会做出能让你幸福的选择, 哪怕会牺牲自己. 试想一下, 未来的我啊, 你试想一下, 即便是未来的你, 如果将来你结婚了, 你的妻子面临生命危险的时候, 哪怕自己的生命也会面临危险, 你也会不顾一切地去救她吗? 如果不会, 那你还是暂时不要结婚了. 如果你已经结婚了. 那就一定要树立这份信念, 树立这份无论如何都要让她幸福的信念. 算是过去的你对你的一份期望吧. 所以我认为现在的我不适合结婚, 我还没有那份即使失去生命也要保护爱人的信念. 这也解释了为什么当我询问巧巧会找什么样的人作为伴侣的时候, 她的回复是 &quot;对我好的人&quot;, 或许这就是 &quot;爱&quot; 吧. 之前总是说两人在一起最需要的是什么门当户对, 什么价值观相同, 什么兴趣爱好一致, 现在想想, 那些都不过是次要因素罢了, 真正需要的还是那个老生常谈的字: &quot;爱&quot;.</p>
-<p>借用朋友一句话: <font color='red'><strong>欣赏一个人, 始于颜值, 敬于才华, 合于性格, 久于善良, 终于人品</strong></font>.</p>
-<h1 id="2020-年-02-月-28-号"><a href="#2020-年-02-月-28-号" class="headerlink" title="2020 年 02 月 28 号"></a>2020 年 02 月 28 号</h1><h2 id="对于自己-quot-玩游戏时欢-玩过之后又非常懊悔-quot-这种心态的思考"><a href="#对于自己-quot-玩游戏时欢-玩过之后又非常懊悔-quot-这种心态的思考" class="headerlink" title="对于自己 &quot;玩游戏时欢, 玩过之后又非常懊悔&quot; 这种心态的思考."></a>对于自己 &quot;玩游戏时欢, 玩过之后又非常懊悔&quot; 这种心态的思考.</h2><p>当时请假那段时间, 在家迷上了 &quot;游戏王 卡片力量 2&quot;, 玩得不亦乐乎, 好几次玩到晚上24点, 搭建毒蛇神卡组和黑暗大法师卡组, 当时的想法是: 我就不信打不过你! 我就不行我的黑暗大法师出不来! 我就不信我的毒蛇神出不来! 于是便一次又一次地将时间忽略, 其实每次保存的时候, 是有时间提醒的, 当时也注意到挺晚的了, 但还是止不住啊...不过, 玩了一段时间之后呢, 就变得懊悔, 觉得当时咋就傻乎乎地玩游戏不干正事呢? ! 明明有那么多的事情等着做呢! </p>
-<p>但是这种事情在我身上已经发生很多很多次了, 我都数不清了, 于是我就趁请假那段时间考虑了一下这个问题. 首先我玩游戏耗费了一段时间, 没有应该做的其他事情, 于是事后感到了懊悔, 但是这时候我想到一个问题, 我问自己: 那是不是我只要玩游戏或者看动漫耗费了时间, 我都会感到懊悔呢? 我仔细思考了一下, 以目前的情况看, 还真是这样! 于是我又联系自己的生活安排发现了大致有两个原因:</p>
-<ol>
-<li>我现在没有符合自己规定的, 自己许可的看动漫, 看电影或者玩游戏之类的休息时间.</li>
-<li>自己的思想意识还没有清晰地认识到现在的局面, 现在这个根本没有时间去娱乐的局面.</li>
-</ol>
-<p>就导致无论我做什么娱乐, 只要耗费了时间我就会事后感到懊悔.</p>
-<p>未来的我, 如果你现在还是处于这种恶性循环中, 建议你赶紧制定带有 &quot;休息时间&quot; 的计划. 空出一段自己允许的时间休息, 只有这样才能既满足自己的休息欲望, 又能够很好的控制情绪以及生活节奏. </p>
-<blockquote>
-<p><font color='red'><strong>有压迫的地方就会有反抗, 压迫越重, 反抗越重!</strong></font> 切记切记! </p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Diary</category>
-      </categories>
-      <tags>
-        <tag>Diary</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo 3.9.0 + NexT 7.2.0 =&gt; Hexo 5.1.0 + NexT 8.0.0</title>
     <url>/hexo/hexo_update.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -3247,7 +3456,7 @@ private void Start()
 </ul>
 </li>
 </ul>
-<p>发布之后便可以将站点地图提交给 Google Search 了!</p>
+<p>重新发布之后, 便可以将站点地图提交给 Google Search 了!</p>
 <h1 id="自定义主题配置文件"><a href="#自定义主题配置文件" class="headerlink" title="自定义主题配置文件"></a>自定义主题配置文件</h1><p>配置文件中只需要改改设置就可以出现效果的就不提了, 说一下注意事项:</p>
 <h2 id="开启自定义配置"><a href="#开启自定义配置" class="headerlink" title="开启自定义配置"></a>开启自定义配置</h2><p>取消自定义配置文件的注释, 并且要在对应的路径下创建对应的文件.</p>
 <h2 id="开启标签-分类-关于菜单"><a href="#开启标签-分类-关于菜单" class="headerlink" title="开启标签, 分类, 关于菜单"></a>开启标签, 分类, 关于菜单</h2><p>取消相应的设置选项后, 必须在 <code>source</code> 文件夹下创建相应的路径, 并创建相应的 markdown 文件, 文件中的内容虽然很简单, 但是也必须添加! <code>comments : false</code> 可以使当前页面禁用评论系统.</p>
@@ -3567,6 +3776,61 @@ const dp_update = new DPlayer({
       </tags>
   </entry>
   <entry>
+    <title>日记系列--2020年02月</title>
+    <url>/diary/2020_02.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>感觉好久没写日记了, 有好多好多想要记录下来的事情, 这个系列的主题也悄悄地改变了, 日记日记嘛, 是写给未来的自己看的, 之前的我都给犯了一个错误, 那就是把读者当成是来看我博客的人, 这说白了就不是日记了, 那就和在 Twitter 上发表动态一样了, 这是最重要的一个转变, 其他的后面再说, 未来的自己, 你现在过得还好吗? (微笑脸)</p>
+<h1 id="2020-年-02-月-25-号"><a href="#2020-年-02-月-25-号" class="headerlink" title="2020 年 02 月 25 号"></a>2020 年 02 月 25 号</h1><p>2 月 25 号了......哈哈😂, 说出来自己都不敢相信啊, 不知不觉又玩了这么久, 上一篇日记是 2020 年 01 月 18 号, 就是说已经 38 天没写日记了, 哈哈, 拖出去打死...😒</p>
+<h2 id="武汉疫情"><a href="#武汉疫情" class="headerlink" title="武汉疫情"></a>武汉疫情</h2><p>说正题吧, 不知道未来的我, 你现在还记不记得哈, 2020 年春节武汉爆发了新型冠状病毒, 目前的情况是已经累计确诊了 77779 人了, 当前还剩余的确诊人数有 47672 人, 累计死亡人数已经达到了 2666 人, 未来的我, 如果你已经对这个死亡数字没什么感想了, 那我可得狠狠地打你一拳, 把你打醒, 你现在应该已经结婚了吧, 你可以这样想一下: 你设想你最爱的妻子, 现在就在你的面前被人狠狠地刺了一刀, 然后不治身亡. 而这次疫情就意味着 &quot;最爱的人死亡&quot; 这件事在 2020 年 01 月和 02 月这短短的两个月内发生了 2666 次. 你还会觉得少吗? 我现在狠不得一个人都不死.</p>
+<p>好了好了, 这个话题太沉重了, 其实咱们当时山东这边管控的还不错, 每天戴口罩, 尽量不外出, 不和武汉人接触, 电梯每日消毒, 出入小区测体温, 下班回家要出示身份证, 出示上班证明, 公司上班全程带口罩, 基本也就这些了, 接下来说的别的吧.</p>
+<h2 id="博客主题改变的原因"><a href="#博客主题改变的原因" class="headerlink" title="博客主题改变的原因"></a>博客主题改变的原因</h2><p>上面已经和你说了, 这个系列的主题从 &quot;分享&quot; 变成了 &quot;记录&quot;, 记录自己当下遇到的事情, 记录自己对待这些事情时当下的心情, 好让将来的自己回忆起自己的往事, 还能够想起当时的心情. 但是这只是结果, 就是主题改变了, 但是我还没有交代原因哈, 为什么主题会改变呢? 前言里说是自己意识到了这是日记, 不是动态, 所以主题不该是分享, 而是记录, 后来捋了捋发现, 这只是主题改变了之后, 又不想说出自己那丑陋的心态而圆的自己的话而已, 下面说一下真正的原因吧, 但是说原因的时候, 我又必须先说明一下我现在的背景, 因为未来的我, 你现在的背景和现在的我肯定是不一样的, 希望看了下面的话你能想起我现在的心情.</p>
+<p>首先我现在还是单身哈, 然后目前有两个挺在意的女孩, 一个是黎雅倩, 一个是巧巧, 我现在和她们都有交流, 但是交流都开始慢慢变少哈, 不知道未来的我, 你会选择谁哈, 目前以我来看, 我是谁都不会选的, 因为现在的我真的是太糟糕了, 我真的挺好奇的, 如果你现在结婚了, 那么到底是谁看上你了(我并不仅仅指这两位女孩), 哪个女的瞎成这样, TM 能看上你? ? ? 就你那烂脾气, 你那外面一套家里一套的超级糟糕习惯居然有人能受得了你? ? ? 嘛, 可能你现在还单身呢, 哈哈! 扯远了, 回归正题. 在我回顾 1 月份写的日记的时候, 我发现全是负面情绪, 几乎找不到积极乐观的一面, 那你说我写这东西干嘛? 我分享这东西干嘛? 为了降低别人对我的好感度? 为了让别人提起我, 就说我是一个病丧? 整天郁郁寡欢, 没点好情绪, 关键是我发现, 不仅仅是博客, 最近在和其他人的 &quot;聊天&quot; 中也全是负面情感, 不仅仅是上面提到的那两位女孩, 和大学舍友们 (王健, 吴逸然) 也是这样, 于是我就有了断掉这个系列的想法, 因为我总是在向外人传达负面情感, 垃圾情感, 黑色情感, 我再继续这样下去, 不仅朋友们会渐渐远离我, 甚至我自己还会黑化, 然后自暴自弃, 这绝对不行, 于是断掉这个系列的想法越来越强烈.</p>
+<p>带着这种想法, 加上武汉现在的疫情导致几乎不能外出, 于是我又开始了玩游戏, 中间呢也穿插着看动漫, 大部分是哆啦A梦的剧场版, 最开始玩 &quot;时空召唤&quot;, 还打上了 宗师 段位, 相当于 LOL 里面的大师, 最终分数是宗师 16 分, 但是其实刚进入宗师起步就是 25 分哈, 就是说我在 宗师 段位基本全是在输; 之后新赛季开始, 我就不玩了, 去玩最终幻想 6 了, 玩到快通关了, 游戏模式变成了类似开放世界的玩法, 超高自由度, 于是我就又不玩了, 因为自由度太高了, 我不知道该去哪里推进下一部分剧情啊...之后便回济南工作了, 公司在上班这件事情上管得是贼细致, 贼严谨, 上下午的工作状态是在家办公啊还是请假啊记录地是清清楚楚, 明明白白, 提前说好在家办公和请假没有基础工资只有绩效, 但是公司不开空调, 说是为了防止感染病毒, 行, 可以, 我理解, 但是你也总不能一点御寒措施也不做啊, 在公司办公, 做椅子上就能冷的发抖, 止都止不住, 这 TM 怎么干活? ? ? 中午只能吃泡面, 吃火腿肠......我 TM 这是来上班? 我这是来遭罪吧? ? ?让员工冒着感染病毒的危险来上班, 也就是冒着生命危险上班啊, , 但是却一点诚意都没有, 工资一拖再拖, 先拖一周, 然后再拖一周; 吃饭自己解决, 但是就是不能出去买, 不买解决不了? 那我不管, 反正就是不能出去; 冷是吧, 自己多穿点! 我 TM ... 就是说一切不好的事情都是有正当理由的, 那就是 &quot;为了防止感染&quot;, 但是就是必须上班, 话说不上班才是最好的防止感染的措施吧? ? ! !</p>
+<p>之前对自己整天抱有负面情绪的失望, 加上公司那冷的我发抖的办公环境, 让我的心情彻底跌落到了谷底, 再加上学校让写论文的开题报告, 于是我做出了请假的决定, 我和经理说, 我感冒了, 在家办公, 他自然也不好说什么, 在这个病毒扩散期间, 万一我的感冒是感染了病毒所致呢? 对吧? 当然我是没有感冒的. 请假第一天, 我是极其无聊的, 真的是感到了前所未有的巨大寂寞感, 看什么都提不起劲头来, 于是第一天就这么过去了, 我在床上躺了一天, 对, 就是躺了一天.... 第二天醒来嘛, 就好多了, 没有那么严重的空虚感了, 不至于干什么都提不起劲头了, 但是我依旧没有开始开题报告的写作. 我看动漫去了, 先看了 No Game No Life, 我去, 主人公牛批, 无敌! 看的我热血沸腾, 不行, 我要学习! ! ! 于是我又打开一部动漫, 叫做 命运石之门, 呜哇 ~ ~ Kurisu! 助手! 克里斯汀娜! 呜啊, 眼泪止不住啊 ... 作者你知道吗, 明天我就让你的怀表停了!! 然后我抑郁了... 于是我就玩游戏去了, 对, 没错, 我玩游戏去了, 玩的是 游戏王 卡片力量 2, 玩得津津有味, 毒蛇神卡组牛批, 无敌, 艾克佐迪亚, 牛批! 无敌! NPC 们你们很不是牛批吗? 你再打我啊? 你再强夺啊! MD... 晚上玩到凌晨 2 点, 贼 TM 嗨, 哈哈哈, 强无敌! ! 直到周六晚上 10 点我还在玩, 但是我的开题报告也就才写了 1/6, 好在我周日早上 3 点左右就醒了, 起来写报告, 大概早上 10 点才写完, 交上后又稍微修改了一点点, 只改了一下措辞啥的, 基本没啥问题, 就过了. 然后继续我开始不想玩游戏了, 加上看了一期关于生命的视频, 还有一些再次对自己的思考, 我打开了尘封已久的博客, 看了一遍之前写的日记, 我知道我该好好反思一下了.</p>
+<h1 id="2020-年-02-月-26-号"><a href="#2020-年-02-月-26-号" class="headerlink" title="2020 年 02 月 26 号"></a>2020 年 02 月 26 号</h1><h2 id="对于自身产生大量负面情绪的思考"><a href="#对于自身产生大量负面情绪的思考" class="headerlink" title="对于自身产生大量负面情绪的思考"></a>对于自身产生大量负面情绪的思考</h2><p>经过这一段与自己相处的不算短也不算长的时间, 我意识到了我一直生活在矛盾之中, 我追求完美, 追求自己和弟子规中描述的那样完美, 于是对于自己犯下的错误每次都感到十分的羞耻, 开始慢慢的厌恶自己, 一方面想要完善自己, 而另一方面却在厌恶自己, 于是就不停的恶性循环, 激励自己, 追求完美, 然后偶然间沉迷诱惑, 责备自己, 厌恶自己, 之后再想办法激励自己, 追求完美......但是自己的进步是看不到的, 自己只能看到自己的错误, 于是错误越积越多, 对自己的责备也就越来越深, 不知不觉自己的自信心已经被打击的几乎完全消散了, 于是抵制诱惑的能力就越来越低, 然后就造成了现在的这副惨状. 想要改变这个局面, 就必须能够控制这个循环, 因为这个循环是无法打破的, 只能让自己去控制住这个循环. 首先我想了一下, 从记事时开始到今天 (2020-02-25) 为止, 我自己所坚决不能原谅的我所犯过的错误, 以至于今后必须不能再犯的错误: </p>
+<ol>
+<li>小学时和王硕的<strong>游戏王-黑魔导的执行官</strong>卡片事件</li>
+<li>初中时和张雪的<strong>桑尼</strong>事件</li>
+<li><strong>高中班主任</strong>事件</li>
+<li>大学时的<strong>李敏</strong>事件</li>
+</ol>
+<p>想来想去就这四件事了, 这是我一生的污点, 这四件事情我没有和任何人提起过, 就是说在我现在的朋友里面没有任何人知道这四件事, 哪怕是一丁点, 因为在这四件事情上我真的是太不是东西了, 我怕说出去别人直接打我, 唉, 不提了不提了...这样想来, 我朋友少真的是因为我不善于交谈吗? 会不会是我条件反射般的去刻意远离那些可能知道这四件事的人呢? 可能是后者的原因更多一些吧. 由于没有任何人知道这四件事, 而其它我又基本没有犯过什么对不起别人并且之后没有及时道歉解决问题的事, 所以我一直在责备自己什么呢? 我为什么要一直打击自己呢? 就因为自己没有做到完美? 就因为自己在应该学习的时候打游戏了? 因为自己在应该努力的时候看动漫了? 就因为自己又做春梦了? 就因为自己没有克制住自己的性欲? 就因为自己没有遵守时间计划又通宵一晚? 我难道是 M 吗🤣? 想到这里, 我突然就想开了, 我不该过分地纠结于自己犯过的错误, 我该做的是吸取教训, 然后平淡地去看待过去的事情, 而不是一直耿耿于怀, 否则我是无法前进的, 我的时间会停滞, 既然过去的事情都已经过去了, 那么现在往前看就是了. 比如接下来最重要的工作就是毕业设计, 大概六月十号之前就必须弄完, 大概还剩下 100 天的时间, 由于要做一款沙盒游戏, 所以肯定花费的时间很长, 但是我们现在要想的事情不是为什么不早开始干活, 为什么拖到现在, 而是仅仅去思考如何在这 100 天内做出一款自己满意的沙盒求生类游戏就可以了. <font color='red'> 对过去的事耿耿于怀没有任何用处, 只会让自己的时间停滞. </font> 于是我释怀了, 我包容了自己之前所有的负面情绪, 放下过去, 努力面前! </p>
+<h2 id="对于出现了-quot-之前的自己总是想要把事情分享给朋友-但是最近独自生活的这段时间里却从来没有想过要联系朋友-quot-这样的情况的思考"><a href="#对于出现了-quot-之前的自己总是想要把事情分享给朋友-但是最近独自生活的这段时间里却从来没有想过要联系朋友-quot-这样的情况的思考" class="headerlink" title="对于出现了 &quot;之前的自己总是想要把事情分享给朋友, 但是最近独自生活的这段时间里却从来没有想过要联系朋友&quot; 这样的情况的思考"></a>对于出现了 &quot;之前的自己总是想要把事情分享给朋友, 但是最近独自生活的这段时间里却从来没有想过要联系朋友&quot; 这样的情况的思考</h2><p>回顾一月份所写下的前言可以知道, 当时的我是想要满足自己的分享欲望而创建了这个系列, 但是最近独自生活的这几天我却一丁点想要联系朋友的想法都没有, 但是这几天我同样是遇到了很多我认为有意思的事情, 无论是之前看的 No Game No Life 以及命运石之门, 还是玩的 游戏王 和 最终幻想 6, 甚至是昨晚刚看的电影 二之国, 都是非常有意思的或者是相当值得吐槽的, 但是我却一丁点想要分享的意思都没有, 那这说明了什么? 我之前想要分享事情真的是因为我的分享欲望吗? 很显然, 不是. 而我也发现了一个共通点, 那就是我之前想要分享的人就是前面所提到的巧巧和黎雅倩, 说白了点就是, 那只是性激素影响下的结果, 就是说我可能在不知不觉地情况下喜欢上她们了, (她? ! 们 ? ! 这个 &quot;们&quot; 是什么情况? ?)所以才想要找话题和她们聊天, 真是万恶的性激素啊! 至此我终于弄明白了自己脑子里的那点小算盘, 你以为我会让你得逞吗? 做梦吧你, 你自己适不适合恋爱, 你自己心里没点 B 数吗?</p>
+<p>于是出于前面这两点的思考, 我决定了, 重开这个系列, 并且将主题改为 &quot;记录&quot;, 将读者换成了未来的自己.</p>
+<h1 id="2020-年-02-月-27-号"><a href="#2020-年-02-月-27-号" class="headerlink" title="2020 年 02 月 27 号"></a>2020 年 02 月 27 号</h1><h2 id="对理性人的看法-同时也是对-quot-爱-quot-这个词的看法以及对目前的自己适不适合结婚的看法"><a href="#对理性人的看法-同时也是对-quot-爱-quot-这个词的看法以及对目前的自己适不适合结婚的看法" class="headerlink" title="对理性人的看法, 同时也是对 &quot;爱&quot; 这个词的看法以及对目前的自己适不适合结婚的看法"></a>对理性人的看法, 同时也是对 &quot;爱&quot; 这个词的看法以及对目前的自己适不适合结婚的看法</h2><p>&quot;自己适不适合结婚&quot; 这个问题, 我从很早之前就开始思考了, 也一直认为我自己不适合结婚哈, 这个结论到现在都还没有变, 甚至我对此的看法更加坚定了, 这源自最近在家看的哆啦A梦剧场版以及二之国还有命运石之门. 未来的我, 如果你已经忘记了自己关于这件事情的看法, 那么我现在来提醒你一下. 先说一个结论, 如果我是静香, 那么我也会选择大雄作为自己的伴侣, 而不是选择出木衫. 未来的我, 你现在还记得原因吗?</p>
+<ul>
+<li><p>第一: 在一个以静香为赌注的游戏中, 出木衫为了能够触发所有剧情最后战胜恶龙, 遵守了这个游戏里所有的规则, 达到了所谓的完美, 但是大雄想到的却是用任意门在第一时间赶到忐忑不安的静香身边.</p>
+</li>
+<li><p>当世界末日真的要来临的时候, 大雄想到的是什么呢? 对, 是静香, 哪怕世界末日没有时间逃跑了, 都不能丢下静香不管, 还有什么好说的? 你是静香, 你不嫁给他吗?</p>
+</li>
+<li><p>二之国中, 当自己心爱的人面临死亡的时候, 佑是怎么做的, 他是用身体挡住了落下来的尖椎, 即使自己会死, 也要保护了自己心爱的人.</p>
+</li>
+<li><p>命运石之门中从 α 线过渡到 β 线的时候, 冈部伦太郎是怎么做的, 用自己的鲜血来欺骗整个世界, 救回自己心爱的人. </p>
+</li>
+</ul>
+<p>这么想来, 出木杉就是这里的理性人, 理性人在关键时刻选择的是能保护最大利益的做法, 而真正爱你的人却只会做出能让你幸福的选择, 哪怕会牺牲自己. 试想一下, 未来的我啊, 你试想一下, 即便是未来的你, 如果将来你结婚了, 你的妻子面临生命危险的时候, 哪怕自己的生命也会面临危险, 你也会不顾一切地去救她吗? 如果不会, 那你还是暂时不要结婚了. 如果你已经结婚了. 那就一定要树立这份信念, 树立这份无论如何都要让她幸福的信念. 算是过去的你对你的一份期望吧. 所以我认为现在的我不适合结婚, 我还没有那份即使失去生命也要保护爱人的信念. 这也解释了为什么当我询问巧巧会找什么样的人作为伴侣的时候, 她的回复是 &quot;对我好的人&quot;, 或许这就是 &quot;爱&quot; 吧. 之前总是说两人在一起最需要的是什么门当户对, 什么价值观相同, 什么兴趣爱好一致, 现在想想, 那些都不过是次要因素罢了, 真正需要的还是那个老生常谈的字: &quot;爱&quot;.</p>
+<p>借用朋友一句话: <font color='red'><strong>欣赏一个人, 始于颜值, 敬于才华, 合于性格, 久于善良, 终于人品</strong></font>.</p>
+<h1 id="2020-年-02-月-28-号"><a href="#2020-年-02-月-28-号" class="headerlink" title="2020 年 02 月 28 号"></a>2020 年 02 月 28 号</h1><h2 id="对于自己-quot-玩游戏时欢-玩过之后又非常懊悔-quot-这种心态的思考"><a href="#对于自己-quot-玩游戏时欢-玩过之后又非常懊悔-quot-这种心态的思考" class="headerlink" title="对于自己 &quot;玩游戏时欢, 玩过之后又非常懊悔&quot; 这种心态的思考."></a>对于自己 &quot;玩游戏时欢, 玩过之后又非常懊悔&quot; 这种心态的思考.</h2><p>当时请假那段时间, 在家迷上了 &quot;游戏王 卡片力量 2&quot;, 玩得不亦乐乎, 好几次玩到晚上24点, 搭建毒蛇神卡组和黑暗大法师卡组, 当时的想法是: 我就不信打不过你! 我就不行我的黑暗大法师出不来! 我就不信我的毒蛇神出不来! 于是便一次又一次地将时间忽略, 其实每次保存的时候, 是有时间提醒的, 当时也注意到挺晚的了, 但还是止不住啊...不过, 玩了一段时间之后呢, 就变得懊悔, 觉得当时咋就傻乎乎地玩游戏不干正事呢? ! 明明有那么多的事情等着做呢! </p>
+<p>但是这种事情在我身上已经发生很多很多次了, 我都数不清了, 于是我就趁请假那段时间考虑了一下这个问题. 首先我玩游戏耗费了一段时间, 没有应该做的其他事情, 于是事后感到了懊悔, 但是这时候我想到一个问题, 我问自己: 那是不是我只要玩游戏或者看动漫耗费了时间, 我都会感到懊悔呢? 我仔细思考了一下, 以目前的情况看, 还真是这样! 于是我又联系自己的生活安排发现了大致有两个原因:</p>
+<ol>
+<li>我现在没有符合自己规定的, 自己许可的看动漫, 看电影或者玩游戏之类的休息时间.</li>
+<li>自己的思想意识还没有清晰地认识到现在的局面, 现在这个根本没有时间去娱乐的局面.</li>
+</ol>
+<p>就导致无论我做什么娱乐, 只要耗费了时间我就会事后感到懊悔.</p>
+<p>未来的我, 如果你现在还是处于这种恶性循环中, 建议你赶紧制定带有 &quot;休息时间&quot; 的计划. 空出一段自己允许的时间休息, 只有这样才能既满足自己的休息欲望, 又能够很好的控制情绪以及生活节奏. </p>
+<blockquote>
+<p><font color='red'><strong>有压迫的地方就会有反抗, 压迫越重, 反抗越重!</strong></font> 切记切记! </p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Diary</category>
+      </categories>
+      <tags>
+        <tag>Diary</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Oracle SQL 基础</title>
     <url>/oracle/oracle_notes.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -3671,7 +3935,27 @@ impdp scott<span class="token operator">/</span>scott123<span class="token varia
 </li>
 <li><p>imp 导入时, 如果出现表已经存在的错误, 可以加入 <code>ignore=y</code> 参数, 加入此参数后, 已存在的表会进行数据追加, 不加此参数, 新导入的数据会被跳过!</p>
 </li>
+<li><p><code>table_exists_action</code> 参数用于指定导入操作对表的处理行为, 一共有四种:</p>
+</li>
 </ol>
+<ul>
+<li><ul>
+<li>SKIP: 这是默认行为, 如果表已存在则直接跳过, 同时报错!</li>
+</ul>
+</li>
+<li><ul>
+<li>APPEND: 如果表已存在则向表中追加数据.</li>
+</ul>
+</li>
+<li><ul>
+<li>REPLACE: 如果表已存在则 DROP 表, 然后创建表, 最后导入数据.</li>
+</ul>
+</li>
+<li><ul>
+<li>TRUNCATE: 如果表已存在则 TRUNCATE 表, 然后导入数据.</li>
+</ul>
+</li>
+</ul>
 <h1 id="SQL-的大小写"><a href="#SQL-的大小写" class="headerlink" title="SQL 的大小写"></a>SQL 的大小写</h1><ol>
 <li><p>sql 中的关键字, 字段名, 表名都是大小写不敏感的.</p>
 </li>
@@ -3957,13 +4241,13 @@ cache <span class="token number">2</span>         <span class="token comment">--
 </ul>
 </li>
 </ol>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">--只取出 name 中 / 后面的字符串</span>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">--举例: 取出 name 字段中 '/' 后的字符串</span>
 <span class="token keyword">select</span> substr<span class="token punctuation">(</span>name<span class="token punctuation">,</span> instr<span class="token punctuation">(</span>name<span class="token punctuation">,</span> <span class="token string">'/'</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">from</span> dmb <span class="token keyword">where</span> saasdm <span class="token operator">=</span> <span class="token string">'test'</span> <span class="token keyword">order</span> <span class="token keyword">by</span> dmxh<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h2 id="SQL-中的大小写转换"><a href="#SQL-中的大小写转换" class="headerlink" title="SQL 中的大小写转换"></a>SQL 中的大小写转换</h2><ol>
-<li><p><code>ucase()</code> 方法可以将查询出来的字符串数据全部转为大写字母. </p>
+<li><p><code>upper()</code> 方法可以将查询出来的字符串数据全部转为大写字母. </p>
 </li>
-<li><p><code>lcase()</code> 方法可以将查询出来的字符串数据全部转为小写字母. </p>
+<li><p><code>lower()</code> 方法可以将查询出来的字符串数据全部转为小写字母. </p>
 </li>
 <li><p>上面两个方式是将查询结果集中的数据转换大小写, 并不会修改数据库中真正的数据.</p>
 </li>
@@ -4030,8 +4314,8 @@ cache <span class="token number">2</span>         <span class="token comment">--
 <span class="token comment">--新建数据泵路径</span>
 <span class="token keyword">create</span> <span class="token operator">or</span> <span class="token keyword">replace</span> directory dir_dp <span class="token keyword">as</span> <span class="token string">'f:/dmp'</span><span class="token punctuation">;</span>
 <span class="token comment">--使用数据库导出导入</span>
-expdp scott<span class="token operator">/</span>a<span class="token variable">@hbxz</span> directory<span class="token operator">=</span>dir_dp <span class="token keyword">dumpfile</span><span class="token operator">=</span><span class="token number">001.</span>dmp logfile<span class="token operator">=</span><span class="token number">001.</span>log<span class="token punctuation">;</span>
-impdp scott<span class="token operator">/</span>a<span class="token variable">@hbxz</span> directory<span class="token operator">=</span>dir_dp <span class="token keyword">dumpfile</span><span class="token operator">=</span><span class="token number">001.</span>dmp logfile<span class="token operator">=</span><span class="token number">001.</span>log<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+expdp scott<span class="token operator">/</span>scott123<span class="token variable">@hbxz</span> directory<span class="token operator">=</span>dir_dp <span class="token keyword">dumpfile</span><span class="token operator">=</span><span class="token number">001.</span>dmp logfile<span class="token operator">=</span><span class="token number">001.</span>log <span class="token keyword">full</span><span class="token operator">=</span>y version<span class="token operator">=</span><span class="token number">10.2</span><span class="token number">.0</span><span class="token number">.1</span><span class="token number">.0</span><span class="token punctuation">;</span>
+impdp scott<span class="token operator">/</span>scott123<span class="token variable">@hbxz</span> directory<span class="token operator">=</span>dir_dp <span class="token keyword">dumpfile</span><span class="token operator">=</span><span class="token number">001.</span>dmp logfile<span class="token operator">=</span><span class="token number">001.</span>log table_exists_action<span class="token operator">=</span><span class="token keyword">replace</span> <span class="token keyword">full</span><span class="token operator">=</span>y<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -4061,7 +4345,7 @@ impdp scott<span class="token operator">/</span>a<span class="token variable">@h
 
 <h1 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h1><p>说实话, 默认的 Hexo 主题我认为不好看, 所以我就上网搜索 Hexo 好看的主题, 最后发现, 最受欢迎的, 也是用的人最多的就是 NexT 主题了. 但是我想了一下, 既然用的人最多, 那么撞车的几率不就很高吗, 那样就没有 <code>独一无二</code> 的感觉了, 所以我坚决不用! <del>真香! ~</del></p>
 <p>其实用 NexT 主题是有很大的一个优势的, 因为用户多, 所以教程资料好找啊, 一找一大片, 不像我之前用的 <code>Shana</code> 和 <code>Gal</code> 主题, 教程? 不存在的! </p>
-<p>在 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQ=">NexT 项目地址 2018<i class="fa fa-external-link-alt"></i></span> 处可以找到 NexT 主题. <code>hexo-theme-next</code> 就是主题项目, 其他的是 NexT 主题的插件项目. 进入 <code>hexo-theme-next</code> 项目, 里面详细说明了如何安装、启用主题, 这里不再赘述. </p>
+<p>在 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQ=">NexT 项目地址 2018<i class="fa fa-external-link-alt"></i></span> 处可以找到 NexT 主题. <code>hexo-theme-next</code> 就是主题项目, 其他的是 NexT 主题的插件项目. 进入 <code>hexo-theme-next</code> 项目, 里面详细说明了如何安装, 启用主题, 这里不再赘述. </p>
 <h2 id="NexT-项目地址"><a href="#NexT-项目地址" class="headerlink" title="NexT 项目地址"></a>NexT 项目地址</h2><ul>
 <li><p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lpc3NuYW4vaGV4by10aGVtZS1uZXh0">2014-2017<i class="fa fa-external-link-alt"></i></span> <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2lpc3NuYW4vaGV4by10aGVtZS1uZXh0">https://github.com/iissnan/hexo-theme-next<i class="fa fa-external-link-alt"></i></span></p>
 </li>
@@ -4079,7 +4363,7 @@ impdp scott<span class="token operator">/</span>a<span class="token variable">@h
 </ul>
 </blockquote>
 <h1 id="知识预备"><a href="#知识预备" class="headerlink" title="知识预备"></a>知识预备</h1><p>Hexo 博客的配置文件有两个, <code>站点配置文件</code> 和 <code>主题配置文件</code>, 站点配置文件在博客根目录中, 我的是: <code>F:\WorkSpace\HexoBlog\_config.yml</code>, 主题配置文件在相应的主题文件夹中, 比如我的 NexT 主题配置文件: <code>F:\WorkSpace\HexoBlog\themes\next\_config.yml</code>. </p>
-<h1 id="自定义站点配置文件"><a href="#自定义站点配置文件" class="headerlink" title="自定义站点配置文件"></a>自定义站点配置文件</h1><p>我们之前创建的本地博客只有一个空的模板, 还没有进行自定义, 下面我们来设置一下我们博客的标题、副标题、描述等等. </p>
+<h1 id="自定义站点配置文件"><a href="#自定义站点配置文件" class="headerlink" title="自定义站点配置文件"></a>自定义站点配置文件</h1><p>我们之前创建的本地博客只有一个空的模板, 还没有进行自定义, 下面我们来设置一下我们博客的标题, 副标题, 描述等等. </p>
 <p>打开本地博客根目录下的 _config.yml 文件, 这个文件就是网站的配置文件. </p>
 <p>下面是基础设置的介绍: </p>
 <table>
@@ -4300,7 +4584,7 @@ reward<span class="token operator">:</span>
   height<span class="token operator">:</span> 5px # 进度条宽度<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><a href="%E5%88%AB%E5%BF%98%E4%BA%86%E5%9C%A8%E5%AF%B9%E5%BA%94%E8%B7%AF%E5%BE%84%E4%B8%8B%E5%88%9B%E5%BB%BA%E4%BD%A0%E7%9A%84%E5%A4%B4%E5%83%8F%E6%96%87%E4%BB%B6">注</a> 如果你部署后发现没有效果, 可以试试将宽度调整为 50px, 你就能看到效果了, 之后记得再将宽度改回去. </p>
-<h2 id="添加评论系统"><a href="#添加评论系统" class="headerlink" title="添加评论系统"></a>添加评论系统</h2><p>NexT 支持很多第三方评论系统: Disqus、畅言、Valine、LiveRe (来必力)、Gitalk. </p>
+<h2 id="添加评论系统"><a href="#添加评论系统" class="headerlink" title="添加评论系统"></a>添加评论系统</h2><p>NexT 支持很多第三方评论系统: Disqus, 畅言, Valine, LiveRe (来必力), Gitalk. </p>
 <blockquote>
 <p>Disqus: 不采用, 因为不支持 Markdown 啊喂! 这让人怎么优雅地发评论啊! </p>
 </blockquote>
@@ -4330,7 +4614,7 @@ A<span class="token operator">:</span> 大哥! Valine 不是支持 Markdown 嘛<
   verify: true # 评论前是否有验证码验证. 
   placeholder: ヾﾉ≧∀≦)o来啊, 快活啊! # 评论框提示语句. 
   avatar: retro # 匿名评论者的用户头像. 
-  guest_info: nick,mail,link # 用户选填信息: 昵称、邮箱(要填写 Gravater 的账号邮箱地址)、个人网站地址. 
+  guest_info: nick,mail,link # 用户选填信息: 昵称, 邮箱(要填写 Gravater 的账号邮箱地址), 个人网站地址. 
   pageSize: 10
   language: zh-cn
   visitor: false # 文章阅读数统计, 建议不要使用, 后面会使用不蒜子统计来实现文章阅读数统计功能. 
@@ -4376,7 +4660,7 @@ A<span class="token operator">:</span> 如果我提前说了<span class="token p
 <ol start="4">
 <li>最后去每篇博客的评论区部分, 登录自己的 Github 账号来初始化 Issues 即可使用 Gitalk 评论系统.</li>
 </ol>
-<h2 id="去掉侧边栏的虚线"><a href="#去掉侧边栏的虚线" class="headerlink" title="去掉侧边栏的虚线"></a>去掉侧边栏的虚线</h2><p>说到这个, 就得提到博客的 &quot;即时聊天功能&quot; 了, 我知道的有: <span class="exturl" data-url="aHR0cDovL2Rhc2hib2FyZC5kYW92b2ljZS5pby8=">DaoVoice<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly93d3cudGlkaW8uY29tLw==">Tidio<i class="fa fa-external-link-alt"></i></span>、<span class="exturl" data-url="aHR0cHM6Ly9jaGF0cmEuaW8v">Chatra<i class="fa fa-external-link-alt"></i></span> 这三个. 点击即可进入官网. </p>
+<h2 id="去掉侧边栏的虚线"><a href="#去掉侧边栏的虚线" class="headerlink" title="去掉侧边栏的虚线"></a>去掉侧边栏的虚线</h2><p>说到这个, 就得提到博客的 &quot;即时聊天功能&quot; 了, 我知道的有: <span class="exturl" data-url="aHR0cDovL2Rhc2hib2FyZC5kYW92b2ljZS5pby8=">DaoVoice<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly93d3cudGlkaW8uY29tLw==">Tidio<i class="fa fa-external-link-alt"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9jaGF0cmEuaW8v">Chatra<i class="fa fa-external-link-alt"></i></span> 这三个. 点击即可进入官网. </p>
 <p>这三个我都用过, 不过就用了几天, &quot;高级版免费试用&quot; 还是有剩余时长的. 有一点点副作用, 就是博客加载时间会变长, 有卡顿感, 说到卡顿, 不得不说的就是这个项目了: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2ZnaHJzaC9saXZlMmRfZGVtbw==">live2d_demo<i class="fa fa-external-link-alt"></i></span> (一个会说话, 会换装, 能拖动的看板娘). 由于我没有服务器哈, 没办法自己搭建 API 服务器, 就使用的原作者的 API 服务器, 但是你想嘛, 肯定有很多很多人都在用原作者的 API 服务器啊, 所以速度上嘛 · · · 唉, 别提了, **太慢了! ! ** 不过我还能接受, 因为 <del>~</del> 开源啊! ! ! 免费啊! ! ! 对吧? ! </p>
 <pre class="line-numbers language-json" data-language="json"><code class="language-json">我<span class="token operator">:</span> 哎! 哎! 别打我! 我错了我错了! 
 看板娘<span class="token operator">:</span> 谁让你说我主人坏话的! 哼😕! <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -4385,8 +4669,8 @@ A<span class="token operator">:</span> 如果我提前说了<span class="token p
 <blockquote>
 <p>拓展: 和 <span class="exturl" data-url="aHR0cHM6Ly93d3cubGl2ZTJkLmNvbS9qYS8=">看板娘<i class="fa fa-external-link-alt"></i></span> 类似的还有一个, 叫做 <span class="exturl" data-url="aHR0cHM6Ly96aC53aWtpcGVkaWEub3JnL3poLWNuLyVFNSU4MSVCRCVFNiU5OCVBNSVFOCU4RiU5Qw==">伪春菜<i class="fa fa-external-link-alt"></i></span>, 有兴趣的小伙伴可以自行搜索了解. </p>
 </blockquote>
-<p>哎, 刚才说到哪了? 因为这四者 (DaoVoice、Tidio、Chatra、live2d) 都会让博客的加载时间变长, 而且前三者是 **收费的! 收费的! 收费的! ** (我指的是高级版本, 基础版本都是免费的) 所以到底用还是不用, 就要看各位自己的判断了, 我推荐呢, 各位试用一下, 过过瘾就行了🤣! 感觉即时聊天还不如在简介或者关于页面挂上自己的 QQ、微信、Telegram 来得实在. </p>
-<p>所以呢我并没有使用这个即时聊天功能, 侧边栏的聊天图标我也关闭显示了, 又因为我使用的是 Gemini 风格, 这就导致侧边栏处出现了 **一道虚线、一道虚线! 、一道虚线! ! ** (终于说到重点了, 之前的废话全是说明这一条虚线出现的原因, 哈哈) 之所以我要强调, 是因为我可是连一丁点前端基础都没有啊! 这个东西折磨了我好久好久, 还好我也是一只程序猿, 耐心什么的, 还不跟玩似的! </p>
+<p>哎, 刚才说到哪了? 因为这四者 (DaoVoice, Tidio, Chatra, live2d) 都会让博客的加载时间变长, 而且前三者是 **收费的! 收费的! 收费的! ** (我指的是高级版本, 基础版本都是免费的) 所以到底用还是不用, 就要看各位自己的判断了, 我推荐呢, 各位试用一下, 过过瘾就行了🤣! 感觉即时聊天还不如在简介或者关于页面挂上自己的 QQ, 微信, Telegram 来得实在. </p>
+<p>所以呢我并没有使用这个即时聊天功能, 侧边栏的聊天图标我也关闭显示了, 又因为我使用的是 Gemini 风格, 这就导致侧边栏处出现了 **一道虚线, 一道虚线! , 一道虚线! ! ** (终于说到重点了, 之前的废话全是说明这一条虚线出现的原因, 哈哈) 之所以我要强调, 是因为我可是连一丁点前端基础都没有啊! 这个东西折磨了我好久好久, 还好我也是一只程序猿, 耐心什么的, 还不跟玩似的! </p>
 <blockquote>
 <p>有想要添加  <strong>即时聊天功能</strong> 的小伙伴可以从目录那里找到相关部分说明的位置坐标, 精准定位. </p>
 </blockquote>
@@ -4402,7 +4686,7 @@ A<span class="token operator">:</span> 如果我提前说了<span class="token p
 
 <p>其中的 <code>border-top</code> 和 <code>border-bottom</code> 就是虚线了, 将 <code>1px</code> 修改为 <code>0px</code> 就可以了, 这样虚线就消失了! </p>
 <p>随便建议大家把这个也改了:, 找到 <code>themes\next\source\css\_common\components\sidebar\sidebar-author-links.styl</code> 搜索: <code>links-of-author</code>, 将 <code>margin-top</code> 修改为 <code>0px</code> 这样侧边栏社交链接上面的空隙就消失了! </p>
-<h2 id="文章分享功能"><a href="#文章分享功能" class="headerlink" title="文章分享功能"></a>文章分享功能</h2><p>NexT 主题集成的分享有3种: <code>Add-this</code>、<code>Likely</code>、<code>NeedMoreShare2</code></p>
+<h2 id="文章分享功能"><a href="#文章分享功能" class="headerlink" title="文章分享功能"></a>文章分享功能</h2><p>NexT 主题集成的分享有3种: <code>Add-this</code>, <code>Likely</code>, <code>NeedMoreShare2</code></p>
 <blockquote>
 <ul>
 <li>add-this: 不知道为什么, 在 NexT 7.2.0 版本中, 无论我怎么设置, 就是无效, 没有任何效果, F12 控制台也没有报任何错误! 很烦! 而且还要注册账号! </li>
@@ -4495,7 +4779,7 @@ canvas_ribbon:
   enable<span class="token operator">:</span> <span class="token boolean">false</span>
   theme<span class="token operator">:</span> loading-bar<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p>博客在加载的时候, 一般是先加载文章, 之后加载附加功能, 像: Live2D、音乐播放器、即时聊天服务等. 所以不使用进度条的话, 在加载完文章后, 访客就可以开始浏览文章了, 这时后台再继续默默加载附加功能. 但是进度条是在博客<strong>完全加载</strong>完成后才会消失的, 所以, 如果使用了进度条功能, 访客就要继续等待, 直到附加功能也完全加载完毕才能开始浏览博客......我想如果我是访客, 我直接就切换标签页, 去逛别人的博客去了. </p>
+<p>博客在加载的时候, 一般是先加载文章, 之后加载附加功能, 像: Live2D, 音乐播放器, 即时聊天服务等. 所以不使用进度条的话, 在加载完文章后, 访客就可以开始浏览文章了, 这时后台再继续默默加载附加功能. 但是进度条是在博客<strong>完全加载</strong>完成后才会消失的, 所以, 如果使用了进度条功能, 访客就要继续等待, 直到附加功能也完全加载完毕才能开始浏览博客......我想如果我是访客, 我直接就切换标签页, 去逛别人的博客去了. </p>
 <h1 id="手动添加华丽效果"><a href="#手动添加华丽效果" class="headerlink" title="手动添加华丽效果"></a>手动添加华丽效果</h1><h2 id="看板娘-Live2D"><a href="#看板娘-Live2D" class="headerlink" title="看板娘 Live2D"></a>看板娘 Live2D</h2><p>第一种: <code>hexo-helper-live2d</code> 优点: 有声音, 缺点: 无法换装, 无法换模型, 响应事件少.</p>
 <p>使用方法见官方网址: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0VZSE4vaGV4by1oZWxwZXItbGl2ZTJk">hexo-helper-live2d<i class="fa fa-external-link-alt"></i></span></p>
 <p>第二种: <code>live2d-widget</code> 优点: 能换装, 能切换模型, 响应事件多, 缺点: 无声音, 配置较复杂.  (现在可能已经有声音了)</p>
@@ -4681,7 +4965,7 @@ document.addEventListener(&#39;visibilitychange&#39;, function () &#123;
   &#125;;
 &lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>之后打开 <code>themes\next\layout\page.swig</code> 文件, 找到 43、44 行之间的位置, 没有行数标记的话, 就搜索 <code>tag-cloud-tags</code> , 它所在的位置就是第 44 行. 在这一行的上面添加如下内容:</p>
+<p>之后打开 <code>themes\next\layout\page.swig</code> 文件, 找到 43, 44 行之间的位置, 没有行数标记的话, 就搜索 <code>tag-cloud-tags</code> , 它所在的位置就是第 44 行. 在这一行的上面添加如下内容:</p>
 <pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&#123;# 球形云标签 #&#125;
 &#123;% if theme.tagcanvas %&#125;
 &#123;% include &#39;..&#x2F;..&#x2F;..&#x2F;source&#x2F;_data&#x2F;tagcanvas.swig&#39; %&#125;
@@ -4764,7 +5048,7 @@ layout: &#x2F;&#x2F;页面布局, 默认值是 post, 默认值可以在站点配
   </entry>
   <entry>
     <title>JavaScript 参考手册</title>
-    <url>/programbasics/javascript_notes.html</url>
+    <url>/program/javascript_notes.html</url>
     <content><![CDATA[<a id="more"></a>
 
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文是<span class="exturl" data-url="aHR0cDovL3d3dy5jbmZhbi5uZXQv">这个网站<i class="fa fa-external-link-alt"></i></span>发布的 Javascript 使用手册的二次整理, 或者说是 Markdown 移植版. 由于本文也是说明手册性质的, 章节之间并没有过渡性语言, 知识点之间是非常零散化的, 所以不适合作为学习型书籍阅读, 而是适合作为手册查询使用. </p>
