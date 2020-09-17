@@ -1,70 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>AHK 基础</title>
-    <url>/ahk/ahk_01.html</url>
-    <content><![CDATA[<h1 id="安装-AutoHotkey"><a href="#安装-AutoHotkey" class="headerlink" title="安装 AutoHotkey"></a>安装 AutoHotkey</h1><p>在安装 <code>Autohotkey</code> 过程中, 需要选择安装 <code>UNICODE</code> 或者 <code>ANSI</code> 版本. </p>
-<p>简单点说, 如果你想要它支持非英文字符和数字, 那就选择 <code>UNICODE</code> 版. </p>
-<p><strong>[注]</strong> <font color='red'>AHK 脚本文件的命名中不能包含空格! 切记! 切记!</font></p>
-<h1 id="热键-amp-热字串"><a href="#热键-amp-热字串" class="headerlink" title="热键 &amp; 热字串"></a>热键 &amp; 热字串</h1><ol>
-<li>热键是用来触发某些动作的按键或组合按键. 如: <code>^j::</code></li>
-</ol>
-<p>热键是通过一对 <code>::</code> 创建的. 按键名或组合按键名必须在 <code>::</code> 左边. 代码则跟在后面, 以 <code>Return</code> 结束.</p>
-<ol start="2">
-<li>热字串主要用于扩展缩写(自动替换). 如: <code>::js::</code></li>
-</ol>
-<p>热字串在要触发的文本两边各有一对 <code>::</code>. 替换后的文本在第二对 <code>::</code> 的右边.</p>
-<h2 id="常用的修饰键-amp-符号"><a href="#常用的修饰键-amp-符号" class="headerlink" title="常用的修饰键 &amp; 符号"></a>常用的修饰键 &amp; 符号</h2><table>
-<thead>
-<tr>
-<th align="center">符号</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">#</td>
-<td align="left">Win</td>
-</tr>
-<tr>
-<td align="center">!</td>
-<td align="left">Alt</td>
-</tr>
-<tr>
-<td align="center">^</td>
-<td align="left">Control</td>
-</tr>
-<tr>
-<td align="center">+</td>
-<td align="left">Shift</td>
-</tr>
-</tbody></table>
-<ol>
-<li>可以通过在两个按键 (除手柄键) 之间, 使用 <code>&amp;</code> 来定义一个组合热键, 注意按键和 <code>&amp;</code> 之间必须加空格. 如: <code>Numpad1 &amp; Numpad2::</code></li>
-</ol>
-<blockquote>
-<p><strong>[注意]</strong> 使用 <code>&amp;</code> 的时候记得在左面按键的前面加上 <code>~</code>, 表示当左面的按键单独按下的时候也要进行处理, 不然左面的按键就失效了. 比如上面的例子中, <code>Numpad1</code> 就会失效. 但是加上 <code>~</code> 符号后, 像这样: <code>~Numpad1 &amp; Numpad2::</code>, 这样 <code>Numpad1</code> 就不会失效了.</p>
-</blockquote>
-<ol start="2">
-<li>热字串的修饰符在第一对 <code>::</code> 之间, 用 <code>*</code> 号进行修饰时, 无需按下结束符, 文本便会自动替换. 如: <code>:*:ftw::</code>.</li>
-</ol>
-<h2 id="如何设置脚本只在特定窗口生效"><a href="#如何设置脚本只在特定窗口生效" class="headerlink" title="如何设置脚本只在特定窗口生效"></a>如何设置脚本只在特定窗口生效</h2><p>在脚本代码的最上方添加高级命令: <code>#IfWinActive</code> 或者 <code>#IfWinExist</code>. </p>
-<h1 id="发送按键-模拟键盘输入"><a href="#发送按键-模拟键盘输入" class="headerlink" title="发送按键, 模拟键盘输入"></a>发送按键, 模拟键盘输入</h1><blockquote>
-<p><strong>[注意]</strong> <code>Send</code> 方法发送文本的时候, 如果要发送这些字符: <code>! + # ^</code>, 这些代表键盘按键的特殊字符, 需要用大括号 <code>&#123; &#125;</code> 括起来. 比如: <code>Send, my first &#123;+&#125; script&#123;!&#125;</code>.</p>
-<p><strong>[注意]</strong> 当然也有代表键盘按键的字串, 如: <code>Space</code>, <code>Enter</code>, 这些也要用大括号 <code>&#123; &#125;</code> 括起来. 如: </p>
-<p><code>Send, Multiple Enter lines have Enter been sent. ; 错误</code></p>
-<p><code>Send, Multiple&#123;Enter&#125;lines have&#123;Enter&#125;been sent. ; 正确</code></p>
-<p><strong>[注意]</strong> 如果模拟键盘输入时遇到了中文输入法的问题, 可以使用 {Text} 参数, 在 SendInput 后面加入这个参数后, 后面的文本就不会以键盘输入的方式进行输出, 而是直接以文本的形式输出, 避免中文输入法导致的问题. 如: </p>
-<p><code>SendInput, &#123;Text&#125;administrator</code></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>AutoHotKey</category>
-      </categories>
-      <tags>
-        <tag>AHK</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>游戏开发笔试面试经历之字节跳动</title>
     <url>/apply/game_apply_bytedance.html</url>
     <content><![CDATA[<p>最近找工作, 那叫一个惨, 哈哈, 记录一下自己面试字节跳动时技术岗提问的问题吧! </p>
@@ -652,6 +588,70 @@ int main()
       </tags>
   </entry>
   <entry>
+    <title>AHK 基础</title>
+    <url>/ahk/ahk_01.html</url>
+    <content><![CDATA[<h1 id="安装-AutoHotkey"><a href="#安装-AutoHotkey" class="headerlink" title="安装 AutoHotkey"></a>安装 AutoHotkey</h1><p>在安装 <code>Autohotkey</code> 过程中, 需要选择安装 <code>UNICODE</code> 或者 <code>ANSI</code> 版本. </p>
+<p>简单点说, 如果你想要它支持非英文字符和数字, 那就选择 <code>UNICODE</code> 版. </p>
+<p><strong>[注]</strong> <font color='red'>AHK 脚本文件的命名中不能包含空格! 切记! 切记!</font></p>
+<h1 id="热键-amp-热字串"><a href="#热键-amp-热字串" class="headerlink" title="热键 &amp; 热字串"></a>热键 &amp; 热字串</h1><ol>
+<li>热键是用来触发某些动作的按键或组合按键. 如: <code>^j::</code></li>
+</ol>
+<p>热键是通过一对 <code>::</code> 创建的. 按键名或组合按键名必须在 <code>::</code> 左边. 代码则跟在后面, 以 <code>Return</code> 结束.</p>
+<ol start="2">
+<li>热字串主要用于扩展缩写(自动替换). 如: <code>::js::</code></li>
+</ol>
+<p>热字串在要触发的文本两边各有一对 <code>::</code>. 替换后的文本在第二对 <code>::</code> 的右边.</p>
+<h2 id="常用的修饰键-amp-符号"><a href="#常用的修饰键-amp-符号" class="headerlink" title="常用的修饰键 &amp; 符号"></a>常用的修饰键 &amp; 符号</h2><table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">#</td>
+<td align="left">Win</td>
+</tr>
+<tr>
+<td align="center">!</td>
+<td align="left">Alt</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="left">Control</td>
+</tr>
+<tr>
+<td align="center">+</td>
+<td align="left">Shift</td>
+</tr>
+</tbody></table>
+<ol>
+<li>可以通过在两个按键 (除手柄键) 之间, 使用 <code>&amp;</code> 来定义一个组合热键, 注意按键和 <code>&amp;</code> 之间必须加空格. 如: <code>Numpad1 &amp; Numpad2::</code></li>
+</ol>
+<blockquote>
+<p><strong>[注意]</strong> 使用 <code>&amp;</code> 的时候记得在左面按键的前面加上 <code>~</code>, 表示当左面的按键单独按下的时候也要进行处理, 不然左面的按键就失效了. 比如上面的例子中, <code>Numpad1</code> 就会失效. 但是加上 <code>~</code> 符号后, 像这样: <code>~Numpad1 &amp; Numpad2::</code>, 这样 <code>Numpad1</code> 就不会失效了.</p>
+</blockquote>
+<ol start="2">
+<li>热字串的修饰符在第一对 <code>::</code> 之间, 用 <code>*</code> 号进行修饰时, 无需按下结束符, 文本便会自动替换. 如: <code>:*:ftw::</code>.</li>
+</ol>
+<h2 id="如何设置脚本只在特定窗口生效"><a href="#如何设置脚本只在特定窗口生效" class="headerlink" title="如何设置脚本只在特定窗口生效"></a>如何设置脚本只在特定窗口生效</h2><p>在脚本代码的最上方添加高级命令: <code>#IfWinActive</code> 或者 <code>#IfWinExist</code>. </p>
+<h1 id="发送按键-模拟键盘输入"><a href="#发送按键-模拟键盘输入" class="headerlink" title="发送按键, 模拟键盘输入"></a>发送按键, 模拟键盘输入</h1><blockquote>
+<p><strong>[注意]</strong> <code>Send</code> 方法发送文本的时候, 如果要发送这些字符: <code>! + # ^</code>, 这些代表键盘按键的特殊字符, 需要用大括号 <code>&#123; &#125;</code> 括起来. 比如: <code>Send, my first &#123;+&#125; script&#123;!&#125;</code>.</p>
+<p><strong>[注意]</strong> 当然也有代表键盘按键的字串, 如: <code>Space</code>, <code>Enter</code>, 这些也要用大括号 <code>&#123; &#125;</code> 括起来. 如: </p>
+<p><code>Send, Multiple Enter lines have Enter been sent. ; 错误</code></p>
+<p><code>Send, Multiple&#123;Enter&#125;lines have&#123;Enter&#125;been sent. ; 正确</code></p>
+<p><strong>[注意]</strong> 如果模拟键盘输入时遇到了中文输入法的问题, 可以使用 {Text} 参数, 在 SendInput 后面加入这个参数后, 后面的文本就不会以键盘输入的方式进行输出, 而是直接以文本的形式输出, 避免中文输入法导致的问题. 如: </p>
+<p><code>SendInput, &#123;Text&#125;administrator</code></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>AutoHotKey</category>
+      </categories>
+      <tags>
+        <tag>AHK</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ASP 开发经验笔记</title>
     <url>/asp/asp_learnnotes.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -734,46 +734,6 @@ public void DownloadFile(string modifyName)
     Response.Flush();
     Response.End();
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="参数化-insert-语句的写法"><a href="#参数化-insert-语句的写法" class="headerlink" title="参数化 insert 语句的写法"></a>参数化 insert 语句的写法</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F;&#x2F; &lt;summary&gt;
-&#x2F;&#x2F;&#x2F; 参数化 insert 语句
-&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;
-&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;ModelInfo&quot;&gt;insert 语句中用到的参数&lt;&#x2F;param&gt;
-&#x2F;&#x2F;&#x2F; &lt;returns&gt;&lt;&#x2F;returns&gt;
-public int AddModel(MHtgl_Htbhgz ModelInfo)
-&#123;
-    &#x2F;&#x2F;添加业务处理
-    List&lt;SqlParameter&gt; ParaList &#x3D; new List&lt;SqlParameter&gt;();
-
-    &#x2F;&#x2F;添加信息
-    StringBuilder sqlbuild &#x3D; new StringBuilder();
-    StringBuilder valbuild &#x3D; new StringBuilder();
-
-    sqlbuild.Append(&quot;Insert into Htgl_Htbhgz(&quot;);
-
-    &#x2F;&#x2F;合同类型
-    sqlbuild.Append(&quot;htlx,&quot;);
-    valbuild.Append(&quot;@htlx,&quot;);
-    SqlParameter parm_htlx &#x3D; new SqlParameter(&quot;@htlx&quot;, SqlDbType.VarChar, 10);
-    Common.SqlParameterExtend.StringSqlParameter(ref parm_htlx, ref ParaList, ModelInfo.Htlx);
-
-    &#x2F;&#x2F;合同年月
-    sqlbuild.Append(&quot;htny,&quot;);
-    valbuild.Append(&quot;@htny,&quot;);
-    SqlParameter parm_htny &#x3D; new SqlParameter(&quot;@htny&quot;, SqlDbType.VarChar, 10);
-    Common.SqlParameterExtend.StringSqlParameter(ref parm_htny, ref ParaList, ModelInfo.Htny);
-
-    &#x2F;&#x2F;执行SQL语句
-    try
-    &#123;
-        SqlHelper.ExecuteNonQuery(CommandType.Text, sqlbuild.ToString() + valbuild.ToString(), ParaList.ToArray());
-        return 1;
-    &#125;
-    catch
-    &#123;
-        return -1;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="最基本的图片查看器功能"><a href="#最基本的图片查看器功能" class="headerlink" title="最基本的图片查看器功能"></a>最基本的图片查看器功能</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F; 前台
 &lt;asp:Image ID&#x3D;&quot;Image&quot; runat&#x3D;&quot;server&quot; ImageUrl&#x3D;&quot;~&#x2F;imagelook.jpg&quot;&#x2F;&gt;
@@ -1416,6 +1376,157 @@ scott123
       </categories>
       <tags>
         <tag>Recovery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>委托的基本用法</title>
+    <url>/csharp/delegate_01.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
+<li><p>委托在使用方法上给程序员的感觉和 C 语言的函数指针非常类似, 但是两者的本质是完全不同的.</p>
+</li>
+<li><p>委托本质是一个类, 不是方法. </p>
+</li>
+</ul>
+<h1 id="定义委托"><a href="#定义委托" class="headerlink" title="定义委托"></a>定义委托</h1><p>定义一个委托的时候, 需要指明待委托方法的两个特征: <code>1. 返回值 (int) 2. 参数 (int, int)</code></p>
+<pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F;定义委托
+public delegate int MyDelegate (int a, int b);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="实例化委托"><a href="#实例化委托" class="headerlink" title="实例化委托"></a>实例化委托</h1><p>实例化委托就是实例化一个类, 使用待委托的方法赋值或将待委托的方法作为参数传入. </p>
+<p>待委托的方法必须符合之前指明的特征: <code>1. 返回值 (int) 2. 参数 (int, int)</code></p>
+<p>待委托的方法如果不是静态方法, 则必须是实例方法. 不能将未实例化的方法作为参数传入或赋值.</p>
+<h1 id="调用委托"><a href="#调用委托" class="headerlink" title="调用委托"></a>调用委托</h1><p>调用委托和调用方法在代码写法上一致.</p>
+<h1 id="委托基本用法示例-非静态"><a href="#委托基本用法示例-非静态" class="headerlink" title="委托基本用法示例 (非静态)"></a>委托基本用法示例 (非静态)</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">using System;
+using System.Collections.Generic;
+
+&#x2F;&#x2F; CSharp 起别名的语法规则, 在 namespace 外部书写时必须写全部路径
+&#x2F;&#x2F; using Package &#x3D; System.Collections.Generic.Dictionary&lt;string, int&gt;;
+
+namespace MyDelegateTest
+&#123;
+    &#x2F;&#x2F; CSharp 起别名的语法规则, 在 namespace 内部书写的时候可以嵌套引用 namespace 外的 using
+    using Package &#x3D; Dictionary&lt;string, int&gt;;
+
+    &#x2F;&#x2F; 定义一个委托类, 指明待委托方法的特征: 1. 返回值 (string) 2. 参数 (string, int, Package)
+    public delegate string DelegateBuy(string itemName, int num, Package package);
+
+    class Program
+    &#123;
+        public static void Main()
+        &#123;
+            &#x2F;&#x2F; 实例化 玩家包裹
+            Package package &#x3D; new Package();
+
+            &#x2F;&#x2F; 实例化 委托
+            &#x2F;&#x2F; 委托初始化时可以直接赋值, 也可以使用 new 关键字
+            &#x2F;&#x2F; 当 &quot;待委托方法&quot; 是非静态方法时, 只能传递待委托方法的实例作为参数, 因此这里必须实例化 Program, 并写 &quot;program.Buy&quot;, 不能只写 &quot;Buy&quot;.
+            Program program &#x3D; new Program();
+            DelegateBuy delegateBuy &#x3D; program.Buy;
+            DelegateBuy delegateBuy2 &#x3D; new DelegateBuy(program.Buy);            
+
+            &#x2F;&#x2F; 调用委托的写法和调用方法的写法一致
+            Console.WriteLine(delegateBuy(&quot;体力药水&quot;, 10, package));
+            Console.WriteLine(delegateBuy(&quot;体力药水&quot;, 25, package));
+            Console.WriteLine(delegateBuy2(&quot;魔力药水&quot;, 10, package));
+            Console.WriteLine(delegateBuy2(&quot;魔力药水&quot;, 5, package));
+
+            &#x2F;&#x2F; 暂停
+            Console.ReadKey();
+        &#125;
+
+        &#x2F;&#x2F;&#x2F; &lt;summary&gt;
+        &#x2F;&#x2F;&#x2F; 待委托的方法
+        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;
+        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;itemName&quot;&gt;物品名称&lt;&#x2F;param&gt;
+        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;num&quot;&gt;物品数量&lt;&#x2F;param&gt;
+        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;package&quot;&gt;玩家包裹&lt;&#x2F;param&gt;
+        public string Buy(string itemName, int num, Dictionary&lt;string, int&gt; package)
+        &#123;
+            string str;
+
+            if (package.ContainsKey(itemName))
+            &#123;
+                package[itemName] +&#x3D; num;
+                str &#x3D; string.Format(&quot;您又购买了&#123;0&#125;个&#123;1&#125;!&quot;, num, itemName);
+            &#125;
+            else
+            &#123;
+                package.Add(itemName, num);
+                str &#x3D; string.Format(&quot;您购买了&#123;0&#125;个&#123;1&#125;!&quot;, num, itemName);
+            &#125;
+
+            return str;
+        &#125;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="委托基本用法示例-静态"><a href="#委托基本用法示例-静态" class="headerlink" title="委托基本用法示例 (静态)"></a>委托基本用法示例 (静态)</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">using System;
+using System.Collections.Generic;
+
+&#x2F;&#x2F; CSharp 起别名的语法规则, 在 namespace 外部书写时必须写全部路径
+&#x2F;&#x2F; using Package &#x3D; System.Collections.Generic.Dictionary&lt;string, int&gt;;
+
+namespace MyDelegateTest
+&#123;
+    &#x2F;&#x2F; CSharp 起别名的语法规则, 在 namespace 内部书写的时候可以嵌套引用 namespace 外的 using
+    using Package &#x3D; Dictionary&lt;string, int&gt;;
+
+    &#x2F;&#x2F; 定义一个委托类, 指明待委托方法的特征: 1. 返回值 (string) 2. 参数 (string, int, Package)
+    public delegate string DelegateBuy(string itemName, int num, Package package);
+
+    class Program
+    &#123;
+        public static void Main()
+        &#123;
+            &#x2F;&#x2F; 实例化 玩家包裹
+            Package package &#x3D; new Package();
+
+            &#x2F;&#x2F; 实例化 委托
+            &#x2F;&#x2F; 当 &quot;待委托方法&quot; 是静态方法时, 可以直接将静态方法作为参数传递.
+            DelegateBuy delegateBuy &#x3D; Program.Buy;
+            DelegateBuy delegateBuy2 &#x3D; new DelegateBuy(Program.Buy);
+
+            &#x2F;&#x2F; 调用委托的写法和调用方法的写法一致
+            Console.WriteLine(delegateBuy(&quot;体力药水&quot;, 10, package));
+            Console.WriteLine(delegateBuy(&quot;体力药水&quot;, 25, package));
+            Console.WriteLine(delegateBuy2(&quot;魔力药水&quot;, 10, package));
+            Console.WriteLine(delegateBuy2(&quot;魔力药水&quot;, 5, package));
+
+            &#x2F;&#x2F; 暂停
+            Console.ReadKey();
+        &#125;
+
+        &#x2F;&#x2F;&#x2F; &lt;summary&gt;
+        &#x2F;&#x2F;&#x2F; 待委托的方法
+        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;
+        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;itemName&quot;&gt;物品名称&lt;&#x2F;param&gt;
+        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;num&quot;&gt;物品数量&lt;&#x2F;param&gt;
+        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;package&quot;&gt;玩家包裹&lt;&#x2F;param&gt;
+        public static string Buy(string itemName, int num, Dictionary&lt;string, int&gt; package)
+        &#123;
+            string str;
+
+            if (package.ContainsKey(itemName))
+            &#123;
+                package[itemName] +&#x3D; num;
+                str &#x3D; string.Format(&quot;您又购买了&#123;0&#125;个&#123;1&#125;!&quot;, num, itemName);
+            &#125;
+            else
+            &#123;
+                package.Add(itemName, num);
+                str &#x3D; string.Format(&quot;您购买了&#123;0&#125;个&#123;1&#125;!&quot;, num, itemName);
+            &#125;
+
+            return str;
+        &#125;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      <categories>
+        <category>CSharp</category>
+      </categories>
+      <tags>
+        <tag>CSharp</tag>
       </tags>
   </entry>
   <entry>

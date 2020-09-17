@@ -24,22 +24,20 @@
     var CONFIG = {"hostname":"kuroha.vip","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="最近被养老保险, 医疗保险, 五险一金, 保险按年交, 保险按月交等给整晕了, 特地上网查阅资料, 进行学习, 记录下笔记, 备忘.">
+  <meta name="description" content="整理一下委托相关的知识.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学习社会保险制度">
-<meta property="og:url" content="https://kuroha.vip/lifetips/social_insurance.html">
+<meta property="og:title" content="委托的基本用法">
+<meta property="og:url" content="https://kuroha.vip/csharp/delegate_01.html">
 <meta property="og:site_name" content="二次元游宅客">
-<meta property="og:description" content="最近被养老保险, 医疗保险, 五险一金, 保险按年交, 保险按月交等给整晕了, 特地上网查阅资料, 进行学习, 记录下笔记, 备忘.">
+<meta property="og:description" content="整理一下委托相关的知识.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://kuroha.vip/images/social_insurance/Social_Insurance.png">
-<meta property="article:published_time" content="2019-10-06T07:25:21.000Z">
-<meta property="article:modified_time" content="2020-09-15T23:41:48.335Z">
+<meta property="article:published_time" content="2020-09-14T01:15:54.000Z">
+<meta property="article:modified_time" content="2020-09-17T04:19:26.450Z">
 <meta property="article:author" content="Kuroha">
-<meta property="article:tag" content="生活知识">
+<meta property="article:tag" content="CSharp">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://kuroha.vip/images/social_insurance/Social_Insurance.png">
 
-<link rel="canonical" href="https://kuroha.vip/lifetips/social_insurance.html">
+<link rel="canonical" href="https://kuroha.vip/csharp/delegate_01.html">
 
 
 <script class="page-configurations">
@@ -70,7 +68,7 @@
 
 
 
-  <title>学习社会保险制度 | 二次元游宅客</title>
+  <title>委托的基本用法 | 二次元游宅客</title>
   
 
 
@@ -232,7 +230,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A4%BE%E4%BC%9A%E4%BF%9D%E9%99%A9%E7%9A%84%E7%BB%93%E6%9E%84%E6%9E%84%E6%88%90"><span class="nav-number">1.</span> <span class="nav-text">社会保险的结构构成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%8E%E9%95%87%E8%81%8C%E5%B7%A5%E5%9F%BA%E6%9C%AC%E5%85%BB%E8%80%81%E4%BF%9D%E9%99%A9"><span class="nav-number">1.1.</span> <span class="nav-text">城镇职工基本养老保险</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%8E%E9%95%87%E8%81%8C%E5%B7%A5%E5%9F%BA%E6%9C%AC%E5%8C%BB%E7%96%97%E4%BF%9D%E9%99%A9"><span class="nav-number">1.2.</span> <span class="nav-text">城镇职工基本医疗保险</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%8E%E9%95%87%E8%81%8C%E5%B7%A5%E5%A4%B1%E4%B8%9A%E4%BF%9D%E9%99%A9"><span class="nav-number">1.3.</span> <span class="nav-text">城镇职工失业保险</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%8E%E9%95%87%E8%81%8C%E5%B7%A5%E5%B7%A5%E4%BC%A4%E4%BF%9D%E9%99%A9"><span class="nav-number">1.4.</span> <span class="nav-text">城镇职工工伤保险</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%8E%E9%95%87%E8%81%8C%E5%B7%A5%E7%94%9F%E8%82%B2%E4%BF%9D%E9%99%A9"><span class="nav-number">1.5.</span> <span class="nav-text">城镇职工生育保险</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%8E%E4%B9%A1%E5%B1%85%E6%B0%91%E5%9F%BA%E6%9C%AC%E5%85%BB%E8%80%81%E4%BF%9D%E9%99%A9"><span class="nav-number">1.6.</span> <span class="nav-text">城乡居民基本养老保险</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%8E%E4%B9%A1%E5%B1%85%E6%B0%91%E5%9F%BA%E6%9C%AC%E5%8C%BB%E7%96%97%E4%BF%9D%E9%99%A9"><span class="nav-number">1.7.</span> <span class="nav-text">城乡居民基本医疗保险</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E5%8F%AA%E6%98%AF%E4%B8%80%E4%B8%AA%E5%86%9C%E6%B0%91-%E6%88%91%E6%83%B3%E7%9F%A5%E9%81%93%E6%88%91%E4%B8%80%E7%9B%B4%E7%BC%B4%E7%BA%B3%E7%9A%84-quot-%E7%A4%BE%E4%BF%9D-quot-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">2.1.</span> <span class="nav-text">我只是一个农民, 我想知道我一直缴纳的 &quot;社保&quot; 是什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%8E%B0%E5%9C%A8%E5%8F%AA%E6%98%AF%E4%B8%80%E5%90%8D%E5%AD%A6%E7%94%9F-%E6%97%A2%E4%B8%8D%E6%98%AF%E5%A4%B1%E4%B8%9A-%E4%B9%9F%E4%B8%8D%E6%98%AF%E5%B0%B1%E4%B8%9A-%E9%82%A3%E4%B9%88%E6%88%91%E4%B8%80%E7%9B%B4%E7%BC%B4%E7%BA%B3%E7%9A%84-quot-%E7%A4%BE%E4%BF%9D-quot-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">2.2.</span> <span class="nav-text">我现在只是一名学生, 既不是失业, 也不是就业, 那么我一直缴纳的 &quot;社保&quot; 是什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E5%88%9A%E5%88%9A%E5%8F%82%E5%8A%A0%E5%B7%A5%E4%BD%9C-%E5%90%AC%E8%AF%B4%E4%BA%86-quot-%E4%BA%94%E9%99%A9%E4%B8%80%E9%87%91-quot-%E5%AE%83%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">2.3.</span> <span class="nav-text">我刚刚参加工作, 听说了 &quot;五险一金&quot;, 它是什么?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E5%90%AC%E8%AF%B4-quot-%E4%BA%94%E9%99%A9%E4%B8%80%E9%87%91-quot-%E4%B8%AD%E6%9C%89%E4%B8%80%E4%B8%AA%E5%8F%AB%E5%81%9A-quot-%E7%94%9F%E8%82%B2%E9%99%A9-quot-%E5%8F%AF%E6%98%AF%E6%88%91%E4%B8%80%E4%B8%AA%E7%94%B7%E7%94%9F-%E4%BA%A4-quot-%E7%94%9F%E8%82%B2%E9%99%A9-quot-%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8"><span class="nav-number">2.4.</span> <span class="nav-text">我听说 &quot;五险一金&quot; 中有一个叫做 &quot;生育险&quot;, 可是我一个男生, 交 &quot;生育险&quot; 有什么用?</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E5%A7%94%E6%89%98"><span class="nav-number">2.</span> <span class="nav-text">定义委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E5%8C%96%E5%A7%94%E6%89%98"><span class="nav-number">3.</span> <span class="nav-text">实例化委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E5%A7%94%E6%89%98"><span class="nav-number">4.</span> <span class="nav-text">调用委托</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A7%94%E6%89%98%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95%E7%A4%BA%E4%BE%8B-%E9%9D%9E%E9%9D%99%E6%80%81"><span class="nav-number">5.</span> <span class="nav-text">委托基本用法示例 (非静态)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A7%94%E6%89%98%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95%E7%A4%BA%E4%BE%8B-%E9%9D%99%E6%80%81"><span class="nav-number">6.</span> <span class="nav-text">委托基本用法示例 (静态)</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -341,7 +339,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kuroha.vip/lifetips/social_insurance.html">
+    <link itemprop="mainEntityOfPage" href="https://kuroha.vip/csharp/delegate_01.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar/avatar.gif">
@@ -356,7 +354,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          学习社会保险制度
+          委托的基本用法
         </h1>
 
         <div class="post-meta">
@@ -366,14 +364,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-10-06 15:25:21" itemprop="dateCreated datePublished" datetime="2019-10-06T15:25:21+08:00">2019-10-06</time>
+              <time title="创建时间：2020-09-14 09:15:54" itemprop="dateCreated datePublished" datetime="2020-09-14T09:15:54+08:00">2020-09-14</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-16 07:41:48" itemprop="dateModified" datetime="2020-09-16T07:41:48+08:00">2020-09-16</time>
+                <time title="修改时间：2020-09-17 12:19:26" itemprop="dateModified" datetime="2020-09-17T12:19:26+08:00">2020-09-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -381,7 +379,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LifeTips/" itemprop="url" rel="index"><span itemprop="name">LifeTips</span></a>
+                  <a href="/categories/CSharp/" itemprop="url" rel="index"><span itemprop="name">CSharp</span></a>
                 </span>
             </span>
 
@@ -391,16 +389,16 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.1k</span>
+              <span>4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
-            <div class="post-description">最近被养老保险, 医疗保险, 五险一金, 保险按年交, 保险按月交等给整晕了, 特地上网查阅资料, 进行学习, 记录下笔记, 备忘.</div>
+            <div class="post-description">整理一下委托相关的知识.</div>
 
         </div>
       </header>
@@ -411,100 +409,145 @@
     <div class="post-body" itemprop="articleBody">
         <a id="more"></a>
 
-<h1 id="社会保险的结构构成"><a href="#社会保险的结构构成" class="headerlink" title="社会保险的结构构成"></a>社会保险的结构构成</h1><blockquote>
-<p>注: 由于后续政策可能变动, 所以在阅读本文之前, 请注意文章的最新更新时间. </p>
-</blockquote>
-<p>直接上图: </p>
-<p><img data-src="/images/social_insurance/Social_Insurance.png" alt="保险的构成"></p>
-<ul>
-<li><p>&quot;社会保险&quot; 简称 &quot;社保&quot;, &quot;城镇职工社会保险&quot; 简称 &quot;职保&quot;, &quot;城乡居民社会保险&quot; 简称 &quot;居保&quot;. </p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
+<li><p>委托在使用方法上给程序员的感觉和 C 语言的函数指针非常类似, 但是两者的本质是完全不同的.</p>
 </li>
-<li><p>&quot;社保&quot; 一词非常广泛, 内部包含 7 种社会保险. </p>
-</li>
-<li><p>&quot;社保&quot; 分为两个大类: 一个是针对就业群体的 &quot;职保&quot;, 另一个是针对无业人群的 &quot;居保&quot;. </p>
-</li>
-<li><p>&quot;职保&quot; 全称: &quot;城镇职工社会保险&quot;, 它包含五种保险: &quot;城镇职工基本养老保险&quot;, &quot;城镇职工基本医疗保险&quot;, &quot;城镇职工失业保险&quot;, &quot;城镇职工工伤保险&quot;, &quot;城镇职工生育保险&quot;. </p>
-</li>
-<li><p>&quot;居保&quot; 全称: &quot;城乡居民社会保险&quot;, 它只包含两种保险: &quot;城乡居民基本养老保险&quot; 和 &quot;城乡居民基本医疗保险&quot;. 由于 &quot;失业保险&quot;, &quot;工伤保险&quot;, &quot;生育保险&quot; 都是和工作息息相关的, 所以 &quot;居保&quot; 自然不包含这三种保险. </p>
-</li>
-<li><p>&quot;医保&quot; 一词非常容易混淆, 它指代两种保险: &quot;城镇职工基本医疗保险&quot; 和 &quot;城乡居民基本医疗保险&quot;, 不同情况下要弄清具体含义. </p>
+<li><p>委托本质是一个类, 不是方法. </p>
 </li>
 </ul>
-<h2 id="城镇职工基本养老保险"><a href="#城镇职工基本养老保险" class="headerlink" title="城镇职工基本养老保险"></a>城镇职工基本养老保险</h2><ul>
-<li><p>&quot;城镇职工基本养老保险&quot; 的目的是保障我们年迈退休后的基本生活需求, 为我们提供稳定可靠的生活经济来源. </p>
-</li>
-<li><p>&quot;城镇职工基本养老保险&quot; 是由企业和我们按照不同的缴费比例共同缴纳费用的. <font color=red>按月缴纳</font>. </p>
-</li>
-<li><p>&quot;城镇职工基本养老保险&quot; 的待遇是当我们退休后可以领取到养老金. (有前提条件)</p>
-</li>
-</ul>
-<h2 id="城镇职工基本医疗保险"><a href="#城镇职工基本医疗保险" class="headerlink" title="城镇职工基本医疗保险"></a>城镇职工基本医疗保险</h2><ul>
-<li><p>&quot;城镇职工基本医疗保险&quot; 简称 &quot;医保&quot;. </p>
-</li>
-<li><p>&quot;城镇职工基本医疗保险&quot; 的目的是减轻我们生活中因患病或受伤害而带来的医疗开销. </p>
-</li>
-<li><p>&quot;城镇职工基本医疗保险&quot; 也是由企业和我们按照不同的缴费比例共同缴纳费用的. <font color=red>按月缴纳</font>. </p>
-</li>
-<li><p>&quot;城镇职工基本医疗保险&quot; 的待遇是当我们患病并去医疗机构就诊而发生医疗费用后, 由医疗保险机构给予一定的经济补偿. </p>
-</li>
-</ul>
-<h2 id="城镇职工失业保险"><a href="#城镇职工失业保险" class="headerlink" title="城镇职工失业保险"></a>城镇职工失业保险</h2><ul>
-<li><p>&quot;城镇职工失业保险&quot; 的目的是为那些因失业而暂时中断生活经济来源的劳动者提供物质帮助以保障其基本生活, 并通过专业训练, 职业介绍等手段为其再就业创造条件. </p>
-</li>
-<li><p>&quot;城镇职工失业保险&quot; 也是由企业和我们按照不同的缴费比例共同缴纳费用的. <font color=red>按月缴纳</font>. </p>
-</li>
-<li><p>&quot;城镇职工失业保险&quot; 的最主要待遇是当我们失业时可以领取到失业保险金. (有前提条件)</p>
-</li>
-</ul>
-<h2 id="城镇职工工伤保险"><a href="#城镇职工工伤保险" class="headerlink" title="城镇职工工伤保险"></a>城镇职工工伤保险</h2><ul>
-<li><p>&quot;城镇职工工伤保险&quot; 是指劳动者在工作中或在规定的特殊情况下, 遭受意外伤害或患职业病导致暂时或永久丧失劳动能力甚至死亡时, 劳动者或其遗属从国家和社会获得物质帮助的一种社会保险制度. </p>
-</li>
-<li><p>&quot;城镇职工保险&quot; 生效的认定办法: 工伤保险实行无过错责任原则. 无论工伤事故的责任归于用人单位还是职工个人或第三者, 用人单位均应承担保险责任. </p>
-</li>
-<li><p>&quot;城镇职工工伤保险&quot; 的缴费: 劳动者不缴纳工伤保险费, <font color = red>全部费用由用人单位负担, 按月缴纳</font>. </p>
-</li>
-<li><p>&quot;城镇职工工伤保险&quot; 的待遇是当我们因工负伤或职业病暂时或永久失去劳动能力以及死亡时, 可以获得工伤保险金. </p>
-</li>
-</ul>
-<h2 id="城镇职工生育保险"><a href="#城镇职工生育保险" class="headerlink" title="城镇职工生育保险"></a>城镇职工生育保险</h2><ul>
-<li><p>&quot;城镇职工生育保险&quot; 是在劳动者因生育子女而导致劳动力暂时中断时, 由国家和社会及时给予物质帮助的一项社会保险制度. </p>
-</li>
-<li><p>&quot;城镇职工生育保险&quot; 的缴费: 劳动者不缴纳生育保险费, <font color = red>全部费用由用人单位负担, 按月缴纳</font>. </p>
-</li>
-<li><p>&quot;城镇职工生育保险&quot; 的待遇主要包括两项: 一是生育津贴, 二是生育医疗待遇. </p>
-</li>
-</ul>
-<h2 id="城乡居民基本养老保险"><a href="#城乡居民基本养老保险" class="headerlink" title="城乡居民基本养老保险"></a>城乡居民基本养老保险</h2><ul>
-<li><p>&quot;城乡居民基本养老保险&quot; 的目的是保障城镇老年居民和乡村老年居民的基本生活需求, 为他们提供稳定可靠的生活经济来源. </p>
-</li>
-<li><p>&quot;城乡居民基本养老保险&quot; 的缴费是自选档次进行缴费, 档次越高费用越高, 国家补贴一部分费用. <font color=red>按年缴纳</font>. </p>
-</li>
-<li><p>&quot;城乡居民基本养老保险&quot; 的待遇也是可以领取到养老金, 采用多缴多得原则, 年轻时上缴的总金额越多, 年迈时领取到的养老金也就越多. (有前提条件))</p>
-</li>
-</ul>
-<h2 id="城乡居民基本医疗保险"><a href="#城乡居民基本医疗保险" class="headerlink" title="城乡居民基本医疗保险"></a>城乡居民基本医疗保险</h2><ul>
-<li><p>&quot;城乡居民基本医疗保险&quot; 也简称 &quot;医保&quot;, 医保是最需要大家关注的保险, 应当深入了解学习. </p>
-</li>
-<li><p>&quot;城乡居民基本医疗保险&quot; 的目的是减轻城镇居民和乡村居民因患病或受伤害而带来的医疗开销. </p>
-</li>
-<li><p>&quot;城乡居民基本医疗保险&quot; 的缴费也是自选档次进行缴费, 档次越高费用越高, 国家补贴一部分费用. <font color=red>按年缴纳</font>. </p>
-</li>
-<li><p>&quot;城乡居民基本医疗保险&quot; 的待遇也是当我们患病并去医疗机构就诊而发生医疗费用后, 由医疗保险机构给予一定的经济补偿, 但是报销比例比起 &quot;城镇职工基本医疗保险&quot; 要低一些.</p>
-</li>
-</ul>
-<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><h2 id="我只是一个农民-我想知道我一直缴纳的-quot-社保-quot-是什么"><a href="#我只是一个农民-我想知道我一直缴纳的-quot-社保-quot-是什么" class="headerlink" title="我只是一个农民, 我想知道我一直缴纳的 &quot;社保&quot; 是什么?"></a>我只是一个农民, 我想知道我一直缴纳的 &quot;社保&quot; 是什么?</h2><p>农民不属于职工, 所以农民所缴纳的社保就是指 &quot;城乡居民社会保险&quot;, 包含 &quot;城乡居民基本养老保险&quot; 和 &quot;城乡居民基本医疗保险&quot; 两种. </p>
-<h2 id="我现在只是一名学生-既不是失业-也不是就业-那么我一直缴纳的-quot-社保-quot-是什么"><a href="#我现在只是一名学生-既不是失业-也不是就业-那么我一直缴纳的-quot-社保-quot-是什么" class="headerlink" title="我现在只是一名学生, 既不是失业, 也不是就业, 那么我一直缴纳的 &quot;社保&quot; 是什么?"></a>我现在只是一名学生, 既不是失业, 也不是就业, 那么我一直缴纳的 &quot;社保&quot; 是什么?</h2><p>学生也不属于职工, 所以学生所缴纳的社保也是指 &quot;城乡居民社会保险&quot;, 但是学生不同于农民的地方是学生所缴纳的社保中不包含 &quot;城乡居民基本养老保险&quot;, 只包含 &quot;城乡居民基本医疗保险&quot;. 所以大多数时候老师或者校方会直接询问你是否缴纳 &quot;医保&quot;, 而不是询问你是否缴纳 &quot;社保&quot;. 当然这里所说的 &quot;医保&quot; 就是指 &quot;城乡居民基本医疗保险&quot;. </p>
-<h2 id="我刚刚参加工作-听说了-quot-五险一金-quot-它是什么"><a href="#我刚刚参加工作-听说了-quot-五险一金-quot-它是什么" class="headerlink" title="我刚刚参加工作, 听说了 &quot;五险一金&quot;, 它是什么?"></a>我刚刚参加工作, 听说了 &quot;五险一金&quot;, 它是什么?</h2><p>由于已经参加了工作, 便成为了职工人员, 所以就出现了 &quot;五险一金&quot;. &quot;五险&quot; 自然就是指 &quot;城镇职工社会保险&quot; 了, 由于 &quot;城镇职工社会保险&quot; 包含五种保险, 所以也被称作 &quot;五险&quot;, 而 &quot;一金&quot; 指的是 &quot;住房公积金&quot;. </p>
-<h2 id="我听说-quot-五险一金-quot-中有一个叫做-quot-生育险-quot-可是我一个男生-交-quot-生育险-quot-有什么用"><a href="#我听说-quot-五险一金-quot-中有一个叫做-quot-生育险-quot-可是我一个男生-交-quot-生育险-quot-有什么用" class="headerlink" title="我听说 &quot;五险一金&quot; 中有一个叫做 &quot;生育险&quot;, 可是我一个男生, 交 &quot;生育险&quot; 有什么用?"></a>我听说 &quot;五险一金&quot; 中有一个叫做 &quot;生育险&quot;, 可是我一个男生, 交 &quot;生育险&quot; 有什么用?</h2><ul>
-<li><p>虽然男生们不能生育宝宝, 但是男生们在公司也是有 10 天看护假期的, 按照生育险规定, 已参保的男性职工按规定享受看护假假期津贴. </p>
-</li>
-<li><p>男生们不能生育宝宝, 但是你的太太是要生育宝宝的啊, 如果你的太太没有就业, 也就没有缴纳生育险, 但是由于你缴纳了 &quot;职保&quot;(职保包含生育险), 那么你的太太同样可以享受其中的生育险待遇. </p>
-</li>
-</ul>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI2ODQ2NDUwOS9hbnN3ZXIvMzM5NDY1OTQy">知乎用户 ID: 51社保余清泉<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
+<h1 id="定义委托"><a href="#定义委托" class="headerlink" title="定义委托"></a>定义委托</h1><p>定义一个委托的时候, 需要指明待委托方法的两个特征: <code>1. 返回值 (int) 2. 参数 (int, int)</code></p>
+<pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F;定义委托
+public delegate int MyDelegate (int a, int b);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
+<h1 id="实例化委托"><a href="#实例化委托" class="headerlink" title="实例化委托"></a>实例化委托</h1><p>实例化委托就是实例化一个类, 使用待委托的方法赋值或将待委托的方法作为参数传入. </p>
+<p>待委托的方法必须符合之前指明的特征: <code>1. 返回值 (int) 2. 参数 (int, int)</code></p>
+<p>待委托的方法如果不是静态方法, 则必须是实例方法. 不能将未实例化的方法作为参数传入或赋值.</p>
+<h1 id="调用委托"><a href="#调用委托" class="headerlink" title="调用委托"></a>调用委托</h1><p>调用委托和调用方法在代码写法上一致.</p>
+<h1 id="委托基本用法示例-非静态"><a href="#委托基本用法示例-非静态" class="headerlink" title="委托基本用法示例 (非静态)"></a>委托基本用法示例 (非静态)</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">using System;
+using System.Collections.Generic;
+
+&#x2F;&#x2F; CSharp 起别名的语法规则, 在 namespace 外部书写时必须写全部路径
+&#x2F;&#x2F; using Package &#x3D; System.Collections.Generic.Dictionary&lt;string, int&gt;;
+
+namespace MyDelegateTest
+&#123;
+    &#x2F;&#x2F; CSharp 起别名的语法规则, 在 namespace 内部书写的时候可以嵌套引用 namespace 外的 using
+    using Package &#x3D; Dictionary&lt;string, int&gt;;
+
+    &#x2F;&#x2F; 定义一个委托类, 指明待委托方法的特征: 1. 返回值 (string) 2. 参数 (string, int, Package)
+    public delegate string DelegateBuy(string itemName, int num, Package package);
+
+    class Program
+    &#123;
+        public static void Main()
+        &#123;
+            &#x2F;&#x2F; 实例化 玩家包裹
+            Package package &#x3D; new Package();
+
+            &#x2F;&#x2F; 实例化 委托
+            &#x2F;&#x2F; 委托初始化时可以直接赋值, 也可以使用 new 关键字
+            &#x2F;&#x2F; 当 &quot;待委托方法&quot; 是非静态方法时, 只能传递待委托方法的实例作为参数, 因此这里必须实例化 Program, 并写 &quot;program.Buy&quot;, 不能只写 &quot;Buy&quot;.
+            Program program &#x3D; new Program();
+            DelegateBuy delegateBuy &#x3D; program.Buy;
+            DelegateBuy delegateBuy2 &#x3D; new DelegateBuy(program.Buy);            
+
+            &#x2F;&#x2F; 调用委托的写法和调用方法的写法一致
+            Console.WriteLine(delegateBuy(&quot;体力药水&quot;, 10, package));
+            Console.WriteLine(delegateBuy(&quot;体力药水&quot;, 25, package));
+            Console.WriteLine(delegateBuy2(&quot;魔力药水&quot;, 10, package));
+            Console.WriteLine(delegateBuy2(&quot;魔力药水&quot;, 5, package));
+
+            &#x2F;&#x2F; 暂停
+            Console.ReadKey();
+        &#125;
+
+        &#x2F;&#x2F;&#x2F; &lt;summary&gt;
+        &#x2F;&#x2F;&#x2F; 待委托的方法
+        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;
+        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;itemName&quot;&gt;物品名称&lt;&#x2F;param&gt;
+        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;num&quot;&gt;物品数量&lt;&#x2F;param&gt;
+        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;package&quot;&gt;玩家包裹&lt;&#x2F;param&gt;
+        public string Buy(string itemName, int num, Dictionary&lt;string, int&gt; package)
+        &#123;
+            string str;
+
+            if (package.ContainsKey(itemName))
+            &#123;
+                package[itemName] +&#x3D; num;
+                str &#x3D; string.Format(&quot;您又购买了&#123;0&#125;个&#123;1&#125;!&quot;, num, itemName);
+            &#125;
+            else
+            &#123;
+                package.Add(itemName, num);
+                str &#x3D; string.Format(&quot;您购买了&#123;0&#125;个&#123;1&#125;!&quot;, num, itemName);
+            &#125;
+
+            return str;
+        &#125;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="委托基本用法示例-静态"><a href="#委托基本用法示例-静态" class="headerlink" title="委托基本用法示例 (静态)"></a>委托基本用法示例 (静态)</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">using System;
+using System.Collections.Generic;
+
+&#x2F;&#x2F; CSharp 起别名的语法规则, 在 namespace 外部书写时必须写全部路径
+&#x2F;&#x2F; using Package &#x3D; System.Collections.Generic.Dictionary&lt;string, int&gt;;
+
+namespace MyDelegateTest
+&#123;
+    &#x2F;&#x2F; CSharp 起别名的语法规则, 在 namespace 内部书写的时候可以嵌套引用 namespace 外的 using
+    using Package &#x3D; Dictionary&lt;string, int&gt;;
+
+    &#x2F;&#x2F; 定义一个委托类, 指明待委托方法的特征: 1. 返回值 (string) 2. 参数 (string, int, Package)
+    public delegate string DelegateBuy(string itemName, int num, Package package);
+
+    class Program
+    &#123;
+        public static void Main()
+        &#123;
+            &#x2F;&#x2F; 实例化 玩家包裹
+            Package package &#x3D; new Package();
+
+            &#x2F;&#x2F; 实例化 委托
+            &#x2F;&#x2F; 当 &quot;待委托方法&quot; 是静态方法时, 可以直接将静态方法作为参数传递.
+            DelegateBuy delegateBuy &#x3D; Program.Buy;
+            DelegateBuy delegateBuy2 &#x3D; new DelegateBuy(Program.Buy);
+
+            &#x2F;&#x2F; 调用委托的写法和调用方法的写法一致
+            Console.WriteLine(delegateBuy(&quot;体力药水&quot;, 10, package));
+            Console.WriteLine(delegateBuy(&quot;体力药水&quot;, 25, package));
+            Console.WriteLine(delegateBuy2(&quot;魔力药水&quot;, 10, package));
+            Console.WriteLine(delegateBuy2(&quot;魔力药水&quot;, 5, package));
+
+            &#x2F;&#x2F; 暂停
+            Console.ReadKey();
+        &#125;
+
+        &#x2F;&#x2F;&#x2F; &lt;summary&gt;
+        &#x2F;&#x2F;&#x2F; 待委托的方法
+        &#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;
+        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;itemName&quot;&gt;物品名称&lt;&#x2F;param&gt;
+        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;num&quot;&gt;物品数量&lt;&#x2F;param&gt;
+        &#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;package&quot;&gt;玩家包裹&lt;&#x2F;param&gt;
+        public static string Buy(string itemName, int num, Dictionary&lt;string, int&gt; package)
+        &#123;
+            string str;
+
+            if (package.ContainsKey(itemName))
+            &#123;
+                package[itemName] +&#x3D; num;
+                str &#x3D; string.Format(&quot;您又购买了&#123;0&#125;个&#123;1&#125;!&quot;, num, itemName);
+            &#125;
+            else
+            &#123;
+                package.Add(itemName, num);
+                str &#x3D; string.Format(&quot;您购买了&#123;0&#125;个&#123;1&#125;!&quot;, num, itemName);
+            &#125;
+
+            return str;
+        &#125;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
     </div>
 
     
@@ -534,7 +577,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://kuroha.vip/lifetips/social_insurance.html" title="学习社会保险制度">https://kuroha.vip/lifetips/social_insurance.html</a>
+    <a href="https://kuroha.vip/csharp/delegate_01.html" title="委托的基本用法">https://kuroha.vip/csharp/delegate_01.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aF9DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -594,7 +637,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%94%9F%E6%B4%BB%E7%9F%A5%E8%AF%86/" rel="tag"><i class="fa fa-tag"></i> 生活知识</a>
+              <a href="/tags/CSharp/" rel="tag"><i class="fa fa-tag"></i> CSharp</a>
           </div>
 
         
@@ -603,12 +646,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/apply/game_apply_bytedance.html" rel="prev" title="游戏开发笔试面试经历之字节跳动">
-      <i class="fa fa-chevron-left"></i> 游戏开发笔试面试经历之字节跳动
+    <a href="/hexo/hexo_update.html" rel="prev" title="Hexo 3.9.0 + NexT 7.2.0 => Hexo 5.1.0 + NexT 8.0.0">
+      <i class="fa fa-chevron-left"></i> Hexo 3.9.0 + NexT 7.2.0 => Hexo 5.1.0 + NexT 8.0.0
     </a></div>
       <div class="post-nav-item">
-    <a href="/program/javascript_notes.html" rel="next" title="JavaScript 参考手册">
-      JavaScript 参考手册 <i class="fa fa-chevron-right"></i>
+    <a href="/asp/asp_learnnotes.html" rel="next" title="ASP 开发经验笔记">
+      ASP 开发经验笔记 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -746,7 +789,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'MyBlogCommentSystem',
       owner       : 'KurohaKirito',
       admin       : ['KurohaKirito'],
-      id          : '270bc4531ef3e5a6856276e3f7f8cabd',
+      id          : '97cbf0aad9e2e12b1909deb4489662f3',
         language: 'zh-CN',
       distractionFreeMode: true
     });
