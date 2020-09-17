@@ -17,10 +17,10 @@
   --btn-default-hover-bg: #222;
   --btn-default-hover-color: #fff;
   --btn-default-hover-border-color: #222;
-  --highlight-background: #1e1e1e;
-  --highlight-foreground: #dcdcdc;
-  --highlight-gutter-background: #313131;
-  --highlight-gutter-foreground: #c9c9c9;
+  --highlight-background: #fff;
+  --highlight-foreground: #000;
+  --highlight-gutter-background: #e5e5e5;
+  --highlight-gutter-foreground: #191919;
 }
 html {
   line-height: 1.15; /* 1 */
@@ -372,87 +372,65 @@ body:not(.sidebar-active) .sidebar-toggle:hover .toggle-line:last-child {
   top: -5px;
 }
 /*
- * Visual Studio 2015 dark style
- * Author: Nicolas LLOBERA <nllobera@gmail.com>
- */
 
+Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
+
+*/
 .hljs {
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #1E1E1E;
-  color: #DCDCDC;
-}
-
-.hljs-keyword,
-.hljs-literal,
-.hljs-symbol,
-.hljs-name {
-  color: #569CD6;
-}
-.hljs-link {
-  color: #569CD6;
-  text-decoration: underline;
-}
-
-.hljs-built_in,
-.hljs-type {
-  color: #4EC9B0;
-}
-
-.hljs-number,
-.hljs-class {
-  color: #B8D7A3;
-}
-
-.hljs-string,
-.hljs-meta-string {
-  color: #D69D85;
-}
-
-.hljs-regexp,
-.hljs-template-tag {
-  color: #9A5334;
-}
-
-.hljs-subst,
-.hljs-function,
-.hljs-title,
-.hljs-params,
-.hljs-formula {
-  color: #DCDCDC;
+  background: white;
+  color: black;
 }
 
 .hljs-comment,
-.hljs-quote {
-  color: #57A64A;
-  font-style: italic;
+.hljs-quote,
+.hljs-variable {
+  color: #008000;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-name,
+.hljs-tag {
+  color: #00f;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-section,
+.hljs-attribute,
+.hljs-literal,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-addition {
+  color: #a31515;
+}
+
+.hljs-deletion,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-meta {
+  color: #2b91af;
 }
 
 .hljs-doctag {
-  color: #608B4E;
+  color: #808080;
 }
 
-.hljs-meta,
-.hljs-meta-keyword,
-.hljs-tag {
-  color: #9B9B9B;
+.hljs-attr {
+  color: #f00;
 }
 
-.hljs-variable,
-.hljs-template-variable {
-  color: #BD63C5;
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link {
+  color: #00b0e8;
 }
 
-.hljs-attr,
-.hljs-attribute,
-.hljs-builtin-name {
-  color: #9CDCFE;
-}
-
-.hljs-section {
-  color: gold;
-}
 
 .hljs-emphasis {
   font-style: italic;
@@ -460,31 +438,6 @@ body:not(.sidebar-active) .sidebar-toggle:hover .toggle-line:last-child {
 
 .hljs-strong {
   font-weight: bold;
-}
-
-/*.hljs-code {
-  font-family:'Monospace';
-}*/
-
-.hljs-bullet,
-.hljs-selector-tag,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-selector-attr,
-.hljs-selector-pseudo {
-  color: #D7BA7D;
-}
-
-.hljs-addition {
-  background-color: #144212;
-  display: inline-block;
-  width: 100%;
-}
-
-.hljs-deletion {
-  background-color: #600;
-  display: inline-block;
-  width: 100%;
 }
 
 .highlight:hover .copy-btn,
