@@ -2,7 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://kuroha.vip/csharp/delegate_01.html</loc>
+    <loc>https://kuroha.vip/apply/game_apply_giant.html</loc>
+    
+    <lastmod>2020-09-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/apply/game_apply_duoyi.html</loc>
     
     <lastmod>2020-09-17</lastmod>
     
@@ -11,7 +18,28 @@
   <url>
     <loc>https://kuroha.vip/asp/asp_learnnotes.html</loc>
     
-    <lastmod>2020-09-16</lastmod>
+    <lastmod>2020-09-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/csharp/delegate_01.html</loc>
+    
+    <lastmod>2020-09-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/program/regular_expression.html</loc>
+    
+    <lastmod>2020-09-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/hexo/next_theme_beautify.html</loc>
+    
+    <lastmod>2020-09-17</lastmod>
     
   </url>
   
@@ -79,28 +107,7 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/apply/game_apply_duoyi.html</loc>
-    
-    <lastmod>2020-09-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kuroha.vip/apply/game_apply_giant.html</loc>
-    
-    <lastmod>2020-09-15</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://kuroha.vip/hexo/hexo_blog.html</loc>
-    
-    <lastmod>2020-09-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kuroha.vip/hexo/next_theme_beautify.html</loc>
     
     <lastmod>2020-09-15</lastmod>
     
@@ -115,13 +122,6 @@
   
   <url>
     <loc>https://kuroha.vip/lifetips/social_insurance.html</loc>
-    
-    <lastmod>2020-09-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kuroha.vip/program/regular_expression.html</loc>
     
     <lastmod>2020-09-15</lastmod>
     

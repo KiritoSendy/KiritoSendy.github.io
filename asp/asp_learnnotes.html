@@ -32,7 +32,7 @@
 <meta property="og:description" content="自己的第一份工作是 ASP 网站开发, 期间也学习了一点点有关 ASP 的知识, 平时只是随手记在一个文本文档中, 都是些非常零碎的知识. 前几天看积累的也不少了, 就整理成一篇博客吧, 顺便复习一下.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-14T02:47:10.000Z">
-<meta property="article:modified_time" content="2020-09-16T10:54:28.812Z">
+<meta property="article:modified_time" content="2020-09-17T05:43:23.146Z">
 <meta property="article:author" content="Kuroha">
 <meta property="article:tag" content="ASP">
 <meta name="twitter:card" content="summary">
@@ -371,7 +371,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-16 18:54:28" itemprop="dateModified" datetime="2020-09-16T18:54:28+08:00">2020-09-16</time>
+                <time title="修改时间：2020-09-17 13:43:23" itemprop="dateModified" datetime="2020-09-17T13:43:23+08:00">2020-09-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -389,14 +389,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.8k</span>
+              <span>5.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>5 分钟</span>
             </span>
             <div class="post-description">自己的第一份工作是 ASP 网站开发, 期间也学习了一点点有关 ASP 的知识, 平时只是随手记在一个文本文档中, 都是些非常零碎的知识. 前几天看积累的也不少了, 就整理成一篇博客吧, 顺便复习一下.</div>
 
@@ -409,197 +409,197 @@
     <div class="post-body" itemprop="articleBody">
         <a id="more"></a>
 
-<h1 id="获取配置文件中的信息"><a href="#获取配置文件中的信息" class="headerlink" title="获取配置文件中的信息"></a>获取配置文件中的信息</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F;获取 web.config 的信息
-System.Configuration.ConfigurationManager.AppSettings[&quot;KeyName&quot;].ToString();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="获取配置文件中的信息"><a href="#获取配置文件中的信息" class="headerlink" title="获取配置文件中的信息"></a>获取配置文件中的信息</h1><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token comment">//获取 web.config 的信息</span>
+System<span class="token punctuation">.</span>Configuration<span class="token punctuation">.</span>ConfigurationManager<span class="token punctuation">.</span>AppSettings<span class="token punctuation">[</span><span class="token string">"KeyName"</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h1 id="控制-DataGrid-模板列中-quot-文本框-quot-的只读"><a href="#控制-DataGrid-模板列中-quot-文本框-quot-的只读" class="headerlink" title="控制 DataGrid 模板列中 &quot;文本框&quot; 的只读"></a>控制 DataGrid 模板列中 &quot;文本框&quot; 的只读</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">TextBox tb10 &#x3D; (TextBox)myCardDataGrid.Items[i].FindControl(&quot;txt_cbbh&quot;);
-tb10.Attributes.Add(&quot;readonly&quot;, &quot;ture&quot;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="控制-DataGrid-模板列中-quot-文本框-quot-的只读"><a href="#控制-DataGrid-模板列中-quot-文本框-quot-的只读" class="headerlink" title="控制 DataGrid 模板列中 &quot;文本框&quot; 的只读"></a>控制 DataGrid 模板列中 &quot;文本框&quot; 的只读</h1><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token class-name">TextBox</span> tb10 <span class="token operator">=</span> <span class="token punctuation">(</span>TextBox<span class="token punctuation">)</span>myCardDataGrid<span class="token punctuation">.</span>Items<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">FindControl</span><span class="token punctuation">(</span><span class="token string">"txt_cbbh"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+tb10<span class="token punctuation">.</span>Attributes<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token string">"readonly"</span><span class="token punctuation">,</span> <span class="token string">"ture"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <h1 id="Oracle-存储过程调试时输出信息"><a href="#Oracle-存储过程调试时输出信息" class="headerlink" title="Oracle 存储过程调试时输出信息"></a>Oracle 存储过程调试时输出信息</h1><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">--存储过程调试输出</span>
 dbms_output<span class="token punctuation">.</span>put_line<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h1 id="调用前台-JavaScript-方法"><a href="#调用前台-JavaScript-方法" class="headerlink" title="调用前台 JavaScript 方法"></a>调用前台 JavaScript 方法</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F;后台 C# 调用前台 JavaScript 的自定义方法
-ClientScript.RegisterStartupScript(this.GetType(), &quot;&quot;, &quot;&lt;script&gt;myFunction();&lt;&#x2F;script&gt;&quot;);
+<h1 id="调用前台-JavaScript-方法"><a href="#调用前台-JavaScript-方法" class="headerlink" title="调用前台 JavaScript 方法"></a>调用前台 JavaScript 方法</h1><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token comment">//后台 C# 调用前台 JavaScript 的自定义方法</span>
+ClientScript<span class="token punctuation">.</span><span class="token function">RegisterStartupScript</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">GetType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token string">"&lt;script>myFunction();&lt;/script>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-&#x2F;&#x2F;后台 C# 调用前台 JavaScript 弹窗提示
-ClientScript.RegisterStartupScript(this.GetType(), &quot;&quot;, &quot;&lt;script&gt;alert(&#39;弹窗信息!&#39;);&lt;&#x2F;script&gt;&quot;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">//后台 C# 调用前台 JavaScript 弹窗提示</span>
+ClientScript<span class="token punctuation">.</span><span class="token function">RegisterStartupScript</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">GetType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token string">"&lt;script>alert('弹窗信息!');&lt;/script>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="获取电脑-IP"><a href="#获取电脑-IP" class="headerlink" title="获取电脑 IP"></a>获取电脑 IP</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F;记录下电脑 IP 的方法
-string ip &#x3D; string.Empty;
+<h1 id="获取电脑-IP"><a href="#获取电脑-IP" class="headerlink" title="获取电脑 IP"></a>获取电脑 IP</h1><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token comment">//记录下电脑 IP 的方法</span>
+<span class="token class-name"><span class="token keyword">string</span></span> ip <span class="token operator">=</span> <span class="token keyword">string</span><span class="token punctuation">.</span>Empty<span class="token punctuation">;</span>
 
-if(System.Web.HttpContext.Current.Request.ServerVariables[&quot;HTTP_VIA&quot;] !&#x3D; null)
-&#123;
-    ip &#x3D; System.Web.HttpContext.Current.Request.ServerVariables[&quot;HTTP_X_FORWARDED_FOR&quot;].Split(new char[] &#123; &#39;,&#39; &#125;)[0].ToString();
-&#125;
-else
-&#123;
-    ip &#x3D; System.Web.HttpContext.Current.Request.ServerVariables[&quot;REMOTE_ADDR&quot;].ToString();
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">if</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>Web<span class="token punctuation">.</span>HttpContext<span class="token punctuation">.</span>Current<span class="token punctuation">.</span>Request<span class="token punctuation">.</span>ServerVariables<span class="token punctuation">[</span><span class="token string">"HTTP_VIA"</span><span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    ip <span class="token operator">=</span> System<span class="token punctuation">.</span>Web<span class="token punctuation">.</span>HttpContext<span class="token punctuation">.</span>Current<span class="token punctuation">.</span>Request<span class="token punctuation">.</span>ServerVariables<span class="token punctuation">[</span><span class="token string">"HTTP_X_FORWARDED_FOR"</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">Split</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> <span class="token punctuation">&#123;</span> <span class="token string character">','</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">else</span>
+<span class="token punctuation">&#123;</span>
+    ip <span class="token operator">=</span> System<span class="token punctuation">.</span>Web<span class="token punctuation">.</span>HttpContext<span class="token punctuation">.</span>Current<span class="token punctuation">.</span>Request<span class="token punctuation">.</span>ServerVariables<span class="token punctuation">[</span><span class="token string">"REMOTE_ADDR"</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="文件下载-模板下载功能"><a href="#文件下载-模板下载功能" class="headerlink" title="文件下载, 模板下载功能"></a>文件下载, 模板下载功能</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F;&#x2F; &lt;summary&gt;
-&#x2F;&#x2F;&#x2F; 浏览器下载文件
-&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;
-&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;modifyName&quot;&gt;自定义文件名, 附带后缀&lt;&#x2F;param&gt;
-public void DownloadFile(string modifyName)
-&#123;
-    &#x2F;&#x2F; 定义变量: 文件名
-    string fileName &#x3D; string.Empty;
+<h1 id="文件下载-模板下载功能"><a href="#文件下载-模板下载功能" class="headerlink" title="文件下载, 模板下载功能"></a>文件下载, 模板下载功能</h1><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token comment">/// &lt;summary></span>
+<span class="token comment">/// 浏览器下载文件</span>
+<span class="token comment">/// &lt;/summary></span>
+<span class="token comment">/// &lt;param name="modifyName">自定义文件名, 附带后缀&lt;/param></span>
+<span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">DownloadFile</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> modifyName<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">// 定义变量: 文件名</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> fileName <span class="token operator">=</span> <span class="token keyword">string</span><span class="token punctuation">.</span>Empty<span class="token punctuation">;</span>
 
-    &#x2F;&#x2F; 获取文件在服务器的地址
-    string url &#x3D; Server.MapPath(&quot;..&#x2F;searchZclbList.xls&quot;);
+    <span class="token comment">// 获取文件在服务器的地址</span>
+    <span class="token class-name"><span class="token keyword">string</span></span> url <span class="token operator">=</span> Server<span class="token punctuation">.</span><span class="token function">MapPath</span><span class="token punctuation">(</span><span class="token string">"../searchZclbList.xls"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    &#x2F;&#x2F; 判断地址是否为空
-    if (string.IsNullOrEmpty(url))
-    &#123;
-        &#x2F;&#x2F; 提示 &quot;该文件暂不提供下载&quot;
-        Page.ClientScript.RegisterStartupScript(Page.GetType(), &quot;message&quot;, &quot;&lt;script defer&gt;alert(&#39;该文件暂不提供下载!&#39;);&lt;&#x2F;script&gt;&quot;);
-        return;
-    &#125;
+    <span class="token comment">// 判断地址是否为空</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">IsNullOrEmpty</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 提示 "该文件暂不提供下载"</span>
+        Page<span class="token punctuation">.</span>ClientScript<span class="token punctuation">.</span><span class="token function">RegisterStartupScript</span><span class="token punctuation">(</span>Page<span class="token punctuation">.</span><span class="token function">GetType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"message"</span><span class="token punctuation">,</span> <span class="token string">"&lt;script defer>alert('该文件暂不提供下载!');&lt;/script>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    &#x2F;&#x2F; 判断获取的是否为地址  
-    if (url.IndexOf(&quot;\\&quot;) &gt; -1)
-    &#123;
-        &#x2F;&#x2F; url 为地址时, 则截取 url 中的文件名作为文件名
-        fileName &#x3D; url.Substring(url.LastIndexOf(&quot;\\&quot;) + 1);
-    &#125;
-    else
-    &#123;
-        &#x2F;&#x2F; url 为文件名时, 直接获取文件名  
-        fileName &#x3D; url;
-    &#125;
+    <span class="token comment">// 判断获取的是否为地址  </span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>url<span class="token punctuation">.</span><span class="token function">IndexOf</span><span class="token punctuation">(</span><span class="token string">"\\"</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">// url 为地址时, 则截取 url 中的文件名作为文件名</span>
+        fileName <span class="token operator">=</span> url<span class="token punctuation">.</span><span class="token function">Substring</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span><span class="token function">LastIndexOf</span><span class="token punctuation">(</span><span class="token string">"\\"</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">// url 为文件名时, 直接获取文件名  </span>
+        fileName <span class="token operator">=</span> url<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    &#x2F;&#x2F; 自定义文件名, 附带后缀
-    if (!string.IsNullOrEmpty(modifyName))
-    &#123;
-        fileName &#x3D; modifyName;
-    &#125;
+    <span class="token comment">// 自定义文件名, 附带后缀</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">IsNullOrEmpty</span><span class="token punctuation">(</span>modifyName<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        fileName <span class="token operator">=</span> modifyName<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
 
-    &#x2F;&#x2F; 以字符流的方式下载文件  
-    FileStream fileStream &#x3D; new FileStream(@url, FileMode.Open);
-    byte[] bytes &#x3D; new byte[(int)fileStream.Length];
-    fileStream.Read(bytes, 0, bytes.Length);
-    fileStream.Close();
-    Response.ContentType &#x3D; &quot;application&#x2F;octet-stream&quot;;
+    <span class="token comment">// 以字符流的方式下载文件  </span>
+    <span class="token class-name">FileStream</span> fileStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FileStream</span><span class="token punctuation">(</span>@url<span class="token punctuation">,</span> FileMode<span class="token punctuation">.</span>Open<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name"><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span></span> bytes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name"><span class="token keyword">byte</span></span><span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>fileStream<span class="token punctuation">.</span>Length<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    fileStream<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span>bytes<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> bytes<span class="token punctuation">.</span>Length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    fileStream<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Response<span class="token punctuation">.</span>ContentType <span class="token operator">=</span> <span class="token string">"application/octet-stream"</span><span class="token punctuation">;</span>
 
-    &#x2F;&#x2F; 通知浏览器下载 
-    Response.AddHeader(&quot;Content-Disposition&quot;, &quot;attachment; filename&#x3D;&quot; + fileName);
-    Response.BinaryWrite(bytes);
-    Response.Flush();
-    Response.End();
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token comment">// 通知浏览器下载 </span>
+    Response<span class="token punctuation">.</span><span class="token function">AddHeader</span><span class="token punctuation">(</span><span class="token string">"Content-Disposition"</span><span class="token punctuation">,</span> <span class="token string">"attachment; filename="</span> <span class="token operator">+</span> fileName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Response<span class="token punctuation">.</span><span class="token function">BinaryWrite</span><span class="token punctuation">(</span>bytes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Response<span class="token punctuation">.</span><span class="token function">Flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Response<span class="token punctuation">.</span><span class="token function">End</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="最基本的图片查看器功能"><a href="#最基本的图片查看器功能" class="headerlink" title="最基本的图片查看器功能"></a>最基本的图片查看器功能</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F; 前台
-&lt;asp:Image ID&#x3D;&quot;Image&quot; runat&#x3D;&quot;server&quot; ImageUrl&#x3D;&quot;~&#x2F;imagelook.jpg&quot;&#x2F;&gt;
+<h1 id="最基本的图片查看器功能"><a href="#最基本的图片查看器功能" class="headerlink" title="最基本的图片查看器功能"></a>最基本的图片查看器功能</h1><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token comment">// 前台</span>
+<span class="token operator">&lt;</span>asp<span class="token punctuation">:</span><span class="token class-name">Image</span> ID<span class="token operator">=</span><span class="token string">"Image"</span> runat<span class="token operator">=</span><span class="token string">"server"</span> ImageUrl<span class="token operator">=</span><span class="token string">"~/imagelook.jpg"</span><span class="token operator">/</span><span class="token operator">></span>
 
-&#x2F;&#x2F; 后台
-protected void Page_Load(object sender, System.EventArgs e)
-&#123;
-    try
-    &#123;
-        &#x2F;&#x2F; 读取图片
-        int ImgID &#x3D; Convert.ToInt32(Request.QueryString[&quot;imageid&quot;] as string);
-        OracleConnection Con &#x3D; new googoSoftEAM.SQLServerDAL.SqlHelper().Connection;
-        String SqlCmd &#x3D; &quot;select * from zc_image where imageid &#x3D; :imageid and saasdm&#x3D;&#39;&quot; + Session[&quot;saasdm&quot;].ToString() + &quot;&#39;&quot;;
-        OracleCommand CmdObj &#x3D; new OracleCommand(SqlCmd, Con);
-        CmdObj.Parameters.Add(&quot;:ImageID&quot;, OracleType.UInt32).Value &#x3D; ImgID;
-        Con.Open();
-        OracleDataReader SqlReader &#x3D; CmdObj.ExecuteReader();
-        SqlReader.Read();
+<span class="token comment">// 后台</span>
+<span class="token keyword">protected</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Page_Load</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">object</span></span> sender<span class="token punctuation">,</span> <span class="token class-name">System<span class="token punctuation">.</span>EventArgs</span> e<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">try</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 读取图片</span>
+        <span class="token class-name"><span class="token keyword">int</span></span> ImgID <span class="token operator">=</span> Convert<span class="token punctuation">.</span><span class="token function">ToInt32</span><span class="token punctuation">(</span>Request<span class="token punctuation">.</span>QueryString<span class="token punctuation">[</span><span class="token string">"imageid"</span><span class="token punctuation">]</span> <span class="token keyword">as</span> <span class="token class-name"><span class="token keyword">string</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">OracleConnection</span> Con <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">googoSoftEAM<span class="token punctuation">.</span>SQLServerDAL<span class="token punctuation">.</span>SqlHelper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>Connection<span class="token punctuation">;</span>
+        <span class="token class-name">String</span> SqlCmd <span class="token operator">=</span> <span class="token string">"select * from zc_image where imageid = :imageid and saasdm='"</span> <span class="token operator">+</span> Session<span class="token punctuation">[</span><span class="token string">"saasdm"</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"'"</span><span class="token punctuation">;</span>
+        <span class="token class-name">OracleCommand</span> CmdObj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">OracleCommand</span><span class="token punctuation">(</span>SqlCmd<span class="token punctuation">,</span> Con<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        CmdObj<span class="token punctuation">.</span>Parameters<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token string">":ImageID"</span><span class="token punctuation">,</span> OracleType<span class="token punctuation">.</span>UInt32<span class="token punctuation">)</span><span class="token punctuation">.</span>Value <span class="token operator">=</span> ImgID<span class="token punctuation">;</span>
+        Con<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">OracleDataReader</span> SqlReader <span class="token operator">=</span> CmdObj<span class="token punctuation">.</span><span class="token function">ExecuteReader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        SqlReader<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        &#x2F;&#x2F; 图片类型
-        string imageType &#x3D; (string)SqlReader[&quot;imagecontenttype&quot;];
+        <span class="token comment">// 图片类型</span>
+        <span class="token class-name"><span class="token keyword">string</span></span> imageType <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">)</span>SqlReader<span class="token punctuation">[</span><span class="token string">"imagecontenttype"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-        &#x2F;&#x2F; 原版图片内容 [字节流]
-        MemoryStream bufferByte &#x3D; new MemoryStream((byte[])SqlReader[&quot;imageData&quot;]);
-        System.Drawing.Image imageOrigin &#x3D; System.Drawing.Image.FromStream(bufferByte, true);
+        <span class="token comment">// 原版图片内容 [字节流]</span>
+        <span class="token class-name">MemoryStream</span> bufferByte <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">MemoryStream</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>SqlReader<span class="token punctuation">[</span><span class="token string">"imageData"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System<span class="token punctuation">.</span>Drawing<span class="token punctuation">.</span>Image</span> imageOrigin <span class="token operator">=</span> System<span class="token punctuation">.</span>Drawing<span class="token punctuation">.</span>Image<span class="token punctuation">.</span><span class="token function">FromStream</span><span class="token punctuation">(</span>bufferByte<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        &#x2F;&#x2F; 缩小文件 (计算缩小倍率) 缩小至 高度 targetHeight 左右
-        float targetHeight &#x3D; 600.0f;
-        float shrink &#x3D; targetHeight &#x2F; imageOrigin.Height;
-        float w &#x3D; shrink, h &#x3D; shrink;
+        <span class="token comment">// 缩小文件 (计算缩小倍率) 缩小至 高度 targetHeight 左右</span>
+        <span class="token class-name"><span class="token keyword">float</span></span> targetHeight <span class="token operator">=</span> <span class="token number">600.0f</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">float</span></span> shrink <span class="token operator">=</span> targetHeight <span class="token operator">/</span> imageOrigin<span class="token punctuation">.</span>Height<span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">float</span></span> w <span class="token operator">=</span> shrink<span class="token punctuation">,</span> h <span class="token operator">=</span> shrink<span class="token punctuation">;</span>
 
-        &#x2F;&#x2F; 目标图形
-        System.Drawing.Bitmap imageSmall &#x3D; new System.Drawing.Bitmap((int)(imageOrigin.Width * shrink), (int)(imageOrigin.Height * shrink));
+        <span class="token comment">// 目标图形</span>
+        <span class="token class-name">System<span class="token punctuation">.</span>Drawing<span class="token punctuation">.</span>Bitmap</span> imageSmall <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">System<span class="token punctuation">.</span>Drawing<span class="token punctuation">.</span>Bitmap</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>imageOrigin<span class="token punctuation">.</span>Width <span class="token operator">*</span> shrink<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>imageOrigin<span class="token punctuation">.</span>Height <span class="token operator">*</span> shrink<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        &#x2F;&#x2F; 创建一个图形对象
-        Graphics graphics &#x3D; Graphics.FromImage(imageSmall);
-        graphics.DrawImage(imageOrigin, new Rectangle(0, 0, imageSmall.Width, imageSmall.Height), new Rectangle(0, 0, imageOrigin.Width, imageOrigin.Height), GraphicsUnit.Pixel);
+        <span class="token comment">// 创建一个图形对象</span>
+        <span class="token class-name">Graphics</span> graphics <span class="token operator">=</span> Graphics<span class="token punctuation">.</span><span class="token function">FromImage</span><span class="token punctuation">(</span>imageSmall<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        graphics<span class="token punctuation">.</span><span class="token function">DrawImage</span><span class="token punctuation">(</span>imageOrigin<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Rectangle</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> imageSmall<span class="token punctuation">.</span>Width<span class="token punctuation">,</span> imageSmall<span class="token punctuation">.</span>Height<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Rectangle</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> imageOrigin<span class="token punctuation">.</span>Width<span class="token punctuation">,</span> imageOrigin<span class="token punctuation">.</span>Height<span class="token punctuation">)</span><span class="token punctuation">,</span> GraphicsUnit<span class="token punctuation">.</span>Pixel<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        string ret_type &#x3D; string.Empty;
-        GetImageType(imageType, out ret_type);
-        string imagePath &#x3D; Server.MapPath(&quot;..&#x2F;imagelook.&quot; + ret_type);
-        if (File.Exists(imagePath))
-        &#123;
-            File.Delete(imagePath);
-        &#125;
+        <span class="token class-name"><span class="token keyword">string</span></span> ret_type <span class="token operator">=</span> <span class="token keyword">string</span><span class="token punctuation">.</span>Empty<span class="token punctuation">;</span>
+        <span class="token function">GetImageType</span><span class="token punctuation">(</span>imageType<span class="token punctuation">,</span> <span class="token keyword">out</span> ret_type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name"><span class="token keyword">string</span></span> imagePath <span class="token operator">=</span> Server<span class="token punctuation">.</span><span class="token function">MapPath</span><span class="token punctuation">(</span><span class="token string">"../imagelook."</span> <span class="token operator">+</span> ret_type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>File<span class="token punctuation">.</span><span class="token function">Exists</span><span class="token punctuation">(</span>imagePath<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            File<span class="token punctuation">.</span><span class="token function">Delete</span><span class="token punctuation">(</span>imagePath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
 
-        imageSmall.Save(imagePath);
-        Image.ImageUrl &#x3D; &quot;~&#x2F;imagelook.&quot; + ret_type + &quot;?&quot; + new Random().Next(100).ToString();
-        Con.Close();
-    &#125;
-    catch (Exception ex)
-    &#123;
-        Trace.Write(ex.Message);
-    &#125;
-&#125;
+        imageSmall<span class="token punctuation">.</span><span class="token function">Save</span><span class="token punctuation">(</span>imagePath<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Image<span class="token punctuation">.</span>ImageUrl <span class="token operator">=</span> <span class="token string">"~/imagelook."</span> <span class="token operator">+</span> ret_type <span class="token operator">+</span> <span class="token string">"?"</span> <span class="token operator">+</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Con<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> ex<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        Trace<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>ex<span class="token punctuation">.</span>Message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F;&#x2F; &lt;summary&gt;
-&#x2F;&#x2F;&#x2F; 根据所存图片类型返回图片格式
-&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;
-&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;imageType&quot;&gt;图片类型&lt;&#x2F;param&gt;
-&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;ret_type&quot;&gt;返回的图片类型 (string)&lt;&#x2F;param&gt;
-&#x2F;&#x2F;&#x2F; &lt;returns&gt;返回的图片类型 (ImageFormat)&lt;&#x2F;returns&gt;
-private System.Drawing.Imaging.ImageFormat GetImageType(string imageType, out string ret_type)
-&#123;
-    switch (imageType)
-    &#123;
-        case &quot;image&#x2F;gif&quot;:
-            ret_type &#x3D; &quot;gif&quot;;
-            return System.Drawing.Imaging.ImageFormat.Gif;
-            break;
-        case &quot;image&#x2F;bmp&quot;:
-            ret_type &#x3D; &quot;bmp&quot;;
-            return System.Drawing.Imaging.ImageFormat.Bmp;
-            break;
-        case &quot;image&#x2F;x-png&quot;:
-        case &quot;image&#x2F;png&quot;:
-            ret_type &#x3D; &quot;png&quot;;
-            return System.Drawing.Imaging.ImageFormat.Png;
-            break;
-        case &quot;image&#x2F;pjpeg&quot;:
-        case &quot;image&#x2F;jpeg&quot;:
-            ret_type &#x3D; &quot;jpg&quot;;
-            return System.Drawing.Imaging.ImageFormat.Jpeg;
-            break;
-        default:
-            ret_type &#x3D; &quot;jpg&quot;;
-            return System.Drawing.Imaging.ImageFormat.Jpeg;
-            break;
-    &#125;   
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">/// &lt;summary></span>
+<span class="token comment">/// 根据所存图片类型返回图片格式</span>
+<span class="token comment">/// &lt;/summary></span>
+<span class="token comment">/// &lt;param name="imageType">图片类型&lt;/param></span>
+<span class="token comment">/// &lt;param name="ret_type">返回的图片类型 (string)&lt;/param></span>
+<span class="token comment">/// &lt;returns>返回的图片类型 (ImageFormat)&lt;/returns></span>
+<span class="token keyword">private</span> <span class="token return-type class-name">System<span class="token punctuation">.</span>Drawing<span class="token punctuation">.</span>Imaging<span class="token punctuation">.</span>ImageFormat</span> <span class="token function">GetImageType</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> imageType<span class="token punctuation">,</span> <span class="token keyword">out</span> <span class="token class-name"><span class="token keyword">string</span></span> ret_type<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>imageType<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">case</span> <span class="token string">"image/gif"</span><span class="token punctuation">:</span>
+            ret_type <span class="token operator">=</span> <span class="token string">"gif"</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> System<span class="token punctuation">.</span>Drawing<span class="token punctuation">.</span>Imaging<span class="token punctuation">.</span>ImageFormat<span class="token punctuation">.</span>Gif<span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> <span class="token string">"image/bmp"</span><span class="token punctuation">:</span>
+            ret_type <span class="token operator">=</span> <span class="token string">"bmp"</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> System<span class="token punctuation">.</span>Drawing<span class="token punctuation">.</span>Imaging<span class="token punctuation">.</span>ImageFormat<span class="token punctuation">.</span>Bmp<span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> <span class="token string">"image/x-png"</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token string">"image/png"</span><span class="token punctuation">:</span>
+            ret_type <span class="token operator">=</span> <span class="token string">"png"</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> System<span class="token punctuation">.</span>Drawing<span class="token punctuation">.</span>Imaging<span class="token punctuation">.</span>ImageFormat<span class="token punctuation">.</span>Png<span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">case</span> <span class="token string">"image/pjpeg"</span><span class="token punctuation">:</span>
+        <span class="token keyword">case</span> <span class="token string">"image/jpeg"</span><span class="token punctuation">:</span>
+            ret_type <span class="token operator">=</span> <span class="token string">"jpg"</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> System<span class="token punctuation">.</span>Drawing<span class="token punctuation">.</span>Imaging<span class="token punctuation">.</span>ImageFormat<span class="token punctuation">.</span>Jpeg<span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token keyword">default</span><span class="token punctuation">:</span>
+            ret_type <span class="token operator">=</span> <span class="token string">"jpg"</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> System<span class="token punctuation">.</span>Drawing<span class="token punctuation">.</span>Imaging<span class="token punctuation">.</span>ImageFormat<span class="token punctuation">.</span>Jpeg<span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>   
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="错误-超时时间已到-但是尚未从池中获取连接"><a href="#错误-超时时间已到-但是尚未从池中获取连接" class="headerlink" title="错误: 超时时间已到, 但是尚未从池中获取连接."></a>错误: 超时时间已到, 但是尚未从池中获取连接.</h1><p>出现这种情况可能是因为所有池连接均在使用, 并且达到了最大池大小, 解决办法: 在数据库连接配置中加上 <code>Max Pool Size = 512;</code>.</p>
-<h1 id="合并两个表结构完全一致的-DataTable"><a href="#合并两个表结构完全一致的-DataTable" class="headerlink" title="合并两个表结构完全一致的 DataTable"></a>合并两个表结构完全一致的 DataTable</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">&#x2F;&#x2F;&#x2F; &lt;summary&gt;
-&#x2F;&#x2F;&#x2F; 将 sum 表和 para 表合并到 sum 表中, 要求: &quot;sum 表&quot; 和 &quot;para 表&quot; 的表结构必须完全一样!
-&#x2F;&#x2F;&#x2F; &lt;&#x2F;summary&gt;
-&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;sum&quot;&gt;待合并表之一, 同时也是结果表&lt;&#x2F;param&gt;
-&#x2F;&#x2F;&#x2F; &lt;param name&#x3D;&quot;para&quot;&gt;仅作为待合并表之一&lt;&#x2F;param&gt;
-&#x2F;&#x2F;&#x2F; &lt;returns&gt;&lt;&#x2F;returns&gt;
-private static void AddTableToTable(DataTable sum, DataTable para)
-&#123;
-    &#x2F;&#x2F;遍历 para 表的每一行
-    foreach (DataRow dataRow_para in para.Rows)
-    &#123;
-        &#x2F;&#x2F;新建 sum 表的一行
-        DataRow dataRow_sum &#x3D; sum.NewRow();
+<h1 id="合并两个表结构完全一致的-DataTable"><a href="#合并两个表结构完全一致的-DataTable" class="headerlink" title="合并两个表结构完全一致的 DataTable"></a>合并两个表结构完全一致的 DataTable</h1><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token comment">/// &lt;summary></span>
+<span class="token comment">/// 将 sum 表和 para 表合并到 sum 表中, 要求: "sum 表" 和 "para 表" 的表结构必须完全一样!</span>
+<span class="token comment">/// &lt;/summary></span>
+<span class="token comment">/// &lt;param name="sum">待合并表之一, 同时也是结果表&lt;/param></span>
+<span class="token comment">/// &lt;param name="para">仅作为待合并表之一&lt;/param></span>
+<span class="token comment">/// &lt;returns>&lt;/returns></span>
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">AddTableToTable</span><span class="token punctuation">(</span><span class="token class-name">DataTable</span> sum<span class="token punctuation">,</span> <span class="token class-name">DataTable</span> para<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token comment">//遍历 para 表的每一行</span>
+    <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token class-name">DataRow</span> dataRow_para <span class="token keyword">in</span> para<span class="token punctuation">.</span>Rows<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token comment">//新建 sum 表的一行</span>
+        <span class="token class-name">DataRow</span> dataRow_sum <span class="token operator">=</span> sum<span class="token punctuation">.</span><span class="token function">NewRow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        &#x2F;&#x2F;新建的这一行取 para 表的数据
-        dataRow_sum.ItemArray &#x3D; dataRow_para.ItemArray;
+        <span class="token comment">//新建的这一行取 para 表的数据</span>
+        dataRow_sum<span class="token punctuation">.</span>ItemArray <span class="token operator">=</span> dataRow_para<span class="token punctuation">.</span>ItemArray<span class="token punctuation">;</span>
 
-        &#x2F;&#x2F;将新建的这一样加到 sum 表中
-        sum.Rows.Add(dataRow_sum);
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        <span class="token comment">//将新建的这一样加到 sum 表中</span>
+        sum<span class="token punctuation">.</span>Rows<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span>dataRow_sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="网页实现-Enter-快捷键"><a href="#网页实现-Enter-快捷键" class="headerlink" title="网页实现 Enter 快捷键"></a>网页实现 Enter 快捷键</h1><pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">
 &#x2F;&#x2F;浏览器中 Enter 键有一个默认行为, 用户焦点在文本框中时键入 Enter, 会触发第一个按钮的 Click 事件.
@@ -616,7 +616,7 @@ function keydown()
     &#125;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="获取服务器绝对路径"><a href="#获取服务器绝对路径" class="headerlink" title="获取服务器绝对路径"></a>获取服务器绝对路径</h1><pre class="line-numbers language-CSharp" data-language="CSharp"><code class="language-CSharp">string rootDir &#x3D; Server.MapPath(&quot;text.txt&quot;);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="获取服务器绝对路径"><a href="#获取服务器绝对路径" class="headerlink" title="获取服务器绝对路径"></a>获取服务器绝对路径</h1><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token class-name"><span class="token keyword">string</span></span> rootDir <span class="token operator">=</span> Server<span class="token punctuation">.</span><span class="token function">MapPath</span><span class="token punctuation">(</span><span class="token string">"text.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
     </div>
 
     
@@ -777,13 +777,13 @@ function keydown()
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">136k</span>
+    <span title="站点总字数">133k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:04</span>
+    <span title="站点阅读时长">2:01</span>
 </div>
 
     <div id="days"></div>
