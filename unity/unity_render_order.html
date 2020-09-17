@@ -420,41 +420,12 @@
 <li><p>SpriteRenderer 中的 <code>Sorting Layer</code> 对应的是 sortingLayerName 字段, <code>Order in Layer</code> 对应的是 sortingOrder 字段.</p>
 </li>
 <li><p>在 MeshrRenderer 中这两个字段并没有做处理, 只是在面板上隐藏了而已, 因此可以在脚本中直接使用.</p>
- <pre class="line-numbers language-C#" data-language="C#"><code class="language-C#">public int orderinLayer &#x3D; 15;
-public string sortingLayer &#x3D; &quot;UI&quot;;
-
-private MeshRenderer meshRenderer;
-
-private void Awake()
-&#123;
-    meshRenderer &#x3D; GetComponent&lt;MeshRenderer&gt;();
-&#125;
-
-private void Start() 
-&#123;
-    &#x2F;&#x2F;设定 3D 游戏物体的渲染层级
-    meshRenderer.sortingLayerName &#x3D; sortingLayer;
-    meshRenderer.sortingOrder &#x3D; orderinLayer;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> MeshRenderer meshRenderer;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    meshRenderer = GetComponent&lt;MeshRenderer&gt;();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定 3D 游戏物体的渲染层级</span></span><br><span class="line">    meshRenderer.sortingLayerName = sortingLayer;</span><br><span class="line">    meshRenderer.sortingOrder = orderinLayer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在 ParticleSystem 中同样也有 Renderer 组件控制粒子特效的渲染顺序, 同样可以使用脚本控制, 也可以直接在面板上设置.</p>
 </li>
 </ol>
-<pre><code><pre class="line-numbers language-C#" data-language="C#"><code class="language-C#">public int orderinLayer &#x3D; 15;
-public string sortingLayer &#x3D; &quot;UI&quot;;
-
-public ParticleSystem[] particleSystems;
-
-private void Start() 
-&#123;
-    &#x2F;&#x2F;设定粒子特效的渲染层级
-    for (int index &#x3D; 0; index &lt; particleSystems.Length; index++)
-    &#123;
-        rendererParticle &#x3D; particleSystems[index].GetComponent&lt;Renderer&gt;();
-        rendererParticle.sortingLayerName &#x3D; sortingLayer;
-        rendererParticle.sortingOrder &#x3D; orderinLayer;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></code></pre>
+<pre><code><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> ParticleSystem[] particleSystems;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定粒子特效的渲染层级</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; particleSystems.Length; index++)</span><br><span class="line">    &#123;</span><br><span class="line">        rendererParticle = particleSystems[index].GetComponent&lt;Renderer&gt;();</span><br><span class="line">        rendererParticle.sortingLayerName = sortingLayer;</span><br><span class="line">        rendererParticle.sortingOrder = orderinLayer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre>
 <h1 id="问题解决后效果"><a href="#问题解决后效果" class="headerlink" title="问题解决后效果"></a>问题解决后效果</h1><p>使用上面脚本中的设置就可以让 MeshRenderer 也参与到 2D UI 的排序中来了, 效果还是不错的.</p>
 <p><img data-src="/images/unity_render_order/unity_render_order_2.png" alt="修复后效果"></p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82YmNjZjc5ZmEzNjc=">SpriteRenderer 与 MeshRenderer的渲染排序层级<i class="fa fa-external-link-alt"></i></span></p>
@@ -622,13 +593,13 @@ private void Start()
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">133k</span>
+    <span title="站点总字数">136k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:01</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
 
     <div id="days"></div>

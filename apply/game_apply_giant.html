@@ -476,31 +476,12 @@
 <li><strong>sizeof 不是一元操作符</strong>. 因为 sizeof 语句是在编译阶段求值的. 比如下面的语句: </li>
 </ol>
 </blockquote>
-<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token preprocessor property">#include</span><span class="token string">"stdio.h"</span> 
-<span class="token return-type class-name"><span class="token keyword">int</span></span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
-<span class="token punctuation">&#123;</span>
-    <span class="token class-name"><span class="token keyword">int</span></span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token class-name"><span class="token keyword">int</span></span> b <span class="token operator">=</span> <span class="token keyword">sizeof</span> <span class="token punctuation">(</span><span class="token type-expression class-name">a = 3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a 的值是: %d, b的值是: %d"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#include&quot;stdio.h&quot; </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="keyword">sizeof</span> (a = <span class="number">3</span>);</span><br><span class="line">    </span><br><span class="line">    printf(<span class="string">&quot;a 的值是: %d, b的值是: %d&quot;</span>, a, b);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>在编译阶段就会被翻译成如下代码, 运行结果自然是: <code>a 的值是: 0, b的值是: 4</code></p>
 </blockquote>
-<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token preprocessor property">#include</span><span class="token string">"stdio.h"</span> 
-<span class="token return-type class-name"><span class="token keyword">int</span></span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
-<span class="token punctuation">&#123;</span>
-    <span class="token class-name"><span class="token keyword">int</span></span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token comment">//int b = sizeof (a = 3);</span>
-    <span class="token class-name"><span class="token keyword">int</span></span> b <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token comment">// sizeof (a = 3); 会被直接编译成 4, 所以 "a = 3;" 并不会运行</span>
-    
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"a 的值是: %d, b的值是: %d"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#include&quot;stdio.h&quot; </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//int b = sizeof (a = 3);</span></span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">4</span>; <span class="comment">// sizeof (a = 3); 会被直接编译成 4, 所以 &quot;a = 3;&quot; 并不会运行</span></span><br><span class="line">    </span><br><span class="line">    printf(<span class="string">&quot;a 的值是: %d, b的值是: %d&quot;</span>, a, b);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <ol start="3">
@@ -678,13 +659,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">133k</span>
+    <span title="站点总字数">136k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:01</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
 
     <div id="days"></div>

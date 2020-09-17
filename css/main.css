@@ -17,10 +17,10 @@
   --btn-default-hover-bg: #222;
   --btn-default-hover-color: #fff;
   --btn-default-hover-border-color: #222;
-  --highlight-background: #f0f0f0;
-  --highlight-foreground: #444;
-  --highlight-gutter-background: #dedede;
-  --highlight-gutter-foreground: #555;
+  --highlight-background: #1e1e1e;
+  --highlight-foreground: #dcdcdc;
+  --highlight-gutter-background: #313131;
+  --highlight-gutter-foreground: #c9c9c9;
 }
 html {
   line-height: 1.15; /* 1 */
@@ -371,247 +371,121 @@ body:not(.sidebar-active) .sidebar-toggle:hover .toggle-line:last-child {
   transform: rotate(45deg);
   top: -5px;
 }
-/**
- * Shades of Purple Theme for Prism.js
- *
- * @author Ahmad Awais <https://twitter.com/MrAhmadAwais/>
- * @support Follow/tweet at https://twitter.com/MrAhmadAwais/
+/*
+ * Visual Studio 2015 dark style
+ * Author: Nicolas LLOBERA <nllobera@gmail.com>
  */
 
-code[class*='language-'],
-pre[class*='language-'] {
-	color: #9efeff;
-	direction: ltr;
-	text-align: left;
-	white-space: pre;
-	word-spacing: normal;
-	word-break: normal;
-
-	-moz-tab-size: 4;
-	-o-tab-size: 4;
-	tab-size: 4;
-
-	-webkit-hyphens: none;
-	-moz-hyphens: none;
-	-ms-hyphens: none;
-	hyphens: none;
-
-	font-family: 'Operator Mono', 'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-	font-weight: 400;
-	font-size: 17px;
-	line-height: 25px;
-	letter-spacing: 0.5px;
-	text-shadow: 0 1px #222245;
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #1E1E1E;
+  color: #DCDCDC;
 }
 
-pre[class*='language-']::-moz-selection,
-pre[class*='language-'] ::-moz-selection,
-code[class*='language-']::-moz-selection,
-code[class*='language-'] ::-moz-selection,
-pre[class*='language-']::selection,
-pre[class*='language-'] ::selection,
-code[class*='language-']::selection,
-code[class*='language-'] ::selection {
-	color: inherit;
-	background: #a599e9;
+.hljs-keyword,
+.hljs-literal,
+.hljs-symbol,
+.hljs-name {
+  color: #569CD6;
+}
+.hljs-link {
+  color: #569CD6;
+  text-decoration: underline;
 }
 
-/* Code blocks. */
-pre[class*='language-'] {
-	padding: 2em;
-	margin: 0.5em 0;
-	overflow: auto;
+.hljs-built_in,
+.hljs-type {
+  color: #4EC9B0;
 }
 
-:not(pre) > code[class*='language-'],
-pre[class*='language-'] {
-	background: #1e1e3f;
+.hljs-number,
+.hljs-class {
+  color: #B8D7A3;
 }
 
-/* Inline code */
-:not(pre) > code[class*='language-'] {
-	padding: 0.1em;
-	border-radius: 0.3em;
+.hljs-string,
+.hljs-meta-string {
+  color: #D69D85;
 }
 
-.token {
-	font-weight: 400;
+.hljs-regexp,
+.hljs-template-tag {
+  color: #9A5334;
 }
 
-.token.comment,
-.token.prolog,
-.token.cdata {
-	color: #b362ff;
+.hljs-subst,
+.hljs-function,
+.hljs-title,
+.hljs-params,
+.hljs-formula {
+  color: #DCDCDC;
 }
 
-.token.delimiter,
-.token.keyword,
-.token.selector,
-.token.important,
-.token.atrule {
-	color: #ff9d00;
+.hljs-comment,
+.hljs-quote {
+  color: #57A64A;
+  font-style: italic;
 }
 
-.token.operator,
-.token.attr-name {
-	color: rgb(255, 180, 84);
+.hljs-doctag {
+  color: #608B4E;
 }
 
-.token.punctuation {
-	color: #ffffff;
+.hljs-meta,
+.hljs-meta-keyword,
+.hljs-tag {
+  color: #9B9B9B;
 }
 
-.token.boolean {
-	color: rgb(255, 98, 140);
+.hljs-variable,
+.hljs-template-variable {
+  color: #BD63C5;
 }
 
-.token.tag,
-.token.tag .punctuation,
-.token.doctype,
-.token.builtin {
-	color: rgb(255, 157, 0);
+.hljs-attr,
+.hljs-attribute,
+.hljs-builtin-name {
+  color: #9CDCFE;
 }
 
-.token.entity,
-.token.symbol {
-	color: #6897bb;
+.hljs-section {
+  color: gold;
 }
 
-.token.number {
-	color: #ff628c;
+.hljs-emphasis {
+  font-style: italic;
 }
 
-.token.property,
-.token.constant,
-.token.variable {
-	color: #ff628c;
+.hljs-strong {
+  font-weight: bold;
 }
 
-.token.string,
-.token.char {
-	color: #a5ff90;
+/*.hljs-code {
+  font-family:'Monospace';
+}*/
+
+.hljs-bullet,
+.hljs-selector-tag,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #D7BA7D;
 }
 
-.token.attr-value,
-.token.attr-value .punctuation {
-	color: #a5c261;
+.hljs-addition {
+  background-color: #144212;
+  display: inline-block;
+  width: 100%;
 }
 
-.token.attr-value .punctuation:first-child {
-	color: #a9b7c6;
+.hljs-deletion {
+  background-color: #600;
+  display: inline-block;
+  width: 100%;
 }
-
-.token.url {
-	color: #287bde;
-	text-decoration: underline;
-}
-
-.token.function {
-	color: rgb(250, 208, 0);
-}
-
-.token.regex {
-	background: #364135;
-}
-
-.token.bold {
-	font-weight: bold;
-}
-
-.token.italic {
-	font-style: italic;
-}
-
-.token.inserted {
-	background: #00ff00;
-}
-
-.token.deleted {
-	background: #ff000d;
-}
-
-code.language-css .token.property,
-code.language-css .token.property + .token.punctuation {
-	color: #a9b7c6;
-}
-
-code.language-css .token.id {
-	color: #ffc66d;
-}
-
-code.language-css .token.selector > .token.class,
-code.language-css .token.selector > .token.attribute,
-code.language-css .token.selector > .token.pseudo-class,
-code.language-css .token.selector > .token.pseudo-element {
-	color: #ffc66d;
-}
-
-.token.class-name {
-	color: #fb94ff;
-}
-
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string {
-	background: none;
-}
-
-pre .line-highlight,
-pre .line-highlight.line-highlight,
-pre > code.line-highlight {
-	margin-top: 36px;
-	background: linear-gradient(to right, rgba(179, 98, 255, 0.17), transparent);
-}
-
-pre .line-highlight:before,
-pre > code.line-highlight:before,
-pre .line-highlight[data-end]:after,
-pre > code.line-highlight[data-end]:after {
-	content: '';
-}
-
-pre[class*="language-"].line-numbers {
-	position: relative;
-	padding-left: 3.8em;
-	counter-reset: linenumber;
-}
-
-pre[class*="language-"].line-numbers > code {
-	position: relative;
-	white-space: inherit;
-}
-
-.line-numbers .line-numbers-rows {
-	position: absolute;
-	pointer-events: none;
-	top: 0;
-	font-size: 100%;
-	left: -3.8em;
-	width: 3em; /* works for line-numbers below 1000 lines */
-	letter-spacing: -1px;
-	border-right: 1px solid #999;
-
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-
-}
-
-	.line-numbers-rows > span {
-		display: block;
-		counter-increment: linenumber;
-	}
-
-		.line-numbers-rows > span:before {
-			content: counter(linenumber);
-			color: #999;
-			display: block;
-			padding-right: 0.8em;
-			text-align: right;
-		}
 
 .highlight:hover .copy-btn,
 .highlight .copy-btn:focus {

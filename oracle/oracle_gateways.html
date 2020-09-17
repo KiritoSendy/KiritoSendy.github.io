@@ -416,7 +416,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.4k</span>
+              <span>6.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -541,10 +541,7 @@
 <li><p>修改 Gateways 的数据库连接配置, 配置文件路径:</p>
 <p> <code>...\product\11.2.0\dbhome_1\dg4msql\admin\initdg4msql.ora</code></p>
 <p> 这个文件告诉了 Gateways 具体要连接到哪个 SQL Server 数据库, 这个文件会使用在安装 Gateways 的时候填写的信息进行默认设置, 如果只需要连接一个 SQL Server 数据库, 默认设置就可以了, 不需要做任何改动, 当然也可以进行自定义, 下面是这个文件的默认设置.</p>
- <pre class="line-numbers language-S" data-language="S"><code class="language-S">HS_FDS_CONNECT_INFO&#x3D;[192.168.10.9]&#x2F;&#x2F;htgl20180809
-HS_FDS_TRACE_LEVEL&#x3D;OFF
-HS_FDS_RECOVERY_ACCOUNT&#x3D;RECOVER
-HS_FDS_RECOVERY_PWD&#x3D;RECOVER<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HS_FDS_CONNECT_INFO&#x3D;[192.168.10.9]&#x2F;&#x2F;htgl20180809</span><br><span class="line">HS_FDS_TRACE_LEVEL&#x3D;OFF</span><br><span class="line">HS_FDS_RECOVERY_ACCOUNT&#x3D;RECOVER</span><br><span class="line">HS_FDS_RECOVERY_PWD&#x3D;RECOVER</span><br></pre></td></tr></table></figure>
 
 <p> 这个文件重要配置的内容很少, 就只有异构数据库的连接信息.</p>
 <ul>
@@ -576,39 +573,19 @@ HS_FDS_RECOVERY_PWD&#x3D;RECOVER<span aria-hidden="true" class="line-numbers-row
 </li>
 </ol>
 <h2 id="创建数据库连接-DBLink"><a href="#创建数据库连接-DBLink" class="headerlink" title="创建数据库连接 DBLink"></a>创建数据库连接 DBLink</h2><p>使用下面的格式写一条语句创建 DBLink, 也可以使用 PL/SQL 进行可视化创建.</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">/*
-create database link 变量名(随意)
-  connect to 用户名 identified by 用户密码
-  using '透明网关标识';
-*/</span>
-<span class="token keyword">create</span> <span class="token keyword">database</span> link htgl
-  <span class="token keyword">connect</span> <span class="token keyword">to</span> sa identified <span class="token keyword">by</span> sa2008
-  <span class="token keyword">using</span> <span class="token string">'dg4msql'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">create database link 变量名(随意)</span></span><br><span class="line"><span class="comment">  connect to 用户名 identified by 用户密码</span></span><br><span class="line"><span class="comment">  using &#x27;透明网关标识&#x27;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> <span class="keyword">link</span> htgl</span><br><span class="line">  <span class="keyword">connect</span> <span class="keyword">to</span> sa <span class="keyword">identified</span> <span class="keyword">by</span> sa2008</span><br><span class="line">  <span class="keyword">using</span> <span class="string">&#x27;dg4msql&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
-<h2 id="连接测试"><a href="#连接测试" class="headerlink" title="连接测试"></a>连接测试</h2><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">--select "字段名" from "SQL Server 中的表名"@(DBLink变量名)</span>
-<span class="token keyword">select</span> <span class="token string">"rybh"</span> <span class="token keyword">from</span> <span class="token string">"ryb"</span><span class="token variable">@htgl</span><span class="token punctuation">;</span>
-<span class="token comment">--当需要多表连接查询时, 可以这样写</span>
-<span class="token keyword">select</span> <span class="token string">"zt"</span> <span class="token keyword">as</span> id<span class="token punctuation">,</span>
-       <span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token string">"xm"</span> <span class="token keyword">from</span> <span class="token string">"ryb"</span><span class="token variable">@htgl</span> <span class="token keyword">where</span> <span class="token string">"rybh"</span> <span class="token operator">=</span> <span class="token string">"htqxb"</span><span class="token punctuation">.</span><span class="token string">"rybh"</span><span class="token variable">@htgl</span><span class="token punctuation">)</span> <span class="token keyword">as</span> name
-  <span class="token keyword">from</span> <span class="token string">"htqxb"</span><span class="token variable">@htgl</span>
- <span class="token keyword">where</span> <span class="token string">"rybh"</span> <span class="token operator">=</span> <span class="token string">'150007'</span><span class="token punctuation">;</span>
-<span class="token comment">--另外异构数据库不支持 join 类查询.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="连接测试"><a href="#连接测试" class="headerlink" title="连接测试"></a>连接测试</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--select &quot;字段名&quot; from &quot;SQL Server 中的表名&quot;@(DBLink变量名)</span></span><br><span class="line"><span class="keyword">select</span> <span class="string">&quot;rybh&quot;</span> <span class="keyword">from</span> <span class="string">&quot;ryb&quot;</span>@htgl;</span><br><span class="line"><span class="comment">--当需要多表连接查询时, 可以这样写</span></span><br><span class="line"><span class="keyword">select</span> <span class="string">&quot;zt&quot;</span> <span class="keyword">as</span> <span class="keyword">id</span>,</span><br><span class="line">       (<span class="keyword">select</span> <span class="string">&quot;xm&quot;</span> <span class="keyword">from</span> <span class="string">&quot;ryb&quot;</span>@htgl <span class="keyword">where</span> <span class="string">&quot;rybh&quot;</span> = <span class="string">&quot;htqxb&quot;</span>.<span class="string">&quot;rybh&quot;</span>@htgl) <span class="keyword">as</span> <span class="keyword">name</span></span><br><span class="line">  <span class="keyword">from</span> <span class="string">&quot;htqxb&quot;</span>@htgl</span><br><span class="line"> <span class="keyword">where</span> <span class="string">&quot;rybh&quot;</span> = <span class="string">&#x27;150007&#x27;</span>;</span><br><span class="line"><span class="comment">--另外异构数据库不支持 join 类查询.</span></span><br></pre></td></tr></table></figure>
 
 <p>[<strong>注</strong>] 使用 Oracle 访问 SQL Server 时, 你会发现总是会报这样一个错误: <code>***字段名无效!</code>. 这个错误是因为 Oracle 访问 SQL Server 时, 字段名要使用 <code>双引号</code> 括起来. (不要问我怎么知道的, 问就是不知道! 🙄) 表名最好也使用双引号括起来.</p>
 <h1 id="🦄多异构数据库的配置"><a href="#🦄多异构数据库的配置" class="headerlink" title="🦄多异构数据库的配置"></a>🦄多异构数据库的配置</h1><p>公司的项目现在又要求 Oracle 数据库必须能够访问 SQL Server 中的 <code>htgl20180809</code> 和 <code>cggl20180808</code> 这两个数据库, 之前提到过, 每一个要连接的异构数据库都对应一个 initSID.ora 文件, 唯一标识就是 SID.</p>
 <h2 id="修改-Gateways-的数据库连接配置"><a href="#修改-Gateways-的数据库连接配置" class="headerlink" title="修改 Gateways 的数据库连接配置"></a>修改 Gateways 的数据库连接配置</h2><p>建立两个 initSID.ora 文件, 起名为: <code>inithtgl.ora</code> 和 <code>initcggl.ora</code>, 对应的 SID 就是 <code>htgl</code> 和 <code>cggl</code>.</p>
 <p><img data-src="/images/oracle_gateways/Gateways_Multiple1.png" alt="Gateways_Multiple_1"></p>
 <p>这个是文件 inithtgl.ora 的内容, 连接 192.168.10.9 上的 htgl20180809 数据库.</p>
-<pre class="line-numbers language-S" data-language="S"><code class="language-S">HS_FDS_CONNECT_INFO&#x3D;[192.168.10.9]&#x2F;&#x2F;htgl20180809
-HS_FDS_TRACE_LEVEL&#x3D;OFF
-HS_FDS_RECOVERY_ACCOUNT&#x3D;RECOVER
-HS_FDS_RECOVERY_PWD&#x3D;RECOVER<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HS_FDS_CONNECT_INFO&#x3D;[192.168.10.9]&#x2F;&#x2F;htgl20180809</span><br><span class="line">HS_FDS_TRACE_LEVEL&#x3D;OFF</span><br><span class="line">HS_FDS_RECOVERY_ACCOUNT&#x3D;RECOVER</span><br><span class="line">HS_FDS_RECOVERY_PWD&#x3D;RECOVER</span><br></pre></td></tr></table></figure>
 
 <p>这个是文件 initcggl.ora 的内容, 连接 192.168.10.9 上的 cggl20180808 数据库.</p>
-<pre class="line-numbers language-S" data-language="S"><code class="language-S">HS_FDS_CONNECT_INFO&#x3D;[192.168.10.9]&#x2F;&#x2F;cggl20180808
-HS_FDS_TRACE_LEVEL&#x3D;OFF
-HS_FDS_RECOVERY_ACCOUNT&#x3D;RECOVER
-HS_FDS_RECOVERY_PWD&#x3D;RECOVER<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HS_FDS_CONNECT_INFO&#x3D;[192.168.10.9]&#x2F;&#x2F;cggl20180808</span><br><span class="line">HS_FDS_TRACE_LEVEL&#x3D;OFF</span><br><span class="line">HS_FDS_RECOVERY_ACCOUNT&#x3D;RECOVER</span><br><span class="line">HS_FDS_RECOVERY_PWD&#x3D;RECOVER</span><br></pre></td></tr></table></figure>
 
 <h2 id="修改-Oracle-Database-监听程序配置"><a href="#修改-Oracle-Database-监听程序配置" class="headerlink" title="修改 Oracle Database 监听程序配置"></a>修改 Oracle Database 监听程序配置</h2><p>监听程序的配置, 其实就是把之前配置好的 Gateways 的 SID 放到监听程序的 LIST 中, 反映到文件中就是在 <code>SID_LIST_LISTENER</code> 中添加 SID 设置.</p>
 <p><img data-src="/images/oracle_gateways/Gateways_Multiple2.png" alt="Gateways_Multiple_2"></p>
@@ -627,16 +604,7 @@ HS_FDS_RECOVERY_PWD&#x3D;RECOVER<span aria-hidden="true" class="line-numbers-row
 </li>
 </ul>
 <h2 id="连接测试-1"><a href="#连接测试-1" class="headerlink" title="连接测试"></a>连接测试</h2><p>配置都做好之后, 建立 DBLink, 就可以访问 SQL Server 了.</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">database</span> link htgl <span class="token keyword">connect</span> <span class="token keyword">to</span> sa identified <span class="token keyword">by</span> sa2008
-  <span class="token keyword">using</span> <span class="token string">'htgl'</span><span class="token punctuation">;</span>
-<span class="token keyword">create</span> <span class="token keyword">database</span> link cggl <span class="token keyword">connect</span> <span class="token keyword">to</span> sa identified <span class="token keyword">by</span> sa2008
-  <span class="token keyword">using</span> <span class="token string">'cggl'</span><span class="token punctuation">;</span>
-
-<span class="token comment">--drop database link htgl;</span>
-<span class="token comment">--drop database link cggl;</span>
-
-<span class="token keyword">select</span> <span class="token string">"khyh"</span><span class="token punctuation">,</span> <span class="token string">"htbh"</span><span class="token punctuation">,</span> <span class="token string">"htmc"</span><span class="token punctuation">,</span> <span class="token string">"htje"</span> <span class="token keyword">from</span> <span class="token string">"cghtb"</span><span class="token variable">@htgl</span> <span class="token keyword">where</span> <span class="token string">"wpbh"</span> <span class="token operator">like</span> <span class="token string">'2018%'</span><span class="token punctuation">;</span>
-<span class="token keyword">select</span> <span class="token string">"wpbh"</span><span class="token punctuation">,</span> <span class="token string">"wpmc"</span><span class="token punctuation">,</span> <span class="token string">"shl"</span><span class="token punctuation">,</span> <span class="token string">"dw"</span> <span class="token keyword">from</span> <span class="token string">"cggl_sqmxb"</span><span class="token variable">@cggl</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> <span class="keyword">link</span> htgl <span class="keyword">connect</span> <span class="keyword">to</span> sa <span class="keyword">identified</span> <span class="keyword">by</span> sa2008</span><br><span class="line">  <span class="keyword">using</span> <span class="string">&#x27;htgl&#x27;</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> <span class="keyword">link</span> cggl <span class="keyword">connect</span> <span class="keyword">to</span> sa <span class="keyword">identified</span> <span class="keyword">by</span> sa2008</span><br><span class="line">  <span class="keyword">using</span> <span class="string">&#x27;cggl&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--drop database link htgl;</span></span><br><span class="line"><span class="comment">--drop database link cggl;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="string">&quot;khyh&quot;</span>, <span class="string">&quot;htbh&quot;</span>, <span class="string">&quot;htmc&quot;</span>, <span class="string">&quot;htje&quot;</span> <span class="keyword">from</span> <span class="string">&quot;cghtb&quot;</span>@htgl <span class="keyword">where</span> <span class="string">&quot;wpbh&quot;</span> <span class="keyword">like</span> <span class="string">&#x27;2018%&#x27;</span>;</span><br><span class="line"><span class="keyword">select</span> <span class="string">&quot;wpbh&quot;</span>, <span class="string">&quot;wpmc&quot;</span>, <span class="string">&quot;shl&quot;</span>, <span class="string">&quot;dw&quot;</span> <span class="keyword">from</span> <span class="string">&quot;cggl_sqmxb&quot;</span>@cggl;</span><br></pre></td></tr></table></figure>
 
 <p>这是 htgl20180809 数据库的查询结果:</p>
 <p><img data-src="/images/oracle_gateways/Gateways_Multiple4.png" alt="Gateways_Multiple_4"></p>
@@ -812,13 +780,13 @@ HS_FDS_RECOVERY_PWD&#x3D;RECOVER<span aria-hidden="true" class="line-numbers-row
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">133k</span>
+    <span title="站点总字数">136k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:01</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
 
     <div id="days"></div>

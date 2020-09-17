@@ -389,7 +389,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -411,73 +411,19 @@
 
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在实现毕业设计游戏的存档读档功能时选用了 JSON 文件进行读取和存储, 于是赶紧学习了一下 JSON 是啥...</p>
 <h1 id="JSON-简介"><a href="#JSON-简介" class="headerlink" title="JSON 简介"></a>JSON 简介</h1><p>JSON 全称是: JavaScript Object Notation (JavaScript 对象表示法)</p>
-<pre class="line-numbers language-JSON" data-language="JSON"><code class="language-JSON">&#123;
-    &quot;sites&quot;:
-    [
-        &#123;
-            &quot;name&quot;:&quot;Kuroha&quot;,
-            &quot;url&quot;:&quot;kuroha.vip&quot;
-        &#125;,
-        &#123;
-            &quot;name&quot;:&quot;google&quot;,
-            &quot;url&quot;:&quot;www.google.com&quot;
-        &#125;
-    ]
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;sites&quot;</span>:</span><br><span class="line">    [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;Kuroha&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;kuroha.vip&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;google&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;www.google.com&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="JSON-语法"><a href="#JSON-语法" class="headerlink" title="JSON 语法"></a>JSON 语法</h1><ol>
 <li><p>JSON 语法是 JavaScript 语法的子集.</p>
 </li>
 <li><p>JOSN 的数据使用 键值对 (Key/Value) 表示. Key 必须是 string, Value 可以是 string, 可以是 number, 可以是 bool 等等, 数据与数据之间使用 , 分割.</p>
- <pre class="line-numbers language-JSON" data-language="JSON"><code class="language-JSON">&#123;
-    &quot;aaa&quot; : &quot;Kuroha&quot;,
-    &quot;bbb&quot; : 1234,
-    &quot;ccc&quot; : false,
-    &quot;ddd&quot; : true,
-    &quot;eee&quot; : null
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;aaa&quot;</span> : <span class="string">&quot;Kuroha&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;bbb&quot;</span> : <span class="number">1234</span>,</span><br><span class="line">    <span class="attr">&quot;ccc&quot;</span> : <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;ddd&quot;</span> : <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;eee&quot;</span> : <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>JSON 中的类使用 {} 表示. 一个类中可以包含多个数据. 这里的数据可以是 类, 数组, 单条数据等.</p>
- <pre class="line-numbers language-JSON" data-language="JSON"><code class="language-JSON">&#123;
-    &quot;sites1&quot; : 
-    &#123;
-        &quot;name&quot;:&quot;google&quot;,
-
-        &quot;url&quot;:&quot;www.google.com&quot;,
-
-        &quot;二次元游宅客&quot; : 
-        &#123;
-            &quot;name&quot;:&quot;Kuroha&quot;,
-            &quot;url&quot;:&quot;kuroha.vip&quot;
-        &#125;,
-
-        &quot;sites1_1&quot; : 
-        [
-            &#123;
-                &quot;name&quot;:&quot;Kirito&quot;,
-                &quot;url&quot;:&quot;sao.com&quot;
-            &#125;,
-            &#123;
-                &quot;name&quot;:&quot;Asuna&quot;,
-                &quot;url&quot;:&quot;sao.online&quot;
-            &#125;
-        ]
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;sites1&quot;</span> : </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;google&quot;</span>,</span><br><span class="line"></span><br><span class="line">        <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;www.google.com&quot;</span>,</span><br><span class="line"></span><br><span class="line">        <span class="attr">&quot;二次元游宅客&quot;</span> : </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;Kuroha&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;kuroha.vip&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        <span class="attr">&quot;sites1_1&quot;</span> : </span><br><span class="line">        [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;Kirito&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;sao.com&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;Asuna&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;sao.online&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>JSON 中的数组使用 [] 表示. 一个数组中可以包含多个类, 此时只能有类中的数据, 不能有类名. 数组中只包含数据的时候, 不能有数据名(Key), 只能有数据(Value). 因为数组是: 值的集合. (不同于编程语言, 这些值的类型是可以不同的.)</p>
- <pre class="line-numbers language-JSON" data-language="JSON"><code class="language-JSON">&#123;
-    &quot;aaa&quot; : 
-    [
-        &quot;bbb&quot;,
-        &quot;ccc&quot;,
-
-        &#123;
-            &quot;name&quot; : &quot;游宅客&quot;,
-            &quot;url&quot; : &quot;kuroha.vip&quot;
-        &#125;
-    ]
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+ <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;aaa&quot;</span> : </span><br><span class="line">    [</span><br><span class="line">        <span class="string">&quot;bbb&quot;</span>,</span><br><span class="line">        <span class="string">&quot;ccc&quot;</span>,</span><br><span class="line"></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span> : <span class="string">&quot;游宅客&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;url&quot;</span> : <span class="string">&quot;kuroha.vip&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -648,13 +594,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">133k</span>
+    <span title="站点总字数">136k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:01</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
 
     <div id="days"></div>

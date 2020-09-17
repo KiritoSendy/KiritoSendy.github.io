@@ -392,7 +392,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
+              <span>2.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -674,33 +674,12 @@
 <h1 id="C-中的正则表达式"><a href="#C-中的正则表达式" class="headerlink" title="C# 中的正则表达式"></a>C# 中的正则表达式</h1><ol>
 <li>全部匹配</li>
 </ol>
-<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Text<span class="token punctuation">.</span>RegularExpressions</span><span class="token punctuation">;</span>
-
-<span class="token class-name"><span class="token keyword">string</span></span> content <span class="token operator">=</span> <span class="token string">"content"</span><span class="token punctuation">;</span>
-<span class="token class-name">Regex</span> regex <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Regex</span><span class="token punctuation">(</span><span class="token string">@"[0-9]&#123;8&#125;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token class-name">MatchCollection</span> matchs <span class="token operator">=</span> regex<span class="token punctuation">.</span><span class="token function">Matches</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token class-name">Match</span> match <span class="token keyword">in</span> matchs<span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">IsNullOrEmpty</span><span class="token punctuation">(</span>match<span class="token punctuation">.</span>Value<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token comment">//TODO...</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Text.RegularExpressions;</span><br><span class="line"></span><br><span class="line"><span class="keyword">string</span> content = <span class="string">&quot;content&quot;</span>;</span><br><span class="line">Regex regex = <span class="keyword">new</span> Regex(<span class="string">@&quot;[0-9]&#123;8&#125;&quot;</span>);</span><br><span class="line">MatchCollection matchs = regex.Matches(content);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (Match match <span class="keyword">in</span> matchs)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">string</span>.IsNullOrEmpty(match.Value))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//TODO...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
 <li>匹配第一项</li>
 </ol>
-<pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token keyword">using</span> <span class="token namespace">System<span class="token punctuation">.</span>Text<span class="token punctuation">.</span>RegularExpressions</span><span class="token punctuation">;</span>
-
-<span class="token class-name"><span class="token keyword">string</span></span> content <span class="token operator">=</span> <span class="token string">"content"</span><span class="token punctuation">;</span>
-<span class="token class-name">Regex</span> regex <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">Regex</span><span class="token punctuation">(</span><span class="token string">@"[0-9]&#123;8&#125;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token class-name">Match</span> match <span class="token operator">=</span> regex<span class="token punctuation">.</span><span class="token function">Match</span><span class="token punctuation">(</span>content<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">IsNullOrEmpty</span><span class="token punctuation">(</span>match<span class="token punctuation">.</span>Value<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token comment">//TODO...</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Text.RegularExpressions;</span><br><span class="line"></span><br><span class="line"><span class="keyword">string</span> content = <span class="string">&quot;content&quot;</span>;</span><br><span class="line">Regex regex = <span class="keyword">new</span> Regex(<span class="string">@&quot;[0-9]&#123;8&#125;&quot;</span>);</span><br><span class="line">Match match = regex.Match(content);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">string</span>.IsNullOrEmpty(match.Value))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//TODO...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -884,13 +863,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">133k</span>
+    <span title="站点总字数">136k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:01</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
 
     <div id="days"></div>

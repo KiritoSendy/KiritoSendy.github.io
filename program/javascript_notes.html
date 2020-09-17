@@ -389,7 +389,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>17k</span>
+              <span>16k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -469,18 +469,13 @@
 <li>JavaScript 脚本程序可以独立保存为一个外部文件, 但其中不能包含 <code>&lt;script&gt; &lt;/script&gt;</code> 标签. </li>
 </ul>
 <p>HTML 标签语言中引用 JavaScript 脚本语言需要使用 <code>&lt;script&gt; &lt;/script&gt;</code> 标签, 标签内部就是 JavaScript 脚本代码. </p>
-<pre class="line-numbers language-HTML" data-language="HTML"><code class="language-HTML">&lt;script language&#x3D;&quot;JavaScript&quot; type&#x3D;&quot;text&#x2F;JavaScript&quot;&gt;
-    document.write(&quot; Hello World &quot;);
-&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&quot;JavaScript&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/JavaScript&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.write(<span class="string">&quot; Hello World &quot;</span>);</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>HTML 中使用 <code>&lt;!-- 单/多行注释 --&gt;</code> 进行注释, 并且 HTML 的注释只有这一种, 可以注释任意行. </p>
-<pre class="line-numbers language-HTML" data-language="HTML"><code class="language-HTML">&lt;script language&#x3D;&quot;JavaScript1.2&quot; type&#x3D;&quot;text&#x2F;JavaScript&quot; src&#x3D;&quot;hello.js&quot;&gt;
-    &lt;!-- document.write(&quot;Hello World!!!&quot;); --&gt;
-&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&quot;JavaScript1.2&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/JavaScript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;hello.js&quot;</span>&gt;</span></span><br><span class="line"><span class="handlebars"><span class="xml">    <span class="comment">&lt;!-- document.write(&quot;Hello World!!!&quot;); --&gt;</span></span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>JavaScript 中使用 <code>// 单行注释</code> 和 <code>/* 多行注释 */</code> 进行注释. </p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&#x2F;&#x2F; document.write(&quot;Hello World!!!&quot;);
-&#x2F;* document.write(&quot;Hello World!!!&quot;); *&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// document.write(&quot;Hello World!!!&quot;);</span></span><br><span class="line"><span class="comment">/* document.write(&quot;Hello World!!!&quot;); */</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="JavaScript-数据类型"><a href="#JavaScript-数据类型" class="headerlink" title="JavaScript 数据类型"></a>JavaScript 数据类型</h1><h2 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h2><table>
 <thead>
@@ -522,41 +517,22 @@
 <td align="left">反斜线 ()</td>
 </tr>
 </tbody></table>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">定义: stringArray &#x3D; [&quot;听音乐&quot;, &quot;看电影&quot;]
-取值: stringArray[0] stringArray[1]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">定义: stringArray = [<span class="string">&quot;听音乐&quot;</span>, <span class="string">&quot;看电影&quot;</span>]</span><br><span class="line">取值: stringArray[<span class="number">0</span>] stringArray[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
 
 <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>由于 JavaScript 使用弱类型, 所以一般情况下变量的定义都使用 <code>var</code> 进行定义. </p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">var stdId &#x3D; 0001;
-var notNull &#x3D; true;
-var name &#x3D; &quot;Kirito&quot;, sex &#x3D; &quot;Male&quot;;
-&#x2F;&#x2F; JavaScript 中没有 Char 类型, 只有 String 类型. 
-&#x2F;&#x2F; 单引号 &#39;&#39; 和 双引号 &quot;&quot; 都表示字符串, 没有区别.  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stdId = <span class="number">0001</span>;</span><br><span class="line"><span class="keyword">var</span> notNull = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">var</span> name = <span class="string">&quot;Kirito&quot;</span>, sex = <span class="string">&quot;Male&quot;</span>;</span><br><span class="line"><span class="comment">// JavaScript 中没有 Char 类型, 只有 String 类型. </span></span><br><span class="line"><span class="comment">// 单引号 &#x27;&#x27; 和 双引号 &quot;&quot; 都表示字符串, 没有区别.  </span></span><br></pre></td></tr></table></figure>
 
 <h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><p>在函数外进行声明, 也可以通过省略掉 var 关键字的方式进行声明, 但是不建议使用这种省略的方式. </p>
 <p>全局变量可在整个脚本中被使用, 可在不同的窗口中相互引用. </p>
 <h3 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h3><p>在函数内声明, 只能在函数内部使用. </p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">var langJS &#x3D; &quot;JavaScript&quot;; &#x2F;&#x2F; langJS 在函数外部进行定义, 是全局变量. 
-
-PintString();&#x2F;&#x2F; 调用 PintString() 方法. 
-
-function PintString()
-&#123;
-    var langVBS &#x3D; &quot;VBScript&quot;; &#x2F;&#x2F; langVBS 在函数内部进行定义, 是局部变量. 
-
-    document.write(&quot;&lt;br&gt;&quot; + langJS + &quot;&lt;br&gt;&quot;);&#x2F;&#x2F; 可以打印 全局变量 langJS
-    document.write(&quot;&lt;br&gt;&quot; + langVBS + &quot;&lt;br&gt;&quot;);&#x2F;&#x2F; 可以打印 局部变量 langVBS
-&#125;
-
-document.write(&quot;&lt;br&gt;&quot; + langJS + &quot;&lt;br&gt;&quot;);&#x2F;&#x2F;函数外部只能打印 全局变量 langJS<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> langJS = <span class="string">&quot;JavaScript&quot;</span>; <span class="comment">// langJS 在函数外部进行定义, 是全局变量. </span></span><br><span class="line"></span><br><span class="line">PintString();<span class="comment">// 调用 PintString() 方法. </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">PintString</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> langVBS = <span class="string">&quot;VBScript&quot;</span>; <span class="comment">// langVBS 在函数内部进行定义, 是局部变量. </span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">&quot;&lt;br&gt;&quot;</span> + langJS + <span class="string">&quot;&lt;br&gt;&quot;</span>);<span class="comment">// 可以打印 全局变量 langJS</span></span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">&quot;&lt;br&gt;&quot;</span> + langVBS + <span class="string">&quot;&lt;br&gt;&quot;</span>);<span class="comment">// 可以打印 局部变量 langVBS</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(<span class="string">&quot;&lt;br&gt;&quot;</span> + langJS + <span class="string">&quot;&lt;br&gt;&quot;</span>);<span class="comment">//函数外部只能打印 全局变量 langJS</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="JavaScript-运算符"><a href="#JavaScript-运算符" class="headerlink" title="JavaScript 运算符"></a>JavaScript 运算符</h1><ul>
 <li><code>+</code> 和 <code>+=</code> 在 JavaScript 中也可以进行字符串的拼接. </li>
 <li><code>==</code> 和 <code>!=</code> 只用于判断两个变量之间的值是否相等. </li>
 <li><code>===</code> 和 <code>!==</code> 用于判断两个变量之间的值以及变量的类型是否相等. </li>
 </ul>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">var x &#x3D; 5; &#x2F;&#x2F; x 是数值 5
-var y &#x3D; &#39;5&#39;; &#x2F;&#x2F; y 是字符串 5
-var z &#x3D; &quot;5&quot;; &#x2F;&#x2F; z 是字符串 5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">5</span>; <span class="comment">// x 是数值 5</span></span><br><span class="line"><span class="keyword">var</span> y = <span class="string">&#x27;5&#x27;</span>; <span class="comment">// y 是字符串 5</span></span><br><span class="line"><span class="keyword">var</span> z = <span class="string">&quot;5&quot;</span>; <span class="comment">// z 是字符串 5</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><p><code>&amp;&amp;</code> 运算符在运算时, 如果左右两方全是逻辑值, 那么此时它和普通的 <code>&amp;&amp;</code> 运算符功能完全一样, 返回逻辑值. </p>
@@ -610,19 +586,11 @@ var z &#x3D; &quot;5&quot;; &#x2F;&#x2F; z 是字符串 5<span aria-hidden="true
 <h1 id="JavaScript-语句"><a href="#JavaScript-语句" class="headerlink" title="JavaScript 语句"></a>JavaScript 语句</h1><h2 id="with-语句"><a href="#with-语句" class="headerlink" title="with 语句"></a>with 语句</h2><ul>
 <li>功能: 为一段程序建立默认对象, 这样整个 with 语句中的方法就可以不用写默认的对象, 可以直接调用.  </li>
 </ul>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">with (document)
-&#123;
-    write (&quot;┭┮﹏┭┮&quot;);
-    write (&quot;o((&gt;ω&lt; ))o&quot;);
-    &#x2F;&#x2F;document.write (&quot;o((&gt;ω&lt; ))o&quot;);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> (<span class="built_in">document</span>)</span><br><span class="line">&#123;</span><br><span class="line">    write (<span class="string">&quot;┭┮﹏┭┮&quot;</span>);</span><br><span class="line">    write (<span class="string">&quot;o((&gt;ω&lt; ))o&quot;</span>);</span><br><span class="line">    <span class="comment">//document.write (&quot;o((&gt;ω&lt; ))o&quot;);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h2><p>for, while, do while, if else, switch 等流程控制语句和其他编程语言没有区别.  </p>
 <h2 id="for-in-语句"><a href="#for-in-语句" class="headerlink" title="for in 语句"></a>for in 语句</h2><p>依次取出指定对象的所有属性, 类似于 foreach 语句. </p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">for ( var 临时变量名 in 对象 )
-&#123;
-    &#x2F;&#x2F; 临时变量中就会依次保存对象中的所有属性. 
-&#125; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( <span class="keyword">var</span> 临时变量名 <span class="keyword">in</span> 对象 )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 临时变量中就会依次保存对象中的所有属性. </span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 
 <h1 id="JavaScript-对象"><a href="#JavaScript-对象" class="headerlink" title="JavaScript 对象"></a>JavaScript 对象</h1><h2 id="默认对象-之-日期对象-Date"><a href="#默认对象-之-日期对象-Date" class="headerlink" title="默认对象 之 日期对象 (Date)"></a>默认对象 之 日期对象 (Date)</h2><ul>
 <li>日期基线</li>
@@ -632,14 +600,7 @@ var z &#x3D; &quot;5&quot;; &#x2F;&#x2F; z 是字符串 5<span aria-hidden="true
 <li>实例化一个日期对象</li>
 </ul>
 <p><code>名称 = new Date (参数)</code></p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&#x2F;&#x2F; 英文-数值格式: 月 日, 公元年
-today &#x3D; new Date (&quot;October 1, 2008&quot;);
-&#x2F;&#x2F; 英文-数值格式: 月 日, 公元年 [时: 分: 秒] 
-today &#x3D; new Date (&quot;October 1, 2008 12:00:00&quot;);
-&#x2F;&#x2F; 数值格式: 公元年, 月, 日
-today &#x3D; new Date (2008, 10, 1);
-&#x2F;&#x2F; 数值格式: 公元年, 月, 日, [时, 分, 秒]
-today &#x3D; new Date (2008, 10, 1, 23, 59, 59);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 英文-数值格式: 月 日, 公元年</span></span><br><span class="line">today = <span class="keyword">new</span> <span class="built_in">Date</span> (<span class="string">&quot;October 1, 2008&quot;</span>);</span><br><span class="line"><span class="comment">// 英文-数值格式: 月 日, 公元年 [时: 分: 秒] </span></span><br><span class="line">today = <span class="keyword">new</span> <span class="built_in">Date</span> (<span class="string">&quot;October 1, 2008 12:00:00&quot;</span>);</span><br><span class="line"><span class="comment">// 数值格式: 公元年, 月, 日</span></span><br><span class="line">today = <span class="keyword">new</span> <span class="built_in">Date</span> (<span class="number">2008</span>, <span class="number">10</span>, <span class="number">1</span>);</span><br><span class="line"><span class="comment">// 数值格式: 公元年, 月, 日, [时, 分, 秒]</span></span><br><span class="line">today = <span class="keyword">new</span> <span class="built_in">Date</span> (<span class="number">2008</span>, <span class="number">10</span>, <span class="number">1</span>, <span class="number">23</span>, <span class="number">59</span>, <span class="number">59</span>);</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>日期对象的方法</li>
@@ -711,13 +672,11 @@ today &#x3D; new Date (2008, 10, 1, 23, 59, 59);<span aria-hidden="true" class="
 <h2 id="默认对象-之-一维数组-Array"><a href="#默认对象-之-一维数组-Array" class="headerlink" title="默认对象 之 一维数组 (Array)"></a>默认对象 之 一维数组 (Array)</h2><ul>
 <li>实例化一个数组对象</li>
 </ul>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">stringArray &#x3D; new Array(2);&#x2F;&#x2F;先定义数组大小, 再赋值. 
-stringArray[0] &#x3D; &quot;Kirito&quot;;
-stringArray[1] &#x3D; &quot;Asuna&quot;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stringArray = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">2</span>);<span class="comment">//先定义数组大小, 再赋值. </span></span><br><span class="line">stringArray[<span class="number">0</span>] = <span class="string">&quot;Kirito&quot;</span>;</span><br><span class="line">stringArray[<span class="number">1</span>] = <span class="string">&quot;Asuna&quot;</span>;</span><br></pre></td></tr></table></figure>
 
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">stringArray &#x3D; new Array(&quot;Kirito&quot;, &quot;Asuna&quot;);&#x2F;&#x2F;定义的时候直接赋值. <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stringArray = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">&quot;Kirito&quot;</span>, <span class="string">&quot;Asuna&quot;</span>);<span class="comment">//定义的时候直接赋值. </span></span><br></pre></td></tr></table></figure>
 
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">stringArray &#x3D; [&quot;Kirito&quot;, &quot;Asuna&quot;];&#x2F;&#x2F;省略式写法, 使用中括号. (不推荐新人使用这种写法)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stringArray = [<span class="string">&quot;Kirito&quot;</span>, <span class="string">&quot;Asuna&quot;</span>];<span class="comment">//省略式写法, 使用中括号. (不推荐新人使用这种写法)</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><p>数组对象的属性 <code>length</code>, 返回数组长度. </p>
@@ -754,27 +713,12 @@ stringArray[1] &#x3D; &quot;Asuna&quot;;<span aria-hidden="true" class="line-num
 </tr>
 </tbody></table>
 <h2 id="默认对象-之-交错数组"><a href="#默认对象-之-交错数组" class="headerlink" title="默认对象 之 交错数组"></a>默认对象 之 交错数组</h2><p>交错数组并不是仅仅只有两层, 可以循环定义从而构成多层交错数组, 但是多层交错数组操作难度是相当高的. </p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">var fruit &#x3D; new Array(3);
-fruit[0] &#x3D; new Array(&quot;苹果&quot;, 2);
-fruit[1] &#x3D; new Array(&quot;梨子&quot;, 3);
-fruit[2] &#x3D; new Array(&quot;橘子&quot;, 4);
-
-for (i &#x3D; 0; i &lt; fruit.length; i++)
-&#123;
-  for (j &#x3D; 0; j &lt; fruit[0].length; j++)
-  &#123;
-    document.write(&quot;fruit [&quot;, i, &quot;][&quot;, j, &quot;] &#x3D; &quot;, fruit[i][j],&quot;&lt;br&gt;&quot;);
-  &#125;
-
-  document.write(&quot;&lt;br&gt;&quot;);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fruit = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>);</span><br><span class="line">fruit[<span class="number">0</span>] = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">&quot;苹果&quot;</span>, <span class="number">2</span>);</span><br><span class="line">fruit[<span class="number">1</span>] = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">&quot;梨子&quot;</span>, <span class="number">3</span>);</span><br><span class="line">fruit[<span class="number">2</span>] = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">&quot;橘子&quot;</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; fruit.length; i++)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; fruit[<span class="number">0</span>].length; j++)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">&quot;fruit [&quot;</span>, i, <span class="string">&quot;][&quot;</span>, j, <span class="string">&quot;] = &quot;</span>, fruit[i][j],<span class="string">&quot;&lt;br&gt;&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">document</span>.write(<span class="string">&quot;&lt;br&gt;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="默认对象-之-字符串对象-String"><a href="#默认对象-之-字符串对象-String" class="headerlink" title="默认对象 之 字符串对象 (String)"></a>默认对象 之 字符串对象 (String)</h2><ul>
 <li>实例化一个字符串对象</li>
 </ul>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">var strName &#x3D; new String(&#39;Kirito&#39;);
-var strNameFemale &#x3D; &#39;Asuna&#39;;
-&#x2F;&#x2F; JavaScript 中 单引号 和 双引号 都表示字符串, JavaScript 中没有 Char 类型. <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> strName = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">&#x27;Kirito&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> strNameFemale = <span class="string">&#x27;Asuna&#x27;</span>;</span><br><span class="line"><span class="comment">// JavaScript 中 单引号 和 双引号 都表示字符串, JavaScript 中没有 Char 类型. </span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><p>字符串对象的属性: <code>length</code>　返回字符串的长度. </p>
@@ -869,8 +813,7 @@ var strNameFemale &#x3D; &#39;Asuna&#39;;
 <h2 id="默认对象-之-布尔对象-Boolean"><a href="#默认对象-之-布尔对象-Boolean" class="headerlink" title="默认对象 之 布尔对象 (Boolean)"></a>默认对象 之 布尔对象 (Boolean)</h2><ul>
 <li>实例化一个布尔对象实例: </li>
 </ul>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">var x &#x3D; new Boolean (转换值); 
-&#x2F;&#x2F; 转换值: null, 未定义, 0, false 返回 false, 其他情况都返回 true. <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="keyword">new</span> <span class="built_in">Boolean</span> (转换值); </span><br><span class="line"><span class="comment">// 转换值: null, 未定义, 0, false 返回 false, 其他情况都返回 true. </span></span><br></pre></td></tr></table></figure>
 
 <h2 id="默认对象-之-数学对象-Math"><a href="#默认对象-之-数学对象-Math" class="headerlink" title="默认对象 之 数学对象 (Math)"></a>默认对象 之 数学对象 (Math)</h2><ul>
 <li>Math 中包含的属性:</li>
@@ -999,72 +942,21 @@ var strNameFemale &#x3D; &#39;Asuna&#39;;
 </ul>
 <p>可以使用构造函数语法格式来定义一个 &quot;自定义对象&quot; 类型. </p>
 <p></Script></p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">function Member(name, sex)&#x2F;&#x2F;定义一个类, 名字是 Member
-&#123;
-    this.name &#x3D; name;&#x2F;&#x2F;定义一个属性, 名字是 name, 由外部赋值
-    
-    this.sex &#x3D; sex;&#x2F;&#x2F;定义一个属性, 名字是 sex, 由外部赋值
-
-    this.number &#x3D; 3;&#x2F;&#x2F;定义一个属性, 名字是 number, 由内部赋值
-    
-    this.Display &#x3D; Display;&#x2F;&#x2F;声明一个方法, 名字是 display
-&#125;
-
-function Display()&#x2F;&#x2F;定义上面已经声明的 Display 方法
-&#123;
-    &#x2F;&#x2F; JavaScript 中没有 Char 类型, 单引号 和 双引号 都表示字符串. 
-    var strName &#x3D; this.name + &#39; 是 &#39; + this.sex;
-
-    var strNumber &#x3D; &#39;number 的值是 &#39; + this.number;
-
-    document.write(&quot;&lt;UL&gt; &lt;LI&gt;&quot;, strName);&#x2F;&#x2F;开启一个无序列表
-
-    document.write(&quot;&lt;LI&gt;&quot;, strNumber, &quot;&lt;&#x2F;UL&gt;&quot;);&#x2F;&#x2F;结束一个无序列表
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Member</span>(<span class="params">name, sex</span>)//定义一个类, 名字是 <span class="title">Member</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name;<span class="comment">//定义一个属性, 名字是 name, 由外部赋值</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">this</span>.sex = sex;<span class="comment">//定义一个属性, 名字是 sex, 由外部赋值</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.number = <span class="number">3</span>;<span class="comment">//定义一个属性, 名字是 number, 由内部赋值</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">this</span>.Display = Display;<span class="comment">//声明一个方法, 名字是 display</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Display</span>(<span class="params"></span>)//定义上面已经声明的 <span class="title">Display</span> 方法</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// JavaScript 中没有 Char 类型, 单引号 和 双引号 都表示字符串. </span></span><br><span class="line">    <span class="keyword">var</span> strName = <span class="built_in">this</span>.name + <span class="string">&#x27; 是 &#x27;</span> + <span class="built_in">this</span>.sex;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> strNumber = <span class="string">&#x27;number 的值是 &#x27;</span> + <span class="built_in">this</span>.number;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">&quot;&lt;UL&gt; &lt;LI&gt;&quot;</span>, strName);<span class="comment">//开启一个无序列表</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">&quot;&lt;LI&gt;&quot;</span>, strNumber, <span class="string">&quot;&lt;/UL&gt;&quot;</span>);<span class="comment">//结束一个无序列表</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>使用 <code>new</code> 来实例化自定义对象. </li>
 </ul>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">var papa &#x3D; new Member(&quot;杨宏文&quot;, &quot;男生&quot;);
-var mama &#x3D; new Member(&quot;黄雅玲&quot;, &quot;女生&quot;);
-var doggy &#x3D; new Member(&quot;奇奇&quot;, &quot;宠物狗&quot;);
-
-papa.Display();&#x2F;&#x2F;调用类型中的 Display() 方法. 
-mama.Display();
-doggy.Display();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> papa = <span class="keyword">new</span> Member(<span class="string">&quot;杨宏文&quot;</span>, <span class="string">&quot;男生&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> mama = <span class="keyword">new</span> Member(<span class="string">&quot;黄雅玲&quot;</span>, <span class="string">&quot;女生&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> doggy = <span class="keyword">new</span> Member(<span class="string">&quot;奇奇&quot;</span>, <span class="string">&quot;宠物狗&quot;</span>);</span><br><span class="line"></span><br><span class="line">papa.Display();<span class="comment">//调用类型中的 Display() 方法. </span></span><br><span class="line">mama.Display();</span><br><span class="line">doggy.Display();</span><br></pre></td></tr></table></figure>
 
 <h2 id="为对象动态添加属性和方法"><a href="#为对象动态添加属性和方法" class="headerlink" title="为对象动态添加属性和方法"></a>为对象动态添加属性和方法</h2><h3 id="为-quot-默认对象-quot-添加属性和方法"><a href="#为-quot-默认对象-quot-添加属性和方法" class="headerlink" title="为 &quot;默认对象&quot; 添加属性和方法"></a>为 &quot;默认对象&quot; 添加属性和方法</h3><p>JavaScript 允许程序员修改 Javascript 所提供的默认对象, 程序员可以利用对象原型 <code>prototype</code> 为默认对象添加自身定义属性以及方法. </p>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&#x2F;&#x2F; 使用 prototype 为默认对象 String 添加一个自定义方法, 名字是: replaceAll, 
-&#x2F;&#x2F; 并设置 replaceAll 方法指向自定义的 strReplace 方法. 
-String.prototype.replaceAll &#x3D; strReplace;
-
-&#x2F;&#x2F; 自定义的 strReplace 方法: 
-function strReplace (findText, replaceText)
-&#123;
-    &#x2F;&#x2F; this 代指调用这个方法的对象. 
-    &#x2F;&#x2F; strReplace 被调用时的语句是: str.strReplace(); this 指代的就是 str
-    &#x2F;&#x2F; 所以下面的语句可以获取调用这个方法的实例的值. 
-    var str &#x3D; new String(this);
-
-    while (str.indexOf(findText) !&#x3D; -1)&#x2F;&#x2F;只要存在 findText
-    &#123;
-        str &#x3D; str.replace(findText, replaceText);&#x2F;&#x2F; 便使用 replaceText 进行替换
-    &#125;
-
-    return str;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 prototype 为默认对象 String 添加一个自定义方法, 名字是: replaceAll, </span></span><br><span class="line"><span class="comment">// 并设置 replaceAll 方法指向自定义的 strReplace 方法. </span></span><br><span class="line"><span class="built_in">String</span>.prototype.replaceAll = strReplace;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义的 strReplace 方法: </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strReplace</span> (<span class="params">findText, replaceText</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// this 代指调用这个方法的对象. </span></span><br><span class="line">    <span class="comment">// strReplace 被调用时的语句是: str.strReplace(); this 指代的就是 str</span></span><br><span class="line">    <span class="comment">// 所以下面的语句可以获取调用这个方法的实例的值. </span></span><br><span class="line">    <span class="keyword">var</span> str = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="built_in">this</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (str.indexOf(findText) != <span class="number">-1</span>)<span class="comment">//只要存在 findText</span></span><br><span class="line">    &#123;</span><br><span class="line">        str = str.replace(findText, replaceText);<span class="comment">// 便使用 replaceText 进行替换</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> str;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="为-quot-自定义对象-quot-添加属性和方法"><a href="#为-quot-自定义对象-quot-添加属性和方法" class="headerlink" title="为 &quot;自定义对象&quot; 添加属性和方法"></a>为 &quot;自定义对象&quot; 添加属性和方法</h3><p>JavaScript 也允许程序员使用对象原型 <code>prototype</code> 为自己的 &quot;自定义类型&quot; 动态添加属性和方法. </p>
 <ul>
 <li>为 &quot;自定义类型&quot; 添加属性和方法. </li>
 </ul>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">&#x2F;&#x2F; 使用 prototype 添加属性 hobby
-Member.prototype.hobby &#x3D; null;
-
-&#x2F;&#x2F; 新属性也可以直接使用
-papa.hobby&#x3D;&quot;上网&quot;;
-mama.hobby&#x3D;&quot;逛街&quot;;
-doggy.hobby&#x3D;&quot;啃骨头&quot;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 prototype 添加属性 hobby</span></span><br><span class="line">Member.prototype.hobby = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 新属性也可以直接使用</span></span><br><span class="line">papa.hobby=<span class="string">&quot;上网&quot;</span>;</span><br><span class="line">mama.hobby=<span class="string">&quot;逛街&quot;</span>;</span><br><span class="line">doggy.hobby=<span class="string">&quot;啃骨头&quot;</span>;</span><br></pre></td></tr></table></figure>
 
 <h1 id="JavaScript-默认函数"><a href="#JavaScript-默认函数" class="headerlink" title="JavaScript 默认函数"></a>JavaScript 默认函数</h1><h2 id="编码函数"><a href="#编码函数" class="headerlink" title="编码函数"></a>编码函数</h2><ul>
 <li><p><code>escape( &#39;str&#39; )</code></p>
@@ -1129,13 +1021,7 @@ doggy.hobby&#x3D;&quot;啃骨头&quot;;<span aria-hidden="true" class="line-numb
 <li><p>将 数值字符串 转换成 浮点数, 如 <code>parseFloat(&quot;3.1234A56&quot;);</code> 返回浮点数 <code>3.1234</code>. </p>
 </li>
 </ul>
-<h1 id="JavaScript-自定义函数"><a href="#JavaScript-自定义函数" class="headerlink" title="JavaScript 自定义函数"></a>JavaScript 自定义函数</h1><pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">function 函数名(参数1, 参数2, ..., 参数n)
-&#123;
-    &#x2F;&#x2F;TODO
-    &lt;语句组&gt;
-    &#x2F;&#x2F;return 语句可以省略, 但是强烈建议不要省略. 
-    [return &lt;表达式&gt;;]
-&#125; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="JavaScript-自定义函数"><a href="#JavaScript-自定义函数" class="headerlink" title="JavaScript 自定义函数"></a>JavaScript 自定义函数</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> 函数名(<span class="params">参数<span class="number">1</span>, 参数<span class="number">2</span>, ..., 参数n</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//TODO</span></span><br><span class="line">    &lt;语句组&gt;</span><br><span class="line">    <span class="comment">//return 语句可以省略, 但是强烈建议不要省略. </span></span><br><span class="line">    [<span class="keyword">return</span> &lt;表达式&gt;;]</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 
 <h1 id="JavaScript-事件"><a href="#JavaScript-事件" class="headerlink" title="JavaScript 事件"></a>JavaScript 事件</h1><ul>
 <li>事件就是指用户对浏览器所做的特定的动作会触发相应的方法, 它是实现交互操作的一种机制. </li>
@@ -1212,15 +1098,8 @@ doggy.hobby&#x3D;&quot;啃骨头&quot;;<span aria-hidden="true" class="line-numb
 <h2 id="事件写法二"><a href="#事件写法二" class="headerlink" title="事件写法二"></a>事件写法二</h2><ul>
 <li>使用对象中的 on(...) 事件属性. </li>
 </ul>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">var str &#x3D; &#39;Star Buster Stream!&#39;; 
-document.onload &#x3D; alert(str);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-JavaScript" data-language="JavaScript"><code class="language-JavaScript">function Show()
-&#123;
-    var str &#x3D; &quot;Star Buster Stream!&quot;;
-    alert(str);
-&#125;
-
-document.onload &#x3D; Show();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;Star Buster Stream!&#x27;</span>; </span><br><span class="line"><span class="built_in">document</span>.onload = alert(str);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Show</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> str = <span class="string">&quot;Star Buster Stream!&quot;</span>;</span><br><span class="line">    alert(str);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.onload = Show();</span><br></pre></td></tr></table></figure>
 
 <h1 id="JavaScript-定时器"><a href="#JavaScript-定时器" class="headerlink" title="JavaScript 定时器"></a>JavaScript 定时器</h1><h2 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout ( )"></a>setTimeout ( )</h2><ul>
 <li><code>定时器对象名 = setTimeout(&quot;&lt;表达式&gt;&quot;, time);</code> : 等待 time 毫秒后只执行一次&lt;表达式&gt;. </li>
@@ -2427,13 +2306,13 @@ document.onload &#x3D; Show();<span aria-hidden="true" class="line-numbers-rows"
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">133k</span>
+    <span title="站点总字数">136k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:01</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
 
     <div id="days"></div>

@@ -415,12 +415,10 @@
 <h2 id="安装-Nodejs"><a href="#安装-Nodejs" class="headerlink" title="安装 Nodejs"></a>安装 Nodejs</h2><p>进入 <span class="exturl" data-url="aHR0cHM6Ly9ub2RlanMub3JnL2VuLw==">Nodejs 官方网站<i class="fa fa-external-link-alt"></i></span> 下载安装即可. </p>
 <p>LTS 版本即可满足使用, 可以在 cmd 中使用 <code>node -v</code> 和 <code>npm -v</code> 进行验证, 出现版本号就说明成功了. </p>
 <h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>安装 Hexo 之前, 如果你想要更改 Hexo 的安装位置 (Hexo 默认会安装在 C 盘), 可以在 cmd 中输入下面的命令, 记得把路径改为自己的: </p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">npm config set prefix &quot;H:\Programs Computer\NodeGobal&quot;
-npm config set cache &quot;H:\Programs Computer\NodeCache&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set prefix &quot;H:\Programs Computer\NodeGobal&quot;</span><br><span class="line">npm config set cache &quot;H:\Programs Computer\NodeCache&quot;</span><br></pre></td></tr></table></figure>
 
 <p>之后可以使用以下命令查看设置:</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">npm config get prefix
-npm config get cache<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config get prefix</span><br><span class="line">npm config get cache</span><br></pre></td></tr></table></figure>
 
 <p>先切换 npm 源: 打开 cmd, 输入下面的命令:</p>
 <p><code>npm config set registry https://registry.npm.taobao.org</code></p>
@@ -451,11 +449,10 @@ npm config get cache<span aria-hidden="true" class="line-numbers-rows"><span></s
 <p>接下来我们创建个人主页仓库: 在 GitHub 首页右上角头像左侧的加号处, 点击: New repository, 仓库名字必须是: <code>你的 Github 用户名.github.io</code>, 下面选择 Public, 下面的选项是让你是否在仓库中初始化一个 README.md 文件, 自己随意. 最后点击创建仓库, 这样 GitHub Pages 就创建好了. </p>
 <h2 id="获取-SSH-密钥"><a href="#获取-SSH-密钥" class="headerlink" title="获取 SSH 密钥"></a>获取 SSH 密钥</h2><p>至此, 我们的本地博客和 GitHub Pages 都准备好了, 下面就可以把网页部署 (上传) 到 GitHub Pages 上了. 在部署之前, 我们先设置一下 SSH 密钥. 因为如果不配置 SSH 密钥, 每次部署本地博客到 GitHub Pages 时, 都要输入 Github 账号密码, 非常繁琐. </p>
 <p>获取 SSH 密钥: 如果你是第一次使用 Git, 要先配置 Git 的用户名和邮箱, 在 Git Bash Here 中输入: </p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">git config --global user.name &quot;username&quot;
-git config --global user.email &quot;mail&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;username&quot;</span><br><span class="line">git config --global user.email &quot;mail&quot;</span><br></pre></td></tr></table></figure>
 
 <p>上面的 username 改成你 GitHub 的用户名, mail 改成你 GitHub 的邮箱. 之后再次输入: </p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ssh-keygen -t rsa -C &quot;mail&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;mail&quot;</span><br></pre></td></tr></table></figure>
 
 <p>mail 要用你自己的 Github 邮箱. 回车后会依次出现三个选项, 直接全部回车即可. 这样 SSH 密钥就生成了, 接下来需要密钥填写到 GitHub 上. </p>
 <p>在 C:\Users\用户名\.ssh目录中, 会出现这样两个文件: <code>id_rsa</code> 和 <code>id_rsa.pub</code></p>
@@ -463,21 +460,13 @@ git config --global user.email &quot;mail&quot;<span aria-hidden="true" class="l
 <p>之后打开浏览器, 登录 GitHub, 依次点击头像下的 Settings, 左面的 SSH and GPG keys, 右上角的 New SSH key, 填写标题时, 最好和你那个网页文件夹的名字一致, 方便记忆和日后查找.<br>点击 Add SSH key 并且验证 GitHub 密码, 即可完成密钥的添加. </p>
 <h2 id="部署本地博客到-GitHub-Pages"><a href="#部署本地博客到-GitHub-Pages" class="headerlink" title="部署本地博客到 GitHub Pages"></a>部署本地博客到 GitHub Pages</h2><p>之前的步骤中 SSH 密钥已经设置好了, 接下来就可以部署本地博客到 Github Pages 了, 在这里不建议直接使用 Git 进行部署, 而是使用 Hexo 中的 Hexo deploy 插件进行一键式部署, 方便快捷. </p>
 <p>首先要安装 Hexo deploy 插件, 还是在 Git Bash Here 中输入命令: </p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">npm install hexo-deployer-git --save<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 
 <p>之后打开网页根目录下的 _config.yml 文件, 文件的末尾是这样的: </p>
-<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf"># Deployment
-## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html
-deploy:
-  type:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type:</span><br></pre></td></tr></table></figure>
 
 <p>修改成下面这样: </p>
-<pre class="line-numbers language-conf" data-language="conf"><code class="language-conf"># Deployment
-## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html
-deploy:
-  type: git
-  repo: git@github.com:KurohaKirito&#x2F;KurohaKirito.github.io.git
-  branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https:&#x2F;&#x2F;hexo.io&#x2F;docs&#x2F;deployment.html</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:KurohaKirito&#x2F;KurohaKirito.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 
 <p>repo 就是你仓库的地址: 有 SSH 和 HTTPS 两种格式, 你选择哪种都可以. 我选择的是 SSH 格式. 在你仓库页面上点击绿色按钮 <code>Clone or download</code> 即可获得仓库地址. </p>
 <p>配置完成之后, 执行部署命令, 还是在 Git Bash Here 中输入命令: <code>hexo deploy</code> 或者命令的缩写: <code>hexo d</code>, 输入 GitHub 用户名, 密码即可. </p>
@@ -580,8 +569,7 @@ deploy:
 <h3 id="访问-GitHub-慢的解决方法"><a href="#访问-GitHub-慢的解决方法" class="headerlink" title="访问 GitHub 慢的解决方法"></a>访问 GitHub 慢的解决方法</h3><p>在国内 Github 网站是可以访问, 但是由于网络代理商的原因, 造成访问速度很慢. 可以通过修改本地 host 文件的办法, 可以提高访问速度: </p>
 <p>打开 Windows 下 host 文件 (<code>C:\Windows\System32\drivers\etc\hosts</code>)</p>
 <p>在最后面添加:</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">151.101.13.194 github.global.ssl.fastly.net
-192.30.253.113 github.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">151.101.13.194 github.global.ssl.fastly.net</span><br><span class="line">192.30.253.113 github.com</span><br></pre></td></tr></table></figure>
 
 <p>重启浏览器或者刷新 DNS 缓存, 告诉电脑 hosts 文件已经被修改. </p>
 <p>刷新 DNS 缓存的方法: 在命令行中输入 <code>ipconfig /flushdns</code> 刷新 DNS 缓存. </p>
@@ -746,13 +734,13 @@ deploy:
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">133k</span>
+    <span title="站点总字数">136k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:01</span>
+    <span title="站点阅读时长">2:04</span>
 </div>
 
     <div id="days"></div>
