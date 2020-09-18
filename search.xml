@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AHK 基础</title>
+    <url>/ahk/ahk_01.html</url>
+    <content><![CDATA[<h1 id="安装-AutoHotkey"><a href="#安装-AutoHotkey" class="headerlink" title="安装 AutoHotkey"></a>安装 AutoHotkey</h1><p>在安装 <code>Autohotkey</code> 过程中, 需要选择安装 <code>UNICODE</code> 或者 <code>ANSI</code> 版本. </p>
+<p>简单点说, 如果你想要它支持非英文字符和数字, 那就选择 <code>UNICODE</code> 版. </p>
+<p><strong>[注]</strong> <font color='red'>AHK 脚本文件的命名中不能包含空格! 切记! 切记!</font></p>
+<h1 id="热键-amp-热字串"><a href="#热键-amp-热字串" class="headerlink" title="热键 &amp; 热字串"></a>热键 &amp; 热字串</h1><ol>
+<li>热键是用来触发某些动作的按键或组合按键. 如: <code>^j::</code></li>
+</ol>
+<p>热键是通过一对 <code>::</code> 创建的. 按键名或组合按键名必须在 <code>::</code> 左边. 代码则跟在后面, 以 <code>Return</code> 结束.</p>
+<ol start="2">
+<li>热字串主要用于扩展缩写(自动替换). 如: <code>::js::</code></li>
+</ol>
+<p>热字串在要触发的文本两边各有一对 <code>::</code>. 替换后的文本在第二对 <code>::</code> 的右边.</p>
+<h2 id="常用的修饰键-amp-符号"><a href="#常用的修饰键-amp-符号" class="headerlink" title="常用的修饰键 &amp; 符号"></a>常用的修饰键 &amp; 符号</h2><table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">#</td>
+<td align="left">Win</td>
+</tr>
+<tr>
+<td align="center">!</td>
+<td align="left">Alt</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="left">Control</td>
+</tr>
+<tr>
+<td align="center">+</td>
+<td align="left">Shift</td>
+</tr>
+</tbody></table>
+<ol>
+<li>可以通过在两个按键 (除手柄键) 之间, 使用 <code>&amp;</code> 来定义一个组合热键, 注意按键和 <code>&amp;</code> 之间必须加空格. 如: <code>Numpad1 &amp; Numpad2::</code></li>
+</ol>
+<blockquote>
+<p><strong>[注意]</strong> 使用 <code>&amp;</code> 的时候记得在左面按键的前面加上 <code>~</code>, 表示当左面的按键单独按下的时候也要进行处理, 不然左面的按键就失效了. 比如上面的例子中, <code>Numpad1</code> 就会失效. 但是加上 <code>~</code> 符号后, 像这样: <code>~Numpad1 &amp; Numpad2::</code>, 这样 <code>Numpad1</code> 就不会失效了.</p>
+</blockquote>
+<ol start="2">
+<li>热字串的修饰符在第一对 <code>::</code> 之间, 用 <code>*</code> 号进行修饰时, 无需按下结束符, 文本便会自动替换. 如: <code>:*:ftw::</code>.</li>
+</ol>
+<h2 id="如何设置脚本只在特定窗口生效"><a href="#如何设置脚本只在特定窗口生效" class="headerlink" title="如何设置脚本只在特定窗口生效"></a>如何设置脚本只在特定窗口生效</h2><p>在脚本代码的最上方添加高级命令: <code>#IfWinActive</code> 或者 <code>#IfWinExist</code>. </p>
+<h1 id="发送按键-模拟键盘输入"><a href="#发送按键-模拟键盘输入" class="headerlink" title="发送按键, 模拟键盘输入"></a>发送按键, 模拟键盘输入</h1><blockquote>
+<p><strong>[注意]</strong> <code>Send</code> 方法发送文本的时候, 如果要发送这些字符: <code>! + # ^</code>, 这些代表键盘按键的特殊字符, 需要用大括号 <code>&#123; &#125;</code> 括起来. 比如: <code>Send, my first &#123;+&#125; script&#123;!&#125;</code>.</p>
+<p><strong>[注意]</strong> 当然也有代表键盘按键的字串, 如: <code>Space</code>, <code>Enter</code>, 这些也要用大括号 <code>&#123; &#125;</code> 括起来. 如: </p>
+<p><code>Send, Multiple Enter lines have Enter been sent. ; 错误</code></p>
+<p><code>Send, Multiple&#123;Enter&#125;lines have&#123;Enter&#125;been sent. ; 正确</code></p>
+<p><strong>[注意]</strong> 如果模拟键盘输入时遇到了中文输入法的问题, 可以使用 {Text} 参数, 在 SendInput 后面加入这个参数后, 后面的文本就不会以键盘输入的方式进行输出, 而是直接以文本的形式输出, 避免中文输入法导致的问题. 如: </p>
+<p><code>SendInput, &#123;Text&#125;administrator</code></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>AutoHotKey</category>
+      </categories>
+      <tags>
+        <tag>AHK</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>游戏开发笔试面试经历之字节跳动</title>
     <url>/apply/game_apply_bytedance.html</url>
     <content><![CDATA[<p>最近找工作, 那叫一个惨, 哈哈, 记录一下自己面试字节跳动时技术岗提问的问题吧! </p>
@@ -68,70 +132,6 @@
       </categories>
       <tags>
         <tag>面试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AHK 基础</title>
-    <url>/ahk/ahk_01.html</url>
-    <content><![CDATA[<h1 id="安装-AutoHotkey"><a href="#安装-AutoHotkey" class="headerlink" title="安装 AutoHotkey"></a>安装 AutoHotkey</h1><p>在安装 <code>Autohotkey</code> 过程中, 需要选择安装 <code>UNICODE</code> 或者 <code>ANSI</code> 版本. </p>
-<p>简单点说, 如果你想要它支持非英文字符和数字, 那就选择 <code>UNICODE</code> 版. </p>
-<p><strong>[注]</strong> <font color='red'>AHK 脚本文件的命名中不能包含空格! 切记! 切记!</font></p>
-<h1 id="热键-amp-热字串"><a href="#热键-amp-热字串" class="headerlink" title="热键 &amp; 热字串"></a>热键 &amp; 热字串</h1><ol>
-<li>热键是用来触发某些动作的按键或组合按键. 如: <code>^j::</code></li>
-</ol>
-<p>热键是通过一对 <code>::</code> 创建的. 按键名或组合按键名必须在 <code>::</code> 左边. 代码则跟在后面, 以 <code>Return</code> 结束.</p>
-<ol start="2">
-<li>热字串主要用于扩展缩写(自动替换). 如: <code>::js::</code></li>
-</ol>
-<p>热字串在要触发的文本两边各有一对 <code>::</code>. 替换后的文本在第二对 <code>::</code> 的右边.</p>
-<h2 id="常用的修饰键-amp-符号"><a href="#常用的修饰键-amp-符号" class="headerlink" title="常用的修饰键 &amp; 符号"></a>常用的修饰键 &amp; 符号</h2><table>
-<thead>
-<tr>
-<th align="center">符号</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">#</td>
-<td align="left">Win</td>
-</tr>
-<tr>
-<td align="center">!</td>
-<td align="left">Alt</td>
-</tr>
-<tr>
-<td align="center">^</td>
-<td align="left">Control</td>
-</tr>
-<tr>
-<td align="center">+</td>
-<td align="left">Shift</td>
-</tr>
-</tbody></table>
-<ol>
-<li>可以通过在两个按键 (除手柄键) 之间, 使用 <code>&amp;</code> 来定义一个组合热键, 注意按键和 <code>&amp;</code> 之间必须加空格. 如: <code>Numpad1 &amp; Numpad2::</code></li>
-</ol>
-<blockquote>
-<p><strong>[注意]</strong> 使用 <code>&amp;</code> 的时候记得在左面按键的前面加上 <code>~</code>, 表示当左面的按键单独按下的时候也要进行处理, 不然左面的按键就失效了. 比如上面的例子中, <code>Numpad1</code> 就会失效. 但是加上 <code>~</code> 符号后, 像这样: <code>~Numpad1 &amp; Numpad2::</code>, 这样 <code>Numpad1</code> 就不会失效了.</p>
-</blockquote>
-<ol start="2">
-<li>热字串的修饰符在第一对 <code>::</code> 之间, 用 <code>*</code> 号进行修饰时, 无需按下结束符, 文本便会自动替换. 如: <code>:*:ftw::</code>.</li>
-</ol>
-<h2 id="如何设置脚本只在特定窗口生效"><a href="#如何设置脚本只在特定窗口生效" class="headerlink" title="如何设置脚本只在特定窗口生效"></a>如何设置脚本只在特定窗口生效</h2><p>在脚本代码的最上方添加高级命令: <code>#IfWinActive</code> 或者 <code>#IfWinExist</code>. </p>
-<h1 id="发送按键-模拟键盘输入"><a href="#发送按键-模拟键盘输入" class="headerlink" title="发送按键, 模拟键盘输入"></a>发送按键, 模拟键盘输入</h1><blockquote>
-<p><strong>[注意]</strong> <code>Send</code> 方法发送文本的时候, 如果要发送这些字符: <code>! + # ^</code>, 这些代表键盘按键的特殊字符, 需要用大括号 <code>&#123; &#125;</code> 括起来. 比如: <code>Send, my first &#123;+&#125; script&#123;!&#125;</code>.</p>
-<p><strong>[注意]</strong> 当然也有代表键盘按键的字串, 如: <code>Space</code>, <code>Enter</code>, 这些也要用大括号 <code>&#123; &#125;</code> 括起来. 如: </p>
-<p><code>Send, Multiple Enter lines have Enter been sent. ; 错误</code></p>
-<p><code>Send, Multiple&#123;Enter&#125;lines have&#123;Enter&#125;been sent. ; 正确</code></p>
-<p><strong>[注意]</strong> 如果模拟键盘输入时遇到了中文输入法的问题, 可以使用 {Text} 参数, 在 SendInput 后面加入这个参数后, 后面的文本就不会以键盘输入的方式进行输出, 而是直接以文本的形式输出, 避免中文输入法导致的问题. 如: </p>
-<p><code>SendInput, &#123;Text&#125;administrator</code></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>AutoHotKey</category>
-      </categories>
-      <tags>
-        <tag>AHK</tag>
       </tags>
   </entry>
   <entry>
@@ -3478,7 +3478,7 @@ const dp_update = new DPlayer({
 </ol>
 <p><img data-src="/images/oracle_notes/sql_join.png" alt="sql-join"></p>
 <h1 id="SQL-中的-union-和-union-all"><a href="#SQL-中的-union-和-union-all" class="headerlink" title="SQL 中的 union 和 union all"></a>SQL 中的 union 和 union all</h1><ol>
-<li><p><code>join on</code> 可以理解为横向拼接, <code>union all</code> 可以理解为纵向拼接. 2X2 的两个表使用 <code>join in</code> 拼接后是 2X4, <code>union all</code> 拼接后是 4X2. </p>
+<li><p><code>join on</code> 可以理解为横向拼接, <code>union all</code> 可以理解为纵向拼接. 2X2 的两个表使用 <code>join on</code> 拼接后是 2X4, <code>union all</code> 拼接后是 4X2. </p>
 </li>
 <li><p><code>union</code> 拼接自带去重, 如果想要将全部的数据保留下来, 则需要使用 <code>union all</code>.</p>
 </li>
