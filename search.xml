@@ -1136,11 +1136,12 @@
 </blockquote>
 <p>可以这样理解:</p>
 <ol>
-<li><p>&quot;回调&quot; 是一种技术: <font color='red'>将方法作为参数传入另一个方法!</font>在各大编程语言, 脚本语言中都有实现这门技术! <strong>强调: 这个一项技术!</strong></p>
+<li><p>&quot;回调&quot; 是一种技术: <font color='red'>将方法作为参数传入另一个方法!</font> 在各大编程语言, 脚本语言中都有实现这门技术! </p>
 </li>
-<li><p>&quot;回调函数&quot; 就是作为参数的方法! <strong>强调: 这是一个参数!</strong></p>
+<li><p>&quot;回调函数&quot; 就是作为参数的方法!</p>
 </li>
 </ol>
+<p>强调: <strong>回调是一项技术! 回调函数是一个参数!</strong></p>
 <h1 id="回调函数的用途"><a href="#回调函数的用途" class="headerlink" title="回调函数的用途"></a>回调函数的用途</h1><ol>
 <li><p>因为 A 是作为参数传入 B 的, 那么在 B 中就可以编写很多的判断逻辑来准确控制 A 的执行时机, 当然用 retuan 返回执行标志, 通过执行标志来执行 A </p>
 </li>
