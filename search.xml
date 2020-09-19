@@ -1098,7 +1098,7 @@
       </tags>
   </entry>
   <entry>
-    <title>委托的基本用法</title>
+    <title>委托(一) 委托的基本用法</title>
     <url>/csharp/delegate_01.html</url>
     <content><![CDATA[<a id="more"></a>
 
@@ -1126,7 +1126,7 @@
       </tags>
   </entry>
   <entry>
-    <title>委托(二)</title>
+    <title>委托(二) 委托与回调和回调函数</title>
     <url>/csharp/delegate_02.html</url>
     <content><![CDATA[<a id="more"></a>
 
