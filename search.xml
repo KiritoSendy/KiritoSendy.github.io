@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AHK 基础</title>
+    <url>/ahk/ahk_01.html</url>
+    <content><![CDATA[<h1 id="安装-AutoHotkey"><a href="#安装-AutoHotkey" class="headerlink" title="安装 AutoHotkey"></a>安装 AutoHotkey</h1><p>在安装 <code>Autohotkey</code> 过程中, 需要选择安装 <code>UNICODE</code> 或者 <code>ANSI</code> 版本. </p>
+<p>简单点说, 如果你想要它支持非英文字符和数字, 那就选择 <code>UNICODE</code> 版. </p>
+<p><strong>[注]</strong> <font color='red'>AHK 脚本文件的命名中不能包含空格! 切记! 切记!</font></p>
+<h1 id="热键-amp-热字串"><a href="#热键-amp-热字串" class="headerlink" title="热键 &amp; 热字串"></a>热键 &amp; 热字串</h1><ol>
+<li>热键是用来触发某些动作的按键或组合按键. 如: <code>^j::</code></li>
+</ol>
+<p>热键是通过一对 <code>::</code> 创建的. 按键名或组合按键名必须在 <code>::</code> 左边. 代码则跟在后面, 以 <code>Return</code> 结束.</p>
+<ol start="2">
+<li>热字串主要用于扩展缩写(自动替换). 如: <code>::js::</code></li>
+</ol>
+<p>热字串在要触发的文本两边各有一对 <code>::</code>. 替换后的文本在第二对 <code>::</code> 的右边.</p>
+<h2 id="常用的修饰键-amp-符号"><a href="#常用的修饰键-amp-符号" class="headerlink" title="常用的修饰键 &amp; 符号"></a>常用的修饰键 &amp; 符号</h2><table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">#</td>
+<td align="left">Win</td>
+</tr>
+<tr>
+<td align="center">!</td>
+<td align="left">Alt</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="left">Control</td>
+</tr>
+<tr>
+<td align="center">+</td>
+<td align="left">Shift</td>
+</tr>
+</tbody></table>
+<ol>
+<li>可以通过在两个按键 (除手柄键) 之间, 使用 <code>&amp;</code> 来定义一个组合热键, 注意按键和 <code>&amp;</code> 之间必须加空格. 如: <code>Numpad1 &amp; Numpad2::</code></li>
+</ol>
+<blockquote>
+<p><strong>[注意]</strong> 使用 <code>&amp;</code> 的时候记得在左面按键的前面加上 <code>~</code>, 表示当左面的按键单独按下的时候也要进行处理, 不然左面的按键就失效了. 比如上面的例子中, <code>Numpad1</code> 就会失效. 但是加上 <code>~</code> 符号后, 像这样: <code>~Numpad1 &amp; Numpad2::</code>, 这样 <code>Numpad1</code> 就不会失效了.</p>
+</blockquote>
+<ol start="2">
+<li>热字串的修饰符在第一对 <code>::</code> 之间, 用 <code>*</code> 号进行修饰时, 无需按下结束符, 文本便会自动替换. 如: <code>:*:ftw::</code>.</li>
+</ol>
+<h2 id="如何设置脚本只在特定窗口生效"><a href="#如何设置脚本只在特定窗口生效" class="headerlink" title="如何设置脚本只在特定窗口生效"></a>如何设置脚本只在特定窗口生效</h2><p>在脚本代码的最上方添加高级命令: <code>#IfWinActive</code> 或者 <code>#IfWinExist</code>. </p>
+<h1 id="发送按键-模拟键盘输入"><a href="#发送按键-模拟键盘输入" class="headerlink" title="发送按键, 模拟键盘输入"></a>发送按键, 模拟键盘输入</h1><blockquote>
+<p><strong>[注意]</strong> <code>Send</code> 方法发送文本的时候, 如果要发送这些字符: <code>! + # ^</code>, 这些代表键盘按键的特殊字符, 需要用大括号 <code>&#123; &#125;</code> 括起来. 比如: <code>Send, my first &#123;+&#125; script&#123;!&#125;</code>.</p>
+<p><strong>[注意]</strong> 当然也有代表键盘按键的字串, 如: <code>Space</code>, <code>Enter</code>, 这些也要用大括号 <code>&#123; &#125;</code> 括起来. 如: </p>
+<p><code>Send, Multiple Enter lines have Enter been sent. ; 错误</code></p>
+<p><code>Send, Multiple&#123;Enter&#125;lines have&#123;Enter&#125;been sent. ; 正确</code></p>
+<p><strong>[注意]</strong> 如果模拟键盘输入时遇到了中文输入法的问题, 可以使用 {Text} 参数, 在 SendInput 后面加入这个参数后, 后面的文本就不会以键盘输入的方式进行输出, 而是直接以文本的形式输出, 避免中文输入法导致的问题. 如: </p>
+<p><code>SendInput, &#123;Text&#125;administrator</code></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>AutoHotKey</category>
+      </categories>
+      <tags>
+        <tag>AHK</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>游戏开发笔试面试经历之字节跳动</title>
     <url>/apply/game_apply_bytedance.html</url>
     <content><![CDATA[<p>最近找工作, 那叫一个惨, 哈哈, 记录一下自己面试字节跳动时技术岗提问的问题吧! </p>
@@ -503,67 +567,33 @@
       </tags>
   </entry>
   <entry>
-    <title>AHK 基础</title>
-    <url>/ahk/ahk_01.html</url>
-    <content><![CDATA[<h1 id="安装-AutoHotkey"><a href="#安装-AutoHotkey" class="headerlink" title="安装 AutoHotkey"></a>安装 AutoHotkey</h1><p>在安装 <code>Autohotkey</code> 过程中, 需要选择安装 <code>UNICODE</code> 或者 <code>ANSI</code> 版本. </p>
-<p>简单点说, 如果你想要它支持非英文字符和数字, 那就选择 <code>UNICODE</code> 版. </p>
-<p><strong>[注]</strong> <font color='red'>AHK 脚本文件的命名中不能包含空格! 切记! 切记!</font></p>
-<h1 id="热键-amp-热字串"><a href="#热键-amp-热字串" class="headerlink" title="热键 &amp; 热字串"></a>热键 &amp; 热字串</h1><ol>
-<li>热键是用来触发某些动作的按键或组合按键. 如: <code>^j::</code></li>
-</ol>
-<p>热键是通过一对 <code>::</code> 创建的. 按键名或组合按键名必须在 <code>::</code> 左边. 代码则跟在后面, 以 <code>Return</code> 结束.</p>
-<ol start="2">
-<li>热字串主要用于扩展缩写(自动替换). 如: <code>::js::</code></li>
-</ol>
-<p>热字串在要触发的文本两边各有一对 <code>::</code>. 替换后的文本在第二对 <code>::</code> 的右边.</p>
-<h2 id="常用的修饰键-amp-符号"><a href="#常用的修饰键-amp-符号" class="headerlink" title="常用的修饰键 &amp; 符号"></a>常用的修饰键 &amp; 符号</h2><table>
-<thead>
-<tr>
-<th align="center">符号</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">#</td>
-<td align="left">Win</td>
-</tr>
-<tr>
-<td align="center">!</td>
-<td align="left">Alt</td>
-</tr>
-<tr>
-<td align="center">^</td>
-<td align="left">Control</td>
-</tr>
-<tr>
-<td align="center">+</td>
-<td align="left">Shift</td>
-</tr>
-</tbody></table>
-<ol>
-<li>可以通过在两个按键 (除手柄键) 之间, 使用 <code>&amp;</code> 来定义一个组合热键, 注意按键和 <code>&amp;</code> 之间必须加空格. 如: <code>Numpad1 &amp; Numpad2::</code></li>
-</ol>
-<blockquote>
-<p><strong>[注意]</strong> 使用 <code>&amp;</code> 的时候记得在左面按键的前面加上 <code>~</code>, 表示当左面的按键单独按下的时候也要进行处理, 不然左面的按键就失效了. 比如上面的例子中, <code>Numpad1</code> 就会失效. 但是加上 <code>~</code> 符号后, 像这样: <code>~Numpad1 &amp; Numpad2::</code>, 这样 <code>Numpad1</code> 就不会失效了.</p>
-</blockquote>
-<ol start="2">
-<li>热字串的修饰符在第一对 <code>::</code> 之间, 用 <code>*</code> 号进行修饰时, 无需按下结束符, 文本便会自动替换. 如: <code>:*:ftw::</code>.</li>
-</ol>
-<h2 id="如何设置脚本只在特定窗口生效"><a href="#如何设置脚本只在特定窗口生效" class="headerlink" title="如何设置脚本只在特定窗口生效"></a>如何设置脚本只在特定窗口生效</h2><p>在脚本代码的最上方添加高级命令: <code>#IfWinActive</code> 或者 <code>#IfWinExist</code>. </p>
-<h1 id="发送按键-模拟键盘输入"><a href="#发送按键-模拟键盘输入" class="headerlink" title="发送按键, 模拟键盘输入"></a>发送按键, 模拟键盘输入</h1><blockquote>
-<p><strong>[注意]</strong> <code>Send</code> 方法发送文本的时候, 如果要发送这些字符: <code>! + # ^</code>, 这些代表键盘按键的特殊字符, 需要用大括号 <code>&#123; &#125;</code> 括起来. 比如: <code>Send, my first &#123;+&#125; script&#123;!&#125;</code>.</p>
-<p><strong>[注意]</strong> 当然也有代表键盘按键的字串, 如: <code>Space</code>, <code>Enter</code>, 这些也要用大括号 <code>&#123; &#125;</code> 括起来. 如: </p>
-<p><code>Send, Multiple Enter lines have Enter been sent. ; 错误</code></p>
-<p><code>Send, Multiple&#123;Enter&#125;lines have&#123;Enter&#125;been sent. ; 正确</code></p>
-<p><strong>[注意]</strong> 如果模拟键盘输入时遇到了中文输入法的问题, 可以使用 {Text} 参数, 在 SendInput 后面加入这个参数后, 后面的文本就不会以键盘输入的方式进行输出, 而是直接以文本的形式输出, 避免中文输入法导致的问题. 如: </p>
-<p><code>SendInput, &#123;Text&#125;administrator</code></p>
-</blockquote>
-]]></content>
+    <title>ASP 开发经验笔记</title>
+    <url>/asp/asp_learnnotes.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="获取配置文件中的信息"><a href="#获取配置文件中的信息" class="headerlink" title="获取配置文件中的信息"></a>获取配置文件中的信息</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取 web.config 的信息</span></span><br><span class="line">System.Configuration.ConfigurationManager.AppSettings[<span class="string">&quot;KeyName&quot;</span>].ToString();</span><br></pre></td></tr></table></figure>
+
+<h1 id="PLSQL-调试-Oracle-存储过程时输出信息"><a href="#PLSQL-调试-Oracle-存储过程时输出信息" class="headerlink" title="PLSQL 调试 Oracle 存储过程时输出信息"></a>PLSQL 调试 Oracle 存储过程时输出信息</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--存储过程调试输出</span></span><br><span class="line">dbms_output.put_line();</span><br></pre></td></tr></table></figure>
+
+<h1 id="调用前台-JavaScript-方法"><a href="#调用前台-JavaScript-方法" class="headerlink" title="调用前台 JavaScript 方法"></a>调用前台 JavaScript 方法</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//后台 C# 调用前台 JavaScript 的自定义方法</span></span><br><span class="line">ClientScript.RegisterStartupScript(<span class="keyword">this</span>.GetType(), <span class="string">&quot;&quot;</span>, <span class="string">&quot;&lt;script&gt;myFunction();&lt;/script&gt;&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//后台 C# 调用前台 JavaScript 弹窗提示</span></span><br><span class="line">ClientScript.RegisterStartupScript(<span class="keyword">this</span>.GetType(), <span class="string">&quot;&quot;</span>, <span class="string">&quot;&lt;script&gt;alert(&#x27;弹窗信息!&#x27;);&lt;/script&gt;&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="获取电脑-IP"><a href="#获取电脑-IP" class="headerlink" title="获取电脑 IP"></a>获取电脑 IP</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//记录下电脑 IP 的方法</span></span><br><span class="line"><span class="keyword">string</span> ip = <span class="keyword">string</span>.Empty;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;HTTP_VIA&quot;</span>] != <span class="literal">null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    ip = System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;HTTP_X_FORWARDED_FOR&quot;</span>].Split(<span class="keyword">new</span> <span class="keyword">char</span>[] &#123; <span class="string">&#x27;,&#x27;</span> &#125;)[<span class="number">0</span>].ToString();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    ip = System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;REMOTE_ADDR&quot;</span>].ToString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="模板下载功能"><a href="#模板下载功能" class="headerlink" title="模板下载功能"></a>模板下载功能</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 浏览器下载文件</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;modifyName&quot;&gt;</span>自定义文件名, 附带后缀<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DownloadFile</span>(<span class="params"><span class="keyword">string</span> modifyName</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 定义变量: 文件名</span></span><br><span class="line">    <span class="keyword">string</span> fileName = <span class="keyword">string</span>.Empty;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取文件在服务器的地址</span></span><br><span class="line">    <span class="keyword">string</span> url = Server.MapPath(<span class="string">&quot;../searchZclbList.xls&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断地址是否为空</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">string</span>.IsNullOrEmpty(url))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 提示 &quot;该文件暂不提供下载&quot;</span></span><br><span class="line">        Page.ClientScript.RegisterStartupScript(Page.GetType(), <span class="string">&quot;message&quot;</span>, <span class="string">&quot;&lt;script defer&gt;alert(&#x27;该文件暂不提供下载!&#x27;);&lt;/script&gt;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断获取的是否为地址  </span></span><br><span class="line">    <span class="keyword">if</span> (url.IndexOf(<span class="string">&quot;\\&quot;</span>) &gt; <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// url 为地址时, 则截取 url 中的文件名作为文件名</span></span><br><span class="line">        fileName = url.Substring(url.LastIndexOf(<span class="string">&quot;\\&quot;</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// url 为文件名时, 直接获取文件名  </span></span><br><span class="line">        fileName = url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义文件名, 附带后缀</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">string</span>.IsNullOrEmpty(modifyName))</span><br><span class="line">    &#123;</span><br><span class="line">        fileName = modifyName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 以字符流的方式下载文件  </span></span><br><span class="line">    FileStream fileStream = <span class="keyword">new</span> FileStream(@url, FileMode.Open);</span><br><span class="line">    <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[(<span class="keyword">int</span>)fileStream.Length];</span><br><span class="line">    fileStream.Read(bytes, <span class="number">0</span>, bytes.Length);</span><br><span class="line">    fileStream.Close();</span><br><span class="line">    Response.ContentType = <span class="string">&quot;application/octet-stream&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通知浏览器下载 </span></span><br><span class="line">    Response.AddHeader(<span class="string">&quot;Content-Disposition&quot;</span>, <span class="string">&quot;attachment; filename=&quot;</span> + fileName);</span><br><span class="line">    Response.BinaryWrite(bytes);</span><br><span class="line">    Response.Flush();</span><br><span class="line">    Response.End();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="最基本的图片查看器功能"><a href="#最基本的图片查看器功能" class="headerlink" title="最基本的图片查看器功能"></a>最基本的图片查看器功能</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 前台</span></span><br><span class="line">&lt;asp:Image ID=<span class="string">&quot;Image&quot;</span> runat=<span class="string">&quot;server&quot;</span> ImageUrl=<span class="string">&quot;~/imagelook.jpg&quot;</span>/&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后台</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">Page_Load</span>(<span class="params"><span class="keyword">object</span> sender, System.EventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 读取图片</span></span><br><span class="line">        <span class="keyword">int</span> ImgID = Convert.ToInt32(Request.QueryString[<span class="string">&quot;imageid&quot;</span>] <span class="keyword">as</span> <span class="keyword">string</span>);</span><br><span class="line">        OracleConnection Con = <span class="keyword">new</span> googoSoftEAM.SQLServerDAL.SqlHelper().Connection;</span><br><span class="line">        String SqlCmd = <span class="string">&quot;select * from zc_image where imageid = :imageid and saasdm=&#x27;&quot;</span> + Session[<span class="string">&quot;saasdm&quot;</span>].ToString() + <span class="string">&quot;&#x27;&quot;</span>;</span><br><span class="line">        OracleCommand CmdObj = <span class="keyword">new</span> OracleCommand(SqlCmd, Con);</span><br><span class="line">        CmdObj.Parameters.Add(<span class="string">&quot;:ImageID&quot;</span>, OracleType.UInt32).Value = ImgID;</span><br><span class="line">        Con.Open();</span><br><span class="line">        OracleDataReader SqlReader = CmdObj.ExecuteReader();</span><br><span class="line">        SqlReader.Read();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 图片类型</span></span><br><span class="line">        <span class="keyword">string</span> imageType = (<span class="keyword">string</span>)SqlReader[<span class="string">&quot;imagecontenttype&quot;</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 原版图片内容 [字节流]</span></span><br><span class="line">        MemoryStream bufferByte = <span class="keyword">new</span> MemoryStream((<span class="keyword">byte</span>[])SqlReader[<span class="string">&quot;imageData&quot;</span>]);</span><br><span class="line">        System.Drawing.Image imageOrigin = System.Drawing.Image.FromStream(bufferByte, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 缩小文件 (计算缩小倍率) 缩小至 高度 targetHeight 左右</span></span><br><span class="line">        <span class="keyword">float</span> targetHeight = <span class="number">600.0f</span>;</span><br><span class="line">        <span class="keyword">float</span> shrink = targetHeight / imageOrigin.Height;</span><br><span class="line">        <span class="keyword">float</span> w = shrink, h = shrink;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 目标图形</span></span><br><span class="line">        System.Drawing.Bitmap imageSmall = <span class="keyword">new</span> System.Drawing.Bitmap((<span class="keyword">int</span>)(imageOrigin.Width * shrink), (<span class="keyword">int</span>)(imageOrigin.Height * shrink));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建一个图形对象</span></span><br><span class="line">        Graphics graphics = Graphics.FromImage(imageSmall);</span><br><span class="line">        graphics.DrawImage(imageOrigin, <span class="keyword">new</span> Rectangle(<span class="number">0</span>, <span class="number">0</span>, imageSmall.Width, imageSmall.Height), <span class="keyword">new</span> Rectangle(<span class="number">0</span>, <span class="number">0</span>, imageOrigin.Width, imageOrigin.Height), GraphicsUnit.Pixel);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 计算出图片地址</span></span><br><span class="line">        <span class="keyword">string</span> ret_type = <span class="keyword">string</span>.Empty;</span><br><span class="line">        GetImageType(imageType, <span class="keyword">out</span> ret_type);</span><br><span class="line">        <span class="keyword">string</span> imagePath = Server.MapPath(<span class="string">&quot;../imagelook.&quot;</span> + ret_type);</span><br><span class="line">        <span class="keyword">if</span> (File.Exists(imagePath))</span><br><span class="line">        &#123;</span><br><span class="line">            File.Delete(imagePath);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 解决 Image 控件的刷新问题</span></span><br><span class="line">        <span class="comment">// 当 IE 检测到 Image 控件的引用地址没有变化时, 会直接从浏览器缓存中取图片.</span></span><br><span class="line">        <span class="comment">// 因此只要下一次访问时网页时, Image 控件的引用地址和这一次的引用地址不相同即可.</span></span><br><span class="line">        <span class="comment">// 于是在引用地址处加一个随机数参数, 使两次引用的图片地址不同!</span></span><br><span class="line">        imageSmall.Save(imagePath);</span><br><span class="line">        Image.ImageUrl = <span class="string">&quot;~/imagelook.&quot;</span> + ret_type + <span class="string">&quot;?&quot;</span> + <span class="keyword">new</span> Random().Next(<span class="number">100</span>).ToString();</span><br><span class="line">        Con.Close();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception ex)</span><br><span class="line">    &#123;</span><br><span class="line">        Trace.Write(ex.Message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 根据所存图片类型返回图片格式</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;imageType&quot;&gt;</span>图片类型<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;ret_type&quot;&gt;</span>返回的图片类型 (string)<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span>返回的图片类型 (ImageFormat)<span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="keyword">private</span> System.Drawing.Imaging.<span class="function">ImageFormat <span class="title">GetImageType</span>(<span class="params"><span class="keyword">string</span> imageType, <span class="keyword">out</span> <span class="keyword">string</span> ret_type</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (imageType)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/gif&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;gif&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Gif;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/bmp&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;bmp&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Bmp;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/x-png&quot;</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/png&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;png&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Png;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/pjpeg&quot;</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/jpeg&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;jpg&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Jpeg;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;jpg&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Jpeg;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="错误-超时时间已到-但是尚未从池中获取连接"><a href="#错误-超时时间已到-但是尚未从池中获取连接" class="headerlink" title="错误: 超时时间已到, 但是尚未从池中获取连接."></a>错误: 超时时间已到, 但是尚未从池中获取连接.</h1><p>出现这种情况可能是因为所有池连接均在使用, 并且达到了最大池大小, 解决办法: 在数据库连接配置中加上 <code>Max Pool Size = 512;</code>.</p>
+<h1 id="合并两个表结构完全一致的-DataTable"><a href="#合并两个表结构完全一致的-DataTable" class="headerlink" title="合并两个表结构完全一致的 DataTable"></a>合并两个表结构完全一致的 DataTable</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 将 sum 表和 para 表合并到 sum 表中, 要求: &quot;sum 表&quot; 和 &quot;para 表&quot; 的表结构必须完全一样!</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;sum&quot;&gt;</span>待合并表之一, 同时也是结果表<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;para&quot;&gt;</span>仅作为待合并表之一<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddTableToTable</span>(<span class="params">DataTable sum, DataTable para</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//遍历 para 表的每一行</span></span><br><span class="line">    <span class="keyword">foreach</span> (DataRow dataRow_para <span class="keyword">in</span> para.Rows)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//新建 sum 表的一行</span></span><br><span class="line">        DataRow dataRow_sum = sum.NewRow();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//新建的这一行取 para 表的数据</span></span><br><span class="line">        dataRow_sum.ItemArray = dataRow_para.ItemArray;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将新建的这一样加到 sum 表中</span></span><br><span class="line">        sum.Rows.Add(dataRow_sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="网页实现-Enter-快捷键"><a href="#网页实现-Enter-快捷键" class="headerlink" title="网页实现 Enter 快捷键"></a>网页实现 Enter 快捷键</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 浏览器中 Enter 键有一个默认行为, 用户焦点在文本框中时键入 Enter, 会触发第一个按钮的 Click 事件.</span></span><br><span class="line"><span class="built_in">document</span>.onkeydown = keydown;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">keydown</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (event.keyCode == <span class="number">13</span>) <span class="comment">// Enter 快捷键</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">&quot;btn_cx&quot;</span>).click();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 阻止浏览器的默认行为</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="获取服务器绝对路径"><a href="#获取服务器绝对路径" class="headerlink" title="获取服务器绝对路径"></a>获取服务器绝对路径</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">string</span> rootDir = Server.MapPath(<span class="string">&quot;text.txt&quot;</span>);</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>AutoHotKey</category>
+        <category>ASP</category>
       </categories>
       <tags>
-        <tag>AHK</tag>
+        <tag>ASP</tag>
       </tags>
   </entry>
   <entry>
@@ -1077,9 +1107,9 @@
 <p>如下图, String, string, Delegate 都可以调用类中的静态方法, 这是因为他们都是类, 但是 delegate 则不可以, 因为它仅仅只是一个类型关键字.</p>
 <p><img data-src="/images/csharp/delegate_01.png" alt="delegate"></p>
 <h1 id="定义一个委托类型"><a href="#定义一个委托类型" class="headerlink" title="定义一个委托类型"></a>定义一个委托类型</h1><p>定义一个委托的时候, 需要指明待委托方法的两个特征: <code>1. 返回值 (int) 2. 参数 (int, int)</code></p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义委托</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">int</span> <span class="title">MyDelegate</span> (<span class="params"><span class="keyword">int</span> a, <span class="keyword">int</span> b</span>)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义委托类型</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">int</span> <span class="title">MyDelegate</span> (<span class="params"><span class="keyword">int</span> a, <span class="keyword">int</span> b</span>)</span>;</span><br></pre></td></tr></table></figure>
 
-<h1 id="实例化一个委托对象"><a href="#实例化一个委托对象" class="headerlink" title="实例化一个委托对象"></a>实例化一个委托对象</h1><p>实例化委托就是实例化一个类, 使用待委托的方法赋值或将待委托的方法作为参数传入. </p>
+<h1 id="实例化一个委托对象"><a href="#实例化一个委托对象" class="headerlink" title="实例化一个委托对象"></a>实例化一个委托对象</h1><p>实例化委托就是使用之前定义好的类型实例化出一个对象, 也叫做实例, 使用待委托的方法进行初始化. </p>
 <p>待委托的方法必须符合之前指明的特征: <code>1. 返回值 (int) 2. 参数 (int, int)</code></p>
 <p>待委托的方法如果不是静态方法, 则必须是实例方法. 不能将未实例化的方法作为参数传入或赋值.</p>
 <h1 id="调用委托"><a href="#调用委托" class="headerlink" title="调用委托"></a>调用委托</h1><p>调用委托和调用方法在代码写法上一致.</p>
@@ -1141,8 +1171,8 @@
     <url>/csharp/delegate_03.html</url>
     <content><![CDATA[<a id="more"></a>
 
-<h1 id="委托类型的定义和委托对象的实例化"><a href="#委托类型的定义和委托对象的实例化" class="headerlink" title="委托类型的定义和委托对象的实例化"></a>委托类型的定义和委托对象的实例化</h1><p>委托本质就是一个类. 实例化委托和实例化类在写法上没有区别.</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义一个委托类型</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">string</span> <span class="title">MyDelegate</span>(<span class="params"><span class="keyword">int</span> a, <span class="keyword">int</span> b</span>)</span>;</span><br><span class="line"><span class="comment">// 实例化一个 MyDelegate 类型的委托对象</span></span><br><span class="line">MyDelegate myDelegate;</span><br></pre></td></tr></table></figure>
+<h1 id="委托类型的定义和委托对象的实例化"><a href="#委托类型的定义和委托对象的实例化" class="headerlink" title="委托类型的定义和委托对象的实例化"></a>委托类型的定义和委托对象的实例化</h1><p>委托和类的级别是一样的, 实例化委托和实例化类在写法上没有区别.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义一个类类型</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyClass</span> &#123; ... &#125;</span><br><span class="line"><span class="comment">// 实例化一个 MyClass 类型的类对象</span></span><br><span class="line">MyClass myClass;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个委托类型</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">string</span> <span class="title">MyDelegate</span>(<span class="params"><span class="keyword">int</span> a, <span class="keyword">int</span> b</span>)</span>;</span><br><span class="line"><span class="comment">// 实例化一个 MyDelegate 类型的委托对象</span></span><br><span class="line">MyDelegate myDelegate;</span><br></pre></td></tr></table></figure>
 
 <h1 id="初始化委托对象"><a href="#初始化委托对象" class="headerlink" title="初始化委托对象"></a>初始化委托对象</h1><p><code>MyDelegate myDelegate</code> 只是实例化出了一个空的委托对象, 没有内容, 必须对其初始化. 委托的实例化方式经历了几种变化, 引用 微软 csharp 文档中的一段话:</p>
 <blockquote>
@@ -2611,34 +2641,98 @@
       </tags>
   </entry>
   <entry>
-    <title>Unity - 2D 精灵 和 3D 物体的渲染顺序</title>
-    <url>/unity/unity_render_order.html</url>
+    <title>Oracle 全拼和首字母查询</title>
+    <url>/oracle/oracle_trigger.html</url>
     <content><![CDATA[<a id="more"></a>
 
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h1><p>我在学习 SiKi 学院出的一款捕鱼达人的游戏教程时, 教程中使用了一个 3D 物体, 在其上面制作水波纹特效, 为了容易观察渲染层级, 我还特意将同一个层级 (Sorting Layer) 的精灵全部放到同一个 Z 位置上, 一共分了四层.</p>
-<p><img data-src="/images/unity_render_order/unity_render_order_1.png" alt="3D 游戏物体被遮挡"></p>
-<p>但是从相机预览效果中可以看出, 水波纹效果被遮挡了. 在这个场景中所有的 Canvas 的渲染层级都是一个自定义的 UI 层, 但是这个 3D 游戏物体的层级该怎么设置呢? 根本找不到设置的地方啊? 😥</p>
-<h1 id="MeshRenderer-与-SpriteRenderer-的渲染顺序"><a href="#MeshRenderer-与-SpriteRenderer-的渲染顺序" class="headerlink" title="MeshRenderer 与 SpriteRenderer 的渲染顺序"></a>MeshRenderer 与 SpriteRenderer 的渲染顺序</h1><p>3D 游戏物体使用的是 MeshRenderer, 2D 精灵使用的是 SpriteRenderer, 两者都是继承自 Renderer, 在 Renderer 中渲染层级是 <code>sortingLayerName</code> 字段, 渲染顺序是 <code>sortingOrder</code> 字段.</p>
-<ol>
-<li><p>SpriteRenderer 中的 <code>Sorting Layer</code> 对应的是 sortingLayerName 字段, <code>Order in Layer</code> 对应的是 sortingOrder 字段.</p>
-</li>
-<li><p>在 MeshrRenderer 中这两个字段并没有做处理, 只是在面板上隐藏了而已, 因此可以在脚本中直接使用.</p>
- <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> MeshRenderer meshRenderer;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    meshRenderer = GetComponent&lt;MeshRenderer&gt;();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定 3D 游戏物体的渲染层级</span></span><br><span class="line">    meshRenderer.sortingLayerName = sortingLayer;</span><br><span class="line">    meshRenderer.sortingOrder = orderinLayer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 ParticleSystem 中同样也有 Renderer 组件控制粒子特效的渲染顺序, 同样可以使用脚本控制, 也可以直接在面板上设置.</p>
- <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> ParticleSystem[] particleSystems;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定粒子特效的渲染层级</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; particleSystems.Length; index++)</span><br><span class="line">    &#123;</span><br><span class="line">        rendererParticle = particleSystems[index].GetComponent&lt;Renderer&gt;();</span><br><span class="line">        rendererParticle.sortingLayerName = sortingLayer;</span><br><span class="line">        rendererParticle.sortingOrder = orderinLayer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h1><p>首先在 Oracle 数据库中建立 &quot;汉字转全拼&quot; 和 &quot;汉字转首字母&quot; 的方法, 网上的方法基本全部不可信, 支持的汉字很少, 我使用的是从 &quot;ItPub&quot; 论坛上下载的, 目前没有发现不支持的汉字.</p>
+<p><img data-src="/images/oracle_trigger/oracle_pinyin.png" alt="itpub"></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9vZC5say9kL056TmZNalUxT1RZeU1UZGYvb3JhY2xlX2NvZGUuN3o=">下载地址<i class="fa fa-external-link-alt"></i></span> 解压密码是: <code>https://kuroha.vip/</code></p>
+<p>解压之后, 直接执行里面的 sql 文件, 会建立一个 <code>package</code> 和一个 <code>package body</code>, 之后就可以使用 <code>hzpy.gethzfullpy()</code> 和 <code>hzpy.hzpycap()</code> 方法获取汉字的拼音和首字母了.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
 
+<h1 id="新思路"><a href="#新思路" class="headerlink" title="新思路"></a>新思路</h1><p>之前的思路是对人员表中的所有人员姓名进行转换, 将转换后的结果和用户的实时输入做 like 对比, 但是项目中的人员数动辄就近万条, 再加上用户如果使用全拼方式查询, 那速度真是~ 就像电脑要死机一样. 于是后来转换思路, 在人员表中加入两列, 一列用来保存姓名所对应的首字母形式, 另一列用来保存姓名所对应的全拼形式.</p>
+<p>使用 <code>update</code> 语句更新已存在人员的全拼和首字母信息, 新增人员使用触发器进行自动更新. 下面是触发器使用时的一些要点.</p>
+<h1 id="SQL-语句分类"><a href="#SQL-语句分类" class="headerlink" title="SQL 语句分类"></a>SQL 语句分类</h1><ul>
+<li><p><strong>DDL</strong>: 全称 Data Definition Languages, 译为 &quot;数据定义语言&quot;, 定义了不同的数据段, 数据库, 表, 列, 索引等数据库对象, 简单来说就是对数据库内部的对象进行创建, 删除和修改的操作语言, 常用的语句关键字主要包括 <code>create</code>, <code>drop</code>, <code>alter</code>.</p>
+</li>
+<li><p><strong>DML</strong>: 全称 Data Manipulation Language, 译为 &quot;数据操作语言&quot;, 用于添加, 删除, 更新和查询数据库记录, 并检查数据完整性, 简单来说就是对表内部数据的增删改查操作, 不涉及到表定义, 表结构的修改, 更不会涉及到其他对象, 常用的语句关键字主要包括 <code>insert</code>, <code>delete</code>, <code>udpate</code>, <code>select</code>.</p>
+</li>
+<li><p><strong>DCL</strong>: 全称 Data Control Language, 译为 &quot;数据控制语言&quot;, 用于控制不同数据段的访问许可和访问级别的语句, 这些语句定义了数据库, 表, 字段, 用户的访问权限和安全级别. 主要的语句关键字包括 <code>grant</code>, <code>revoke</code>.</p>
+</li>
+</ul>
+<h1 id="DML-触发器"><a href="#DML-触发器" class="headerlink" title="DML 触发器"></a>DML 触发器</h1><ol>
+<li><p>触发器不能接收参数.</p>
+</li>
+<li><p>触发器的执行顺序:</p>
 </li>
 </ol>
-<h1 id="问题解决后效果"><a href="#问题解决后效果" class="headerlink" title="问题解决后效果"></a>问题解决后效果</h1><p>使用上面脚本中的设置就可以让 MeshRenderer 也参与到 2D UI 的排序中来了, 效果还是不错的.</p>
-<p><img data-src="/images/unity_render_order/unity_render_order_2.png" alt="修复后效果"></p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82YmNjZjc5ZmEzNjc=">SpriteRenderer 与 MeshRenderer的渲染排序层级<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li><ul>
+<li>执行 before 语句级触发器</li>
+</ul>
+</li>
+<li><ul>
+<li>执行 before 行级触发器</li>
+</ul>
+</li>
+<li><ul>
+<li>执行 DML 语句</li>
+</ul>
+</li>
+<li><ul>
+<li>执行 after 行级触发器 </li>
+</ul>
+</li>
+<li><ul>
+<li>执行 after 语句级触发器</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><p>语句级触发器中, 不得使用 <code>:new</code> 和 <code>:old</code>, 行级触发器中, <code>:old</code> 为 &quot;操作前&quot; 的整行记录, <code>:new</code> 为 &quot;操作后&quot; 的整行记录.</p>
+<table>
+<thead>
+<tr>
+<th align="left">---</th>
+<th align="left">insert</th>
+<th align="left">update</th>
+<th align="left">delete</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">old</td>
+<td align="left">不允许使用</td>
+<td align="left">更新前记录</td>
+<td align="left">删除前记录</td>
+</tr>
+<tr>
+<td align="left">new</td>
+<td align="left">插入后记录</td>
+<td align="left">更新后记录</td>
+<td align="left">不允许使用</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><font color='red'><strong>只有 before 行级触发器可以修改 :new 记录的值.</strong></font></p>
+</li>
+<li><p><font color='red'><strong>在行级触发器中, 不得将 <code>insert</code>, <code>update</code>, <code>delete</code> 语句作用于 &quot;自身触发表&quot;!</strong></font></p>
+</li>
+</ol>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--在插入新纪录之前, 修改这条待插入记录的 szm 字段和 qp 字段.</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">trigger</span> trigger_ryb_pinyin</span><br><span class="line"><span class="keyword">before</span> <span class="keyword">insert</span> <span class="keyword">on</span> ryb</span><br><span class="line"><span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">:new.szm := <span class="keyword">lower</span>(hzpy.hzpycap(:new.xm));</span><br><span class="line">:new.qp := lower(hzpy.gethzfullpy(:new.xm));</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vSERLMjAxNi9wLzY5MTEwODcuaHRtbA==">详解ORACLE中的trigger<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cDovL2Jsb2cuaXRwdWIubmV0LzIyNTI1Njc2L3ZpZXdzcGFjZS0xMTE3MDYwLw==">关于oracle触发器中修改自身表字段的问题<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>Unity</category>
+        <category>Oracle</category>
       </categories>
       <tags>
-        <tag>Unity</tag>
+        <tag>Oracle</tag>
       </tags>
   </entry>
   <entry>
@@ -2976,128 +3070,34 @@
       </tags>
   </entry>
   <entry>
-    <title>ASP 开发经验笔记</title>
-    <url>/asp/asp_learnnotes.html</url>
+    <title>Unity - 2D 精灵 和 3D 物体的渲染顺序</title>
+    <url>/unity/unity_render_order.html</url>
     <content><![CDATA[<a id="more"></a>
 
-<h1 id="获取配置文件中的信息"><a href="#获取配置文件中的信息" class="headerlink" title="获取配置文件中的信息"></a>获取配置文件中的信息</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取 web.config 的信息</span></span><br><span class="line">System.Configuration.ConfigurationManager.AppSettings[<span class="string">&quot;KeyName&quot;</span>].ToString();</span><br></pre></td></tr></table></figure>
-
-<h1 id="PLSQL-调试-Oracle-存储过程时输出信息"><a href="#PLSQL-调试-Oracle-存储过程时输出信息" class="headerlink" title="PLSQL 调试 Oracle 存储过程时输出信息"></a>PLSQL 调试 Oracle 存储过程时输出信息</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--存储过程调试输出</span></span><br><span class="line">dbms_output.put_line();</span><br></pre></td></tr></table></figure>
-
-<h1 id="调用前台-JavaScript-方法"><a href="#调用前台-JavaScript-方法" class="headerlink" title="调用前台 JavaScript 方法"></a>调用前台 JavaScript 方法</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//后台 C# 调用前台 JavaScript 的自定义方法</span></span><br><span class="line">ClientScript.RegisterStartupScript(<span class="keyword">this</span>.GetType(), <span class="string">&quot;&quot;</span>, <span class="string">&quot;&lt;script&gt;myFunction();&lt;/script&gt;&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//后台 C# 调用前台 JavaScript 弹窗提示</span></span><br><span class="line">ClientScript.RegisterStartupScript(<span class="keyword">this</span>.GetType(), <span class="string">&quot;&quot;</span>, <span class="string">&quot;&lt;script&gt;alert(&#x27;弹窗信息!&#x27;);&lt;/script&gt;&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h1 id="获取电脑-IP"><a href="#获取电脑-IP" class="headerlink" title="获取电脑 IP"></a>获取电脑 IP</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//记录下电脑 IP 的方法</span></span><br><span class="line"><span class="keyword">string</span> ip = <span class="keyword">string</span>.Empty;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;HTTP_VIA&quot;</span>] != <span class="literal">null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    ip = System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;HTTP_X_FORWARDED_FOR&quot;</span>].Split(<span class="keyword">new</span> <span class="keyword">char</span>[] &#123; <span class="string">&#x27;,&#x27;</span> &#125;)[<span class="number">0</span>].ToString();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    ip = System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;REMOTE_ADDR&quot;</span>].ToString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="模板下载功能"><a href="#模板下载功能" class="headerlink" title="模板下载功能"></a>模板下载功能</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 浏览器下载文件</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;modifyName&quot;&gt;</span>自定义文件名, 附带后缀<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DownloadFile</span>(<span class="params"><span class="keyword">string</span> modifyName</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 定义变量: 文件名</span></span><br><span class="line">    <span class="keyword">string</span> fileName = <span class="keyword">string</span>.Empty;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取文件在服务器的地址</span></span><br><span class="line">    <span class="keyword">string</span> url = Server.MapPath(<span class="string">&quot;../searchZclbList.xls&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断地址是否为空</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">string</span>.IsNullOrEmpty(url))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 提示 &quot;该文件暂不提供下载&quot;</span></span><br><span class="line">        Page.ClientScript.RegisterStartupScript(Page.GetType(), <span class="string">&quot;message&quot;</span>, <span class="string">&quot;&lt;script defer&gt;alert(&#x27;该文件暂不提供下载!&#x27;);&lt;/script&gt;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断获取的是否为地址  </span></span><br><span class="line">    <span class="keyword">if</span> (url.IndexOf(<span class="string">&quot;\\&quot;</span>) &gt; <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// url 为地址时, 则截取 url 中的文件名作为文件名</span></span><br><span class="line">        fileName = url.Substring(url.LastIndexOf(<span class="string">&quot;\\&quot;</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// url 为文件名时, 直接获取文件名  </span></span><br><span class="line">        fileName = url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义文件名, 附带后缀</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">string</span>.IsNullOrEmpty(modifyName))</span><br><span class="line">    &#123;</span><br><span class="line">        fileName = modifyName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 以字符流的方式下载文件  </span></span><br><span class="line">    FileStream fileStream = <span class="keyword">new</span> FileStream(@url, FileMode.Open);</span><br><span class="line">    <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[(<span class="keyword">int</span>)fileStream.Length];</span><br><span class="line">    fileStream.Read(bytes, <span class="number">0</span>, bytes.Length);</span><br><span class="line">    fileStream.Close();</span><br><span class="line">    Response.ContentType = <span class="string">&quot;application/octet-stream&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通知浏览器下载 </span></span><br><span class="line">    Response.AddHeader(<span class="string">&quot;Content-Disposition&quot;</span>, <span class="string">&quot;attachment; filename=&quot;</span> + fileName);</span><br><span class="line">    Response.BinaryWrite(bytes);</span><br><span class="line">    Response.Flush();</span><br><span class="line">    Response.End();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="最基本的图片查看器功能"><a href="#最基本的图片查看器功能" class="headerlink" title="最基本的图片查看器功能"></a>最基本的图片查看器功能</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 前台</span></span><br><span class="line">&lt;asp:Image ID=<span class="string">&quot;Image&quot;</span> runat=<span class="string">&quot;server&quot;</span> ImageUrl=<span class="string">&quot;~/imagelook.jpg&quot;</span>/&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后台</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">Page_Load</span>(<span class="params"><span class="keyword">object</span> sender, System.EventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 读取图片</span></span><br><span class="line">        <span class="keyword">int</span> ImgID = Convert.ToInt32(Request.QueryString[<span class="string">&quot;imageid&quot;</span>] <span class="keyword">as</span> <span class="keyword">string</span>);</span><br><span class="line">        OracleConnection Con = <span class="keyword">new</span> googoSoftEAM.SQLServerDAL.SqlHelper().Connection;</span><br><span class="line">        String SqlCmd = <span class="string">&quot;select * from zc_image where imageid = :imageid and saasdm=&#x27;&quot;</span> + Session[<span class="string">&quot;saasdm&quot;</span>].ToString() + <span class="string">&quot;&#x27;&quot;</span>;</span><br><span class="line">        OracleCommand CmdObj = <span class="keyword">new</span> OracleCommand(SqlCmd, Con);</span><br><span class="line">        CmdObj.Parameters.Add(<span class="string">&quot;:ImageID&quot;</span>, OracleType.UInt32).Value = ImgID;</span><br><span class="line">        Con.Open();</span><br><span class="line">        OracleDataReader SqlReader = CmdObj.ExecuteReader();</span><br><span class="line">        SqlReader.Read();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 图片类型</span></span><br><span class="line">        <span class="keyword">string</span> imageType = (<span class="keyword">string</span>)SqlReader[<span class="string">&quot;imagecontenttype&quot;</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 原版图片内容 [字节流]</span></span><br><span class="line">        MemoryStream bufferByte = <span class="keyword">new</span> MemoryStream((<span class="keyword">byte</span>[])SqlReader[<span class="string">&quot;imageData&quot;</span>]);</span><br><span class="line">        System.Drawing.Image imageOrigin = System.Drawing.Image.FromStream(bufferByte, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 缩小文件 (计算缩小倍率) 缩小至 高度 targetHeight 左右</span></span><br><span class="line">        <span class="keyword">float</span> targetHeight = <span class="number">600.0f</span>;</span><br><span class="line">        <span class="keyword">float</span> shrink = targetHeight / imageOrigin.Height;</span><br><span class="line">        <span class="keyword">float</span> w = shrink, h = shrink;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 目标图形</span></span><br><span class="line">        System.Drawing.Bitmap imageSmall = <span class="keyword">new</span> System.Drawing.Bitmap((<span class="keyword">int</span>)(imageOrigin.Width * shrink), (<span class="keyword">int</span>)(imageOrigin.Height * shrink));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建一个图形对象</span></span><br><span class="line">        Graphics graphics = Graphics.FromImage(imageSmall);</span><br><span class="line">        graphics.DrawImage(imageOrigin, <span class="keyword">new</span> Rectangle(<span class="number">0</span>, <span class="number">0</span>, imageSmall.Width, imageSmall.Height), <span class="keyword">new</span> Rectangle(<span class="number">0</span>, <span class="number">0</span>, imageOrigin.Width, imageOrigin.Height), GraphicsUnit.Pixel);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 计算出图片地址</span></span><br><span class="line">        <span class="keyword">string</span> ret_type = <span class="keyword">string</span>.Empty;</span><br><span class="line">        GetImageType(imageType, <span class="keyword">out</span> ret_type);</span><br><span class="line">        <span class="keyword">string</span> imagePath = Server.MapPath(<span class="string">&quot;../imagelook.&quot;</span> + ret_type);</span><br><span class="line">        <span class="keyword">if</span> (File.Exists(imagePath))</span><br><span class="line">        &#123;</span><br><span class="line">            File.Delete(imagePath);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 解决 Image 控件的刷新问题</span></span><br><span class="line">        <span class="comment">// 当 IE 检测到 Image 控件的引用地址没有变化时, 会直接从浏览器缓存中取图片.</span></span><br><span class="line">        <span class="comment">// 因此只要下一次访问时网页时, Image 控件的引用地址和这一次的引用地址不相同即可.</span></span><br><span class="line">        <span class="comment">// 于是在引用地址处加一个随机数参数, 使两次引用的图片地址不同!</span></span><br><span class="line">        imageSmall.Save(imagePath);</span><br><span class="line">        Image.ImageUrl = <span class="string">&quot;~/imagelook.&quot;</span> + ret_type + <span class="string">&quot;?&quot;</span> + <span class="keyword">new</span> Random().Next(<span class="number">100</span>).ToString();</span><br><span class="line">        Con.Close();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception ex)</span><br><span class="line">    &#123;</span><br><span class="line">        Trace.Write(ex.Message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 根据所存图片类型返回图片格式</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;imageType&quot;&gt;</span>图片类型<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;ret_type&quot;&gt;</span>返回的图片类型 (string)<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span>返回的图片类型 (ImageFormat)<span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="keyword">private</span> System.Drawing.Imaging.<span class="function">ImageFormat <span class="title">GetImageType</span>(<span class="params"><span class="keyword">string</span> imageType, <span class="keyword">out</span> <span class="keyword">string</span> ret_type</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (imageType)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/gif&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;gif&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Gif;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/bmp&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;bmp&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Bmp;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/x-png&quot;</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/png&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;png&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Png;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/pjpeg&quot;</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/jpeg&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;jpg&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Jpeg;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;jpg&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Jpeg;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="错误-超时时间已到-但是尚未从池中获取连接"><a href="#错误-超时时间已到-但是尚未从池中获取连接" class="headerlink" title="错误: 超时时间已到, 但是尚未从池中获取连接."></a>错误: 超时时间已到, 但是尚未从池中获取连接.</h1><p>出现这种情况可能是因为所有池连接均在使用, 并且达到了最大池大小, 解决办法: 在数据库连接配置中加上 <code>Max Pool Size = 512;</code>.</p>
-<h1 id="合并两个表结构完全一致的-DataTable"><a href="#合并两个表结构完全一致的-DataTable" class="headerlink" title="合并两个表结构完全一致的 DataTable"></a>合并两个表结构完全一致的 DataTable</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 将 sum 表和 para 表合并到 sum 表中, 要求: &quot;sum 表&quot; 和 &quot;para 表&quot; 的表结构必须完全一样!</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;sum&quot;&gt;</span>待合并表之一, 同时也是结果表<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;para&quot;&gt;</span>仅作为待合并表之一<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddTableToTable</span>(<span class="params">DataTable sum, DataTable para</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//遍历 para 表的每一行</span></span><br><span class="line">    <span class="keyword">foreach</span> (DataRow dataRow_para <span class="keyword">in</span> para.Rows)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//新建 sum 表的一行</span></span><br><span class="line">        DataRow dataRow_sum = sum.NewRow();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//新建的这一行取 para 表的数据</span></span><br><span class="line">        dataRow_sum.ItemArray = dataRow_para.ItemArray;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将新建的这一样加到 sum 表中</span></span><br><span class="line">        sum.Rows.Add(dataRow_sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="网页实现-Enter-快捷键"><a href="#网页实现-Enter-快捷键" class="headerlink" title="网页实现 Enter 快捷键"></a>网页实现 Enter 快捷键</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 浏览器中 Enter 键有一个默认行为, 用户焦点在文本框中时键入 Enter, 会触发第一个按钮的 Click 事件.</span></span><br><span class="line"><span class="built_in">document</span>.onkeydown = keydown;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">keydown</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (event.keyCode == <span class="number">13</span>) <span class="comment">// Enter 快捷键</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">&quot;btn_cx&quot;</span>).click();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 阻止浏览器的默认行为</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="获取服务器绝对路径"><a href="#获取服务器绝对路径" class="headerlink" title="获取服务器绝对路径"></a>获取服务器绝对路径</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">string</span> rootDir = Server.MapPath(<span class="string">&quot;text.txt&quot;</span>);</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>ASP</category>
-      </categories>
-      <tags>
-        <tag>ASP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Oracle 全拼和首字母查询</title>
-    <url>/oracle/oracle_trigger.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h1><p>首先在 Oracle 数据库中建立 &quot;汉字转全拼&quot; 和 &quot;汉字转首字母&quot; 的方法, 网上的方法基本全部不可信, 支持的汉字很少, 我使用的是从 &quot;ItPub&quot; 论坛上下载的, 目前没有发现不支持的汉字.</p>
-<p><img data-src="/images/oracle_trigger/oracle_pinyin.png" alt="itpub"></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9vZC5say9kL056TmZNalUxT1RZeU1UZGYvb3JhY2xlX2NvZGUuN3o=">下载地址<i class="fa fa-external-link-alt"></i></span> 解压密码是: <code>https://kuroha.vip/</code></p>
-<p>解压之后, 直接执行里面的 sql 文件, 会建立一个 <code>package</code> 和一个 <code>package body</code>, 之后就可以使用 <code>hzpy.gethzfullpy()</code> 和 <code>hzpy.hzpycap()</code> 方法获取汉字的拼音和首字母了.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
-
-<h1 id="新思路"><a href="#新思路" class="headerlink" title="新思路"></a>新思路</h1><p>之前的思路是对人员表中的所有人员姓名进行转换, 将转换后的结果和用户的实时输入做 like 对比, 但是项目中的人员数动辄就近万条, 再加上用户如果使用全拼方式查询, 那速度真是~ 就像电脑要死机一样. 于是后来转换思路, 在人员表中加入两列, 一列用来保存姓名所对应的首字母形式, 另一列用来保存姓名所对应的全拼形式.</p>
-<p>使用 <code>update</code> 语句更新已存在人员的全拼和首字母信息, 新增人员使用触发器进行自动更新. 下面是触发器使用时的一些要点.</p>
-<h1 id="SQL-语句分类"><a href="#SQL-语句分类" class="headerlink" title="SQL 语句分类"></a>SQL 语句分类</h1><ul>
-<li><p><strong>DDL</strong>: 全称 Data Definition Languages, 译为 &quot;数据定义语言&quot;, 定义了不同的数据段, 数据库, 表, 列, 索引等数据库对象, 简单来说就是对数据库内部的对象进行创建, 删除和修改的操作语言, 常用的语句关键字主要包括 <code>create</code>, <code>drop</code>, <code>alter</code>.</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h1><p>我在学习 SiKi 学院出的一款捕鱼达人的游戏教程时, 教程中使用了一个 3D 物体, 在其上面制作水波纹特效, 为了容易观察渲染层级, 我还特意将同一个层级 (Sorting Layer) 的精灵全部放到同一个 Z 位置上, 一共分了四层.</p>
+<p><img data-src="/images/unity_render_order/unity_render_order_1.png" alt="3D 游戏物体被遮挡"></p>
+<p>但是从相机预览效果中可以看出, 水波纹效果被遮挡了. 在这个场景中所有的 Canvas 的渲染层级都是一个自定义的 UI 层, 但是这个 3D 游戏物体的层级该怎么设置呢? 根本找不到设置的地方啊? 😥</p>
+<h1 id="MeshRenderer-与-SpriteRenderer-的渲染顺序"><a href="#MeshRenderer-与-SpriteRenderer-的渲染顺序" class="headerlink" title="MeshRenderer 与 SpriteRenderer 的渲染顺序"></a>MeshRenderer 与 SpriteRenderer 的渲染顺序</h1><p>3D 游戏物体使用的是 MeshRenderer, 2D 精灵使用的是 SpriteRenderer, 两者都是继承自 Renderer, 在 Renderer 中渲染层级是 <code>sortingLayerName</code> 字段, 渲染顺序是 <code>sortingOrder</code> 字段.</p>
+<ol>
+<li><p>SpriteRenderer 中的 <code>Sorting Layer</code> 对应的是 sortingLayerName 字段, <code>Order in Layer</code> 对应的是 sortingOrder 字段.</p>
 </li>
-<li><p><strong>DML</strong>: 全称 Data Manipulation Language, 译为 &quot;数据操作语言&quot;, 用于添加, 删除, 更新和查询数据库记录, 并检查数据完整性, 简单来说就是对表内部数据的增删改查操作, 不涉及到表定义, 表结构的修改, 更不会涉及到其他对象, 常用的语句关键字主要包括 <code>insert</code>, <code>delete</code>, <code>udpate</code>, <code>select</code>.</p>
+<li><p>在 MeshrRenderer 中这两个字段并没有做处理, 只是在面板上隐藏了而已, 因此可以在脚本中直接使用.</p>
+ <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> MeshRenderer meshRenderer;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    meshRenderer = GetComponent&lt;MeshRenderer&gt;();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定 3D 游戏物体的渲染层级</span></span><br><span class="line">    meshRenderer.sortingLayerName = sortingLayer;</span><br><span class="line">    meshRenderer.sortingOrder = orderinLayer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>DCL</strong>: 全称 Data Control Language, 译为 &quot;数据控制语言&quot;, 用于控制不同数据段的访问许可和访问级别的语句, 这些语句定义了数据库, 表, 字段, 用户的访问权限和安全级别. 主要的语句关键字包括 <code>grant</code>, <code>revoke</code>.</p>
-</li>
-</ul>
-<h1 id="DML-触发器"><a href="#DML-触发器" class="headerlink" title="DML 触发器"></a>DML 触发器</h1><ol>
-<li><p>触发器不能接收参数.</p>
-</li>
-<li><p>触发器的执行顺序:</p>
+<li><p>在 ParticleSystem 中同样也有 Renderer 组件控制粒子特效的渲染顺序, 同样可以使用脚本控制, 也可以直接在面板上设置.</p>
+ <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> ParticleSystem[] particleSystems;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定粒子特效的渲染层级</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; particleSystems.Length; index++)</span><br><span class="line">    &#123;</span><br><span class="line">        rendererParticle = particleSystems[index].GetComponent&lt;Renderer&gt;();</span><br><span class="line">        rendererParticle.sortingLayerName = sortingLayer;</span><br><span class="line">        rendererParticle.sortingOrder = orderinLayer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 </li>
 </ol>
-<ul>
-<li><ul>
-<li>执行 before 语句级触发器</li>
-</ul>
-</li>
-<li><ul>
-<li>执行 before 行级触发器</li>
-</ul>
-</li>
-<li><ul>
-<li>执行 DML 语句</li>
-</ul>
-</li>
-<li><ul>
-<li>执行 after 行级触发器 </li>
-</ul>
-</li>
-<li><ul>
-<li>执行 after 语句级触发器</li>
-</ul>
-</li>
-</ul>
-<ol start="3">
-<li><p>语句级触发器中, 不得使用 <code>:new</code> 和 <code>:old</code>, 行级触发器中, <code>:old</code> 为 &quot;操作前&quot; 的整行记录, <code>:new</code> 为 &quot;操作后&quot; 的整行记录.</p>
-<table>
-<thead>
-<tr>
-<th align="left">---</th>
-<th align="left">insert</th>
-<th align="left">update</th>
-<th align="left">delete</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">old</td>
-<td align="left">不允许使用</td>
-<td align="left">更新前记录</td>
-<td align="left">删除前记录</td>
-</tr>
-<tr>
-<td align="left">new</td>
-<td align="left">插入后记录</td>
-<td align="left">更新后记录</td>
-<td align="left">不允许使用</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><font color='red'><strong>只有 before 行级触发器可以修改 :new 记录的值.</strong></font></p>
-</li>
-<li><p><font color='red'><strong>在行级触发器中, 不得将 <code>insert</code>, <code>update</code>, <code>delete</code> 语句作用于 &quot;自身触发表&quot;!</strong></font></p>
-</li>
-</ol>
-<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--在插入新纪录之前, 修改这条待插入记录的 szm 字段和 qp 字段.</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">trigger</span> trigger_ryb_pinyin</span><br><span class="line"><span class="keyword">before</span> <span class="keyword">insert</span> <span class="keyword">on</span> ryb</span><br><span class="line"><span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">:new.szm := <span class="keyword">lower</span>(hzpy.hzpycap(:new.xm));</span><br><span class="line">:new.qp := lower(hzpy.gethzfullpy(:new.xm));</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
-
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vSERLMjAxNi9wLzY5MTEwODcuaHRtbA==">详解ORACLE中的trigger<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cDovL2Jsb2cuaXRwdWIubmV0LzIyNTI1Njc2L3ZpZXdzcGFjZS0xMTE3MDYwLw==">关于oracle触发器中修改自身表字段的问题<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ul>
+<h1 id="问题解决后效果"><a href="#问题解决后效果" class="headerlink" title="问题解决后效果"></a>问题解决后效果</h1><p>使用上面脚本中的设置就可以让 MeshRenderer 也参与到 2D UI 的排序中来了, 效果还是不错的.</p>
+<p><img data-src="/images/unity_render_order/unity_render_order_2.png" alt="修复后效果"></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82YmNjZjc5ZmEzNjc=">SpriteRenderer 与 MeshRenderer的渲染排序层级<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <categories>
-        <category>Oracle</category>
+        <category>Unity</category>
       </categories>
       <tags>
-        <tag>Oracle</tag>
+        <tag>Unity</tag>
       </tags>
   </entry>
   <entry>

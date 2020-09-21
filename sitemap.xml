@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kuroha.vip/csharp/delegate_02.html</loc>
+    
+    <lastmod>2020-09-21</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kuroha.vip/csharp/delegate_03.html</loc>
     
     <lastmod>2020-09-21</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://kuroha.vip/csharp/delegate_01.html</loc>
     
     <lastmod>2020-09-21</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kuroha.vip/csharp/delegate_02.html</loc>
-    
-    <lastmod>2020-09-19</lastmod>
     
   </url>
   
@@ -263,6 +263,13 @@
 
   
   <url>
+    <loc>https://kuroha.vip/tags/AHK/</loc>
+    <lastmod>2020-09-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kuroha.vip/tags/%E9%9D%A2%E8%AF%95/</loc>
     <lastmod>2020-09-21</lastmod>
     <changefreq>daily</changefreq>
@@ -270,7 +277,7 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/AHK/</loc>
+    <loc>https://kuroha.vip/tags/ASP/</loc>
     <lastmod>2020-09-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -347,13 +354,6 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/Unity/</loc>
-    <lastmod>2020-09-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kuroha.vip/tags/JSON/</loc>
     <lastmod>2020-09-21</lastmod>
     <changefreq>daily</changefreq>
@@ -368,7 +368,7 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/ASP/</loc>
+    <loc>https://kuroha.vip/tags/Unity/</loc>
     <lastmod>2020-09-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -384,14 +384,14 @@
 
   
   <url>
-    <loc>https://kuroha.vip/categories/Apply/</loc>
+    <loc>https://kuroha.vip/categories/AutoHotKey/</loc>
     <lastmod>2020-09-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/AutoHotKey/</loc>
+    <loc>https://kuroha.vip/categories/Apply/</loc>
     <lastmod>2020-09-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -447,14 +447,14 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/Unity/</loc>
+    <loc>https://kuroha.vip/categories/Program/</loc>
     <lastmod>2020-09-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/Program/</loc>
+    <loc>https://kuroha.vip/categories/Unity/</loc>
     <lastmod>2020-09-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
