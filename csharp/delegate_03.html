@@ -24,22 +24,20 @@
     var CONFIG = {"hostname":"kuroha.vip","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="最近项目中有个助记码的需求, 预期效果是用户在文本框中输入时, 会出现一个下拉框提示, 随着用户输入会不断地更新提示, 基本功能倒是实现了, 但是当用户输入字符很多的时候就会特别卡~ 简直卡到绝望~ 于是换了一种新的思路之后, 一切犹如行云流水般丝滑... 真的有这么丝滑吗? 是的, 真的有这么丝滑!!">
+  <meta name="description" content="委托的实例化以及匿名方法和 Lambda 表达式!">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Oracle 全拼和首字母查询">
-<meta property="og:url" content="https://kuroha.vip/oracle/oracle_trigger.html">
+<meta property="og:title" content="委托(三) 委托的实例化与匿名函数和 Lambda 表达式">
+<meta property="og:url" content="https://kuroha.vip/csharp/delegate_03.html">
 <meta property="og:site_name" content="二次元游宅客">
-<meta property="og:description" content="最近项目中有个助记码的需求, 预期效果是用户在文本框中输入时, 会出现一个下拉框提示, 随着用户输入会不断地更新提示, 基本功能倒是实现了, 但是当用户输入字符很多的时候就会特别卡~ 简直卡到绝望~ 于是换了一种新的思路之后, 一切犹如行云流水般丝滑... 真的有这么丝滑吗? 是的, 真的有这么丝滑!!">
+<meta property="og:description" content="委托的实例化以及匿名方法和 Lambda 表达式!">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://kuroha.vip/images/oracle_trigger/oracle_pinyin.png">
-<meta property="article:published_time" content="2020-09-17T10:42:23.000Z">
-<meta property="article:modified_time" content="2020-09-18T07:30:10.729Z">
+<meta property="article:published_time" content="2020-09-21T12:50:03.000Z">
+<meta property="article:modified_time" content="2020-09-21T12:53:36.740Z">
 <meta property="article:author" content="Kuroha">
-<meta property="article:tag" content="Oracle">
+<meta property="article:tag" content="CSharp">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://kuroha.vip/images/oracle_trigger/oracle_pinyin.png">
 
-<link rel="canonical" href="https://kuroha.vip/oracle/oracle_trigger.html">
+<link rel="canonical" href="https://kuroha.vip/csharp/delegate_03.html">
 
 
 <script class="page-configurations">
@@ -70,7 +68,7 @@
 
 
 
-  <title>Oracle 全拼和首字母查询 | 二次元游宅客</title>
+  <title>委托(三) 委托的实例化与匿名函数和 Lambda 表达式 | 二次元游宅客</title>
   
 
 
@@ -232,7 +230,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2%E6%96%B9%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">转换方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B0%E6%80%9D%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text">新思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E8%AF%AD%E5%8F%A5%E5%88%86%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">SQL 语句分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DML-%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">DML 触发器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">5.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A7%94%E6%89%98%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%A7%94%E6%89%98%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">委托类型的定义和委托对象的实例化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%A7%94%E6%89%98%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.</span> <span class="nav-text">初始化委托对象</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -341,7 +339,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kuroha.vip/oracle/oracle_trigger.html">
+    <link itemprop="mainEntityOfPage" href="https://kuroha.vip/csharp/delegate_03.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar/avatar.gif">
@@ -356,7 +354,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Oracle 全拼和首字母查询
+          委托(三) 委托的实例化与匿名函数和 Lambda 表达式
         </h1>
 
         <div class="post-meta">
@@ -365,23 +363,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-09-17 18:42:23" itemprop="dateCreated datePublished" datetime="2020-09-17T18:42:23+08:00">2020-09-17</time>
+              <time title="创建时间：2020-09-21 20:50:03 / 修改时间：20:53:36" itemprop="dateCreated datePublished" datetime="2020-09-21T20:50:03+08:00">2020-09-21</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-18 15:30:10" itemprop="dateModified" datetime="2020-09-18T15:30:10+08:00">2020-09-18</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Oracle/" itemprop="url" rel="index"><span itemprop="name">Oracle</span></a>
+                  <a href="/categories/CSharp/" itemprop="url" rel="index"><span itemprop="name">CSharp</span></a>
                 </span>
             </span>
 
@@ -391,7 +383,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.6k</span>
+              <span>1.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -400,7 +392,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>1 分钟</span>
             </span>
-            <div class="post-description">最近项目中有个助记码的需求, 预期效果是用户在文本框中输入时, 会出现一个下拉框提示, 随着用户输入会不断地更新提示, 基本功能倒是实现了, 但是当用户输入字符很多的时候就会特别卡~ 简直卡到绝望~ 于是换了一种新的思路之后, 一切犹如行云流水般丝滑... 真的有这么丝滑吗? 是的, 真的有这么丝滑!!</div>
+            <div class="post-description">委托的实例化以及匿名方法和 Lambda 表达式!</div>
 
         </div>
       </header>
@@ -411,88 +403,45 @@
     <div class="post-body" itemprop="articleBody">
         <a id="more"></a>
 
-<h1 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h1><p>首先在 Oracle 数据库中建立 &quot;汉字转全拼&quot; 和 &quot;汉字转首字母&quot; 的方法, 网上的方法基本全部不可信, 支持的汉字很少, 我使用的是从 &quot;ItPub&quot; 论坛上下载的, 目前没有发现不支持的汉字.</p>
-<p><img data-src="/images/oracle_trigger/oracle_pinyin.png" alt="itpub"></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9vZC5say9kL056TmZNalUxT1RZeU1UZGYvb3JhY2xlX2NvZGUuN3o=">下载地址<i class="fa fa-external-link-alt"></i></span> 解压密码是: <code>https://kuroha.vip/</code></p>
-<p>解压之后, 直接执行里面的 sql 文件, 会建立一个 <code>package</code> 和一个 <code>package body</code>, 之后就可以使用 <code>hzpy.gethzfullpy()</code> 和 <code>hzpy.hzpycap()</code> 方法获取汉字的拼音和首字母了.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
+<h1 id="委托类型的定义和委托对象的实例化"><a href="#委托类型的定义和委托对象的实例化" class="headerlink" title="委托类型的定义和委托对象的实例化"></a>委托类型的定义和委托对象的实例化</h1><p>委托本质就是一个类. 实例化委托和实例化类在写法上没有区别.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个委托类型</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">string</span> <span class="title">MyDelegate</span>(<span class="params"><span class="keyword">int</span> a, <span class="keyword">int</span> b</span>)</span>;</span><br><span class="line"><span class="comment">// 实例化一个 MyDelegate 类型的委托对象</span></span><br><span class="line">MyDelegate myDelegate;</span><br></pre></td></tr></table></figure>
 
-<h1 id="新思路"><a href="#新思路" class="headerlink" title="新思路"></a>新思路</h1><p>之前的思路是对人员表中的所有人员姓名进行转换, 将转换后的结果和用户的实时输入做 like 对比, 但是项目中的人员数动辄就近万条, 再加上用户如果使用全拼方式查询, 那速度真是~ 就像电脑要死机一样. 于是后来转换思路, 在人员表中加入两列, 一列用来保存姓名所对应的首字母形式, 另一列用来保存姓名所对应的全拼形式.</p>
-<p>使用 <code>update</code> 语句更新已存在人员的全拼和首字母信息, 新增人员使用触发器进行自动更新. 下面是触发器使用时的一些要点.</p>
-<h1 id="SQL-语句分类"><a href="#SQL-语句分类" class="headerlink" title="SQL 语句分类"></a>SQL 语句分类</h1><ul>
-<li><p><strong>DDL</strong>: 全称 Data Definition Languages, 译为 &quot;数据定义语言&quot;, 定义了不同的数据段, 数据库, 表, 列, 索引等数据库对象, 简单来说就是对数据库内部的对象进行创建, 删除和修改的操作语言, 常用的语句关键字主要包括 <code>create</code>, <code>drop</code>, <code>alter</code>.</p>
-</li>
-<li><p><strong>DML</strong>: 全称 Data Manipulation Language, 译为 &quot;数据操作语言&quot;, 用于添加, 删除, 更新和查询数据库记录, 并检查数据完整性, 简单来说就是对表内部数据的增删改查操作, 不涉及到表定义, 表结构的修改, 更不会涉及到其他对象, 常用的语句关键字主要包括 <code>insert</code>, <code>delete</code>, <code>udpate</code>, <code>select</code>.</p>
-</li>
-<li><p><strong>DCL</strong>: 全称 Data Control Language, 译为 &quot;数据控制语言&quot;, 用于控制不同数据段的访问许可和访问级别的语句, 这些语句定义了数据库, 表, 字段, 用户的访问权限和安全级别. 主要的语句关键字包括 <code>grant</code>, <code>revoke</code>.</p>
-</li>
-</ul>
-<h1 id="DML-触发器"><a href="#DML-触发器" class="headerlink" title="DML 触发器"></a>DML 触发器</h1><ol>
-<li><p>触发器不能接收参数.</p>
-</li>
-<li><p>触发器的执行顺序:</p>
-</li>
+<h1 id="初始化委托对象"><a href="#初始化委托对象" class="headerlink" title="初始化委托对象"></a>初始化委托对象</h1><p><code>MyDelegate myDelegate</code> 只是实例化出了一个空的委托对象, 没有内容, 必须对其初始化. 委托的实例化方式经历了几种变化, 引用 微软 csharp 文档中的一段话:</p>
+<blockquote>
+<p>在 C# 1.0 中, 通过使用在代码中其他位置定义的方法显式初始化委托来创建委托的实例. </p>
+<p>C# 2.0 引入了匿名方法的概念, 作为一种编写可在委托调用中执行的未命名内联语句块的方式. </p>
+<p>C# 3.0 引入了 lambda 表达式, 这种表达式与匿名方法的概念类似, 但更具表现力并且更简练. </p>
+<p>这两个功能统称为匿名函数. </p>
+<p>通常, 面向 .NET Framework 3.5 或更高版本的应用程序应使用 lambda (λ) 表达式. </p>
+</blockquote>
+<ol>
+<li>第一种: [C# 1.0] 写法上和初始化类一样, 使用 New 关键字.</li>
 </ol>
-<ul>
-<li><ul>
-<li>执行 before 语句级触发器</li>
-</ul>
-</li>
-<li><ul>
-<li>执行 before 行级触发器</li>
-</ul>
-</li>
-<li><ul>
-<li>执行 DML 语句</li>
-</ul>
-</li>
-<li><ul>
-<li>执行 after 行级触发器 </li>
-</ul>
-</li>
-<li><ul>
-<li>执行 after 语句级触发器</li>
-</ul>
-</li>
-</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化 program 类</span></span><br><span class="line">program = <span class="keyword">new</span> Program();</span><br><span class="line"><span class="comment">// 初始化 myDelegate 委托</span></span><br><span class="line">myDelegate = <span class="keyword">new</span> MyDelegate(program.Add);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>第二种: [C# 1.0] 写法上和初始化值类型一样, 直接赋值.</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化 myDelegate (直接赋值)</span></span><br><span class="line">myDelegate = program.Add;</span><br></pre></td></tr></table></figure>
+
 <ol start="3">
-<li><p>语句级触发器中, 不得使用 <code>:new</code> 和 <code>:old</code>, 行级触发器中, <code>:old</code> 为 &quot;操作前&quot; 的整行记录, <code>:new</code> 为 &quot;操作后&quot; 的整行记录.</p>
-<table>
-<thead>
-<tr>
-<th align="left">---</th>
-<th align="left">insert</th>
-<th align="left">update</th>
-<th align="left">delete</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">old</td>
-<td align="left">不允许使用</td>
-<td align="left">更新前记录</td>
-<td align="left">删除前记录</td>
-</tr>
-<tr>
-<td align="left">new</td>
-<td align="left">插入后记录</td>
-<td align="left">更新后记录</td>
-<td align="left">不允许使用</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><font color='red'><strong>只有 before 行级触发器可以修改 :new 记录的值.</strong></font></p>
-</li>
-<li><p><font color='red'><strong>在行级触发器中, 不得将 <code>insert</code>, <code>update</code>, <code>delete</code> 语句作用于 &quot;自身触发表&quot;!</strong></font></p>
-</li>
+<li>第三种: [C# 2.0] 使用匿名方法</li>
 </ol>
-<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--在插入新纪录之前, 修改这条待插入记录的 szm 字段和 qp 字段.</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">trigger</span> trigger_ryb_pinyin</span><br><span class="line"><span class="keyword">before</span> <span class="keyword">insert</span> <span class="keyword">on</span> ryb</span><br><span class="line"><span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">:new.szm := <span class="keyword">lower</span>(hzpy.hzpycap(:new.xm));</span><br><span class="line">:new.qp := lower(hzpy.gethzfullpy(:new.xm));</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<p>匿名方法同样是使用 delegate 关键字定义 (强烈建议不再使用匿名方法, 了解即可, 转而使用 Lambda 表达式), 返回值无需特别指明, 只需使用 return 来指明返回值及其类型即可, 匿名方法参数的指明方式和普通方法的指明方式一致, 但是必须和委托定义时声明的方法签名吻合.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">myDelegate = <span class="keyword">delegate</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (a + b).ToString();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vSERLMjAxNi9wLzY5MTEwODcuaHRtbA==">详解ORACLE中的trigger<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cDovL2Jsb2cuaXRwdWIubmV0LzIyNTI1Njc2L3ZpZXdzcGFjZS0xMTE3MDYwLw==">关于oracle触发器中修改自身表字段的问题<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ul>
+<ol start="4">
+<li>第四种: [C# 3.0] 使用 Lambda 表达式 (强烈建议使用!)</li>
+</ol>
+<p>Lambda 表达式也是委托初始化的一种手段, 它比匿名方法更为简洁, 而且不会混淆 (谁让委托类型的定义和匿名方法的定义使用同样的关键字的, 唉... 乱套了吧... 我瞎说的~~), 总之正如微软文档说的一样, 学习使用 lambda 表达式吧, 为什么呢? 因为如果你不会的话, 连别人的程序都看不懂啊😥</p>
+<p>Lambda 表达式中也是使用 return 来指明返回值及其类型, 参数可以省略其类型, 因为参数的类型已经在委托定义的时候便指明了, Lambda 表达式中的特色便是这个符号了: <code>=&gt;</code>. <code>=&gt;</code> 符号的左边是参数, 强烈建议使用小括号括起来, 当只有一个参数的时候可以省略, 没有参数的时候写一对空括号即可, 但是此时不可省略. <code>=&gt;</code> 符号的右侧是方法体, 强烈建议使用大括号括起来, 当方法体中只有一条语句时大括号可以省略.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">myDelegate = (a, b) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (a + b).ToString();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Action action = () =&gt; Console.WriteLine(<span class="string">&quot;action&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
 
     </div>
 
@@ -523,7 +472,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://kuroha.vip/oracle/oracle_trigger.html" title="Oracle 全拼和首字母查询">https://kuroha.vip/oracle/oracle_trigger.html</a>
+    <a href="https://kuroha.vip/csharp/delegate_03.html" title="委托(三) 委托的实例化与匿名函数和 Lambda 表达式">https://kuroha.vip/csharp/delegate_03.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aF9DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -583,7 +532,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Oracle/" rel="tag"><i class="fa fa-tag"></i> Oracle</a>
+              <a href="/tags/CSharp/" rel="tag"><i class="fa fa-tag"></i> CSharp</a>
           </div>
 
         
@@ -592,13 +541,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/asp/asp_learnnotes.html" rel="prev" title="ASP 开发经验笔记">
-      <i class="fa fa-chevron-left"></i> ASP 开发经验笔记
+    <a href="/csharp/delegate_02.html" rel="prev" title="委托(二) 委托与回调和回调函数">
+      <i class="fa fa-chevron-left"></i> 委托(二) 委托与回调和回调函数
     </a></div>
-      <div class="post-nav-item">
-    <a href="/csharp/delegate_01.html" rel="next" title="委托(一) 委托的基本用法">
-      委托(一) 委托的基本用法 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -735,7 +681,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'MyBlogCommentSystem',
       owner       : 'KurohaKirito',
       admin       : ['KurohaKirito'],
-      id          : 'ec186089268c6924b004373a7f6f65c4',
+      id          : '27761d34c893dfe52c40b4909e16a447',
         language: 'zh-CN',
       distractionFreeMode: true
     });
