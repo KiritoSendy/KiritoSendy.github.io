@@ -31,13 +31,13 @@
 <meta property="og:site_name" content="二次元游宅客">
 <meta property="og:description" content="委托的定义.">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://kuroha.vip/images/csharp/delegate_01.png">
+<meta property="og:image" content="https://kuroha.vip/images/csharp/delegate/delegate_01.png">
 <meta property="article:published_time" content="2020-09-18T01:15:54.000Z">
-<meta property="article:modified_time" content="2020-09-21T13:10:37.607Z">
+<meta property="article:modified_time" content="2020-09-22T02:43:24.405Z">
 <meta property="article:author" content="Kuroha">
 <meta property="article:tag" content="CSharp">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://kuroha.vip/images/csharp/delegate_01.png">
+<meta name="twitter:image" content="https://kuroha.vip/images/csharp/delegate/delegate_01.png">
 
 <link rel="canonical" href="https://kuroha.vip/csharp/delegate_01.html">
 
@@ -373,7 +373,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-21 21:10:37" itemprop="dateModified" datetime="2020-09-21T21:10:37+08:00">2020-09-21</time>
+                <time title="修改时间：2020-09-22 10:43:24" itemprop="dateModified" datetime="2020-09-22T10:43:24+08:00">2020-09-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -414,7 +414,7 @@
 <h1 id="delegate"><a href="#delegate" class="headerlink" title="delegate"></a>delegate</h1><p><code>delegate</code> 是一个类型关键字, 和他类似的还有: <code>class</code>, <code>interface</code>, <code>enum</code> 等等. 这类关键字都是用来定义的, 而不是实例化的. 枚举类型使用 <code>enum</code> 进行定义, 委托类型使用 <code>delegate</code> 进行定义. 因此 <font color='red'><strong>delegate 不是类! 它只是一个类型关键字! 用来定义类型的.</strong></font></p>
 <h1 id="System-String-string-和-System-Delegate-delegate"><a href="#System-String-string-和-System-Delegate-delegate" class="headerlink" title="System.String string 和 System.Delegate delegate"></a>System.String string 和 System.Delegate delegate</h1><p>System.String 是 .Net 框架中的一个类, .Net 框架中包含多种编程语言, 其中 C# 语言中给 System.String 起了一个别名 string, 因此 <code>string str</code> 和 <code>System.String str</code> 是没有区别的, <code>string</code> 就是一个类, <code>string str</code> 这一个代码不是在定义类型, 而是在实例化对象. 但是 <code>delegate</code> 和 <code>System.Delegate</code> 的关系就不是这样了. <code>System.Delegate</code> 是一个类, 而 <code>delegate</code> 则是一个 <code>类型关键字</code>, 它是用来定义委托的, 就像 <code>class</code> 定义类, <code>struct</code> 定义结构体, <code>enum</code> 定义枚举一样, 这些关键字是同一个级次的, 但他们都不是类. </p>
 <p>如下图, String, string, Delegate 都可以调用类中的静态方法, 这是因为他们都是类, 但是 delegate 则不可以, 因为它仅仅只是一个类型关键字.</p>
-<p><img data-src="/images/csharp/delegate_01.png" alt="delegate"></p>
+<p><img data-src="/images/csharp/delegate/delegate_01.png" alt="delegate"></p>
 <h1 id="定义一个委托类型"><a href="#定义一个委托类型" class="headerlink" title="定义一个委托类型"></a>定义一个委托类型</h1><p>定义一个委托的时候, 需要指明待委托方法的两个特征: <code>1. 返回值 (int) 2. 参数 (int, int)</code></p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义委托类型</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">int</span> <span class="title">MyDelegate</span> (<span class="params"><span class="keyword">int</span> a, <span class="keyword">int</span> b</span>)</span>;</span><br></pre></td></tr></table></figure>
 
