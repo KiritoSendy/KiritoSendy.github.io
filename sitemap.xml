@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kuroha.vip/csharp/delegate_01.html</loc>
+    
+    <lastmod>2020-09-28</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kuroha.vip/csharp/parameter.html</loc>
     
     <lastmod>2020-09-28</lastmod>
@@ -10,13 +17,6 @@
   
   <url>
     <loc>https://kuroha.vip/asp/asp_learnnotes.html</loc>
-    
-    <lastmod>2020-09-22</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kuroha.vip/csharp/delegate_01.html</loc>
     
     <lastmod>2020-09-22</lastmod>
     
