@@ -33,7 +33,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://kuroha.vip/images/csharp/parameter/parameter_01.png">
 <meta property="article:published_time" content="2020-09-28T08:10:45.000Z">
-<meta property="article:modified_time" content="2020-09-28T08:12:48.535Z">
+<meta property="article:modified_time" content="2020-09-28T08:25:21.869Z">
 <meta property="article:author" content="Kuroha">
 <meta property="article:tag" content="CSharp">
 <meta name="twitter:card" content="summary">
@@ -367,7 +367,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-09-28 16:10:45 / 修改时间：16:12:48" itemprop="dateCreated datePublished" datetime="2020-09-28T16:10:45+08:00">2020-09-28</time>
+              <time title="创建时间：2020-09-28 16:10:45 / 修改时间：16:25:21" itemprop="dateCreated datePublished" datetime="2020-09-28T16:10:45+08:00">2020-09-28</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -459,7 +459,7 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">price=<span class="number">10000</span>, name=价值一万元的车</span><br></pre></td></tr></table></figure>
 
 <p>第一个例子中 param1 的值是 1, param2 的值是 2, 使用了 Edit() 方法修改后, 这两个变量的值就变成了 3 和 4; 第二个例子中, str 的值也被修改为了 &quot;我被修改了!&quot;; 第三个例子中, car 原本指向的是 &quot;价值为一千元的车&quot;, 之后使用了 Edit() 方法进行了修改, car 便指向了 &quot;价值为一万元的车&quot; ! 由此可见, 引用传递之后, 方法中修改的就是原变量的值. </p>
-<h1 id="ref-out-in"><a href="#ref-out-in" class="headerlink" title="ref, out, in"></a>ref, out, in</h1><p>这三个关键字都可以实现引用传递, 并且引用传递时不仅需要在方法签名中声明参数为哪种引用传递, 在调用方法的时候也<strong>必须添加对应的修饰符</strong>, 从上面引用传递的举例中也可以看出, 但是这三者有什么区别呢?</p>
+<h1 id="ref-out-in"><a href="#ref-out-in" class="headerlink" title="ref, out, in"></a>ref, out, in</h1><p>这三个关键字都可以实现引用传递, 并且引用传递时, ref 和 out 还要求不仅需要在方法签名中声明参数为哪种引用传递, 在调用方法的时候也<strong>必须添加对应的修饰符</strong>, 从上面引用传递的举例中也可以看出, 在调用方法时, 参数中也必须注明 ref 和 out, 但是这三者有什么区别呢?</p>
 <h2 id="什么时候用-ref"><a href="#什么时候用-ref" class="headerlink" title="什么时候用 ref ?"></a>什么时候用 ref ?</h2><p>当你的目的是使用方法处理变量的值的时候, 就可以使用 ref 修饰符了. 因此 ref 有一个这样的语法规则:</p>
 <ul>
 <li>ref 修饰的参数在传递前必须已经初始化了.</li>
@@ -475,7 +475,7 @@
 <p>某一天你买了一幅名画, 十分贵重, 几乎花光了你至今为止所有的积蓄, 但是你的好朋友也想要看一下, 提出想要拿到自己家中好好观摩两天. 此时你心想, 使用 &quot;值传递&quot; 的方式吧, 就得复制一副相同的画, 虽然朋友也说了就算是复制品也可以, 但是请人再去临摹一份一模一样的, 这个开销太大了(对应程序中传递一个体积很大很大的值存储变量, 比如结构体变量, 复制一份的话, 内存占用就很高), 于是你还是决定直接将原画借给朋友看, 也就是 &quot;ref 引用传递&quot;, 但是心里始终是不放心啊, 万一朋友不小心把画作弄脏了, 弄丢了, 那自己这一辈子岂不凉凉了~</p>
 <p>于是在这个场景下就可以使用修饰符 <em>in</em> 了, 使用 in 修饰的引用传递, 在方法中只能使用参数值, 无法修改参数值. 这样就不用担心画作的安全问题了.</p>
 <p><img data-src="/images/csharp/parameter/parameter_01.png" alt="in 的作用"></p>
-<p>[<strong>注</strong>] ref 和 out 参数在方法调用时也必须显式注明 ref 和 out, 否则编译器直接报错! 虽说 in 并没有这个要求, 但是还是建议养成注明引用传递的习惯!</p>
+<p>[<strong>注</strong>] ref 和 out 参数在方法调用时必须显式注明 ref 和 out, 否则编译器直接报错! 但是从上图中可以看出, 我在调用 Friend 方法的时候并没有显式注明 in, 也就是说 in 并没有这个要求, 但是还是建议养成注明引用传递的习惯!</p>
 <p>由此可见, 在程序中, in 关键字主要用于程序优化, 节省内存. 当然这里说的 in 只是参数修饰符 in, 自然不包括在 foreach 中的 in 啦~</p>
 <h1 id="params"><a href="#params" class="headerlink" title="params"></a>params</h1><p>使用 params 关键字可以指定采用数目可变的参数的方法参数, 因此当方法需要的参数个数无法确定的时候, 就可以使用 params 关键字. </p>
 <p>params 使用时具有诸多语法限制:</p>
