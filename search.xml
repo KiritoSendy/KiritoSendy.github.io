@@ -895,11 +895,11 @@
 <li><p>Power Shell 输入命令: <code>route delete 0.0.0.0</code></p>
 <p>作用: 将<strong>默认</strong>路由规则清空</p>
 </li>
-<li><p>Power Shell 输入命令: <code>route add 0.0.0.0 mask 0.0.0.0 192.168.42.129</code></p>
-<p>作用: 添加<strong>默认</strong>路由规则, 指向外网网关. 用于访问外网.</p>
+<li><p>Power Shell 输入命令: <code>route add -p 0.0.0.0 mask 0.0.0.0 192.168.42.129</code></p>
+<p>作用: 添加<strong>默认</strong>路由规则, 并使用 <code>-p</code> 参数设置为永久路由, 指向外网网关. 用于访问外网.</p>
 </li>
-<li><p>Power Shell 输入命令: <code>route add 192.168.0.0 mask 255.255.0.0 192.168.10.254</code></p>
-<p>作用: 添加<strong>普通</strong>路由规则, 指向内网网关. 用于访问内网.</p>
+<li><p>Power Shell 输入命令: <code>route add -p 192.168.0.0 mask 255.255.0.0 192.168.10.254</code></p>
+<p>作用: 添加<strong>普通</strong>路由规则, 并使用 <code>-p</code> 参数设置为永久路由, 指向内网网关. 用于访问内网.</p>
 </li>
 </ol>
 <h1 id="桌面上的文件不能拖动"><a href="#桌面上的文件不能拖动" class="headerlink" title="桌面上的文件不能拖动"></a>桌面上的文件不能拖动</h1><p>有时候桌面上的文件会变得无法拖动, 当然绝对不是设置了 &quot;自动排列&quot; 这种低级失误, 这时候按 2 下 <kbd>ESC</kbd> 键, 有奇效哦! (如果不行, 别打我, 反正我电脑可以!)</p>
@@ -2764,6 +2764,95 @@
       </tags>
   </entry>
   <entry>
+    <title>如何让 Unity 走代理?</title>
+    <url>/unity/unity_proxy.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>最近在学习制作 Unity 游戏, 到了最后需要发布 Android 版本游戏程序的时候, 发现根本导不出来!!! </p>
+<p>每次都会卡在 Gradle 的构建上... 看了日志之后知道了原来是从仓库下载包的时候下载失败了...那我就更郁闷了, 我 24 小时全天开着梯子, 你跟我说现在还有我下载不下来的东西? 后来在这篇文章中找到了答案! <span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
+<p>原来 Unity 压根不吃梯子啊~ ~ !</p>
+<h1 id="解决方法一"><a href="#解决方法一" class="headerlink" title="解决方法一"></a>解决方法一</h1><p><strong><code>使用阿里的镜像源替代 Google 源</code></strong></p>
+<ol>
+<li><p>找到 Unity 的安装目录.</p>
+</li>
+<li><p>使用 VSCode 打开路径: <code>Editor\Data\PlaybackEngines\AndroidPlayer\Tools\GradleTemplates</code>.</p>
+</li>
+<li><p>对路径中的文件逐一修改, 将其中所有的</p>
+</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">google()</span><br><span class="line">jcenter()</span><br></pre></td></tr></table></figure>
+
+<p>修改为:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/google&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/jcenter&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><font color='red'><strong>重启 Unity 项目</strong></font>, 重新发布即可!</li>
+</ol>
+<p>[<strong>注</strong>]</p>
+<ol>
+<li><p>文件中要替换的 <code>google() jcenter()</code> 不止一处, 必须全部替换!</p>
+</li>
+<li><p>Unity 每次打开项目的时候, 都会从模板中复制文件, 在项目中建立缓存, 其中就包含我们刚刚修改的文件. 如果不重启项目, 那么项目中的缓存文件依旧使用的是修改前的文件, 此时发布依旧会失败, 所以必须重启 Unity 项目, 让 Unity 使用我们修改后的模板重新建立缓存!</p>
+</li>
+</ol>
+<h1 id="解决方法二"><a href="#解决方法二" class="headerlink" title="解决方法二"></a>解决方法二</h1><p><strong><code>为 Unity Hub 和 Unity 设置代理</code></strong></p>
+<p>Unity Hub 和 Unity 在连接网络时并不会读取浏览器配置, 因此梯子时无效的! 但是 Unity Hub 和 Unity 会读取环境变量中 <code>HTTP_PROXY</code> 和 <code>HTTPS_PROXY</code> 的值判断是否使用代理.</p>
+<p>因此只要配置好这两个环境变量就好了, 下面是引用的这篇博客 (<span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span>) 中的一段:</p>
+<blockquote>
+<p>Windows 下, 写一个 bat 脚本, 内容如下:</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;@<span class="built_in">echo</span> off</span><br><span class="line">&gt;<span class="built_in">set</span> HTTP_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">set</span> HTTPS_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">start</span> &quot;&quot; &quot;C:\Program Files\Unity Hub\Unity Hub.exe&quot;</span><br></pre></td></tr></table></figure>
+
+<p>注意, HTTPS_PROXY 的设置也是 &quot;<span class="exturl" data-url="aHR0cDovL3h4eHgmcXVvdDsv">http://xxxx&quot;<i class="fa fa-external-link-alt"></i></span>, 而不是 &quot;<span class="exturl" data-url="aHR0cHM6Ly94eHh4JnF1b3Q7Lw==">https://xxxx&quot;<i class="fa fa-external-link-alt"></i></span></p>
+<p>mac 下, 脚本如下:</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;<span class="built_in">echo</span> &#x27;#!/bin/bash</span><br><span class="line">&gt;export HTTP_PROXY=proxy-url</span><br><span class="line">&gt;export HTTPS_PROXY=proxy-url</span><br><span class="line">&gt;nohup &quot;/Applications/Unity Hub.app/Contents/MacOS/Unity Hub&quot; &amp;&gt;/dev/null &amp;&#x27; &gt; launchUnityHub.command</span><br><span class="line">&gt;chmod +x launchUnityHub.command</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>我用的方法是第一种方法, 确实可行! 第二种没用, 因为我不喜欢动环境变量! 😂</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYW5nZV9mcm9tX25vdy9hcnRpY2xlL2RldGFpbHMvMTAwNTE5NTQ2">Unity使用Gradle打包出错问题<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unity - 2D 精灵 和 3D 物体的渲染顺序</title>
+    <url>/unity/unity_render_order.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h1><p>我在学习 SiKi 学院出的一款捕鱼达人的游戏教程时, 教程中使用了一个 3D 物体, 在其上面制作水波纹特效, 为了容易观察渲染层级, 我还特意将同一个层级 (Sorting Layer) 的精灵全部放到同一个 Z 位置上, 一共分了四层.</p>
+<p><img data-src="/images/unity_render_order/unity_render_order_1.png" alt="3D 游戏物体被遮挡"></p>
+<p>但是从相机预览效果中可以看出, 水波纹效果被遮挡了. 在这个场景中所有的 Canvas 的渲染层级都是一个自定义的 UI 层, 但是这个 3D 游戏物体的层级该怎么设置呢? 根本找不到设置的地方啊? 😥</p>
+<h1 id="MeshRenderer-与-SpriteRenderer-的渲染顺序"><a href="#MeshRenderer-与-SpriteRenderer-的渲染顺序" class="headerlink" title="MeshRenderer 与 SpriteRenderer 的渲染顺序"></a>MeshRenderer 与 SpriteRenderer 的渲染顺序</h1><p>3D 游戏物体使用的是 MeshRenderer, 2D 精灵使用的是 SpriteRenderer, 两者都是继承自 Renderer, 在 Renderer 中渲染层级是 <code>sortingLayerName</code> 字段, 渲染顺序是 <code>sortingOrder</code> 字段.</p>
+<ol>
+<li><p>SpriteRenderer 中的 <code>Sorting Layer</code> 对应的是 sortingLayerName 字段, <code>Order in Layer</code> 对应的是 sortingOrder 字段.</p>
+</li>
+<li><p>在 MeshrRenderer 中这两个字段并没有做处理, 只是在面板上隐藏了而已, 因此可以在脚本中直接使用.</p>
+ <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> MeshRenderer meshRenderer;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    meshRenderer = GetComponent&lt;MeshRenderer&gt;();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定 3D 游戏物体的渲染层级</span></span><br><span class="line">    meshRenderer.sortingLayerName = sortingLayer;</span><br><span class="line">    meshRenderer.sortingOrder = orderinLayer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 ParticleSystem 中同样也有 Renderer 组件控制粒子特效的渲染顺序, 同样可以使用脚本控制, 也可以直接在面板上设置.</p>
+ <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> ParticleSystem[] particleSystems;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定粒子特效的渲染层级</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; particleSystems.Length; index++)</span><br><span class="line">    &#123;</span><br><span class="line">        rendererParticle = particleSystems[index].GetComponent&lt;Renderer&gt;();</span><br><span class="line">        rendererParticle.sortingLayerName = sortingLayer;</span><br><span class="line">        rendererParticle.sortingOrder = orderinLayer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="问题解决后效果"><a href="#问题解决后效果" class="headerlink" title="问题解决后效果"></a>问题解决后效果</h1><p>使用上面脚本中的设置就可以让 MeshRenderer 也参与到 2D UI 的排序中来了, 效果还是不错的.</p>
+<p><img data-src="/images/unity_render_order/unity_render_order_2.png" alt="修复后效果"></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82YmNjZjc5ZmEzNjc=">SpriteRenderer 与 MeshRenderer的渲染排序层级<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JSON 参考手册</title>
     <url>/program/json_notes.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -3095,95 +3184,6 @@
       </categories>
       <tags>
         <tag>Program</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何让 Unity 走代理?</title>
-    <url>/unity/unity_proxy.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>最近在学习制作 Unity 游戏, 到了最后需要发布 Android 版本游戏程序的时候, 发现根本导不出来!!! </p>
-<p>每次都会卡在 Gradle 的构建上... 看了日志之后知道了原来是从仓库下载包的时候下载失败了...那我就更郁闷了, 我 24 小时全天开着梯子, 你跟我说现在还有我下载不下来的东西? 后来在这篇文章中找到了答案! <span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
-<p>原来 Unity 压根不吃梯子啊~ ~ !</p>
-<h1 id="解决方法一"><a href="#解决方法一" class="headerlink" title="解决方法一"></a>解决方法一</h1><p><strong><code>使用阿里的镜像源替代 Google 源</code></strong></p>
-<ol>
-<li><p>找到 Unity 的安装目录.</p>
-</li>
-<li><p>使用 VSCode 打开路径: <code>Editor\Data\PlaybackEngines\AndroidPlayer\Tools\GradleTemplates</code>.</p>
-</li>
-<li><p>对路径中的文件逐一修改, 将其中所有的</p>
-</li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">google()</span><br><span class="line">jcenter()</span><br></pre></td></tr></table></figure>
-
-<p>修改为:</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/google&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/jcenter&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><font color='red'><strong>重启 Unity 项目</strong></font>, 重新发布即可!</li>
-</ol>
-<p>[<strong>注</strong>]</p>
-<ol>
-<li><p>文件中要替换的 <code>google() jcenter()</code> 不止一处, 必须全部替换!</p>
-</li>
-<li><p>Unity 每次打开项目的时候, 都会从模板中复制文件, 在项目中建立缓存, 其中就包含我们刚刚修改的文件. 如果不重启项目, 那么项目中的缓存文件依旧使用的是修改前的文件, 此时发布依旧会失败, 所以必须重启 Unity 项目, 让 Unity 使用我们修改后的模板重新建立缓存!</p>
-</li>
-</ol>
-<h1 id="解决方法二"><a href="#解决方法二" class="headerlink" title="解决方法二"></a>解决方法二</h1><p><strong><code>为 Unity Hub 和 Unity 设置代理</code></strong></p>
-<p>Unity Hub 和 Unity 在连接网络时并不会读取浏览器配置, 因此梯子时无效的! 但是 Unity Hub 和 Unity 会读取环境变量中 <code>HTTP_PROXY</code> 和 <code>HTTPS_PROXY</code> 的值判断是否使用代理.</p>
-<p>因此只要配置好这两个环境变量就好了, 下面是引用的这篇博客 (<span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span>) 中的一段:</p>
-<blockquote>
-<p>Windows 下, 写一个 bat 脚本, 内容如下:</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;@<span class="built_in">echo</span> off</span><br><span class="line">&gt;<span class="built_in">set</span> HTTP_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">set</span> HTTPS_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">start</span> &quot;&quot; &quot;C:\Program Files\Unity Hub\Unity Hub.exe&quot;</span><br></pre></td></tr></table></figure>
-
-<p>注意, HTTPS_PROXY 的设置也是 &quot;<span class="exturl" data-url="aHR0cDovL3h4eHgmcXVvdDsv">http://xxxx&quot;<i class="fa fa-external-link-alt"></i></span>, 而不是 &quot;<span class="exturl" data-url="aHR0cHM6Ly94eHh4JnF1b3Q7Lw==">https://xxxx&quot;<i class="fa fa-external-link-alt"></i></span></p>
-<p>mac 下, 脚本如下:</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;<span class="built_in">echo</span> &#x27;#!/bin/bash</span><br><span class="line">&gt;export HTTP_PROXY=proxy-url</span><br><span class="line">&gt;export HTTPS_PROXY=proxy-url</span><br><span class="line">&gt;nohup &quot;/Applications/Unity Hub.app/Contents/MacOS/Unity Hub&quot; &amp;&gt;/dev/null &amp;&#x27; &gt; launchUnityHub.command</span><br><span class="line">&gt;chmod +x launchUnityHub.command</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>我用的方法是第一种方法, 确实可行! 第二种没用, 因为我不喜欢动环境变量! 😂</p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYW5nZV9mcm9tX25vdy9hcnRpY2xlL2RldGFpbHMvMTAwNTE5NTQ2">Unity使用Gradle打包出错问题<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Unity - 2D 精灵 和 3D 物体的渲染顺序</title>
-    <url>/unity/unity_render_order.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h1><p>我在学习 SiKi 学院出的一款捕鱼达人的游戏教程时, 教程中使用了一个 3D 物体, 在其上面制作水波纹特效, 为了容易观察渲染层级, 我还特意将同一个层级 (Sorting Layer) 的精灵全部放到同一个 Z 位置上, 一共分了四层.</p>
-<p><img data-src="/images/unity_render_order/unity_render_order_1.png" alt="3D 游戏物体被遮挡"></p>
-<p>但是从相机预览效果中可以看出, 水波纹效果被遮挡了. 在这个场景中所有的 Canvas 的渲染层级都是一个自定义的 UI 层, 但是这个 3D 游戏物体的层级该怎么设置呢? 根本找不到设置的地方啊? 😥</p>
-<h1 id="MeshRenderer-与-SpriteRenderer-的渲染顺序"><a href="#MeshRenderer-与-SpriteRenderer-的渲染顺序" class="headerlink" title="MeshRenderer 与 SpriteRenderer 的渲染顺序"></a>MeshRenderer 与 SpriteRenderer 的渲染顺序</h1><p>3D 游戏物体使用的是 MeshRenderer, 2D 精灵使用的是 SpriteRenderer, 两者都是继承自 Renderer, 在 Renderer 中渲染层级是 <code>sortingLayerName</code> 字段, 渲染顺序是 <code>sortingOrder</code> 字段.</p>
-<ol>
-<li><p>SpriteRenderer 中的 <code>Sorting Layer</code> 对应的是 sortingLayerName 字段, <code>Order in Layer</code> 对应的是 sortingOrder 字段.</p>
-</li>
-<li><p>在 MeshrRenderer 中这两个字段并没有做处理, 只是在面板上隐藏了而已, 因此可以在脚本中直接使用.</p>
- <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> MeshRenderer meshRenderer;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    meshRenderer = GetComponent&lt;MeshRenderer&gt;();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定 3D 游戏物体的渲染层级</span></span><br><span class="line">    meshRenderer.sortingLayerName = sortingLayer;</span><br><span class="line">    meshRenderer.sortingOrder = orderinLayer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 ParticleSystem 中同样也有 Renderer 组件控制粒子特效的渲染顺序, 同样可以使用脚本控制, 也可以直接在面板上设置.</p>
- <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> ParticleSystem[] particleSystems;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定粒子特效的渲染层级</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; particleSystems.Length; index++)</span><br><span class="line">    &#123;</span><br><span class="line">        rendererParticle = particleSystems[index].GetComponent&lt;Renderer&gt;();</span><br><span class="line">        rendererParticle.sortingLayerName = sortingLayer;</span><br><span class="line">        rendererParticle.sortingOrder = orderinLayer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h1 id="问题解决后效果"><a href="#问题解决后效果" class="headerlink" title="问题解决后效果"></a>问题解决后效果</h1><p>使用上面脚本中的设置就可以让 MeshRenderer 也参与到 2D UI 的排序中来了, 效果还是不错的.</p>
-<p><img data-src="/images/unity_render_order/unity_render_order_2.png" alt="修复后效果"></p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82YmNjZjc5ZmEzNjc=">SpriteRenderer 与 MeshRenderer的渲染排序层级<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
       </tags>
   </entry>
   <entry>
