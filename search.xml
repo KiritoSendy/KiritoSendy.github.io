@@ -65,508 +65,6 @@
       </tags>
   </entry>
   <entry>
-    <title>游戏开发笔试面试经历之字节跳动</title>
-    <url>/apply/game_apply_bytedance.html</url>
-    <content><![CDATA[<p>最近找工作, 那叫一个惨, 哈哈, 记录一下自己面试字节跳动时技术岗提问的问题吧! </p>
-<a id="more"></a> 
-
-<h2 id="字节跳动-2019-09-19-游戏客户端开发实习生-面试"><a href="#字节跳动-2019-09-19-游戏客户端开发实习生-面试" class="headerlink" title="字节跳动 2019.09.19 游戏客户端开发实习生 面试"></a>字节跳动 2019.09.19 游戏客户端开发实习生 面试</h2><p>面试方式: 使用 牛客网 在线面试, 但是由于自己的笔记本电脑不给力, 音频调试过了, 但是视频调试怎么也过不了, 于是换用了 Zoom 视频通话. 面试官是技术员, 怎么说呢～ 真 <strong>·</strong> 一拳超人! 一根都不剩! </p>
-<h3 id="1-自我介绍"><a href="#1-自我介绍" class="headerlink" title="1, 自我介绍"></a>1, 自我介绍</h3><p>说了自己的个人信息: 姓名, 年龄, 学校, 专业等. 之后说了些和自己的性格爱好相关的事, 再往后说了自己主要学习的课程, 最后说自己在校的一些经历. 不过可能是面试官不太想听我在学校的经历, 反正我就说了一点点, 面试官就直接问我了. (就是说我的自我介绍直接被打断了...)</p>
-<h4 id="教训"><a href="#教训" class="headerlink" title="教训"></a>教训</h4><blockquote>
-<p>说自我介绍的时候, 一定要只说自己已经充分准备了的东西.</p>
-</blockquote>
-<blockquote>
-<p>我就实在了, 因为学过C语言, 我就直接说了在校学过C语言, 但是我已经好几年没用过C语言了, 于是接下来的事可想而知, 太尴尬了...</p>
-</blockquote>
-<h3 id="2-专业知识"><a href="#2-专业知识" class="headerlink" title="2, 专业知识"></a>2, 专业知识</h3><ol>
-<li>C语言常量指针和指针常量的区别, 并写出一个常量指针和指针常量. </li>
-</ol>
-<blockquote>
-<p>马后炮解答: </p>
-<p>指针常量: 指针所指向的位置不能改变（p 不能改变）, 即指针本身是一个常量, 但是指针所指向的内容可以改变（*P 可以改变）. </p>
-<p>声明: int * const p = &a; (const 修饰的是 p)</p>
-<p>指针常量必须在声明的同时对其初始化, 不允许先声明一个指针常量随后再对其赋值, 这和声明一般的常量是一样的. </p>
-<p>常量指针: 具有只能够读取内存中数据（*P 不可以改变）, 却不能够修改内存中数据的属性的指针（P 可以改变）, 全称为: 指向常量的指针, 简称常量指针. </p>
-<p>声明: const int * p; int const * p; (const 修饰的是 *P)</p>
-<p>可以将一个常量的地址赋值给一个对应类型的常量指针, 因为常量指针不能够通过指针修改内部数据. 只能防止通过指针引用修改内存中的数据, 并不保护指针所指向的对象. </p>
-</blockquote>
-<ol start="2">
-<li>C语言程序运行时的内存分配情况. </li>
-</ol>
-<blockquote>
-<p>马后炮解答: </p>
-<p>对于一个由C语言编写的程序而言, 内存主要可以分为以下5个部分组成: 栈, 堆, BSS段, 数据段, 代码段. 栈和堆在程序运行中由系统分配空间, BSS段, 数据段, 代码段在程序编译期间由编译器分配空间. </p>
-<p>(运行时)栈: 栈是一种由高地址向低地址扩展的数据结构, 是一块连续的内存区域, 通常存放程序临时创建的局部变量, 其中还包括函数调用时所用到的形参, 调用后的返回值等. </p>
-<p>(运行时)堆: 堆是一种由低地址向高地址扩展的数据结构, 是一块不连续的内存区域. 通常存放程序运行中动态分配的存储空间. </p>
-<p>(编译时)BSS段: Block Started by Symbol 的简称, 通常是指用来存放程序中未初始化的全局变量和静态变量. </p>
-<p>(编译时)数据段: 数据段通常是指用来存放程序中已初始化的全局变量和静态变量以及字符串常量. </p>
-<p>(编译时)代码段: 通常是指用来存放程序执行代码的一块内存区域. 这部分区域的大小在程序运行前就已经确定. </p>
-</blockquote>
-<p>数据结构中, 怎么判断链表里面有环? </p>
-<blockquote>
-<p>马后炮解答: </p>
-<p><strong>如何判断一个链表中是否有环</strong>: 使用追赶法, 设定两个指针 slow, fast, 从头指针开始, 每次分别前进1步, 2步. 如存在环, 则两者必定相遇, 如不存在环, fast 遇到 NULL 退出. </p>
-<p><strong>如何知道环的长度</strong>: 依旧先使用追赶法(双指针法), 求出 slow, fast 两指针的碰撞点 P (相遇点), 之后 slow, fast 指针再次从碰撞点 P 出发, 直到两者再次碰撞, 期间 slow 经过的结点数量就是环的长度. <strong>碰撞点不一定是环的连接结点</strong></p>
-<p><strong>如何找出环的连接结点</strong>: 设置每次都只前进 1 步的两个指针, 分别从头结点和碰撞点出发, 他们所相遇的结点就是连接点. </p>
-<p><strong>如何求出头结点到连接点的长度</strong>: 求连接点的时候, 从头结点出发的指针直到和另外一个指针相遇, 中间经过的结点的数量就是头结点到连接点的长度. </p>
-<p><strong>带环链表的长度是多少</strong>: 头结点到连接点的长度 + 环的长度. </p>
-</blockquote>
-<p>数据结构中, 怎么取得链表的中间元素? </p>
-<blockquote>
-<p>马后炮解答: </p>
-<p>一般方法: 首先循环遍历链表获得链表长度 L, 然后再次循环遍历链表查找 L/2 处的中间节点. 在这种情况下, 其时间复杂度由两次循环决定: <code>O（L+L/2）=O(3L/2)</code>. </p>
-<p>优化方法: (双指针法)设置两个指针 <code>*search</code>, <code>*mid</code>, 初始时, 都指向头结点. 其中 <code>*search</code> 的移动速度为 <code>*mid</code> 的两倍（search 为 2, mid 为 1）. 相同时间内,  <code>*search</code> 经过的结点应该是 <code>*mid</code> 结点个数的 2 倍, 也就说, 当 <code>*search</code> 结点到达链表终点时, <code>*mid</code> 在链表中间结点处. </p>
-</blockquote>
-<p>什么是闭包?</p>
-<blockquote>
-<p> 闭包技术其实就是虽然使用的变量已经脱离其作用域了, 但是由于它和作用域存在上下文关系, 从而可以在当前环境中继续使用其上下文环境中所定义的一种函数对象. </p>
-</blockquote>
-<p>拆装箱是什么?</p>
-<blockquote>
-<p>C# 中, 将 对象类型 Object 赋值 给 值类型 int float double, 叫做拆箱. </p>
-<p>C# 中, 将 值类型 int float double 赋值 给 对象类型 Object, 叫做装箱. </p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Apply</category>
-      </categories>
-      <tags>
-        <tag>面试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>游戏开发笔试面试经历之多益网络</title>
-    <url>/apply/game_apply_duoyi.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h2 id="多益网络-2019-09-06-大数据与算法工程师-笔试"><a href="#多益网络-2019-09-06-大数据与算法工程师-笔试" class="headerlink" title="多益网络 2019.09.06 大数据与算法工程师 笔试"></a>多益网络 2019.09.06 大数据与算法工程师 笔试</h2><ol>
-<li>最小堆 H, 使用数组进行保存, 最开始有 5 个数字: 2 3 5 8 10, 依次插入 7 1, 写出插入后数组中保存的数字序列. </li>
-</ol>
-<blockquote>
-<p>堆可以用一个 <strong>完全二叉树</strong> 结构表示, 并且满足以下性质: </p>
-<p>大顶堆: 任意一个结点的值必须大于它的左右孩子的值. </p>
-<p>小顶堆: 任意一个结点的值必须小于它的左右孩子的值. </p>
-<p>答案: 1 3 2 8 10 7 5</p>
-</blockquote>
-<ol start="2">
-<li>判断题: </li>
-</ol>
-<ul>
-<li><p>数组和链表中的元素都可以随机访问 (❌) </p>
-</li>
-<li><p>数组和链表插入元素删除元素的复杂度都是O(1) (❌) </p>
-</li>
-<li><p>哈希索引无法做范围查询 (✔) </p>
-</li>
-</ul>
-<blockquote>
-<p>数组可以随机访问, 但是链表只能遍历访问. </p>
-<p>数组和链表插入元素删除元素的复杂度都是O(n). </p>
-<p>哈希索引只能用于定值查询, 无法用于范围查询. 哈希索引进行排序操作无任何意义. </p>
-</blockquote>
-<ol start="3">
-<li>对 25 15 30 10 50 3 5 60 进行快速排序. </li>
-</ol>
-<blockquote>
-<p>第一趟: 5 15 3 10 25 50 30 60 (pivot: 25)</p>
-<p>第二趟: 3 5 15 10 25 30 50 60 (pivot: 5 50)</p>
-<p>第三趟: 3 5 10 15 25 30 50 60 (pivot: 15)</p>
-</blockquote>
-<ol start="4">
-<li>判断题: </li>
-</ol>
-<ul>
-<li><p>指针的值是指指针本身存储的值, 这个值是地址, 不是数值.  (✔) </p>
-</li>
-<li><p>指针可以为空, 可以有多级指针 (✔) </p>
-</li>
-<li><p>数组作为参数传入函数, 会退化为一级指针 (✔) </p>
-</li>
-<li><p>sizeof(指针) 所得到的值是指针所指向的变量的大小 (❌) </p>
-</li>
-<li><p>树的前序遍历, 中序遍历, 后序遍历中, 叶子结点的前后顺序是一样的.  (✔) </p>
-</li>
-</ul>
-<ol start="5">
-<li>哈希表的查找效率问题. 哈希表的长度是 10, 哈希表中一共 8 个关键字: 75 33 52 41 12 88 66 27, 哈希函数是: H(K) = key MOD 7, 解决冲突的方法采用: 线性探测再散列法, 则等概率查找成功的平均查找长度为多少. </li>
-</ol>
-<blockquote>
-<p>所有关键字对 7 取余: 4 1 2 3 1 3 5 4</p>
-<p>由于一共有 8 个关键字, 则平均查找长度是: </p>
-<p>(1/8) * (4+1+2+3+1+3+5+4) = 23/8</p>
-</blockquote>
-<ol start="6">
-<li>网络通信: TCP 建立连接的过程采用三次握手, 已知第三次握手报文发送序列: 1000, 确认序列: 2000, 写出第二次握手的发送序列和确认序列. </li>
-</ol>
-<blockquote>
-<p>TCP 建立连接的三次握手分别是:</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th align="left"></th>
-<th>发送序列</th>
-<th align="left">确认序列</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">客户端</td>
-<td>X</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">服务器</td>
-<td>Y</td>
-<td align="left">X+1</td>
-</tr>
-<tr>
-<td align="left">客户端</td>
-<td>X+1</td>
-<td align="left">Y+1</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>题目已知 X+1=1000, Y+1=2000, 则第二次握手的发送序列和确认序列是: 1999, 1000</p>
-</blockquote>
-<ol start="7">
-<li>进程之间的同步和互斥分别表明了各个进程之间的 () . </li>
-</ol>
-<ul>
-<li><p>A 相互独立与互相制约</p>
-</li>
-<li><p>B 协调与竞争</p>
-</li>
-<li><p>C 不同状态</p>
-</li>
-<li><p>D 动态性和独立性</p>
-</li>
-</ul>
-<blockquote>
-<p>进程互斥, 同步的概念是并发进程下存在的概念, 有了并发进程, 就产生了资源的竞争与协作, 从而就要通过进程的互斥, 同步, 通信来解决资源的竞争与协作问题, 选 B. </p>
-<p>进程的互斥 (mutual exclusion ) 是解决进程间竞争关系( 间接制约关系) 的手段.  进程互斥指若干个进程要使用同一共享资源时, 任何时刻最多允许一个进程去使用, 其他要使用该资源的进程必须等待, 直到占有资源的进程释放该资源. </p>
-<p>进程的同步 (Synchronization) 是解决进程间协作关系( 直接制约关系) 的手段. 进程同步指两个以上进程基于某个条件来协调它们的活动. 一个进程的执行依赖于另一个协作进程的消息或信号, 当一个进程没有得到来自于另一个进程的消息或信号时则需等待, 直到消息或信号到达才被唤醒. </p>
-</blockquote>
-<ol start="8">
-<li>表达式: a * (b + c) - d 的后缀表达式是? </li>
-</ol>
-<blockquote>
-<p>前缀表达式: 运算符放在两个运算数的前面. +*-bcad</p>
-<p>中缀表达式: 运算符放在两个运算数的中间. (b+c)*a-d</p>
-<p>后缀表达式: 运算符放在两个运算符的后面. bc+a*d-</p>
-</blockquote>
-<ol start="9">
-<li>假设循环队列的结构是: </li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">typedef <span class="keyword">struct</span> </span><br><span class="line">&#123;</span><br><span class="line">    DataType data[Maxsize];<span class="comment">//数组队列</span></span><br><span class="line">    <span class="keyword">int</span> front;<span class="comment">//队头</span></span><br><span class="line">    <span class="keyword">int</span> rear;<span class="comment">//队尾</span></span><br><span class="line">&#125;Queue;</span><br></pre></td></tr></table></figure>
-
-<p>若有一个 Queue 类型的队列 Q, 判断这个队列满和空的条件是? </p>
-<blockquote>
-<p>判断满: Q.front == (Q.rear + 1) % Maxsize (取余运算)</p>
-<p>判断空: Q.front == Q.rear</p>
-</blockquote>
-<ol start="10">
-<li>桶排序的时间复杂度是? 是否稳定. </li>
-</ol>
-<blockquote>
-<ul>
-<li>桶排序的平均时间复杂度为线性的 O(N+C), 其中C=N*(logN-logM). 如果相对于同样的 N, 桶数量 M 越大, 其效率越高, 最好的时间复杂度达到O(N).  (N: 待排序数的数量 M: 桶的数量)</li>
-<li>桶排序的空间复杂度为O(N+M), 如果输入数据非常庞大, 而桶的数量也非常多, 则空间代价无疑是昂贵的. </li>
-<li>桶排序是稳定的. </li>
-</ul>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th align="left">插入类排序方案</th>
-<th align="left">时间复杂度</th>
-<th align="left">空间复杂度</th>
-<th align="left">稳定性</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">直接插入排序</td>
-<td align="left">O(n^2)</td>
-<td align="left">O(1)</td>
-<td align="left">稳定</td>
-</tr>
-<tr>
-<td align="left">折半插入排序</td>
-<td align="left">O(n^2)</td>
-<td align="left">O(1)</td>
-<td align="left">稳定</td>
-</tr>
-<tr>
-<td align="left">二路插入排序</td>
-<td align="left">O(n^2)</td>
-<td align="left">O(1)</td>
-<td align="left">稳定</td>
-</tr>
-<tr>
-<td align="left">希尔排序</td>
-<td align="left">O(n^(1.3-2))</td>
-<td align="left">O(1)</td>
-<td align="left">不稳定</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="left">选择类排序方案</th>
-<th align="left">时间复杂度</th>
-<th align="left">空间复杂度</th>
-<th align="left">稳定性</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">简单选择排序</td>
-<td align="left">O(n^2)</td>
-<td align="left">O(1)</td>
-<td align="left">不稳定</td>
-</tr>
-<tr>
-<td align="left">堆排序</td>
-<td align="left">O(nlogn)</td>
-<td align="left">O(1)</td>
-<td align="left">不稳定</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="left">交换类排序方案</th>
-<th align="left">时间复杂度</th>
-<th align="left">空间复杂度</th>
-<th align="left">稳定性</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">冒泡排序</td>
-<td align="left">O(n^2)</td>
-<td align="left">O(1)</td>
-<td align="left">稳定</td>
-</tr>
-<tr>
-<td align="left">快速排序</td>
-<td align="left">O(nlogn)</td>
-<td align="left">O(nlogn)</td>
-<td align="left">不稳定</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th align="left">其他排序方案</th>
-<th align="left">时间复杂度</th>
-<th align="left">空间复杂度</th>
-<th align="left">稳定性</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">归并排序</td>
-<td align="left">O(nlogn)</td>
-<td align="left">O(nlogn)</td>
-<td align="left">稳定</td>
-</tr>
-<tr>
-<td align="left">基数排序</td>
-<td align="left">O(d(r+n))</td>
-<td align="left">O(rd+n)</td>
-<td align="left">稳定</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>基数排序中 r: 关键字的基数 n: 关键字的个数 d: 长度</p>
-</blockquote>
-<ol start="11">
-<li>建立一个有序单链表的时间复杂度是多少. </li>
-</ol>
-<blockquote>
-<p>对单链表而言, 一些快速的排序算法是用不了的, 只能用直接插入等 O(n^2) 级的排序算法来实现排序. 答案: O(n^2)</p>
-</blockquote>
-<ol start="12">
-<li>权值为 4 9 2 7 5 12 组成的 Huffman 树, 带权路径长度是? </li>
-</ol>
-<blockquote>
-<p> 打造哈夫曼树: </p>
-<p> 第一层: 39</p>
-<p> 第二层: 23 16</p>
-<p> 第三层: 11 12 7 9</p>
-<p> 第四层:  6 5</p>
-<p> 第五层:  2 4</p>
-<p> 带权路径长度: 2 * 4 + 4 * 4 + 5 * 3 + 12 * 2 + 7 * 2 + 9 * 2 = 95</p>
-</blockquote>
-<ol start="13">
-<li>有序表有 1000 个元素, 使用二分查找, 最多要比较多少次才能知道所查找元素是否在查找序列中. </li>
-</ol>
-<blockquote>
-<p>二分查找的比较次数是: logN, 这里是向上取整, 所以是 10 次. </p>
-<p>如果已经确定待查找元素就在序列中了, 则向下取整, 需要比较 9 次. </p>
-</blockquote>
-<ol start="14">
-<li>如何迅速判断两个单向无环链表为交叉链表? </li>
-</ol>
-<blockquote>
-<p> 交叉链表: 两个链表, 从某个结点开始, 后续所有结点完全相同,  X 型相交是不可能出现的. 因为想要出现 X 型相交, 那么相交点就拥有了两个 next 指针. 例如: </p>
-<p> A: 1 2 3 4 8 9 10 11</p>
-<p> B: 7 6 5 4 8 9 10 11</p>
-<p> 对于两个无环链表, 有两种可取的办法: </p>
-<ul>
-<li><p>人为构造环, 将链表A的尾节点指向链表B, 再判断是否构环成功. 从链表B的头指针往下遍历, 如果能够回到B, 则说明相交. </p>
-</li>
-<li><p><strong>判断两链表最后一个节点是否相同</strong>, 如果相交, 则尾节点肯定是同一节点. (答案)</p>
-<p>引申问题: 如何找出两个交叉链表的相交结点? </p>
-</li>
-<li><p>首先遍历两个链表到表尾(NULL), 记录下两个链表的长度: LA, LB, 并求出两个链表的长度差(绝对值) |LA - LB|. </p>
-</li>
-<li><p>之后再次遍历两个链表, 让长的那个链表先行遍历 |LA - LB| 个结点, 之后两者同步遍历并判断结点是否相等, 即可找出相交结点. </p>
-<p>引申问题: 如何判断一个单链表是否存在环? </p>
-</li>
-<li><p>使用追赶法. 设置两个指针 slow 和 fast, slow 的速度是每次移动 1 个单位, fast 的速度是每次移动 2 个单位, 这样如果存在环, 两者必定会在某处相遇. 如果 fast 指针走到了 NULL 都没有和 slow 相遇, 说明没有环. </p>
-<p>引申问题: 如何得到这个环的长度? </p>
-</li>
-<li><p>先使用追赶法, 记录下两个指针相遇的位置 P (碰撞点, 相遇点). </p>
-</li>
-<li><p>之后从 碰撞点 P 出发, 依旧使用追赶法, slow 每次一个单位, fast 每次 2 个单位, 当他们两个再次相遇时, slow 经过的结点数就是环的长度. </p>
-</li>
-<li><p>证明: 设环的长度是 X, 当 slow 指针经过了 X 个结点时(正好绕了一圈, 回到起点 P). fast 刚好经过了 2X 个结点(正好绕了两圈, 回到起点 P), 此时两者必定相遇. </p>
-<p>引申问题: 如何得到这个环的 <strong>环入口结点</strong>? </p>
-</li>
-<li><p>定理: 定义两个指针, 分别从<strong>链表头结点</strong>和<strong>碰撞结点 P</strong>出发, 速度都是一次移动 1 个单位, 则两者必定会在<strong>环的入口结点</strong>相遇. </p>
-</li>
-<li><p>证明: 根据最开始使用的追赶法可知, slow 指针走过的结点数是从链表头结点到碰撞点 P 的长度, 设从链表头结点到环的入口结点的距离是 a, 从环的入口结点到碰撞点的距离是 b, 则 slow 走过的距离是: a+b. fast 指针走过的结点数是 slow 指针走过的结点数再加上 n 圈环的长度, 同时也是 slow 指针走过的结点数的 2 倍, 设环的长度为 L, 则 <code>2(a+b) = (a+b) + nL</code>, 化简后: <code>a+b = nL</code> =&gt;  <code>a+b = (n-1)L + L</code> =&gt;  <code>a = (n-1)L + (L-b)</code>. 证明完毕. </p>
-</li>
-</ul>
-</blockquote>
-<ol start="15">
-<li>数据库保护分为哪四部分? </li>
-</ol>
-<blockquote>
-<p> 安全性控制, 完整性控制, 并发性控制, 数据恢复</p>
-</blockquote>
-<ol start="16">
-<li><p>说明 Linux 下多路复用 IO 接口 epoll 和 select 的区别及其适用场景. </p>
-</li>
-<li><p>说明资源在进程和线程上如何分配. </p>
-</li>
-<li><p>编程题: 判断输入的数字是否是梦想数. (输入数据是正整数)</p>
-</li>
-</ol>
-<blockquote>
-<p>梦想数: 对数字进行每一位平方后求和运算, 无限循环下去, 如果最后得到的个位数是 1, 则这个数字是梦想数. </p>
-<p>例如: 19</p>
-<p>1 + 81 = 82</p>
-<p>64 + 4 = 68</p>
-<p>36 + 64 = 100</p>
-<p>1 + 0 + 0 = 1</p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line">namespace _02_判断一个数字是不是梦想数</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">string</span> numberStr;</span><br><span class="line">            <span class="keyword">int</span> number;</span><br><span class="line">            <span class="keyword">int</span> temp, result = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//读取一个数字字符串</span></span><br><span class="line">                numberStr = Console.ReadLine();</span><br><span class="line"></span><br><span class="line">                <span class="comment">//字符串转换为数字</span></span><br><span class="line">                number = Convert.ToInt32(numberStr);</span><br><span class="line">                <span class="keyword">if</span>(number == <span class="number">1</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//取出每一位数字并进行平方和运算</span></span><br><span class="line">                <span class="keyword">while</span> (<span class="literal">true</span>)<span class="comment">//只要结果不是个位数, 就一直无限循环, 进行平方和运算</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">while</span> (number &gt;  <span class="number">0</span>)<span class="comment">//进行一个平方和运算</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        temp = number % <span class="number">10</span>;<span class="comment">//对 10 取余, 取出当前的个位数</span></span><br><span class="line">                        number /= <span class="number">10</span>;<span class="comment">//除以 10, 舍弃个位数</span></span><br><span class="line"></span><br><span class="line">                        result += temp * temp;<span class="comment">//平方求和</span></span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> (result / <span class="number">10</span> != <span class="number">0</span>)<span class="comment">//只要结果还不是个位数, 就准备进行下次平方和计算</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        number = result;<span class="comment">//重点</span></span><br><span class="line">                        result = <span class="number">0</span>;<span class="comment">//重点</span></span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span><span class="comment">//如果结果是个位数了</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//判断是不是 1</span></span><br><span class="line">                        <span class="keyword">if</span> (result == <span class="number">1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            Console.WriteLine(<span class="string">&quot;是梦想数&quot;</span>);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">else</span> <span class="keyword">if</span> (result / <span class="number">10</span> == <span class="number">0</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            Console.WriteLine(<span class="string">&quot;不是梦想数&quot;</span>);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                result = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            Console.WriteLine(<span class="string">&quot;按任意键结束&quot;</span>);</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Apply</category>
-      </categories>
-      <tags>
-        <tag>面试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>游戏开发笔试面试经历之巨人网络</title>
-    <url>/apply/game_apply_giant.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h2 id="巨人网络-2019-09-06-游戏开发工程师-笔试"><a href="#巨人网络-2019-09-06-游戏开发工程师-笔试" class="headerlink" title="巨人网络 2019.09.06 游戏开发工程师 笔试"></a>巨人网络 2019.09.06 游戏开发工程师 笔试</h2><ol>
-<li>选择题</li>
-</ol>
-<ul>
-<li>A 类模板的成员函数都是函数模板, 类模板实例化后, 成员函数都随之实例化.  (❌) </li>
-<li>B 一个类定义中, 只要有一个函数模板, 则这个类是类模板.  (❌) </li>
-<li>C 函数模板必须由程序员实例化为可执行的函数模板.  (❌) </li>
-<li>D 函数模板的实例化是由编译器实现的.  (✔) </li>
-</ul>
-<blockquote>
-<p>马后炮解答: </p>
-<ol>
-<li>类模板的成员函数都是函数模板. </li>
-<li>类模板实例化后, 成员函数 (即函数模板) 会随之实例化, 但是没使用过成员函数 (即函数模板) 的不会随之实例化. </li>
-<li>函数模板必须由 <strong>编译器</strong> 根据 <strong>程序员的调用类型</strong> 实例化为 <strong>可执行的函数</strong>. </li>
-</ol>
-</blockquote>
-<ol start="2">
-<li>选择题</li>
-</ol>
-<ul>
-<li>A 进程是程序运行的最小单位.  (❌) </li>
-<li>B 线程是资源分配的最小单位.  (❌) </li>
-<li>C 在 Linux 中, 进程比线程安全, 进程不会共享数据.  (❌) </li>
-<li>D 进程有独立的地址空间, 线程没有独立的地址空间.  (✔) </li>
-</ul>
-<blockquote>
-<p>马后炮解答: </p>
-<ol>
-<li>进程是资源分配的最小单位. </li>
-<li>线程是程序运行的最小单位. </li>
-<li>Linux 中, 进程可以共享数据. </li>
-</ol>
-</blockquote>
-<ol start="3">
-<li>选择题</li>
-</ol>
-<ul>
-<li>下列编程语句需要加锁的是? </li>
-<li>A ++X; </li>
-<li>B X++; </li>
-<li>C X=Y; </li>
-<li>D X=1; </li>
-</ul>
-<blockquote>
-<p>马后炮解答: </p>
-<p>X=Y: 在 X86 上它包含两个操作: 读取 y 至寄存器, 再把该值写入 x. 读 y 的值这个操作本身是原子的, 把值写入 x 也是原子的, 但是两者合起来不是原子操作, 所以需要进行同步. </p>
-<p>++X 和 X++ 这样的操作在多线程环境下是需要同步的. 因为 X86 会按三条指令的形式来处理这种语句: 从内存中读 x 的值到寄存器中, 对寄存器加 1, 再把新值写回 x 所处的内存地址. </p>
-<p>X=1: 是原子操作, 不可再分. </p>
-<p>答案: ABC</p>
-</blockquote>
-<ol start="4">
-<li>选择题</li>
-</ol>
-<ul>
-<li>A sizeof (指针): 可以得到指针所指向的内容的大小.  (❌) </li>
-<li>B sizeof (数组名): 可以取得数组的容量.  (✔) </li>
-<li>C 指针可以随时指向任意类型的内存块.  (❌) </li>
-<li>D 可以在程序运行中改变数组长度.  (✔) </li>
-</ul>
-<blockquote>
-<p>马后炮解答: </p>
-<ol>
-<li><strong>sizeof 不是函数</strong>. 因为 sizeof 写参数的时候, 有时候可以不加括号, 而且它可以直接以变量类型作为参数: <code>sizeof (int)</code>. </li>
-<li><strong>sizeof 不是一元操作符</strong>. 因为 sizeof 语句是在编译阶段求值的. 比如下面的语句: </li>
-</ol>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#include&quot;stdio.h&quot; </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="keyword">sizeof</span> (a = <span class="number">3</span>);</span><br><span class="line">    </span><br><span class="line">    printf(<span class="string">&quot;a 的值是: %d, b的值是: %d&quot;</span>, a, b);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>在编译阶段就会被翻译成如下代码, 运行结果自然是: <code>a 的值是: 0, b的值是: 4</code></p>
-</blockquote>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#include&quot;stdio.h&quot; </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//int b = sizeof (a = 3);</span></span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">4</span>; <span class="comment">// sizeof (a = 3); 会被直接编译成 4, 所以 &quot;a = 3;&quot; 并不会运行</span></span><br><span class="line">    </span><br><span class="line">    printf(<span class="string">&quot;a 的值是: %d, b的值是: %d&quot;</span>, a, b);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<ol start="3">
-<li><p>sizeof 的后面直接写数据类型的关键字时, 必须加括号. <code>sizeof (int);</code></p>
-</li>
-<li><p>sizeof 使用时的各种情况: </p>
-<p>sizeof (固有数据类型, 例如 int float double bool): 取得类型的字节长度. 对于拥有自定义 typedef 类型的语言, 返回的是原数据类型的字节长度. </p>
-<p>sizeof (函数类型, 例如 <code>int Add(int a, int b)</code>): 取得返回值的类型的字节长度. 当返回值是 void 类型时, 编译器会报错. </p>
-<p>sizeof (任何指针类型, 例如变量指针, 函数指针)): 取得指针的长度, 也就是 4. </p>
-<p>Sizeof (数组名): 取得数组的容量. </p>
-</li>
-</ol>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Apply</category>
-      </categories>
-      <tags>
-        <tag>面试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ASP 开发经验笔记</title>
     <url>/asp/asp_learnnotes.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -2175,9 +1673,10 @@
     <url>/lifetips/how_to_use_mpv_player.html</url>
     <content><![CDATA[<a id="more"></a>
 
-<h1 id="播放器简介"><a href="#播放器简介" class="headerlink" title="播放器简介"></a>播放器简介</h1><p>默认情况下, MPV 播放器并不提供 GUI 界面, 需要通过命令行或配置文件进行设置, 它配置灵活, 性能优秀, 支持硬件解码. 基于开源, MPV 衍生出来一大批第三方播放器, 比如 Mac 平台上的 IINA, 以及 Baka MPlayer, bomi, mpc-qt, xt7-player-mpv 等, 它们的核心都是 MPV. </p>
+<h1 id="播放器简介"><a href="#播放器简介" class="headerlink" title="播放器简介"></a>播放器简介</h1><p>默认情况下, MPV 播放器并不提供 GUI 界面, 需要通过命令行或配置文件进行设置, 它配置灵活, 性能优秀, 支持硬件解码. </p>
+<p>基于开源, MPV 衍生出来一大批第三方播放器, 比如 Mac 平台上的 IINA, 以及 Baka MPlayer, bomi, mpc-qt, xt7-player-mpv 等, 它们的核心都是 MPV. </p>
 <h1 id="播放列表"><a href="#播放列表" class="headerlink" title="播放列表"></a>播放列表</h1><ol>
-<li>MPV 支持播放列表文件（如: m3u）. </li>
+<li>MPV 支持播放列表文件 (如: m3u). </li>
 <li>如果需要临时播放多个文件, 打开MPV, 选中多个文件拖入窗口. </li>
 <li>鼠标右键单击 上一个 或者 下一个 按钮可以临时显示当前播放列表. </li>
 <li>如果需要将该目录的所有文件全部添加进 MPV 的播放列表中, 使用命令: <code>mpv *.*</code></li>
@@ -2449,13 +1948,15 @@
 <h1 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h1><h2 id="程序配置文件路径"><a href="#程序配置文件路径" class="headerlink" title="程序配置文件路径"></a>程序配置文件路径</h2><p><code>C:\Users\Kirito\AppData\Roaming\mpv\mpv.conf</code></p>
 <h2 id="快捷键配置文件路径"><a href="#快捷键配置文件路径" class="headerlink" title="快捷键配置文件路径"></a>快捷键配置文件路径</h2><p><code>C:\Users\Kirito\AppData\Roaming\mpv\input.conf</code></p>
 <p>下面是我的自定义快捷键设置</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 鼠标滑轮调节音量</span></span><br><span class="line"><span class="string">WHEEL_UP</span> <span class="string">add</span> <span class="string">volume</span> <span class="number">1</span></span><br><span class="line"><span class="string">WHEEL_DOWN</span> <span class="string">add</span> <span class="string">volume</span> <span class="number">-1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 等号键循环切换窗口置顶</span></span><br><span class="line"><span class="string">=</span> <span class="string">cycle</span> <span class="string">ontop</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 鼠标滑轮调节音量</span></span><br><span class="line"><span class="string">WHEEL_UP</span> <span class="string">add</span> <span class="string">volume</span> <span class="number">1</span></span><br><span class="line"><span class="string">WHEEL_DOWN</span> <span class="string">add</span> <span class="string">volume</span> <span class="number">-1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 等号键循环切换窗口置顶</span></span><br><span class="line"><span class="string">=</span> <span class="string">cycle</span> <span class="string">ontop</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># alt + 方向键旋转画面 (依赖 cycle-video-rotate.lua 脚本)</span></span><br><span class="line"><span class="string">alt+left</span> <span class="string">script-message</span> <span class="string">Cycle_Video_Rotate</span> <span class="number">-90</span></span><br><span class="line"><span class="string">alt+right</span> <span class="string">script-message</span> <span class="string">Cycle_Video_Rotate</span> <span class="number">90</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="脚本文件路径"><a href="#脚本文件路径" class="headerlink" title="脚本文件路径"></a>脚本文件路径</h2><p><code>C:\Users\Kirito\AppData\Roaming\mpv\scripts\...</code></p>
 <p>脚本是 MPV 配置的重头戏. MPV 启动时, 保存在 scripts 文件夹里的脚本文件会自动加载并且执行. 官方 wiki 里有收录的脚本列表, 可以自行查阅, 寻找自己喜欢的功能脚本. </p>
 <h1 id="脚本推荐"><a href="#脚本推荐" class="headerlink" title="脚本推荐"></a>脚本推荐</h1><h2 id="autoload-lua"><a href="#autoload-lua" class="headerlink" title="autoload.lua"></a>autoload.lua</h2><p>autoload.lua: 自动加载当前播放文件目录里的视频文件到播放列表, 也就是自动连播, 原生 MPV 不具有这个功能. </p>
-<h2 id="mpv-thumbnail-script-lua"><a href="#mpv-thumbnail-script-lua" class="headerlink" title="mpv_thumbnail_script.lua"></a>mpv_thumbnail_script.lua</h2><p>mpv_thumbnail_script.lua: 显示预览缩略图. </p>
+<h2 id="mpv-thumbnail-script-lua"><a href="#mpv-thumbnail-script-lua" class="headerlink" title="mpv_thumbnail_script.lua"></a>mpv_thumbnail_script.lua</h2><p>mpv_thumbnail_script.lua: 生成并显示预览缩略图. </p>
 <h2 id="save-sub-delay-lua"><a href="#save-sub-delay-lua" class="headerlink" title="save-sub-delay.lua"></a>save-sub-delay.lua</h2><p>save-sub-delay.lua: 遇到外挂字幕时间轴不正确的情况, 调好之后, 这个脚本会保存 delay 信息. </p>
+<h2 id="cycle-video-rotate-lua"><a href="#cycle-video-rotate-lua" class="headerlink" title="cycle-video-rotate.lua"></a>cycle-video-rotate.lua</h2><p>cycle-video-rotate.lua: 实现旋转屏幕效果.</p>
+<h1 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h1><p>脚本下载地址: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL1ZpZGVvUGxheWVyQ29kZS9tcHYtdG9vbHM=">Github MPV Tools<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <categories>
         <category>LifeTips</category>
@@ -2764,92 +2265,98 @@
       </tags>
   </entry>
   <entry>
-    <title>如何让 Unity 走代理?</title>
-    <url>/unity/unity_proxy.html</url>
+    <title>Oracle 全拼和首字母查询</title>
+    <url>/oracle/oracle_trigger.html</url>
     <content><![CDATA[<a id="more"></a>
 
-<p>最近在学习制作 Unity 游戏, 到了最后需要发布 Android 版本游戏程序的时候, 发现根本导不出来!!! </p>
-<p>每次都会卡在 Gradle 的构建上... 看了日志之后知道了原来是从仓库下载包的时候下载失败了...那我就更郁闷了, 我 24 小时全天开着梯子, 你跟我说现在还有我下载不下来的东西? 后来在这篇文章中找到了答案! <span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
-<p>原来 Unity 压根不吃梯子啊~ ~ !</p>
-<h1 id="解决方法一"><a href="#解决方法一" class="headerlink" title="解决方法一"></a>解决方法一</h1><p><strong><code>使用阿里的镜像源替代 Google 源</code></strong></p>
-<ol>
-<li><p>找到 Unity 的安装目录.</p>
-</li>
-<li><p>使用 VSCode 打开路径: <code>Editor\Data\PlaybackEngines\AndroidPlayer\Tools\GradleTemplates</code>.</p>
-</li>
-<li><p>对路径中的文件逐一修改, 将其中所有的</p>
-</li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">google()</span><br><span class="line">jcenter()</span><br></pre></td></tr></table></figure>
+<h1 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h1><p>首先在 Oracle 数据库中建立 &quot;汉字转全拼&quot; 和 &quot;汉字转首字母&quot; 的方法, 网上的方法基本全部不可信, 支持的汉字很少, 我使用的是从 &quot;ItPub&quot; 论坛上下载的, 目前没有发现不支持的汉字.</p>
+<p><img data-src="/images/oracle_trigger/oracle_pinyin.png" alt="itpub"></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9vZC5say9kL056TmZNalUxT1RZeU1UZGYvb3JhY2xlX2NvZGUuN3o=">下载地址<i class="fa fa-external-link-alt"></i></span> 解压密码是: <code>https://kuroha.vip/</code></p>
+<p>解压之后, 直接执行里面的 sql 文件, 会建立一个 <code>package</code> 和一个 <code>package body</code>, 之后就可以使用 <code>hzpy.gethzfullpy()</code> 和 <code>hzpy.hzpycap()</code> 方法获取汉字的拼音和首字母了.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
 
-<p>修改为:</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/google&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/jcenter&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="新思路"><a href="#新思路" class="headerlink" title="新思路"></a>新思路</h1><p>之前的思路是对人员表中的所有人员姓名进行转换, 将转换后的结果和用户的实时输入做 like 对比, 但是项目中的人员数动辄就近万条, 再加上用户如果使用全拼方式查询, 那速度真是~ 就像电脑要死机一样. 于是后来转换思路, 在人员表中加入两列, 一列用来保存姓名所对应的首字母形式, 另一列用来保存姓名所对应的全拼形式.</p>
+<p>使用 <code>update</code> 语句更新已存在人员的全拼和首字母信息, 新增人员使用触发器进行自动更新. 下面是触发器使用时的一些要点.</p>
+<h1 id="SQL-语句分类"><a href="#SQL-语句分类" class="headerlink" title="SQL 语句分类"></a>SQL 语句分类</h1><ul>
+<li><p><strong>DDL</strong>: 全称 Data Definition Languages, 译为 &quot;数据定义语言&quot;, 定义了不同的数据段, 数据库, 表, 列, 索引等数据库对象, 简单来说就是对数据库内部的对象进行创建, 删除和修改的操作语言, 常用的语句关键字主要包括 <code>create</code>, <code>drop</code>, <code>alter</code>.</p>
+</li>
+<li><p><strong>DML</strong>: 全称 Data Manipulation Language, 译为 &quot;数据操作语言&quot;, 用于添加, 删除, 更新和查询数据库记录, 并检查数据完整性, 简单来说就是对表内部数据的增删改查操作, 不涉及到表定义, 表结构的修改, 更不会涉及到其他对象, 常用的语句关键字主要包括 <code>insert</code>, <code>delete</code>, <code>udpate</code>, <code>select</code>.</p>
+</li>
+<li><p><strong>DCL</strong>: 全称 Data Control Language, 译为 &quot;数据控制语言&quot;, 用于控制不同数据段的访问许可和访问级别的语句, 这些语句定义了数据库, 表, 字段, 用户的访问权限和安全级别. 主要的语句关键字包括 <code>grant</code>, <code>revoke</code>.</p>
+</li>
+</ul>
+<h1 id="DML-触发器"><a href="#DML-触发器" class="headerlink" title="DML 触发器"></a>DML 触发器</h1><ol>
+<li><p>触发器不能接收参数.</p>
+</li>
+<li><p>触发器的执行顺序:</p>
+</li>
+</ol>
+<ul>
+<li><ul>
+<li>执行 before 语句级触发器</li>
+</ul>
+</li>
+<li><ul>
+<li>执行 before 行级触发器</li>
+</ul>
+</li>
+<li><ul>
+<li>执行 DML 语句</li>
+</ul>
+</li>
+<li><ul>
+<li>执行 after 行级触发器 </li>
+</ul>
+</li>
+<li><ul>
+<li>执行 after 语句级触发器</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><p>语句级触发器中, 不得使用 <code>:new</code> 和 <code>:old</code>, 行级触发器中, <code>:old</code> 为 &quot;操作前&quot; 的整行记录, <code>:new</code> 为 &quot;操作后&quot; 的整行记录.</p>
+<table>
+<thead>
+<tr>
+<th align="left">---</th>
+<th align="left">insert</th>
+<th align="left">update</th>
+<th align="left">delete</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">old</td>
+<td align="left">不允许使用</td>
+<td align="left">更新前记录</td>
+<td align="left">删除前记录</td>
+</tr>
+<tr>
+<td align="left">new</td>
+<td align="left">插入后记录</td>
+<td align="left">更新后记录</td>
+<td align="left">不允许使用</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><font color='red'><strong>只有 before 行级触发器可以修改 :new 记录的值.</strong></font></p>
+</li>
+<li><p><font color='red'><strong>在行级触发器中, 不得将 <code>insert</code>, <code>update</code>, <code>delete</code> 语句作用于 &quot;自身触发表&quot;!</strong></font></p>
+</li>
+</ol>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--在插入新纪录之前, 修改这条待插入记录的 szm 字段和 qp 字段.</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">trigger</span> trigger_ryb_pinyin</span><br><span class="line"><span class="keyword">before</span> <span class="keyword">insert</span> <span class="keyword">on</span> ryb</span><br><span class="line"><span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">:new.szm := <span class="keyword">lower</span>(hzpy.hzpycap(:new.xm));</span><br><span class="line">:new.qp := lower(hzpy.gethzfullpy(:new.xm));</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
 
-<ol start="4">
-<li><font color='red'><strong>重启 Unity 项目</strong></font>, 重新发布即可!</li>
-</ol>
-<p>[<strong>注</strong>]</p>
-<ol>
-<li><p>文件中要替换的 <code>google() jcenter()</code> 不止一处, 必须全部替换!</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vSERLMjAxNi9wLzY5MTEwODcuaHRtbA==">详解ORACLE中的trigger<i class="fa fa-external-link-alt"></i></span></p>
 </li>
-<li><p>Unity 每次打开项目的时候, 都会从模板中复制文件, 在项目中建立缓存, 其中就包含我们刚刚修改的文件. 如果不重启项目, 那么项目中的缓存文件依旧使用的是修改前的文件, 此时发布依旧会失败, 所以必须重启 Unity 项目, 让 Unity 使用我们修改后的模板重新建立缓存!</p>
+<li><p><span class="exturl" data-url="aHR0cDovL2Jsb2cuaXRwdWIubmV0LzIyNTI1Njc2L3ZpZXdzcGFjZS0xMTE3MDYwLw==">关于oracle触发器中修改自身表字段的问题<i class="fa fa-external-link-alt"></i></span></p>
 </li>
-</ol>
-<h1 id="解决方法二"><a href="#解决方法二" class="headerlink" title="解决方法二"></a>解决方法二</h1><p><strong><code>为 Unity Hub 和 Unity 设置代理</code></strong></p>
-<p>Unity Hub 和 Unity 在连接网络时并不会读取浏览器配置, 因此梯子时无效的! 但是 Unity Hub 和 Unity 会读取环境变量中 <code>HTTP_PROXY</code> 和 <code>HTTPS_PROXY</code> 的值判断是否使用代理.</p>
-<p>因此只要配置好这两个环境变量就好了, 下面是引用的这篇博客 (<span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span>) 中的一段:</p>
-<blockquote>
-<p>Windows 下, 写一个 bat 脚本, 内容如下:</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;@<span class="built_in">echo</span> off</span><br><span class="line">&gt;<span class="built_in">set</span> HTTP_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">set</span> HTTPS_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">start</span> &quot;&quot; &quot;C:\Program Files\Unity Hub\Unity Hub.exe&quot;</span><br></pre></td></tr></table></figure>
-
-<p>注意, HTTPS_PROXY 的设置也是 &quot;<span class="exturl" data-url="aHR0cDovL3h4eHgmcXVvdDsv">http://xxxx&quot;<i class="fa fa-external-link-alt"></i></span>, 而不是 &quot;<span class="exturl" data-url="aHR0cHM6Ly94eHh4JnF1b3Q7Lw==">https://xxxx&quot;<i class="fa fa-external-link-alt"></i></span></p>
-<p>mac 下, 脚本如下:</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;<span class="built_in">echo</span> &#x27;#!/bin/bash</span><br><span class="line">&gt;export HTTP_PROXY=proxy-url</span><br><span class="line">&gt;export HTTPS_PROXY=proxy-url</span><br><span class="line">&gt;nohup &quot;/Applications/Unity Hub.app/Contents/MacOS/Unity Hub&quot; &amp;&gt;/dev/null &amp;&#x27; &gt; launchUnityHub.command</span><br><span class="line">&gt;chmod +x launchUnityHub.command</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>我用的方法是第一种方法, 确实可行! 第二种没用, 因为我不喜欢动环境变量! 😂</p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYW5nZV9mcm9tX25vdy9hcnRpY2xlL2RldGFpbHMvMTAwNTE5NTQ2">Unity使用Gradle打包出错问题<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ol>
+</ul>
 ]]></content>
       <categories>
-        <category>Unity</category>
+        <category>Oracle</category>
       </categories>
       <tags>
-        <tag>Unity</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Unity - 2D 精灵 和 3D 物体的渲染顺序</title>
-    <url>/unity/unity_render_order.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h1><p>我在学习 SiKi 学院出的一款捕鱼达人的游戏教程时, 教程中使用了一个 3D 物体, 在其上面制作水波纹特效, 为了容易观察渲染层级, 我还特意将同一个层级 (Sorting Layer) 的精灵全部放到同一个 Z 位置上, 一共分了四层.</p>
-<p><img data-src="/images/unity_render_order/unity_render_order_1.png" alt="3D 游戏物体被遮挡"></p>
-<p>但是从相机预览效果中可以看出, 水波纹效果被遮挡了. 在这个场景中所有的 Canvas 的渲染层级都是一个自定义的 UI 层, 但是这个 3D 游戏物体的层级该怎么设置呢? 根本找不到设置的地方啊? 😥</p>
-<h1 id="MeshRenderer-与-SpriteRenderer-的渲染顺序"><a href="#MeshRenderer-与-SpriteRenderer-的渲染顺序" class="headerlink" title="MeshRenderer 与 SpriteRenderer 的渲染顺序"></a>MeshRenderer 与 SpriteRenderer 的渲染顺序</h1><p>3D 游戏物体使用的是 MeshRenderer, 2D 精灵使用的是 SpriteRenderer, 两者都是继承自 Renderer, 在 Renderer 中渲染层级是 <code>sortingLayerName</code> 字段, 渲染顺序是 <code>sortingOrder</code> 字段.</p>
-<ol>
-<li><p>SpriteRenderer 中的 <code>Sorting Layer</code> 对应的是 sortingLayerName 字段, <code>Order in Layer</code> 对应的是 sortingOrder 字段.</p>
-</li>
-<li><p>在 MeshrRenderer 中这两个字段并没有做处理, 只是在面板上隐藏了而已, 因此可以在脚本中直接使用.</p>
- <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> MeshRenderer meshRenderer;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    meshRenderer = GetComponent&lt;MeshRenderer&gt;();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定 3D 游戏物体的渲染层级</span></span><br><span class="line">    meshRenderer.sortingLayerName = sortingLayer;</span><br><span class="line">    meshRenderer.sortingOrder = orderinLayer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 ParticleSystem 中同样也有 Renderer 组件控制粒子特效的渲染顺序, 同样可以使用脚本控制, 也可以直接在面板上设置.</p>
- <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> ParticleSystem[] particleSystems;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定粒子特效的渲染层级</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; particleSystems.Length; index++)</span><br><span class="line">    &#123;</span><br><span class="line">        rendererParticle = particleSystems[index].GetComponent&lt;Renderer&gt;();</span><br><span class="line">        rendererParticle.sortingLayerName = sortingLayer;</span><br><span class="line">        rendererParticle.sortingOrder = orderinLayer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h1 id="问题解决后效果"><a href="#问题解决后效果" class="headerlink" title="问题解决后效果"></a>问题解决后效果</h1><p>使用上面脚本中的设置就可以让 MeshRenderer 也参与到 2D UI 的排序中来了, 效果还是不错的.</p>
-<p><img data-src="/images/unity_render_order/unity_render_order_2.png" alt="修复后效果"></p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82YmNjZjc5ZmEzNjc=">SpriteRenderer 与 MeshRenderer的渲染排序层级<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
+        <tag>Oracle</tag>
       </tags>
   </entry>
   <entry>
@@ -3187,98 +2694,594 @@
       </tags>
   </entry>
   <entry>
-    <title>Oracle 全拼和首字母查询</title>
-    <url>/oracle/oracle_trigger.html</url>
+    <title>Unity - 2D 精灵 和 3D 物体的渲染顺序</title>
+    <url>/unity/unity_render_order.html</url>
     <content><![CDATA[<a id="more"></a>
 
-<h1 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h1><p>首先在 Oracle 数据库中建立 &quot;汉字转全拼&quot; 和 &quot;汉字转首字母&quot; 的方法, 网上的方法基本全部不可信, 支持的汉字很少, 我使用的是从 &quot;ItPub&quot; 论坛上下载的, 目前没有发现不支持的汉字.</p>
-<p><img data-src="/images/oracle_trigger/oracle_pinyin.png" alt="itpub"></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9vZC5say9kL056TmZNalUxT1RZeU1UZGYvb3JhY2xlX2NvZGUuN3o=">下载地址<i class="fa fa-external-link-alt"></i></span> 解压密码是: <code>https://kuroha.vip/</code></p>
-<p>解压之后, 直接执行里面的 sql 文件, 会建立一个 <code>package</code> 和一个 <code>package body</code>, 之后就可以使用 <code>hzpy.gethzfullpy()</code> 和 <code>hzpy.hzpycap()</code> 方法获取汉字的拼音和首字母了.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h1><p>我在学习 SiKi 学院出的一款捕鱼达人的游戏教程时, 教程中使用了一个 3D 物体, 在其上面制作水波纹特效, 为了容易观察渲染层级, 我还特意将同一个层级 (Sorting Layer) 的精灵全部放到同一个 Z 位置上, 一共分了四层.</p>
+<p><img data-src="/images/unity_render_order/unity_render_order_1.png" alt="3D 游戏物体被遮挡"></p>
+<p>但是从相机预览效果中可以看出, 水波纹效果被遮挡了. 在这个场景中所有的 Canvas 的渲染层级都是一个自定义的 UI 层, 但是这个 3D 游戏物体的层级该怎么设置呢? 根本找不到设置的地方啊? 😥</p>
+<h1 id="MeshRenderer-与-SpriteRenderer-的渲染顺序"><a href="#MeshRenderer-与-SpriteRenderer-的渲染顺序" class="headerlink" title="MeshRenderer 与 SpriteRenderer 的渲染顺序"></a>MeshRenderer 与 SpriteRenderer 的渲染顺序</h1><p>3D 游戏物体使用的是 MeshRenderer, 2D 精灵使用的是 SpriteRenderer, 两者都是继承自 Renderer, 在 Renderer 中渲染层级是 <code>sortingLayerName</code> 字段, 渲染顺序是 <code>sortingOrder</code> 字段.</p>
+<ol>
+<li><p>SpriteRenderer 中的 <code>Sorting Layer</code> 对应的是 sortingLayerName 字段, <code>Order in Layer</code> 对应的是 sortingOrder 字段.</p>
+</li>
+<li><p>在 MeshrRenderer 中这两个字段并没有做处理, 只是在面板上隐藏了而已, 因此可以在脚本中直接使用.</p>
+ <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> MeshRenderer meshRenderer;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    meshRenderer = GetComponent&lt;MeshRenderer&gt;();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定 3D 游戏物体的渲染层级</span></span><br><span class="line">    meshRenderer.sortingLayerName = sortingLayer;</span><br><span class="line">    meshRenderer.sortingOrder = orderinLayer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 ParticleSystem 中同样也有 Renderer 组件控制粒子特效的渲染顺序, 同样可以使用脚本控制, 也可以直接在面板上设置.</p>
+ <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> ParticleSystem[] particleSystems;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定粒子特效的渲染层级</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; particleSystems.Length; index++)</span><br><span class="line">    &#123;</span><br><span class="line">        rendererParticle = particleSystems[index].GetComponent&lt;Renderer&gt;();</span><br><span class="line">        rendererParticle.sortingLayerName = sortingLayer;</span><br><span class="line">        rendererParticle.sortingOrder = orderinLayer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="新思路"><a href="#新思路" class="headerlink" title="新思路"></a>新思路</h1><p>之前的思路是对人员表中的所有人员姓名进行转换, 将转换后的结果和用户的实时输入做 like 对比, 但是项目中的人员数动辄就近万条, 再加上用户如果使用全拼方式查询, 那速度真是~ 就像电脑要死机一样. 于是后来转换思路, 在人员表中加入两列, 一列用来保存姓名所对应的首字母形式, 另一列用来保存姓名所对应的全拼形式.</p>
-<p>使用 <code>update</code> 语句更新已存在人员的全拼和首字母信息, 新增人员使用触发器进行自动更新. 下面是触发器使用时的一些要点.</p>
-<h1 id="SQL-语句分类"><a href="#SQL-语句分类" class="headerlink" title="SQL 语句分类"></a>SQL 语句分类</h1><ul>
-<li><p><strong>DDL</strong>: 全称 Data Definition Languages, 译为 &quot;数据定义语言&quot;, 定义了不同的数据段, 数据库, 表, 列, 索引等数据库对象, 简单来说就是对数据库内部的对象进行创建, 删除和修改的操作语言, 常用的语句关键字主要包括 <code>create</code>, <code>drop</code>, <code>alter</code>.</p>
-</li>
-<li><p><strong>DML</strong>: 全称 Data Manipulation Language, 译为 &quot;数据操作语言&quot;, 用于添加, 删除, 更新和查询数据库记录, 并检查数据完整性, 简单来说就是对表内部数据的增删改查操作, 不涉及到表定义, 表结构的修改, 更不会涉及到其他对象, 常用的语句关键字主要包括 <code>insert</code>, <code>delete</code>, <code>udpate</code>, <code>select</code>.</p>
-</li>
-<li><p><strong>DCL</strong>: 全称 Data Control Language, 译为 &quot;数据控制语言&quot;, 用于控制不同数据段的访问许可和访问级别的语句, 这些语句定义了数据库, 表, 字段, 用户的访问权限和安全级别. 主要的语句关键字包括 <code>grant</code>, <code>revoke</code>.</p>
-</li>
-</ul>
-<h1 id="DML-触发器"><a href="#DML-触发器" class="headerlink" title="DML 触发器"></a>DML 触发器</h1><ol>
-<li><p>触发器不能接收参数.</p>
-</li>
-<li><p>触发器的执行顺序:</p>
 </li>
 </ol>
+<h1 id="问题解决后效果"><a href="#问题解决后效果" class="headerlink" title="问题解决后效果"></a>问题解决后效果</h1><p>使用上面脚本中的设置就可以让 MeshRenderer 也参与到 2D UI 的排序中来了, 效果还是不错的.</p>
+<p><img data-src="/images/unity_render_order/unity_render_order_2.png" alt="修复后效果"></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82YmNjZjc5ZmEzNjc=">SpriteRenderer 与 MeshRenderer的渲染排序层级<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>游戏开发笔试面试经历之字节跳动</title>
+    <url>/apply/game_apply_bytedance.html</url>
+    <content><![CDATA[<p>最近找工作, 那叫一个惨, 哈哈, 记录一下自己面试字节跳动时技术岗提问的问题吧! </p>
+<a id="more"></a> 
+
+<h2 id="字节跳动-2019-09-19-游戏客户端开发实习生-面试"><a href="#字节跳动-2019-09-19-游戏客户端开发实习生-面试" class="headerlink" title="字节跳动 2019.09.19 游戏客户端开发实习生 面试"></a>字节跳动 2019.09.19 游戏客户端开发实习生 面试</h2><p>面试方式: 使用 牛客网 在线面试, 但是由于自己的笔记本电脑不给力, 音频调试过了, 但是视频调试怎么也过不了, 于是换用了 Zoom 视频通话. 面试官是技术员, 怎么说呢～ 真 <strong>·</strong> 一拳超人! 一根都不剩! </p>
+<h3 id="1-自我介绍"><a href="#1-自我介绍" class="headerlink" title="1, 自我介绍"></a>1, 自我介绍</h3><p>说了自己的个人信息: 姓名, 年龄, 学校, 专业等. 之后说了些和自己的性格爱好相关的事, 再往后说了自己主要学习的课程, 最后说自己在校的一些经历. 不过可能是面试官不太想听我在学校的经历, 反正我就说了一点点, 面试官就直接问我了. (就是说我的自我介绍直接被打断了...)</p>
+<h4 id="教训"><a href="#教训" class="headerlink" title="教训"></a>教训</h4><blockquote>
+<p>说自我介绍的时候, 一定要只说自己已经充分准备了的东西.</p>
+</blockquote>
+<blockquote>
+<p>我就实在了, 因为学过C语言, 我就直接说了在校学过C语言, 但是我已经好几年没用过C语言了, 于是接下来的事可想而知, 太尴尬了...</p>
+</blockquote>
+<h3 id="2-专业知识"><a href="#2-专业知识" class="headerlink" title="2, 专业知识"></a>2, 专业知识</h3><ol>
+<li>C语言常量指针和指针常量的区别, 并写出一个常量指针和指针常量. </li>
+</ol>
+<blockquote>
+<p>马后炮解答: </p>
+<p>指针常量: 指针所指向的位置不能改变（p 不能改变）, 即指针本身是一个常量, 但是指针所指向的内容可以改变（*P 可以改变）. </p>
+<p>声明: int * const p = &a; (const 修饰的是 p)</p>
+<p>指针常量必须在声明的同时对其初始化, 不允许先声明一个指针常量随后再对其赋值, 这和声明一般的常量是一样的. </p>
+<p>常量指针: 具有只能够读取内存中数据（*P 不可以改变）, 却不能够修改内存中数据的属性的指针（P 可以改变）, 全称为: 指向常量的指针, 简称常量指针. </p>
+<p>声明: const int * p; int const * p; (const 修饰的是 *P)</p>
+<p>可以将一个常量的地址赋值给一个对应类型的常量指针, 因为常量指针不能够通过指针修改内部数据. 只能防止通过指针引用修改内存中的数据, 并不保护指针所指向的对象. </p>
+</blockquote>
+<ol start="2">
+<li>C语言程序运行时的内存分配情况. </li>
+</ol>
+<blockquote>
+<p>马后炮解答: </p>
+<p>对于一个由C语言编写的程序而言, 内存主要可以分为以下5个部分组成: 栈, 堆, BSS段, 数据段, 代码段. 栈和堆在程序运行中由系统分配空间, BSS段, 数据段, 代码段在程序编译期间由编译器分配空间. </p>
+<p>(运行时)栈: 栈是一种由高地址向低地址扩展的数据结构, 是一块连续的内存区域, 通常存放程序临时创建的局部变量, 其中还包括函数调用时所用到的形参, 调用后的返回值等. </p>
+<p>(运行时)堆: 堆是一种由低地址向高地址扩展的数据结构, 是一块不连续的内存区域. 通常存放程序运行中动态分配的存储空间. </p>
+<p>(编译时)BSS段: Block Started by Symbol 的简称, 通常是指用来存放程序中未初始化的全局变量和静态变量. </p>
+<p>(编译时)数据段: 数据段通常是指用来存放程序中已初始化的全局变量和静态变量以及字符串常量. </p>
+<p>(编译时)代码段: 通常是指用来存放程序执行代码的一块内存区域. 这部分区域的大小在程序运行前就已经确定. </p>
+</blockquote>
+<p>数据结构中, 怎么判断链表里面有环? </p>
+<blockquote>
+<p>马后炮解答: </p>
+<p><strong>如何判断一个链表中是否有环</strong>: 使用追赶法, 设定两个指针 slow, fast, 从头指针开始, 每次分别前进1步, 2步. 如存在环, 则两者必定相遇, 如不存在环, fast 遇到 NULL 退出. </p>
+<p><strong>如何知道环的长度</strong>: 依旧先使用追赶法(双指针法), 求出 slow, fast 两指针的碰撞点 P (相遇点), 之后 slow, fast 指针再次从碰撞点 P 出发, 直到两者再次碰撞, 期间 slow 经过的结点数量就是环的长度. <strong>碰撞点不一定是环的连接结点</strong></p>
+<p><strong>如何找出环的连接结点</strong>: 设置每次都只前进 1 步的两个指针, 分别从头结点和碰撞点出发, 他们所相遇的结点就是连接点. </p>
+<p><strong>如何求出头结点到连接点的长度</strong>: 求连接点的时候, 从头结点出发的指针直到和另外一个指针相遇, 中间经过的结点的数量就是头结点到连接点的长度. </p>
+<p><strong>带环链表的长度是多少</strong>: 头结点到连接点的长度 + 环的长度. </p>
+</blockquote>
+<p>数据结构中, 怎么取得链表的中间元素? </p>
+<blockquote>
+<p>马后炮解答: </p>
+<p>一般方法: 首先循环遍历链表获得链表长度 L, 然后再次循环遍历链表查找 L/2 处的中间节点. 在这种情况下, 其时间复杂度由两次循环决定: <code>O（L+L/2）=O(3L/2)</code>. </p>
+<p>优化方法: (双指针法)设置两个指针 <code>*search</code>, <code>*mid</code>, 初始时, 都指向头结点. 其中 <code>*search</code> 的移动速度为 <code>*mid</code> 的两倍（search 为 2, mid 为 1）. 相同时间内,  <code>*search</code> 经过的结点应该是 <code>*mid</code> 结点个数的 2 倍, 也就说, 当 <code>*search</code> 结点到达链表终点时, <code>*mid</code> 在链表中间结点处. </p>
+</blockquote>
+<p>什么是闭包?</p>
+<blockquote>
+<p> 闭包技术其实就是虽然使用的变量已经脱离其作用域了, 但是由于它和作用域存在上下文关系, 从而可以在当前环境中继续使用其上下文环境中所定义的一种函数对象. </p>
+</blockquote>
+<p>拆装箱是什么?</p>
+<blockquote>
+<p>C# 中, 将 对象类型 Object 赋值 给 值类型 int float double, 叫做拆箱. </p>
+<p>C# 中, 将 值类型 int float double 赋值 给 对象类型 Object, 叫做装箱. </p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Apply</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>游戏开发笔试面试经历之多益网络</title>
+    <url>/apply/game_apply_duoyi.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h2 id="多益网络-2019-09-06-大数据与算法工程师-笔试"><a href="#多益网络-2019-09-06-大数据与算法工程师-笔试" class="headerlink" title="多益网络 2019.09.06 大数据与算法工程师 笔试"></a>多益网络 2019.09.06 大数据与算法工程师 笔试</h2><ol>
+<li>最小堆 H, 使用数组进行保存, 最开始有 5 个数字: 2 3 5 8 10, 依次插入 7 1, 写出插入后数组中保存的数字序列. </li>
+</ol>
+<blockquote>
+<p>堆可以用一个 <strong>完全二叉树</strong> 结构表示, 并且满足以下性质: </p>
+<p>大顶堆: 任意一个结点的值必须大于它的左右孩子的值. </p>
+<p>小顶堆: 任意一个结点的值必须小于它的左右孩子的值. </p>
+<p>答案: 1 3 2 8 10 7 5</p>
+</blockquote>
+<ol start="2">
+<li>判断题: </li>
+</ol>
 <ul>
-<li><ul>
-<li>执行 before 语句级触发器</li>
-</ul>
+<li><p>数组和链表中的元素都可以随机访问 (❌) </p>
 </li>
-<li><ul>
-<li>执行 before 行级触发器</li>
-</ul>
+<li><p>数组和链表插入元素删除元素的复杂度都是O(1) (❌) </p>
 </li>
-<li><ul>
-<li>执行 DML 语句</li>
-</ul>
-</li>
-<li><ul>
-<li>执行 after 行级触发器 </li>
-</ul>
-</li>
-<li><ul>
-<li>执行 after 语句级触发器</li>
-</ul>
+<li><p>哈希索引无法做范围查询 (✔) </p>
 </li>
 </ul>
+<blockquote>
+<p>数组可以随机访问, 但是链表只能遍历访问. </p>
+<p>数组和链表插入元素删除元素的复杂度都是O(n). </p>
+<p>哈希索引只能用于定值查询, 无法用于范围查询. 哈希索引进行排序操作无任何意义. </p>
+</blockquote>
 <ol start="3">
-<li><p>语句级触发器中, 不得使用 <code>:new</code> 和 <code>:old</code>, 行级触发器中, <code>:old</code> 为 &quot;操作前&quot; 的整行记录, <code>:new</code> 为 &quot;操作后&quot; 的整行记录.</p>
+<li>对 25 15 30 10 50 3 5 60 进行快速排序. </li>
+</ol>
+<blockquote>
+<p>第一趟: 5 15 3 10 25 50 30 60 (pivot: 25)</p>
+<p>第二趟: 3 5 15 10 25 30 50 60 (pivot: 5 50)</p>
+<p>第三趟: 3 5 10 15 25 30 50 60 (pivot: 15)</p>
+</blockquote>
+<ol start="4">
+<li>判断题: </li>
+</ol>
+<ul>
+<li><p>指针的值是指指针本身存储的值, 这个值是地址, 不是数值.  (✔) </p>
+</li>
+<li><p>指针可以为空, 可以有多级指针 (✔) </p>
+</li>
+<li><p>数组作为参数传入函数, 会退化为一级指针 (✔) </p>
+</li>
+<li><p>sizeof(指针) 所得到的值是指针所指向的变量的大小 (❌) </p>
+</li>
+<li><p>树的前序遍历, 中序遍历, 后序遍历中, 叶子结点的前后顺序是一样的.  (✔) </p>
+</li>
+</ul>
+<ol start="5">
+<li>哈希表的查找效率问题. 哈希表的长度是 10, 哈希表中一共 8 个关键字: 75 33 52 41 12 88 66 27, 哈希函数是: H(K) = key MOD 7, 解决冲突的方法采用: 线性探测再散列法, 则等概率查找成功的平均查找长度为多少. </li>
+</ol>
+<blockquote>
+<p>所有关键字对 7 取余: 4 1 2 3 1 3 5 4</p>
+<p>由于一共有 8 个关键字, 则平均查找长度是: </p>
+<p>(1/8) * (4+1+2+3+1+3+5+4) = 23/8</p>
+</blockquote>
+<ol start="6">
+<li>网络通信: TCP 建立连接的过程采用三次握手, 已知第三次握手报文发送序列: 1000, 确认序列: 2000, 写出第二次握手的发送序列和确认序列. </li>
+</ol>
+<blockquote>
+<p>TCP 建立连接的三次握手分别是:</p>
+</blockquote>
 <table>
 <thead>
 <tr>
-<th align="left">---</th>
-<th align="left">insert</th>
-<th align="left">update</th>
-<th align="left">delete</th>
+<th align="left"></th>
+<th>发送序列</th>
+<th align="left">确认序列</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="left">old</td>
-<td align="left">不允许使用</td>
-<td align="left">更新前记录</td>
-<td align="left">删除前记录</td>
+<td align="left">客户端</td>
+<td>X</td>
+<td align="left"></td>
 </tr>
 <tr>
-<td align="left">new</td>
-<td align="left">插入后记录</td>
-<td align="left">更新后记录</td>
-<td align="left">不允许使用</td>
+<td align="left">服务器</td>
+<td>Y</td>
+<td align="left">X+1</td>
+</tr>
+<tr>
+<td align="left">客户端</td>
+<td>X+1</td>
+<td align="left">Y+1</td>
 </tr>
 </tbody></table>
-</li>
-<li><p><font color='red'><strong>只有 before 行级触发器可以修改 :new 记录的值.</strong></font></p>
-</li>
-<li><p><font color='red'><strong>在行级触发器中, 不得将 <code>insert</code>, <code>update</code>, <code>delete</code> 语句作用于 &quot;自身触发表&quot;!</strong></font></p>
-</li>
+<blockquote>
+<p>题目已知 X+1=1000, Y+1=2000, 则第二次握手的发送序列和确认序列是: 1999, 1000</p>
+</blockquote>
+<ol start="7">
+<li>进程之间的同步和互斥分别表明了各个进程之间的 () . </li>
 </ol>
-<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--在插入新纪录之前, 修改这条待插入记录的 szm 字段和 qp 字段.</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">trigger</span> trigger_ryb_pinyin</span><br><span class="line"><span class="keyword">before</span> <span class="keyword">insert</span> <span class="keyword">on</span> ryb</span><br><span class="line"><span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">:new.szm := <span class="keyword">lower</span>(hzpy.hzpycap(:new.xm));</span><br><span class="line">:new.qp := lower(hzpy.gethzfullpy(:new.xm));</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
-
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vSERLMjAxNi9wLzY5MTEwODcuaHRtbA==">详解ORACLE中的trigger<i class="fa fa-external-link-alt"></i></span></p>
+<ul>
+<li><p>A 相互独立与互相制约</p>
 </li>
-<li><p><span class="exturl" data-url="aHR0cDovL2Jsb2cuaXRwdWIubmV0LzIyNTI1Njc2L3ZpZXdzcGFjZS0xMTE3MDYwLw==">关于oracle触发器中修改自身表字段的问题<i class="fa fa-external-link-alt"></i></span></p>
+<li><p>B 协调与竞争</p>
+</li>
+<li><p>C 不同状态</p>
+</li>
+<li><p>D 动态性和独立性</p>
 </li>
 </ul>
-]]></content>
+<blockquote>
+<p>进程互斥, 同步的概念是并发进程下存在的概念, 有了并发进程, 就产生了资源的竞争与协作, 从而就要通过进程的互斥, 同步, 通信来解决资源的竞争与协作问题, 选 B. </p>
+<p>进程的互斥 (mutual exclusion ) 是解决进程间竞争关系( 间接制约关系) 的手段.  进程互斥指若干个进程要使用同一共享资源时, 任何时刻最多允许一个进程去使用, 其他要使用该资源的进程必须等待, 直到占有资源的进程释放该资源. </p>
+<p>进程的同步 (Synchronization) 是解决进程间协作关系( 直接制约关系) 的手段. 进程同步指两个以上进程基于某个条件来协调它们的活动. 一个进程的执行依赖于另一个协作进程的消息或信号, 当一个进程没有得到来自于另一个进程的消息或信号时则需等待, 直到消息或信号到达才被唤醒. </p>
+</blockquote>
+<ol start="8">
+<li>表达式: a * (b + c) - d 的后缀表达式是? </li>
+</ol>
+<blockquote>
+<p>前缀表达式: 运算符放在两个运算数的前面. +*-bcad</p>
+<p>中缀表达式: 运算符放在两个运算数的中间. (b+c)*a-d</p>
+<p>后缀表达式: 运算符放在两个运算符的后面. bc+a*d-</p>
+</blockquote>
+<ol start="9">
+<li>假设循环队列的结构是: </li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">typedef <span class="keyword">struct</span> </span><br><span class="line">&#123;</span><br><span class="line">    DataType data[Maxsize];<span class="comment">//数组队列</span></span><br><span class="line">    <span class="keyword">int</span> front;<span class="comment">//队头</span></span><br><span class="line">    <span class="keyword">int</span> rear;<span class="comment">//队尾</span></span><br><span class="line">&#125;Queue;</span><br></pre></td></tr></table></figure>
+
+<p>若有一个 Queue 类型的队列 Q, 判断这个队列满和空的条件是? </p>
+<blockquote>
+<p>判断满: Q.front == (Q.rear + 1) % Maxsize (取余运算)</p>
+<p>判断空: Q.front == Q.rear</p>
+</blockquote>
+<ol start="10">
+<li>桶排序的时间复杂度是? 是否稳定. </li>
+</ol>
+<blockquote>
+<ul>
+<li>桶排序的平均时间复杂度为线性的 O(N+C), 其中C=N*(logN-logM). 如果相对于同样的 N, 桶数量 M 越大, 其效率越高, 最好的时间复杂度达到O(N).  (N: 待排序数的数量 M: 桶的数量)</li>
+<li>桶排序的空间复杂度为O(N+M), 如果输入数据非常庞大, 而桶的数量也非常多, 则空间代价无疑是昂贵的. </li>
+<li>桶排序是稳定的. </li>
+</ul>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">插入类排序方案</th>
+<th align="left">时间复杂度</th>
+<th align="left">空间复杂度</th>
+<th align="left">稳定性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">直接插入排序</td>
+<td align="left">O(n^2)</td>
+<td align="left">O(1)</td>
+<td align="left">稳定</td>
+</tr>
+<tr>
+<td align="left">折半插入排序</td>
+<td align="left">O(n^2)</td>
+<td align="left">O(1)</td>
+<td align="left">稳定</td>
+</tr>
+<tr>
+<td align="left">二路插入排序</td>
+<td align="left">O(n^2)</td>
+<td align="left">O(1)</td>
+<td align="left">稳定</td>
+</tr>
+<tr>
+<td align="left">希尔排序</td>
+<td align="left">O(n^(1.3-2))</td>
+<td align="left">O(1)</td>
+<td align="left">不稳定</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">选择类排序方案</th>
+<th align="left">时间复杂度</th>
+<th align="left">空间复杂度</th>
+<th align="left">稳定性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">简单选择排序</td>
+<td align="left">O(n^2)</td>
+<td align="left">O(1)</td>
+<td align="left">不稳定</td>
+</tr>
+<tr>
+<td align="left">堆排序</td>
+<td align="left">O(nlogn)</td>
+<td align="left">O(1)</td>
+<td align="left">不稳定</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">交换类排序方案</th>
+<th align="left">时间复杂度</th>
+<th align="left">空间复杂度</th>
+<th align="left">稳定性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">冒泡排序</td>
+<td align="left">O(n^2)</td>
+<td align="left">O(1)</td>
+<td align="left">稳定</td>
+</tr>
+<tr>
+<td align="left">快速排序</td>
+<td align="left">O(nlogn)</td>
+<td align="left">O(nlogn)</td>
+<td align="left">不稳定</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">其他排序方案</th>
+<th align="left">时间复杂度</th>
+<th align="left">空间复杂度</th>
+<th align="left">稳定性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">归并排序</td>
+<td align="left">O(nlogn)</td>
+<td align="left">O(nlogn)</td>
+<td align="left">稳定</td>
+</tr>
+<tr>
+<td align="left">基数排序</td>
+<td align="left">O(d(r+n))</td>
+<td align="left">O(rd+n)</td>
+<td align="left">稳定</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>基数排序中 r: 关键字的基数 n: 关键字的个数 d: 长度</p>
+</blockquote>
+<ol start="11">
+<li>建立一个有序单链表的时间复杂度是多少. </li>
+</ol>
+<blockquote>
+<p>对单链表而言, 一些快速的排序算法是用不了的, 只能用直接插入等 O(n^2) 级的排序算法来实现排序. 答案: O(n^2)</p>
+</blockquote>
+<ol start="12">
+<li>权值为 4 9 2 7 5 12 组成的 Huffman 树, 带权路径长度是? </li>
+</ol>
+<blockquote>
+<p> 打造哈夫曼树: </p>
+<p> 第一层: 39</p>
+<p> 第二层: 23 16</p>
+<p> 第三层: 11 12 7 9</p>
+<p> 第四层:  6 5</p>
+<p> 第五层:  2 4</p>
+<p> 带权路径长度: 2 * 4 + 4 * 4 + 5 * 3 + 12 * 2 + 7 * 2 + 9 * 2 = 95</p>
+</blockquote>
+<ol start="13">
+<li>有序表有 1000 个元素, 使用二分查找, 最多要比较多少次才能知道所查找元素是否在查找序列中. </li>
+</ol>
+<blockquote>
+<p>二分查找的比较次数是: logN, 这里是向上取整, 所以是 10 次. </p>
+<p>如果已经确定待查找元素就在序列中了, 则向下取整, 需要比较 9 次. </p>
+</blockquote>
+<ol start="14">
+<li>如何迅速判断两个单向无环链表为交叉链表? </li>
+</ol>
+<blockquote>
+<p> 交叉链表: 两个链表, 从某个结点开始, 后续所有结点完全相同,  X 型相交是不可能出现的. 因为想要出现 X 型相交, 那么相交点就拥有了两个 next 指针. 例如: </p>
+<p> A: 1 2 3 4 8 9 10 11</p>
+<p> B: 7 6 5 4 8 9 10 11</p>
+<p> 对于两个无环链表, 有两种可取的办法: </p>
+<ul>
+<li><p>人为构造环, 将链表A的尾节点指向链表B, 再判断是否构环成功. 从链表B的头指针往下遍历, 如果能够回到B, 则说明相交. </p>
+</li>
+<li><p><strong>判断两链表最后一个节点是否相同</strong>, 如果相交, 则尾节点肯定是同一节点. (答案)</p>
+<p>引申问题: 如何找出两个交叉链表的相交结点? </p>
+</li>
+<li><p>首先遍历两个链表到表尾(NULL), 记录下两个链表的长度: LA, LB, 并求出两个链表的长度差(绝对值) |LA - LB|. </p>
+</li>
+<li><p>之后再次遍历两个链表, 让长的那个链表先行遍历 |LA - LB| 个结点, 之后两者同步遍历并判断结点是否相等, 即可找出相交结点. </p>
+<p>引申问题: 如何判断一个单链表是否存在环? </p>
+</li>
+<li><p>使用追赶法. 设置两个指针 slow 和 fast, slow 的速度是每次移动 1 个单位, fast 的速度是每次移动 2 个单位, 这样如果存在环, 两者必定会在某处相遇. 如果 fast 指针走到了 NULL 都没有和 slow 相遇, 说明没有环. </p>
+<p>引申问题: 如何得到这个环的长度? </p>
+</li>
+<li><p>先使用追赶法, 记录下两个指针相遇的位置 P (碰撞点, 相遇点). </p>
+</li>
+<li><p>之后从 碰撞点 P 出发, 依旧使用追赶法, slow 每次一个单位, fast 每次 2 个单位, 当他们两个再次相遇时, slow 经过的结点数就是环的长度. </p>
+</li>
+<li><p>证明: 设环的长度是 X, 当 slow 指针经过了 X 个结点时(正好绕了一圈, 回到起点 P). fast 刚好经过了 2X 个结点(正好绕了两圈, 回到起点 P), 此时两者必定相遇. </p>
+<p>引申问题: 如何得到这个环的 <strong>环入口结点</strong>? </p>
+</li>
+<li><p>定理: 定义两个指针, 分别从<strong>链表头结点</strong>和<strong>碰撞结点 P</strong>出发, 速度都是一次移动 1 个单位, 则两者必定会在<strong>环的入口结点</strong>相遇. </p>
+</li>
+<li><p>证明: 根据最开始使用的追赶法可知, slow 指针走过的结点数是从链表头结点到碰撞点 P 的长度, 设从链表头结点到环的入口结点的距离是 a, 从环的入口结点到碰撞点的距离是 b, 则 slow 走过的距离是: a+b. fast 指针走过的结点数是 slow 指针走过的结点数再加上 n 圈环的长度, 同时也是 slow 指针走过的结点数的 2 倍, 设环的长度为 L, 则 <code>2(a+b) = (a+b) + nL</code>, 化简后: <code>a+b = nL</code> =&gt;  <code>a+b = (n-1)L + L</code> =&gt;  <code>a = (n-1)L + (L-b)</code>. 证明完毕. </p>
+</li>
+</ul>
+</blockquote>
+<ol start="15">
+<li>数据库保护分为哪四部分? </li>
+</ol>
+<blockquote>
+<p> 安全性控制, 完整性控制, 并发性控制, 数据恢复</p>
+</blockquote>
+<ol start="16">
+<li><p>说明 Linux 下多路复用 IO 接口 epoll 和 select 的区别及其适用场景. </p>
+</li>
+<li><p>说明资源在进程和线程上如何分配. </p>
+</li>
+<li><p>编程题: 判断输入的数字是否是梦想数. (输入数据是正整数)</p>
+</li>
+</ol>
+<blockquote>
+<p>梦想数: 对数字进行每一位平方后求和运算, 无限循环下去, 如果最后得到的个位数是 1, 则这个数字是梦想数. </p>
+<p>例如: 19</p>
+<p>1 + 81 = 82</p>
+<p>64 + 4 = 68</p>
+<p>36 + 64 = 100</p>
+<p>1 + 0 + 0 = 1</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line">namespace _02_判断一个数字是不是梦想数</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">string</span> numberStr;</span><br><span class="line">            <span class="keyword">int</span> number;</span><br><span class="line">            <span class="keyword">int</span> temp, result = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//读取一个数字字符串</span></span><br><span class="line">                numberStr = Console.ReadLine();</span><br><span class="line"></span><br><span class="line">                <span class="comment">//字符串转换为数字</span></span><br><span class="line">                number = Convert.ToInt32(numberStr);</span><br><span class="line">                <span class="keyword">if</span>(number == <span class="number">1</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//取出每一位数字并进行平方和运算</span></span><br><span class="line">                <span class="keyword">while</span> (<span class="literal">true</span>)<span class="comment">//只要结果不是个位数, 就一直无限循环, 进行平方和运算</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">while</span> (number &gt;  <span class="number">0</span>)<span class="comment">//进行一个平方和运算</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        temp = number % <span class="number">10</span>;<span class="comment">//对 10 取余, 取出当前的个位数</span></span><br><span class="line">                        number /= <span class="number">10</span>;<span class="comment">//除以 10, 舍弃个位数</span></span><br><span class="line"></span><br><span class="line">                        result += temp * temp;<span class="comment">//平方求和</span></span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> (result / <span class="number">10</span> != <span class="number">0</span>)<span class="comment">//只要结果还不是个位数, 就准备进行下次平方和计算</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        number = result;<span class="comment">//重点</span></span><br><span class="line">                        result = <span class="number">0</span>;<span class="comment">//重点</span></span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span><span class="comment">//如果结果是个位数了</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//判断是不是 1</span></span><br><span class="line">                        <span class="keyword">if</span> (result == <span class="number">1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            Console.WriteLine(<span class="string">&quot;是梦想数&quot;</span>);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">else</span> <span class="keyword">if</span> (result / <span class="number">10</span> == <span class="number">0</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            Console.WriteLine(<span class="string">&quot;不是梦想数&quot;</span>);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                result = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            Console.WriteLine(<span class="string">&quot;按任意键结束&quot;</span>);</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>Oracle</category>
+        <category>Apply</category>
       </categories>
       <tags>
-        <tag>Oracle</tag>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>游戏开发笔试面试经历之巨人网络</title>
+    <url>/apply/game_apply_giant.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h2 id="巨人网络-2019-09-06-游戏开发工程师-笔试"><a href="#巨人网络-2019-09-06-游戏开发工程师-笔试" class="headerlink" title="巨人网络 2019.09.06 游戏开发工程师 笔试"></a>巨人网络 2019.09.06 游戏开发工程师 笔试</h2><ol>
+<li>选择题</li>
+</ol>
+<ul>
+<li>A 类模板的成员函数都是函数模板, 类模板实例化后, 成员函数都随之实例化.  (❌) </li>
+<li>B 一个类定义中, 只要有一个函数模板, 则这个类是类模板.  (❌) </li>
+<li>C 函数模板必须由程序员实例化为可执行的函数模板.  (❌) </li>
+<li>D 函数模板的实例化是由编译器实现的.  (✔) </li>
+</ul>
+<blockquote>
+<p>马后炮解答: </p>
+<ol>
+<li>类模板的成员函数都是函数模板. </li>
+<li>类模板实例化后, 成员函数 (即函数模板) 会随之实例化, 但是没使用过成员函数 (即函数模板) 的不会随之实例化. </li>
+<li>函数模板必须由 <strong>编译器</strong> 根据 <strong>程序员的调用类型</strong> 实例化为 <strong>可执行的函数</strong>. </li>
+</ol>
+</blockquote>
+<ol start="2">
+<li>选择题</li>
+</ol>
+<ul>
+<li>A 进程是程序运行的最小单位.  (❌) </li>
+<li>B 线程是资源分配的最小单位.  (❌) </li>
+<li>C 在 Linux 中, 进程比线程安全, 进程不会共享数据.  (❌) </li>
+<li>D 进程有独立的地址空间, 线程没有独立的地址空间.  (✔) </li>
+</ul>
+<blockquote>
+<p>马后炮解答: </p>
+<ol>
+<li>进程是资源分配的最小单位. </li>
+<li>线程是程序运行的最小单位. </li>
+<li>Linux 中, 进程可以共享数据. </li>
+</ol>
+</blockquote>
+<ol start="3">
+<li>选择题</li>
+</ol>
+<ul>
+<li>下列编程语句需要加锁的是? </li>
+<li>A ++X; </li>
+<li>B X++; </li>
+<li>C X=Y; </li>
+<li>D X=1; </li>
+</ul>
+<blockquote>
+<p>马后炮解答: </p>
+<p>X=Y: 在 X86 上它包含两个操作: 读取 y 至寄存器, 再把该值写入 x. 读 y 的值这个操作本身是原子的, 把值写入 x 也是原子的, 但是两者合起来不是原子操作, 所以需要进行同步. </p>
+<p>++X 和 X++ 这样的操作在多线程环境下是需要同步的. 因为 X86 会按三条指令的形式来处理这种语句: 从内存中读 x 的值到寄存器中, 对寄存器加 1, 再把新值写回 x 所处的内存地址. </p>
+<p>X=1: 是原子操作, 不可再分. </p>
+<p>答案: ABC</p>
+</blockquote>
+<ol start="4">
+<li>选择题</li>
+</ol>
+<ul>
+<li>A sizeof (指针): 可以得到指针所指向的内容的大小.  (❌) </li>
+<li>B sizeof (数组名): 可以取得数组的容量.  (✔) </li>
+<li>C 指针可以随时指向任意类型的内存块.  (❌) </li>
+<li>D 可以在程序运行中改变数组长度.  (✔) </li>
+</ul>
+<blockquote>
+<p>马后炮解答: </p>
+<ol>
+<li><strong>sizeof 不是函数</strong>. 因为 sizeof 写参数的时候, 有时候可以不加括号, 而且它可以直接以变量类型作为参数: <code>sizeof (int)</code>. </li>
+<li><strong>sizeof 不是一元操作符</strong>. 因为 sizeof 语句是在编译阶段求值的. 比如下面的语句: </li>
+</ol>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#include&quot;stdio.h&quot; </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="keyword">sizeof</span> (a = <span class="number">3</span>);</span><br><span class="line">    </span><br><span class="line">    printf(<span class="string">&quot;a 的值是: %d, b的值是: %d&quot;</span>, a, b);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在编译阶段就会被翻译成如下代码, 运行结果自然是: <code>a 的值是: 0, b的值是: 4</code></p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#include&quot;stdio.h&quot; </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//int b = sizeof (a = 3);</span></span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">4</span>; <span class="comment">// sizeof (a = 3); 会被直接编译成 4, 所以 &quot;a = 3;&quot; 并不会运行</span></span><br><span class="line">    </span><br><span class="line">    printf(<span class="string">&quot;a 的值是: %d, b的值是: %d&quot;</span>, a, b);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ol start="3">
+<li><p>sizeof 的后面直接写数据类型的关键字时, 必须加括号. <code>sizeof (int);</code></p>
+</li>
+<li><p>sizeof 使用时的各种情况: </p>
+<p>sizeof (固有数据类型, 例如 int float double bool): 取得类型的字节长度. 对于拥有自定义 typedef 类型的语言, 返回的是原数据类型的字节长度. </p>
+<p>sizeof (函数类型, 例如 <code>int Add(int a, int b)</code>): 取得返回值的类型的字节长度. 当返回值是 void 类型时, 编译器会报错. </p>
+<p>sizeof (任何指针类型, 例如变量指针, 函数指针)): 取得指针的长度, 也就是 4. </p>
+<p>Sizeof (数组名): 取得数组的容量. </p>
+</li>
+</ol>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Apply</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何让 Unity 走代理?</title>
+    <url>/unity/unity_proxy.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>最近在学习制作 Unity 游戏, 到了最后需要发布 Android 版本游戏程序的时候, 发现根本导不出来!!! </p>
+<p>每次都会卡在 Gradle 的构建上... 看了日志之后知道了原来是从仓库下载包的时候下载失败了...那我就更郁闷了, 我 24 小时全天开着梯子, 你跟我说现在还有我下载不下来的东西? 后来在这篇文章中找到了答案! <span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
+<p>原来 Unity 压根不吃梯子啊~ ~ !</p>
+<h1 id="解决方法一"><a href="#解决方法一" class="headerlink" title="解决方法一"></a>解决方法一</h1><p><strong><code>使用阿里的镜像源替代 Google 源</code></strong></p>
+<ol>
+<li><p>找到 Unity 的安装目录.</p>
+</li>
+<li><p>使用 VSCode 打开路径: <code>Editor\Data\PlaybackEngines\AndroidPlayer\Tools\GradleTemplates</code>.</p>
+</li>
+<li><p>对路径中的文件逐一修改, 将其中所有的</p>
+</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">google()</span><br><span class="line">jcenter()</span><br></pre></td></tr></table></figure>
+
+<p>修改为:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/google&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/jcenter&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><font color='red'><strong>重启 Unity 项目</strong></font>, 重新发布即可!</li>
+</ol>
+<p>[<strong>注</strong>]</p>
+<ol>
+<li><p>文件中要替换的 <code>google() jcenter()</code> 不止一处, 必须全部替换!</p>
+</li>
+<li><p>Unity 每次打开项目的时候, 都会从模板中复制文件, 在项目中建立缓存, 其中就包含我们刚刚修改的文件. 如果不重启项目, 那么项目中的缓存文件依旧使用的是修改前的文件, 此时发布依旧会失败, 所以必须重启 Unity 项目, 让 Unity 使用我们修改后的模板重新建立缓存!</p>
+</li>
+</ol>
+<h1 id="解决方法二"><a href="#解决方法二" class="headerlink" title="解决方法二"></a>解决方法二</h1><p><strong><code>为 Unity Hub 和 Unity 设置代理</code></strong></p>
+<p>Unity Hub 和 Unity 在连接网络时并不会读取浏览器配置, 因此梯子时无效的! 但是 Unity Hub 和 Unity 会读取环境变量中 <code>HTTP_PROXY</code> 和 <code>HTTPS_PROXY</code> 的值判断是否使用代理.</p>
+<p>因此只要配置好这两个环境变量就好了, 下面是引用的这篇博客 (<span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span>) 中的一段:</p>
+<blockquote>
+<p>Windows 下, 写一个 bat 脚本, 内容如下:</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;@<span class="built_in">echo</span> off</span><br><span class="line">&gt;<span class="built_in">set</span> HTTP_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">set</span> HTTPS_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">start</span> &quot;&quot; &quot;C:\Program Files\Unity Hub\Unity Hub.exe&quot;</span><br></pre></td></tr></table></figure>
+
+<p>注意, HTTPS_PROXY 的设置也是 &quot;<span class="exturl" data-url="aHR0cDovL3h4eHgmcXVvdDsv">http://xxxx&quot;<i class="fa fa-external-link-alt"></i></span>, 而不是 &quot;<span class="exturl" data-url="aHR0cHM6Ly94eHh4JnF1b3Q7Lw==">https://xxxx&quot;<i class="fa fa-external-link-alt"></i></span></p>
+<p>mac 下, 脚本如下:</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;<span class="built_in">echo</span> &#x27;#!/bin/bash</span><br><span class="line">&gt;export HTTP_PROXY=proxy-url</span><br><span class="line">&gt;export HTTPS_PROXY=proxy-url</span><br><span class="line">&gt;nohup &quot;/Applications/Unity Hub.app/Contents/MacOS/Unity Hub&quot; &amp;&gt;/dev/null &amp;&#x27; &gt; launchUnityHub.command</span><br><span class="line">&gt;chmod +x launchUnityHub.command</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>我用的方法是第一种方法, 确实可行! 第二种没用, 因为我不喜欢动环境变量! 😂</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYW5nZV9mcm9tX25vdy9hcnRpY2xlL2RldGFpbHMvMTAwNTE5NTQ2">Unity使用Gradle打包出错问题<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
       </tags>
   </entry>
   <entry>
@@ -3628,7 +3631,7 @@ const dp_update = new DPlayer({
     <url>/oracle/oracle_notes.html</url>
     <content><![CDATA[<a id="more"></a>
 
-<h1 id="Oracle-中常用的功能语句"><a href="#Oracle-中常用的功能语句" class="headerlink" title="Oracle 中常用的功能语句"></a>Oracle 中常用的功能语句</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--查看当前会话的默认时间格式</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span> <span class="keyword">from</span> dual;</span><br><span class="line"></span><br><span class="line"><span class="comment">--查询数据库中所有用户的用户名</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> all_users;</span><br><span class="line"></span><br><span class="line"><span class="comment">--查询当前登录用户的信息</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> user_users;</span><br><span class="line"></span><br><span class="line"><span class="comment">--查询最近执行过的语句</span></span><br><span class="line"><span class="keyword">select</span> sql_text, sql_fulltext, first_load_time</span><br><span class="line">  <span class="keyword">from</span> v$<span class="keyword">sql</span></span><br><span class="line"> <span class="keyword">where</span> sql_fulltext <span class="keyword">like</span> <span class="string">&#x27;%from zccz_sbxgwdb where saasdm%&#x27;</span></span><br><span class="line"> <span class="keyword">order</span> <span class="keyword">by</span> last_active_time <span class="keyword">desc</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--查看数据库的位数</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">case</span> <span class="keyword">length</span>(address) <span class="keyword">when</span> <span class="number">8</span> <span class="keyword">then</span> <span class="string">&#x27;32 位数据库&#x27;</span> <span class="keyword">when</span> <span class="number">16</span> <span class="keyword">then</span> <span class="string">&#x27;64 位数据库&#x27;</span> <span class="keyword">end</span> <span class="keyword">as</span> 数据库版本 <span class="keyword">from</span> v$<span class="keyword">sql</span> <span class="keyword">where</span> <span class="keyword">rownum</span> &lt; <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="Oracle-中常用的功能语句"><a href="#Oracle-中常用的功能语句" class="headerlink" title="Oracle 中常用的功能语句"></a>Oracle 中常用的功能语句</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--查看当前会话的默认时间格式</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span> <span class="keyword">from</span> dual;</span><br><span class="line"></span><br><span class="line"><span class="comment">--查询数据库中所有用户的用户名</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> all_users;</span><br><span class="line"></span><br><span class="line"><span class="comment">--查询当前登录用户的信息</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> user_users;</span><br><span class="line"></span><br><span class="line"><span class="comment">--查询最近执行过的语句</span></span><br><span class="line"><span class="keyword">select</span> sql_text, sql_fulltext, first_load_time, last_active_time</span><br><span class="line">  <span class="keyword">from</span> v$<span class="keyword">sql</span></span><br><span class="line"> <span class="keyword">where</span> sql_fulltext <span class="keyword">like</span> <span class="string">&#x27;%from zccz_sbxgwdb where saasdm%&#x27;</span></span><br><span class="line"> <span class="keyword">order</span> <span class="keyword">by</span> last_active_time <span class="keyword">desc</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--查看数据库的位数</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">case</span> <span class="keyword">length</span>(address) <span class="keyword">when</span> <span class="number">8</span> <span class="keyword">then</span> <span class="string">&#x27;32 位数据库&#x27;</span> <span class="keyword">when</span> <span class="number">16</span> <span class="keyword">then</span> <span class="string">&#x27;64 位数据库&#x27;</span> <span class="keyword">end</span> <span class="keyword">as</span> 数据库版本 <span class="keyword">from</span> v$<span class="keyword">sql</span> <span class="keyword">where</span> <span class="keyword">rownum</span> &lt; <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
 
 <h1 id="Oracle-用户操作语句"><a href="#Oracle-用户操作语句" class="headerlink" title="Oracle 用户操作语句"></a>Oracle 用户操作语句</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--创建新用户</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> nkgl <span class="keyword">identified</span> <span class="keyword">by</span> nkgl123;</span><br><span class="line"></span><br><span class="line"><span class="comment">--修改用户密码</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> nkgl <span class="keyword">identified</span> <span class="keyword">by</span> nkgl234;</span><br><span class="line"></span><br><span class="line"><span class="comment">--删除用户 (用户拥有对象时, 无法直接删除用户, 必须先删除对象)</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">user</span> nkgl;</span><br><span class="line"></span><br><span class="line"><span class="comment">--删除用户对象</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">user</span> nkgl <span class="keyword">cascade</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--给用户授权</span></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">connect</span>, <span class="keyword">resource</span>, dba <span class="keyword">to</span> nkgl;</span><br><span class="line"></span><br><span class="line"><span class="comment">--撤销授权</span></span><br><span class="line"><span class="keyword">revoke</span> <span class="keyword">connect</span>, <span class="keyword">resource</span>, dba <span class="keyword">from</span> nkgl;</span><br></pre></td></tr></table></figure>
 
