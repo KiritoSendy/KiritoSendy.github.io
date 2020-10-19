@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kuroha.vip/unity/unity_floodfill.html</loc>
+    
+    <lastmod>2020-10-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/unity/unity_proxy.html</loc>
+    
+    <lastmod>2020-10-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/unity/unity_customizeTile.html</loc>
+    
+    <lastmod>2020-10-19</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kuroha.vip/oracle/oracle_notes.html</loc>
     
     <lastmod>2020-10-19</lastmod>
@@ -19,13 +40,6 @@
     <loc>https://kuroha.vip/computer/computer_issues.html</loc>
     
     <lastmod>2020-10-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kuroha.vip/unity/unity_proxy.html</loc>
-    
-    <lastmod>2020-09-28</lastmod>
     
   </url>
   
@@ -284,6 +298,13 @@
   </url>
   
   <url>
+    <loc>https://kuroha.vip/tags/%E9%9D%A2%E8%AF%95/</loc>
+    <lastmod>2020-10-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kuroha.vip/tags/ASP/</loc>
     <lastmod>2020-10-19</lastmod>
     <changefreq>daily</changefreq>
@@ -382,7 +403,14 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/%E9%9D%A2%E8%AF%95/</loc>
+    <loc>https://kuroha.vip/tags/Tile/</loc>
+    <lastmod>2020-10-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/tags/Algorithm/</loc>
     <lastmod>2020-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -399,6 +427,13 @@
   
   <url>
     <loc>https://kuroha.vip/categories/AutoHotKey/</loc>
+    <lastmod>2020-10-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/categories/Apply/</loc>
     <lastmod>2020-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -468,7 +503,7 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/Apply/</loc>
+    <loc>https://kuroha.vip/categories/Algorithm/</loc>
     <lastmod>2020-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
