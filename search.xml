@@ -1159,8 +1159,113 @@
 <h2 id="的使用"><a href="#的使用" class="headerlink" title="?? 的使用"></a>?? 的使用</h2><p>下方代码段中, 如果 intNullable 为 null, 则打印数字 0, 不是 null, 则打印 intNullable 自身.</p>
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>? intNullable = <span class="literal">null</span>;</span><br><span class="line">Console.WriteLine(intNullable ?? <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
 
+<h1 id="预处理指令"><a href="#预处理指令" class="headerlink" title="预处理指令"></a>预处理指令</h1><p>预处理指令编写的逻辑是, 让编译器在正式编译代码之前, 对代码进行处理.</p>
+<h2 id="语法规则"><a href="#语法规则" class="headerlink" title="语法规则"></a>语法规则</h2><ol>
+<li><p>预处理指令必须以 <font color='red'><strong>#</strong></font> 开头.</p>
+</li>
+<li><p>预处理指令必须位于行首.</p>
+</li>
+<li><p>预处理执行不是语句, 不以分号 &#39;;&#39; 结尾.</p>
+</li>
+</ol>
+<h2 id="常用预处理指令"><a href="#常用预处理指令" class="headerlink" title="常用预处理指令"></a>常用预处理指令</h2><h3 id="符号定义"><a href="#符号定义" class="headerlink" title="符号定义"></a>符号定义</h3><table>
+<thead>
+<tr>
+<th align="left">预处理指令</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">#define</td>
+<td align="left">定义符号</td>
+</tr>
+<tr>
+<td align="left">#undef</td>
+<td align="left">取消定义符号</td>
+</tr>
+</tbody></table>
+<h3 id="条件分支"><a href="#条件分支" class="headerlink" title="条件分支"></a>条件分支</h3><table>
+<thead>
+<tr>
+<th align="left">预处理指令</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">#if</td>
+<td align="left">条件指令的开始符号, 判断特定符号是否被定义</td>
+</tr>
+<tr>
+<td align="left">#elif</td>
+<td align="left">创建复合条件指令</td>
+</tr>
+<tr>
+<td align="left">#else</td>
+<td align="left">创建复合条件指令</td>
+</tr>
+<tr>
+<td align="left">#endif</td>
+<td align="left">条件指令的结束符号</td>
+</tr>
+</tbody></table>
+<h3 id="信息输出"><a href="#信息输出" class="headerlink" title="信息输出"></a>信息输出</h3><table>
+<thead>
+<tr>
+<th align="left">预处理指令</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">#warning</td>
+<td align="left">从代码的指定位置生成一个警告</td>
+</tr>
+<tr>
+<td align="left">#error</td>
+<td align="left">从代码的指定位置生成一个错误</td>
+</tr>
+</tbody></table>
+<h3 id="大纲管理"><a href="#大纲管理" class="headerlink" title="大纲管理"></a>大纲管理</h3><table>
+<thead>
+<tr>
+<th align="left">预处理指令</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">#region</td>
+<td align="left">指定一个可折叠的代码块</td>
+</tr>
+<tr>
+<td align="left">#endregion</td>
+<td align="left">标识 #region 结束</td>
+</tr>
+</tbody></table>
+<h3 id="信息控制"><a href="#信息控制" class="headerlink" title="信息控制"></a>信息控制</h3><table>
+<thead>
+<tr>
+<th align="left">预处理指令</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">#line</td>
+<td align="left">修改编译器输出<font color='red'><strong>错误和警告</strong></font>的行数, 文件名</td>
+</tr>
+<tr>
+<td align="left">#pragma</td>
+<td align="left">抑制或还原指定的编译<font color='red'><strong>警告</strong></font></td>
+</tr>
+</tbody></table>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Exercise</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">line</span> 200 &quot;boss.cs&quot;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">warning</span> 这里其实是 Program.cs 文件的第 6 行!</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">line</span> default</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">error</span> 这里其实是 Program.cs 文件的第 8 行!</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比如上面的代码段在编译时产生的警告和错误信息是:</p>
+<p><img data-src="/images/csharp/others/preprocessor_line.png" alt="line 命令"></p>
+<p>可以看到警告信息的文件名被修改为了 boss.cs, 行号变成了 200; 而错误信息的文件名和行号都是正确的.</p>
 <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVub29iLmNvbS9jc2hhcnAvY3NoYXJwLW9wZXJhdG9yLW92ZXJsb2FkaW5nLmh0bWw=">C# 运算符重载<i class="fa fa-external-link-alt"></i></span></li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVub29iLmNvbS9jc2hhcnAvY3NoYXJwLW9wZXJhdG9yLW92ZXJsb2FkaW5nLmh0bWw=">C# 运算符重载<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVub29iLmNvbS9jc2hhcnAvY3NoYXJwLXByZXByb2Nlc3Nvci1kaXJlY3RpdmVzLmh0bWw=">C# 预处理指令<i class="fa fa-external-link-alt"></i></span></p>
+</li>
 </ul>
 ]]></content>
       <categories>
