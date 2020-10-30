@@ -3072,6 +3072,40 @@
       </tags>
   </entry>
   <entry>
+    <title>如何创建自定义瓦片</title>
+    <url>/unity/unity_customizeTile.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="选用待继承的瓦片"><a href="#选用待继承的瓦片" class="headerlink" title="选用待继承的瓦片"></a>选用待继承的瓦片</h1><p>编写自定义瓦片其实就是通过继承 Unity 原有瓦片, 并添加新数据来创建自己的瓦片, 因此首先需要选用待继承的瓦片, 这个根据项目的需要选择即可. </p>
+<p>如果瓦片需要播放动画, 便需要继承动画瓦片, 需要使用预制体就继承预制体瓦片, 需要使用普通瓦片, 随机瓦片, 规则瓦片时都可以继承自规则瓦片.</p>
+<h1 id="添加自定义数据"><a href="#添加自定义数据" class="headerlink" title="添加自定义数据"></a>添加自定义数据</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 魔剑镇魂曲瓦片, 继承自 RuleTile</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">Serializable</span>]</span><br><span class="line">[<span class="meta">CreateAssetMenu(fileName = <span class="meta-string">&quot;New Sword Requiem Tile.asset&quot;</span>, menuName = <span class="meta-string">&quot;Sword Requiem Tile&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SwordRequiemTile</span> : <span class="title">RuleTile</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 枚举: 地形类型</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> EM_Terrain defaultTerrainType;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面是我自定义的 <code>Sword Requiem Tile</code>, 只添加了一个简单的枚举类型数据.</p>
+<ul>
+<li><p>Serializable: 标记此类可以被序列化.</p>
+</li>
+<li><p>CreateAssetMenu: 标记此脚本可以在资源菜单中直接创建, 菜单项为: <code>New Sword Requiem Tile.asset</code>, 菜单项的路径为: <code>Sword Requiem Tile</code>.</p>
+</li>
+<li><p>SwordRequiemTile: 继承自规则瓦片, 自定义的瓦片类型.</p>
+</li>
+<li><p>defaultTerrainType: 自定义数据-默认地形类型.</p>
+</li>
+</ul>
+<p>[<strong>注</strong>] 这个地方有一个挺大的坑, 可以看到我这里的自定义数据使用的是 &#39;字段&#39; 而非 &#39;属性&#39;, 因为使用属性, Inspector 面板中便无法持久保存瓦片属性. </p>
+<p>表现在项目中就是, 首先创建枚举, &#39;森林&#39; 的枚举值为 0, &#39;断层&#39; 为 1, 我创建了一个 Sword Requiem Tile, 默认地形类型自动初始化为 &#39;森林&#39;, 然后修改瓦片的地形类型为 &#39;断层&#39;, 之后绘制地形, 运行游戏, 发现一切正常, 但是一旦关闭 Unity, 再次打开时所有瓦片的自定义数据全部会被重置为 &#39;森林&#39;, 即默认值, 想想这个多可怕!</p>
+<p>以上情况不知道是不是我自己的失误, 总之这里使用原始的字段不会有任何问题.</p>
+<h1 id="编写自定义瓦片的-Inspector-面板"><a href="#编写自定义瓦片的-Inspector-面板" class="headerlink" title="编写自定义瓦片的 Inspector 面板"></a>编写自定义瓦片的 Inspector 面板</h1><p>之前使用 &#39;属性&#39; 作为自定义数据的时候编写了 Inspector 面板的脚本, 后来改用了 &#39;字段&#39; 之后就发现根本不用单独编写脚本了, Unity 会自动进行渲染...😅 这里就先不写 Inspector 面板该如何自定义了, 因为我也不会啊~ 留一个链接, 以便日后捡起来用.</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zNDIzNDMxNQ==">自定义属性面板<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>Tile</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>正则表达式</title>
     <url>/program/regular_expression.html</url>
     <content><![CDATA[<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式?"></a>正则表达式?</h1><blockquote>
@@ -3369,40 +3403,6 @@
       </categories>
       <tags>
         <tag>Program</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何创建自定义瓦片</title>
-    <url>/unity/unity_customizeTile.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="选用待继承的瓦片"><a href="#选用待继承的瓦片" class="headerlink" title="选用待继承的瓦片"></a>选用待继承的瓦片</h1><p>编写自定义瓦片其实就是通过继承 Unity 原有瓦片, 并添加新数据来创建自己的瓦片, 因此首先需要选用待继承的瓦片, 这个根据项目的需要选择即可. </p>
-<p>如果瓦片需要播放动画, 便需要继承动画瓦片, 需要使用预制体就继承预制体瓦片, 需要使用普通瓦片, 随机瓦片, 规则瓦片时都可以继承自规则瓦片.</p>
-<h1 id="添加自定义数据"><a href="#添加自定义数据" class="headerlink" title="添加自定义数据"></a>添加自定义数据</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 魔剑镇魂曲瓦片, 继承自 RuleTile</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">Serializable</span>]</span><br><span class="line">[<span class="meta">CreateAssetMenu(fileName = <span class="meta-string">&quot;New Sword Requiem Tile.asset&quot;</span>, menuName = <span class="meta-string">&quot;Sword Requiem Tile&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SwordRequiemTile</span> : <span class="title">RuleTile</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 枚举: 地形类型</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> EM_Terrain defaultTerrainType;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面是我自定义的 <code>Sword Requiem Tile</code>, 只添加了一个简单的枚举类型数据.</p>
-<ul>
-<li><p>Serializable: 标记此类可以被序列化.</p>
-</li>
-<li><p>CreateAssetMenu: 标记此脚本可以在资源菜单中直接创建, 菜单项为: <code>New Sword Requiem Tile.asset</code>, 菜单项的路径为: <code>Sword Requiem Tile</code>.</p>
-</li>
-<li><p>SwordRequiemTile: 继承自规则瓦片, 自定义的瓦片类型.</p>
-</li>
-<li><p>defaultTerrainType: 自定义数据-默认地形类型.</p>
-</li>
-</ul>
-<p>[<strong>注</strong>] 这个地方有一个挺大的坑, 可以看到我这里的自定义数据使用的是 &#39;字段&#39; 而非 &#39;属性&#39;, 因为使用属性, Inspector 面板中便无法持久保存瓦片属性. </p>
-<p>表现在项目中就是, 首先创建枚举, &#39;森林&#39; 的枚举值为 0, &#39;断层&#39; 为 1, 我创建了一个 Sword Requiem Tile, 默认地形类型自动初始化为 &#39;森林&#39;, 然后修改瓦片的地形类型为 &#39;断层&#39;, 之后绘制地形, 运行游戏, 发现一切正常, 但是一旦关闭 Unity, 再次打开时所有瓦片的自定义数据全部会被重置为 &#39;森林&#39;, 即默认值, 想想这个多可怕!</p>
-<p>以上情况不知道是不是我自己的失误, 总之这里使用原始的字段不会有任何问题.</p>
-<h1 id="编写自定义瓦片的-Inspector-面板"><a href="#编写自定义瓦片的-Inspector-面板" class="headerlink" title="编写自定义瓦片的 Inspector 面板"></a>编写自定义瓦片的 Inspector 面板</h1><p>之前使用 &#39;属性&#39; 作为自定义数据的时候编写了 Inspector 面板的脚本, 后来改用了 &#39;字段&#39; 之后就发现根本不用单独编写脚本了, Unity 会自动进行渲染...😅 这里就先不写 Inspector 面板该如何自定义了, 因为我也不会啊~ 留一个链接, 以便日后捡起来用.</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zNDIzNDMxNQ==">自定义属性面板<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>Tile</tag>
       </tags>
   </entry>
   <entry>
@@ -3974,7 +3974,7 @@ const dp_update = new DPlayer({
 
 <h1 id="Oracle-中常用的功能语句"><a href="#Oracle-中常用的功能语句" class="headerlink" title="Oracle 中常用的功能语句"></a>Oracle 中常用的功能语句</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--获取全部带有 &quot;指定列名&quot; 的表</span></span><br><span class="line"><span class="keyword">select</span> table_name <span class="keyword">from</span> user_tab_cols <span class="keyword">where</span> column_name = <span class="string">&#x27;SAASDM&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--快速备份</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> [备份表的名称] <span class="keyword">as</span> <span class="keyword">select</span> * <span class="keyword">from</span> [表名];</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> person_backup_20201031 <span class="keyword">as</span> <span class="keyword">select</span> * <span class="keyword">from</span> person;</span><br><span class="line"></span><br><span class="line"><span class="comment">--查询数据库中所有用户的信息 (用户名, ID, 创建日期)</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> all_users;</span><br><span class="line"></span><br><span class="line"><span class="comment">--查询当前登录用户的信息</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> user_users;</span><br><span class="line"></span><br><span class="line"><span class="comment">--查询最近执行过的语句</span></span><br><span class="line"><span class="keyword">select</span> sql_text, sql_fulltext, first_load_time, last_active_time</span><br><span class="line">  <span class="keyword">from</span> v$<span class="keyword">sql</span></span><br><span class="line"> <span class="keyword">where</span> sql_fulltext <span class="keyword">like</span> <span class="string">&#x27;%筛选条件%&#x27;</span></span><br><span class="line"> <span class="keyword">order</span> <span class="keyword">by</span> last_active_time <span class="keyword">desc</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--查看数据库的位数</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">case</span> <span class="keyword">length</span>(address) <span class="keyword">when</span> <span class="number">8</span> <span class="keyword">then</span> <span class="string">&#x27;32 位数据库&#x27;</span> <span class="keyword">when</span> <span class="number">16</span> <span class="keyword">then</span> <span class="string">&#x27;64 位数据库&#x27;</span> <span class="keyword">end</span> <span class="keyword">as</span> 数据库版本 <span class="keyword">from</span> v$<span class="keyword">sql</span> <span class="keyword">where</span> <span class="keyword">rownum</span> = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
 
-<h1 id="Oracle-时间格式相关语句"><a href="#Oracle-时间格式相关语句" class="headerlink" title="Oracle 时间格式相关语句"></a>Oracle 时间格式相关语句</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--查看当前的默认时间格式 (必须以管理员登录)</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> props$ <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">&#x27;NLS_DATE_FORMAT&#x27;</span>;<span class="comment">--DD-MON-RR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--更新当前的默认时间格式 (必须以管理员登录)</span></span><br><span class="line"><span class="keyword">update</span> props$ <span class="keyword">set</span> <span class="keyword">value</span>$ = <span class="string">&#x27;YYYY-MM-DD HH24:MI:SS&#x27;</span> <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">&#x27;NLS_DATE_FORMAT&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="Oracle-时间格式相关语句"><a href="#Oracle-时间格式相关语句" class="headerlink" title="Oracle 时间格式相关语句"></a>Oracle 时间格式相关语句</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--查看当前的默认时间格式 (必须以管理员登录)</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> props$ <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">&#x27;NLS_DATE_FORMAT&#x27;</span>;<span class="comment">--DD-MON-RR</span></span><br><span class="line"></span><br><span class="line"><span class="comment">--更新当前的默认时间格式 (必须以管理员登录, 重启数据库后生效)</span></span><br><span class="line"><span class="keyword">update</span> props$ <span class="keyword">set</span> <span class="keyword">value</span>$ = <span class="string">&#x27;YYYY-MM-DD HH24:MI:SS&#x27;</span> <span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">&#x27;NLS_DATE_FORMAT&#x27;</span>;</span><br></pre></td></tr></table></figure>
 
 <h1 id="Oracle-用户相关的操作语句"><a href="#Oracle-用户相关的操作语句" class="headerlink" title="Oracle 用户相关的操作语句"></a>Oracle 用户相关的操作语句</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--创建新用户</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> scott <span class="keyword">identified</span> <span class="keyword">by</span> scott123;</span><br><span class="line"></span><br><span class="line"><span class="comment">--修改用户密码</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> scott <span class="keyword">identified</span> <span class="keyword">by</span> scott333;</span><br><span class="line"></span><br><span class="line"><span class="comment">--删除用户 (用户拥有对象时, 无法直接删除用户, 必须先删除对象)</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">user</span> scott;</span><br><span class="line"></span><br><span class="line"><span class="comment">--删除用户对象</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">user</span> scott <span class="keyword">cascade</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">--给用户授权</span></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">connect</span>, <span class="keyword">resource</span>, dba <span class="keyword">to</span> scott;</span><br><span class="line"></span><br><span class="line"><span class="comment">--撤销授权</span></span><br><span class="line"><span class="keyword">revoke</span> <span class="keyword">connect</span>, <span class="keyword">resource</span>, dba <span class="keyword">from</span> scott;</span><br></pre></td></tr></table></figure>
 
