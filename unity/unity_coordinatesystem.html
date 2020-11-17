@@ -24,20 +24,20 @@
     var CONFIG = {"hostname":"kuroha.vip","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="私はみやざきたくまだ! !">
+  <meta name="description" content="作为一名 Unity 初学者, Unity 中的坐标系可是基础中的基础啊!">
 <meta property="og:type" content="article">
-<meta property="og:title" content="日记系列--2020年07月">
-<meta property="og:url" content="https://kuroha.vip/diary/2020_07.html">
+<meta property="og:title" content="Unity 中的坐标系">
+<meta property="og:url" content="https://kuroha.vip/unity/unity_coordinatesystem.html">
 <meta property="og:site_name" content="二次元游宅客">
-<meta property="og:description" content="私はみやざきたくまだ! !">
+<meta property="og:description" content="作为一名 Unity 初学者, Unity 中的坐标系可是基础中的基础啊!">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-08-01T14:25:00.000Z">
-<meta property="article:modified_time" content="2020-08-28T14:18:51.166Z">
+<meta property="article:published_time" content="2020-11-16T12:12:09.923Z">
+<meta property="article:modified_time" content="2020-11-17T03:26:36.000Z">
 <meta property="article:author" content="Kuroha">
-<meta property="article:tag" content="Diary">
+<meta property="article:tag" content="Unity">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://kuroha.vip/diary/2020_07.html">
+<link rel="canonical" href="https://kuroha.vip/unity/unity_coordinatesystem.html">
 
 
 <script class="page-configurations">
@@ -53,11 +53,11 @@
 
     <script>
         (function () {
-            if ('KiritoAsuna.com') {
+            if ('') {
                 var str = prompt('😈 私密日记, 查看请输入密码!');
                 if (str == "" || str == null) {
                     history.back();
-                } else if (str !== 'KiritoAsuna.com') {
+                } else if (str !== '') {
                     alert('😥 这个密码好像不太对, 再试试...');
                     history.back();
                 }
@@ -68,7 +68,7 @@
 
 
 
-  <title>日记系列--2020年07月 | 二次元游宅客</title>
+  <title>Unity 中的坐标系 | 二次元游宅客</title>
   
 
 
@@ -230,7 +230,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-%E5%B9%B4-07-%E6%9C%88-31-%E5%8F%B7"><span class="nav-number">1.</span> <span class="nav-text">2020 年 07 月 31 号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%9B%86-%E6%AF%95%E4%B8%9A%E5%8D%B1%E9%99%A9%E4%BA%86"><span class="nav-number">2.</span> <span class="nav-text">第一集 毕业危险了!</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%9B%86-%E8%88%92%E9%80%82%E5%9C%88"><span class="nav-number">3.</span> <span class="nav-text">第二集 舒适圈?</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9D%90%E6%A0%87%E7%B3%BB%E4%B8%8E%E5%9D%90%E6%A0%87"><span class="nav-number">2.</span> <span class="nav-text">坐标系与坐标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%96%E7%95%8C%E5%9D%90%E6%A0%87-World-Point"><span class="nav-number">4.</span> <span class="nav-text">世界坐标 (World Point)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%9D%90%E6%A0%87-Local-Point"><span class="nav-number">5.</span> <span class="nav-text">本地坐标 (Local Point)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B1%8F%E5%B9%95%E5%9D%90%E6%A0%87-Screen-Point"><span class="nav-number">6.</span> <span class="nav-text">屏幕坐标 (Screen Point)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%86%E5%9B%BE%E5%9D%90%E6%A0%87-View-Point"><span class="nav-number">7.</span> <span class="nav-text">视图坐标 (View Point)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">8.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -339,7 +339,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kuroha.vip/diary/2020_07.html">
+    <link itemprop="mainEntityOfPage" href="https://kuroha.vip/unity/unity_coordinatesystem.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar/avatar.gif">
@@ -354,7 +354,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          日记系列--2020年07月
+          Unity 中的坐标系
         </h1>
 
         <div class="post-meta">
@@ -364,14 +364,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-01 22:25:00" itemprop="dateCreated datePublished" datetime="2020-08-01T22:25:00+08:00">2020-08-01</time>
+              <time title="创建时间：2020-11-16 20:12:09" itemprop="dateCreated datePublished" datetime="2020-11-16T20:12:09+08:00">2020-11-16</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-28 22:18:51" itemprop="dateModified" datetime="2020-08-28T22:18:51+08:00">2020-08-28</time>
+                <time title="修改时间：2020-11-17 11:26:36" itemprop="dateModified" datetime="2020-11-17T11:26:36+08:00">2020-11-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -379,7 +379,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
+                  <a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a>
                 </span>
             </span>
 
@@ -389,16 +389,16 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
+              <span>1.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
-            <div class="post-description">私はみやざきたくまだ! !</div>
+            <div class="post-description">作为一名 Unity 初学者, Unity 中的坐标系可是基础中的基础啊!</div>
 
         </div>
       </header>
@@ -409,24 +409,80 @@
     <div class="post-body" itemprop="articleBody">
         <a id="more"></a>
 
-<h1 id="2020-年-07-月-31-号"><a href="#2020-年-07-月-31-号" class="headerlink" title="2020 年 07 月 31 号"></a>2020 年 07 月 31 号</h1><p>哈哈, 月底了写一下七月的总结吧. 要不顺便起个 90 年日漫式的标题?</p>
-<h1 id="第一集-毕业危险了"><a href="#第一集-毕业危险了" class="headerlink" title="第一集 毕业危险了!"></a>第一集 毕业危险了!</h1><p>刚到七月我就收到了一个及其震撼人心的消息, 我毕不了业了! 是的, 你没听错, 不是我毕业了, 是我毕不了业了! 我学分差两分导致不能毕业, 只能拿到结业证... 当 16 级班长告诉我这个消息的时候, 我当时整个人处于懵逼的状态: 啥, 不能毕业? 谁啊? 我吗? 怎么可能, 你在开玩笑吧, 你是不是打错电话了? </p>
-<p>过了 1 分钟: 我 TM 真的不能毕业了? 真的是我啊! 不可能啊, 我休学之前就只剩一个毕业设计了啊, 而我这次毕业设计又很顺利地通过了, 你告诉我不能毕业, 你是在逗我吗? 今天不是愚人节啊! </p>
-<p>只听 16 级班长缓缓地说: 学长, 是这样的, 16 级培养方案和 15 级的不一样, 多了两门课, 分别叫做: <code>大学生就业与创业指导2-1</code> 和 <code>大学生就业与创业指导2-2</code>, 这两门课是在学长你 <font color='red'><strong>休学期间</strong></font> 开课的, 所以缺这两门课的学分...</p>
-<p>我 ... 我 TM ... 我是真的忍不住了, 我在心里已经开始骂人了, 这 TM 是人干的事? 学校脑子是落家里了吧! 不过这是和 16 级班长也没关系, 谢谢人家通知我就只好挂电话了. </p>
-<p>第一件事, 发呆... 第二件事, 继续发呆... 我当时已经懵了... 不久卢阳老师来电话了, 这是我大学辅导员, 对我特好, 特感谢她, 就和我聊起了这事, 说她正在积极地帮我处理此事, 让我也去联系一下教务处, 问问教务处的意见, 我当时啥法子没有, 老师既然有主意, 那自然得照办啊. </p>
-<p>接下来就打电话给教科办的田老师 (很抱歉, 至今为止不知道这位老师的全名, 总之也很感谢田老师), 田老师一开始是严厉拒绝的, 按她后来的说辞是她不知道我家里的情况以及我休学的原因, 以为我是因为不想学习或者是其他一些消极的理由而休学的, 所以坚决不处理此事, 我 TM ... 这和我休学的理由有毛关系啊... 这 TM 不全是学校的责任吗? 这是和我有半毛钱关系吗? 后来的一次通话中和我说什么上次是因为她不清楚我的情况, 还说我怎么不早和她说我家里的情况, 我 TM ... 念在她也帮了我不少的份上就不计较了, 果然在这个世界卖惨还是有人买账的! 其实我并没有卖惨, 我家庭情况确实如此, 再加上这主意还是陆老师帮我想到的, 我在这些事情上脑子不咋灵光...</p>
-<p>虽然经过了辅导员和田老师的努力, 但是依然没有任何的进展, 于是我直接找系主任张德学老师了, 果然系主任说话就是好使, 一下子副院长, 院长都知道这事了, 中间拖了大概有 3 周, 3 周啊, 21 天啊, 我都不知道这 21 天我是怎么过来的, 这也是后面患急性支气管炎的一个诱因. </p>
-<p>中间打电话问卢阳老师, 卢老师都有一点想要放弃的想法了, 我也是一样, 渐渐地整个人没有了任何生机, 浑身乏力, 没想到生活中的琐事会对我的心境影响这么大, 整个人基本废了... 还好张德学老师一直告诉我肯定有办法的, 而且卢阳老师和田老师的观点都是这事情的责任在我, 我也不知道他们怎么想的, 但是我也不能直说呀对吧!</p>
-<p>后来卢阳老师又想到计算一下如果用 15 级的培养方案, 看一下我是不是能够毕业, 但是戏剧性的一幕出现了, 我当时交毕业实习报告的时候是 3 月份, 然后我 4 月份休学了, 休学通知都下来了, 我就安心在医院照顾我爸爸了, 但是毕业实习的分数上传是在 5 月 25 号, 此时我已经不在学校的管理系统中了, 就是我已经录不了分数了... 我 TM ... 这咋整, 对了, 今年我也写实习报告了呀, 就算是疫情, 我也是在 2 月份就回济南上班了, 写个实习报告那还不是手到擒来嘛... 然后戏剧性的一幕又双出现了... 16 级的培养方案的确是多出来 2 分, 但是培养方案的总分和 15 级的是一样的, 原因是 16 级的 <code>毕业实习</code> 课程不再计算学分了, 因为疫情嘛, 很多人没法实习啊, 所以这门课无效了... 我 TM ... 学校, 我真 TM 谢谢你啊!!!</p>
-<p>就这样, 在经历了无数次碰壁之后, 我已经彻底绝望了...</p>
-<p>但是! 但是! 但是! 张德学老师不是这么认为的, 他认为这事我一点责任没有, 这事情完全是学校的锅, 学校一没通知我选课, 二没通知我上课, 三科还是在我休学期间开课, 就算让我选也选不了, 所以就让我放下心来, 这是学校肯定会处理好的. 实在不行, 就让我向前几年的一位学长学习一下, 从外界给教务处那么 &quot;一点点&quot; 压力, 有些时候吧, 你不给他点压力, 他就不认真干活啊! 对把, 具体, 你懂的!</p>
-<p>我去 ... 这老师懂我呀! 为啥学校里这样的老师那么少呢! 于是在我和主任的多次积极的联系和要求下, 学校也慢慢地重视起来了, 这次是经过了大概一周的时间, 毕业证学位证到手了! </p>
-<p>最后我想应该是学校里各位老师们都付出了很大努力把, 虽然我只知道卢老师, 田老师, 张主任等人, 但是真心感谢, 当卢老师告诉我学校批准我毕业的时候, 那真的是感动啊... 再次感谢各位老师的帮助.</p>
-<h1 id="第二集-舒适圈"><a href="#第二集-舒适圈" class="headerlink" title="第二集 舒适圈?"></a>第二集 舒适圈?</h1><p>我发现自己正处在舒适圈中不想出去, 已经很久没有尝试自己不会的东西了, 基本一直在吃老本, 编写程序时也只用自己熟练的知识去实现, 没有尝试去使用自己了解但不是很熟练的新知识新技术, 总觉得这样不行, 而且自己明明都已经立誓要成为一名游戏开发者了, 却还是荒废了自己大量的时间去刷动漫, 做一些没有任何意义的事情...</p>
-<p>不行, 我得开始规划自己的时间了, 对自己目标没有用的事情坚决不再做了, 刷什么魔塔, 刷什么动漫, 什么想这想那的, 都不如静下心来看本书, 钻研钻研技术.</p>
-<p>最近有段时间迷上了魔塔, 虽然自己玩了好久, 但是始终得不到要领, 于是就开始看魔塔的一个基础理论, 叫做 &quot;蓝宝石转化理论&quot;, 先不说我理解了多少这个理论, 但是从这次经历我深刻的理解了看书真的是成长的捷径, 研究事物背后的理论才能成为学神, 所以我打算从现在开始利用闲余时间开始看书, 就看各种与游戏开发相关的书籍, 也开始尝试写技术类博客, 博客的内容是写下自己的想法, 而不是记笔记, 记笔记不应该使用博客, 而是使用大脑, 还有就是书籍不要怕脏, 有什么想法就直接写在书上, 书都买了, 为什么不用呢? 当初为什么没有选择借书, 不就是因为借的书不能随手记笔记嘛.</p>
-<p>那么就先写到这吧, 希望未来的自己回过头来看自己这篇日记的时候能真正的成为一名学神.</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在制作魔剑镇魂曲的 TileMap 时用到了各种坐标系之间的转换, 当时被整得云里雾里的, 现在来回顾一下. 游戏中我只用到了笛卡尔坐标系, 没有用到极坐标系, 后面就直接简称为坐标系了.</p>
+<h1 id="坐标系与坐标"><a href="#坐标系与坐标" class="headerlink" title="坐标系与坐标"></a>坐标系与坐标</h1><ul>
+<li><p>首先需要强调一下坐标系和坐标完全不是一回事, 文章中有很多地方涉及到坐标系和坐标, 为了避免混淆, 一定要在脑海中清晰地区分两者. 坐标系是一个系统, 而坐标只是一个表示位置的数字.</p>
+</li>
+<li><p>坐标是不可能独立存在的, 它必须依存于某个坐标系, 因此很多时候我们就直接简称为某某坐标. 比如在屏幕坐标系中一个点的坐标简称为 &quot;屏幕坐标&quot;, 在世界坐标系中一个点的坐标简称为 &quot;世界坐标&quot;.</p>
+</li>
+</ul>
+<h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><p>Unity 中的坐标大致分为 4 种:</p>
+<table>
+<thead>
+<tr>
+<th align="left">坐标</th>
+<th align="left">关键字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">世界坐标</td>
+<td align="left">World Point</td>
+</tr>
+<tr>
+<td align="left">本地坐标</td>
+<td align="left">Local Point</td>
+</tr>
+<tr>
+<td align="left">屏幕坐标</td>
+<td align="left">Screen Point</td>
+</tr>
+<tr>
+<td align="left">视图坐标</td>
+<td align="left">View Point</td>
+</tr>
+</tbody></table>
+<h1 id="世界坐标-World-Point"><a href="#世界坐标-World-Point" class="headerlink" title="世界坐标 (World Point)"></a>世界坐标 (World Point)</h1><ul>
+<li><p>Unity 中有一个覆盖全部游戏物体的坐标系, 所有的游戏物体都靠这个坐标系来确定自身在游戏世界中的准确位置, 这个坐标系就是世界坐标系. 有时为了明显和 &quot;局部坐标系&quot; 相对应也被称为 &quot;全局坐标系&quot;. 在世界坐标系中得出的点的坐标称为世界坐标 (World Point).</p>
+</li>
+<li><p>但是遗憾的是在游戏物体 Inspector 面板中, Transform 处显示的 Position 是<font color='red'><strong>在父物体坐标系中的坐标</strong></font>, 而不是在世界坐标系中的坐标. 只有当物体没有父物体的时候, Transform 处显示的 Position 才是在世界坐标系中的坐标.</p>
+</li>
+<li><p>但是在脚本中, 使用 transform.position 获取的却是游戏物体的世界坐标.</p>
+</li>
+</ul>
+<h1 id="本地坐标-Local-Point"><a href="#本地坐标-Local-Point" class="headerlink" title="本地坐标 (Local Point)"></a>本地坐标 (Local Point)</h1><ul>
+<li><p>Unity 中每个游戏物体都有其自身坐标系, 其子物体便是使用这个坐标系来确定与父物体的相对位置关系. 在父物体坐标系下得出的点的坐标称为本地坐标 (Local Point).</p>
+</li>
+<li><p>由于本地坐标系和物体绑定, 因此当游戏物体进行旋转, 移动的时候, 坐标系也会进行相应的旋转和移动. 但是本地坐标却有一个特点: <font color='red'><strong>不变性</strong></font>. 当游戏物体进行旋转, 移动的时候, 其子物体的本地坐标是不变的, 即子物体相对于自身的相对位置不会改变, 因此子物体会跟随其父物体旋转, 移动.</p>
+</li>
+<li><p>Unity 中模型 Mesh 保存的顶点坐标均为本地坐标, 因为本地坐标的不变性, 即使物体进行旋转或者移动, 也不会影响顶点的坐标.</p>
+</li>
+<li><p>在脚本中使用 transform.position 获取的是游戏物体的世界坐标, 使用 transform.localPosition 获取的便是游戏物体的本地坐标. 但是当物体没有父物体的时候,  transform.localPosition 获取的也是世界坐标.</p>
+</li>
+</ul>
+<h1 id="屏幕坐标-Screen-Point"><a href="#屏幕坐标-Screen-Point" class="headerlink" title="屏幕坐标 (Screen Point)"></a>屏幕坐标 (Screen Point)</h1><ul>
+<li><p>屏幕坐标系是基于游戏窗口建立的坐标系. </p>
+</li>
+<li><p>屏幕坐标系以像素为单位, 窗口的左下角坐标为 (0, 0), 右上角坐标为窗口大小. 脚本中可以通过 (Screen.width, Screen.height) 来获取窗口大小.</p>
+</li>
+<li><p>脚本中使用 Input.mousePosition 可以获得鼠标坐标, 这个坐标便是基于屏幕坐标系计算得来的. 另外使用 Input.GetTouch(0).position 可以获得单个手指触摸屏幕时手指的坐标, 这个坐标也是基于屏幕坐标系计算得来的.</p>
+</li>
+<li><p>需要注意的是屏幕坐标不是根据玩家显示器的大小建立的坐标系, 而是以游戏窗口建立的坐标系, 比如玩家屏幕为: 1920 X 1080, 但是游戏窗口是: 800 X 600, 那么右上角的坐标是 (800, 600).</p>
+</li>
+</ul>
+<h1 id="视图坐标-View-Point"><a href="#视图坐标-View-Point" class="headerlink" title="视图坐标 (View Point)"></a>视图坐标 (View Point)</h1><ul>
+<li><p>摄像机预览窗口显示的画面, 也是基于游戏窗口建立的坐标系.</p>
+</li>
+<li><p>视图坐标系的大小为单位 1, 窗口的左下角坐标为 (0, 0), 右上角坐标为 (1, 1).</p>
+</li>
+<li><p>屏幕坐标单位化后得到的就是视图坐标.</p>
+</li>
+</ul>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0NTM2NTUxL2FydGljbGUvZGV0YWlscy85MDI2OTkwOA==">Unity中屏幕坐标、视口坐标和世界坐标、局部坐标与其之间的相互转换<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cDovL2xpdXFpbmd3ZW4ubWUvMjAxNy8wNy8zMS91bmRlcnN0YW5kaW5nLWNvb3JkaW5hdGUtc3lzdGVtLWluLXVuaXR5M2Qv">理解Unity3D中的四种坐标体系<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
 
     </div>
 
@@ -457,7 +513,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://kuroha.vip/diary/2020_07.html" title="日记系列--2020年07月">https://kuroha.vip/diary/2020_07.html</a>
+    <a href="https://kuroha.vip/unity/unity_coordinatesystem.html" title="Unity 中的坐标系">https://kuroha.vip/unity/unity_coordinatesystem.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aF9DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -517,7 +573,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Diary/" rel="tag"><i class="fa fa-tag"></i> Diary</a>
+              <a href="/tags/Unity/" rel="tag"><i class="fa fa-tag"></i> Unity</a>
           </div>
 
         
@@ -526,13 +582,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/oracle/oracle_gateways.html" rel="prev" title="Oracle 异构数据库访问">
-      <i class="fa fa-chevron-left"></i> Oracle 异构数据库访问
+    <a href="/csharp/csharp_others.html" rel="prev" title="csharp 中一些琐碎的知识">
+      <i class="fa fa-chevron-left"></i> csharp 中一些琐碎的知识
     </a></div>
-      <div class="post-nav-item">
-    <a href="/program/regular_expression.html" rel="next" title="正则表达式">
-      正则表达式 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -669,7 +722,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'MyBlogCommentSystem',
       owner       : 'KurohaKirito',
       admin       : ['KurohaKirito'],
-      id          : 'a2988d6c87c5826978b26aa6c1b3404c',
+      id          : '5edae02d839e7d83b81a318694db327c',
         language: 'zh-CN',
       distractionFreeMode: true
     });
