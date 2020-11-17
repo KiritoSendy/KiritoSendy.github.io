@@ -24,23 +24,23 @@
     var CONFIG = {"hostname":"kuroha.vip","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 
-  <meta name="description" content="正则表达式, 一种被用于从文本中检索符合某些特定模式的文本.">
+  <meta name="description" content="第一次需要在脚本中修改 RectTransform 来控制 UI 的大小和尺寸, 由于不熟悉 RectTransform, 着实头疼了好久...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="正则表达式">
-<meta property="og:url" content="https://kuroha.vip/program/regular_expression.html">
+<meta property="og:title" content="Unity 在脚本中修改 UGUI 中 UI 的位置和尺寸">
+<meta property="og:url" content="https://kuroha.vip/unity/unity_rect_transform.html">
 <meta property="og:site_name" content="二次元游宅客">
-<meta property="og:description" content="正则表达式, 一种被用于从文本中检索符合某些特定模式的文本.">
+<meta property="og:description" content="第一次需要在脚本中修改 RectTransform 来控制 UI 的大小和尺寸, 由于不熟悉 RectTransform, 着实头疼了好久...">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://kuroha.vip/images/regular_expression/regular_expression_01.png">
-<meta property="og:image" content="https://kuroha.vip/images/regular_expression/regular_expression_02.png">
-<meta property="article:published_time" content="2020-08-17T14:35:23.000Z">
-<meta property="article:modified_time" content="2020-09-17T11:35:04.236Z">
+<meta property="og:image" content="https://kuroha.vip/images/rectTransform/rectTransform.png">
+<meta property="article:published_time" content="2020-11-17T09:24:31.000Z">
+<meta property="article:modified_time" content="2020-11-17T16:17:32.659Z">
 <meta property="article:author" content="Kuroha">
-<meta property="article:tag" content="Program">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="UGUI">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://kuroha.vip/images/regular_expression/regular_expression_01.png">
+<meta name="twitter:image" content="https://kuroha.vip/images/rectTransform/rectTransform.png">
 
-<link rel="canonical" href="https://kuroha.vip/program/regular_expression.html">
+<link rel="canonical" href="https://kuroha.vip/unity/unity_rect_transform.html">
 
 
 <script class="page-configurations">
@@ -71,7 +71,7 @@
 
 
 
-  <title>正则表达式 | 二次元游宅客</title>
+  <title>Unity 在脚本中修改 UGUI 中 UI 的位置和尺寸 | 二次元游宅客</title>
   
 
 
@@ -233,7 +233,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">正则表达式?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E5%85%83%E5%AD%97%E7%AC%A6"><span class="nav-number">2.</span> <span class="nav-text">普通元字符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="nav-number">3.</span> <span class="nav-text">字符集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AC%A1%E6%95%B0%E9%99%90%E5%AE%9A%E7%AC%A6"><span class="nav-number">4.</span> <span class="nav-text">次数限定符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E4%BD%8D%E7%AC%A6"><span class="nav-number">5.</span> <span class="nav-text">定位符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E5%90%8E%E7%BC%80%E9%80%BB%E8%BE%91-%E6%96%AD%E8%A8%80"><span class="nav-number">6.</span> <span class="nav-text">前后缀逻辑 (断言)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E5%90%8E%E7%BC%80%E9%80%BB%E8%BE%91%E7%BB%84%E4%BB%B6"><span class="nav-number">6.1.</span> <span class="nav-text">前后缀逻辑组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BC%80%E9%80%BB%E8%BE%91-%E5%89%8D%E8%A1%8C%E6%96%AD%E8%A8%80"><span class="nav-number">6.2.</span> <span class="nav-text">前缀逻辑 (前行断言)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%BC%80%E9%80%BB%E8%BE%91-%E5%90%8E%E8%A1%8C%E6%96%AD%E8%A8%80"><span class="nav-number">6.3.</span> <span class="nav-text">后缀逻辑 (后行断言)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%94%E6%A1%88"><span class="nav-number">6.4.</span> <span class="nav-text">答案</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">7.</span> <span class="nav-text">修饰符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-%E4%B8%AD%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">8.</span> <span class="nav-text">C# 中的正则表达式</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%8C%B4-%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">🌴 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%8C%BE-RectTransform"><span class="nav-number">2.</span> <span class="nav-text">🌾 RectTransform</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%A6%84-%E8%84%9A%E6%9C%AC%E6%8E%A7%E5%88%B6-RectTransform"><span class="nav-number">3.</span> <span class="nav-text">🦄 脚本控制 RectTransform</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Right-%E5%92%8C-Top"><span class="nav-number">3.1.</span> <span class="nav-text">Right 和 Top</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Left-%E5%92%8C-Bottom"><span class="nav-number">3.2.</span> <span class="nav-text">Left 和 Bottom</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PosX-%E5%92%8C-PosY"><span class="nav-number">3.3.</span> <span class="nav-text">PosX 和 PosY</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Width-%E5%92%8C-Height"><span class="nav-number">3.4.</span> <span class="nav-text">Width 和 Height</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%F0%9F%90%AC-%E5%B1%9E%E6%80%A7%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">4.</span> <span class="nav-text">🐬 属性之间的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#anchoredPosition-%E5%92%8C-pivot-offsetMin-offsetMax"><span class="nav-number">4.1.</span> <span class="nav-text">anchoredPosition 和 pivot, offsetMin, offsetMax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sizeDelta-%E5%92%8C-offsetMin-offsetMax"><span class="nav-number">4.2.</span> <span class="nav-text">sizeDelta 和 offsetMin, offsetMax</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E5%9B%BE"><span class="nav-number">5.</span> <span class="nav-text">总结图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">6.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -342,7 +342,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kuroha.vip/program/regular_expression.html">
+    <link itemprop="mainEntityOfPage" href="https://kuroha.vip/unity/unity_rect_transform.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar/avatar.gif">
@@ -357,7 +357,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          正则表达式
+          Unity 在脚本中修改 UGUI 中 UI 的位置和尺寸
         </h1>
 
         <div class="post-meta">
@@ -367,14 +367,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-17 22:35:23" itemprop="dateCreated datePublished" datetime="2020-08-17T22:35:23+08:00">2020-08-17</time>
+              <time title="创建时间：2020-11-17 17:24:31" itemprop="dateCreated datePublished" datetime="2020-11-17T17:24:31+08:00">2020-11-17</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-17 19:35:04" itemprop="dateModified" datetime="2020-09-17T19:35:04+08:00">2020-09-17</time>
+                <time title="修改时间：2020-11-18 00:17:32" itemprop="dateModified" datetime="2020-11-18T00:17:32+08:00">2020-11-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -382,7 +382,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
+                  <a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a>
                 </span>
             </span>
 
@@ -392,16 +392,16 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
+              <span>1.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
-            <div class="post-description">正则表达式, 一种被用于从文本中检索符合某些特定模式的文本.</div>
+            <div class="post-description">第一次需要在脚本中修改 RectTransform 来控制 UI 的大小和尺寸, 由于不熟悉 RectTransform, 着实头疼了好久...</div>
 
         </div>
       </header>
@@ -410,295 +410,116 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式?"></a>正则表达式?</h1><blockquote>
-<p>正则表达式是一种被用于从文本中检索符合某些特定模式的文本, 英文为 &quot;Regular Expression&quot;, 缩写 &quot;regex&quot; 或者 &quot;regexp&quot;.</p>
-</blockquote>
-<ol>
-<li><p>正则表达式可以很简单的实现比较复杂的字符串匹配逻辑, 来快速地对用户输入施加限制条件.</p>
+        <a id="more"></a>
+
+<h1 id="🌴-前言"><a href="#🌴-前言" class="headerlink" title="🌴 前言"></a>🌴 前言</h1><p>在制作魔剑镇魂曲的对话框系统时, 在对话框的后面要显示当前人物的立绘图片, 这里的立绘图片我用的是 UGUI 里面的 Image 组件, 使用的位置组件就不再是 Transform, 而是继承自它的 RectTransform 组件, 但怎么用呢?</p>
+<h1 id="🌾-RectTransform"><a href="#🌾-RectTransform" class="headerlink" title="🌾 RectTransform"></a>🌾 RectTransform</h1><p>强烈推荐一篇博客: <span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9kYmVmYTc0NmU1MGQ=">Unity进阶技巧 - RectTransform详解<i class="fa fa-external-link-alt"></i></span> 看完这篇博客, RectTransform 组件就基本明白了, 这里不再赘述.</p>
+<h1 id="🦄-脚本控制-RectTransform"><a href="#🦄-脚本控制-RectTransform" class="headerlink" title="🦄 脚本控制 RectTransform"></a>🦄 脚本控制 RectTransform</h1><p>在 Inspector 面板中我们关注的数值:</p>
+<table>
+<thead>
+<tr>
+<th align="left">数值名</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Top</td>
+<td align="left">顶部距离</td>
+</tr>
+<tr>
+<td align="left">Bottom</td>
+<td align="left">底部距离</td>
+</tr>
+<tr>
+<td align="left">Left</td>
+<td align="left">左侧距离</td>
+</tr>
+<tr>
+<td align="left">Right</td>
+<td align="left">右侧距离</td>
+</tr>
+<tr>
+<td align="left">PosX</td>
+<td align="left">位置坐标 X</td>
+</tr>
+<tr>
+<td align="left">PosY</td>
+<td align="left">位置坐标 Y</td>
+</tr>
+<tr>
+<td align="left">Width</td>
+<td align="left">宽度</td>
+</tr>
+<tr>
+<td align="left">Height</td>
+<td align="left">高度</td>
+</tr>
+</tbody></table>
+<p>在脚本中, RectTransform 下可以获取的属性值, 同时我也列出了这些值和 Inspector 面板中数值的关系.</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">类型</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">anchoredPosition</td>
+<td align="left">Vector2 : (anchoredPosition.x, anchoredPosition.y)</td>
+<td align="left">(PosX, PosY)</td>
+</tr>
+<tr>
+<td align="left">anchorMin</td>
+<td align="left">Vector2 : (anchorMin.x, anchorMin.y)</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">anchorMax</td>
+<td align="left">Vector2 : (anchorMax.x, anchorMax.y)</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">offsetMin</td>
+<td align="left">Vector2 : (offsetMin.x, offsetMin.y)</td>
+<td align="left">(Left, Bottom)</td>
+</tr>
+<tr>
+<td align="left">offsetMax</td>
+<td align="left">Vector2 : (offsetMax.x, offsetMax.y)</td>
+<td align="left">(-Right, -Top)</td>
+</tr>
+<tr>
+<td align="left">sizeDelta</td>
+<td align="left">Vector2 : (sizeDelta.x, sizeDelta.y)</td>
+<td align="left">(Width, Height)</td>
+</tr>
+<tr>
+<td align="left">pivot</td>
+<td align="left">Vector2 : (pivot.x, pivot.y)</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>在脚本中如何修改数值. 下面的代码中, 如果需要某个值不变, 直接赋予原值即可.</p>
+<h2 id="Right-和-Top"><a href="#Right-和-Top" class="headerlink" title="Right 和 Top"></a>Right 和 Top</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> customTopValue = <span class="number">1.0f</span>;</span><br><span class="line"><span class="keyword">float</span> customRightValue = <span class="number">1.0f</span>;</span><br><span class="line">GetComponent&lt;RectTransform&gt;().offsetMax = <span class="keyword">new</span> Vector2(-customRightValue, -customTopValue);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Left-和-Bottom"><a href="#Left-和-Bottom" class="headerlink" title="Left 和 Bottom"></a>Left 和 Bottom</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> customBottomValue = <span class="number">2.0f</span>;</span><br><span class="line"><span class="keyword">float</span> customLeftValue = <span class="number">2.0f</span>;</span><br><span class="line">GetComponent&lt;RectTransform&gt;().offsetMin = <span class="keyword">new</span> Vector2(customLeftValue, customBottomValue);</span><br></pre></td></tr></table></figure>
+
+<h2 id="PosX-和-PosY"><a href="#PosX-和-PosY" class="headerlink" title="PosX 和 PosY"></a>PosX 和 PosY</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> customPosXValue = <span class="number">3.0f</span>;</span><br><span class="line"><span class="keyword">float</span> customPosYValue = <span class="number">3.0f</span>;</span><br><span class="line">GetComponent&lt;RectTransform&gt;().anchoredPosition = <span class="keyword">new</span> Vector2(customPosXValue, customPosYValue);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Width-和-Height"><a href="#Width-和-Height" class="headerlink" title="Width 和 Height"></a>Width 和 Height</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> customWidthValue = <span class="number">4.0f</span>;</span><br><span class="line"><span class="keyword">float</span> customHeightValue = <span class="number">4.0f</span>;</span><br><span class="line">GetComponent&lt;RectTransform&gt;().sizeDelta = <span class="keyword">new</span> Vector2(customWidthValue, customHeightValue);</span><br></pre></td></tr></table></figure>
+
+<h1 id="🐬-属性之间的关系"><a href="#🐬-属性之间的关系" class="headerlink" title="🐬 属性之间的关系"></a>🐬 属性之间的关系</h1><h2 id="anchoredPosition-和-pivot-offsetMin-offsetMax"><a href="#anchoredPosition-和-pivot-offsetMin-offsetMax" class="headerlink" title="anchoredPosition 和 pivot, offsetMin, offsetMax"></a>anchoredPosition 和 pivot, offsetMin, offsetMax</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anchoredPosition = ((Vector2.one - pivot) * offsetMin) + (pivot * offsetMax);</span><br></pre></td></tr></table></figure>
+
+<h2 id="sizeDelta-和-offsetMin-offsetMax"><a href="#sizeDelta-和-offsetMin-offsetMax" class="headerlink" title="sizeDelta 和 offsetMin, offsetMax"></a>sizeDelta 和 offsetMin, offsetMax</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sizeDelta = offsetMax - offsetMin;</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结图"><a href="#总结图" class="headerlink" title="总结图"></a>总结图</h1><p><img data-src="/images/rectTransform/rectTransform.png" alt="RectTransform"></p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC9kYmVmYTc0NmU1MGQ=">Unity进阶技巧 - RectTransform详解<i class="fa fa-external-link-alt"></i></span></p>
 </li>
-<li><p>在日常的文本编辑中, 正则表达式还可以快速的实现复杂的替换操作, 使得文本编辑省时省力.</p>
-</li>
-<li><p>正则表达式依赖于所处的环境, JavaScript, C#, Java, C++ 等不同的开发语言中以及 VSCode 等不同的文本编辑器下, 正则表达式的匹配规则会有一些细微的差别.</p>
-</li>
-<li><p>元字符不能写在字符集合 <code>[ ]</code> 的里面. <code>[ ]</code> 中的元字符全部会变为普通字符.</p>
-</li>
-</ol>
-<h1 id="普通元字符"><a href="#普通元字符" class="headerlink" title="普通元字符"></a>普通元字符</h1><table>
-<thead>
-<tr>
-<th align="center">元字符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">.</td>
-<td>表示一个除换行符以外的任意字符</td>
-</tr>
-<tr>
-<td align="center">()</td>
-<td><strong>字符组</strong>, 占位长度和字符串长度一致, 匹配其中的字符串或者逻辑</td>
-</tr>
-<tr>
-<td align="center">[ ]</td>
-<td><strong>字符集合</strong>, 默认占位长度为 1, 匹配集合中的任意一个字符, 可以使用范围符 <code>-</code> 来表示范围, 如: 0-9, a-z, A-Z 等</td>
-</tr>
-<tr>
-<td align="center">[^ ]</td>
-<td>否定字符集合, 默认占位长度为 1, 匹配集合中的所有字符以外的任意一个字符</td>
-</tr>
-<tr>
-<td align="center">|</td>
-<td>逻辑或</td>
-</tr>
-<tr>
-<td align="center">\</td>
-<td>转义符</td>
-</tr>
-</tbody></table>
-<h1 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h1><p>[<strong>注意</strong>] 字符集名称(<strong>大小写敏感</strong>), \w 和 \W 的含义完全相反. </p>
-<table>
-<thead>
-<tr>
-<th align="center">转义符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">\f</td>
-<td>匹配一个换页符</td>
-</tr>
-<tr>
-<td align="center">\n</td>
-<td>匹配一个换行符</td>
-</tr>
-<tr>
-<td align="center">\r</td>
-<td>匹配一个回车符</td>
-</tr>
-<tr>
-<td align="center">\t</td>
-<td>匹配一个制表符</td>
-</tr>
-<tr>
-<td align="center">\v</td>
-<td>匹配一个垂直制表符</td>
-</tr>
-<tr>
-<td align="center">\w</td>
-<td>匹配所有字母和数字的字符, 某些环境下也会匹配汉字</td>
-</tr>
-<tr>
-<td align="center">\W</td>
-<td>匹配非字母和数字的字符, 某些环境下汉字也会排除</td>
-</tr>
-<tr>
-<td align="center">\d</td>
-<td>匹配数字: <code>[0-9]</code></td>
-</tr>
-<tr>
-<td align="center">\D</td>
-<td>匹配非数字: <code>[^ 0-9]</code></td>
-</tr>
-<tr>
-<td align="center">\s</td>
-<td>匹配任何空白字符, 包括空格, 制表符, 换页符等</td>
-</tr>
-<tr>
-<td align="center">\S</td>
-<td>匹配非空格符</td>
-</tr>
-</tbody></table>
-<h1 id="次数限定符"><a href="#次数限定符" class="headerlink" title="次数限定符"></a>次数限定符</h1><p>写在一个特定的字符或者字符组 <code>()</code> 的后面, 控制字符或者字符组的出现次数.</p>
-<table>
-<thead>
-<tr>
-<th align="center">次数限定符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">*</td>
-<td>匹配前面的子表达式 0 次或多次</td>
-</tr>
-<tr>
-<td align="center">+</td>
-<td>匹配前面的子表达式 1 次或多次</td>
-</tr>
-<tr>
-<td align="center">?</td>
-<td>匹配前面的子表达式 0 次或 1 次, 或指明一个非贪婪限定符</td>
-</tr>
-<tr>
-<td align="center">{n}</td>
-<td>花括号, 匹配前面字符或字符组 n 次</td>
-</tr>
-<tr>
-<td align="center">{n,}</td>
-<td>花括号, 匹配前面字符或字符组至少 n 次</td>
-</tr>
-<tr>
-<td align="center">{n,m}</td>
-<td>花括号, 匹配前面字符或字符组至少 n 次, 但是不超过 m 次</td>
-</tr>
-</tbody></table>
-<h1 id="定位符"><a href="#定位符" class="headerlink" title="定位符"></a>定位符</h1><p>定位符表示字符所处的位置.</p>
-<table>
-<thead>
-<tr>
-<th align="center">定位符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">^</td>
-<td>表示行的开始</td>
-</tr>
-<tr>
-<td align="center">$</td>
-<td>表示行的结束</td>
-</tr>
-<tr>
-<td align="center">\b</td>
-<td>匹配一个单词边界</td>
-</tr>
-<tr>
-<td align="center">\B</td>
-<td>非单词边界匹配</td>
-</tr>
-</tbody></table>
-<h1 id="前后缀逻辑-断言"><a href="#前后缀逻辑-断言" class="headerlink" title="前后缀逻辑 (断言)"></a>前后缀逻辑 (断言)</h1><p>Q1: 匹配字符串中以全角美元符开头的 &#39;12000.00&#39;</p>
-<p><code>12000.00 ￥12000.00 ＄12000.00</code></p>
-<p>Q2: 匹配字符串中以全角美元符结尾的 &#39;12000.00&#39;</p>
-<p><code>12000.00 12000.00￥ 12000.00＄</code></p>
-<p>上面的两个问题, 就可以通过在正则表达式中添加前后缀逻辑来解决. &#39;前后缀逻辑&#39; 是我自己起的名字, 方便自己记忆, 但是有的文章中叫作 &quot;断言&quot;, 有的文章中叫 &quot;预匹配&quot;, 我都感觉好别扭啊!</p>
-<p>[<strong>注</strong>] <font color='red'><strong>前后缀逻辑必须写在字符组 () 里面, 如: <code>(?&lt;=K)</code></strong></font>.</p>
-<h2 id="前后缀逻辑组件"><a href="#前后缀逻辑组件" class="headerlink" title="前后缀逻辑组件"></a>前后缀逻辑组件</h2><p>[<strong>注</strong>] 下面是前后缀逻辑实现时用到的字符, 不能直接使用, 这样拆开写只是为了容易理解! 切记不可直接使用!</p>
-<table>
-<thead>
-<tr>
-<th align="center">符号</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">?&lt;</td>
-<td>前缀描述符, 必须写在 &quot;被描述字符或字符组&quot; 的 <code>前面</code></td>
-</tr>
-<tr>
-<td align="center">?</td>
-<td>后缀描述符, 必须写在 &quot;被描述字符或字符组&quot; 的 <code>后面</code></td>
-</tr>
-<tr>
-<td align="center">=</td>
-<td>是</td>
-</tr>
-<tr>
-<td align="center">!</td>
-<td>不是</td>
-</tr>
-</tbody></table>
-<h2 id="前缀逻辑-前行断言"><a href="#前缀逻辑-前行断言" class="headerlink" title="前缀逻辑 (前行断言)"></a>前缀逻辑 (前行断言)</h2><p><img data-src="/images/regular_expression/regular_expression_01.png" alt="前行断言"></p>
-<table>
-<thead>
-<tr>
-<th align="center">符号</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">(?&lt;=)</td>
-<td><code>前缀为</code> 描述符</td>
-</tr>
-<tr>
-<td align="center">(?&lt;!)</td>
-<td><code>前缀不为</code> 描述符</td>
-</tr>
-</tbody></table>
-<p>[<strong>注</strong>] 前缀描述符必须写在 &quot;被描述字符或字符组&quot; 的 <code>前面</code> ! 切记 !</p>
-<p>示例: </p>
-<p><code>(?&lt;=K)[0-9]&#123;11&#125;</code>: 匹配以 &#39;K&#39; 为前缀的 11 位数字.</p>
-<p><code>(?&lt;!K)[0-9]&#123;11&#125;</code>: 匹配不以 &#39;K&#39; 为前缀的 11 位数字.</p>
-<h2 id="后缀逻辑-后行断言"><a href="#后缀逻辑-后行断言" class="headerlink" title="后缀逻辑 (后行断言)"></a>后缀逻辑 (后行断言)</h2><p><img data-src="/images/regular_expression/regular_expression_02.png" alt="后行断言"></p>
-<table>
-<thead>
-<tr>
-<th align="center">符号</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">(?=)</td>
-<td><code>后缀为</code> 描述符</td>
-</tr>
-<tr>
-<td align="center">(?!)</td>
-<td><code>后缀不为</code> 描述符</td>
-</tr>
-</tbody></table>
-<p>[<strong>注</strong>] 后缀描述符必须写在 &quot;被描述字符或字符组&quot; 的 <code>后面</code> ! 切记 !</p>
-<p>示例: </p>
-<p><code>[\d]&#123;11&#125;(?=K)</code>: 匹配以 &#39;K&#39; 为后缀的 11 位数字.</p>
-<p><code>[\d]&#123;11&#125;(?!K)</code>: 匹配不以 &#39;K&#39; 为后缀的 11 位数字.</p>
-<h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>A1: <code>(?&lt;=＄)[\d.]+</code> <font color='red'>答案不唯一</font></p>
-<p>A2: <code>[\d.]+(?=＄)</code> <font color='red'>答案不唯一</font></p>
-<h1 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h1><p>会修改正则表达式的匹配模式, 可以以任意顺序或组合使用, 先将要修饰的整个正则表达式前后加一个 <code>/</code> 字符, 然后在后面的 <code>/</code> 字符后面加修饰符.</p>
-<table>
-<thead>
-<tr>
-<th align="center">标记</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">i</td>
-<td>不区分大小写: 将匹配设置为不区分大小写.</td>
-</tr>
-<tr>
-<td align="center">g</td>
-<td>全局搜索: 搜索整个输入字符串中的所有匹配.</td>
-</tr>
-<tr>
-<td align="center">m</td>
-<td>多行匹配: 会匹配输入字符串每一行.</td>
-</tr>
-</tbody></table>
-<p>示例:</p>
-<ul>
-<li><p><code>/(T|t)he/gi</code> : 全局搜索, 不区分大小写, 正则: <code>(T|t)he</code></p>
-</li>
-<li><p><code>/.(at)/g</code> : 全局搜索, 正则: <code>.(at)</code></p>
-</li>
-<li><p><code>/at(.)?$/gm</code> :全局搜索, 多行匹配, 正则: <code>at(.)?$</code></p>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbnNreS9wLzUwNDUyMDEuaHRtbA==">修改RectTransform的值<i class="fa fa-external-link-alt"></i></span></p>
 </li>
 </ul>
-<h1 id="C-中的正则表达式"><a href="#C-中的正则表达式" class="headerlink" title="C# 中的正则表达式"></a>C# 中的正则表达式</h1><ol>
-<li>全部匹配</li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Text.RegularExpressions;</span><br><span class="line"></span><br><span class="line"><span class="keyword">string</span> content = <span class="string">&quot;content&quot;</span>;</span><br><span class="line">Regex regex = <span class="keyword">new</span> Regex(<span class="string">@&quot;[0-9]&#123;8&#125;&quot;</span>);</span><br><span class="line">MatchCollection matchs = regex.Matches(content);</span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (Match match <span class="keyword">in</span> matchs)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">string</span>.IsNullOrEmpty(match.Value))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//TODO...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>匹配第一项</li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Text.RegularExpressions;</span><br><span class="line"></span><br><span class="line"><span class="keyword">string</span> content = <span class="string">&quot;content&quot;</span>;</span><br><span class="line">Regex regex = <span class="keyword">new</span> Regex(<span class="string">@&quot;[0-9]&#123;8&#125;&quot;</span>);</span><br><span class="line">Match match = regex.Match(content);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">string</span>.IsNullOrEmpty(match.Value))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//TODO...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </div>
 
@@ -729,7 +550,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://kuroha.vip/program/regular_expression.html" title="正则表达式">https://kuroha.vip/program/regular_expression.html</a>
+    <a href="https://kuroha.vip/unity/unity_rect_transform.html" title="Unity 在脚本中修改 UGUI 中 UI 的位置和尺寸">https://kuroha.vip/unity/unity_rect_transform.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aF9DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -789,7 +610,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Program/" rel="tag"><i class="fa fa-tag"></i> Program</a>
+              <a href="/tags/Unity/" rel="tag"><i class="fa fa-tag"></i> Unity</a>
+              <a href="/tags/UGUI/" rel="tag"><i class="fa fa-tag"></i> UGUI</a>
           </div>
 
         
@@ -798,13 +620,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/diary/2020_07.html" rel="prev" title="日记系列--2020年07月">
-      <i class="fa fa-chevron-left"></i> 日记系列--2020年07月
+    <a href="/unity/unity_coordinatesystem.html" rel="prev" title="Unity 中的坐标系">
+      <i class="fa fa-chevron-left"></i> Unity 中的坐标系
     </a></div>
-      <div class="post-nav-item">
-    <a href="/hexo/hexo_update.html" rel="next" title="Hexo 3.9.0 + NexT 7.2.0 => Hexo 5.1.0 + NexT 8.0.0">
-      Hexo 3.9.0 + NexT 7.2.0 => Hexo 5.1.0 + NexT 8.0.0 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -941,7 +760,7 @@ NexT.utils.loadComments('#gitalk-container', () => {
       repo        : 'MyBlogCommentSystem',
       owner       : 'KurohaKirito',
       admin       : ['KurohaKirito'],
-      id          : 'd2d5146113e9c551f118d55c206ba7d8',
+      id          : '281fc42ea5fde2ee370a860343c5efce',
         language: 'zh-CN',
       distractionFreeMode: true
     });
