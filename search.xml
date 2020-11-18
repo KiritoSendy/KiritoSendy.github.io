@@ -67,10 +67,10 @@
       </tags>
   </entry>
   <entry>
-    <title>AHK 基础</title>
+    <title>AHK 中的一些琐碎知识</title>
     <url>/ahk/ahk_02.html</url>
-    <content><![CDATA[<h1 id="Scancode"><a href="#Scancode" class="headerlink" title="Scancode"></a>Scancode</h1><p>在某些无法直接在代码中编写的符号, 需要使用到 Scancode. 比如下面一个单引号和双引号互换的例子:</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;<span class="string">&quot;</span></span><br><span class="line"><span class="string">return</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">+sc028::</span></span><br><span class="line"><span class="string">  sendinput,&#123;Text&#125;&#x27;</span></span><br><span class="line"><span class="string">return</span></span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h1 id="Scancode"><a href="#Scancode" class="headerlink" title="Scancode"></a>Scancode</h1><p>在某些无法直接在热键触发条件中编写的符号, 需要使用到 Scancode. 比如下面一个单引号和双引号互换的例子:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;&quot;</span><br><span class="line">return</span><br><span class="line"></span><br><span class="line">+sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;&#39;</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>AutoHotKey</category>
@@ -4337,7 +4337,9 @@ const dp_update = new DPlayer({
 </li>
 <li><p>语法格式是 <code>select () into table_new from table_old where ()</code>.</p>
 </li>
-<li><p><font color='red'><strong>Oracle 和 Pl/SQL 中不支持此语句! 可以使用 create table as select 进行代替. 在 Sql Server 中可以正常使用!</strong></font></p>
+<li><p><font color='red'><strong>Oracle 和 PL/SQL 中不支持此语句! 可以使用 create table as select 进行代替.</strong></font></p>
+</li>
+<li><p><font color='red'><strong>在 Sql Server 中这条语句可以正常使用!</strong></font></p>
 </li>
 </ol>
 <h1 id="SQL-中的-create"><a href="#SQL-中的-create" class="headerlink" title="SQL 中的 create"></a>SQL 中的 create</h1><ol>

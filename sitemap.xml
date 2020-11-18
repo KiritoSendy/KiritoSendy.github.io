@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://kuroha.vip/asp/asp_learnnotes.html</loc>
-    
-    <lastmod>2020-11-18</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://kuroha.vip/ahk/ahk_02.html</loc>
     
     <lastmod>2020-11-18</lastmod>
@@ -17,6 +10,13 @@
   
   <url>
     <loc>https://kuroha.vip/oracle/oracle_notes.html</loc>
+    
+    <lastmod>2020-11-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/asp/asp_learnnotes.html</loc>
     
     <lastmod>2020-11-18</lastmod>
     
