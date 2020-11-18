@@ -69,7 +69,7 @@
   <entry>
     <title>AHK 中的一些琐碎知识</title>
     <url>/ahk/ahk_02.html</url>
-    <content><![CDATA[<h1 id="Scancode"><a href="#Scancode" class="headerlink" title="Scancode"></a>Scancode</h1><p>在某些无法直接在热键触发条件中编写的符号, 需要使用到 Scancode. 比如下面一个单引号和双引号互换的例子:</p>
+    <content><![CDATA[<h1 id="Scancode"><a href="#Scancode" class="headerlink" title="Scancode"></a>Scancode</h1><p>AHK 中某些符号无法直接在热键触发条件中编写, 这个时候就需要使用到 Scancode. 比如下面一个单引号和双引号互换的例子, 这里的热键触发条件便是键盘上的引号键.</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;&quot;</span><br><span class="line">return</span><br><span class="line"></span><br><span class="line">+sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;&#39;</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
