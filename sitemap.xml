@@ -333,14 +333,14 @@
 
   
   <url>
-    <loc>https://kuroha.vip/tags/%E9%9D%A2%E8%AF%95/</loc>
+    <loc>https://kuroha.vip/tags/AHK/</loc>
     <lastmod>2020-11-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/AHK/</loc>
+    <loc>https://kuroha.vip/tags/%E9%9D%A2%E8%AF%95/</loc>
     <lastmod>2020-11-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -417,7 +417,7 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/NetWork/</loc>
+    <loc>https://kuroha.vip/tags/Internet/</loc>
     <lastmod>2020-11-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -489,14 +489,14 @@
 
   
   <url>
-    <loc>https://kuroha.vip/categories/Apply/</loc>
+    <loc>https://kuroha.vip/categories/AutoHotKey/</loc>
     <lastmod>2020-11-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/AutoHotKey/</loc>
+    <loc>https://kuroha.vip/categories/Apply/</loc>
     <lastmod>2020-11-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -511,13 +511,6 @@
   
   <url>
     <loc>https://kuroha.vip/categories/Computer/</loc>
-    <lastmod>2020-11-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuroha.vip/categories/Program/</loc>
     <lastmod>2020-11-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -545,7 +538,21 @@
   </url>
   
   <url>
+    <loc>https://kuroha.vip/categories/Program/</loc>
+    <lastmod>2020-11-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kuroha.vip/categories/LifeTips/</loc>
+    <lastmod>2020-11-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/categories/NetWork/</loc>
     <lastmod>2020-11-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
