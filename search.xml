@@ -1,85 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>AHK 中的一些琐碎知识</title>
-    <url>/ahk/ahk_02.html</url>
-    <content><![CDATA[<h1 id="Scancode"><a href="#Scancode" class="headerlink" title="Scancode"></a>Scancode</h1><p>AHK 中某些符号无法直接在热键触发条件中编写, 这个时候就需要使用到 Scancode. 比如下面一个单引号和双引号互换的例子, 这里的热键触发条件便是键盘上的引号键.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;&quot;</span><br><span class="line">return</span><br><span class="line"></span><br><span class="line">+sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;&#39;</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>AutoHotKey</category>
-      </categories>
-      <tags>
-        <tag>AHK</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AHK 基础</title>
-    <url>/ahk/ahk_01.html</url>
-    <content><![CDATA[<h1 id="安装-AutoHotkey"><a href="#安装-AutoHotkey" class="headerlink" title="安装 AutoHotkey"></a>安装 AutoHotkey</h1><p>在安装 <code>Autohotkey</code> 过程中, 需要选择安装 <code>UNICODE</code> 或者 <code>ANSI</code> 版本. </p>
-<p>简单点说, 如果你想要它支持非英文字符和数字, 那就选择 <code>UNICODE</code> 版. </p>
-<p><strong>[注]</strong> <font color='red'>AHK 脚本文件的命名中不能包含空格! 切记! 切记!</font></p>
-<h1 id="热键-amp-热字串"><a href="#热键-amp-热字串" class="headerlink" title="热键 &amp; 热字串"></a>热键 &amp; 热字串</h1><ol>
-<li>热键是用来触发某些动作的按键或组合按键. 如: <code>^j::</code></li>
-</ol>
-<p>热键是通过一对 <code>::</code> 创建的. 按键名或组合按键名必须在 <code>::</code> 左边. 代码则跟在后面, 以 <code>Return</code> 结束.</p>
-<ol start="2">
-<li>热字串主要用于扩展缩写(自动替换). 如: <code>::js::</code></li>
-</ol>
-<p>热字串在要触发的文本两边各有一对 <code>::</code>. 替换后的文本在第二对 <code>::</code> 的右边.</p>
-<h2 id="常用的修饰键-amp-符号"><a href="#常用的修饰键-amp-符号" class="headerlink" title="常用的修饰键 &amp; 符号"></a>常用的修饰键 &amp; 符号</h2><table>
-<thead>
-<tr>
-<th align="center">符号</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">#</td>
-<td align="left">Win</td>
-</tr>
-<tr>
-<td align="center">!</td>
-<td align="left">Alt</td>
-</tr>
-<tr>
-<td align="center">^</td>
-<td align="left">Control</td>
-</tr>
-<tr>
-<td align="center">+</td>
-<td align="left">Shift</td>
-</tr>
-</tbody></table>
-<ol>
-<li>可以通过在两个按键 (除手柄键) 之间, 使用 <code>&amp;</code> 来定义一个组合热键, 注意按键和 <code>&amp;</code> 之间必须加空格. 如: <code>Numpad1 &amp; Numpad2::</code></li>
-</ol>
-<blockquote>
-<p><strong>[注意]</strong> 使用 <code>&amp;</code> 的时候记得在左面按键的前面加上 <code>~</code>, 表示当左面的按键单独按下的时候也要进行处理, 不然左面的按键就失效了. 比如上面的例子中, <code>Numpad1</code> 就会失效. 但是加上 <code>~</code> 符号后, 像这样: <code>~Numpad1 &amp; Numpad2::</code>, 这样 <code>Numpad1</code> 就不会失效了.</p>
-</blockquote>
-<ol start="2">
-<li>热字串的修饰符在第一对 <code>::</code> 之间, 用 <code>*</code> 号进行修饰时, 无需按下结束符, 文本便会自动替换. 如: <code>:*:ftw::</code>.</li>
-</ol>
-<h2 id="如何设置脚本只在特定窗口生效"><a href="#如何设置脚本只在特定窗口生效" class="headerlink" title="如何设置脚本只在特定窗口生效"></a>如何设置脚本只在特定窗口生效</h2><p>在脚本代码的最上方添加高级命令: <code>#IfWinActive</code> 或者 <code>#IfWinExist</code>. </p>
-<h1 id="发送按键-模拟键盘输入"><a href="#发送按键-模拟键盘输入" class="headerlink" title="发送按键, 模拟键盘输入"></a>发送按键, 模拟键盘输入</h1><blockquote>
-<p><strong>[注意]</strong> <code>Send</code> 方法发送文本的时候, 如果要发送这些字符: <code>! + # ^</code>, 这些代表键盘按键的特殊字符, 需要用大括号 <code>&#123; &#125;</code> 括起来. 比如: <code>Send, my first &#123;+&#125; script&#123;!&#125;</code>.</p>
-<p><strong>[注意]</strong> 当然也有代表键盘按键的字串, 如: <code>Space</code>, <code>Enter</code>, 这些也要用大括号 <code>&#123; &#125;</code> 括起来. 如: </p>
-<p><code>Send, Multiple Enter lines have Enter been sent. ; 错误</code></p>
-<p><code>Send, Multiple&#123;Enter&#125;lines have&#123;Enter&#125;been sent. ; 正确</code></p>
-<p><strong>[注意]</strong> 如果模拟键盘输入时遇到了中文输入法的问题, 可以使用 {Text} 参数, 在 SendInput 后面加入这个参数后, 后面的文本就不会以键盘输入的方式进行输出, 而是直接以文本的形式输出, 避免中文输入法导致的问题. 比如 &#39;this is a message &#39; 在中文输入法下会变成 &#39;thisis啊message&#39;, 加入 {Text} 就可以解决这个问题.</p>
-<p><code>SendInput, &#123;Text&#125;administrator</code></p>
-<p>但是由于在中文输入法下会有一个输入提示框, 在 SendInput 处加 {Text} 确实可以避免在触发热键后的输入由于中文输入法而无法正确输入的问题, 但是这里还有另一个问题, 就是 &quot;触发&quot;! 在中文输入法下按下热键只有当热键的字符数<font color='red'><strong>小于等于 2 个</strong></font>的时候才会正常生效!</p>
-<p>比如要写一个 administrator 的热键, 触发条件推荐写 <code>:*:am::</code>, 而不要写 <code>:*:admin::</code>, 不信自己在中文输入法下试用一下就知道了!</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>AutoHotKey</category>
-      </categories>
-      <tags>
-        <tag>AHK</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>游戏开发笔试面试经历之字节跳动</title>
     <url>/apply/game_apply_bytedance.html</url>
     <content><![CDATA[<p>最近找工作, 那叫一个惨, 哈哈, 记录一下自己面试字节跳动时技术岗提问的问题吧! </p>
@@ -579,6 +500,85 @@
       </categories>
       <tags>
         <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AHK 基础</title>
+    <url>/ahk/ahk_01.html</url>
+    <content><![CDATA[<h1 id="安装-AutoHotkey"><a href="#安装-AutoHotkey" class="headerlink" title="安装 AutoHotkey"></a>安装 AutoHotkey</h1><p>在安装 <code>Autohotkey</code> 过程中, 需要选择安装 <code>UNICODE</code> 或者 <code>ANSI</code> 版本. </p>
+<p>简单点说, 如果你想要它支持非英文字符和数字, 那就选择 <code>UNICODE</code> 版. </p>
+<p><strong>[注]</strong> <font color='red'>AHK 脚本文件的命名中不能包含空格! 切记! 切记!</font></p>
+<h1 id="热键-amp-热字串"><a href="#热键-amp-热字串" class="headerlink" title="热键 &amp; 热字串"></a>热键 &amp; 热字串</h1><ol>
+<li>热键是用来触发某些动作的按键或组合按键. 如: <code>^j::</code></li>
+</ol>
+<p>热键是通过一对 <code>::</code> 创建的. 按键名或组合按键名必须在 <code>::</code> 左边. 代码则跟在后面, 以 <code>Return</code> 结束.</p>
+<ol start="2">
+<li>热字串主要用于扩展缩写(自动替换). 如: <code>::js::</code></li>
+</ol>
+<p>热字串在要触发的文本两边各有一对 <code>::</code>. 替换后的文本在第二对 <code>::</code> 的右边.</p>
+<h2 id="常用的修饰键-amp-符号"><a href="#常用的修饰键-amp-符号" class="headerlink" title="常用的修饰键 &amp; 符号"></a>常用的修饰键 &amp; 符号</h2><table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">#</td>
+<td align="left">Win</td>
+</tr>
+<tr>
+<td align="center">!</td>
+<td align="left">Alt</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="left">Control</td>
+</tr>
+<tr>
+<td align="center">+</td>
+<td align="left">Shift</td>
+</tr>
+</tbody></table>
+<ol>
+<li>可以通过在两个按键 (除手柄键) 之间, 使用 <code>&amp;</code> 来定义一个组合热键, 注意按键和 <code>&amp;</code> 之间必须加空格. 如: <code>Numpad1 &amp; Numpad2::</code></li>
+</ol>
+<blockquote>
+<p><strong>[注意]</strong> 使用 <code>&amp;</code> 的时候记得在左面按键的前面加上 <code>~</code>, 表示当左面的按键单独按下的时候也要进行处理, 不然左面的按键就失效了. 比如上面的例子中, <code>Numpad1</code> 就会失效. 但是加上 <code>~</code> 符号后, 像这样: <code>~Numpad1 &amp; Numpad2::</code>, 这样 <code>Numpad1</code> 就不会失效了.</p>
+</blockquote>
+<ol start="2">
+<li>热字串的修饰符在第一对 <code>::</code> 之间, 用 <code>*</code> 号进行修饰时, 无需按下结束符, 文本便会自动替换. 如: <code>:*:ftw::</code>.</li>
+</ol>
+<h2 id="如何设置脚本只在特定窗口生效"><a href="#如何设置脚本只在特定窗口生效" class="headerlink" title="如何设置脚本只在特定窗口生效"></a>如何设置脚本只在特定窗口生效</h2><p>在脚本代码的最上方添加高级命令: <code>#IfWinActive</code> 或者 <code>#IfWinExist</code>. </p>
+<h1 id="发送按键-模拟键盘输入"><a href="#发送按键-模拟键盘输入" class="headerlink" title="发送按键, 模拟键盘输入"></a>发送按键, 模拟键盘输入</h1><blockquote>
+<p><strong>[注意]</strong> <code>Send</code> 方法发送文本的时候, 如果要发送这些字符: <code>! + # ^</code>, 这些代表键盘按键的特殊字符, 需要用大括号 <code>&#123; &#125;</code> 括起来. 比如: <code>Send, my first &#123;+&#125; script&#123;!&#125;</code>.</p>
+<p><strong>[注意]</strong> 当然也有代表键盘按键的字串, 如: <code>Space</code>, <code>Enter</code>, 这些也要用大括号 <code>&#123; &#125;</code> 括起来. 如: </p>
+<p><code>Send, Multiple Enter lines have Enter been sent. ; 错误</code></p>
+<p><code>Send, Multiple&#123;Enter&#125;lines have&#123;Enter&#125;been sent. ; 正确</code></p>
+<p><strong>[注意]</strong> 如果模拟键盘输入时遇到了中文输入法的问题, 可以使用 {Text} 参数, 在 SendInput 后面加入这个参数后, 后面的文本就不会以键盘输入的方式进行输出, 而是直接以文本的形式输出, 避免中文输入法导致的问题. 比如 &#39;this is a message &#39; 在中文输入法下会变成 &#39;thisis啊message&#39;, 加入 {Text} 就可以解决这个问题.</p>
+<p><code>SendInput, &#123;Text&#125;administrator</code></p>
+<p>但是由于在中文输入法下会有一个输入提示框, 在 SendInput 处加 {Text} 确实可以避免在触发热键后的输入由于中文输入法而无法正确输入的问题, 但是这里还有另一个问题, 就是 &quot;触发&quot;! 在中文输入法下按下热键只有当热键的字符数<font color='red'><strong>小于等于 2 个</strong></font>的时候才会正常生效!</p>
+<p>比如要写一个 administrator 的热键, 触发条件推荐写 <code>:*:am::</code>, 而不要写 <code>:*:admin::</code>, 不信自己在中文输入法下试用一下就知道了!</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>AutoHotKey</category>
+      </categories>
+      <tags>
+        <tag>AHK</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AHK 中的一些琐碎知识</title>
+    <url>/ahk/ahk_02.html</url>
+    <content><![CDATA[<h1 id="Scancode"><a href="#Scancode" class="headerlink" title="Scancode"></a>Scancode</h1><p>AHK 中某些符号无法直接在热键触发条件中编写, 这个时候就需要使用到 Scancode. 比如下面一个单引号和双引号互换的例子, 这里的热键触发条件便是键盘上的引号键.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;&quot;</span><br><span class="line">return</span><br><span class="line"></span><br><span class="line">+sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;&#39;</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>AutoHotKey</category>
+      </categories>
+      <tags>
+        <tag>AHK</tag>
       </tags>
   </entry>
   <entry>
@@ -1365,58 +1365,6 @@
       </tags>
   </entry>
   <entry>
-    <title>委托(三) 委托的实例化与匿名函数和 Lambda 表达式</title>
-    <url>/csharp/delegate_03.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="委托类型的定义和委托对象的实例化"><a href="#委托类型的定义和委托对象的实例化" class="headerlink" title="委托类型的定义和委托对象的实例化"></a>委托类型的定义和委托对象的实例化</h1><p>委托和类的级别是一样的, 实例化委托和实例化类在写法上没有区别.</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义一个类类型</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyClass</span> &#123; ... &#125;</span><br><span class="line"><span class="comment">// 实例化一个 MyClass 类型的类对象</span></span><br><span class="line">MyClass myClass;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个委托类型</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">string</span> <span class="title">MyDelegate</span>(<span class="params"><span class="keyword">int</span> a, <span class="keyword">int</span> b</span>)</span>;</span><br><span class="line"><span class="comment">// 实例化一个 MyDelegate 类型的委托对象</span></span><br><span class="line">MyDelegate myDelegate;</span><br></pre></td></tr></table></figure>
-
-<h1 id="初始化委托对象"><a href="#初始化委托对象" class="headerlink" title="初始化委托对象"></a>初始化委托对象</h1><p><code>MyDelegate myDelegate</code> 只是实例化出了一个空的委托对象, 没有内容, 必须对其初始化. 委托的实例化方式经历了几种变化, 引用 微软 csharp 文档中的一段话:</p>
-<blockquote>
-<p>在 C# 1.0 中, 通过使用在代码中其他位置定义的方法显式初始化委托来创建委托的实例. </p>
-<p>C# 2.0 引入了匿名方法的概念, 作为一种编写可在委托调用中执行的未命名内联语句块的方式. </p>
-<p>C# 3.0 引入了 lambda 表达式, 这种表达式与匿名方法的概念类似, 但更具表现力并且更简练. </p>
-<p>这两个功能统称为匿名函数. </p>
-<p>通常, 面向 .NET Framework 3.5 或更高版本的应用程序应使用 lambda (λ) 表达式. </p>
-</blockquote>
-<ol>
-<li>第一种: [C# 1.0] 写法上和初始化类一样, 使用 New 关键字.</li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 初始化 program 类</span></span><br><span class="line">program = <span class="keyword">new</span> Program();</span><br><span class="line"><span class="comment">// 初始化 myDelegate 委托</span></span><br><span class="line">myDelegate = <span class="keyword">new</span> MyDelegate(program.Add);</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>第二种: [C# 1.0] 写法上和初始化值类型一样, 直接赋值.</li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 初始化 myDelegate (直接赋值)</span></span><br><span class="line">myDelegate = program.Add;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>第三种: [C# 2.0] 使用匿名方法</li>
-</ol>
-<p>匿名方法同样是使用 delegate 关键字定义 (强烈建议不再使用匿名方法, 了解即可, 转而使用 Lambda 表达式), 返回值无需特别指明, 只需使用 return 来指明返回值及其类型即可, 匿名方法参数的指明方式和普通方法的指明方式一致, 但是必须和委托定义时声明的方法签名吻合.</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">myDelegate = <span class="keyword">delegate</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (a + b).ToString();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>第四种: [C# 3.0] 使用 Lambda 表达式 (强烈建议使用!)</li>
-</ol>
-<p>Lambda 表达式也是委托初始化的一种手段, 它比匿名方法更为简洁, 而且不会混淆 (谁让委托类型的定义和匿名方法的定义使用同样的关键字的, 唉... 乱套了吧... 我瞎说的~~), 总之正如微软文档说的一样, 学习使用 lambda 表达式吧, 为什么呢? 因为如果你不会的话, 连别人的程序都看不懂啊😥</p>
-<p>Lambda 表达式中也是使用 return 来指明返回值及其类型, 参数可以省略其类型, 因为参数的类型已经在委托定义的时候便指明了, Lambda 表达式中的特色便是这个符号了: <code>=&gt;</code>. <code>=&gt;</code> 符号的左边是参数, 强烈建议使用小括号括起来, 当只有一个参数的时候可以省略, 没有参数的时候写一对空括号即可, 但是此时不可省略. <code>=&gt;</code> 符号的右侧是方法体, 强烈建议使用大括号括起来, 当方法体中只有一条语句时大括号可以省略.</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">myDelegate = (a, b) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (a + b).ToString();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Action action = () =&gt; Console.WriteLine(<span class="string">&quot;action&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-]]></content>
-      <categories>
-        <category>CSharp</category>
-      </categories>
-      <tags>
-        <tag>CSharp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>存储类型和传递方式</title>
     <url>/csharp/parameter.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -1527,6 +1475,58 @@
 <p>可以看出调用方法时, 传递不定个数的参数以及一维数组都是可以的! </p>
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm1pY3Jvc29mdC5jb20vemgtY24vZG90bmV0L2NzaGFycC9sYW5ndWFnZS1yZWZlcmVuY2Uva2V5d29yZHMvcmVmI3Bhc3NpbmctYW4tYXJndW1lbnQtYnktcmVmZXJlbmNl">Microsoft Docs ref<i class="fa fa-external-link-alt"></i></span></p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9kb2NzLm1pY3Jvc29mdC5jb20vemgtY24vZG90bmV0L2NzaGFycC9sYW5ndWFnZS1yZWZlcmVuY2Uva2V5d29yZHMvcGFyYW1z">Microsoft Docs params<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>CSharp</category>
+      </categories>
+      <tags>
+        <tag>CSharp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>委托(三) 委托的实例化与匿名函数和 Lambda 表达式</title>
+    <url>/csharp/delegate_03.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="委托类型的定义和委托对象的实例化"><a href="#委托类型的定义和委托对象的实例化" class="headerlink" title="委托类型的定义和委托对象的实例化"></a>委托类型的定义和委托对象的实例化</h1><p>委托和类的级别是一样的, 实例化委托和实例化类在写法上没有区别.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义一个类类型</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyClass</span> &#123; ... &#125;</span><br><span class="line"><span class="comment">// 实例化一个 MyClass 类型的类对象</span></span><br><span class="line">MyClass myClass;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一个委托类型</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">string</span> <span class="title">MyDelegate</span>(<span class="params"><span class="keyword">int</span> a, <span class="keyword">int</span> b</span>)</span>;</span><br><span class="line"><span class="comment">// 实例化一个 MyDelegate 类型的委托对象</span></span><br><span class="line">MyDelegate myDelegate;</span><br></pre></td></tr></table></figure>
+
+<h1 id="初始化委托对象"><a href="#初始化委托对象" class="headerlink" title="初始化委托对象"></a>初始化委托对象</h1><p><code>MyDelegate myDelegate</code> 只是实例化出了一个空的委托对象, 没有内容, 必须对其初始化. 委托的实例化方式经历了几种变化, 引用 微软 csharp 文档中的一段话:</p>
+<blockquote>
+<p>在 C# 1.0 中, 通过使用在代码中其他位置定义的方法显式初始化委托来创建委托的实例. </p>
+<p>C# 2.0 引入了匿名方法的概念, 作为一种编写可在委托调用中执行的未命名内联语句块的方式. </p>
+<p>C# 3.0 引入了 lambda 表达式, 这种表达式与匿名方法的概念类似, 但更具表现力并且更简练. </p>
+<p>这两个功能统称为匿名函数. </p>
+<p>通常, 面向 .NET Framework 3.5 或更高版本的应用程序应使用 lambda (λ) 表达式. </p>
+</blockquote>
+<ol>
+<li>第一种: [C# 1.0] 写法上和初始化类一样, 使用 New 关键字.</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 初始化 program 类</span></span><br><span class="line">program = <span class="keyword">new</span> Program();</span><br><span class="line"><span class="comment">// 初始化 myDelegate 委托</span></span><br><span class="line">myDelegate = <span class="keyword">new</span> MyDelegate(program.Add);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>第二种: [C# 1.0] 写法上和初始化值类型一样, 直接赋值.</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 初始化 myDelegate (直接赋值)</span></span><br><span class="line">myDelegate = program.Add;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>第三种: [C# 2.0] 使用匿名方法</li>
+</ol>
+<p>匿名方法同样是使用 delegate 关键字定义 (强烈建议不再使用匿名方法, 了解即可, 转而使用 Lambda 表达式), 返回值无需特别指明, 只需使用 return 来指明返回值及其类型即可, 匿名方法参数的指明方式和普通方法的指明方式一致, 但是必须和委托定义时声明的方法签名吻合.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">myDelegate = <span class="keyword">delegate</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (a + b).ToString();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>第四种: [C# 3.0] 使用 Lambda 表达式 (强烈建议使用!)</li>
+</ol>
+<p>Lambda 表达式也是委托初始化的一种手段, 它比匿名方法更为简洁, 而且不会混淆 (谁让委托类型的定义和匿名方法的定义使用同样的关键字的, 唉... 乱套了吧... 我瞎说的~~), 总之正如微软文档说的一样, 学习使用 lambda 表达式吧, 为什么呢? 因为如果你不会的话, 连别人的程序都看不懂啊😥</p>
+<p>Lambda 表达式中也是使用 return 来指明返回值及其类型, 参数可以省略其类型, 因为参数的类型已经在委托定义的时候便指明了, Lambda 表达式中的特色便是这个符号了: <code>=&gt;</code>. <code>=&gt;</code> 符号的左边是参数, 强烈建议使用小括号括起来, 当只有一个参数的时候可以省略, 没有参数的时候写一对空括号即可, 但是此时不可省略. <code>=&gt;</code> 符号的右侧是方法体, 强烈建议使用大括号括起来, 当方法体中只有一条语句时大括号可以省略.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">myDelegate = (a, b) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (a + b).ToString();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Action action = () =&gt; Console.WriteLine(<span class="string">&quot;action&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
 ]]></content>
       <categories>
         <category>CSharp</category>
@@ -2814,7 +2814,7 @@
 <h3 id="内网"><a href="#内网" class="headerlink" title="内网"></a>内网</h3><p>内网, 即未接入因特网的互联网, 又叫做 <strong>本地连接</strong>. </p>
 <p>比如一个大学宿舍内, 几台电脑之间联机进行 CS 游戏对战, 此时这几台电脑便组成了一个简单的互联网. 这个互联网按照之前说的范围分类就是局域网, 按照是否连入因特网来分类就是内网.</p>
 <h3 id="外网"><a href="#外网" class="headerlink" title="外网"></a>外网</h3><p>外网, 即接入了因特网的互联网, 又叫做 <strong>公网</strong>. 我们平时所说的 &quot;你电脑能上网不?&quot;, &quot;你回家之后怎么联网呀?&quot;, 这里面所说的 &quot;网&quot; 其实就是外网, &quot;联网&quot;, &quot;上网&quot; 就是接入因特网.</p>
-<h1 id="🌴局域网的组网方式"><a href="#🌴局域网的组网方式" class="headerlink" title="🌴局域网的组网方式"></a>🌴局域网的组网方式</h1><p>前面提到了局域网, 而局域网的实现技术, 或者说组网方式, 有很多种, 如 <strong>令牌环</strong>, <strong>FDDI</strong>, <strong>ARCNET</strong>, <strong>以太网</strong>, <strong>Wi-Fi</strong>. 因此 <font color='red'><strong>以太网不是网络</strong></font>, 它是局域网的一种技术标准, 一种组网方式.</p>
+<h1 id="🌴局域网的组网方式"><a href="#🌴局域网的组网方式" class="headerlink" title="🌴局域网的组网方式"></a>🌴局域网的组网方式</h1><p>前面提到了局域网, 而局域网的实现技术, 或者说组网方式, 有很多种, 如 <strong>令牌环</strong>, <strong>FDDI</strong>, <strong>ARCNET</strong>, <strong>以太网</strong>, <strong>Wi-Fi</strong>. 因此 <font color='red'><strong>以太网不是网络</strong></font>, 它是局域网的一种技术标准, 一种组网方式, 同样 Wi-Fi 也是.</p>
 <h2 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h2><ul>
 <li><p>以太网: 英文 <strong>Ethernet</strong>. 是目前应用最普遍的局域网技术, 取代了其他局域网技术, 如令牌环, FDDI, ARCNET 等.</p>
 </li>
@@ -2824,7 +2824,7 @@
 <h2 id="Wi-Fi"><a href="#Wi-Fi" class="headerlink" title="Wi-Fi"></a>Wi-Fi</h2><ul>
 <li><p>Wi-Fi: 英文 <strong>wireless fidelity</strong>. 又称 &quot;无线热点&quot; 或 &quot;无线网络&quot;, 也是目前应用非常普遍的局域网实现技术.</p>
 </li>
-<li><p>同时它还是 Wi-Fi 联盟的商标. Wi-Fi 常被写成 WiFi 或 Wifi, 但是这些写法并没有被 Wi-Fi 联盟认可.</p>
+<li><p>同时它还是 Wi-Fi 联盟的商标. Wi-Fi 常被写成 <strong><code>WiFi</code></strong> 或 <strong><code>Wifi</code></strong>, 但是这些写法并没有被 Wi-Fi 联盟认可.</p>
 </li>
 <li><p>Wi-Fi 是基于 <strong>IEEE 802.11</strong> 标准实现的无线局域网技术.</p>
 </li>
@@ -3554,6 +3554,40 @@
       </tags>
   </entry>
   <entry>
+    <title>如何创建自定义瓦片</title>
+    <url>/unity/unity_customizeTile.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="选用待继承的瓦片"><a href="#选用待继承的瓦片" class="headerlink" title="选用待继承的瓦片"></a>选用待继承的瓦片</h1><p>编写自定义瓦片其实就是通过继承 Unity 原有瓦片, 并添加新数据来创建自己的瓦片, 因此首先需要选用待继承的瓦片, 这个根据项目的需要选择即可. </p>
+<p>如果瓦片需要播放动画, 便需要继承动画瓦片, 需要使用预制体就继承预制体瓦片, 需要使用普通瓦片, 随机瓦片, 规则瓦片时都可以继承自规则瓦片.</p>
+<h1 id="添加自定义数据"><a href="#添加自定义数据" class="headerlink" title="添加自定义数据"></a>添加自定义数据</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 魔剑镇魂曲瓦片, 继承自 RuleTile</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">Serializable</span>]</span><br><span class="line">[<span class="meta">CreateAssetMenu(fileName = <span class="meta-string">&quot;New Sword Requiem Tile.asset&quot;</span>, menuName = <span class="meta-string">&quot;Sword Requiem Tile&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SwordRequiemTile</span> : <span class="title">RuleTile</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 枚举: 地形类型</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> EM_Terrain defaultTerrainType;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面是我自定义的 <code>Sword Requiem Tile</code>, 只添加了一个简单的枚举类型数据.</p>
+<ul>
+<li><p>Serializable: 标记此类可以被序列化.</p>
+</li>
+<li><p>CreateAssetMenu: 标记此脚本可以在资源菜单中直接创建, 菜单项为: <code>New Sword Requiem Tile.asset</code>, 菜单项的路径为: <code>Sword Requiem Tile</code>.</p>
+</li>
+<li><p>SwordRequiemTile: 继承自规则瓦片, 自定义的瓦片类型.</p>
+</li>
+<li><p>defaultTerrainType: 自定义数据-默认地形类型.</p>
+</li>
+</ul>
+<p>[<strong>注</strong>] 这个地方有一个挺大的坑, 可以看到我这里的自定义数据使用的是 &#39;字段&#39; 而非 &#39;属性&#39;, 因为使用属性, Inspector 面板中便无法持久保存瓦片属性. </p>
+<p>表现在项目中就是, 首先创建枚举, &#39;森林&#39; 的枚举值为 0, &#39;断层&#39; 为 1, 我创建了一个 Sword Requiem Tile, 默认地形类型自动初始化为 &#39;森林&#39;, 然后修改瓦片的地形类型为 &#39;断层&#39;, 之后绘制地形, 运行游戏, 发现一切正常, 但是一旦关闭 Unity, 再次打开时所有瓦片的自定义数据全部会被重置为 &#39;森林&#39;, 即默认值, 想想这个多可怕!</p>
+<p>以上情况不知道是不是我自己的失误, 总之这里使用原始的字段不会有任何问题.</p>
+<h1 id="编写自定义瓦片的-Inspector-面板"><a href="#编写自定义瓦片的-Inspector-面板" class="headerlink" title="编写自定义瓦片的 Inspector 面板"></a>编写自定义瓦片的 Inspector 面板</h1><p>之前使用 &#39;属性&#39; 作为自定义数据的时候编写了 Inspector 面板的脚本, 后来改用了 &#39;字段&#39; 之后就发现根本不用单独编写脚本了, Unity 会自动进行渲染...😅 这里就先不写 Inspector 面板该如何自定义了, 因为我也不会啊~ 留一个链接, 以便日后捡起来用.</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zNDIzNDMxNQ==">自定义属性面板<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>Tile</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Unity 中的坐标系</title>
     <url>/unity/unity_coordinatesystem.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -3638,40 +3672,6 @@
       </categories>
       <tags>
         <tag>Unity</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何创建自定义瓦片</title>
-    <url>/unity/unity_customizeTile.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="选用待继承的瓦片"><a href="#选用待继承的瓦片" class="headerlink" title="选用待继承的瓦片"></a>选用待继承的瓦片</h1><p>编写自定义瓦片其实就是通过继承 Unity 原有瓦片, 并添加新数据来创建自己的瓦片, 因此首先需要选用待继承的瓦片, 这个根据项目的需要选择即可. </p>
-<p>如果瓦片需要播放动画, 便需要继承动画瓦片, 需要使用预制体就继承预制体瓦片, 需要使用普通瓦片, 随机瓦片, 规则瓦片时都可以继承自规则瓦片.</p>
-<h1 id="添加自定义数据"><a href="#添加自定义数据" class="headerlink" title="添加自定义数据"></a>添加自定义数据</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 魔剑镇魂曲瓦片, 继承自 RuleTile</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">Serializable</span>]</span><br><span class="line">[<span class="meta">CreateAssetMenu(fileName = <span class="meta-string">&quot;New Sword Requiem Tile.asset&quot;</span>, menuName = <span class="meta-string">&quot;Sword Requiem Tile&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SwordRequiemTile</span> : <span class="title">RuleTile</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 枚举: 地形类型</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> EM_Terrain defaultTerrainType;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面是我自定义的 <code>Sword Requiem Tile</code>, 只添加了一个简单的枚举类型数据.</p>
-<ul>
-<li><p>Serializable: 标记此类可以被序列化.</p>
-</li>
-<li><p>CreateAssetMenu: 标记此脚本可以在资源菜单中直接创建, 菜单项为: <code>New Sword Requiem Tile.asset</code>, 菜单项的路径为: <code>Sword Requiem Tile</code>.</p>
-</li>
-<li><p>SwordRequiemTile: 继承自规则瓦片, 自定义的瓦片类型.</p>
-</li>
-<li><p>defaultTerrainType: 自定义数据-默认地形类型.</p>
-</li>
-</ul>
-<p>[<strong>注</strong>] 这个地方有一个挺大的坑, 可以看到我这里的自定义数据使用的是 &#39;字段&#39; 而非 &#39;属性&#39;, 因为使用属性, Inspector 面板中便无法持久保存瓦片属性. </p>
-<p>表现在项目中就是, 首先创建枚举, &#39;森林&#39; 的枚举值为 0, &#39;断层&#39; 为 1, 我创建了一个 Sword Requiem Tile, 默认地形类型自动初始化为 &#39;森林&#39;, 然后修改瓦片的地形类型为 &#39;断层&#39;, 之后绘制地形, 运行游戏, 发现一切正常, 但是一旦关闭 Unity, 再次打开时所有瓦片的自定义数据全部会被重置为 &#39;森林&#39;, 即默认值, 想想这个多可怕!</p>
-<p>以上情况不知道是不是我自己的失误, 总之这里使用原始的字段不会有任何问题.</p>
-<h1 id="编写自定义瓦片的-Inspector-面板"><a href="#编写自定义瓦片的-Inspector-面板" class="headerlink" title="编写自定义瓦片的 Inspector 面板"></a>编写自定义瓦片的 Inspector 面板</h1><p>之前使用 &#39;属性&#39; 作为自定义数据的时候编写了 Inspector 面板的脚本, 后来改用了 &#39;字段&#39; 之后就发现根本不用单独编写脚本了, Unity 会自动进行渲染...😅 这里就先不写 Inspector 面板该如何自定义了, 因为我也不会啊~ 留一个链接, 以便日后捡起来用.</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zNDIzNDMxNQ==">自定义属性面板<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>Tile</tag>
       </tags>
   </entry>
   <entry>
