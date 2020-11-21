@@ -2767,6 +2767,173 @@
       </tags>
   </entry>
   <entry>
+    <title>常见的网络相关名词的含义 (一)</title>
+    <url>/network/network_concept_mean_1.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="🍁前言"><a href="#🍁前言" class="headerlink" title="🍁前言"></a>🍁前言</h1><p>没有上过有关网络知识的课程, 也没有读过网络相关的书籍, 脑中没有任何系统的网络知识, 有的只是一点点电脑使用经验, 真的是落后于时代了啊~</p>
+<h1 id="🙄声明"><a href="#🙄声明" class="headerlink" title="🙄声明"></a>🙄声明</h1><p>由于日常生活中对话的口语性, 下文提到的所有词汇在日常生活中的具体释义应视具体对话场景而定.</p>
+<h1 id="🥦常见的网络相关名词"><a href="#🥦常见的网络相关名词" class="headerlink" title="🥦常见的网络相关名词"></a>🥦常见的网络相关名词</h1><h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><ul>
+<li>计算机网络: 英文 network, 将一台以上的电子设备互连起来, 互连的电子设备之间可以实现通信, 进行信息共享, 这就是计算机网络. 你的手机和电脑之间传输数据时就构成了一个小小的计算机网络.</li>
+</ul>
+<h2 id="互联网"><a href="#互联网" class="headerlink" title="互联网"></a>互联网</h2><ul>
+<li>互联网: 英文为小写开头的 <strong>internet</strong>. 互联网, 顾名思义, 即互相联系的网络. 泛指有多个<font color='red'><strong>计算机网络</strong></font>互连而成的网络. 例如公司的办公网就是一种互联网, 它连接了多个办公楼的网络.</li>
+</ul>
+<h2 id="因特网"><a href="#因特网" class="headerlink" title="因特网"></a>因特网</h2><ul>
+<li><p>因特网: 英文为大写开头的 <strong>Internet</strong>. 在上面所说的这些无数的, 大大小小的互联网中有一个互联网, 越来越多的人都在这个互联网中分享自己电脑中的数据, 所以这个互联网就越来越大, 最后被大家公认为这是一个全球公开网, 只要你想让你的数据可以被全世界任何人访问, 那么你就可以连接上这个网, 把数据放在里面. 这个网就是因特网, 是国际上最大的互联网, 也称 &quot;国际互联网&quot;.</p>
+<blockquote>
+<p>Internet 首字母的大小写</p>
+<ul>
+<li>小写的互联网 (internet) 为<font color='red'><strong>任何分离的实体网络</strong></font>的集合, 这些网络以一组<font color='red'><strong>通用的协议</strong></font>相连, 形成逻辑上的单一网络.</li>
+<li>大写的互联网 (Internet) 专指<font color='red'><strong>前身为 ARPANET</strong></font>, 后使用 <font color='red'><strong>IP 协议</strong></font>将各种实体网络链接成此单一逻辑网络. </li>
+<li>即 Internet 是 internet 中的一种特定形式.</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="万维网"><a href="#万维网" class="headerlink" title="万维网"></a>万维网</h2><ul>
+<li><p>万维网: 英文 <strong>World Wide Web</strong>, 简写 <strong>WWW</strong>. 因特网提供的服务可不仅仅只有网页服务, 还有邮件服务, 文件传输服务, 网上聊天服务, 电子公告板服务等等, 这其中最主要的部分就是<font color='red'><strong>网页服务</strong></font>, 即万维网. 万维网不是一种网络, 而是一项服务.</p>
+<blockquote>
+<p>因特网的发展历史:</p>
+<ul>
+<li>1960 年, 美国国防部高等研究计划署 (ARPA) 创建了 ARPANET. </li>
+<li>ARPANET 最开始只有两个网络节点: 加利福尼亚大学洛杉矶分校的网络测量中心 和 门罗帕克斯坦福国际研究院的 NLS 系统. 第三个节点是加利福尼亚大学圣塔芭芭拉分校, 第四个节点是犹他大学.</li>
+<li>1971 年底, 已经有 15 个节点连接到 ARPANET.</li>
+<li>20 世纪 80 年代中后期 (1985~1990), ARPANET 在欧洲和澳大利亞迅速扩张.</li>
+<li>20 世纪 80 年代后期和 20 世纪 90 年代初期 ARPANET 扩展至亚洲.</li>
+<li>1989年, MCI Mail 和 CompuServe 与 ARPANET 创建了连接, ARPANET 可以提供邮件服务.</li>
+<li>1990 年万维网诞生, 1995 年万维网基本架构完全实现.</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h1 id="🌿网络的分类"><a href="#🌿网络的分类" class="headerlink" title="🌿网络的分类"></a>🌿网络的分类</h1><h2 id="分类方式1-覆盖范围"><a href="#分类方式1-覆盖范围" class="headerlink" title="分类方式1: 覆盖范围"></a>分类方式1: 覆盖范围</h2><p>互联网按照覆盖范围可以大致分为: 个域网, 局域网, 城域网, 广域网, 因此这些都是互联网.</p>
+<h3 id="个域网"><a href="#个域网" class="headerlink" title="个域网"></a>个域网</h3><p>个域网, 即个人域网, 英文 <strong>Personal Area Network</strong>, 简写 <strong>PAN</strong>.</p>
+<h3 id="局域网"><a href="#局域网" class="headerlink" title="局域网"></a>局域网</h3><p>局域网, 即本地互联网, 英文 <strong>Local Area Network</strong>, 简写 <strong>LAN</strong>.</p>
+<h3 id="城域网"><a href="#城域网" class="headerlink" title="城域网"></a>城域网</h3><p>城域网, 即城市范围内所建立的互联网, 英文 <strong>Metropolitan Area Network</strong>, 简写 <strong>MAN</strong>.</p>
+<h3 id="广域网"><a href="#广域网" class="headerlink" title="广域网"></a>广域网</h3><p>广域网, 即比城域网范围还要大的互联网, 英文 <strong>Wide Area Network</strong>, 简写 <strong>WAN</strong>, 一般由电信部门负责组建, 管理和维护.</p>
+<h2 id="分类方式2-是否连入因特网"><a href="#分类方式2-是否连入因特网" class="headerlink" title="分类方式2: 是否连入因特网"></a>分类方式2: 是否连入因特网</h2><p>这是生活中最常用的分类方式, 根据这个分类可以分为: 内网, 外网.</p>
+<h3 id="内网"><a href="#内网" class="headerlink" title="内网"></a>内网</h3><p>内网, 即未接入因特网的互联网, 又叫做 <strong>本地连接</strong>. </p>
+<p>比如一个大学宿舍内, 几台电脑之间联机进行 CS 游戏对战, 此时这几台电脑便组成了一个简单的互联网. 这个互联网按照之前说的范围分类就是局域网, 按照是否连入因特网来分类就是内网.</p>
+<h3 id="外网"><a href="#外网" class="headerlink" title="外网"></a>外网</h3><p>外网, 即接入了因特网的互联网, 又叫做 <strong>公网</strong>. 我们平时所说的 &quot;你电脑能上网不?&quot;, &quot;你回家之后怎么联网呀?&quot;, 这里面所说的 &quot;网&quot; 其实就是外网, &quot;联网&quot;, &quot;上网&quot; 就是接入因特网.</p>
+<h1 id="🌴局域网的组网方式"><a href="#🌴局域网的组网方式" class="headerlink" title="🌴局域网的组网方式"></a>🌴局域网的组网方式</h1><p>前面提到了局域网, 而局域网的实现技术, 或者说组网方式, 有很多种, 如 <strong>令牌环</strong>, <strong>FDDI</strong>, <strong>ARCNET</strong>, <strong>以太网</strong>, <strong>Wi-Fi</strong>. 因此 <font color='red'><strong>以太网不是网络</strong></font>, 它是局域网的一种技术标准, 一种组网方式.</p>
+<h2 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h2><ul>
+<li><p>以太网: 英文 <strong>Ethernet</strong>. 是目前应用最普遍的局域网技术, 取代了其他局域网技术, 如令牌环, FDDI, ARCNET 等.</p>
+</li>
+<li><p>以太网是基于 <strong>IEEE 802.3</strong> 标准实现的.</p>
+</li>
+</ul>
+<h2 id="Wi-Fi"><a href="#Wi-Fi" class="headerlink" title="Wi-Fi"></a>Wi-Fi</h2><ul>
+<li><p>Wi-Fi: 英文 <strong>wireless fidelity</strong>. 又称 &quot;无线热点&quot; 或 &quot;无线网络&quot;, 也是目前应用非常普遍的局域网实现技术.</p>
+</li>
+<li><p>同时它还是 Wi-Fi 联盟的商标. Wi-Fi 常被写成 WiFi 或 Wifi, 但是这些写法并没有被 Wi-Fi 联盟认可.</p>
+</li>
+<li><p>Wi-Fi 是基于 <strong>IEEE 802.11</strong> 标准实现的无线局域网技术.</p>
+</li>
+</ul>
+<p>[<strong>注</strong>]</p>
+<ul>
+<li>日常生活中可以简单的认为, 利用 <strong>网线</strong> 互相连接实现局域网的方式就是以太网, 利用 <strong>无线热点</strong> 实现局域网的方式就是 Wi-Fi.</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><table>
+<thead>
+<tr>
+<th align="left">名词</th>
+<th align="left">英文/同义词</th>
+<th align="left">是否是网络</th>
+<th align="left">简单释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">计算机网络</td>
+<td align="left">network</td>
+<td align="left">是</td>
+<td align="left">网络统称</td>
+</tr>
+<tr>
+<td align="left">互联网</td>
+<td align="left">internet</td>
+<td align="left">是</td>
+<td align="left">网络统称</td>
+</tr>
+<tr>
+<td align="left">因特网</td>
+<td align="left">Internet</td>
+<td align="left">是</td>
+<td align="left">专有名词, 一个叫做因特网的互联网</td>
+</tr>
+<tr>
+<td align="left">万维网</td>
+<td align="left">World Wide Web, WWW</td>
+<td align="left">否, 网页服务</td>
+<td align="left">专有名词, 因特网所提供的网页服务</td>
+</tr>
+<tr>
+<td align="left">个域网</td>
+<td align="left">Personal Area Network, PAN</td>
+<td align="left">是</td>
+<td align="left">个人域互联网</td>
+</tr>
+<tr>
+<td align="left">局域网</td>
+<td align="left">Local Area Network, LAN</td>
+<td align="left">是</td>
+<td align="left">小范围的互联网</td>
+</tr>
+<tr>
+<td align="left">城域网</td>
+<td align="left">Metropolitan Area Network, MAN</td>
+<td align="left">是</td>
+<td align="left">覆盖整个城市的互联网</td>
+</tr>
+<tr>
+<td align="left">广域网</td>
+<td align="left">Wide Area Network, WAN</td>
+<td align="left">是</td>
+<td align="left">比城域网范围还要大的互联网</td>
+</tr>
+<tr>
+<td align="left">内网</td>
+<td align="left">本地连接</td>
+<td align="left">是</td>
+<td align="left">未接入因特网的互联网</td>
+</tr>
+<tr>
+<td align="left">外网</td>
+<td align="left">公网</td>
+<td align="left">是</td>
+<td align="left">已接入因特网的互联网</td>
+</tr>
+<tr>
+<td align="left">以太网</td>
+<td align="left">Ethernet</td>
+<td align="left">否, 技术</td>
+<td align="left">一种组网方式, 技术标准: IEEE 802.3</td>
+</tr>
+<tr>
+<td align="left">Wi-Fi</td>
+<td align="left">wireless fidelity</td>
+<td align="left">否, 技术</td>
+<td align="left">一种组网方式, 技术标准: IEEE 802.11</td>
+</tr>
+</tbody></table>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zMzY3NDAyNg==">互联网和因特网都是什么网? 好久没打渔了<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vcmFueW9uc3VlL3AvOTcxMzk5Mi5odG1s">内网和外网之间的通信 (端口映射原理)<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC81MGNmMTE3NDhiMjY=">因特网、互联网、以太网、局域网、万维网的区别<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Computer</category>
+      </categories>
+      <tags>
+        <tag>NetWork</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Oracle 异构数据库访问</title>
     <url>/oracle/oracle_gateways.html</url>
     <content><![CDATA[<a id="more"></a>

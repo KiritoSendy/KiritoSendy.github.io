@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kuroha.vip/network/network_concept_mean_1.html</loc>
+    
+    <lastmod>2020-11-21</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kuroha.vip/asp/asp_learnnotes.html</loc>
     
     <lastmod>2020-11-21</lastmod>
@@ -404,6 +411,13 @@
   
   <url>
     <loc>https://kuroha.vip/tags/MPV/</loc>
+    <lastmod>2020-11-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/tags/NetWork/</loc>
     <lastmod>2020-11-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
