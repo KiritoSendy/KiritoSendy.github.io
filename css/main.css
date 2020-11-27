@@ -3044,6 +3044,8 @@ mark.search-keyword {
   }
 }
 code {
-  margin: 0px 2px;
-  border: 1px solid rgba(0,0,0,0.6);
+  margin: 0px 0px;
+  border: 2px solid rgba(0,0,0,0.6);
+  border-radius: 0px;
+  color: #d0104c;
 }
