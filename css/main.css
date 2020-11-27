@@ -3043,3 +3043,7 @@ mark.search-keyword {
     margin: 8px 0 0;
   }
 }
+code {
+  margin: 0px 2px;
+  border: 1px solid rgba(0,0,0,0.6);
+}

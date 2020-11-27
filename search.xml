@@ -1,6 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AHK 基础</title>
+    <url>/ahk/ahk_01.html</url>
+    <content><![CDATA[<h1 id="安装-AutoHotkey"><a href="#安装-AutoHotkey" class="headerlink" title="安装 AutoHotkey"></a>安装 AutoHotkey</h1><p>在安装 <code>Autohotkey</code> 过程中, 需要选择安装 <code>UNICODE</code> 或者 <code>ANSI</code> 版本. </p>
+<p>简单点说, 如果你想要它支持非英文字符和数字, 那就选择 <code>UNICODE</code> 版. </p>
+<p><strong>[注]</strong> <font color='red'>AHK 脚本文件的命名中不能包含空格! 切记! 切记!</font></p>
+<h1 id="热键-amp-热字串"><a href="#热键-amp-热字串" class="headerlink" title="热键 &amp; 热字串"></a>热键 &amp; 热字串</h1><ol>
+<li>热键是用来触发某些动作的按键或组合按键. 如: <code>^j::</code></li>
+</ol>
+<p>热键是通过一对 <code>::</code> 创建的. 按键名或组合按键名必须在 <code>::</code> 左边. 代码则跟在后面, 以 <code>Return</code> 结束.</p>
+<ol start="2">
+<li>热字串主要用于扩展缩写(自动替换). 如: <code>::js::</code></li>
+</ol>
+<p>热字串在要触发的文本两边各有一对 <code>::</code>. 替换后的文本在第二对 <code>::</code> 的右边.</p>
+<h2 id="常用的修饰键-amp-符号"><a href="#常用的修饰键-amp-符号" class="headerlink" title="常用的修饰键 &amp; 符号"></a>常用的修饰键 &amp; 符号</h2><table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">#</td>
+<td align="left">Win</td>
+</tr>
+<tr>
+<td align="center">!</td>
+<td align="left">Alt</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="left">Control</td>
+</tr>
+<tr>
+<td align="center">+</td>
+<td align="left">Shift</td>
+</tr>
+</tbody></table>
+<ol>
+<li>可以通过在两个按键 (除手柄键) 之间, 使用 <code>&amp;</code> 来定义一个组合热键, 注意按键和 <code>&amp;</code> 之间必须加空格. 如: <code>Numpad1 &amp; Numpad2::</code></li>
+</ol>
+<blockquote>
+<p><strong>[注意]</strong> 使用 <code>&amp;</code> 的时候记得在左面按键的前面加上 <code>~</code>, 表示当左面的按键单独按下的时候也要进行处理, 不然左面的按键就失效了. 比如上面的例子中, <code>Numpad1</code> 就会失效. 但是加上 <code>~</code> 符号后, 像这样: <code>~Numpad1 &amp; Numpad2::</code>, 这样 <code>Numpad1</code> 就不会失效了.</p>
+</blockquote>
+<ol start="2">
+<li>热字串的修饰符在第一对 <code>::</code> 之间, 用 <code>*</code> 号进行修饰时, 无需按下结束符, 文本便会自动替换. 如: <code>:*:ftw::</code>.</li>
+</ol>
+<h2 id="如何设置脚本只在特定窗口生效"><a href="#如何设置脚本只在特定窗口生效" class="headerlink" title="如何设置脚本只在特定窗口生效"></a>如何设置脚本只在特定窗口生效</h2><p>在脚本代码的最上方添加高级命令: <code>#IfWinActive</code> 或者 <code>#IfWinExist</code>. </p>
+<h1 id="发送按键-模拟键盘输入"><a href="#发送按键-模拟键盘输入" class="headerlink" title="发送按键, 模拟键盘输入"></a>发送按键, 模拟键盘输入</h1><blockquote>
+<p><strong>[注意]</strong> <code>Send</code> 方法发送文本的时候, 如果要发送这些字符: <code>! + # ^</code>, 这些代表键盘按键的特殊字符, 需要用大括号 <code>&#123; &#125;</code> 括起来. 比如: <code>Send, my first &#123;+&#125; script&#123;!&#125;</code>.</p>
+<p><strong>[注意]</strong> 当然也有代表键盘按键的字串, 如: <code>Space</code>, <code>Enter</code>, 这些也要用大括号 <code>&#123; &#125;</code> 括起来. 如: </p>
+<p><code>Send, Multiple Enter lines have Enter been sent. ; 错误</code></p>
+<p><code>Send, Multiple&#123;Enter&#125;lines have&#123;Enter&#125;been sent. ; 正确</code></p>
+<p><strong>[注意]</strong> 如果模拟键盘输入时遇到了中文输入法的问题, 可以使用 {Text} 参数, 在 SendInput 后面加入这个参数后, 后面的文本就不会以键盘输入的方式进行输出, 而是直接以文本的形式输出, 避免中文输入法导致的问题. 比如 &#39;this is a message &#39; 在中文输入法下会变成 &#39;thisis啊message&#39;, 加入 {Text} 就可以解决这个问题.</p>
+<p><code>SendInput, &#123;Text&#125;administrator</code></p>
+<p>但是由于在中文输入法下会有一个输入提示框, 在 SendInput 处加 {Text} 确实可以避免在触发热键后的输入由于中文输入法而无法正确输入的问题, 但是这里还有另一个问题, 就是 &quot;触发&quot;! 在中文输入法下按下热键只有当热键的字符数<font color='red'><strong>小于等于 2 个</strong></font>的时候才会正常生效!</p>
+<p>比如要写一个 administrator 的热键, 触发条件推荐写 <code>:*:am::</code>, 而不要写 <code>:*:admin::</code>, 不信自己在中文输入法下试用一下就知道了!</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>AutoHotKey</category>
+      </categories>
+      <tags>
+        <tag>AHK</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AHK 中的一些琐碎知识</title>
+    <url>/ahk/ahk_02.html</url>
+    <content><![CDATA[<h1 id="Scancode"><a href="#Scancode" class="headerlink" title="Scancode"></a>Scancode</h1><p>AHK 中某些符号无法直接在热键触发条件中编写, 这个时候就需要使用到 Scancode. 比如下面一个单引号和双引号互换的例子, 这里的热键触发条件便是键盘上的引号键.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;&quot;</span><br><span class="line">return</span><br><span class="line"></span><br><span class="line">+sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;&#39;</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>AutoHotKey</category>
+      </categories>
+      <tags>
+        <tag>AHK</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>游戏开发笔试面试经历之字节跳动</title>
     <url>/apply/game_apply_bytedance.html</url>
     <content><![CDATA[<p>最近找工作, 那叫一个惨, 哈哈, 记录一下自己面试字节跳动时技术岗提问的问题吧! </p>
@@ -500,85 +579,6 @@
       </categories>
       <tags>
         <tag>面试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AHK 基础</title>
-    <url>/ahk/ahk_01.html</url>
-    <content><![CDATA[<h1 id="安装-AutoHotkey"><a href="#安装-AutoHotkey" class="headerlink" title="安装 AutoHotkey"></a>安装 AutoHotkey</h1><p>在安装 <code>Autohotkey</code> 过程中, 需要选择安装 <code>UNICODE</code> 或者 <code>ANSI</code> 版本. </p>
-<p>简单点说, 如果你想要它支持非英文字符和数字, 那就选择 <code>UNICODE</code> 版. </p>
-<p><strong>[注]</strong> <font color='red'>AHK 脚本文件的命名中不能包含空格! 切记! 切记!</font></p>
-<h1 id="热键-amp-热字串"><a href="#热键-amp-热字串" class="headerlink" title="热键 &amp; 热字串"></a>热键 &amp; 热字串</h1><ol>
-<li>热键是用来触发某些动作的按键或组合按键. 如: <code>^j::</code></li>
-</ol>
-<p>热键是通过一对 <code>::</code> 创建的. 按键名或组合按键名必须在 <code>::</code> 左边. 代码则跟在后面, 以 <code>Return</code> 结束.</p>
-<ol start="2">
-<li>热字串主要用于扩展缩写(自动替换). 如: <code>::js::</code></li>
-</ol>
-<p>热字串在要触发的文本两边各有一对 <code>::</code>. 替换后的文本在第二对 <code>::</code> 的右边.</p>
-<h2 id="常用的修饰键-amp-符号"><a href="#常用的修饰键-amp-符号" class="headerlink" title="常用的修饰键 &amp; 符号"></a>常用的修饰键 &amp; 符号</h2><table>
-<thead>
-<tr>
-<th align="center">符号</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">#</td>
-<td align="left">Win</td>
-</tr>
-<tr>
-<td align="center">!</td>
-<td align="left">Alt</td>
-</tr>
-<tr>
-<td align="center">^</td>
-<td align="left">Control</td>
-</tr>
-<tr>
-<td align="center">+</td>
-<td align="left">Shift</td>
-</tr>
-</tbody></table>
-<ol>
-<li>可以通过在两个按键 (除手柄键) 之间, 使用 <code>&amp;</code> 来定义一个组合热键, 注意按键和 <code>&amp;</code> 之间必须加空格. 如: <code>Numpad1 &amp; Numpad2::</code></li>
-</ol>
-<blockquote>
-<p><strong>[注意]</strong> 使用 <code>&amp;</code> 的时候记得在左面按键的前面加上 <code>~</code>, 表示当左面的按键单独按下的时候也要进行处理, 不然左面的按键就失效了. 比如上面的例子中, <code>Numpad1</code> 就会失效. 但是加上 <code>~</code> 符号后, 像这样: <code>~Numpad1 &amp; Numpad2::</code>, 这样 <code>Numpad1</code> 就不会失效了.</p>
-</blockquote>
-<ol start="2">
-<li>热字串的修饰符在第一对 <code>::</code> 之间, 用 <code>*</code> 号进行修饰时, 无需按下结束符, 文本便会自动替换. 如: <code>:*:ftw::</code>.</li>
-</ol>
-<h2 id="如何设置脚本只在特定窗口生效"><a href="#如何设置脚本只在特定窗口生效" class="headerlink" title="如何设置脚本只在特定窗口生效"></a>如何设置脚本只在特定窗口生效</h2><p>在脚本代码的最上方添加高级命令: <code>#IfWinActive</code> 或者 <code>#IfWinExist</code>. </p>
-<h1 id="发送按键-模拟键盘输入"><a href="#发送按键-模拟键盘输入" class="headerlink" title="发送按键, 模拟键盘输入"></a>发送按键, 模拟键盘输入</h1><blockquote>
-<p><strong>[注意]</strong> <code>Send</code> 方法发送文本的时候, 如果要发送这些字符: <code>! + # ^</code>, 这些代表键盘按键的特殊字符, 需要用大括号 <code>&#123; &#125;</code> 括起来. 比如: <code>Send, my first &#123;+&#125; script&#123;!&#125;</code>.</p>
-<p><strong>[注意]</strong> 当然也有代表键盘按键的字串, 如: <code>Space</code>, <code>Enter</code>, 这些也要用大括号 <code>&#123; &#125;</code> 括起来. 如: </p>
-<p><code>Send, Multiple Enter lines have Enter been sent. ; 错误</code></p>
-<p><code>Send, Multiple&#123;Enter&#125;lines have&#123;Enter&#125;been sent. ; 正确</code></p>
-<p><strong>[注意]</strong> 如果模拟键盘输入时遇到了中文输入法的问题, 可以使用 {Text} 参数, 在 SendInput 后面加入这个参数后, 后面的文本就不会以键盘输入的方式进行输出, 而是直接以文本的形式输出, 避免中文输入法导致的问题. 比如 &#39;this is a message &#39; 在中文输入法下会变成 &#39;thisis啊message&#39;, 加入 {Text} 就可以解决这个问题.</p>
-<p><code>SendInput, &#123;Text&#125;administrator</code></p>
-<p>但是由于在中文输入法下会有一个输入提示框, 在 SendInput 处加 {Text} 确实可以避免在触发热键后的输入由于中文输入法而无法正确输入的问题, 但是这里还有另一个问题, 就是 &quot;触发&quot;! 在中文输入法下按下热键只有当热键的字符数<font color='red'><strong>小于等于 2 个</strong></font>的时候才会正常生效!</p>
-<p>比如要写一个 administrator 的热键, 触发条件推荐写 <code>:*:am::</code>, 而不要写 <code>:*:admin::</code>, 不信自己在中文输入法下试用一下就知道了!</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>AutoHotKey</category>
-      </categories>
-      <tags>
-        <tag>AHK</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AHK 中的一些琐碎知识</title>
-    <url>/ahk/ahk_02.html</url>
-    <content><![CDATA[<h1 id="Scancode"><a href="#Scancode" class="headerlink" title="Scancode"></a>Scancode</h1><p>AHK 中某些符号无法直接在热键触发条件中编写, 这个时候就需要使用到 Scancode. 比如下面一个单引号和双引号互换的例子, 这里的热键触发条件便是键盘上的引号键.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;&quot;</span><br><span class="line">return</span><br><span class="line"></span><br><span class="line">+sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;&#39;</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>AutoHotKey</category>
-      </categories>
-      <tags>
-        <tag>AHK</tag>
       </tags>
   </entry>
   <entry>
@@ -1117,6 +1117,86 @@
       </tags>
   </entry>
   <entry>
+    <title>委托(一) 委托的基本用法</title>
+    <url>/csharp/delegate_01.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="本文重点"><a href="#本文重点" class="headerlink" title="本文重点"></a>本文重点</h1><ol>
+<li><p>delegate 和 Delegate 的区别</p>
+</li>
+<li><p>定义委托</p>
+</li>
+<li><p>实例化委托</p>
+</li>
+<li><p>Action 和 Func</p>
+</li>
+<li><p>委托的基本用法</p>
+</li>
+</ol>
+<h1 id="delegate"><a href="#delegate" class="headerlink" title="delegate"></a>delegate</h1><p><code>delegate</code> 是一个类型关键字, 和它类似的还有: <code>class</code>, <code>interface</code>, <code>enum</code> 等等. 这类关键字都是用来定义的, 而不是实例化的. 枚举类型使用 <code>enum</code> 进行定义, 委托类型使用 <code>delegate</code> 进行定义. 因此 <font color='red'><strong>delegate 不是类! 它只是一个类型关键字! 用来定义类型的.</strong></font></p>
+<h1 id="System-String-string-和-System-Delegate-delegate"><a href="#System-String-string-和-System-Delegate-delegate" class="headerlink" title="System.String - string 和 System.Delegate - delegate"></a>System.String - string 和 System.Delegate - delegate</h1><p>System.String 是 .Net 框架中的一个类, .Net 框架中包含多种编程语言, 其中 C# 语言中给 System.String 起了一个别名 string, 因此 <code>string str</code> 和 <code>System.String str</code> 是没有区别的, <code>string</code> 就是一个类, <code>string str</code> 这一个代码不是在定义类型, 而是在实例化对象. 但是 <code>delegate</code> 和 <code>System.Delegate</code> 的关系就不是这样了. <code>System.Delegate</code> 是一个类, 而 <code>delegate</code> 则是一个 <code>类型关键字</code>, 它是用来定义委托的, 就像 <code>class</code> 定义类, <code>struct</code> 定义结构体, <code>enum</code> 定义枚举一样, 这些关键字是同一个级次的, 但他们都不是类. </p>
+<p>如下图, String, string, Delegate 都可以调用类中的静态方法, 这是因为他们都是类, 但是 delegate 则不可以, 因为它仅仅只是一个类型关键字.</p>
+<p><img data-src="/images/csharp/delegate/delegate_01.png" alt="delegate"></p>
+<h1 id="🦄如何定义一个委托类型"><a href="#🦄如何定义一个委托类型" class="headerlink" title="🦄如何定义一个委托类型"></a>🦄如何定义一个委托类型</h1><ol>
+<li>使用 delegate 关键字</li>
+<li>指明待委托方法的两个特征: <code>1. 返回值 2. 参数</code></li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义委托类型, 返回值为: int, 参数为: (int, int)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">int</span> <span class="title">MyDelegate</span> (<span class="params"><span class="keyword">int</span> a, <span class="keyword">int</span> b</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>[<strong>注</strong>] 其实 csharp 中已经有定义好的通用委托类型了, 基本无需自己定义委托类型.</p>
+<h1 id="🐬如何实例化出一个委托实例"><a href="#🐬如何实例化出一个委托实例" class="headerlink" title="🐬如何实例化出一个委托实例"></a>🐬如何实例化出一个委托实例</h1><p>实例化委托就是使用之前定义好的委托类型实例化出一个委托对象, 也叫做委托实例. 委托的实例化语法和类的实例化语法相同.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 实例化一个 MyDelegate 类型的委托对象, 此时还没有初始化</span></span><br><span class="line">MyDelegate myDelegate;</span><br></pre></td></tr></table></figure>
+
+<p>[<strong>注</strong>] 实例化委托时通常不再使用自己定义的委托类型, 而是使用 csharp 中已经定义好的通用委托类型 Action&lt;&gt; 和 Func&lt;&gt;.</p>
+<h1 id="🌴如何初始化一个委托实例"><a href="#🌴如何初始化一个委托实例" class="headerlink" title="🌴如何初始化一个委托实例"></a>🌴如何初始化一个委托实例</h1><ul>
+<li><p>方法 1: 使用 new 关键字初始化. 待委托方法作为参数传入.</p>
+</li>
+<li><p>方法 2: 直接使用符合特征的方法赋值.</p>
+</li>
+</ul>
+<p>[<strong>注</strong>] 待委托方法如果不是静态方法, 则必须是实例方法. 不能将未实例化的方法作为参数传入委托或对委托赋值.</p>
+<h1 id="如何调用委托"><a href="#如何调用委托" class="headerlink" title="如何调用委托"></a>如何调用委托</h1><ul>
+<li>方式 1: 调用委托和调用方法在代码写法上一致.</li>
+<li>方式 2: 调用 Invoke() 方法.</li>
+</ul>
+<h1 id="委托基本用法示例-非静态"><a href="#委托基本用法示例-非静态" class="headerlink" title="委托基本用法示例 (非静态)"></a>委托基本用法示例 (非静态)</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CSharp 起别名的语法规则, 在 namespace 外部书写时必须写全部路径</span></span><br><span class="line"><span class="comment">// using Package = System.Collections.Generic.Dictionary&lt;string, int&gt;;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyDelegateTest</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// CSharp 起别名的语法规则, 在 namespace 内部书写的时候可以嵌套引用 namespace 外的 using</span></span><br><span class="line">    <span class="keyword">using</span> Package = Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义一个委托类, 指明待委托方法的特征: 1. 返回值 (string) 2. 参数 (string, int, Package)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">string</span> <span class="title">DelegateBuy</span>(<span class="params"><span class="keyword">string</span> itemName, <span class="keyword">int</span> num, Package package</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="comment">// 实例化 玩家包裹</span></span><br><span class="line">            Package package = <span class="keyword">new</span> Package();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 实例化 委托</span></span><br><span class="line">            <span class="comment">// 委托初始化时可以直接赋值, 也可以使用 new 关键字</span></span><br><span class="line">            <span class="comment">// 当 &quot;待委托方法&quot; 是非静态方法时, 只能传递待委托方法的实例作为参数, 因此这里必须实例化 Program, 并写 &quot;program.Buy&quot;, 不能只写 &quot;Buy&quot;.</span></span><br><span class="line">            Program program = <span class="keyword">new</span> Program();</span><br><span class="line">            DelegateBuy delegateBuy = program.Buy;</span><br><span class="line">            DelegateBuy delegateBuy2 = <span class="keyword">new</span> DelegateBuy(program.Buy);            </span><br><span class="line"></span><br><span class="line">            <span class="comment">// 调用委托的写法和调用方法的写法一致</span></span><br><span class="line">            Console.WriteLine(delegateBuy(<span class="string">&quot;体力药水&quot;</span>, <span class="number">10</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy(<span class="string">&quot;体力药水&quot;</span>, <span class="number">25</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy2(<span class="string">&quot;魔力药水&quot;</span>, <span class="number">10</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy2(<span class="string">&quot;魔力药水&quot;</span>, <span class="number">5</span>, package));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 暂停</span></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 待委托的方法</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;itemName&quot;&gt;</span>物品名称<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;num&quot;&gt;</span>物品数量<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;package&quot;&gt;</span>玩家包裹<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">string</span> <span class="title">Buy</span>(<span class="params"><span class="keyword">string</span> itemName, <span class="keyword">int</span> num, Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt; package</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">string</span> str;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (package.ContainsKey(itemName))</span><br><span class="line">            &#123;</span><br><span class="line">                package[itemName] += num;</span><br><span class="line">                str = <span class="keyword">string</span>.Format(<span class="string">&quot;您又购买了&#123;0&#125;个&#123;1&#125;!&quot;</span>, num, itemName);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                package.Add(itemName, num);</span><br><span class="line">                str = <span class="keyword">string</span>.Format(<span class="string">&quot;您购买了&#123;0&#125;个&#123;1&#125;!&quot;</span>, num, itemName);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> str;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="委托基本用法示例-静态"><a href="#委托基本用法示例-静态" class="headerlink" title="委托基本用法示例 (静态)"></a>委托基本用法示例 (静态)</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CSharp 起别名的语法规则, 在 namespace 外部书写时必须写全部路径</span></span><br><span class="line"><span class="comment">// using Package = System.Collections.Generic.Dictionary&lt;string, int&gt;;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyDelegateTest</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// CSharp 起别名的语法规则, 在 namespace 内部书写的时候可以嵌套引用 namespace 外的 using</span></span><br><span class="line">    <span class="keyword">using</span> Package = Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义一个委托类, 指明待委托方法的特征: 1. 返回值 (string) 2. 参数 (string, int, Package)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">string</span> <span class="title">DelegateBuy</span>(<span class="params"><span class="keyword">string</span> itemName, <span class="keyword">int</span> num, Package package</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="comment">// 实例化 玩家包裹</span></span><br><span class="line">            Package package = <span class="keyword">new</span> Package();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 实例化 委托</span></span><br><span class="line">            <span class="comment">// 当 &quot;待委托方法&quot; 是静态方法时, 可以直接将静态方法作为参数传递.</span></span><br><span class="line">            DelegateBuy delegateBuy = Program.Buy;</span><br><span class="line">            DelegateBuy delegateBuy2 = <span class="keyword">new</span> DelegateBuy(Program.Buy);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 调用委托的写法和调用方法的写法一致</span></span><br><span class="line">            Console.WriteLine(delegateBuy(<span class="string">&quot;体力药水&quot;</span>, <span class="number">10</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy(<span class="string">&quot;体力药水&quot;</span>, <span class="number">25</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy2(<span class="string">&quot;魔力药水&quot;</span>, <span class="number">10</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy2(<span class="string">&quot;魔力药水&quot;</span>, <span class="number">5</span>, package));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 暂停</span></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 待委托的方法</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;itemName&quot;&gt;</span>物品名称<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;num&quot;&gt;</span>物品数量<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;package&quot;&gt;</span>玩家包裹<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">Buy</span>(<span class="params"><span class="keyword">string</span> itemName, <span class="keyword">int</span> num, Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt; package</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">string</span> str;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (package.ContainsKey(itemName))</span><br><span class="line">            &#123;</span><br><span class="line">                package[itemName] += num;</span><br><span class="line">                str = <span class="keyword">string</span>.Format(<span class="string">&quot;您又购买了&#123;0&#125;个&#123;1&#125;!&quot;</span>, num, itemName);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                package.Add(itemName, num);</span><br><span class="line">                str = <span class="keyword">string</span>.Format(<span class="string">&quot;您购买了&#123;0&#125;个&#123;1&#125;!&quot;</span>, num, itemName);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> str;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Action-和-Func"><a href="#Action-和-Func" class="headerlink" title="Action 和 Func"></a>Action 和 Func</h1><p>在实例化委托的时候, 不仅仅可以使用自己定义的委托, 还可以使用 csharp 中已经定义好的两个泛型委托: <strong><code>Action&lt;&gt;</code></strong> 和 <strong><code>Func&lt;&gt;</code></strong> 来实例化 (强烈建议使用).</p>
+<h2 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h2><p><strong>Action&lt;&gt;</strong> 待委托的方法都是没有返回值的方法, 参数使用泛型进行指定.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Action a; <span class="comment">// 实例化出一个待委托方法特征为没有返回值, 没有参数的委托实例 a</span></span><br><span class="line">Action&lt;<span class="keyword">string</span>&gt; b; <span class="comment">// 实例化出一个待委托方法特征为没有返回值, 有一个 string 类型参数的委托实例 b</span></span><br><span class="line">Action&lt;<span class="keyword">string</span>, <span class="keyword">int</span>[]&gt; c; <span class="comment">// 实例化出一个待委托方法特征为没有返回值, 具有一个 string, 一个 int 数组参数的委托实例 c</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Func"><a href="#Func" class="headerlink" title="Func"></a>Func</h2><p><strong>Func&lt;&gt;</strong> 待委托的方法都是具有返回值的方法. 使用泛型来指定参数和返回值. 其中泛型中的最后一个类型为返回值的类型.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Func&lt;<span class="keyword">string</span>&gt; a; <span class="comment">// 实例化出一个待委托方法特征为没有参数, 返回值类型为 string 的委托实例 a</span></span><br><span class="line">Func&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt; b; <span class="comment">// 实例化出一个待委托方法特征为有一个 string 类型的参数, 返回值为 int 类型的委托实例 b</span></span><br><span class="line">Func&lt;<span class="keyword">int</span>, <span class="keyword">string</span>, <span class="keyword">int</span>[]&gt; c; <span class="comment">// 实例化出一个待委托方法特征为有两个 类型分别为 int 和 string 类型的参数, 返回值为 int 数组类型的委托实例 c</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li><p>delegate 和 Delegate 的区别: </p>
+<p> Delegate 是类, delegate 是关键字.</p>
+</li>
+<li><p>定义委托</p>
+<p> 不再自定义委托, 使用 Action&lt;&gt; 和 Func&lt;&gt;.</p>
+</li>
+<li><p>实例化委托</p>
+<p> 使用泛型指明待委托方法的特征.</p>
+</li>
+<li><p>Action 和 Func</p>
+<p> Action&lt;&gt; 指明无返回值, Func&lt;&gt; 最后一个泛型类型指明返回值.</p>
+</li>
+<li><p>委托的基本用法</p>
+<p> 可以通过委托来调用方法.</p>
+</li>
+</ol>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC50ZW5jZW50LmNvbS9kZXZlbG9wZXIvYXJ0aWNsZS8xMzMxNTkw">理解委托类型<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>CSharp</category>
+      </categories>
+      <tags>
+        <tag>CSharp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>csharp 中一些琐碎的知识</title>
     <url>/csharp/csharp_others.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -1287,86 +1367,6 @@
 ]]></content>
       <categories>
         <category>Program</category>
-      </categories>
-      <tags>
-        <tag>CSharp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>委托(一) 委托的基本用法</title>
-    <url>/csharp/delegate_01.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="本文重点"><a href="#本文重点" class="headerlink" title="本文重点"></a>本文重点</h1><ol>
-<li><p>delegate 和 Delegate 的区别</p>
-</li>
-<li><p>定义委托</p>
-</li>
-<li><p>实例化委托</p>
-</li>
-<li><p>Action 和 Func</p>
-</li>
-<li><p>委托的基本用法</p>
-</li>
-</ol>
-<h1 id="delegate"><a href="#delegate" class="headerlink" title="delegate"></a>delegate</h1><p><code>delegate</code> 是一个类型关键字, 和它类似的还有: <code>class</code>, <code>interface</code>, <code>enum</code> 等等. 这类关键字都是用来定义的, 而不是实例化的. 枚举类型使用 <code>enum</code> 进行定义, 委托类型使用 <code>delegate</code> 进行定义. 因此 <font color='red'><strong>delegate 不是类! 它只是一个类型关键字! 用来定义类型的.</strong></font></p>
-<h1 id="System-String-string-和-System-Delegate-delegate"><a href="#System-String-string-和-System-Delegate-delegate" class="headerlink" title="System.String - string 和 System.Delegate - delegate"></a>System.String - string 和 System.Delegate - delegate</h1><p>System.String 是 .Net 框架中的一个类, .Net 框架中包含多种编程语言, 其中 C# 语言中给 System.String 起了一个别名 string, 因此 <code>string str</code> 和 <code>System.String str</code> 是没有区别的, <code>string</code> 就是一个类, <code>string str</code> 这一个代码不是在定义类型, 而是在实例化对象. 但是 <code>delegate</code> 和 <code>System.Delegate</code> 的关系就不是这样了. <code>System.Delegate</code> 是一个类, 而 <code>delegate</code> 则是一个 <code>类型关键字</code>, 它是用来定义委托的, 就像 <code>class</code> 定义类, <code>struct</code> 定义结构体, <code>enum</code> 定义枚举一样, 这些关键字是同一个级次的, 但他们都不是类. </p>
-<p>如下图, String, string, Delegate 都可以调用类中的静态方法, 这是因为他们都是类, 但是 delegate 则不可以, 因为它仅仅只是一个类型关键字.</p>
-<p><img data-src="/images/csharp/delegate/delegate_01.png" alt="delegate"></p>
-<h1 id="🦄如何定义一个委托类型"><a href="#🦄如何定义一个委托类型" class="headerlink" title="🦄如何定义一个委托类型"></a>🦄如何定义一个委托类型</h1><ol>
-<li>使用 delegate 关键字</li>
-<li>指明待委托方法的两个特征: <code>1. 返回值 2. 参数</code></li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义委托类型, 返回值为: int, 参数为: (int, int)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">int</span> <span class="title">MyDelegate</span> (<span class="params"><span class="keyword">int</span> a, <span class="keyword">int</span> b</span>)</span>;</span><br></pre></td></tr></table></figure>
-
-<p>[<strong>注</strong>] 其实 csharp 中已经有定义好的通用委托类型了, 基本无需自己定义委托类型.</p>
-<h1 id="🐬如何实例化出一个委托实例"><a href="#🐬如何实例化出一个委托实例" class="headerlink" title="🐬如何实例化出一个委托实例"></a>🐬如何实例化出一个委托实例</h1><p>实例化委托就是使用之前定义好的委托类型实例化出一个委托对象, 也叫做委托实例. 委托的实例化语法和类的实例化语法相同.</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 实例化一个 MyDelegate 类型的委托对象, 此时还没有初始化</span></span><br><span class="line">MyDelegate myDelegate;</span><br></pre></td></tr></table></figure>
-
-<p>[<strong>注</strong>] 实例化委托时通常不再使用自己定义的委托类型, 而是使用 csharp 中已经定义好的通用委托类型 Action&lt;&gt; 和 Func&lt;&gt;.</p>
-<h1 id="🌴如何初始化一个委托实例"><a href="#🌴如何初始化一个委托实例" class="headerlink" title="🌴如何初始化一个委托实例"></a>🌴如何初始化一个委托实例</h1><ul>
-<li><p>方法 1: 使用 new 关键字初始化. 待委托方法作为参数传入.</p>
-</li>
-<li><p>方法 2: 直接使用符合特征的方法赋值.</p>
-</li>
-</ul>
-<p>[<strong>注</strong>] 待委托方法如果不是静态方法, 则必须是实例方法. 不能将未实例化的方法作为参数传入委托或对委托赋值.</p>
-<h1 id="如何调用委托"><a href="#如何调用委托" class="headerlink" title="如何调用委托"></a>如何调用委托</h1><ul>
-<li>方式 1: 调用委托和调用方法在代码写法上一致.</li>
-<li>方式 2: 调用 Invoke() 方法.</li>
-</ul>
-<h1 id="委托基本用法示例-非静态"><a href="#委托基本用法示例-非静态" class="headerlink" title="委托基本用法示例 (非静态)"></a>委托基本用法示例 (非静态)</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CSharp 起别名的语法规则, 在 namespace 外部书写时必须写全部路径</span></span><br><span class="line"><span class="comment">// using Package = System.Collections.Generic.Dictionary&lt;string, int&gt;;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyDelegateTest</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// CSharp 起别名的语法规则, 在 namespace 内部书写的时候可以嵌套引用 namespace 外的 using</span></span><br><span class="line">    <span class="keyword">using</span> Package = Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义一个委托类, 指明待委托方法的特征: 1. 返回值 (string) 2. 参数 (string, int, Package)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">string</span> <span class="title">DelegateBuy</span>(<span class="params"><span class="keyword">string</span> itemName, <span class="keyword">int</span> num, Package package</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="comment">// 实例化 玩家包裹</span></span><br><span class="line">            Package package = <span class="keyword">new</span> Package();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 实例化 委托</span></span><br><span class="line">            <span class="comment">// 委托初始化时可以直接赋值, 也可以使用 new 关键字</span></span><br><span class="line">            <span class="comment">// 当 &quot;待委托方法&quot; 是非静态方法时, 只能传递待委托方法的实例作为参数, 因此这里必须实例化 Program, 并写 &quot;program.Buy&quot;, 不能只写 &quot;Buy&quot;.</span></span><br><span class="line">            Program program = <span class="keyword">new</span> Program();</span><br><span class="line">            DelegateBuy delegateBuy = program.Buy;</span><br><span class="line">            DelegateBuy delegateBuy2 = <span class="keyword">new</span> DelegateBuy(program.Buy);            </span><br><span class="line"></span><br><span class="line">            <span class="comment">// 调用委托的写法和调用方法的写法一致</span></span><br><span class="line">            Console.WriteLine(delegateBuy(<span class="string">&quot;体力药水&quot;</span>, <span class="number">10</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy(<span class="string">&quot;体力药水&quot;</span>, <span class="number">25</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy2(<span class="string">&quot;魔力药水&quot;</span>, <span class="number">10</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy2(<span class="string">&quot;魔力药水&quot;</span>, <span class="number">5</span>, package));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 暂停</span></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 待委托的方法</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;itemName&quot;&gt;</span>物品名称<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;num&quot;&gt;</span>物品数量<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;package&quot;&gt;</span>玩家包裹<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">string</span> <span class="title">Buy</span>(<span class="params"><span class="keyword">string</span> itemName, <span class="keyword">int</span> num, Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt; package</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">string</span> str;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (package.ContainsKey(itemName))</span><br><span class="line">            &#123;</span><br><span class="line">                package[itemName] += num;</span><br><span class="line">                str = <span class="keyword">string</span>.Format(<span class="string">&quot;您又购买了&#123;0&#125;个&#123;1&#125;!&quot;</span>, num, itemName);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                package.Add(itemName, num);</span><br><span class="line">                str = <span class="keyword">string</span>.Format(<span class="string">&quot;您购买了&#123;0&#125;个&#123;1&#125;!&quot;</span>, num, itemName);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> str;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="委托基本用法示例-静态"><a href="#委托基本用法示例-静态" class="headerlink" title="委托基本用法示例 (静态)"></a>委托基本用法示例 (静态)</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CSharp 起别名的语法规则, 在 namespace 外部书写时必须写全部路径</span></span><br><span class="line"><span class="comment">// using Package = System.Collections.Generic.Dictionary&lt;string, int&gt;;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyDelegateTest</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// CSharp 起别名的语法规则, 在 namespace 内部书写的时候可以嵌套引用 namespace 外的 using</span></span><br><span class="line">    <span class="keyword">using</span> Package = Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义一个委托类, 指明待委托方法的特征: 1. 返回值 (string) 2. 参数 (string, int, Package)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">string</span> <span class="title">DelegateBuy</span>(<span class="params"><span class="keyword">string</span> itemName, <span class="keyword">int</span> num, Package package</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="comment">// 实例化 玩家包裹</span></span><br><span class="line">            Package package = <span class="keyword">new</span> Package();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 实例化 委托</span></span><br><span class="line">            <span class="comment">// 当 &quot;待委托方法&quot; 是静态方法时, 可以直接将静态方法作为参数传递.</span></span><br><span class="line">            DelegateBuy delegateBuy = Program.Buy;</span><br><span class="line">            DelegateBuy delegateBuy2 = <span class="keyword">new</span> DelegateBuy(Program.Buy);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 调用委托的写法和调用方法的写法一致</span></span><br><span class="line">            Console.WriteLine(delegateBuy(<span class="string">&quot;体力药水&quot;</span>, <span class="number">10</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy(<span class="string">&quot;体力药水&quot;</span>, <span class="number">25</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy2(<span class="string">&quot;魔力药水&quot;</span>, <span class="number">10</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy2(<span class="string">&quot;魔力药水&quot;</span>, <span class="number">5</span>, package));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 暂停</span></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 待委托的方法</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;itemName&quot;&gt;</span>物品名称<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;num&quot;&gt;</span>物品数量<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;package&quot;&gt;</span>玩家包裹<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">Buy</span>(<span class="params"><span class="keyword">string</span> itemName, <span class="keyword">int</span> num, Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt; package</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">string</span> str;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (package.ContainsKey(itemName))</span><br><span class="line">            &#123;</span><br><span class="line">                package[itemName] += num;</span><br><span class="line">                str = <span class="keyword">string</span>.Format(<span class="string">&quot;您又购买了&#123;0&#125;个&#123;1&#125;!&quot;</span>, num, itemName);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                package.Add(itemName, num);</span><br><span class="line">                str = <span class="keyword">string</span>.Format(<span class="string">&quot;您购买了&#123;0&#125;个&#123;1&#125;!&quot;</span>, num, itemName);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> str;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Action-和-Func"><a href="#Action-和-Func" class="headerlink" title="Action 和 Func"></a>Action 和 Func</h1><p>在实例化委托的时候, 不仅仅可以使用自己定义的委托, 还可以使用 csharp 中已经定义好的两个泛型委托: <strong><code>Action&lt;&gt;</code></strong> 和 <strong><code>Func&lt;&gt;</code></strong> 来实例化 (强烈建议使用).</p>
-<h2 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h2><p><strong>Action&lt;&gt;</strong> 待委托的方法都是没有返回值的方法, 参数使用泛型进行指定.</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Action a; <span class="comment">// 实例化出一个待委托方法特征为没有返回值, 没有参数的委托实例 a</span></span><br><span class="line">Action&lt;<span class="keyword">string</span>&gt; b; <span class="comment">// 实例化出一个待委托方法特征为没有返回值, 有一个 string 类型参数的委托实例 b</span></span><br><span class="line">Action&lt;<span class="keyword">string</span>, <span class="keyword">int</span>[]&gt; c; <span class="comment">// 实例化出一个待委托方法特征为没有返回值, 具有一个 string, 一个 int 数组参数的委托实例 c</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Func"><a href="#Func" class="headerlink" title="Func"></a>Func</h2><p><strong>Func&lt;&gt;</strong> 待委托的方法都是具有返回值的方法. 使用泛型来指定参数和返回值. 其中泛型中的最后一个类型为返回值的类型.</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Func&lt;<span class="keyword">string</span>&gt; a; <span class="comment">// 实例化出一个待委托方法特征为没有参数, 返回值类型为 string 的委托实例 a</span></span><br><span class="line">Func&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt; b; <span class="comment">// 实例化出一个待委托方法特征为有一个 string 类型的参数, 返回值为 int 类型的委托实例 b</span></span><br><span class="line">Func&lt;<span class="keyword">int</span>, <span class="keyword">string</span>, <span class="keyword">int</span>[]&gt; c; <span class="comment">// 实例化出一个待委托方法特征为有两个 类型分别为 int 和 string 类型的参数, 返回值为 int 数组类型的委托实例 c</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
-<li><p>delegate 和 Delegate 的区别: </p>
-<p> Delegate 是类, delegate 是关键字.</p>
-</li>
-<li><p>定义委托</p>
-<p> 不再自定义委托, 使用 Action&lt;&gt; 和 Func&lt;&gt;.</p>
-</li>
-<li><p>实例化委托</p>
-<p> 使用泛型指明待委托方法的特征.</p>
-</li>
-<li><p>Action 和 Func</p>
-<p> Action&lt;&gt; 指明无返回值, Func&lt;&gt; 最后一个泛型类型指明返回值.</p>
-</li>
-<li><p>委托的基本用法</p>
-<p> 可以通过委托来调用方法.</p>
-</li>
-</ol>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC50ZW5jZW50LmNvbS9kZXZlbG9wZXIvYXJ0aWNsZS8xMzMxNTkw">理解委托类型<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>CSharp</category>
       </categories>
       <tags>
         <tag>CSharp</tag>
@@ -2058,6 +2058,29 @@
       </tags>
   </entry>
   <entry>
+    <title>日记系列--2020年06月</title>
+    <url>/diary/2020_06.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="2020-年-06-月-15-号"><a href="#2020-年-06-月-15-号" class="headerlink" title="2020 年 06 月 15 号"></a>2020 年 06 月 15 号</h1><h2 id="生活开始走上正轨了"><a href="#生活开始走上正轨了" class="headerlink" title="生活开始走上正轨了"></a>生活开始走上正轨了</h2><p>真的是好久好久没有写日记了, 最近还是发生了很多大事的:</p>
+<ol>
+<li>五一放假时给姐姐转养老费, 然后被银行黑了 4000 RMB!</li>
+<li>从五月十号开始直到六月十四号一直寄住在同事家里, 心里总不是滋味. </li>
+<li>六月十三号答辩结束, 老师还说我做的不错, 可是谁都不知道我只花了一周的事件准备毕设, 包括开题报告, 论文, PPT, 作品 (一款沙盒游戏)...</li>
+<li>六月十一号加班到凌晨两点, 真的服! 现在我都不知道当时咋坚持下来的, 哦, 对了, 是边听歌边敲代码坚持下来的...</li>
+</ol>
+<p>今天终于发工资了, 由于五月份请假太多, 导致工资只有 4174 元, 连这一个月的开销都不够: 1200 房租, 1000 花呗, 2000 爸爸的养老费... 不过还好, 下个月爸爸的养老费就是一月 1000 了, 由于不请假了, 工资也会上去, 总之生活在慢慢变好!</p>
+<p>还发现了一张当时玩 2048 游戏的分数记录, 我居然玩到了最大的方块到了 16384 !</p>
+<p><img data-src="/images/diary/2020_06/2048_MaxScore.jpg" alt="2048_MaxScore"></p>
+]]></content>
+      <categories>
+        <category>Diary</category>
+      </categories>
+      <tags>
+        <tag>Diary</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>日记系列--2020年04月</title>
     <url>/diary/2020_04.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -2096,29 +2119,6 @@
 </ol>
 <p><strong>这段时间和 Sakura 的相处 (不就是微信上聊天嘛, 还想处? 弄得跟真的似的!), 我好累啊, 虽然原因是自己太投入了, 忘记了自己的生活, 但是我还是好希望她能搭理一下我😂, Kuroha! Fight!</strong></p>
 <p><img data-src="/images/diary/2020_04/666.png" alt="对面表示不想和你说话, 并向你扔了一张 666 !"></p>
-]]></content>
-      <categories>
-        <category>Diary</category>
-      </categories>
-      <tags>
-        <tag>Diary</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>日记系列--2020年06月</title>
-    <url>/diary/2020_06.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="2020-年-06-月-15-号"><a href="#2020-年-06-月-15-号" class="headerlink" title="2020 年 06 月 15 号"></a>2020 年 06 月 15 号</h1><h2 id="生活开始走上正轨了"><a href="#生活开始走上正轨了" class="headerlink" title="生活开始走上正轨了"></a>生活开始走上正轨了</h2><p>真的是好久好久没有写日记了, 最近还是发生了很多大事的:</p>
-<ol>
-<li>五一放假时给姐姐转养老费, 然后被银行黑了 4000 RMB!</li>
-<li>从五月十号开始直到六月十四号一直寄住在同事家里, 心里总不是滋味. </li>
-<li>六月十三号答辩结束, 老师还说我做的不错, 可是谁都不知道我只花了一周的事件准备毕设, 包括开题报告, 论文, PPT, 作品 (一款沙盒游戏)...</li>
-<li>六月十一号加班到凌晨两点, 真的服! 现在我都不知道当时咋坚持下来的, 哦, 对了, 是边听歌边敲代码坚持下来的...</li>
-</ol>
-<p>今天终于发工资了, 由于五月份请假太多, 导致工资只有 4174 元, 连这一个月的开销都不够: 1200 房租, 1000 花呗, 2000 爸爸的养老费... 不过还好, 下个月爸爸的养老费就是一月 1000 了, 由于不请假了, 工资也会上去, 总之生活在慢慢变好!</p>
-<p>还发现了一张当时玩 2048 游戏的分数记录, 我居然玩到了最大的方块到了 16384 !</p>
-<p><img data-src="/images/diary/2020_06/2048_MaxScore.jpg" alt="2048_MaxScore"></p>
 ]]></content>
       <categories>
         <category>Diary</category>
