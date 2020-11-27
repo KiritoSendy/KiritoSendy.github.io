@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kuroha.vip/csharp/csharp_others.html</loc>
+    
+    <lastmod>2020-11-27</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kuroha.vip/hexo/hexo_update.html</loc>
     
     <lastmod>2020-11-27</lastmod>
@@ -82,13 +89,6 @@
     <loc>https://kuroha.vip/unity/unity_coordinatesystem.html</loc>
     
     <lastmod>2020-11-17</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://kuroha.vip/csharp/csharp_others.html</loc>
-    
-    <lastmod>2020-11-09</lastmod>
     
   </url>
   
@@ -375,14 +375,14 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/%E7%94%B5%E8%84%91%E6%8A%80%E5%B7%A7/</loc>
+    <loc>https://kuroha.vip/tags/Recovery/</loc>
     <lastmod>2020-11-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/Recovery/</loc>
+    <loc>https://kuroha.vip/tags/%E7%94%B5%E8%84%91%E6%8A%80%E5%B7%A7/</loc>
     <lastmod>2020-11-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -524,13 +524,6 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/Program/</loc>
-    <lastmod>2020-11-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kuroha.vip/categories/CSharp/</loc>
     <lastmod>2020-11-27</lastmod>
     <changefreq>daily</changefreq>
@@ -567,6 +560,13 @@
   
   <url>
     <loc>https://kuroha.vip/categories/Oracle/</loc>
+    <lastmod>2020-11-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/categories/Program/</loc>
     <lastmod>2020-11-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

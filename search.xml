@@ -483,6 +483,40 @@
       </tags>
   </entry>
   <entry>
+    <title>ASP 开发经验笔记</title>
+    <url>/asp/asp_learnnotes.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="一个简单快速的日志式调试方法"><a href="#一个简单快速的日志式调试方法" class="headerlink" title="一个简单快速的日志式调试方法"></a>一个简单快速的日志式调试方法</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 日志目录默认为当前目录</span></span><br><span class="line"><span class="keyword">string</span> logFilePath = Server.MapPath(DateTime.Now.ToString(<span class="string">&quot;yyyy-MM-dd&quot;</span>) + <span class="string">&quot;.txt&quot;</span>);</span><br><span class="line"><span class="keyword">string</span> content = <span class="string">&quot;需要输出的日志内容!&quot;</span>;</span><br><span class="line">content = <span class="keyword">string</span>.Format(<span class="string">&quot;&#123;0&#125; : &#123;1&#125;&#123;2&#125;&quot;</span>, DateTime.Now.ToString(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>), content, <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">System.IO.File.AppendAllText(logFilePath, content, System.Text.Encoding.UTF8);</span><br></pre></td></tr></table></figure>
+
+<h1 id="PL-SQL-存储过程中用户无操作权限"><a href="#PL-SQL-存储过程中用户无操作权限" class="headerlink" title="PL/SQL 存储过程中用户无操作权限"></a>PL/SQL 存储过程中用户无操作权限</h1><p>在存储过程中加入 <code>Authid Current_User</code> 即可. 例如:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">CREATE OR REPLACE PROCEDURE SELECT_DATA_ZXN Authid Current_User AS</span><br><span class="line">  <span class="function">str_sql <span class="title">VARCHAR2</span>(<span class="params"><span class="number">2000</span></span>)</span>;</span><br><span class="line">BEGIN</span><br><span class="line">  ......</span><br><span class="line">END</span><br></pre></td></tr></table></figure>
+
+<h1 id="获取配置文件中的信息"><a href="#获取配置文件中的信息" class="headerlink" title="获取配置文件中的信息"></a>获取配置文件中的信息</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取 web.config 的信息</span></span><br><span class="line">System.Configuration.ConfigurationManager.AppSettings[<span class="string">&quot;KeyName&quot;</span>].ToString();</span><br></pre></td></tr></table></figure>
+
+<h1 id="PLSQL-调试-Oracle-存储过程时输出信息"><a href="#PLSQL-调试-Oracle-存储过程时输出信息" class="headerlink" title="PLSQL 调试 Oracle 存储过程时输出信息"></a>PLSQL 调试 Oracle 存储过程时输出信息</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--存储过程调试输出</span></span><br><span class="line">dbms_output.put_line();</span><br></pre></td></tr></table></figure>
+
+<h1 id="调用前台-JavaScript-方法"><a href="#调用前台-JavaScript-方法" class="headerlink" title="调用前台 JavaScript 方法"></a>调用前台 JavaScript 方法</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//后台 C# 调用前台 JavaScript 的自定义方法</span></span><br><span class="line">ClientScript.RegisterStartupScript(<span class="keyword">this</span>.GetType(), <span class="string">&quot;&quot;</span>, <span class="string">&quot;&lt;script&gt;myFunction();&lt;/script&gt;&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//后台 C# 调用前台 JavaScript 弹窗提示</span></span><br><span class="line">ClientScript.RegisterStartupScript(<span class="keyword">this</span>.GetType(), <span class="string">&quot;&quot;</span>, <span class="string">&quot;&lt;script&gt;alert(&#x27;弹窗信息!&#x27;);&lt;/script&gt;&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="获取电脑-IP"><a href="#获取电脑-IP" class="headerlink" title="获取电脑 IP"></a>获取电脑 IP</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//记录下电脑 IP 的方法</span></span><br><span class="line"><span class="keyword">string</span> ip = <span class="keyword">string</span>.Empty;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;HTTP_VIA&quot;</span>] != <span class="literal">null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    ip = System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;HTTP_X_FORWARDED_FOR&quot;</span>].Split(<span class="keyword">new</span> <span class="keyword">char</span>[] &#123; <span class="string">&#x27;,&#x27;</span> &#125;)[<span class="number">0</span>].ToString();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    ip = System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;REMOTE_ADDR&quot;</span>].ToString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="模板下载功能"><a href="#模板下载功能" class="headerlink" title="模板下载功能"></a>模板下载功能</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 浏览器下载文件</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;modifyName&quot;&gt;</span>自定义文件名, 附带后缀<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DownloadFile</span>(<span class="params"><span class="keyword">string</span> modifyName</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 定义变量: 文件名</span></span><br><span class="line">    <span class="keyword">string</span> fileName = <span class="keyword">string</span>.Empty;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取文件在服务器的地址</span></span><br><span class="line">    <span class="keyword">string</span> url = Server.MapPath(<span class="string">&quot;../searchZclbList.xls&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断地址是否为空</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">string</span>.IsNullOrEmpty(url))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 提示 &quot;该文件暂不提供下载&quot;</span></span><br><span class="line">        Page.ClientScript.RegisterStartupScript(Page.GetType(), <span class="string">&quot;message&quot;</span>, <span class="string">&quot;&lt;script defer&gt;alert(&#x27;该文件暂不提供下载!&#x27;);&lt;/script&gt;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断获取的是否为地址  </span></span><br><span class="line">    <span class="keyword">if</span> (url.IndexOf(<span class="string">&quot;\\&quot;</span>) &gt; <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// url 为地址时, 则截取 url 中的文件名作为文件名</span></span><br><span class="line">        fileName = url.Substring(url.LastIndexOf(<span class="string">&quot;\\&quot;</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// url 为文件名时, 直接获取文件名  </span></span><br><span class="line">        fileName = url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义文件名, 附带后缀</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">string</span>.IsNullOrEmpty(modifyName))</span><br><span class="line">    &#123;</span><br><span class="line">        fileName = modifyName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 以字符流的方式下载文件  </span></span><br><span class="line">    FileStream fileStream = <span class="keyword">new</span> FileStream(@url, FileMode.Open);</span><br><span class="line">    <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[(<span class="keyword">int</span>)fileStream.Length];</span><br><span class="line">    fileStream.Read(bytes, <span class="number">0</span>, bytes.Length);</span><br><span class="line">    fileStream.Close();</span><br><span class="line">    Response.ContentType = <span class="string">&quot;application/octet-stream&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通知浏览器下载 </span></span><br><span class="line">    Response.AddHeader(<span class="string">&quot;Content-Disposition&quot;</span>, <span class="string">&quot;attachment; filename=&quot;</span> + fileName);</span><br><span class="line">    Response.BinaryWrite(bytes);</span><br><span class="line">    Response.Flush();</span><br><span class="line">    Response.End();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="最基本的图片查看器功能"><a href="#最基本的图片查看器功能" class="headerlink" title="最基本的图片查看器功能"></a>最基本的图片查看器功能</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 前台</span></span><br><span class="line">&lt;asp:Image ID=<span class="string">&quot;Image&quot;</span> runat=<span class="string">&quot;server&quot;</span> ImageUrl=<span class="string">&quot;~/imagelook.jpg&quot;</span>/&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后台</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">Page_Load</span>(<span class="params"><span class="keyword">object</span> sender, System.EventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 读取图片</span></span><br><span class="line">        <span class="keyword">int</span> ImgID = Convert.ToInt32(Request.QueryString[<span class="string">&quot;imageid&quot;</span>] <span class="keyword">as</span> <span class="keyword">string</span>);</span><br><span class="line">        OracleConnection Con = <span class="keyword">new</span> googoSoftEAM.SQLServerDAL.SqlHelper().Connection;</span><br><span class="line">        String SqlCmd = <span class="string">&quot;select * from zc_image where imageid = :imageid and saasdm=&#x27;&quot;</span> + Session[<span class="string">&quot;saasdm&quot;</span>].ToString() + <span class="string">&quot;&#x27;&quot;</span>;</span><br><span class="line">        OracleCommand CmdObj = <span class="keyword">new</span> OracleCommand(SqlCmd, Con);</span><br><span class="line">        CmdObj.Parameters.Add(<span class="string">&quot;:ImageID&quot;</span>, OracleType.UInt32).Value = ImgID;</span><br><span class="line">        Con.Open();</span><br><span class="line">        OracleDataReader SqlReader = CmdObj.ExecuteReader();</span><br><span class="line">        SqlReader.Read();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 图片类型</span></span><br><span class="line">        <span class="keyword">string</span> imageType = (<span class="keyword">string</span>)SqlReader[<span class="string">&quot;imagecontenttype&quot;</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 原版图片内容 [字节流]</span></span><br><span class="line">        MemoryStream bufferByte = <span class="keyword">new</span> MemoryStream((<span class="keyword">byte</span>[])SqlReader[<span class="string">&quot;imageData&quot;</span>]);</span><br><span class="line">        System.Drawing.Image imageOrigin = System.Drawing.Image.FromStream(bufferByte, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 缩小文件 (计算缩小倍率) 缩小至 高度 targetHeight 左右</span></span><br><span class="line">        <span class="keyword">float</span> targetHeight = <span class="number">600.0f</span>;</span><br><span class="line">        <span class="keyword">float</span> shrink = targetHeight / imageOrigin.Height;</span><br><span class="line">        <span class="keyword">float</span> w = shrink, h = shrink;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 目标图形</span></span><br><span class="line">        System.Drawing.Bitmap imageSmall = <span class="keyword">new</span> System.Drawing.Bitmap((<span class="keyword">int</span>)(imageOrigin.Width * shrink), (<span class="keyword">int</span>)(imageOrigin.Height * shrink));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建一个图形对象</span></span><br><span class="line">        Graphics graphics = Graphics.FromImage(imageSmall);</span><br><span class="line">        graphics.DrawImage(imageOrigin, <span class="keyword">new</span> Rectangle(<span class="number">0</span>, <span class="number">0</span>, imageSmall.Width, imageSmall.Height), <span class="keyword">new</span> Rectangle(<span class="number">0</span>, <span class="number">0</span>, imageOrigin.Width, imageOrigin.Height), GraphicsUnit.Pixel);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 计算出图片地址</span></span><br><span class="line">        <span class="keyword">string</span> ret_type = <span class="keyword">string</span>.Empty;</span><br><span class="line">        GetImageType(imageType, <span class="keyword">out</span> ret_type);</span><br><span class="line">        <span class="keyword">string</span> imagePath = Server.MapPath(<span class="string">&quot;../imagelook.&quot;</span> + ret_type);</span><br><span class="line">        <span class="keyword">if</span> (File.Exists(imagePath))</span><br><span class="line">        &#123;</span><br><span class="line">            File.Delete(imagePath);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 解决 Image 控件的刷新问题</span></span><br><span class="line">        <span class="comment">// 当 IE 检测到 Image 控件的引用地址没有变化时, 会直接从浏览器缓存中取图片.</span></span><br><span class="line">        <span class="comment">// 因此只要下一次访问时网页时, Image 控件的引用地址和这一次的引用地址不相同即可.</span></span><br><span class="line">        <span class="comment">// 于是在引用地址处加一个随机数参数, 使两次引用的图片地址不同!</span></span><br><span class="line">        imageSmall.Save(imagePath);</span><br><span class="line">        Image.ImageUrl = <span class="string">&quot;~/imagelook.&quot;</span> + ret_type + <span class="string">&quot;?&quot;</span> + <span class="keyword">new</span> Random().Next(<span class="number">100</span>).ToString();</span><br><span class="line">        Con.Close();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception ex)</span><br><span class="line">    &#123;</span><br><span class="line">        Trace.Write(ex.Message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 根据所存图片类型返回图片格式</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;imageType&quot;&gt;</span>图片类型<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;ret_type&quot;&gt;</span>返回的图片类型 (string)<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span>返回的图片类型 (ImageFormat)<span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="keyword">private</span> System.Drawing.Imaging.<span class="function">ImageFormat <span class="title">GetImageType</span>(<span class="params"><span class="keyword">string</span> imageType, <span class="keyword">out</span> <span class="keyword">string</span> ret_type</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (imageType)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/gif&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;gif&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Gif;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/bmp&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;bmp&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Bmp;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/x-png&quot;</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/png&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;png&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Png;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/pjpeg&quot;</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/jpeg&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;jpg&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Jpeg;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;jpg&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Jpeg;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="合并两个表结构完全一致的-DataTable"><a href="#合并两个表结构完全一致的-DataTable" class="headerlink" title="合并两个表结构完全一致的 DataTable"></a>合并两个表结构完全一致的 DataTable</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 将 sum 表和 para 表合并到 sum 表中, 要求: &quot;sum 表&quot; 和 &quot;para 表&quot; 的表结构必须完全一样!</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;sum&quot;&gt;</span>待合并表之一, 同时也是结果表<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;para&quot;&gt;</span>仅作为待合并表之一<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddTableToTable</span>(<span class="params">DataTable sum, DataTable para</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//遍历 para 表的每一行</span></span><br><span class="line">    <span class="keyword">foreach</span> (DataRow dataRow_para <span class="keyword">in</span> para.Rows)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//新建 sum 表的一行</span></span><br><span class="line">        DataRow dataRow_sum = sum.NewRow();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//新建的这一行取 para 表的数据</span></span><br><span class="line">        dataRow_sum.ItemArray = dataRow_para.ItemArray;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将新建的这一样加到 sum 表中</span></span><br><span class="line">        sum.Rows.Add(dataRow_sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="网页实现-Enter-快捷键"><a href="#网页实现-Enter-快捷键" class="headerlink" title="网页实现 Enter 快捷键"></a>网页实现 Enter 快捷键</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 浏览器中 Enter 键有一个默认行为, 用户焦点在文本框中时键入 Enter, 会触发第一个按钮的 Click 事件.</span></span><br><span class="line"><span class="built_in">document</span>.onkeydown = keydown;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">keydown</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (event.keyCode == <span class="number">13</span>) <span class="comment">// Enter 快捷键</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">&quot;btn_cx&quot;</span>).click();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 阻止浏览器的默认行为</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="点击空白处触发-JS-中的函数"><a href="#点击空白处触发-JS-中的函数" class="headerlink" title="点击空白处触发 JS 中的函数"></a>点击空白处触发 JS 中的函数</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// document.onclick 事件注册</span></span><br><span class="line"><span class="built_in">document</span>.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// TODO...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>ASP</category>
+      </categories>
+      <tags>
+        <tag>ASP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>游戏开发笔试面试经历之巨人网络</title>
     <url>/apply/game_apply_giant.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -579,40 +613,6 @@
       </categories>
       <tags>
         <tag>面试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ASP 开发经验笔记</title>
-    <url>/asp/asp_learnnotes.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="一个简单快速的日志式调试方法"><a href="#一个简单快速的日志式调试方法" class="headerlink" title="一个简单快速的日志式调试方法"></a>一个简单快速的日志式调试方法</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 日志目录默认为当前目录</span></span><br><span class="line"><span class="keyword">string</span> logFilePath = Server.MapPath(DateTime.Now.ToString(<span class="string">&quot;yyyy-MM-dd&quot;</span>) + <span class="string">&quot;.txt&quot;</span>);</span><br><span class="line"><span class="keyword">string</span> content = <span class="string">&quot;需要输出的日志内容!&quot;</span>;</span><br><span class="line">content = <span class="keyword">string</span>.Format(<span class="string">&quot;&#123;0&#125; : &#123;1&#125;&#123;2&#125;&quot;</span>, DateTime.Now.ToString(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>), content, <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">System.IO.File.AppendAllText(logFilePath, content, System.Text.Encoding.UTF8);</span><br></pre></td></tr></table></figure>
-
-<h1 id="PL-SQL-存储过程中用户无操作权限"><a href="#PL-SQL-存储过程中用户无操作权限" class="headerlink" title="PL/SQL 存储过程中用户无操作权限"></a>PL/SQL 存储过程中用户无操作权限</h1><p>在存储过程中加入 <code>Authid Current_User</code> 即可. 例如:</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">CREATE OR REPLACE PROCEDURE SELECT_DATA_ZXN Authid Current_User AS</span><br><span class="line">  <span class="function">str_sql <span class="title">VARCHAR2</span>(<span class="params"><span class="number">2000</span></span>)</span>;</span><br><span class="line">BEGIN</span><br><span class="line">  ......</span><br><span class="line">END</span><br></pre></td></tr></table></figure>
-
-<h1 id="获取配置文件中的信息"><a href="#获取配置文件中的信息" class="headerlink" title="获取配置文件中的信息"></a>获取配置文件中的信息</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取 web.config 的信息</span></span><br><span class="line">System.Configuration.ConfigurationManager.AppSettings[<span class="string">&quot;KeyName&quot;</span>].ToString();</span><br></pre></td></tr></table></figure>
-
-<h1 id="PLSQL-调试-Oracle-存储过程时输出信息"><a href="#PLSQL-调试-Oracle-存储过程时输出信息" class="headerlink" title="PLSQL 调试 Oracle 存储过程时输出信息"></a>PLSQL 调试 Oracle 存储过程时输出信息</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--存储过程调试输出</span></span><br><span class="line">dbms_output.put_line();</span><br></pre></td></tr></table></figure>
-
-<h1 id="调用前台-JavaScript-方法"><a href="#调用前台-JavaScript-方法" class="headerlink" title="调用前台 JavaScript 方法"></a>调用前台 JavaScript 方法</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//后台 C# 调用前台 JavaScript 的自定义方法</span></span><br><span class="line">ClientScript.RegisterStartupScript(<span class="keyword">this</span>.GetType(), <span class="string">&quot;&quot;</span>, <span class="string">&quot;&lt;script&gt;myFunction();&lt;/script&gt;&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//后台 C# 调用前台 JavaScript 弹窗提示</span></span><br><span class="line">ClientScript.RegisterStartupScript(<span class="keyword">this</span>.GetType(), <span class="string">&quot;&quot;</span>, <span class="string">&quot;&lt;script&gt;alert(&#x27;弹窗信息!&#x27;);&lt;/script&gt;&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h1 id="获取电脑-IP"><a href="#获取电脑-IP" class="headerlink" title="获取电脑 IP"></a>获取电脑 IP</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//记录下电脑 IP 的方法</span></span><br><span class="line"><span class="keyword">string</span> ip = <span class="keyword">string</span>.Empty;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;HTTP_VIA&quot;</span>] != <span class="literal">null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    ip = System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;HTTP_X_FORWARDED_FOR&quot;</span>].Split(<span class="keyword">new</span> <span class="keyword">char</span>[] &#123; <span class="string">&#x27;,&#x27;</span> &#125;)[<span class="number">0</span>].ToString();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    ip = System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;REMOTE_ADDR&quot;</span>].ToString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="模板下载功能"><a href="#模板下载功能" class="headerlink" title="模板下载功能"></a>模板下载功能</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 浏览器下载文件</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;modifyName&quot;&gt;</span>自定义文件名, 附带后缀<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DownloadFile</span>(<span class="params"><span class="keyword">string</span> modifyName</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 定义变量: 文件名</span></span><br><span class="line">    <span class="keyword">string</span> fileName = <span class="keyword">string</span>.Empty;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取文件在服务器的地址</span></span><br><span class="line">    <span class="keyword">string</span> url = Server.MapPath(<span class="string">&quot;../searchZclbList.xls&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断地址是否为空</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">string</span>.IsNullOrEmpty(url))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 提示 &quot;该文件暂不提供下载&quot;</span></span><br><span class="line">        Page.ClientScript.RegisterStartupScript(Page.GetType(), <span class="string">&quot;message&quot;</span>, <span class="string">&quot;&lt;script defer&gt;alert(&#x27;该文件暂不提供下载!&#x27;);&lt;/script&gt;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断获取的是否为地址  </span></span><br><span class="line">    <span class="keyword">if</span> (url.IndexOf(<span class="string">&quot;\\&quot;</span>) &gt; <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// url 为地址时, 则截取 url 中的文件名作为文件名</span></span><br><span class="line">        fileName = url.Substring(url.LastIndexOf(<span class="string">&quot;\\&quot;</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// url 为文件名时, 直接获取文件名  </span></span><br><span class="line">        fileName = url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义文件名, 附带后缀</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">string</span>.IsNullOrEmpty(modifyName))</span><br><span class="line">    &#123;</span><br><span class="line">        fileName = modifyName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 以字符流的方式下载文件  </span></span><br><span class="line">    FileStream fileStream = <span class="keyword">new</span> FileStream(@url, FileMode.Open);</span><br><span class="line">    <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[(<span class="keyword">int</span>)fileStream.Length];</span><br><span class="line">    fileStream.Read(bytes, <span class="number">0</span>, bytes.Length);</span><br><span class="line">    fileStream.Close();</span><br><span class="line">    Response.ContentType = <span class="string">&quot;application/octet-stream&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通知浏览器下载 </span></span><br><span class="line">    Response.AddHeader(<span class="string">&quot;Content-Disposition&quot;</span>, <span class="string">&quot;attachment; filename=&quot;</span> + fileName);</span><br><span class="line">    Response.BinaryWrite(bytes);</span><br><span class="line">    Response.Flush();</span><br><span class="line">    Response.End();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="最基本的图片查看器功能"><a href="#最基本的图片查看器功能" class="headerlink" title="最基本的图片查看器功能"></a>最基本的图片查看器功能</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 前台</span></span><br><span class="line">&lt;asp:Image ID=<span class="string">&quot;Image&quot;</span> runat=<span class="string">&quot;server&quot;</span> ImageUrl=<span class="string">&quot;~/imagelook.jpg&quot;</span>/&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后台</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">Page_Load</span>(<span class="params"><span class="keyword">object</span> sender, System.EventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 读取图片</span></span><br><span class="line">        <span class="keyword">int</span> ImgID = Convert.ToInt32(Request.QueryString[<span class="string">&quot;imageid&quot;</span>] <span class="keyword">as</span> <span class="keyword">string</span>);</span><br><span class="line">        OracleConnection Con = <span class="keyword">new</span> googoSoftEAM.SQLServerDAL.SqlHelper().Connection;</span><br><span class="line">        String SqlCmd = <span class="string">&quot;select * from zc_image where imageid = :imageid and saasdm=&#x27;&quot;</span> + Session[<span class="string">&quot;saasdm&quot;</span>].ToString() + <span class="string">&quot;&#x27;&quot;</span>;</span><br><span class="line">        OracleCommand CmdObj = <span class="keyword">new</span> OracleCommand(SqlCmd, Con);</span><br><span class="line">        CmdObj.Parameters.Add(<span class="string">&quot;:ImageID&quot;</span>, OracleType.UInt32).Value = ImgID;</span><br><span class="line">        Con.Open();</span><br><span class="line">        OracleDataReader SqlReader = CmdObj.ExecuteReader();</span><br><span class="line">        SqlReader.Read();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 图片类型</span></span><br><span class="line">        <span class="keyword">string</span> imageType = (<span class="keyword">string</span>)SqlReader[<span class="string">&quot;imagecontenttype&quot;</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 原版图片内容 [字节流]</span></span><br><span class="line">        MemoryStream bufferByte = <span class="keyword">new</span> MemoryStream((<span class="keyword">byte</span>[])SqlReader[<span class="string">&quot;imageData&quot;</span>]);</span><br><span class="line">        System.Drawing.Image imageOrigin = System.Drawing.Image.FromStream(bufferByte, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 缩小文件 (计算缩小倍率) 缩小至 高度 targetHeight 左右</span></span><br><span class="line">        <span class="keyword">float</span> targetHeight = <span class="number">600.0f</span>;</span><br><span class="line">        <span class="keyword">float</span> shrink = targetHeight / imageOrigin.Height;</span><br><span class="line">        <span class="keyword">float</span> w = shrink, h = shrink;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 目标图形</span></span><br><span class="line">        System.Drawing.Bitmap imageSmall = <span class="keyword">new</span> System.Drawing.Bitmap((<span class="keyword">int</span>)(imageOrigin.Width * shrink), (<span class="keyword">int</span>)(imageOrigin.Height * shrink));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建一个图形对象</span></span><br><span class="line">        Graphics graphics = Graphics.FromImage(imageSmall);</span><br><span class="line">        graphics.DrawImage(imageOrigin, <span class="keyword">new</span> Rectangle(<span class="number">0</span>, <span class="number">0</span>, imageSmall.Width, imageSmall.Height), <span class="keyword">new</span> Rectangle(<span class="number">0</span>, <span class="number">0</span>, imageOrigin.Width, imageOrigin.Height), GraphicsUnit.Pixel);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 计算出图片地址</span></span><br><span class="line">        <span class="keyword">string</span> ret_type = <span class="keyword">string</span>.Empty;</span><br><span class="line">        GetImageType(imageType, <span class="keyword">out</span> ret_type);</span><br><span class="line">        <span class="keyword">string</span> imagePath = Server.MapPath(<span class="string">&quot;../imagelook.&quot;</span> + ret_type);</span><br><span class="line">        <span class="keyword">if</span> (File.Exists(imagePath))</span><br><span class="line">        &#123;</span><br><span class="line">            File.Delete(imagePath);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 解决 Image 控件的刷新问题</span></span><br><span class="line">        <span class="comment">// 当 IE 检测到 Image 控件的引用地址没有变化时, 会直接从浏览器缓存中取图片.</span></span><br><span class="line">        <span class="comment">// 因此只要下一次访问时网页时, Image 控件的引用地址和这一次的引用地址不相同即可.</span></span><br><span class="line">        <span class="comment">// 于是在引用地址处加一个随机数参数, 使两次引用的图片地址不同!</span></span><br><span class="line">        imageSmall.Save(imagePath);</span><br><span class="line">        Image.ImageUrl = <span class="string">&quot;~/imagelook.&quot;</span> + ret_type + <span class="string">&quot;?&quot;</span> + <span class="keyword">new</span> Random().Next(<span class="number">100</span>).ToString();</span><br><span class="line">        Con.Close();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception ex)</span><br><span class="line">    &#123;</span><br><span class="line">        Trace.Write(ex.Message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 根据所存图片类型返回图片格式</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;imageType&quot;&gt;</span>图片类型<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;ret_type&quot;&gt;</span>返回的图片类型 (string)<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span>返回的图片类型 (ImageFormat)<span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="keyword">private</span> System.Drawing.Imaging.<span class="function">ImageFormat <span class="title">GetImageType</span>(<span class="params"><span class="keyword">string</span> imageType, <span class="keyword">out</span> <span class="keyword">string</span> ret_type</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (imageType)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/gif&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;gif&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Gif;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/bmp&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;bmp&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Bmp;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/x-png&quot;</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/png&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;png&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Png;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/pjpeg&quot;</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/jpeg&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;jpg&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Jpeg;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;jpg&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Jpeg;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="合并两个表结构完全一致的-DataTable"><a href="#合并两个表结构完全一致的-DataTable" class="headerlink" title="合并两个表结构完全一致的 DataTable"></a>合并两个表结构完全一致的 DataTable</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 将 sum 表和 para 表合并到 sum 表中, 要求: &quot;sum 表&quot; 和 &quot;para 表&quot; 的表结构必须完全一样!</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;sum&quot;&gt;</span>待合并表之一, 同时也是结果表<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;para&quot;&gt;</span>仅作为待合并表之一<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddTableToTable</span>(<span class="params">DataTable sum, DataTable para</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//遍历 para 表的每一行</span></span><br><span class="line">    <span class="keyword">foreach</span> (DataRow dataRow_para <span class="keyword">in</span> para.Rows)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//新建 sum 表的一行</span></span><br><span class="line">        DataRow dataRow_sum = sum.NewRow();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//新建的这一行取 para 表的数据</span></span><br><span class="line">        dataRow_sum.ItemArray = dataRow_para.ItemArray;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将新建的这一样加到 sum 表中</span></span><br><span class="line">        sum.Rows.Add(dataRow_sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="网页实现-Enter-快捷键"><a href="#网页实现-Enter-快捷键" class="headerlink" title="网页实现 Enter 快捷键"></a>网页实现 Enter 快捷键</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 浏览器中 Enter 键有一个默认行为, 用户焦点在文本框中时键入 Enter, 会触发第一个按钮的 Click 事件.</span></span><br><span class="line"><span class="built_in">document</span>.onkeydown = keydown;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">keydown</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (event.keyCode == <span class="number">13</span>) <span class="comment">// Enter 快捷键</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">&quot;btn_cx&quot;</span>).click();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 阻止浏览器的默认行为</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="点击空白处触发-JS-中的函数"><a href="#点击空白处触发-JS-中的函数" class="headerlink" title="点击空白处触发 JS 中的函数"></a>点击空白处触发 JS 中的函数</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// document.onclick 事件注册</span></span><br><span class="line"><span class="built_in">document</span>.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// TODO...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>ASP</category>
-      </categories>
-      <tags>
-        <tag>ASP</tag>
       </tags>
   </entry>
   <entry>
@@ -753,6 +753,82 @@
       </categories>
       <tags>
         <tag>计算机基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>重装系统-Googosoft</title>
+    <url>/computer/recovery_googosoft_computer.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="启用-Administrator-账号"><a href="#启用-Administrator-账号" class="headerlink" title="启用 Administrator 账号"></a>启用 Administrator 账号</h1><h1 id="修改-IP"><a href="#修改-IP" class="headerlink" title="修改 IP"></a>修改 IP</h1><blockquote>
+<p><code>192.168.11.95</code></p>
+</blockquote>
+<blockquote>
+<p><code>255.255.254.0</code></p>
+</blockquote>
+<blockquote>
+<p><code>192.168.10.254</code></p>
+</blockquote>
+<p>修改完 IP 之后尝试连接:</p>
+<blockquote>
+<p><code>\\192.168.10.237</code></p>
+</blockquote>
+<blockquote>
+<p><code>账号: administrator</code></p>
+</blockquote>
+<blockquote>
+<p><code>密码: googosoft@123</code></p>
+</blockquote>
+<h1 id="安装-PLSQL"><a href="#安装-PLSQL" class="headerlink" title="安装 PLSQL"></a>安装 PLSQL</h1><p>安装 PLSQL, 打开, 进行汉化以及破解. </p>
+<h1 id="安装-Oracle"><a href="#安装-Oracle" class="headerlink" title="安装 Oracle"></a>安装 Oracle</h1><blockquote>
+<p>安装 <code>Oracle Database</code>, <strong>不要修改子路径</strong>, 不要安装 <code>Oracle Client</code>.</p>
+</blockquote>
+<blockquote>
+<p>之后使用 SQL PLUS 尝试连接: </p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">scott</span><br><span class="line">scott123</span><br><span class="line">192.168.10.237/sdzc0216</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>之后使用 PLSQL 尝试连接:</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">scott</span><br><span class="line">scott123</span><br><span class="line">192.168.10.237/sdzc0216</span><br></pre></td></tr></table></figure>
+
+<h1 id="设置-Windows-功能"><a href="#设置-Windows-功能" class="headerlink" title="设置 Windows 功能"></a>设置 Windows 功能</h1><blockquote>
+<p>打开 Windows 功能. 开启所有的 Internet 功能, 之后重启. </p>
+</blockquote>
+<blockquote>
+<p>打开 .Net Framework 3.5, 包含 2.0, 3.0</p>
+</blockquote>
+<h1 id="安装-VS-2005"><a href="#安装-VS-2005" class="headerlink" title="安装 VS 2005"></a>安装 VS 2005</h1><blockquote>
+<p>VS 2005, 自定义安装. <font color='red'>切记安装路径中不能带有小括号. 因为 Oracle 数据库不识别小括号. </font></p>
+</blockquote>
+<blockquote>
+<p><strong>只安装 Web, C#, 水晶报表</strong>.</p>
+</blockquote>
+<blockquote>
+<p>使用 <code>VS 2005</code>, 尝试连接: </p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">scott</span><br><span class="line">scott123</span><br><span class="line">192.168.10.237/sdzc0216</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果安装 VS 时使用了自定义路径, 那么 VS 中模板会消失.</p>
+</blockquote>
+<blockquote>
+<p>解决办法: <code>工具</code> -&gt; <code>选项</code> -&gt; <code>项目和解决方案</code> -&gt; <code>用户项目模板位置</code> 及 <code>用户项模板位置</code>, 修改为自己所安装的路径. </p>
+</blockquote>
+<blockquote>
+<p>用户项目模板位置: <code>Microsoft Visual Studio 8/Common7/IDE/ProjectTemplates</code></p>
+</blockquote>
+<blockquote>
+<p>用户项模板位置: <code>Microsoft Visual Studio 8/Common7/IDE/ItemTemplates </code></p>
+</blockquote>
+<h1 id="安装-VSS-2005"><a href="#安装-VSS-2005" class="headerlink" title="安装 VSS 2005"></a>安装 VSS 2005</h1><p>VSS 2005, 项目源码管理器. </p>
+]]></content>
+      <categories>
+        <category>Computer</category>
+      </categories>
+      <tags>
+        <tag>Recovery</tag>
       </tags>
   </entry>
   <entry>
@@ -977,82 +1053,6 @@
       </categories>
       <tags>
         <tag>电脑技巧</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>重装系统-Googosoft</title>
-    <url>/computer/recovery_googosoft_computer.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="启用-Administrator-账号"><a href="#启用-Administrator-账号" class="headerlink" title="启用 Administrator 账号"></a>启用 Administrator 账号</h1><h1 id="修改-IP"><a href="#修改-IP" class="headerlink" title="修改 IP"></a>修改 IP</h1><blockquote>
-<p><code>192.168.11.95</code></p>
-</blockquote>
-<blockquote>
-<p><code>255.255.254.0</code></p>
-</blockquote>
-<blockquote>
-<p><code>192.168.10.254</code></p>
-</blockquote>
-<p>修改完 IP 之后尝试连接:</p>
-<blockquote>
-<p><code>\\192.168.10.237</code></p>
-</blockquote>
-<blockquote>
-<p><code>账号: administrator</code></p>
-</blockquote>
-<blockquote>
-<p><code>密码: googosoft@123</code></p>
-</blockquote>
-<h1 id="安装-PLSQL"><a href="#安装-PLSQL" class="headerlink" title="安装 PLSQL"></a>安装 PLSQL</h1><p>安装 PLSQL, 打开, 进行汉化以及破解. </p>
-<h1 id="安装-Oracle"><a href="#安装-Oracle" class="headerlink" title="安装 Oracle"></a>安装 Oracle</h1><blockquote>
-<p>安装 <code>Oracle Database</code>, <strong>不要修改子路径</strong>, 不要安装 <code>Oracle Client</code>.</p>
-</blockquote>
-<blockquote>
-<p>之后使用 SQL PLUS 尝试连接: </p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">scott</span><br><span class="line">scott123</span><br><span class="line">192.168.10.237/sdzc0216</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>之后使用 PLSQL 尝试连接:</p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">scott</span><br><span class="line">scott123</span><br><span class="line">192.168.10.237/sdzc0216</span><br></pre></td></tr></table></figure>
-
-<h1 id="设置-Windows-功能"><a href="#设置-Windows-功能" class="headerlink" title="设置 Windows 功能"></a>设置 Windows 功能</h1><blockquote>
-<p>打开 Windows 功能. 开启所有的 Internet 功能, 之后重启. </p>
-</blockquote>
-<blockquote>
-<p>打开 .Net Framework 3.5, 包含 2.0, 3.0</p>
-</blockquote>
-<h1 id="安装-VS-2005"><a href="#安装-VS-2005" class="headerlink" title="安装 VS 2005"></a>安装 VS 2005</h1><blockquote>
-<p>VS 2005, 自定义安装. <font color='red'>切记安装路径中不能带有小括号. 因为 Oracle 数据库不识别小括号. </font></p>
-</blockquote>
-<blockquote>
-<p><strong>只安装 Web, C#, 水晶报表</strong>.</p>
-</blockquote>
-<blockquote>
-<p>使用 <code>VS 2005</code>, 尝试连接: </p>
-</blockquote>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">scott</span><br><span class="line">scott123</span><br><span class="line">192.168.10.237/sdzc0216</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>如果安装 VS 时使用了自定义路径, 那么 VS 中模板会消失.</p>
-</blockquote>
-<blockquote>
-<p>解决办法: <code>工具</code> -&gt; <code>选项</code> -&gt; <code>项目和解决方案</code> -&gt; <code>用户项目模板位置</code> 及 <code>用户项模板位置</code>, 修改为自己所安装的路径. </p>
-</blockquote>
-<blockquote>
-<p>用户项目模板位置: <code>Microsoft Visual Studio 8/Common7/IDE/ProjectTemplates</code></p>
-</blockquote>
-<blockquote>
-<p>用户项模板位置: <code>Microsoft Visual Studio 8/Common7/IDE/ItemTemplates </code></p>
-</blockquote>
-<h1 id="安装-VSS-2005"><a href="#安装-VSS-2005" class="headerlink" title="安装 VSS 2005"></a>安装 VSS 2005</h1><p>VSS 2005, 项目源码管理器. </p>
-]]></content>
-      <categories>
-        <category>Computer</category>
-      </categories>
-      <tags>
-        <tag>Recovery</tag>
       </tags>
   </entry>
   <entry>
@@ -1286,7 +1286,7 @@
 </ul>
 ]]></content>
       <categories>
-        <category>Program</category>
+        <category>CSharp</category>
       </categories>
       <tags>
         <tag>CSharp</tag>
@@ -3896,64 +3896,6 @@
       </tags>
   </entry>
   <entry>
-    <title>如何让 Unity 走代理?</title>
-    <url>/unity/unity_proxy.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>最近在学习制作 Unity 游戏, 到了最后需要发布 Android 版本游戏程序的时候, 发现根本导不出来!!! </p>
-<p>每次都会卡在 Gradle 的构建上... 看了日志之后知道了原来是从仓库下载包的时候下载失败了...那我就更郁闷了, 我 24 小时全天开着梯子, 你跟我说现在还有我下载不下来的东西? 后来在这篇文章中找到了答案! <span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
-<p>原来 Unity 压根不吃梯子啊~ ~ !</p>
-<h1 id="解决方法一"><a href="#解决方法一" class="headerlink" title="解决方法一"></a>解决方法一</h1><p><strong><code>使用阿里的镜像源替代 Google 源</code></strong></p>
-<ol>
-<li><p>找到 Unity 的安装目录.</p>
-</li>
-<li><p>使用 VSCode 打开路径: <code>Editor\Data\PlaybackEngines\AndroidPlayer\Tools\GradleTemplates</code>.</p>
-</li>
-<li><p>对路径中的文件逐一修改, 将其中所有的</p>
-</li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">google()</span><br><span class="line">jcenter()</span><br></pre></td></tr></table></figure>
-
-<p>修改为:</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/google&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/jcenter&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><font color='red'><strong>重启 Unity 项目</strong></font>, 重新发布即可!</li>
-</ol>
-<p>[<strong>注</strong>]</p>
-<ol>
-<li><p>文件中要替换的 <code>google() jcenter()</code> 不止一处, 必须全部替换!</p>
-</li>
-<li><p>Unity 每次打开项目的时候, 都会从模板中复制文件, 在项目中建立缓存, 其中就包含我们刚刚修改的文件. 如果不重启项目, 那么项目中的缓存文件依旧使用的是修改前的文件, 此时发布依旧会失败, 所以必须重启 Unity 项目, 让 Unity 使用我们修改后的模板重新建立缓存!</p>
-</li>
-</ol>
-<h1 id="解决方法二"><a href="#解决方法二" class="headerlink" title="解决方法二"></a>解决方法二</h1><p><strong><code>为 Unity Hub 和 Unity 设置代理</code></strong></p>
-<p>Unity Hub 和 Unity 在连接网络时并不会读取浏览器配置, 因此梯子时无效的! 但是 Unity Hub 和 Unity 会读取环境变量中 <code>HTTP_PROXY</code> 和 <code>HTTPS_PROXY</code> 的值判断是否使用代理.</p>
-<p>因此只要配置好这两个环境变量就好了, 下面是引用的这篇博客 (<span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span>) 中的一段:</p>
-<blockquote>
-<p>Windows 下, 写一个 bat 脚本, 内容如下:</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;@<span class="built_in">echo</span> off</span><br><span class="line">&gt;<span class="built_in">set</span> HTTP_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">set</span> HTTPS_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">start</span> &quot;&quot; &quot;C:\Program Files\Unity Hub\Unity Hub.exe&quot;</span><br></pre></td></tr></table></figure>
-
-<p>注意, HTTPS_PROXY 的设置也是 &quot;<span class="exturl" data-url="aHR0cDovL3h4eHgmcXVvdDsv">http://xxxx&quot;<i class="fa fa-external-link-alt"></i></span>, 而不是 &quot;<span class="exturl" data-url="aHR0cHM6Ly94eHh4JnF1b3Q7Lw==">https://xxxx&quot;<i class="fa fa-external-link-alt"></i></span></p>
-<p>mac 下, 脚本如下:</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;<span class="built_in">echo</span> &#x27;#!/bin/bash</span><br><span class="line">&gt;export HTTP_PROXY=proxy-url</span><br><span class="line">&gt;export HTTPS_PROXY=proxy-url</span><br><span class="line">&gt;nohup &quot;/Applications/Unity Hub.app/Contents/MacOS/Unity Hub&quot; &amp;&gt;/dev/null &amp;&#x27; &gt; launchUnityHub.command</span><br><span class="line">&gt;chmod +x launchUnityHub.command</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>我用的方法是第一种方法, 确实可行! 第二种没用, 因为我不喜欢动环境变量! 😂</p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYW5nZV9mcm9tX25vdy9hcnRpY2xlL2RldGFpbHMvMTAwNTE5NTQ2">Unity使用Gradle打包出错问题<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>战棋游戏中使用 Flood Fill 算法计算行动范围</title>
     <url>/unity/unity_floodfill.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -4021,6 +3963,64 @@
       </categories>
       <tags>
         <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何让 Unity 走代理?</title>
+    <url>/unity/unity_proxy.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>最近在学习制作 Unity 游戏, 到了最后需要发布 Android 版本游戏程序的时候, 发现根本导不出来!!! </p>
+<p>每次都会卡在 Gradle 的构建上... 看了日志之后知道了原来是从仓库下载包的时候下载失败了...那我就更郁闷了, 我 24 小时全天开着梯子, 你跟我说现在还有我下载不下来的东西? 后来在这篇文章中找到了答案! <span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
+<p>原来 Unity 压根不吃梯子啊~ ~ !</p>
+<h1 id="解决方法一"><a href="#解决方法一" class="headerlink" title="解决方法一"></a>解决方法一</h1><p><strong><code>使用阿里的镜像源替代 Google 源</code></strong></p>
+<ol>
+<li><p>找到 Unity 的安装目录.</p>
+</li>
+<li><p>使用 VSCode 打开路径: <code>Editor\Data\PlaybackEngines\AndroidPlayer\Tools\GradleTemplates</code>.</p>
+</li>
+<li><p>对路径中的文件逐一修改, 将其中所有的</p>
+</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">google()</span><br><span class="line">jcenter()</span><br></pre></td></tr></table></figure>
+
+<p>修改为:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/google&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/jcenter&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><font color='red'><strong>重启 Unity 项目</strong></font>, 重新发布即可!</li>
+</ol>
+<p>[<strong>注</strong>]</p>
+<ol>
+<li><p>文件中要替换的 <code>google() jcenter()</code> 不止一处, 必须全部替换!</p>
+</li>
+<li><p>Unity 每次打开项目的时候, 都会从模板中复制文件, 在项目中建立缓存, 其中就包含我们刚刚修改的文件. 如果不重启项目, 那么项目中的缓存文件依旧使用的是修改前的文件, 此时发布依旧会失败, 所以必须重启 Unity 项目, 让 Unity 使用我们修改后的模板重新建立缓存!</p>
+</li>
+</ol>
+<h1 id="解决方法二"><a href="#解决方法二" class="headerlink" title="解决方法二"></a>解决方法二</h1><p><strong><code>为 Unity Hub 和 Unity 设置代理</code></strong></p>
+<p>Unity Hub 和 Unity 在连接网络时并不会读取浏览器配置, 因此梯子时无效的! 但是 Unity Hub 和 Unity 会读取环境变量中 <code>HTTP_PROXY</code> 和 <code>HTTPS_PROXY</code> 的值判断是否使用代理.</p>
+<p>因此只要配置好这两个环境变量就好了, 下面是引用的这篇博客 (<span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span>) 中的一段:</p>
+<blockquote>
+<p>Windows 下, 写一个 bat 脚本, 内容如下:</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;@<span class="built_in">echo</span> off</span><br><span class="line">&gt;<span class="built_in">set</span> HTTP_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">set</span> HTTPS_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">start</span> &quot;&quot; &quot;C:\Program Files\Unity Hub\Unity Hub.exe&quot;</span><br></pre></td></tr></table></figure>
+
+<p>注意, HTTPS_PROXY 的设置也是 &quot;<span class="exturl" data-url="aHR0cDovL3h4eHgmcXVvdDsv">http://xxxx&quot;<i class="fa fa-external-link-alt"></i></span>, 而不是 &quot;<span class="exturl" data-url="aHR0cHM6Ly94eHh4JnF1b3Q7Lw==">https://xxxx&quot;<i class="fa fa-external-link-alt"></i></span></p>
+<p>mac 下, 脚本如下:</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;<span class="built_in">echo</span> &#x27;#!/bin/bash</span><br><span class="line">&gt;export HTTP_PROXY=proxy-url</span><br><span class="line">&gt;export HTTPS_PROXY=proxy-url</span><br><span class="line">&gt;nohup &quot;/Applications/Unity Hub.app/Contents/MacOS/Unity Hub&quot; &amp;&gt;/dev/null &amp;&#x27; &gt; launchUnityHub.command</span><br><span class="line">&gt;chmod +x launchUnityHub.command</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>我用的方法是第一种方法, 确实可行! 第二种没用, 因为我不喜欢动环境变量! 😂</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYW5nZV9mcm9tX25vdy9hcnRpY2xlL2RldGFpbHMvMTAwNTE5NTQ2">Unity使用Gradle打包出错问题<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
       </tags>
   </entry>
   <entry>
