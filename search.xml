@@ -582,40 +582,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ASP 开发经验笔记</title>
-    <url>/asp/asp_learnnotes.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="一个简单快速的日志式调试方法"><a href="#一个简单快速的日志式调试方法" class="headerlink" title="一个简单快速的日志式调试方法"></a>一个简单快速的日志式调试方法</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 日志目录默认为当前目录</span></span><br><span class="line"><span class="keyword">string</span> logFilePath = Server.MapPath(DateTime.Now.ToString(<span class="string">&quot;yyyy-MM-dd&quot;</span>) + <span class="string">&quot;.txt&quot;</span>);</span><br><span class="line"><span class="keyword">string</span> content = <span class="string">&quot;需要输出的日志内容!&quot;</span>;</span><br><span class="line">content = <span class="keyword">string</span>.Format(<span class="string">&quot;&#123;0&#125; : &#123;1&#125;&#123;2&#125;&quot;</span>, DateTime.Now.ToString(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>), content, <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">System.IO.File.AppendAllText(logFilePath, content, System.Text.Encoding.UTF8);</span><br></pre></td></tr></table></figure>
-
-<h1 id="PL-SQL-存储过程中用户无操作权限"><a href="#PL-SQL-存储过程中用户无操作权限" class="headerlink" title="PL/SQL 存储过程中用户无操作权限"></a>PL/SQL 存储过程中用户无操作权限</h1><p>在存储过程中加入 <code>Authid Current_User</code> 即可. 例如:</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">CREATE OR REPLACE PROCEDURE SELECT_DATA_ZXN Authid Current_User AS</span><br><span class="line">  <span class="function">str_sql <span class="title">VARCHAR2</span>(<span class="params"><span class="number">2000</span></span>)</span>;</span><br><span class="line">BEGIN</span><br><span class="line">  ......</span><br><span class="line">END</span><br></pre></td></tr></table></figure>
-
-<h1 id="获取配置文件中的信息"><a href="#获取配置文件中的信息" class="headerlink" title="获取配置文件中的信息"></a>获取配置文件中的信息</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取 web.config 的信息</span></span><br><span class="line">System.Configuration.ConfigurationManager.AppSettings[<span class="string">&quot;KeyName&quot;</span>].ToString();</span><br></pre></td></tr></table></figure>
-
-<h1 id="PLSQL-调试-Oracle-存储过程时输出信息"><a href="#PLSQL-调试-Oracle-存储过程时输出信息" class="headerlink" title="PLSQL 调试 Oracle 存储过程时输出信息"></a>PLSQL 调试 Oracle 存储过程时输出信息</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--存储过程调试输出</span></span><br><span class="line">dbms_output.put_line();</span><br></pre></td></tr></table></figure>
-
-<h1 id="调用前台-JavaScript-方法"><a href="#调用前台-JavaScript-方法" class="headerlink" title="调用前台 JavaScript 方法"></a>调用前台 JavaScript 方法</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//后台 C# 调用前台 JavaScript 的自定义方法</span></span><br><span class="line">ClientScript.RegisterStartupScript(<span class="keyword">this</span>.GetType(), <span class="string">&quot;&quot;</span>, <span class="string">&quot;&lt;script&gt;myFunction();&lt;/script&gt;&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//后台 C# 调用前台 JavaScript 弹窗提示</span></span><br><span class="line">ClientScript.RegisterStartupScript(<span class="keyword">this</span>.GetType(), <span class="string">&quot;&quot;</span>, <span class="string">&quot;&lt;script&gt;alert(&#x27;弹窗信息!&#x27;);&lt;/script&gt;&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h1 id="获取电脑-IP"><a href="#获取电脑-IP" class="headerlink" title="获取电脑 IP"></a>获取电脑 IP</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//记录下电脑 IP 的方法</span></span><br><span class="line"><span class="keyword">string</span> ip = <span class="keyword">string</span>.Empty;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;HTTP_VIA&quot;</span>] != <span class="literal">null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    ip = System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;HTTP_X_FORWARDED_FOR&quot;</span>].Split(<span class="keyword">new</span> <span class="keyword">char</span>[] &#123; <span class="string">&#x27;,&#x27;</span> &#125;)[<span class="number">0</span>].ToString();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    ip = System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;REMOTE_ADDR&quot;</span>].ToString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="模板下载功能"><a href="#模板下载功能" class="headerlink" title="模板下载功能"></a>模板下载功能</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 浏览器下载文件</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;modifyName&quot;&gt;</span>自定义文件名, 附带后缀<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DownloadFile</span>(<span class="params"><span class="keyword">string</span> modifyName</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 定义变量: 文件名</span></span><br><span class="line">    <span class="keyword">string</span> fileName = <span class="keyword">string</span>.Empty;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取文件在服务器的地址</span></span><br><span class="line">    <span class="keyword">string</span> url = Server.MapPath(<span class="string">&quot;../searchZclbList.xls&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断地址是否为空</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">string</span>.IsNullOrEmpty(url))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 提示 &quot;该文件暂不提供下载&quot;</span></span><br><span class="line">        Page.ClientScript.RegisterStartupScript(Page.GetType(), <span class="string">&quot;message&quot;</span>, <span class="string">&quot;&lt;script defer&gt;alert(&#x27;该文件暂不提供下载!&#x27;);&lt;/script&gt;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断获取的是否为地址  </span></span><br><span class="line">    <span class="keyword">if</span> (url.IndexOf(<span class="string">&quot;\\&quot;</span>) &gt; <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// url 为地址时, 则截取 url 中的文件名作为文件名</span></span><br><span class="line">        fileName = url.Substring(url.LastIndexOf(<span class="string">&quot;\\&quot;</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// url 为文件名时, 直接获取文件名  </span></span><br><span class="line">        fileName = url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义文件名, 附带后缀</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">string</span>.IsNullOrEmpty(modifyName))</span><br><span class="line">    &#123;</span><br><span class="line">        fileName = modifyName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 以字符流的方式下载文件  </span></span><br><span class="line">    FileStream fileStream = <span class="keyword">new</span> FileStream(@url, FileMode.Open);</span><br><span class="line">    <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[(<span class="keyword">int</span>)fileStream.Length];</span><br><span class="line">    fileStream.Read(bytes, <span class="number">0</span>, bytes.Length);</span><br><span class="line">    fileStream.Close();</span><br><span class="line">    Response.ContentType = <span class="string">&quot;application/octet-stream&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通知浏览器下载 </span></span><br><span class="line">    Response.AddHeader(<span class="string">&quot;Content-Disposition&quot;</span>, <span class="string">&quot;attachment; filename=&quot;</span> + fileName);</span><br><span class="line">    Response.BinaryWrite(bytes);</span><br><span class="line">    Response.Flush();</span><br><span class="line">    Response.End();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="最基本的图片查看器功能"><a href="#最基本的图片查看器功能" class="headerlink" title="最基本的图片查看器功能"></a>最基本的图片查看器功能</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 前台</span></span><br><span class="line">&lt;asp:Image ID=<span class="string">&quot;Image&quot;</span> runat=<span class="string">&quot;server&quot;</span> ImageUrl=<span class="string">&quot;~/imagelook.jpg&quot;</span>/&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后台</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">Page_Load</span>(<span class="params"><span class="keyword">object</span> sender, System.EventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 读取图片</span></span><br><span class="line">        <span class="keyword">int</span> ImgID = Convert.ToInt32(Request.QueryString[<span class="string">&quot;imageid&quot;</span>] <span class="keyword">as</span> <span class="keyword">string</span>);</span><br><span class="line">        OracleConnection Con = <span class="keyword">new</span> googoSoftEAM.SQLServerDAL.SqlHelper().Connection;</span><br><span class="line">        String SqlCmd = <span class="string">&quot;select * from zc_image where imageid = :imageid and saasdm=&#x27;&quot;</span> + Session[<span class="string">&quot;saasdm&quot;</span>].ToString() + <span class="string">&quot;&#x27;&quot;</span>;</span><br><span class="line">        OracleCommand CmdObj = <span class="keyword">new</span> OracleCommand(SqlCmd, Con);</span><br><span class="line">        CmdObj.Parameters.Add(<span class="string">&quot;:ImageID&quot;</span>, OracleType.UInt32).Value = ImgID;</span><br><span class="line">        Con.Open();</span><br><span class="line">        OracleDataReader SqlReader = CmdObj.ExecuteReader();</span><br><span class="line">        SqlReader.Read();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 图片类型</span></span><br><span class="line">        <span class="keyword">string</span> imageType = (<span class="keyword">string</span>)SqlReader[<span class="string">&quot;imagecontenttype&quot;</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 原版图片内容 [字节流]</span></span><br><span class="line">        MemoryStream bufferByte = <span class="keyword">new</span> MemoryStream((<span class="keyword">byte</span>[])SqlReader[<span class="string">&quot;imageData&quot;</span>]);</span><br><span class="line">        System.Drawing.Image imageOrigin = System.Drawing.Image.FromStream(bufferByte, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 缩小文件 (计算缩小倍率) 缩小至 高度 targetHeight 左右</span></span><br><span class="line">        <span class="keyword">float</span> targetHeight = <span class="number">600.0f</span>;</span><br><span class="line">        <span class="keyword">float</span> shrink = targetHeight / imageOrigin.Height;</span><br><span class="line">        <span class="keyword">float</span> w = shrink, h = shrink;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 目标图形</span></span><br><span class="line">        System.Drawing.Bitmap imageSmall = <span class="keyword">new</span> System.Drawing.Bitmap((<span class="keyword">int</span>)(imageOrigin.Width * shrink), (<span class="keyword">int</span>)(imageOrigin.Height * shrink));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建一个图形对象</span></span><br><span class="line">        Graphics graphics = Graphics.FromImage(imageSmall);</span><br><span class="line">        graphics.DrawImage(imageOrigin, <span class="keyword">new</span> Rectangle(<span class="number">0</span>, <span class="number">0</span>, imageSmall.Width, imageSmall.Height), <span class="keyword">new</span> Rectangle(<span class="number">0</span>, <span class="number">0</span>, imageOrigin.Width, imageOrigin.Height), GraphicsUnit.Pixel);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 计算出图片地址</span></span><br><span class="line">        <span class="keyword">string</span> ret_type = <span class="keyword">string</span>.Empty;</span><br><span class="line">        GetImageType(imageType, <span class="keyword">out</span> ret_type);</span><br><span class="line">        <span class="keyword">string</span> imagePath = Server.MapPath(<span class="string">&quot;../imagelook.&quot;</span> + ret_type);</span><br><span class="line">        <span class="keyword">if</span> (File.Exists(imagePath))</span><br><span class="line">        &#123;</span><br><span class="line">            File.Delete(imagePath);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 解决 Image 控件的刷新问题</span></span><br><span class="line">        <span class="comment">// 当 IE 检测到 Image 控件的引用地址没有变化时, 会直接从浏览器缓存中取图片.</span></span><br><span class="line">        <span class="comment">// 因此只要下一次访问时网页时, Image 控件的引用地址和这一次的引用地址不相同即可.</span></span><br><span class="line">        <span class="comment">// 于是在引用地址处加一个随机数参数, 使两次引用的图片地址不同!</span></span><br><span class="line">        imageSmall.Save(imagePath);</span><br><span class="line">        Image.ImageUrl = <span class="string">&quot;~/imagelook.&quot;</span> + ret_type + <span class="string">&quot;?&quot;</span> + <span class="keyword">new</span> Random().Next(<span class="number">100</span>).ToString();</span><br><span class="line">        Con.Close();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception ex)</span><br><span class="line">    &#123;</span><br><span class="line">        Trace.Write(ex.Message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 根据所存图片类型返回图片格式</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;imageType&quot;&gt;</span>图片类型<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;ret_type&quot;&gt;</span>返回的图片类型 (string)<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span>返回的图片类型 (ImageFormat)<span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="keyword">private</span> System.Drawing.Imaging.<span class="function">ImageFormat <span class="title">GetImageType</span>(<span class="params"><span class="keyword">string</span> imageType, <span class="keyword">out</span> <span class="keyword">string</span> ret_type</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (imageType)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/gif&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;gif&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Gif;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/bmp&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;bmp&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Bmp;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/x-png&quot;</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/png&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;png&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Png;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/pjpeg&quot;</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/jpeg&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;jpg&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Jpeg;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;jpg&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Jpeg;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="合并两个表结构完全一致的-DataTable"><a href="#合并两个表结构完全一致的-DataTable" class="headerlink" title="合并两个表结构完全一致的 DataTable"></a>合并两个表结构完全一致的 DataTable</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 将 sum 表和 para 表合并到 sum 表中, 要求: &quot;sum 表&quot; 和 &quot;para 表&quot; 的表结构必须完全一样!</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;sum&quot;&gt;</span>待合并表之一, 同时也是结果表<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;para&quot;&gt;</span>仅作为待合并表之一<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddTableToTable</span>(<span class="params">DataTable sum, DataTable para</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//遍历 para 表的每一行</span></span><br><span class="line">    <span class="keyword">foreach</span> (DataRow dataRow_para <span class="keyword">in</span> para.Rows)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//新建 sum 表的一行</span></span><br><span class="line">        DataRow dataRow_sum = sum.NewRow();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//新建的这一行取 para 表的数据</span></span><br><span class="line">        dataRow_sum.ItemArray = dataRow_para.ItemArray;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将新建的这一样加到 sum 表中</span></span><br><span class="line">        sum.Rows.Add(dataRow_sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="网页实现-Enter-快捷键"><a href="#网页实现-Enter-快捷键" class="headerlink" title="网页实现 Enter 快捷键"></a>网页实现 Enter 快捷键</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 浏览器中 Enter 键有一个默认行为, 用户焦点在文本框中时键入 Enter, 会触发第一个按钮的 Click 事件.</span></span><br><span class="line"><span class="built_in">document</span>.onkeydown = keydown;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">keydown</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (event.keyCode == <span class="number">13</span>) <span class="comment">// Enter 快捷键</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">&quot;btn_cx&quot;</span>).click();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 阻止浏览器的默认行为</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="点击空白处触发-JS-中的函数"><a href="#点击空白处触发-JS-中的函数" class="headerlink" title="点击空白处触发 JS 中的函数"></a>点击空白处触发 JS 中的函数</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// document.onclick 事件注册</span></span><br><span class="line"><span class="built_in">document</span>.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// TODO...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>ASP</category>
-      </categories>
-      <tags>
-        <tag>ASP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Googosoft 网站部署步骤</title>
     <url>/asp/deploy_website.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -674,6 +640,40 @@
       </categories>
       <tags>
         <tag>网站部署</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ASP 开发经验笔记</title>
+    <url>/asp/asp_learnnotes.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="一个简单快速的日志式调试方法"><a href="#一个简单快速的日志式调试方法" class="headerlink" title="一个简单快速的日志式调试方法"></a>一个简单快速的日志式调试方法</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 日志目录默认为当前目录</span></span><br><span class="line"><span class="keyword">string</span> logFilePath = Server.MapPath(DateTime.Now.ToString(<span class="string">&quot;yyyy-MM-dd&quot;</span>) + <span class="string">&quot;.txt&quot;</span>);</span><br><span class="line"><span class="keyword">string</span> content = <span class="string">&quot;需要输出的日志内容!&quot;</span>;</span><br><span class="line">content = <span class="keyword">string</span>.Format(<span class="string">&quot;&#123;0&#125; : &#123;1&#125;&#123;2&#125;&quot;</span>, DateTime.Now.ToString(<span class="string">&quot;yyyy-MM-dd HH:mm:ss&quot;</span>), content, <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">System.IO.File.AppendAllText(logFilePath, content, System.Text.Encoding.UTF8);</span><br></pre></td></tr></table></figure>
+
+<h1 id="PL-SQL-存储过程中用户无操作权限"><a href="#PL-SQL-存储过程中用户无操作权限" class="headerlink" title="PL/SQL 存储过程中用户无操作权限"></a>PL/SQL 存储过程中用户无操作权限</h1><p>在存储过程中加入 <code>Authid Current_User</code> 即可. 例如:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">CREATE OR REPLACE PROCEDURE SELECT_DATA_ZXN Authid Current_User AS</span><br><span class="line">  <span class="function">str_sql <span class="title">VARCHAR2</span>(<span class="params"><span class="number">2000</span></span>)</span>;</span><br><span class="line">BEGIN</span><br><span class="line">  ......</span><br><span class="line">END</span><br></pre></td></tr></table></figure>
+
+<h1 id="获取配置文件中的信息"><a href="#获取配置文件中的信息" class="headerlink" title="获取配置文件中的信息"></a>获取配置文件中的信息</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取 web.config 的信息</span></span><br><span class="line">System.Configuration.ConfigurationManager.AppSettings[<span class="string">&quot;KeyName&quot;</span>].ToString();</span><br></pre></td></tr></table></figure>
+
+<h1 id="PLSQL-调试-Oracle-存储过程时输出信息"><a href="#PLSQL-调试-Oracle-存储过程时输出信息" class="headerlink" title="PLSQL 调试 Oracle 存储过程时输出信息"></a>PLSQL 调试 Oracle 存储过程时输出信息</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--存储过程调试输出</span></span><br><span class="line">dbms_output.put_line();</span><br></pre></td></tr></table></figure>
+
+<h1 id="调用前台-JavaScript-方法"><a href="#调用前台-JavaScript-方法" class="headerlink" title="调用前台 JavaScript 方法"></a>调用前台 JavaScript 方法</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//后台 C# 调用前台 JavaScript 的自定义方法</span></span><br><span class="line">ClientScript.RegisterStartupScript(<span class="keyword">this</span>.GetType(), <span class="string">&quot;&quot;</span>, <span class="string">&quot;&lt;script&gt;myFunction();&lt;/script&gt;&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//后台 C# 调用前台 JavaScript 弹窗提示</span></span><br><span class="line">ClientScript.RegisterStartupScript(<span class="keyword">this</span>.GetType(), <span class="string">&quot;&quot;</span>, <span class="string">&quot;&lt;script&gt;alert(&#x27;弹窗信息!&#x27;);&lt;/script&gt;&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="获取电脑-IP"><a href="#获取电脑-IP" class="headerlink" title="获取电脑 IP"></a>获取电脑 IP</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//记录下电脑 IP 的方法</span></span><br><span class="line"><span class="keyword">string</span> ip = <span class="keyword">string</span>.Empty;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;HTTP_VIA&quot;</span>] != <span class="literal">null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    ip = System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;HTTP_X_FORWARDED_FOR&quot;</span>].Split(<span class="keyword">new</span> <span class="keyword">char</span>[] &#123; <span class="string">&#x27;,&#x27;</span> &#125;)[<span class="number">0</span>].ToString();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    ip = System.Web.HttpContext.Current.Request.ServerVariables[<span class="string">&quot;REMOTE_ADDR&quot;</span>].ToString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="模板下载功能"><a href="#模板下载功能" class="headerlink" title="模板下载功能"></a>模板下载功能</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 浏览器下载文件</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;modifyName&quot;&gt;</span>自定义文件名, 附带后缀<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">DownloadFile</span>(<span class="params"><span class="keyword">string</span> modifyName</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 定义变量: 文件名</span></span><br><span class="line">    <span class="keyword">string</span> fileName = <span class="keyword">string</span>.Empty;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取文件在服务器的地址</span></span><br><span class="line">    <span class="keyword">string</span> url = Server.MapPath(<span class="string">&quot;../searchZclbList.xls&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断地址是否为空</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">string</span>.IsNullOrEmpty(url))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 提示 &quot;该文件暂不提供下载&quot;</span></span><br><span class="line">        Page.ClientScript.RegisterStartupScript(Page.GetType(), <span class="string">&quot;message&quot;</span>, <span class="string">&quot;&lt;script defer&gt;alert(&#x27;该文件暂不提供下载!&#x27;);&lt;/script&gt;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断获取的是否为地址  </span></span><br><span class="line">    <span class="keyword">if</span> (url.IndexOf(<span class="string">&quot;\\&quot;</span>) &gt; <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// url 为地址时, 则截取 url 中的文件名作为文件名</span></span><br><span class="line">        fileName = url.Substring(url.LastIndexOf(<span class="string">&quot;\\&quot;</span>) + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// url 为文件名时, 直接获取文件名  </span></span><br><span class="line">        fileName = url;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义文件名, 附带后缀</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">string</span>.IsNullOrEmpty(modifyName))</span><br><span class="line">    &#123;</span><br><span class="line">        fileName = modifyName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 以字符流的方式下载文件  </span></span><br><span class="line">    FileStream fileStream = <span class="keyword">new</span> FileStream(@url, FileMode.Open);</span><br><span class="line">    <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[(<span class="keyword">int</span>)fileStream.Length];</span><br><span class="line">    fileStream.Read(bytes, <span class="number">0</span>, bytes.Length);</span><br><span class="line">    fileStream.Close();</span><br><span class="line">    Response.ContentType = <span class="string">&quot;application/octet-stream&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通知浏览器下载 </span></span><br><span class="line">    Response.AddHeader(<span class="string">&quot;Content-Disposition&quot;</span>, <span class="string">&quot;attachment; filename=&quot;</span> + fileName);</span><br><span class="line">    Response.BinaryWrite(bytes);</span><br><span class="line">    Response.Flush();</span><br><span class="line">    Response.End();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="最基本的图片查看器功能"><a href="#最基本的图片查看器功能" class="headerlink" title="最基本的图片查看器功能"></a>最基本的图片查看器功能</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 前台</span></span><br><span class="line">&lt;asp:Image ID=<span class="string">&quot;Image&quot;</span> runat=<span class="string">&quot;server&quot;</span> ImageUrl=<span class="string">&quot;~/imagelook.jpg&quot;</span>/&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后台</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">Page_Load</span>(<span class="params"><span class="keyword">object</span> sender, System.EventArgs e</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 读取图片</span></span><br><span class="line">        <span class="keyword">int</span> ImgID = Convert.ToInt32(Request.QueryString[<span class="string">&quot;imageid&quot;</span>] <span class="keyword">as</span> <span class="keyword">string</span>);</span><br><span class="line">        OracleConnection Con = <span class="keyword">new</span> googoSoftEAM.SQLServerDAL.SqlHelper().Connection;</span><br><span class="line">        String SqlCmd = <span class="string">&quot;select * from zc_image where imageid = :imageid and saasdm=&#x27;&quot;</span> + Session[<span class="string">&quot;saasdm&quot;</span>].ToString() + <span class="string">&quot;&#x27;&quot;</span>;</span><br><span class="line">        OracleCommand CmdObj = <span class="keyword">new</span> OracleCommand(SqlCmd, Con);</span><br><span class="line">        CmdObj.Parameters.Add(<span class="string">&quot;:ImageID&quot;</span>, OracleType.UInt32).Value = ImgID;</span><br><span class="line">        Con.Open();</span><br><span class="line">        OracleDataReader SqlReader = CmdObj.ExecuteReader();</span><br><span class="line">        SqlReader.Read();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 图片类型</span></span><br><span class="line">        <span class="keyword">string</span> imageType = (<span class="keyword">string</span>)SqlReader[<span class="string">&quot;imagecontenttype&quot;</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 原版图片内容 [字节流]</span></span><br><span class="line">        MemoryStream bufferByte = <span class="keyword">new</span> MemoryStream((<span class="keyword">byte</span>[])SqlReader[<span class="string">&quot;imageData&quot;</span>]);</span><br><span class="line">        System.Drawing.Image imageOrigin = System.Drawing.Image.FromStream(bufferByte, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 缩小文件 (计算缩小倍率) 缩小至 高度 targetHeight 左右</span></span><br><span class="line">        <span class="keyword">float</span> targetHeight = <span class="number">600.0f</span>;</span><br><span class="line">        <span class="keyword">float</span> shrink = targetHeight / imageOrigin.Height;</span><br><span class="line">        <span class="keyword">float</span> w = shrink, h = shrink;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 目标图形</span></span><br><span class="line">        System.Drawing.Bitmap imageSmall = <span class="keyword">new</span> System.Drawing.Bitmap((<span class="keyword">int</span>)(imageOrigin.Width * shrink), (<span class="keyword">int</span>)(imageOrigin.Height * shrink));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建一个图形对象</span></span><br><span class="line">        Graphics graphics = Graphics.FromImage(imageSmall);</span><br><span class="line">        graphics.DrawImage(imageOrigin, <span class="keyword">new</span> Rectangle(<span class="number">0</span>, <span class="number">0</span>, imageSmall.Width, imageSmall.Height), <span class="keyword">new</span> Rectangle(<span class="number">0</span>, <span class="number">0</span>, imageOrigin.Width, imageOrigin.Height), GraphicsUnit.Pixel);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 计算出图片地址</span></span><br><span class="line">        <span class="keyword">string</span> ret_type = <span class="keyword">string</span>.Empty;</span><br><span class="line">        GetImageType(imageType, <span class="keyword">out</span> ret_type);</span><br><span class="line">        <span class="keyword">string</span> imagePath = Server.MapPath(<span class="string">&quot;../imagelook.&quot;</span> + ret_type);</span><br><span class="line">        <span class="keyword">if</span> (File.Exists(imagePath))</span><br><span class="line">        &#123;</span><br><span class="line">            File.Delete(imagePath);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 解决 Image 控件的刷新问题</span></span><br><span class="line">        <span class="comment">// 当 IE 检测到 Image 控件的引用地址没有变化时, 会直接从浏览器缓存中取图片.</span></span><br><span class="line">        <span class="comment">// 因此只要下一次访问时网页时, Image 控件的引用地址和这一次的引用地址不相同即可.</span></span><br><span class="line">        <span class="comment">// 于是在引用地址处加一个随机数参数, 使两次引用的图片地址不同!</span></span><br><span class="line">        imageSmall.Save(imagePath);</span><br><span class="line">        Image.ImageUrl = <span class="string">&quot;~/imagelook.&quot;</span> + ret_type + <span class="string">&quot;?&quot;</span> + <span class="keyword">new</span> Random().Next(<span class="number">100</span>).ToString();</span><br><span class="line">        Con.Close();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception ex)</span><br><span class="line">    &#123;</span><br><span class="line">        Trace.Write(ex.Message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 根据所存图片类型返回图片格式</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;imageType&quot;&gt;</span>图片类型<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;ret_type&quot;&gt;</span>返回的图片类型 (string)<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span>返回的图片类型 (ImageFormat)<span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="keyword">private</span> System.Drawing.Imaging.<span class="function">ImageFormat <span class="title">GetImageType</span>(<span class="params"><span class="keyword">string</span> imageType, <span class="keyword">out</span> <span class="keyword">string</span> ret_type</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (imageType)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/gif&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;gif&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Gif;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/bmp&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;bmp&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Bmp;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/x-png&quot;</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/png&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;png&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Png;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/pjpeg&quot;</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;image/jpeg&quot;</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;jpg&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Jpeg;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            ret_type = <span class="string">&quot;jpg&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> System.Drawing.Imaging.ImageFormat.Jpeg;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="合并两个表结构完全一致的-DataTable"><a href="#合并两个表结构完全一致的-DataTable" class="headerlink" title="合并两个表结构完全一致的 DataTable"></a>合并两个表结构完全一致的 DataTable</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 将 sum 表和 para 表合并到 sum 表中, 要求: &quot;sum 表&quot; 和 &quot;para 表&quot; 的表结构必须完全一样!</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;sum&quot;&gt;</span>待合并表之一, 同时也是结果表<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;para&quot;&gt;</span>仅作为待合并表之一<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AddTableToTable</span>(<span class="params">DataTable sum, DataTable para</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//遍历 para 表的每一行</span></span><br><span class="line">    <span class="keyword">foreach</span> (DataRow dataRow_para <span class="keyword">in</span> para.Rows)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//新建 sum 表的一行</span></span><br><span class="line">        DataRow dataRow_sum = sum.NewRow();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//新建的这一行取 para 表的数据</span></span><br><span class="line">        dataRow_sum.ItemArray = dataRow_para.ItemArray;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将新建的这一样加到 sum 表中</span></span><br><span class="line">        sum.Rows.Add(dataRow_sum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="网页实现-Enter-快捷键"><a href="#网页实现-Enter-快捷键" class="headerlink" title="网页实现 Enter 快捷键"></a>网页实现 Enter 快捷键</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 浏览器中 Enter 键有一个默认行为, 用户焦点在文本框中时键入 Enter, 会触发第一个按钮的 Click 事件.</span></span><br><span class="line"><span class="built_in">document</span>.onkeydown = keydown;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">keydown</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (event.keyCode == <span class="number">13</span>) <span class="comment">// Enter 快捷键</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">document</span>.getElementById(<span class="string">&quot;btn_cx&quot;</span>).click();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 阻止浏览器的默认行为</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="点击空白处触发-JS-中的函数"><a href="#点击空白处触发-JS-中的函数" class="headerlink" title="点击空白处触发 JS 中的函数"></a>点击空白处触发 JS 中的函数</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// document.onclick 事件注册</span></span><br><span class="line"><span class="built_in">document</span>.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// TODO...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>ASP</category>
+      </categories>
+      <tags>
+        <tag>ASP</tag>
       </tags>
   </entry>
   <entry>
@@ -1056,6 +1056,147 @@
       </tags>
   </entry>
   <entry>
+    <title>重装系统-Personal</title>
+    <url>/computer/recovery_personal_computer.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="账户名称设置"><a href="#账户名称设置" class="headerlink" title="账户名称设置"></a>账户名称设置</h1><p>重装系统时, <font color='red'> <strong>不要用微软账户登录, 而是使用本地账户登陆</strong> </font>, 此时系统盘中账户文件夹的名称就是本地账户的名称, 之后再用微软账户登陆, 用户文件夹的名字就不会采用微软账户邮箱的前四个字母了. </p>
+<h1 id="修正盘符"><a href="#修正盘符" class="headerlink" title="修正盘符"></a>修正盘符</h1><blockquote>
+<p>右键 &quot;此电脑&quot; -&gt; &quot;管理&quot; -&gt; &quot;磁盘管理&quot;, 修正磁盘盘符. </p>
+</blockquote>
+<h1 id="Windows-10-基础设置"><a href="#Windows-10-基础设置" class="headerlink" title="Windows 10 基础设置"></a>Windows 10 基础设置</h1><blockquote>
+<p>进入设置, 对 Windows 10 进行基础设置, 更改桌面图标, 更改鼠标样式.</p>
+</blockquote>
+<h1 id="将-quot-回收站-quot-添加进-quot-快速访问-quot"><a href="#将-quot-回收站-quot-添加进-quot-快速访问-quot" class="headerlink" title="将 &quot;回收站&quot; 添加进 &quot;快速访问&quot;"></a>将 &quot;回收站&quot; 添加进 &quot;快速访问&quot;</h1><blockquote>
+<p>向快速访问中添加 &quot;回收站&quot;. </p>
+</blockquote>
+<h1 id="设置-quot-文件夹选项-quot"><a href="#设置-quot-文件夹选项-quot" class="headerlink" title="设置 &quot;文件夹选项&quot;"></a>设置 &quot;文件夹选项&quot;</h1><p>设置&quot;文件夹选项&quot;. 包括: </p>
+<ul>
+<li>设置 Win+E 打开 &quot;此电脑&quot;. </li>
+<li>清除文件资源管理器的历史纪录. </li>
+<li>设置 &quot;快速访问&quot; 不显示最近使用的文件, 文件夹. </li>
+<li>显示文件后缀名, 始终显示隐藏文件. </li>
+<li>用彩色显示加密或压缩的 NTFS 文件. </li>
+<li>在标题栏中显示完整路径. </li>
+</ul>
+<h1 id="更改-quot-高级系统设置-quot"><a href="#更改-quot-高级系统设置-quot" class="headerlink" title="更改 &quot;高级系统设置&quot;"></a>更改 &quot;高级系统设置&quot;</h1><ul>
+<li>计算机名称</li>
+<li>将虚拟内存放置到固态硬盘, 空间大小 20G. </li>
+<li>在系统保护中, 开启系统盘系统保护, 空间大小最大 8G. </li>
+</ul>
+<h1 id="禁用-Windows-Defender"><a href="#禁用-Windows-Defender" class="headerlink" title="禁用 Windows Defender"></a>禁用 Windows Defender</h1><p>组策略: gpedit.msc</p>
+<h1 id="安装基础软件"><a href="#安装基础软件" class="headerlink" title="安装基础软件"></a>安装基础软件</h1><p>Bandzip, HoneyView, Chrome</p>
+<h1 id="安装字体库"><a href="#安装字体库" class="headerlink" title="安装字体库"></a>安装字体库</h1><h1 id="安装必装软件"><a href="#安装必装软件" class="headerlink" title="安装必装软件"></a>安装必装软件</h1><h2 id="解压即用"><a href="#解压即用" class="headerlink" title="解压即用"></a>解压即用</h2><ul>
+<li>Bandicam Portable  </li>
+<li>EBWin</li>
+<li>Snipaste</li>
+<li>Uninstall Tool</li>
+<li>GoldWave</li>
+<li>Clash for Windows</li>
+<li>Mp3tag</li>
+<li>Wise Registry Cleaner</li>
+</ul>
+<h2 id="重要软件"><a href="#重要软件" class="headerlink" title="重要软件"></a>重要软件</h2><ul>
+<li>Steam</li>
+<li>Microsoft Office</li>
+<li>Photoshop</li>
+<li>Microsoft Visual Studio</li>
+<li>Unity</li>
+<li>ToDesk</li>
+</ul>
+<p>[<strong>注</strong>]</p>
+<ol>
+<li>Microsoft Visual Studio 安装背景图片插件.</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Computer</category>
+      </categories>
+      <tags>
+        <tag>Recovery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>委托(一) 委托的基本用法</title>
+    <url>/csharp/delegate_01.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="本文重点"><a href="#本文重点" class="headerlink" title="本文重点"></a>本文重点</h1><ol>
+<li><p>delegate 和 Delegate 的区别</p>
+</li>
+<li><p>定义委托</p>
+</li>
+<li><p>实例化委托</p>
+</li>
+<li><p>Action 和 Func</p>
+</li>
+<li><p>委托的基本用法</p>
+</li>
+</ol>
+<h1 id="delegate"><a href="#delegate" class="headerlink" title="delegate"></a>delegate</h1><p><code>delegate</code> 是一个类型关键字, 和它类似的还有: <code>class</code>, <code>interface</code>, <code>enum</code> 等等. 这类关键字都是用来定义的, 而不是实例化的. 枚举类型使用 <code>enum</code> 进行定义, 委托类型使用 <code>delegate</code> 进行定义. 因此 <font color='red'><strong>delegate 不是类! 它只是一个类型关键字! 用来定义类型的.</strong></font></p>
+<h1 id="System-String-string-和-System-Delegate-delegate"><a href="#System-String-string-和-System-Delegate-delegate" class="headerlink" title="System.String - string 和 System.Delegate - delegate"></a>System.String - string 和 System.Delegate - delegate</h1><p>System.String 是 .Net 框架中的一个类, .Net 框架中包含多种编程语言, 其中 C# 语言中给 System.String 起了一个别名 string, 因此 <code>string str</code> 和 <code>System.String str</code> 是没有区别的, <code>string</code> 就是一个类, <code>string str</code> 这一个代码不是在定义类型, 而是在实例化对象. 但是 <code>delegate</code> 和 <code>System.Delegate</code> 的关系就不是这样了. <code>System.Delegate</code> 是一个类, 而 <code>delegate</code> 则是一个 <code>类型关键字</code>, 它是用来定义委托的, 就像 <code>class</code> 定义类, <code>struct</code> 定义结构体, <code>enum</code> 定义枚举一样, 这些关键字是同一个级次的, 但他们都不是类. </p>
+<p>如下图, String, string, Delegate 都可以调用类中的静态方法, 这是因为他们都是类, 但是 delegate 则不可以, 因为它仅仅只是一个类型关键字.</p>
+<p><img data-src="/images/csharp/delegate/delegate_01.png" alt="delegate"></p>
+<h1 id="🦄如何定义一个委托类型"><a href="#🦄如何定义一个委托类型" class="headerlink" title="🦄如何定义一个委托类型"></a>🦄如何定义一个委托类型</h1><ol>
+<li>使用 delegate 关键字</li>
+<li>指明待委托方法的两个特征: <code>1. 返回值 2. 参数</code></li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义委托类型, 返回值为: int, 参数为: (int, int)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">int</span> <span class="title">MyDelegate</span> (<span class="params"><span class="keyword">int</span> a, <span class="keyword">int</span> b</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>[<strong>注</strong>] 其实 csharp 中已经有定义好的通用委托类型了, 基本无需自己定义委托类型.</p>
+<h1 id="🐬如何实例化出一个委托实例"><a href="#🐬如何实例化出一个委托实例" class="headerlink" title="🐬如何实例化出一个委托实例"></a>🐬如何实例化出一个委托实例</h1><p>实例化委托就是使用之前定义好的委托类型实例化出一个委托对象, 也叫做委托实例. 委托的实例化语法和类的实例化语法相同.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 实例化一个 MyDelegate 类型的委托对象, 此时还没有初始化</span></span><br><span class="line">MyDelegate myDelegate;</span><br></pre></td></tr></table></figure>
+
+<p>[<strong>注</strong>] 实例化委托时通常不再使用自己定义的委托类型, 而是使用 csharp 中已经定义好的通用委托类型 Action&lt;&gt; 和 Func&lt;&gt;.</p>
+<h1 id="🌴如何初始化一个委托实例"><a href="#🌴如何初始化一个委托实例" class="headerlink" title="🌴如何初始化一个委托实例"></a>🌴如何初始化一个委托实例</h1><ul>
+<li><p>方法 1: 使用 new 关键字初始化. 待委托方法作为参数传入.</p>
+</li>
+<li><p>方法 2: 直接使用符合特征的方法赋值.</p>
+</li>
+</ul>
+<p>[<strong>注</strong>] 待委托方法如果不是静态方法, 则必须是实例方法. 不能将未实例化的方法作为参数传入委托或对委托赋值.</p>
+<h1 id="如何调用委托"><a href="#如何调用委托" class="headerlink" title="如何调用委托"></a>如何调用委托</h1><ul>
+<li>方式 1: 调用委托和调用方法在代码写法上一致.</li>
+<li>方式 2: 调用 Invoke() 方法.</li>
+</ul>
+<h1 id="委托基本用法示例-非静态"><a href="#委托基本用法示例-非静态" class="headerlink" title="委托基本用法示例 (非静态)"></a>委托基本用法示例 (非静态)</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CSharp 起别名的语法规则, 在 namespace 外部书写时必须写全部路径</span></span><br><span class="line"><span class="comment">// using Package = System.Collections.Generic.Dictionary&lt;string, int&gt;;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyDelegateTest</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// CSharp 起别名的语法规则, 在 namespace 内部书写的时候可以嵌套引用 namespace 外的 using</span></span><br><span class="line">    <span class="keyword">using</span> Package = Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义一个委托类, 指明待委托方法的特征: 1. 返回值 (string) 2. 参数 (string, int, Package)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">string</span> <span class="title">DelegateBuy</span>(<span class="params"><span class="keyword">string</span> itemName, <span class="keyword">int</span> num, Package package</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="comment">// 实例化 玩家包裹</span></span><br><span class="line">            Package package = <span class="keyword">new</span> Package();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 实例化 委托</span></span><br><span class="line">            <span class="comment">// 委托初始化时可以直接赋值, 也可以使用 new 关键字</span></span><br><span class="line">            <span class="comment">// 当 &quot;待委托方法&quot; 是非静态方法时, 只能传递待委托方法的实例作为参数, 因此这里必须实例化 Program, 并写 &quot;program.Buy&quot;, 不能只写 &quot;Buy&quot;.</span></span><br><span class="line">            Program program = <span class="keyword">new</span> Program();</span><br><span class="line">            DelegateBuy delegateBuy = program.Buy;</span><br><span class="line">            DelegateBuy delegateBuy2 = <span class="keyword">new</span> DelegateBuy(program.Buy);            </span><br><span class="line"></span><br><span class="line">            <span class="comment">// 调用委托的写法和调用方法的写法一致</span></span><br><span class="line">            Console.WriteLine(delegateBuy(<span class="string">&quot;体力药水&quot;</span>, <span class="number">10</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy(<span class="string">&quot;体力药水&quot;</span>, <span class="number">25</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy2(<span class="string">&quot;魔力药水&quot;</span>, <span class="number">10</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy2(<span class="string">&quot;魔力药水&quot;</span>, <span class="number">5</span>, package));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 暂停</span></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 待委托的方法</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;itemName&quot;&gt;</span>物品名称<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;num&quot;&gt;</span>物品数量<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;package&quot;&gt;</span>玩家包裹<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">string</span> <span class="title">Buy</span>(<span class="params"><span class="keyword">string</span> itemName, <span class="keyword">int</span> num, Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt; package</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">string</span> str;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (package.ContainsKey(itemName))</span><br><span class="line">            &#123;</span><br><span class="line">                package[itemName] += num;</span><br><span class="line">                str = <span class="keyword">string</span>.Format(<span class="string">&quot;您又购买了&#123;0&#125;个&#123;1&#125;!&quot;</span>, num, itemName);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                package.Add(itemName, num);</span><br><span class="line">                str = <span class="keyword">string</span>.Format(<span class="string">&quot;您购买了&#123;0&#125;个&#123;1&#125;!&quot;</span>, num, itemName);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> str;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="委托基本用法示例-静态"><a href="#委托基本用法示例-静态" class="headerlink" title="委托基本用法示例 (静态)"></a>委托基本用法示例 (静态)</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CSharp 起别名的语法规则, 在 namespace 外部书写时必须写全部路径</span></span><br><span class="line"><span class="comment">// using Package = System.Collections.Generic.Dictionary&lt;string, int&gt;;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyDelegateTest</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// CSharp 起别名的语法规则, 在 namespace 内部书写的时候可以嵌套引用 namespace 外的 using</span></span><br><span class="line">    <span class="keyword">using</span> Package = Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义一个委托类, 指明待委托方法的特征: 1. 返回值 (string) 2. 参数 (string, int, Package)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">string</span> <span class="title">DelegateBuy</span>(<span class="params"><span class="keyword">string</span> itemName, <span class="keyword">int</span> num, Package package</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="comment">// 实例化 玩家包裹</span></span><br><span class="line">            Package package = <span class="keyword">new</span> Package();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 实例化 委托</span></span><br><span class="line">            <span class="comment">// 当 &quot;待委托方法&quot; 是静态方法时, 可以直接将静态方法作为参数传递.</span></span><br><span class="line">            DelegateBuy delegateBuy = Program.Buy;</span><br><span class="line">            DelegateBuy delegateBuy2 = <span class="keyword">new</span> DelegateBuy(Program.Buy);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 调用委托的写法和调用方法的写法一致</span></span><br><span class="line">            Console.WriteLine(delegateBuy(<span class="string">&quot;体力药水&quot;</span>, <span class="number">10</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy(<span class="string">&quot;体力药水&quot;</span>, <span class="number">25</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy2(<span class="string">&quot;魔力药水&quot;</span>, <span class="number">10</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy2(<span class="string">&quot;魔力药水&quot;</span>, <span class="number">5</span>, package));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 暂停</span></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 待委托的方法</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;itemName&quot;&gt;</span>物品名称<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;num&quot;&gt;</span>物品数量<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;package&quot;&gt;</span>玩家包裹<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">Buy</span>(<span class="params"><span class="keyword">string</span> itemName, <span class="keyword">int</span> num, Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt; package</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">string</span> str;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (package.ContainsKey(itemName))</span><br><span class="line">            &#123;</span><br><span class="line">                package[itemName] += num;</span><br><span class="line">                str = <span class="keyword">string</span>.Format(<span class="string">&quot;您又购买了&#123;0&#125;个&#123;1&#125;!&quot;</span>, num, itemName);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                package.Add(itemName, num);</span><br><span class="line">                str = <span class="keyword">string</span>.Format(<span class="string">&quot;您购买了&#123;0&#125;个&#123;1&#125;!&quot;</span>, num, itemName);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> str;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Action-和-Func"><a href="#Action-和-Func" class="headerlink" title="Action 和 Func"></a>Action 和 Func</h1><p>在实例化委托的时候, 不仅仅可以使用自己定义的委托, 还可以使用 csharp 中已经定义好的两个泛型委托: <strong><code>Action&lt;&gt;</code></strong> 和 <strong><code>Func&lt;&gt;</code></strong> 来实例化 (强烈建议使用).</p>
+<h2 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h2><p><strong>Action&lt;&gt;</strong> 待委托的方法都是没有返回值的方法, 参数使用泛型进行指定.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Action a; <span class="comment">// 实例化出一个待委托方法特征为没有返回值, 没有参数的委托实例 a</span></span><br><span class="line">Action&lt;<span class="keyword">string</span>&gt; b; <span class="comment">// 实例化出一个待委托方法特征为没有返回值, 有一个 string 类型参数的委托实例 b</span></span><br><span class="line">Action&lt;<span class="keyword">string</span>, <span class="keyword">int</span>[]&gt; c; <span class="comment">// 实例化出一个待委托方法特征为没有返回值, 具有一个 string, 一个 int 数组参数的委托实例 c</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Func"><a href="#Func" class="headerlink" title="Func"></a>Func</h2><p><strong>Func&lt;&gt;</strong> 待委托的方法都是具有返回值的方法. 使用泛型来指定参数和返回值. 其中泛型中的最后一个类型为返回值的类型.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Func&lt;<span class="keyword">string</span>&gt; a; <span class="comment">// 实例化出一个待委托方法特征为没有参数, 返回值类型为 string 的委托实例 a</span></span><br><span class="line">Func&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt; b; <span class="comment">// 实例化出一个待委托方法特征为有一个 string 类型的参数, 返回值为 int 类型的委托实例 b</span></span><br><span class="line">Func&lt;<span class="keyword">int</span>, <span class="keyword">string</span>, <span class="keyword">int</span>[]&gt; c; <span class="comment">// 实例化出一个待委托方法特征为有两个 类型分别为 int 和 string 类型的参数, 返回值为 int 数组类型的委托实例 c</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li><p>delegate 和 Delegate 的区别: </p>
+<p> Delegate 是类, delegate 是关键字.</p>
+</li>
+<li><p>定义委托</p>
+<p> 不再自定义委托, 使用 Action&lt;&gt; 和 Func&lt;&gt;.</p>
+</li>
+<li><p>实例化委托</p>
+<p> 使用泛型指明待委托方法的特征.</p>
+</li>
+<li><p>Action 和 Func</p>
+<p> Action&lt;&gt; 指明无返回值, Func&lt;&gt; 最后一个泛型类型指明返回值.</p>
+</li>
+<li><p>委托的基本用法</p>
+<p> 可以通过委托来调用方法.</p>
+</li>
+</ol>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC50ZW5jZW50LmNvbS9kZXZlbG9wZXIvYXJ0aWNsZS8xMzMxNTkw">理解委托类型<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>CSharp</category>
+      </categories>
+      <tags>
+        <tag>CSharp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>csharp 中一些琐碎的知识</title>
     <url>/csharp/csharp_others.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -1266,147 +1407,6 @@
       </tags>
   </entry>
   <entry>
-    <title>重装系统-Personal</title>
-    <url>/computer/recovery_personal_computer.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="账户名称设置"><a href="#账户名称设置" class="headerlink" title="账户名称设置"></a>账户名称设置</h1><p>重装系统时, <font color='red'> <strong>不要用微软账户登录, 而是使用本地账户登陆</strong> </font>, 此时系统盘中账户文件夹的名称就是本地账户的名称, 之后再用微软账户登陆, 用户文件夹的名字就不会采用微软账户邮箱的前四个字母了. </p>
-<h1 id="修正盘符"><a href="#修正盘符" class="headerlink" title="修正盘符"></a>修正盘符</h1><blockquote>
-<p>右键 &quot;此电脑&quot; -&gt; &quot;管理&quot; -&gt; &quot;磁盘管理&quot;, 修正磁盘盘符. </p>
-</blockquote>
-<h1 id="Windows-10-基础设置"><a href="#Windows-10-基础设置" class="headerlink" title="Windows 10 基础设置"></a>Windows 10 基础设置</h1><blockquote>
-<p>进入设置, 对 Windows 10 进行基础设置, 更改桌面图标, 更改鼠标样式.</p>
-</blockquote>
-<h1 id="将-quot-回收站-quot-添加进-quot-快速访问-quot"><a href="#将-quot-回收站-quot-添加进-quot-快速访问-quot" class="headerlink" title="将 &quot;回收站&quot; 添加进 &quot;快速访问&quot;"></a>将 &quot;回收站&quot; 添加进 &quot;快速访问&quot;</h1><blockquote>
-<p>向快速访问中添加 &quot;回收站&quot;. </p>
-</blockquote>
-<h1 id="设置-quot-文件夹选项-quot"><a href="#设置-quot-文件夹选项-quot" class="headerlink" title="设置 &quot;文件夹选项&quot;"></a>设置 &quot;文件夹选项&quot;</h1><p>设置&quot;文件夹选项&quot;. 包括: </p>
-<ul>
-<li>设置 Win+E 打开 &quot;此电脑&quot;. </li>
-<li>清除文件资源管理器的历史纪录. </li>
-<li>设置 &quot;快速访问&quot; 不显示最近使用的文件, 文件夹. </li>
-<li>显示文件后缀名, 始终显示隐藏文件. </li>
-<li>用彩色显示加密或压缩的 NTFS 文件. </li>
-<li>在标题栏中显示完整路径. </li>
-</ul>
-<h1 id="更改-quot-高级系统设置-quot"><a href="#更改-quot-高级系统设置-quot" class="headerlink" title="更改 &quot;高级系统设置&quot;"></a>更改 &quot;高级系统设置&quot;</h1><ul>
-<li>计算机名称</li>
-<li>将虚拟内存放置到固态硬盘, 空间大小 20G. </li>
-<li>在系统保护中, 开启系统盘系统保护, 空间大小最大 8G. </li>
-</ul>
-<h1 id="禁用-Windows-Defender"><a href="#禁用-Windows-Defender" class="headerlink" title="禁用 Windows Defender"></a>禁用 Windows Defender</h1><p>组策略: gpedit.msc</p>
-<h1 id="安装基础软件"><a href="#安装基础软件" class="headerlink" title="安装基础软件"></a>安装基础软件</h1><p>Bandzip, HoneyView, Chrome</p>
-<h1 id="安装字体库"><a href="#安装字体库" class="headerlink" title="安装字体库"></a>安装字体库</h1><h1 id="安装必装软件"><a href="#安装必装软件" class="headerlink" title="安装必装软件"></a>安装必装软件</h1><h2 id="解压即用"><a href="#解压即用" class="headerlink" title="解压即用"></a>解压即用</h2><ul>
-<li>Bandicam Portable  </li>
-<li>EBWin</li>
-<li>Snipaste</li>
-<li>Uninstall Tool</li>
-<li>GoldWave</li>
-<li>Clash for Windows</li>
-<li>Mp3tag</li>
-<li>Wise Registry Cleaner</li>
-</ul>
-<h2 id="重要软件"><a href="#重要软件" class="headerlink" title="重要软件"></a>重要软件</h2><ul>
-<li>Steam</li>
-<li>Microsoft Office</li>
-<li>Photoshop</li>
-<li>Microsoft Visual Studio</li>
-<li>Unity</li>
-<li>ToDesk</li>
-</ul>
-<p>[<strong>注</strong>]</p>
-<ol>
-<li>Microsoft Visual Studio 安装背景图片插件.</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Computer</category>
-      </categories>
-      <tags>
-        <tag>Recovery</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>委托(一) 委托的基本用法</title>
-    <url>/csharp/delegate_01.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="本文重点"><a href="#本文重点" class="headerlink" title="本文重点"></a>本文重点</h1><ol>
-<li><p>delegate 和 Delegate 的区别</p>
-</li>
-<li><p>定义委托</p>
-</li>
-<li><p>实例化委托</p>
-</li>
-<li><p>Action 和 Func</p>
-</li>
-<li><p>委托的基本用法</p>
-</li>
-</ol>
-<h1 id="delegate"><a href="#delegate" class="headerlink" title="delegate"></a>delegate</h1><p><code>delegate</code> 是一个类型关键字, 和它类似的还有: <code>class</code>, <code>interface</code>, <code>enum</code> 等等. 这类关键字都是用来定义的, 而不是实例化的. 枚举类型使用 <code>enum</code> 进行定义, 委托类型使用 <code>delegate</code> 进行定义. 因此 <font color='red'><strong>delegate 不是类! 它只是一个类型关键字! 用来定义类型的.</strong></font></p>
-<h1 id="System-String-string-和-System-Delegate-delegate"><a href="#System-String-string-和-System-Delegate-delegate" class="headerlink" title="System.String - string 和 System.Delegate - delegate"></a>System.String - string 和 System.Delegate - delegate</h1><p>System.String 是 .Net 框架中的一个类, .Net 框架中包含多种编程语言, 其中 C# 语言中给 System.String 起了一个别名 string, 因此 <code>string str</code> 和 <code>System.String str</code> 是没有区别的, <code>string</code> 就是一个类, <code>string str</code> 这一个代码不是在定义类型, 而是在实例化对象. 但是 <code>delegate</code> 和 <code>System.Delegate</code> 的关系就不是这样了. <code>System.Delegate</code> 是一个类, 而 <code>delegate</code> 则是一个 <code>类型关键字</code>, 它是用来定义委托的, 就像 <code>class</code> 定义类, <code>struct</code> 定义结构体, <code>enum</code> 定义枚举一样, 这些关键字是同一个级次的, 但他们都不是类. </p>
-<p>如下图, String, string, Delegate 都可以调用类中的静态方法, 这是因为他们都是类, 但是 delegate 则不可以, 因为它仅仅只是一个类型关键字.</p>
-<p><img data-src="/images/csharp/delegate/delegate_01.png" alt="delegate"></p>
-<h1 id="🦄如何定义一个委托类型"><a href="#🦄如何定义一个委托类型" class="headerlink" title="🦄如何定义一个委托类型"></a>🦄如何定义一个委托类型</h1><ol>
-<li>使用 delegate 关键字</li>
-<li>指明待委托方法的两个特征: <code>1. 返回值 2. 参数</code></li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义委托类型, 返回值为: int, 参数为: (int, int)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">int</span> <span class="title">MyDelegate</span> (<span class="params"><span class="keyword">int</span> a, <span class="keyword">int</span> b</span>)</span>;</span><br></pre></td></tr></table></figure>
-
-<p>[<strong>注</strong>] 其实 csharp 中已经有定义好的通用委托类型了, 基本无需自己定义委托类型.</p>
-<h1 id="🐬如何实例化出一个委托实例"><a href="#🐬如何实例化出一个委托实例" class="headerlink" title="🐬如何实例化出一个委托实例"></a>🐬如何实例化出一个委托实例</h1><p>实例化委托就是使用之前定义好的委托类型实例化出一个委托对象, 也叫做委托实例. 委托的实例化语法和类的实例化语法相同.</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 实例化一个 MyDelegate 类型的委托对象, 此时还没有初始化</span></span><br><span class="line">MyDelegate myDelegate;</span><br></pre></td></tr></table></figure>
-
-<p>[<strong>注</strong>] 实例化委托时通常不再使用自己定义的委托类型, 而是使用 csharp 中已经定义好的通用委托类型 Action&lt;&gt; 和 Func&lt;&gt;.</p>
-<h1 id="🌴如何初始化一个委托实例"><a href="#🌴如何初始化一个委托实例" class="headerlink" title="🌴如何初始化一个委托实例"></a>🌴如何初始化一个委托实例</h1><ul>
-<li><p>方法 1: 使用 new 关键字初始化. 待委托方法作为参数传入.</p>
-</li>
-<li><p>方法 2: 直接使用符合特征的方法赋值.</p>
-</li>
-</ul>
-<p>[<strong>注</strong>] 待委托方法如果不是静态方法, 则必须是实例方法. 不能将未实例化的方法作为参数传入委托或对委托赋值.</p>
-<h1 id="如何调用委托"><a href="#如何调用委托" class="headerlink" title="如何调用委托"></a>如何调用委托</h1><ul>
-<li>方式 1: 调用委托和调用方法在代码写法上一致.</li>
-<li>方式 2: 调用 Invoke() 方法.</li>
-</ul>
-<h1 id="委托基本用法示例-非静态"><a href="#委托基本用法示例-非静态" class="headerlink" title="委托基本用法示例 (非静态)"></a>委托基本用法示例 (非静态)</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CSharp 起别名的语法规则, 在 namespace 外部书写时必须写全部路径</span></span><br><span class="line"><span class="comment">// using Package = System.Collections.Generic.Dictionary&lt;string, int&gt;;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyDelegateTest</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// CSharp 起别名的语法规则, 在 namespace 内部书写的时候可以嵌套引用 namespace 外的 using</span></span><br><span class="line">    <span class="keyword">using</span> Package = Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义一个委托类, 指明待委托方法的特征: 1. 返回值 (string) 2. 参数 (string, int, Package)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">string</span> <span class="title">DelegateBuy</span>(<span class="params"><span class="keyword">string</span> itemName, <span class="keyword">int</span> num, Package package</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="comment">// 实例化 玩家包裹</span></span><br><span class="line">            Package package = <span class="keyword">new</span> Package();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 实例化 委托</span></span><br><span class="line">            <span class="comment">// 委托初始化时可以直接赋值, 也可以使用 new 关键字</span></span><br><span class="line">            <span class="comment">// 当 &quot;待委托方法&quot; 是非静态方法时, 只能传递待委托方法的实例作为参数, 因此这里必须实例化 Program, 并写 &quot;program.Buy&quot;, 不能只写 &quot;Buy&quot;.</span></span><br><span class="line">            Program program = <span class="keyword">new</span> Program();</span><br><span class="line">            DelegateBuy delegateBuy = program.Buy;</span><br><span class="line">            DelegateBuy delegateBuy2 = <span class="keyword">new</span> DelegateBuy(program.Buy);            </span><br><span class="line"></span><br><span class="line">            <span class="comment">// 调用委托的写法和调用方法的写法一致</span></span><br><span class="line">            Console.WriteLine(delegateBuy(<span class="string">&quot;体力药水&quot;</span>, <span class="number">10</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy(<span class="string">&quot;体力药水&quot;</span>, <span class="number">25</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy2(<span class="string">&quot;魔力药水&quot;</span>, <span class="number">10</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy2(<span class="string">&quot;魔力药水&quot;</span>, <span class="number">5</span>, package));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 暂停</span></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 待委托的方法</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;itemName&quot;&gt;</span>物品名称<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;num&quot;&gt;</span>物品数量<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;package&quot;&gt;</span>玩家包裹<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">string</span> <span class="title">Buy</span>(<span class="params"><span class="keyword">string</span> itemName, <span class="keyword">int</span> num, Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt; package</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">string</span> str;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (package.ContainsKey(itemName))</span><br><span class="line">            &#123;</span><br><span class="line">                package[itemName] += num;</span><br><span class="line">                str = <span class="keyword">string</span>.Format(<span class="string">&quot;您又购买了&#123;0&#125;个&#123;1&#125;!&quot;</span>, num, itemName);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                package.Add(itemName, num);</span><br><span class="line">                str = <span class="keyword">string</span>.Format(<span class="string">&quot;您购买了&#123;0&#125;个&#123;1&#125;!&quot;</span>, num, itemName);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> str;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="委托基本用法示例-静态"><a href="#委托基本用法示例-静态" class="headerlink" title="委托基本用法示例 (静态)"></a>委托基本用法示例 (静态)</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="comment">// CSharp 起别名的语法规则, 在 namespace 外部书写时必须写全部路径</span></span><br><span class="line"><span class="comment">// using Package = System.Collections.Generic.Dictionary&lt;string, int&gt;;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">MyDelegateTest</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// CSharp 起别名的语法规则, 在 namespace 内部书写的时候可以嵌套引用 namespace 外的 using</span></span><br><span class="line">    <span class="keyword">using</span> Package = Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义一个委托类, 指明待委托方法的特征: 1. 返回值 (string) 2. 参数 (string, int, Package)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">string</span> <span class="title">DelegateBuy</span>(<span class="params"><span class="keyword">string</span> itemName, <span class="keyword">int</span> num, Package package</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="comment">// 实例化 玩家包裹</span></span><br><span class="line">            Package package = <span class="keyword">new</span> Package();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 实例化 委托</span></span><br><span class="line">            <span class="comment">// 当 &quot;待委托方法&quot; 是静态方法时, 可以直接将静态方法作为参数传递.</span></span><br><span class="line">            DelegateBuy delegateBuy = Program.Buy;</span><br><span class="line">            DelegateBuy delegateBuy2 = <span class="keyword">new</span> DelegateBuy(Program.Buy);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 调用委托的写法和调用方法的写法一致</span></span><br><span class="line">            Console.WriteLine(delegateBuy(<span class="string">&quot;体力药水&quot;</span>, <span class="number">10</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy(<span class="string">&quot;体力药水&quot;</span>, <span class="number">25</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy2(<span class="string">&quot;魔力药水&quot;</span>, <span class="number">10</span>, package));</span><br><span class="line">            Console.WriteLine(delegateBuy2(<span class="string">&quot;魔力药水&quot;</span>, <span class="number">5</span>, package));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 暂停</span></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 待委托的方法</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;itemName&quot;&gt;</span>物品名称<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;num&quot;&gt;</span>物品数量<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;package&quot;&gt;</span>玩家包裹<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">Buy</span>(<span class="params"><span class="keyword">string</span> itemName, <span class="keyword">int</span> num, Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt; package</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">string</span> str;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (package.ContainsKey(itemName))</span><br><span class="line">            &#123;</span><br><span class="line">                package[itemName] += num;</span><br><span class="line">                str = <span class="keyword">string</span>.Format(<span class="string">&quot;您又购买了&#123;0&#125;个&#123;1&#125;!&quot;</span>, num, itemName);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                package.Add(itemName, num);</span><br><span class="line">                str = <span class="keyword">string</span>.Format(<span class="string">&quot;您购买了&#123;0&#125;个&#123;1&#125;!&quot;</span>, num, itemName);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> str;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Action-和-Func"><a href="#Action-和-Func" class="headerlink" title="Action 和 Func"></a>Action 和 Func</h1><p>在实例化委托的时候, 不仅仅可以使用自己定义的委托, 还可以使用 csharp 中已经定义好的两个泛型委托: <strong><code>Action&lt;&gt;</code></strong> 和 <strong><code>Func&lt;&gt;</code></strong> 来实例化 (强烈建议使用).</p>
-<h2 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h2><p><strong>Action&lt;&gt;</strong> 待委托的方法都是没有返回值的方法, 参数使用泛型进行指定.</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Action a; <span class="comment">// 实例化出一个待委托方法特征为没有返回值, 没有参数的委托实例 a</span></span><br><span class="line">Action&lt;<span class="keyword">string</span>&gt; b; <span class="comment">// 实例化出一个待委托方法特征为没有返回值, 有一个 string 类型参数的委托实例 b</span></span><br><span class="line">Action&lt;<span class="keyword">string</span>, <span class="keyword">int</span>[]&gt; c; <span class="comment">// 实例化出一个待委托方法特征为没有返回值, 具有一个 string, 一个 int 数组参数的委托实例 c</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Func"><a href="#Func" class="headerlink" title="Func"></a>Func</h2><p><strong>Func&lt;&gt;</strong> 待委托的方法都是具有返回值的方法. 使用泛型来指定参数和返回值. 其中泛型中的最后一个类型为返回值的类型.</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Func&lt;<span class="keyword">string</span>&gt; a; <span class="comment">// 实例化出一个待委托方法特征为没有参数, 返回值类型为 string 的委托实例 a</span></span><br><span class="line">Func&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt; b; <span class="comment">// 实例化出一个待委托方法特征为有一个 string 类型的参数, 返回值为 int 类型的委托实例 b</span></span><br><span class="line">Func&lt;<span class="keyword">int</span>, <span class="keyword">string</span>, <span class="keyword">int</span>[]&gt; c; <span class="comment">// 实例化出一个待委托方法特征为有两个 类型分别为 int 和 string 类型的参数, 返回值为 int 数组类型的委托实例 c</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
-<li><p>delegate 和 Delegate 的区别: </p>
-<p> Delegate 是类, delegate 是关键字.</p>
-</li>
-<li><p>定义委托</p>
-<p> 不再自定义委托, 使用 Action&lt;&gt; 和 Func&lt;&gt;.</p>
-</li>
-<li><p>实例化委托</p>
-<p> 使用泛型指明待委托方法的特征.</p>
-</li>
-<li><p>Action 和 Func</p>
-<p> Action&lt;&gt; 指明无返回值, Func&lt;&gt; 最后一个泛型类型指明返回值.</p>
-</li>
-<li><p>委托的基本用法</p>
-<p> 可以通过委托来调用方法.</p>
-</li>
-</ol>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC50ZW5jZW50LmNvbS9kZXZlbG9wZXIvYXJ0aWNsZS8xMzMxNTkw">理解委托类型<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>CSharp</category>
-      </categories>
-      <tags>
-        <tag>CSharp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>委托(二) 委托与 &quot;回调和回调函数&quot;</title>
     <url>/csharp/delegate_02.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -1441,137 +1441,6 @@
 <li><p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL3EvMTAxMDAwMDAwNDE0OTEzMQ==">js的回调函数一般都用来做什么<i class="fa fa-external-link-alt"></i></span></p>
 </li>
 </ul>
-]]></content>
-      <categories>
-        <category>CSharp</category>
-      </categories>
-      <tags>
-        <tag>CSharp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>委托(三) 委托的初始化</title>
-    <url>/csharp/delegate_03.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="初始化委托对象"><a href="#初始化委托对象" class="headerlink" title="初始化委托对象"></a>初始化委托对象</h1><p>先定义一个委托类型, 然后使用定义的委托类型实例化一个委托对象.</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义一个委托类型</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">string</span> <span class="title">MyDelegate</span>(<span class="params"><span class="keyword">int</span> a, <span class="keyword">int</span> b</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化一个 MyDelegate 类型的委托对象, 此时还没有初始化</span></span><br><span class="line">MyDelegate myDelegate;</span><br></pre></td></tr></table></figure>
-
-<p><code>MyDelegate myDelegate</code> 只是实例化出了一个空的委托对象, 没有内容, 必须对其初始化. 委托的初始化方式经历了几种变化:</p>
-<blockquote>
-<p>C# 1.0 中, 使用 &quot;在代码中其他位置定义函数&quot; 的方法, <strong>显式</strong>初始化委托. </p>
-<p>C# 2.0 引入了 <strong>匿名方法</strong> 的概念, 以一种可在委托调用中执行的 &quot;未命名内联语句块&quot; 的方式来初始化委托.</p>
-<p>C# 3.0 引入了 <strong>lambda</strong> 表达式, 这是另一种匿名方法的书写形式, 但更具表现力并且更简练. </p>
-<p>通常, 面向 .NET Framework 3.5 或更高版本的应用程序应使用 lambda (λ) 表达式来初始化委托.</p>
-</blockquote>
-<ol>
-<li>第一种: [C# 1.0] 写法上和初始化类一样, 使用 New 关键字.</li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 初始化 myDelegate 委托</span></span><br><span class="line">myDelegate = <span class="keyword">new</span> MyDelegate(program.Add);</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>第二种: [C# 1.0] 写法上和初始化值类型一样, 直接赋值.</li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 初始化 myDelegate (直接赋值)</span></span><br><span class="line">myDelegate = program.Add;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>第三种: [C# 2.0] 使用匿名方法的原始写法进行初始化</li>
-</ol>
-<p>匿名方法同样是使用 delegate 关键字定义 (强烈建议不再使用匿名方法, 了解即可, 转而使用 Lambda 表达式), 返回值无需特别指明, 只需使用 return 来指明返回值及其类型即可, 匿名方法参数的指明方式和普通方法的指明方式一致, 但是必须和委托定义时声明的方法签名吻合.</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">myDelegate = <span class="keyword">delegate</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (a + b).ToString();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>第四种: [C# 3.0] 使用匿名方法的简化写法--Lambda 表达式进行初始化 (强烈建议使用!)</li>
-</ol>
-<p>Lambda 表达式也是委托初始化的一种手段, 它比匿名方法更为简洁, 而且不会混淆 (谁让委托类型的定义和匿名方法的定义使用同样的关键字的, 唉... 乱套了吧... 我瞎说的~~), 总之正如微软文档说的一样, 学习使用 lambda 表达式吧, 为什么呢? 因为如果你不会的话, 连别人的程序都看不懂啊😥</p>
-<ol>
-<li><p>Lambda 表达式的特征符号是: <code>=&gt;</code>. =&gt; 符号的左边是参数, 使用小括号 ( ) 括起来, 右侧时语句, 使用大括号 { } 括起来.</p>
-</li>
-<li><p>Lambda 表达式中使用 return 来指明返回值及其类型, 返回值的类型必须符合委托的要求.</p>
-<p> <code>Func&lt;int, int, int&gt; funA = (int x, int y) =&gt; &#123; return x + y; &#125;;</code></p>
-</li>
-<li><p>Lambda 表达式中参数的类型可以注明, 如上面的例子, 也可以省略, 如下面的例子.</p>
-<p> <code>Func&lt;int, int, int&gt; funB = (x, y) =&gt; &#123; return x * y; &#125;;</code></p>
-</li>
-<li><p>Lambda 表达式中的参数, 当且仅当只有一个时, 小括号可以省略.</p>
-<p> <code>Func&lt;int, int&gt; funC = x =&gt; &#123; return x * 2; &#125;; // 当且仅当只有一个时, 小括号可以省略.</code></p>
-<p> <code>Func&lt;float&gt; funD = () =&gt; &#123; return 3.1415926f; &#125;; // 零个参数时, 小括号不可以省略.</code></p>
-<p> <code>Func&lt;int, int, int, int&gt; funE = (x, y, z) =&gt; &#123; return x * 2 + y * 3 + z * 4; &#125;; // 两个及以上参数时, 小括号不可以省略.</code></p>
-</li>
-<li><p>Lambda 表达式中的语句, 当且仅当只有一句时, 大括号可以省略, 并且此时 <font color='red'><strong>return 也必须省略</strong></font>.</p>
-<p> <code>Func&lt;int, int, int&gt; funF = (x, y) =&gt; x * y; // 大括号和 return 必须同时存在, 同时省略.</code></p>
-</li>
-<li><p>大括号存在时, 大括号中只能写 <font color='red'><strong>语句</strong></font>. 此时称为: <strong>Lambda 语句块</strong>. 或者说当书写语句时, 必须用 <font color='red'><strong>语句块符号 { }</strong></font> 括起来.</p>
-</li>
-<li><p>大括号不存在时, 则只能写 <font color='red'><strong>表达式</strong></font>, 并且 <font color='red'><strong>表达式只能写一句</strong></font> . 此时称为: <strong>Lambda 表达式</strong>.</p>
-</li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">myDelegate = (a, b) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (a + b).ToString();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Action action = () =&gt; Console.WriteLine(<span class="string">&quot;action&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h1 id="多播委托"><a href="#多播委托" class="headerlink" title="多播委托"></a>多播委托</h1><p>前面讲了委托的四种初始化方式全部都是使用了 <strong><code>=</code></strong> 运算符, 其实委托还可以通过 <strong><code>+= -=</code></strong> 运算符进行注册和取消注册, 而且可以实现多播委托.</p>
-<ul>
-<li><p>多播委托: <font color='red'><strong>一个委托实例一次性委托多个实例方法, 调用委托时会依次调用所有被委托的方法</strong></font>.</p>
-</li>
-<li><p><font color='red'><strong>委托不仅仅可以 (取消) 注册方法, 也可以 (取消) 注册委托</strong></font>!</p>
-</li>
-</ul>
-<p>下表是 <strong><code>+</code></strong> 和 <strong><code>-</code></strong> 的运算规则:</p>
-<table>
-<thead>
-<tr>
-<th align="left">Expression</th>
-<th align="left">Result</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">null + d1</td>
-<td align="left">d1</td>
-</tr>
-<tr>
-<td align="left">d1 + null</td>
-<td align="left">d1</td>
-</tr>
-<tr>
-<td align="left">d1 + d2</td>
-<td align="left">[d1, d2]</td>
-</tr>
-<tr>
-<td align="left">d1 + [d2, d3]</td>
-<td align="left">[d1, d2, d3]</td>
-</tr>
-<tr>
-<td align="left">[d1, d2] + [d2, d3]</td>
-<td align="left">[d1, d2, d2, d3]</td>
-</tr>
-<tr>
-<td align="left">[d1, d2] - d1</td>
-<td align="left">d2</td>
-</tr>
-<tr>
-<td align="left">[d1, d2] - d2</td>
-<td align="left">d1</td>
-</tr>
-<tr>
-<td align="left">[d1, d2, d1] - d1</td>
-<td align="left">[d1, d2]</td>
-</tr>
-<tr>
-<td align="left">[d1, d2, d3] - [d1, d2]</td>
-<td align="left">d3</td>
-</tr>
-<tr>
-<td align="left">[d1, d2, d3] - [d2, d1]</td>
-<td align="left">[d1, d2, d3]</td>
-</tr>
-<tr>
-<td align="left">[d1, d2, d3, d1, d2] - [d1, d2]</td>
-<td align="left">[d1, d2, d3]</td>
-</tr>
-<tr>
-<td align="left">[d1, d2] - [d1, d2]</td>
-<td align="left">null</td>
-</tr>
-</tbody></table>
 ]]></content>
       <categories>
         <category>CSharp</category>
@@ -1685,6 +1554,135 @@
 <li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20va2tsbGRvZy9hcmNoaXZlLzIwMTIvMDEvMTcvMjMyNDIyOC5odG1s">C# 委托与事件区别简单总结<i class="fa fa-external-link-alt"></i></span></p>
 </li>
 </ul>
+]]></content>
+      <categories>
+        <category>CSharp</category>
+      </categories>
+      <tags>
+        <tag>CSharp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>委托(三) 委托的初始化</title>
+    <url>/csharp/delegate_03.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="初始化委托对象"><a href="#初始化委托对象" class="headerlink" title="初始化委托对象"></a>初始化委托对象</h1><p>先定义一个委托类型, 然后使用定义的委托类型实例化一个委托对象.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 定义一个委托类型</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">string</span> <span class="title">MyDelegate</span>(<span class="params"><span class="keyword">int</span> a, <span class="keyword">int</span> b</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化一个 MyDelegate 类型的委托对象, 此时还没有初始化</span></span><br><span class="line">MyDelegate myDelegate;</span><br></pre></td></tr></table></figure>
+
+<p><code>MyDelegate myDelegate</code> 只是实例化出了一个空的委托对象, 没有内容, 必须对其初始化. 委托的初始化方式经历了几种变化:</p>
+<blockquote>
+<p>C# 1.0 中, 使用 &quot;在代码中其他位置定义函数&quot; 的方法, <strong>显式</strong>初始化委托. </p>
+<p>C# 2.0 引入了 <strong>匿名方法</strong> 的概念, 以一种可在委托调用中执行的 &quot;未命名内联语句块&quot; 的方式来初始化委托.</p>
+<p>C# 3.0 引入了 <strong>lambda</strong> 表达式, 这是另一种匿名方法的书写形式, 但更具表现力并且更简练. </p>
+<p>通常, 面向 .NET Framework 3.5 或更高版本的应用程序应使用 lambda (λ) 表达式来初始化委托.</p>
+</blockquote>
+<ol>
+<li>第一种: [C# 1.0] 写法上和初始化类一样, 使用 New 关键字.</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 初始化 myDelegate 委托</span></span><br><span class="line">myDelegate = <span class="keyword">new</span> MyDelegate(program.Add);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>第二种: [C# 1.0] 写法上和初始化值类型一样, 直接赋值.</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 初始化 myDelegate (直接赋值)</span></span><br><span class="line">myDelegate = program.Add;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>第三种: [C# 2.0] 使用匿名方法的原始写法进行初始化</li>
+</ol>
+<p>匿名方法同样是使用 delegate 关键字定义 (强烈建议不再使用匿名方法, 了解即可, 转而使用 Lambda 表达式), 返回值无需特别指明, 只需使用 return 来指明返回值及其类型即可, 匿名方法参数的指明方式和普通方法的指明方式一致, 但是必须和委托定义时声明的方法签名吻合.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">myDelegate = <span class="keyword">delegate</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (a + b).ToString();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>第四种: [C# 3.0] 使用匿名方法的简化写法--Lambda 表达式进行初始化 (强烈建议使用!)</li>
+</ol>
+<p>Lambda 表达式也是委托初始化的一种手段, 它比匿名方法更为简洁, 而且不会混淆 (谁让委托类型的定义和匿名方法的定义使用同样的关键字的, 唉... 乱套了吧... 我瞎说的~~), 总之正如微软文档说的一样, 学习使用 lambda 表达式吧, 为什么呢? 因为如果你不会的话, 连别人的程序都看不懂啊😥</p>
+<ol>
+<li><p>Lambda 表达式的特征符号是: <code>=&gt;</code>. =&gt; 符号的左边是参数, 使用小括号 ( ) 括起来, 右侧时语句, 使用大括号 { } 括起来.</p>
+</li>
+<li><p>Lambda 表达式中使用 return 来指明返回值及其类型, 返回值的类型必须符合委托的要求.</p>
+ <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Func&lt;<span class="keyword">int</span>, <span class="keyword">int</span>, <span class="keyword">int</span>&gt; funA = (<span class="keyword">int</span> x, <span class="keyword">int</span> y) =&gt; &#123; <span class="keyword">return</span> x + y; &#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Lambda 表达式中参数的类型可以注明, 如上面的例子, 也可以省略, 如下面的例子.</p>
+ <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Func&lt;<span class="keyword">int</span>, <span class="keyword">int</span>, <span class="keyword">int</span>&gt; funB = (x, y) =&gt; &#123; <span class="keyword">return</span> x * y; &#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Lambda 表达式中的参数, 当且仅当只有一个时, 小括号可以省略.</p>
+ <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Func&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; funC = x =&gt; &#123; <span class="keyword">return</span> x * <span class="number">2</span>; &#125;; <span class="comment">// 当且仅当只有一个时, 小括号可以省略.</span></span><br><span class="line"></span><br><span class="line">Func&lt;<span class="keyword">float</span>&gt; funD = () =&gt; &#123; <span class="keyword">return</span> <span class="number">3.1415926f</span>; &#125;; <span class="comment">// 零个参数时, 小括号不可以省略.</span></span><br><span class="line"></span><br><span class="line">Func&lt;<span class="keyword">int</span>, <span class="keyword">int</span>, <span class="keyword">int</span>, <span class="keyword">int</span>&gt; funE = (x, y, z) =&gt; &#123; <span class="keyword">return</span> x * <span class="number">2</span> + y * <span class="number">3</span> + z * <span class="number">4</span>; &#125;; <span class="comment">// 两个及以上参数时, 小括号不可以省略.</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Lambda 表达式中的语句, 当且仅当只有一句时, 大括号可以省略, 并且此时 <font color='red'><strong>return 也必须省略</strong></font>.</p>
+ <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">Func&lt;<span class="keyword">int</span>, <span class="keyword">int</span>, <span class="keyword">int</span>&gt; funF = (x, y) =&gt; x * y; <span class="comment">// 大括号和 return 必须同时存在, 同时省略.</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>大括号存在时, 大括号中只能写 <font color='red'><strong>语句</strong></font>. 此时称为: <strong>Lambda 语句块</strong>. 或者说当书写语句时, 必须用 <font color='red'><strong>语句块符号 { }</strong></font> 括起来.</p>
+</li>
+<li><p>大括号不存在时, 则只能写 <font color='red'><strong>表达式</strong></font>, 并且 <font color='red'><strong>表达式只能写一句</strong></font> . 此时称为: <strong>Lambda 表达式</strong>.</p>
+ <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">myDelegate = (a, b) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (a + b).ToString();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Action action = () =&gt; Console.WriteLine(<span class="string">&quot;action&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="多播委托"><a href="#多播委托" class="headerlink" title="多播委托"></a>多播委托</h1><p>前面讲了委托的四种初始化方式全部都是使用了 <strong><code>=</code></strong> 运算符, 其实委托还可以通过 <strong><code>+= -=</code></strong> 运算符进行注册和取消注册, 而且可以实现多播委托.</p>
+<ul>
+<li><p>多播委托: <font color='red'><strong>一个委托实例一次性委托多个实例方法, 调用委托时会依次调用所有被委托的方法</strong></font>.</p>
+</li>
+<li><p><font color='red'><strong>委托不仅仅可以 (取消) 注册方法, 也可以 (取消) 注册委托</strong></font>!</p>
+</li>
+</ul>
+<p>下表是 <strong><code>+</code></strong> 和 <strong><code>-</code></strong> 的运算规则:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Expression</th>
+<th align="left">Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">null + d1</td>
+<td align="left">d1</td>
+</tr>
+<tr>
+<td align="left">d1 + null</td>
+<td align="left">d1</td>
+</tr>
+<tr>
+<td align="left">d1 + d2</td>
+<td align="left">[d1, d2]</td>
+</tr>
+<tr>
+<td align="left">d1 + [d2, d3]</td>
+<td align="left">[d1, d2, d3]</td>
+</tr>
+<tr>
+<td align="left">[d1, d2] + [d2, d3]</td>
+<td align="left">[d1, d2, d2, d3]</td>
+</tr>
+<tr>
+<td align="left">[d1, d2] - d1</td>
+<td align="left">d2</td>
+</tr>
+<tr>
+<td align="left">[d1, d2] - d2</td>
+<td align="left">d1</td>
+</tr>
+<tr>
+<td align="left">[d1, d2, d1] - d1</td>
+<td align="left">[d1, d2]</td>
+</tr>
+<tr>
+<td align="left">[d1, d2, d3] - [d1, d2]</td>
+<td align="left">d3</td>
+</tr>
+<tr>
+<td align="left">[d1, d2, d3] - [d2, d1]</td>
+<td align="left">[d1, d2, d3]</td>
+</tr>
+<tr>
+<td align="left">[d1, d2, d3, d1, d2] - [d1, d2]</td>
+<td align="left">[d1, d2, d3]</td>
+</tr>
+<tr>
+<td align="left">[d1, d2] - [d1, d2]</td>
+<td align="left">null</td>
+</tr>
+</tbody></table>
 ]]></content>
       <categories>
         <category>CSharp</category>
@@ -2184,6 +2182,37 @@
       </tags>
   </entry>
   <entry>
+    <title>日记系列--2020年07月</title>
+    <url>/diary/2020_07.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="2020-年-07-月-31-号"><a href="#2020-年-07-月-31-号" class="headerlink" title="2020 年 07 月 31 号"></a>2020 年 07 月 31 号</h1><p>哈哈, 月底了写一下七月的总结吧. 要不顺便起个 90 年日漫式的标题?</p>
+<h1 id="第一集-毕业危险了"><a href="#第一集-毕业危险了" class="headerlink" title="第一集 毕业危险了!"></a>第一集 毕业危险了!</h1><p>刚到七月我就收到了一个及其震撼人心的消息, 我毕不了业了! 是的, 你没听错, 不是我毕业了, 是我毕不了业了! 我学分差两分导致不能毕业, 只能拿到结业证... 当 16 级班长告诉我这个消息的时候, 我当时整个人处于懵逼的状态: 啥, 不能毕业? 谁啊? 我吗? 怎么可能, 你在开玩笑吧, 你是不是打错电话了? </p>
+<p>过了 1 分钟: 我 TM 真的不能毕业了? 真的是我啊! 不可能啊, 我休学之前就只剩一个毕业设计了啊, 而我这次毕业设计又很顺利地通过了, 你告诉我不能毕业, 你是在逗我吗? 今天不是愚人节啊! </p>
+<p>只听 16 级班长缓缓地说: 学长, 是这样的, 16 级培养方案和 15 级的不一样, 多了两门课, 分别叫做: <code>大学生就业与创业指导2-1</code> 和 <code>大学生就业与创业指导2-2</code>, 这两门课是在学长你 <font color='red'><strong>休学期间</strong></font> 开课的, 所以缺这两门课的学分...</p>
+<p>我 ... 我 TM ... 我是真的忍不住了, 我在心里已经开始骂人了, 这 TM 是人干的事? 学校脑子是落家里了吧! 不过这是和 16 级班长也没关系, 谢谢人家通知我就只好挂电话了. </p>
+<p>第一件事, 发呆... 第二件事, 继续发呆... 我当时已经懵了... 不久卢阳老师来电话了, 这是我大学辅导员, 对我特好, 特感谢她, 就和我聊起了这事, 说她正在积极地帮我处理此事, 让我也去联系一下教务处, 问问教务处的意见, 我当时啥法子没有, 老师既然有主意, 那自然得照办啊. </p>
+<p>接下来就打电话给教科办的田老师 (很抱歉, 至今为止不知道这位老师的全名, 总之也很感谢田老师), 田老师一开始是严厉拒绝的, 按她后来的说辞是她不知道我家里的情况以及我休学的原因, 以为我是因为不想学习或者是其他一些消极的理由而休学的, 所以坚决不处理此事, 我 TM ... 这和我休学的理由有毛关系啊... 这 TM 不全是学校的责任吗? 这是和我有半毛钱关系吗? 后来的一次通话中和我说什么上次是因为她不清楚我的情况, 还说我怎么不早和她说我家里的情况, 我 TM ... 念在她也帮了我不少的份上就不计较了, 果然在这个世界卖惨还是有人买账的! 其实我并没有卖惨, 我家庭情况确实如此, 再加上这主意还是陆老师帮我想到的, 我在这些事情上脑子不咋灵光...</p>
+<p>虽然经过了辅导员和田老师的努力, 但是依然没有任何的进展, 于是我直接找系主任张德学老师了, 果然系主任说话就是好使, 一下子副院长, 院长都知道这事了, 中间拖了大概有 3 周, 3 周啊, 21 天啊, 我都不知道这 21 天我是怎么过来的, 这也是后面患急性支气管炎的一个诱因. </p>
+<p>中间打电话问卢阳老师, 卢老师都有一点想要放弃的想法了, 我也是一样, 渐渐地整个人没有了任何生机, 浑身乏力, 没想到生活中的琐事会对我的心境影响这么大, 整个人基本废了... 还好张德学老师一直告诉我肯定有办法的, 而且卢阳老师和田老师的观点都是这事情的责任在我, 我也不知道他们怎么想的, 但是我也不能直说呀对吧!</p>
+<p>后来卢阳老师又想到计算一下如果用 15 级的培养方案, 看一下我是不是能够毕业, 但是戏剧性的一幕出现了, 我当时交毕业实习报告的时候是 3 月份, 然后我 4 月份休学了, 休学通知都下来了, 我就安心在医院照顾我爸爸了, 但是毕业实习的分数上传是在 5 月 25 号, 此时我已经不在学校的管理系统中了, 就是我已经录不了分数了... 我 TM ... 这咋整, 对了, 今年我也写实习报告了呀, 就算是疫情, 我也是在 2 月份就回济南上班了, 写个实习报告那还不是手到擒来嘛... 然后戏剧性的一幕又双出现了... 16 级的培养方案的确是多出来 2 分, 但是培养方案的总分和 15 级的是一样的, 原因是 16 级的 <code>毕业实习</code> 课程不再计算学分了, 因为疫情嘛, 很多人没法实习啊, 所以这门课无效了... 我 TM ... 学校, 我真 TM 谢谢你啊!!!</p>
+<p>就这样, 在经历了无数次碰壁之后, 我已经彻底绝望了...</p>
+<p>但是! 但是! 但是! 张德学老师不是这么认为的, 他认为这事我一点责任没有, 这事情完全是学校的锅, 学校一没通知我选课, 二没通知我上课, 三科还是在我休学期间开课, 就算让我选也选不了, 所以就让我放下心来, 这是学校肯定会处理好的. 实在不行, 就让我向前几年的一位学长学习一下, 从外界给教务处那么 &quot;一点点&quot; 压力, 有些时候吧, 你不给他点压力, 他就不认真干活啊! 对把, 具体, 你懂的!</p>
+<p>我去 ... 这老师懂我呀! 为啥学校里这样的老师那么少呢! 于是在我和主任的多次积极的联系和要求下, 学校也慢慢地重视起来了, 这次是经过了大概一周的时间, 毕业证学位证到手了! </p>
+<p>最后我想应该是学校里各位老师们都付出了很大努力把, 虽然我只知道卢老师, 田老师, 张主任等人, 但是真心感谢, 当卢老师告诉我学校批准我毕业的时候, 那真的是感动啊... 再次感谢各位老师的帮助.</p>
+<h1 id="第二集-舒适圈"><a href="#第二集-舒适圈" class="headerlink" title="第二集 舒适圈?"></a>第二集 舒适圈?</h1><p>我发现自己正处在舒适圈中不想出去, 已经很久没有尝试自己不会的东西了, 基本一直在吃老本, 编写程序时也只用自己熟练的知识去实现, 没有尝试去使用自己了解但不是很熟练的新知识新技术, 总觉得这样不行, 而且自己明明都已经立誓要成为一名游戏开发者了, 却还是荒废了自己大量的时间去刷动漫, 做一些没有任何意义的事情...</p>
+<p>不行, 我得开始规划自己的时间了, 对自己目标没有用的事情坚决不再做了, 刷什么魔塔, 刷什么动漫, 什么想这想那的, 都不如静下心来看本书, 钻研钻研技术.</p>
+<p>最近有段时间迷上了魔塔, 虽然自己玩了好久, 但是始终得不到要领, 于是就开始看魔塔的一个基础理论, 叫做 &quot;蓝宝石转化理论&quot;, 先不说我理解了多少这个理论, 但是从这次经历我深刻的理解了看书真的是成长的捷径, 研究事物背后的理论才能成为学神, 所以我打算从现在开始利用闲余时间开始看书, 就看各种与游戏开发相关的书籍, 也开始尝试写技术类博客, 博客的内容是写下自己的想法, 而不是记笔记, 记笔记不应该使用博客, 而是使用大脑, 还有就是书籍不要怕脏, 有什么想法就直接写在书上, 书都买了, 为什么不用呢? 当初为什么没有选择借书, 不就是因为借的书不能随手记笔记嘛.</p>
+<p>那么就先写到这吧, 希望未来的自己回过头来看自己这篇日记的时候能真正的成为一名学神.</p>
+]]></content>
+      <categories>
+        <category>Diary</category>
+      </categories>
+      <tags>
+        <tag>Diary</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo + Github Pages 搭建个人博客</title>
     <url>/hexo/hexo_blog.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -2358,37 +2387,6 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>日记系列--2020年07月</title>
-    <url>/diary/2020_07.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="2020-年-07-月-31-号"><a href="#2020-年-07-月-31-号" class="headerlink" title="2020 年 07 月 31 号"></a>2020 年 07 月 31 号</h1><p>哈哈, 月底了写一下七月的总结吧. 要不顺便起个 90 年日漫式的标题?</p>
-<h1 id="第一集-毕业危险了"><a href="#第一集-毕业危险了" class="headerlink" title="第一集 毕业危险了!"></a>第一集 毕业危险了!</h1><p>刚到七月我就收到了一个及其震撼人心的消息, 我毕不了业了! 是的, 你没听错, 不是我毕业了, 是我毕不了业了! 我学分差两分导致不能毕业, 只能拿到结业证... 当 16 级班长告诉我这个消息的时候, 我当时整个人处于懵逼的状态: 啥, 不能毕业? 谁啊? 我吗? 怎么可能, 你在开玩笑吧, 你是不是打错电话了? </p>
-<p>过了 1 分钟: 我 TM 真的不能毕业了? 真的是我啊! 不可能啊, 我休学之前就只剩一个毕业设计了啊, 而我这次毕业设计又很顺利地通过了, 你告诉我不能毕业, 你是在逗我吗? 今天不是愚人节啊! </p>
-<p>只听 16 级班长缓缓地说: 学长, 是这样的, 16 级培养方案和 15 级的不一样, 多了两门课, 分别叫做: <code>大学生就业与创业指导2-1</code> 和 <code>大学生就业与创业指导2-2</code>, 这两门课是在学长你 <font color='red'><strong>休学期间</strong></font> 开课的, 所以缺这两门课的学分...</p>
-<p>我 ... 我 TM ... 我是真的忍不住了, 我在心里已经开始骂人了, 这 TM 是人干的事? 学校脑子是落家里了吧! 不过这是和 16 级班长也没关系, 谢谢人家通知我就只好挂电话了. </p>
-<p>第一件事, 发呆... 第二件事, 继续发呆... 我当时已经懵了... 不久卢阳老师来电话了, 这是我大学辅导员, 对我特好, 特感谢她, 就和我聊起了这事, 说她正在积极地帮我处理此事, 让我也去联系一下教务处, 问问教务处的意见, 我当时啥法子没有, 老师既然有主意, 那自然得照办啊. </p>
-<p>接下来就打电话给教科办的田老师 (很抱歉, 至今为止不知道这位老师的全名, 总之也很感谢田老师), 田老师一开始是严厉拒绝的, 按她后来的说辞是她不知道我家里的情况以及我休学的原因, 以为我是因为不想学习或者是其他一些消极的理由而休学的, 所以坚决不处理此事, 我 TM ... 这和我休学的理由有毛关系啊... 这 TM 不全是学校的责任吗? 这是和我有半毛钱关系吗? 后来的一次通话中和我说什么上次是因为她不清楚我的情况, 还说我怎么不早和她说我家里的情况, 我 TM ... 念在她也帮了我不少的份上就不计较了, 果然在这个世界卖惨还是有人买账的! 其实我并没有卖惨, 我家庭情况确实如此, 再加上这主意还是陆老师帮我想到的, 我在这些事情上脑子不咋灵光...</p>
-<p>虽然经过了辅导员和田老师的努力, 但是依然没有任何的进展, 于是我直接找系主任张德学老师了, 果然系主任说话就是好使, 一下子副院长, 院长都知道这事了, 中间拖了大概有 3 周, 3 周啊, 21 天啊, 我都不知道这 21 天我是怎么过来的, 这也是后面患急性支气管炎的一个诱因. </p>
-<p>中间打电话问卢阳老师, 卢老师都有一点想要放弃的想法了, 我也是一样, 渐渐地整个人没有了任何生机, 浑身乏力, 没想到生活中的琐事会对我的心境影响这么大, 整个人基本废了... 还好张德学老师一直告诉我肯定有办法的, 而且卢阳老师和田老师的观点都是这事情的责任在我, 我也不知道他们怎么想的, 但是我也不能直说呀对吧!</p>
-<p>后来卢阳老师又想到计算一下如果用 15 级的培养方案, 看一下我是不是能够毕业, 但是戏剧性的一幕出现了, 我当时交毕业实习报告的时候是 3 月份, 然后我 4 月份休学了, 休学通知都下来了, 我就安心在医院照顾我爸爸了, 但是毕业实习的分数上传是在 5 月 25 号, 此时我已经不在学校的管理系统中了, 就是我已经录不了分数了... 我 TM ... 这咋整, 对了, 今年我也写实习报告了呀, 就算是疫情, 我也是在 2 月份就回济南上班了, 写个实习报告那还不是手到擒来嘛... 然后戏剧性的一幕又双出现了... 16 级的培养方案的确是多出来 2 分, 但是培养方案的总分和 15 级的是一样的, 原因是 16 级的 <code>毕业实习</code> 课程不再计算学分了, 因为疫情嘛, 很多人没法实习啊, 所以这门课无效了... 我 TM ... 学校, 我真 TM 谢谢你啊!!!</p>
-<p>就这样, 在经历了无数次碰壁之后, 我已经彻底绝望了...</p>
-<p>但是! 但是! 但是! 张德学老师不是这么认为的, 他认为这事我一点责任没有, 这事情完全是学校的锅, 学校一没通知我选课, 二没通知我上课, 三科还是在我休学期间开课, 就算让我选也选不了, 所以就让我放下心来, 这是学校肯定会处理好的. 实在不行, 就让我向前几年的一位学长学习一下, 从外界给教务处那么 &quot;一点点&quot; 压力, 有些时候吧, 你不给他点压力, 他就不认真干活啊! 对把, 具体, 你懂的!</p>
-<p>我去 ... 这老师懂我呀! 为啥学校里这样的老师那么少呢! 于是在我和主任的多次积极的联系和要求下, 学校也慢慢地重视起来了, 这次是经过了大概一周的时间, 毕业证学位证到手了! </p>
-<p>最后我想应该是学校里各位老师们都付出了很大努力把, 虽然我只知道卢老师, 田老师, 张主任等人, 但是真心感谢, 当卢老师告诉我学校批准我毕业的时候, 那真的是感动啊... 再次感谢各位老师的帮助.</p>
-<h1 id="第二集-舒适圈"><a href="#第二集-舒适圈" class="headerlink" title="第二集 舒适圈?"></a>第二集 舒适圈?</h1><p>我发现自己正处在舒适圈中不想出去, 已经很久没有尝试自己不会的东西了, 基本一直在吃老本, 编写程序时也只用自己熟练的知识去实现, 没有尝试去使用自己了解但不是很熟练的新知识新技术, 总觉得这样不行, 而且自己明明都已经立誓要成为一名游戏开发者了, 却还是荒废了自己大量的时间去刷动漫, 做一些没有任何意义的事情...</p>
-<p>不行, 我得开始规划自己的时间了, 对自己目标没有用的事情坚决不再做了, 刷什么魔塔, 刷什么动漫, 什么想这想那的, 都不如静下心来看本书, 钻研钻研技术.</p>
-<p>最近有段时间迷上了魔塔, 虽然自己玩了好久, 但是始终得不到要领, 于是就开始看魔塔的一个基础理论, 叫做 &quot;蓝宝石转化理论&quot;, 先不说我理解了多少这个理论, 但是从这次经历我深刻的理解了看书真的是成长的捷径, 研究事物背后的理论才能成为学神, 所以我打算从现在开始利用闲余时间开始看书, 就看各种与游戏开发相关的书籍, 也开始尝试写技术类博客, 博客的内容是写下自己的想法, 而不是记笔记, 记笔记不应该使用博客, 而是使用大脑, 还有就是书籍不要怕脏, 有什么想法就直接写在书上, 书都买了, 为什么不用呢? 当初为什么没有选择借书, 不就是因为借的书不能随手记笔记嘛.</p>
-<p>那么就先写到这吧, 希望未来的自己回过头来看自己这篇日记的时候能真正的成为一名学神.</p>
-]]></content>
-      <categories>
-        <category>Diary</category>
-      </categories>
-      <tags>
-        <tag>Diary</tag>
       </tags>
   </entry>
   <entry>
@@ -2632,112 +2630,6 @@
 <p>在某个事件后, 大神们明白了路由器的系统是如何操作路由器硬件的, 于是就有了第三方固件. 第三方固件的好处是可以支持更多的功能, 比如去广告, 科学上网等. 常见的第三方固件有 <strong>openwrt padavan ddwrt</strong> 等. 通常来说刷第三方固件都会让你的路由变得不稳定, 但是如果你是魔法师的话, 还有什么可畏惧的呢. </p>
 <p>因此目前国内市场上的一些所谓 &quot;智能路由&quot;, 都是基于 openwrt 系统, 加上一些插件和管理 APP 而已. 本质上就是 &quot;非智能路由&quot; 刷了第三方固件而已, 你可以近似理解为安卓手机的刷机, 苹果手机的越狱. </p>
 <p>结论5: <font color='red'>**智能路由? 对于爱折腾的人来说, 这就是在浪费钱, 对于不爱折腾的人来说, 这就是一个扣分项. **</font></p>
-]]></content>
-      <categories>
-        <category>LifeTips</category>
-      </categories>
-      <tags>
-        <tag>生活知识</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>学习社会保险制度</title>
-    <url>/lifetips/social_insurance.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="社会保险的结构构成"><a href="#社会保险的结构构成" class="headerlink" title="社会保险的结构构成"></a>社会保险的结构构成</h1><blockquote>
-<p>注: 由于后续政策可能变动, 所以在阅读本文之前, 请注意文章的最新更新时间. </p>
-</blockquote>
-<p>直接上图: </p>
-<p><img data-src="/images/social_insurance/Social_Insurance.png" alt="保险的构成"></p>
-<ul>
-<li><p>&quot;社会保险&quot; 简称 &quot;社保&quot;, &quot;城镇职工社会保险&quot; 简称 &quot;职保&quot;, &quot;城乡居民社会保险&quot; 简称 &quot;居保&quot;. </p>
-</li>
-<li><p>&quot;社保&quot; 一词非常广泛, 内部包含 7 种社会保险. </p>
-</li>
-<li><p>&quot;社保&quot; 分为两个大类: 一个是针对就业群体的 &quot;职保&quot;, 另一个是针对无业人群的 &quot;居保&quot;. </p>
-</li>
-<li><p>&quot;职保&quot; 全称: &quot;城镇职工社会保险&quot;, 它包含五种保险: &quot;城镇职工基本养老保险&quot;, &quot;城镇职工基本医疗保险&quot;, &quot;城镇职工失业保险&quot;, &quot;城镇职工工伤保险&quot;, &quot;城镇职工生育保险&quot;. </p>
-</li>
-<li><p>&quot;居保&quot; 全称: &quot;城乡居民社会保险&quot;, 它只包含两种保险: &quot;城乡居民基本养老保险&quot; 和 &quot;城乡居民基本医疗保险&quot;. 由于 &quot;失业保险&quot;, &quot;工伤保险&quot;, &quot;生育保险&quot; 都是和工作息息相关的, 所以 &quot;居保&quot; 自然不包含这三种保险. </p>
-</li>
-<li><p>&quot;医保&quot; 一词非常容易混淆, 它指代两种保险: &quot;城镇职工基本医疗保险&quot; 和 &quot;城乡居民基本医疗保险&quot;, 不同情况下要弄清具体含义. </p>
-</li>
-</ul>
-<h2 id="城镇职工基本养老保险"><a href="#城镇职工基本养老保险" class="headerlink" title="城镇职工基本养老保险"></a>城镇职工基本养老保险</h2><ul>
-<li><p>&quot;城镇职工基本养老保险&quot; 的目的是保障我们年迈退休后的基本生活需求, 为我们提供稳定可靠的生活经济来源. </p>
-</li>
-<li><p>&quot;城镇职工基本养老保险&quot; 是由企业和我们按照不同的缴费比例共同缴纳费用的. <font color=red>按月缴纳</font>. </p>
-</li>
-<li><p>&quot;城镇职工基本养老保险&quot; 的待遇是当我们退休后可以领取到养老金. (有前提条件)</p>
-</li>
-</ul>
-<h2 id="城镇职工基本医疗保险"><a href="#城镇职工基本医疗保险" class="headerlink" title="城镇职工基本医疗保险"></a>城镇职工基本医疗保险</h2><ul>
-<li><p>&quot;城镇职工基本医疗保险&quot; 简称 &quot;医保&quot;. </p>
-</li>
-<li><p>&quot;城镇职工基本医疗保险&quot; 的目的是减轻我们生活中因患病或受伤害而带来的医疗开销. </p>
-</li>
-<li><p>&quot;城镇职工基本医疗保险&quot; 也是由企业和我们按照不同的缴费比例共同缴纳费用的. <font color=red>按月缴纳</font>. </p>
-</li>
-<li><p>&quot;城镇职工基本医疗保险&quot; 的待遇是当我们患病并去医疗机构就诊而发生医疗费用后, 由医疗保险机构给予一定的经济补偿. </p>
-</li>
-</ul>
-<h2 id="城镇职工失业保险"><a href="#城镇职工失业保险" class="headerlink" title="城镇职工失业保险"></a>城镇职工失业保险</h2><ul>
-<li><p>&quot;城镇职工失业保险&quot; 的目的是为那些因失业而暂时中断生活经济来源的劳动者提供物质帮助以保障其基本生活, 并通过专业训练, 职业介绍等手段为其再就业创造条件. </p>
-</li>
-<li><p>&quot;城镇职工失业保险&quot; 也是由企业和我们按照不同的缴费比例共同缴纳费用的. <font color=red>按月缴纳</font>. </p>
-</li>
-<li><p>&quot;城镇职工失业保险&quot; 的最主要待遇是当我们失业时可以领取到失业保险金. (有前提条件)</p>
-</li>
-</ul>
-<h2 id="城镇职工工伤保险"><a href="#城镇职工工伤保险" class="headerlink" title="城镇职工工伤保险"></a>城镇职工工伤保险</h2><ul>
-<li><p>&quot;城镇职工工伤保险&quot; 是指劳动者在工作中或在规定的特殊情况下, 遭受意外伤害或患职业病导致暂时或永久丧失劳动能力甚至死亡时, 劳动者或其遗属从国家和社会获得物质帮助的一种社会保险制度. </p>
-</li>
-<li><p>&quot;城镇职工保险&quot; 生效的认定办法: 工伤保险实行无过错责任原则. 无论工伤事故的责任归于用人单位还是职工个人或第三者, 用人单位均应承担保险责任. </p>
-</li>
-<li><p>&quot;城镇职工工伤保险&quot; 的缴费: 劳动者不缴纳工伤保险费, <font color = red>全部费用由用人单位负担, 按月缴纳</font>. </p>
-</li>
-<li><p>&quot;城镇职工工伤保险&quot; 的待遇是当我们因工负伤或职业病暂时或永久失去劳动能力以及死亡时, 可以获得工伤保险金. </p>
-</li>
-</ul>
-<h2 id="城镇职工生育保险"><a href="#城镇职工生育保险" class="headerlink" title="城镇职工生育保险"></a>城镇职工生育保险</h2><ul>
-<li><p>&quot;城镇职工生育保险&quot; 是在劳动者因生育子女而导致劳动力暂时中断时, 由国家和社会及时给予物质帮助的一项社会保险制度. </p>
-</li>
-<li><p>&quot;城镇职工生育保险&quot; 的缴费: 劳动者不缴纳生育保险费, <font color = red>全部费用由用人单位负担, 按月缴纳</font>. </p>
-</li>
-<li><p>&quot;城镇职工生育保险&quot; 的待遇主要包括两项: 一是生育津贴, 二是生育医疗待遇. </p>
-</li>
-</ul>
-<h2 id="城乡居民基本养老保险"><a href="#城乡居民基本养老保险" class="headerlink" title="城乡居民基本养老保险"></a>城乡居民基本养老保险</h2><ul>
-<li><p>&quot;城乡居民基本养老保险&quot; 的目的是保障城镇老年居民和乡村老年居民的基本生活需求, 为他们提供稳定可靠的生活经济来源. </p>
-</li>
-<li><p>&quot;城乡居民基本养老保险&quot; 的缴费是自选档次进行缴费, 档次越高费用越高, 国家补贴一部分费用. <font color=red>按年缴纳</font>. </p>
-</li>
-<li><p>&quot;城乡居民基本养老保险&quot; 的待遇也是可以领取到养老金, 采用多缴多得原则, 年轻时上缴的总金额越多, 年迈时领取到的养老金也就越多. (有前提条件))</p>
-</li>
-</ul>
-<h2 id="城乡居民基本医疗保险"><a href="#城乡居民基本医疗保险" class="headerlink" title="城乡居民基本医疗保险"></a>城乡居民基本医疗保险</h2><ul>
-<li><p>&quot;城乡居民基本医疗保险&quot; 也简称 &quot;医保&quot;, 医保是最需要大家关注的保险, 应当深入了解学习. </p>
-</li>
-<li><p>&quot;城乡居民基本医疗保险&quot; 的目的是减轻城镇居民和乡村居民因患病或受伤害而带来的医疗开销. </p>
-</li>
-<li><p>&quot;城乡居民基本医疗保险&quot; 的缴费也是自选档次进行缴费, 档次越高费用越高, 国家补贴一部分费用. <font color=red>按年缴纳</font>. </p>
-</li>
-<li><p>&quot;城乡居民基本医疗保险&quot; 的待遇也是当我们患病并去医疗机构就诊而发生医疗费用后, 由医疗保险机构给予一定的经济补偿, 但是报销比例比起 &quot;城镇职工基本医疗保险&quot; 要低一些.</p>
-</li>
-</ul>
-<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><h2 id="我只是一个农民-我想知道我一直缴纳的-quot-社保-quot-是什么"><a href="#我只是一个农民-我想知道我一直缴纳的-quot-社保-quot-是什么" class="headerlink" title="我只是一个农民, 我想知道我一直缴纳的 &quot;社保&quot; 是什么?"></a>我只是一个农民, 我想知道我一直缴纳的 &quot;社保&quot; 是什么?</h2><p>农民不属于职工, 所以农民所缴纳的社保就是指 &quot;城乡居民社会保险&quot;, 包含 &quot;城乡居民基本养老保险&quot; 和 &quot;城乡居民基本医疗保险&quot; 两种. </p>
-<h2 id="我现在只是一名学生-既不是失业-也不是就业-那么我一直缴纳的-quot-社保-quot-是什么"><a href="#我现在只是一名学生-既不是失业-也不是就业-那么我一直缴纳的-quot-社保-quot-是什么" class="headerlink" title="我现在只是一名学生, 既不是失业, 也不是就业, 那么我一直缴纳的 &quot;社保&quot; 是什么?"></a>我现在只是一名学生, 既不是失业, 也不是就业, 那么我一直缴纳的 &quot;社保&quot; 是什么?</h2><p>学生也不属于职工, 所以学生所缴纳的社保也是指 &quot;城乡居民社会保险&quot;, 但是学生不同于农民的地方是学生所缴纳的社保中不包含 &quot;城乡居民基本养老保险&quot;, 只包含 &quot;城乡居民基本医疗保险&quot;. 所以大多数时候老师或者校方会直接询问你是否缴纳 &quot;医保&quot;, 而不是询问你是否缴纳 &quot;社保&quot;. 当然这里所说的 &quot;医保&quot; 就是指 &quot;城乡居民基本医疗保险&quot;. </p>
-<h2 id="我刚刚参加工作-听说了-quot-五险一金-quot-它是什么"><a href="#我刚刚参加工作-听说了-quot-五险一金-quot-它是什么" class="headerlink" title="我刚刚参加工作, 听说了 &quot;五险一金&quot;, 它是什么?"></a>我刚刚参加工作, 听说了 &quot;五险一金&quot;, 它是什么?</h2><p>由于已经参加了工作, 便成为了职工人员, 所以就出现了 &quot;五险一金&quot;. &quot;五险&quot; 自然就是指 &quot;城镇职工社会保险&quot; 了, 由于 &quot;城镇职工社会保险&quot; 包含五种保险, 所以也被称作 &quot;五险&quot;, 而 &quot;一金&quot; 指的是 &quot;住房公积金&quot;. </p>
-<h2 id="我听说-quot-五险一金-quot-中有一个叫做-quot-生育险-quot-可是我一个男生-交-quot-生育险-quot-有什么用"><a href="#我听说-quot-五险一金-quot-中有一个叫做-quot-生育险-quot-可是我一个男生-交-quot-生育险-quot-有什么用" class="headerlink" title="我听说 &quot;五险一金&quot; 中有一个叫做 &quot;生育险&quot;, 可是我一个男生, 交 &quot;生育险&quot; 有什么用?"></a>我听说 &quot;五险一金&quot; 中有一个叫做 &quot;生育险&quot;, 可是我一个男生, 交 &quot;生育险&quot; 有什么用?</h2><ul>
-<li><p>虽然男生们不能生育宝宝, 但是男生们在公司也是有 10 天看护假期的, 按照生育险规定, 已参保的男性职工按规定享受看护假假期津贴. </p>
-</li>
-<li><p>男生们不能生育宝宝, 但是你的太太是要生育宝宝的啊, 如果你的太太没有就业, 也就没有缴纳生育险, 但是由于你缴纳了 &quot;职保&quot;(职保包含生育险), 那么你的太太同样可以享受其中的生育险待遇. </p>
-</li>
-</ul>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI2ODQ2NDUwOS9hbnN3ZXIvMzM5NDY1OTQy">知乎用户 ID: 51社保余清泉<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
 ]]></content>
       <categories>
         <category>LifeTips</category>
@@ -3041,6 +2933,112 @@
       </categories>
       <tags>
         <tag>MPV</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学习社会保险制度</title>
+    <url>/lifetips/social_insurance.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="社会保险的结构构成"><a href="#社会保险的结构构成" class="headerlink" title="社会保险的结构构成"></a>社会保险的结构构成</h1><blockquote>
+<p>注: 由于后续政策可能变动, 所以在阅读本文之前, 请注意文章的最新更新时间. </p>
+</blockquote>
+<p>直接上图: </p>
+<p><img data-src="/images/social_insurance/Social_Insurance.png" alt="保险的构成"></p>
+<ul>
+<li><p>&quot;社会保险&quot; 简称 &quot;社保&quot;, &quot;城镇职工社会保险&quot; 简称 &quot;职保&quot;, &quot;城乡居民社会保险&quot; 简称 &quot;居保&quot;. </p>
+</li>
+<li><p>&quot;社保&quot; 一词非常广泛, 内部包含 7 种社会保险. </p>
+</li>
+<li><p>&quot;社保&quot; 分为两个大类: 一个是针对就业群体的 &quot;职保&quot;, 另一个是针对无业人群的 &quot;居保&quot;. </p>
+</li>
+<li><p>&quot;职保&quot; 全称: &quot;城镇职工社会保险&quot;, 它包含五种保险: &quot;城镇职工基本养老保险&quot;, &quot;城镇职工基本医疗保险&quot;, &quot;城镇职工失业保险&quot;, &quot;城镇职工工伤保险&quot;, &quot;城镇职工生育保险&quot;. </p>
+</li>
+<li><p>&quot;居保&quot; 全称: &quot;城乡居民社会保险&quot;, 它只包含两种保险: &quot;城乡居民基本养老保险&quot; 和 &quot;城乡居民基本医疗保险&quot;. 由于 &quot;失业保险&quot;, &quot;工伤保险&quot;, &quot;生育保险&quot; 都是和工作息息相关的, 所以 &quot;居保&quot; 自然不包含这三种保险. </p>
+</li>
+<li><p>&quot;医保&quot; 一词非常容易混淆, 它指代两种保险: &quot;城镇职工基本医疗保险&quot; 和 &quot;城乡居民基本医疗保险&quot;, 不同情况下要弄清具体含义. </p>
+</li>
+</ul>
+<h2 id="城镇职工基本养老保险"><a href="#城镇职工基本养老保险" class="headerlink" title="城镇职工基本养老保险"></a>城镇职工基本养老保险</h2><ul>
+<li><p>&quot;城镇职工基本养老保险&quot; 的目的是保障我们年迈退休后的基本生活需求, 为我们提供稳定可靠的生活经济来源. </p>
+</li>
+<li><p>&quot;城镇职工基本养老保险&quot; 是由企业和我们按照不同的缴费比例共同缴纳费用的. <font color=red>按月缴纳</font>. </p>
+</li>
+<li><p>&quot;城镇职工基本养老保险&quot; 的待遇是当我们退休后可以领取到养老金. (有前提条件)</p>
+</li>
+</ul>
+<h2 id="城镇职工基本医疗保险"><a href="#城镇职工基本医疗保险" class="headerlink" title="城镇职工基本医疗保险"></a>城镇职工基本医疗保险</h2><ul>
+<li><p>&quot;城镇职工基本医疗保险&quot; 简称 &quot;医保&quot;. </p>
+</li>
+<li><p>&quot;城镇职工基本医疗保险&quot; 的目的是减轻我们生活中因患病或受伤害而带来的医疗开销. </p>
+</li>
+<li><p>&quot;城镇职工基本医疗保险&quot; 也是由企业和我们按照不同的缴费比例共同缴纳费用的. <font color=red>按月缴纳</font>. </p>
+</li>
+<li><p>&quot;城镇职工基本医疗保险&quot; 的待遇是当我们患病并去医疗机构就诊而发生医疗费用后, 由医疗保险机构给予一定的经济补偿. </p>
+</li>
+</ul>
+<h2 id="城镇职工失业保险"><a href="#城镇职工失业保险" class="headerlink" title="城镇职工失业保险"></a>城镇职工失业保险</h2><ul>
+<li><p>&quot;城镇职工失业保险&quot; 的目的是为那些因失业而暂时中断生活经济来源的劳动者提供物质帮助以保障其基本生活, 并通过专业训练, 职业介绍等手段为其再就业创造条件. </p>
+</li>
+<li><p>&quot;城镇职工失业保险&quot; 也是由企业和我们按照不同的缴费比例共同缴纳费用的. <font color=red>按月缴纳</font>. </p>
+</li>
+<li><p>&quot;城镇职工失业保险&quot; 的最主要待遇是当我们失业时可以领取到失业保险金. (有前提条件)</p>
+</li>
+</ul>
+<h2 id="城镇职工工伤保险"><a href="#城镇职工工伤保险" class="headerlink" title="城镇职工工伤保险"></a>城镇职工工伤保险</h2><ul>
+<li><p>&quot;城镇职工工伤保险&quot; 是指劳动者在工作中或在规定的特殊情况下, 遭受意外伤害或患职业病导致暂时或永久丧失劳动能力甚至死亡时, 劳动者或其遗属从国家和社会获得物质帮助的一种社会保险制度. </p>
+</li>
+<li><p>&quot;城镇职工保险&quot; 生效的认定办法: 工伤保险实行无过错责任原则. 无论工伤事故的责任归于用人单位还是职工个人或第三者, 用人单位均应承担保险责任. </p>
+</li>
+<li><p>&quot;城镇职工工伤保险&quot; 的缴费: 劳动者不缴纳工伤保险费, <font color = red>全部费用由用人单位负担, 按月缴纳</font>. </p>
+</li>
+<li><p>&quot;城镇职工工伤保险&quot; 的待遇是当我们因工负伤或职业病暂时或永久失去劳动能力以及死亡时, 可以获得工伤保险金. </p>
+</li>
+</ul>
+<h2 id="城镇职工生育保险"><a href="#城镇职工生育保险" class="headerlink" title="城镇职工生育保险"></a>城镇职工生育保险</h2><ul>
+<li><p>&quot;城镇职工生育保险&quot; 是在劳动者因生育子女而导致劳动力暂时中断时, 由国家和社会及时给予物质帮助的一项社会保险制度. </p>
+</li>
+<li><p>&quot;城镇职工生育保险&quot; 的缴费: 劳动者不缴纳生育保险费, <font color = red>全部费用由用人单位负担, 按月缴纳</font>. </p>
+</li>
+<li><p>&quot;城镇职工生育保险&quot; 的待遇主要包括两项: 一是生育津贴, 二是生育医疗待遇. </p>
+</li>
+</ul>
+<h2 id="城乡居民基本养老保险"><a href="#城乡居民基本养老保险" class="headerlink" title="城乡居民基本养老保险"></a>城乡居民基本养老保险</h2><ul>
+<li><p>&quot;城乡居民基本养老保险&quot; 的目的是保障城镇老年居民和乡村老年居民的基本生活需求, 为他们提供稳定可靠的生活经济来源. </p>
+</li>
+<li><p>&quot;城乡居民基本养老保险&quot; 的缴费是自选档次进行缴费, 档次越高费用越高, 国家补贴一部分费用. <font color=red>按年缴纳</font>. </p>
+</li>
+<li><p>&quot;城乡居民基本养老保险&quot; 的待遇也是可以领取到养老金, 采用多缴多得原则, 年轻时上缴的总金额越多, 年迈时领取到的养老金也就越多. (有前提条件))</p>
+</li>
+</ul>
+<h2 id="城乡居民基本医疗保险"><a href="#城乡居民基本医疗保险" class="headerlink" title="城乡居民基本医疗保险"></a>城乡居民基本医疗保险</h2><ul>
+<li><p>&quot;城乡居民基本医疗保险&quot; 也简称 &quot;医保&quot;, 医保是最需要大家关注的保险, 应当深入了解学习. </p>
+</li>
+<li><p>&quot;城乡居民基本医疗保险&quot; 的目的是减轻城镇居民和乡村居民因患病或受伤害而带来的医疗开销. </p>
+</li>
+<li><p>&quot;城乡居民基本医疗保险&quot; 的缴费也是自选档次进行缴费, 档次越高费用越高, 国家补贴一部分费用. <font color=red>按年缴纳</font>. </p>
+</li>
+<li><p>&quot;城乡居民基本医疗保险&quot; 的待遇也是当我们患病并去医疗机构就诊而发生医疗费用后, 由医疗保险机构给予一定的经济补偿, 但是报销比例比起 &quot;城镇职工基本医疗保险&quot; 要低一些.</p>
+</li>
+</ul>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><h2 id="我只是一个农民-我想知道我一直缴纳的-quot-社保-quot-是什么"><a href="#我只是一个农民-我想知道我一直缴纳的-quot-社保-quot-是什么" class="headerlink" title="我只是一个农民, 我想知道我一直缴纳的 &quot;社保&quot; 是什么?"></a>我只是一个农民, 我想知道我一直缴纳的 &quot;社保&quot; 是什么?</h2><p>农民不属于职工, 所以农民所缴纳的社保就是指 &quot;城乡居民社会保险&quot;, 包含 &quot;城乡居民基本养老保险&quot; 和 &quot;城乡居民基本医疗保险&quot; 两种. </p>
+<h2 id="我现在只是一名学生-既不是失业-也不是就业-那么我一直缴纳的-quot-社保-quot-是什么"><a href="#我现在只是一名学生-既不是失业-也不是就业-那么我一直缴纳的-quot-社保-quot-是什么" class="headerlink" title="我现在只是一名学生, 既不是失业, 也不是就业, 那么我一直缴纳的 &quot;社保&quot; 是什么?"></a>我现在只是一名学生, 既不是失业, 也不是就业, 那么我一直缴纳的 &quot;社保&quot; 是什么?</h2><p>学生也不属于职工, 所以学生所缴纳的社保也是指 &quot;城乡居民社会保险&quot;, 但是学生不同于农民的地方是学生所缴纳的社保中不包含 &quot;城乡居民基本养老保险&quot;, 只包含 &quot;城乡居民基本医疗保险&quot;. 所以大多数时候老师或者校方会直接询问你是否缴纳 &quot;医保&quot;, 而不是询问你是否缴纳 &quot;社保&quot;. 当然这里所说的 &quot;医保&quot; 就是指 &quot;城乡居民基本医疗保险&quot;. </p>
+<h2 id="我刚刚参加工作-听说了-quot-五险一金-quot-它是什么"><a href="#我刚刚参加工作-听说了-quot-五险一金-quot-它是什么" class="headerlink" title="我刚刚参加工作, 听说了 &quot;五险一金&quot;, 它是什么?"></a>我刚刚参加工作, 听说了 &quot;五险一金&quot;, 它是什么?</h2><p>由于已经参加了工作, 便成为了职工人员, 所以就出现了 &quot;五险一金&quot;. &quot;五险&quot; 自然就是指 &quot;城镇职工社会保险&quot; 了, 由于 &quot;城镇职工社会保险&quot; 包含五种保险, 所以也被称作 &quot;五险&quot;, 而 &quot;一金&quot; 指的是 &quot;住房公积金&quot;. </p>
+<h2 id="我听说-quot-五险一金-quot-中有一个叫做-quot-生育险-quot-可是我一个男生-交-quot-生育险-quot-有什么用"><a href="#我听说-quot-五险一金-quot-中有一个叫做-quot-生育险-quot-可是我一个男生-交-quot-生育险-quot-有什么用" class="headerlink" title="我听说 &quot;五险一金&quot; 中有一个叫做 &quot;生育险&quot;, 可是我一个男生, 交 &quot;生育险&quot; 有什么用?"></a>我听说 &quot;五险一金&quot; 中有一个叫做 &quot;生育险&quot;, 可是我一个男生, 交 &quot;生育险&quot; 有什么用?</h2><ul>
+<li><p>虽然男生们不能生育宝宝, 但是男生们在公司也是有 10 天看护假期的, 按照生育险规定, 已参保的男性职工按规定享受看护假假期津贴. </p>
+</li>
+<li><p>男生们不能生育宝宝, 但是你的太太是要生育宝宝的啊, 如果你的太太没有就业, 也就没有缴纳生育险, 但是由于你缴纳了 &quot;职保&quot;(职保包含生育险), 那么你的太太同样可以享受其中的生育险待遇. </p>
+</li>
+</ul>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzI2ODQ2NDUwOS9hbnN3ZXIvMzM5NDY1OTQy">知乎用户 ID: 51社保余清泉<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>LifeTips</category>
+      </categories>
+      <tags>
+        <tag>生活知识</tag>
       </tags>
   </entry>
   <entry>
