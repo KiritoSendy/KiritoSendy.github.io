@@ -1056,6 +1056,67 @@
       </tags>
   </entry>
   <entry>
+    <title>重装系统-Personal</title>
+    <url>/computer/recovery_personal_computer.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="账户名称设置"><a href="#账户名称设置" class="headerlink" title="账户名称设置"></a>账户名称设置</h1><p>重装系统时, <font color='red'> <strong>不要用微软账户登录, 而是使用本地账户登陆</strong> </font>, 此时系统盘中账户文件夹的名称就是本地账户的名称, 之后再用微软账户登陆, 用户文件夹的名字就不会采用微软账户邮箱的前四个字母了. </p>
+<h1 id="修正盘符"><a href="#修正盘符" class="headerlink" title="修正盘符"></a>修正盘符</h1><blockquote>
+<p>右键 &quot;此电脑&quot; -&gt; &quot;管理&quot; -&gt; &quot;磁盘管理&quot;, 修正磁盘盘符. </p>
+</blockquote>
+<h1 id="Windows-10-基础设置"><a href="#Windows-10-基础设置" class="headerlink" title="Windows 10 基础设置"></a>Windows 10 基础设置</h1><blockquote>
+<p>进入设置, 对 Windows 10 进行基础设置, 更改桌面图标, 更改鼠标样式.</p>
+</blockquote>
+<h1 id="将-quot-回收站-quot-添加进-quot-快速访问-quot"><a href="#将-quot-回收站-quot-添加进-quot-快速访问-quot" class="headerlink" title="将 &quot;回收站&quot; 添加进 &quot;快速访问&quot;"></a>将 &quot;回收站&quot; 添加进 &quot;快速访问&quot;</h1><blockquote>
+<p>向快速访问中添加 &quot;回收站&quot;. </p>
+</blockquote>
+<h1 id="设置-quot-文件夹选项-quot"><a href="#设置-quot-文件夹选项-quot" class="headerlink" title="设置 &quot;文件夹选项&quot;"></a>设置 &quot;文件夹选项&quot;</h1><p>设置&quot;文件夹选项&quot;. 包括: </p>
+<ul>
+<li>设置 Win+E 打开 &quot;此电脑&quot;. </li>
+<li>清除文件资源管理器的历史纪录. </li>
+<li>设置 &quot;快速访问&quot; 不显示最近使用的文件, 文件夹. </li>
+<li>显示文件后缀名, 始终显示隐藏文件. </li>
+<li>用彩色显示加密或压缩的 NTFS 文件. </li>
+<li>在标题栏中显示完整路径. </li>
+</ul>
+<h1 id="更改-quot-高级系统设置-quot"><a href="#更改-quot-高级系统设置-quot" class="headerlink" title="更改 &quot;高级系统设置&quot;"></a>更改 &quot;高级系统设置&quot;</h1><ul>
+<li>计算机名称</li>
+<li>将虚拟内存放置到固态硬盘, 空间大小 20G. </li>
+<li>在系统保护中, 开启系统盘系统保护, 空间大小最大 8G. </li>
+</ul>
+<h1 id="禁用-Windows-Defender"><a href="#禁用-Windows-Defender" class="headerlink" title="禁用 Windows Defender"></a>禁用 Windows Defender</h1><p>组策略: gpedit.msc</p>
+<h1 id="安装基础软件"><a href="#安装基础软件" class="headerlink" title="安装基础软件"></a>安装基础软件</h1><p>Bandzip, HoneyView, Chrome</p>
+<h1 id="安装字体库"><a href="#安装字体库" class="headerlink" title="安装字体库"></a>安装字体库</h1><h1 id="安装必装软件"><a href="#安装必装软件" class="headerlink" title="安装必装软件"></a>安装必装软件</h1><h2 id="解压即用"><a href="#解压即用" class="headerlink" title="解压即用"></a>解压即用</h2><ul>
+<li>Bandicam Portable  </li>
+<li>EBWin</li>
+<li>Snipaste</li>
+<li>Uninstall Tool</li>
+<li>GoldWave</li>
+<li>Clash for Windows</li>
+<li>Mp3tag</li>
+<li>Wise Registry Cleaner</li>
+</ul>
+<h2 id="重要软件"><a href="#重要软件" class="headerlink" title="重要软件"></a>重要软件</h2><ul>
+<li>Steam</li>
+<li>Microsoft Office</li>
+<li>Photoshop</li>
+<li>Microsoft Visual Studio</li>
+<li>Unity</li>
+<li>ToDesk</li>
+</ul>
+<p>[<strong>注</strong>]</p>
+<ol>
+<li>Microsoft Visual Studio 安装背景图片插件.</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Computer</category>
+      </categories>
+      <tags>
+        <tag>Recovery</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>csharp 中一些琐碎的知识</title>
     <url>/csharp/csharp_others.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -1266,67 +1327,6 @@
       </tags>
   </entry>
   <entry>
-    <title>重装系统-Personal</title>
-    <url>/computer/recovery_personal_computer.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="账户名称设置"><a href="#账户名称设置" class="headerlink" title="账户名称设置"></a>账户名称设置</h1><p>重装系统时, <font color='red'> <strong>不要用微软账户登录, 而是使用本地账户登陆</strong> </font>, 此时系统盘中账户文件夹的名称就是本地账户的名称, 之后再用微软账户登陆, 用户文件夹的名字就不会采用微软账户邮箱的前四个字母了. </p>
-<h1 id="修正盘符"><a href="#修正盘符" class="headerlink" title="修正盘符"></a>修正盘符</h1><blockquote>
-<p>右键 &quot;此电脑&quot; -&gt; &quot;管理&quot; -&gt; &quot;磁盘管理&quot;, 修正磁盘盘符. </p>
-</blockquote>
-<h1 id="Windows-10-基础设置"><a href="#Windows-10-基础设置" class="headerlink" title="Windows 10 基础设置"></a>Windows 10 基础设置</h1><blockquote>
-<p>进入设置, 对 Windows 10 进行基础设置, 更改桌面图标, 更改鼠标样式.</p>
-</blockquote>
-<h1 id="将-quot-回收站-quot-添加进-quot-快速访问-quot"><a href="#将-quot-回收站-quot-添加进-quot-快速访问-quot" class="headerlink" title="将 &quot;回收站&quot; 添加进 &quot;快速访问&quot;"></a>将 &quot;回收站&quot; 添加进 &quot;快速访问&quot;</h1><blockquote>
-<p>向快速访问中添加 &quot;回收站&quot;. </p>
-</blockquote>
-<h1 id="设置-quot-文件夹选项-quot"><a href="#设置-quot-文件夹选项-quot" class="headerlink" title="设置 &quot;文件夹选项&quot;"></a>设置 &quot;文件夹选项&quot;</h1><p>设置&quot;文件夹选项&quot;. 包括: </p>
-<ul>
-<li>设置 Win+E 打开 &quot;此电脑&quot;. </li>
-<li>清除文件资源管理器的历史纪录. </li>
-<li>设置 &quot;快速访问&quot; 不显示最近使用的文件, 文件夹. </li>
-<li>显示文件后缀名, 始终显示隐藏文件. </li>
-<li>用彩色显示加密或压缩的 NTFS 文件. </li>
-<li>在标题栏中显示完整路径. </li>
-</ul>
-<h1 id="更改-quot-高级系统设置-quot"><a href="#更改-quot-高级系统设置-quot" class="headerlink" title="更改 &quot;高级系统设置&quot;"></a>更改 &quot;高级系统设置&quot;</h1><ul>
-<li>计算机名称</li>
-<li>将虚拟内存放置到固态硬盘, 空间大小 20G. </li>
-<li>在系统保护中, 开启系统盘系统保护, 空间大小最大 8G. </li>
-</ul>
-<h1 id="禁用-Windows-Defender"><a href="#禁用-Windows-Defender" class="headerlink" title="禁用 Windows Defender"></a>禁用 Windows Defender</h1><p>组策略: gpedit.msc</p>
-<h1 id="安装基础软件"><a href="#安装基础软件" class="headerlink" title="安装基础软件"></a>安装基础软件</h1><p>Bandzip, HoneyView, Chrome</p>
-<h1 id="安装字体库"><a href="#安装字体库" class="headerlink" title="安装字体库"></a>安装字体库</h1><h1 id="安装必装软件"><a href="#安装必装软件" class="headerlink" title="安装必装软件"></a>安装必装软件</h1><h2 id="解压即用"><a href="#解压即用" class="headerlink" title="解压即用"></a>解压即用</h2><ul>
-<li>Bandicam Portable  </li>
-<li>EBWin</li>
-<li>Snipaste</li>
-<li>Uninstall Tool</li>
-<li>GoldWave</li>
-<li>Clash for Windows</li>
-<li>Mp3tag</li>
-<li>Wise Registry Cleaner</li>
-</ul>
-<h2 id="重要软件"><a href="#重要软件" class="headerlink" title="重要软件"></a>重要软件</h2><ul>
-<li>Steam</li>
-<li>Microsoft Office</li>
-<li>Photoshop</li>
-<li>Microsoft Visual Studio</li>
-<li>Unity</li>
-<li>ToDesk</li>
-</ul>
-<p>[<strong>注</strong>]</p>
-<ol>
-<li>Microsoft Visual Studio 安装背景图片插件.</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Computer</category>
-      </categories>
-      <tags>
-        <tag>Recovery</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>委托(一) 委托的基本用法</title>
     <url>/csharp/delegate_01.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -1461,8 +1461,8 @@
 <blockquote>
 <p>C# 1.0 中, 使用 &quot;在代码中其他位置定义函数&quot; 的方法, <strong>显式</strong>初始化委托. </p>
 <p>C# 2.0 引入了 <strong>匿名方法</strong> 的概念, 以一种可在委托调用中执行的 &quot;未命名内联语句块&quot; 的方式来初始化委托.</p>
-<p>C# 3.0 引入了 <strong>lambda</strong> 表达式, 这是另一种匿名方法的书写形式, 但更具表现力并且更简练. </p>
-<p>通常, 面向 .NET Framework 3.5 或更高版本的应用程序应使用 lambda (λ) 表达式来初始化委托.</p>
+<p>C# 3.0 引入了 <strong>Lambda 表达式</strong> 或者 <strong>Lambda 语句块</strong>, 这是另一种匿名方法的书写形式, 但更具表现力并且更简练. </p>
+<p>通常, 面向 .NET Framework 3.5 或更高版本的应用程序应使用 Lambda (λ) 表达式或 Lambda 语句块来初始化委托.</p>
 </blockquote>
 <ol>
 <li>第一种: [C# 1.0] 写法上和初始化类一样, 使用 New 关键字.</li>
@@ -1477,13 +1477,13 @@
 <ol start="3">
 <li>第三种: [C# 2.0] 使用匿名方法的原始写法进行初始化</li>
 </ol>
-<p>匿名方法同样是使用 delegate 关键字定义 (强烈建议不再使用匿名方法, 了解即可, 转而使用 Lambda 表达式), 返回值无需特别指明, 只需使用 return 来指明返回值及其类型即可, 匿名方法参数的指明方式和普通方法的指明方式一致, 但是必须和委托定义时声明的方法签名吻合.</p>
+<p>匿名方法同样是使用 delegate 关键字定义 (强烈建议不再使用匿名方法, 了解即可, 转而使用 Lambda 表达式或 Lambda 语句块), 返回值无需特别指明, 只需使用 return 来指明返回值及其类型即可, 匿名方法参数的指明方式和普通方法的指明方式一致, 但是必须和委托定义时声明的方法签名吻合.</p>
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">myDelegate = <span class="keyword">delegate</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (a + b).ToString();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <ol start="4">
-<li>第四种: [C# 3.0] 使用匿名方法的简化写法--Lambda 表达式进行初始化 (强烈建议使用!)</li>
+<li>第四种: [C# 3.0] 使用匿名方法的简化写法--Lambda 表达式或 Lambda 语句块进行初始化 (强烈建议使用!)</li>
 </ol>
-<p>Lambda 表达式也是委托初始化的一种手段, 它比匿名方法更为简洁, 而且不会混淆 (谁让委托类型的定义和匿名方法的定义使用同样的关键字的, 唉... 乱套了吧... 我瞎说的~~), 总之正如微软文档说的一样, 学习使用 lambda 表达式吧, 为什么呢? 因为如果你不会的话, 连别人的程序都看不懂啊😥</p>
+<p>Lambda 表达式和 Lambda 语句块也是委托初始化的一种手段, 它比匿名方法更为简洁, 而且不会混淆 (谁让委托类型的定义和匿名方法的定义使用同样的关键字的, 唉... 乱套了吧... 我瞎说的~~), 总之正如微软文档说的一样, 学习使用 lambda 表达式吧, 为什么呢? 因为如果你不会的话, 连别人的程序都看不懂啊😥</p>
 <ol>
 <li><p>Lambda 的特征符号是: <code>=&gt;</code>. =&gt; 符号的左边是参数, 使用小括号 ( ) 括起来, 右侧是语句或表达式, 当右侧是语句时, 必须使用大括号 { } 括起来, 当右侧是表达式时, 则不能带有大括号, 且表达式只能有一句.</p>
 </li>
