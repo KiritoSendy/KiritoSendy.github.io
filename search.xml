@@ -1,6 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>AHK 基础</title>
+    <url>/ahk/ahk_01.html</url>
+    <content><![CDATA[<h1 id="安装-AutoHotkey"><a href="#安装-AutoHotkey" class="headerlink" title="安装 AutoHotkey"></a>安装 AutoHotkey</h1><p>在安装 <code>Autohotkey</code> 过程中, 需要选择安装 <code>UNICODE</code> 或者 <code>ANSI</code> 版本. </p>
+<p>简单点说, 如果你想要它支持非英文字符和数字, 那就选择 <code>UNICODE</code> 版. </p>
+<p><strong>[注]</strong> <font color='red'>AHK 脚本文件的命名中不能包含空格! 切记! 切记!</font></p>
+<h1 id="热键-amp-热字串"><a href="#热键-amp-热字串" class="headerlink" title="热键 &amp; 热字串"></a>热键 &amp; 热字串</h1><ol>
+<li>热键是用来触发某些动作的按键或组合按键. 如: <code>^j::</code></li>
+</ol>
+<p>热键是通过一对 <code>::</code> 创建的. 按键名或组合按键名必须在 <code>::</code> 左边. 代码则跟在后面, 以 <code>Return</code> 结束.</p>
+<ol start="2">
+<li>热字串主要用于扩展缩写(自动替换). 如: <code>::js::</code></li>
+</ol>
+<p>热字串在要触发的文本两边各有一对 <code>::</code>. 替换后的文本在第二对 <code>::</code> 的右边.</p>
+<h2 id="常用的修饰键-amp-符号"><a href="#常用的修饰键-amp-符号" class="headerlink" title="常用的修饰键 &amp; 符号"></a>常用的修饰键 &amp; 符号</h2><table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">#</td>
+<td align="left">Win</td>
+</tr>
+<tr>
+<td align="center">!</td>
+<td align="left">Alt</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="left">Control</td>
+</tr>
+<tr>
+<td align="center">+</td>
+<td align="left">Shift</td>
+</tr>
+</tbody></table>
+<ol>
+<li>可以通过在两个按键 (除手柄键) 之间, 使用 <code>&amp;</code> 来定义一个组合热键, 注意按键和 <code>&amp;</code> 之间必须加空格. 如: <code>Numpad1 &amp; Numpad2::</code></li>
+</ol>
+<blockquote>
+<p><strong>[注意]</strong> 使用 <code>&amp;</code> 的时候记得在左面按键的前面加上 <code>~</code>, 表示当左面的按键单独按下的时候也要进行处理, 不然左面的按键就失效了. 比如上面的例子中, <code>Numpad1</code> 就会失效. 但是加上 <code>~</code> 符号后, 像这样: <code>~Numpad1 &amp; Numpad2::</code>, 这样 <code>Numpad1</code> 就不会失效了.</p>
+</blockquote>
+<ol start="2">
+<li>热字串的修饰符在第一对 <code>::</code> 之间, 用 <code>*</code> 号进行修饰时, 无需按下结束符, 文本便会自动替换. 如: <code>:*:ftw::</code>.</li>
+</ol>
+<h2 id="如何设置脚本只在特定窗口生效"><a href="#如何设置脚本只在特定窗口生效" class="headerlink" title="如何设置脚本只在特定窗口生效"></a>如何设置脚本只在特定窗口生效</h2><p>在脚本代码的最上方添加高级命令: <code>#IfWinActive</code> 或者 <code>#IfWinExist</code>. </p>
+<h1 id="发送按键-模拟键盘输入"><a href="#发送按键-模拟键盘输入" class="headerlink" title="发送按键, 模拟键盘输入"></a>发送按键, 模拟键盘输入</h1><blockquote>
+<p><strong>[注意]</strong> <code>Send</code> 方法发送文本的时候, 如果要发送这些字符: <code>! + # ^</code>, 这些代表键盘按键的特殊字符, 需要用大括号 <code>&#123; &#125;</code> 括起来. 比如: <code>Send, my first &#123;+&#125; script&#123;!&#125;</code>.</p>
+<p><strong>[注意]</strong> 当然也有代表键盘按键的字串, 如: <code>Space</code>, <code>Enter</code>, 这些也要用大括号 <code>&#123; &#125;</code> 括起来. 如: </p>
+<p><code>Send, Multiple Enter lines have Enter been sent. ; 错误</code></p>
+<p><code>Send, Multiple&#123;Enter&#125;lines have&#123;Enter&#125;been sent. ; 正确</code></p>
+<p><strong>[注意]</strong> 如果模拟键盘输入时遇到了中文输入法的问题, 可以使用 {Text} 参数, 在 SendInput 后面加入这个参数后, 后面的文本就不会以键盘输入的方式进行输出, 而是直接以文本的形式输出, 避免中文输入法导致的问题. 比如 &#39;this is a message &#39; 在中文输入法下会变成 &#39;thisis啊message&#39;, 加入 {Text} 就可以解决这个问题.</p>
+<p><code>SendInput, &#123;Text&#125;administrator</code></p>
+<p>但是由于在中文输入法下会有一个输入提示框, 在 SendInput 处加 {Text} 确实可以避免在触发热键后的输入由于中文输入法而无法正确输入的问题, 但是这里还有另一个问题, 就是 &quot;触发&quot;! 在中文输入法下按下热键只有当热键的字符数<font color='red'><strong>小于等于 2 个</strong></font>的时候才会正常生效!</p>
+<p>比如要写一个 administrator 的热键, 触发条件推荐写 <code>:*:am::</code>, 而不要写 <code>:*:admin::</code>, 不信自己在中文输入法下试用一下就知道了!</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>AutoHotKey</category>
+      </categories>
+      <tags>
+        <tag>AHK</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AHK 中的一些琐碎知识</title>
+    <url>/ahk/ahk_02.html</url>
+    <content><![CDATA[<h1 id="Scancode"><a href="#Scancode" class="headerlink" title="Scancode"></a>Scancode</h1><p>AHK 中某些符号无法直接在热键触发条件中编写, 这个时候就需要使用到 Scancode. 比如下面一个单引号和双引号互换的例子, 这里的热键触发条件便是键盘上的引号键.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;&quot;</span><br><span class="line">return</span><br><span class="line"></span><br><span class="line">+sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;&#39;</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>AutoHotKey</category>
+      </categories>
+      <tags>
+        <tag>AHK</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>游戏开发笔试面试经历之字节跳动</title>
     <url>/apply/game_apply_bytedance.html</url>
     <content><![CDATA[<p>最近找工作, 那叫一个惨, 哈哈, 记录一下自己面试字节跳动时技术岗提问的问题吧! </p>
@@ -500,85 +579,6 @@
       </categories>
       <tags>
         <tag>面试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AHK 基础</title>
-    <url>/ahk/ahk_01.html</url>
-    <content><![CDATA[<h1 id="安装-AutoHotkey"><a href="#安装-AutoHotkey" class="headerlink" title="安装 AutoHotkey"></a>安装 AutoHotkey</h1><p>在安装 <code>Autohotkey</code> 过程中, 需要选择安装 <code>UNICODE</code> 或者 <code>ANSI</code> 版本. </p>
-<p>简单点说, 如果你想要它支持非英文字符和数字, 那就选择 <code>UNICODE</code> 版. </p>
-<p><strong>[注]</strong> <font color='red'>AHK 脚本文件的命名中不能包含空格! 切记! 切记!</font></p>
-<h1 id="热键-amp-热字串"><a href="#热键-amp-热字串" class="headerlink" title="热键 &amp; 热字串"></a>热键 &amp; 热字串</h1><ol>
-<li>热键是用来触发某些动作的按键或组合按键. 如: <code>^j::</code></li>
-</ol>
-<p>热键是通过一对 <code>::</code> 创建的. 按键名或组合按键名必须在 <code>::</code> 左边. 代码则跟在后面, 以 <code>Return</code> 结束.</p>
-<ol start="2">
-<li>热字串主要用于扩展缩写(自动替换). 如: <code>::js::</code></li>
-</ol>
-<p>热字串在要触发的文本两边各有一对 <code>::</code>. 替换后的文本在第二对 <code>::</code> 的右边.</p>
-<h2 id="常用的修饰键-amp-符号"><a href="#常用的修饰键-amp-符号" class="headerlink" title="常用的修饰键 &amp; 符号"></a>常用的修饰键 &amp; 符号</h2><table>
-<thead>
-<tr>
-<th align="center">符号</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">#</td>
-<td align="left">Win</td>
-</tr>
-<tr>
-<td align="center">!</td>
-<td align="left">Alt</td>
-</tr>
-<tr>
-<td align="center">^</td>
-<td align="left">Control</td>
-</tr>
-<tr>
-<td align="center">+</td>
-<td align="left">Shift</td>
-</tr>
-</tbody></table>
-<ol>
-<li>可以通过在两个按键 (除手柄键) 之间, 使用 <code>&amp;</code> 来定义一个组合热键, 注意按键和 <code>&amp;</code> 之间必须加空格. 如: <code>Numpad1 &amp; Numpad2::</code></li>
-</ol>
-<blockquote>
-<p><strong>[注意]</strong> 使用 <code>&amp;</code> 的时候记得在左面按键的前面加上 <code>~</code>, 表示当左面的按键单独按下的时候也要进行处理, 不然左面的按键就失效了. 比如上面的例子中, <code>Numpad1</code> 就会失效. 但是加上 <code>~</code> 符号后, 像这样: <code>~Numpad1 &amp; Numpad2::</code>, 这样 <code>Numpad1</code> 就不会失效了.</p>
-</blockquote>
-<ol start="2">
-<li>热字串的修饰符在第一对 <code>::</code> 之间, 用 <code>*</code> 号进行修饰时, 无需按下结束符, 文本便会自动替换. 如: <code>:*:ftw::</code>.</li>
-</ol>
-<h2 id="如何设置脚本只在特定窗口生效"><a href="#如何设置脚本只在特定窗口生效" class="headerlink" title="如何设置脚本只在特定窗口生效"></a>如何设置脚本只在特定窗口生效</h2><p>在脚本代码的最上方添加高级命令: <code>#IfWinActive</code> 或者 <code>#IfWinExist</code>. </p>
-<h1 id="发送按键-模拟键盘输入"><a href="#发送按键-模拟键盘输入" class="headerlink" title="发送按键, 模拟键盘输入"></a>发送按键, 模拟键盘输入</h1><blockquote>
-<p><strong>[注意]</strong> <code>Send</code> 方法发送文本的时候, 如果要发送这些字符: <code>! + # ^</code>, 这些代表键盘按键的特殊字符, 需要用大括号 <code>&#123; &#125;</code> 括起来. 比如: <code>Send, my first &#123;+&#125; script&#123;!&#125;</code>.</p>
-<p><strong>[注意]</strong> 当然也有代表键盘按键的字串, 如: <code>Space</code>, <code>Enter</code>, 这些也要用大括号 <code>&#123; &#125;</code> 括起来. 如: </p>
-<p><code>Send, Multiple Enter lines have Enter been sent. ; 错误</code></p>
-<p><code>Send, Multiple&#123;Enter&#125;lines have&#123;Enter&#125;been sent. ; 正确</code></p>
-<p><strong>[注意]</strong> 如果模拟键盘输入时遇到了中文输入法的问题, 可以使用 {Text} 参数, 在 SendInput 后面加入这个参数后, 后面的文本就不会以键盘输入的方式进行输出, 而是直接以文本的形式输出, 避免中文输入法导致的问题. 比如 &#39;this is a message &#39; 在中文输入法下会变成 &#39;thisis啊message&#39;, 加入 {Text} 就可以解决这个问题.</p>
-<p><code>SendInput, &#123;Text&#125;administrator</code></p>
-<p>但是由于在中文输入法下会有一个输入提示框, 在 SendInput 处加 {Text} 确实可以避免在触发热键后的输入由于中文输入法而无法正确输入的问题, 但是这里还有另一个问题, 就是 &quot;触发&quot;! 在中文输入法下按下热键只有当热键的字符数<font color='red'><strong>小于等于 2 个</strong></font>的时候才会正常生效!</p>
-<p>比如要写一个 administrator 的热键, 触发条件推荐写 <code>:*:am::</code>, 而不要写 <code>:*:admin::</code>, 不信自己在中文输入法下试用一下就知道了!</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>AutoHotKey</category>
-      </categories>
-      <tags>
-        <tag>AHK</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AHK 中的一些琐碎知识</title>
-    <url>/ahk/ahk_02.html</url>
-    <content><![CDATA[<h1 id="Scancode"><a href="#Scancode" class="headerlink" title="Scancode"></a>Scancode</h1><p>AHK 中某些符号无法直接在热键触发条件中编写, 这个时候就需要使用到 Scancode. 比如下面一个单引号和双引号互换的例子, 这里的热键触发条件便是键盘上的引号键.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;&quot;</span><br><span class="line">return</span><br><span class="line"></span><br><span class="line">+sc028::</span><br><span class="line">  sendinput,&#123;Text&#125;&#39;</span><br><span class="line">return</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>AutoHotKey</category>
-      </categories>
-      <tags>
-        <tag>AHK</tag>
       </tags>
   </entry>
   <entry>
@@ -1450,6 +1450,119 @@
       </tags>
   </entry>
   <entry>
+    <title>委托(四) &quot;委托与事件的区别&quot; 以及 &quot;观察者模式&quot;</title>
+    <url>/csharp/delegate_04.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="🌴前言"><a href="#🌴前言" class="headerlink" title="🌴前言"></a>🌴前言</h1><p>最开始知道委托和事件是在 SiKi 的 C# 课程上(很抱歉, 大学就只上了 C 语言课, Java 课听了一节...😅), 由于之前没有接触过类似的语法, 又或是学习单片机的时候 C 语言语法在脑海中根深蒂固了 , 听课时就像是在听天书, 再加上之后也没有使用过这方面的语法, 基本全忘记了. 之前一段时间简单的了解了一下委托和事件, 然后网上都是用 &quot;观察者模式&quot; 去讲的...然而文章中连观察者都没有仔细去讲...所以这样更晕了好嘛...😑 于是自己抽时间多看了几篇文章, 做一下总结. 先说一下观察者模式吧, 毕竟委托和事件的区别用观察者去讲真的十分合适!</p>
+<h1 id="🍁声明"><a href="#🍁声明" class="headerlink" title="🍁声明"></a>🍁声明</h1><p>阅读下文需要对 &quot;委托&quot; 有基本了解, 如果未达到此基本要求, 请先打怪升级, 达到要求后再来挑战本副本! 推荐练级副本: </p>
+<ol>
+<li><p><a href="https://kuroha.vip/csharp/delegate_01.html">委托(一) 委托的基本用法</a></p>
+</li>
+<li><p><a href="https://kuroha.vip/csharp/delegate_02.html">委托(二) 委托与回调和回调函数</a></p>
+</li>
+<li><p><a href="https://kuroha.vip/csharp/delegate_03.html">委托(三) 委托的初始化</a></p>
+</li>
+</ol>
+<h1 id="👀观察者模式"><a href="#👀观察者模式" class="headerlink" title="👀观察者模式"></a>👀观察者模式</h1><h2 id="quot-模式-quot-是什么"><a href="#quot-模式-quot-是什么" class="headerlink" title="&quot;模式&quot; 是什么?"></a>&quot;模式&quot; 是什么?</h2><ul>
+<li>&quot;模式&quot; 这个东西和之前所学的大部分东西都不是一回事, &quot;模式&quot; 是一种套路, 对, 你没有听错, 套路, 或者说模板! 它是走在我们前面的那些码神们常年编写代码所总结出来的一种在特定场合下特别好用的代码模板. 就像是英语作文模板指导我们以怎样的结构去写英语作文一样, &quot;模式&quot; 是指导我们以一种怎样的结构去编写代码, 以达到减小编程时工作量以及减小日后维护成本的效果.</li>
+</ul>
+<h2 id="观察者模式的内容是什么"><a href="#观察者模式的内容是什么" class="headerlink" title="观察者模式的内容是什么?"></a>观察者模式的内容是什么?</h2><ol>
+<li><p>需要描述的是一种 &quot;一对多&quot; 的依赖关系!</p>
+</li>
+<li><p>当 &quot;一&quot; 的一方状态发生改变时, &quot;多&quot; 的一方中的全部成员都能够收到通知!</p>
+</li>
+<li><p>&quot;多&quot; 的一方收到通知后, 全部的成员都会自动进行更新操作, 而非被动!</p>
+</li>
+</ol>
+<p>这就是 &quot;观察者模式&quot; 了, &quot;一&quot; 的一方叫做 &quot;被观察者&quot;, &quot;多&quot; 的一方叫做 &quot;观察者&quot;, 也叫做: &quot;发布-订阅模型&quot;, 这时分别叫做 &quot;发布器&quot; 和 &quot;订阅器&quot;.</p>
+<ul>
+<li>Q: 为什么没有代码?</li>
+<li>A: 因为模式只是一种套路, 一种模板, 一种思想, 自然是没有代码的! 只要代码是按照这个模板去编写的, 就可以说使用了 &quot;观察者模式&quot;.</li>
+</ul>
+<h2 id="观察者模式的代码实现"><a href="#观察者模式的代码实现" class="headerlink" title="观察者模式的代码实现"></a>观察者模式的代码实现</h2><p>接下来就是代码实现环节了, 一共写了 3 种 <strong><code>链表, 委托, 事件</code></strong> 代码实现, 都是使用的 csharp 语言.</p>
+<p>Q: 需要记忆的代码是哪个呢?</p>
+<p>A: 没有! 对, 就是没有! 真正要记忆的是前面 <strong>观察者模式的内容是什么</strong> 中所提到的 3 点. 看完代码后可不要本末倒置了哦!</p>
+<p>下面代码实现的场景就是当被观察者使用 &quot;发令枪&quot; 开枪时, 观察者们全部开跑~</p>
+<h3 id="链表实现"><a href="#链表实现" class="headerlink" title="链表实现"></a>链表实现</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Exercise</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 被观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Publisher_List</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 保存所有的观察者对象</span></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">readonly</span> <span class="title">List</span>&lt;<span class="title">Subscriber_List</span>&gt; subscriberList</span> = <span class="keyword">new</span> List&lt;Subscriber_List&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 进入赛道</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">EnterGame</span>(<span class="params">Subscriber_List subscriber</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            subscriberList.Add(subscriber);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 发令枪</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">StartingGun</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;预备~ . . . 砰! \n&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 遍历所有的观察者 (这一步就是在通知每一个观察者)</span></span><br><span class="line">            <span class="keyword">foreach</span> (Subscriber_List t <span class="keyword">in</span> subscriberList)</span><br><span class="line">            &#123;</span><br><span class="line">                t.Run(); <span class="comment">// 自动更新</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Subscriber_List</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 运动员姓名</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="keyword">string</span> name;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 初始化</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Subscriber_List</span>(<span class="params">Publisher_List publisher, <span class="keyword">string</span> name</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            publisher.EnterGame(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开跑</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(name + <span class="string">&quot; 开跑啦~ \n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Program_List</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Publisher_List publisherList = <span class="keyword">new</span> Publisher_List();</span><br><span class="line">            <span class="keyword">new</span> Subscriber_List(publisherList, <span class="string">&quot;艾莉&quot;</span>);</span><br><span class="line">            <span class="keyword">new</span> Subscriber_List(publisherList, <span class="string">&quot;克里斯&quot;</span>);</span><br><span class="line"></span><br><span class="line">            publisherList.StartingGun();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 程序输出:</span></span><br><span class="line">预备~ . . . 砰!</span><br><span class="line"></span><br><span class="line">艾莉 开跑啦~</span><br><span class="line"></span><br><span class="line">克里斯 开跑啦~</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面就是一个最简单的观察者模式, 使用链表实现.</p>
+<table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">实现方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1. 一对多</td>
+<td align="left">被观察者只有一个实例, 使用链表保存所有的观察者实例</td>
+</tr>
+<tr>
+<td align="left">2. 全部通知</td>
+<td align="left">在方法中遍历所有的观察者, 每一个都进行特定的操作</td>
+</tr>
+<tr>
+<td align="left">3. 自动更新</td>
+<td align="left">在 &quot;被观察者&quot; 中调用 &quot;观察者&quot; 的方法, 对外界隐藏调用逻辑</td>
+</tr>
+</tbody></table>
+<p>再来看一下 Main 方法:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Publisher_List publisherList = <span class="keyword">new</span> Publisher_List();</span><br><span class="line">    <span class="keyword">new</span> Subscriber_List(publisherList, <span class="string">&quot;艾莉&quot;</span>);</span><br><span class="line">    <span class="keyword">new</span> Subscriber_List(publisherList, <span class="string">&quot;克里斯&quot;</span>);</span><br><span class="line"></span><br><span class="line">    publisherList.StartingGun();</span><br><span class="line">    Console.ReadKey();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时对外界的 Main 方法而言, 我仅仅开了一下 &quot;发令枪&quot;, 艾莉和克里斯中的 Run 方法就 <font color='red'><strong>自动</strong></font> 被调用了. 如果不这么写, Main 方法就必须先调用发令枪方法, 然后再调用艾莉和克里斯的 Run 方法.</p>
+<h3 id="委托实现"><a href="#委托实现" class="headerlink" title="委托实现"></a>委托实现</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Exercise</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Publisher publisher = <span class="keyword">new</span> Publisher();</span><br><span class="line">            <span class="keyword">new</span> Subscriber(publisher, <span class="string">&quot;艾莉&quot;</span>);</span><br><span class="line">            <span class="keyword">new</span> Subscriber(publisher, <span class="string">&quot;克里斯&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 发令枪</span></span><br><span class="line">            publisher.StartingGun();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 被观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Publisher</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 委托, 保存所有的观察者</span></span><br><span class="line">        <span class="keyword">public</span> Action PublisherDelegate;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 发令枪</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">StartingGun</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;预备~ . . . 砰! \n&quot;</span>);</span><br><span class="line">            PublisherDelegate?.Invoke(); <span class="comment">// 判断 PublisherDelegate 是否是空, 如果不是空, 则调用里面的 Invoke 方法.</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Subscriber</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 运动员姓名</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="keyword">string</span> name;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 构造器</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;publisher&quot;&gt;</span>发布器<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;name&quot;&gt;</span>订阅器名称<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Subscriber</span>(<span class="params">Publisher publisher, <span class="keyword">string</span> name</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            publisher.PublisherDelegate += Run; <span class="comment">// 自动注册</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开跑</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(name + <span class="string">&quot; 开跑啦~ \n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 程序输出:</span></span><br><span class="line">预备~ . . . 砰!</span><br><span class="line"></span><br><span class="line">艾莉 开跑啦~</span><br><span class="line"></span><br><span class="line">克里斯 开跑啦~</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="使用委托实现观察者模式与使用链表时的不同"><a href="#使用委托实现观察者模式与使用链表时的不同" class="headerlink" title="使用委托实现观察者模式与使用链表时的不同"></a>使用委托实现观察者模式与使用链表时的不同</h4><ol>
+<li><p>不再使用链表保存所有的观察者, 而是使用委托的多播特性进行保存.</p>
+</li>
+<li><p>通知所有观察者的步骤不再使用遍历, 而是使用委托的多播特性进行逐个通知.</p>
+</li>
+<li><p>注册观察者时不再使用链表的 Add() 方法, 而是使用委托的 <strong>+=</strong> 和 <strong>-=</strong>.</p>
+</li>
+</ol>
+<p>直接使用委托实现观察者模式有几个不安要素:</p>
+<ol>
+<li><p>如果被观察者 Publisher 中的委托是 public 修饰, 那么外部便可以直接访问, 此时如果外部代码中使用了 <strong>=</strong> 进行委托的注册, 那么委托中已有的注册将被全部清空, 这种隐患是十分恐怖的.</p>
+</li>
+<li><p>如果被观察者 Publisher 中的委托是 public 修饰, 那么外部便可以直接调用此委托, 此时观察者们便无法收到任何通知, 这个隐患同样是致命的.</p>
+</li>
+</ol>
+<p>使用事件实现观察者模式便解决了上面两个致命隐患.</p>
+<h3 id="事件实现"><a href="#事件实现" class="headerlink" title="事件实现"></a>事件实现</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Exercise</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Publisher publisher = <span class="keyword">new</span> Publisher();</span><br><span class="line">            Subscriber subscriberA = <span class="keyword">new</span> Subscriber(publisher, <span class="string">&quot;艾莉&quot;</span>);</span><br><span class="line">            Subscriber subscriberB = <span class="keyword">new</span> Subscriber(publisher, <span class="string">&quot;克里斯&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 发令枪</span></span><br><span class="line">            publisher.StartingGun();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 对事件直接赋值 (不允许)</span></span><br><span class="line">            publisher.PublisherEvent = subscriberA.Run;</span><br><span class="line">            <span class="comment">// 对委托直接赋值 (允许)</span></span><br><span class="line">            publisher.PublisherDelegate = subscriberA.Run;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 外部直接调用事件 (不允许)</span></span><br><span class="line">            publisher.PublisherEvent();</span><br><span class="line">            <span class="comment">// 外部直接调用委托 (允许)</span></span><br><span class="line">            publisher.PublisherDelegate();</span><br><span class="line"></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 被观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Publisher</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 事件, 保存所有的观察者</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">event</span> Action PublisherEvent;</span><br><span class="line">        <span class="keyword">public</span> Action PublisherDelegate;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 发令枪</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">StartingGun</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;预备~ . . . 砰! \n&quot;</span>);</span><br><span class="line">            PublisherEvent?.Invoke(); <span class="comment">// 判断 PublisherEvent 是否是空, 如果不是空, 则调用里面的 Invoke 方法.</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Subscriber</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 运动员姓名</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="keyword">string</span> name;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 构造器</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;publisher&quot;&gt;</span>发布器<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;name&quot;&gt;</span>订阅器名称<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Subscriber</span>(<span class="params">Publisher publisher, <span class="keyword">string</span> name</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            publisher.PublisherEvent += Run; <span class="comment">// 自动注册</span></span><br><span class="line">            publisher.PublisherEvent = Run;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开跑</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(name + <span class="string">&quot; 开跑啦~ \n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码直接粘贴到 VS 中其实是报错的, 其中第 18 行, 第 23 行以及第 65 行会报错! 报错信息是一样的:</p>
+<p><code>CS0070  事件 &quot;Publisher.PublisherEvent&quot; 只能出现在 += 或 -= 的左边(从类型 &quot;Publisher&quot; 中使用时除外)</code></p>
+<p>从这里也就可以得出结论, 委托和事件的不同.</p>
+<h1 id="🍀委托和事件的异同"><a href="#🍀委托和事件的异同" class="headerlink" title="🍀委托和事件的异同"></a>🍀委托和事件的异同</h1><ol>
+<li><p>一个使用 public 修饰的委托实例, 在声明类的外部可以直接调用. 而事件即使修饰为 public, 也仅能在声明类内部调用, 外部调用时编译器会直接报错, 发现隐患.</p>
+</li>
+<li><p>委托可以使用 = 进行赋值, 但是事件不可以, 无论任何时候, 事件都仅能使用 += 和 -= 进行注册, 使用 = 时编译器会直接报错, 发现隐患.</p>
+</li>
+<li><p>除此以外, 委托和事件一致.</p>
+</li>
+</ol>
+<h1 id="🌈参考链接"><a href="#🌈参考链接" class="headerlink" title="🌈参考链接"></a>🌈参考链接</h1><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVub29iLmNvbS9kZXNpZ24tcGF0dGVybi9vYnNlcnZlci1wYXR0ZXJuLmh0bWw=">菜鸟教程 - 观察者模式<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9kZXNpZ24tcGF0dGVybnMucmVhZHRoZWRvY3MuaW8vemhfQ04vbGF0ZXN0L2JlaGF2aW9yYWxfcGF0dGVybnMvb2JzZXJ2ZXIuaHRtbA==">Graphic Design Patterns - 观察者模式<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20va2tsbGRvZy9hcmNoaXZlLzIwMTIvMDEvMTcvMjMyNDIyOC5odG1s">C# 委托与事件区别简单总结<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CSharp</category>
+      </categories>
+      <tags>
+        <tag>CSharp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>委托(三) 委托的初始化</title>
     <url>/csharp/delegate_03.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -1570,119 +1683,6 @@
 <td align="left">null</td>
 </tr>
 </tbody></table>
-]]></content>
-      <categories>
-        <category>CSharp</category>
-      </categories>
-      <tags>
-        <tag>CSharp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>委托(四) &quot;委托与事件的区别&quot; 以及 &quot;观察者模式&quot;</title>
-    <url>/csharp/delegate_04.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="🌴前言"><a href="#🌴前言" class="headerlink" title="🌴前言"></a>🌴前言</h1><p>最开始知道委托和事件是在 SiKi 的 C# 课程上(很抱歉, 大学就只上了 C 语言课, Java 课听了一节...😅), 由于之前没有接触过类似的语法, 又或是学习单片机的时候 C 语言语法在脑海中根深蒂固了 , 听课时就像是在听天书, 再加上之后也没有使用过这方面的语法, 基本全忘记了. 之前一段时间简单的了解了一下委托和事件, 然后网上都是用 &quot;观察者模式&quot; 去讲的...然而文章中连观察者都没有仔细去讲...所以这样更晕了好嘛...😑 于是自己抽时间多看了几篇文章, 做一下总结. 先说一下观察者模式吧, 毕竟委托和事件的区别用观察者去讲真的十分合适!</p>
-<h1 id="🍁声明"><a href="#🍁声明" class="headerlink" title="🍁声明"></a>🍁声明</h1><p>阅读下文需要对 &quot;委托&quot; 有基本了解, 如果未达到此基本要求, 请先打怪升级, 达到要求后再来挑战本副本! 推荐练级副本: </p>
-<ol>
-<li><p><a href="https://kuroha.vip/csharp/delegate_01.html">委托(一) 委托的基本用法</a></p>
-</li>
-<li><p><a href="https://kuroha.vip/csharp/delegate_02.html">委托(二) 委托与回调和回调函数</a></p>
-</li>
-<li><p><a href="https://kuroha.vip/csharp/delegate_03.html">委托(三) 委托的初始化</a></p>
-</li>
-</ol>
-<h1 id="👀观察者模式"><a href="#👀观察者模式" class="headerlink" title="👀观察者模式"></a>👀观察者模式</h1><h2 id="quot-模式-quot-是什么"><a href="#quot-模式-quot-是什么" class="headerlink" title="&quot;模式&quot; 是什么?"></a>&quot;模式&quot; 是什么?</h2><ul>
-<li>&quot;模式&quot; 这个东西和之前所学的大部分东西都不是一回事, &quot;模式&quot; 是一种套路, 对, 你没有听错, 套路, 或者说模板! 它是走在我们前面的那些码神们常年编写代码所总结出来的一种在特定场合下特别好用的代码模板. 就像是英语作文模板指导我们以怎样的结构去写英语作文一样, &quot;模式&quot; 是指导我们以一种怎样的结构去编写代码, 以达到减小编程时工作量以及减小日后维护成本的效果.</li>
-</ul>
-<h2 id="观察者模式的内容是什么"><a href="#观察者模式的内容是什么" class="headerlink" title="观察者模式的内容是什么?"></a>观察者模式的内容是什么?</h2><ol>
-<li><p>需要描述的是一种 &quot;一对多&quot; 的依赖关系!</p>
-</li>
-<li><p>当 &quot;一&quot; 的一方状态发生改变时, &quot;多&quot; 的一方中的全部成员都能够收到通知!</p>
-</li>
-<li><p>&quot;多&quot; 的一方收到通知后, 全部的成员都会自动进行更新操作, 而非被动!</p>
-</li>
-</ol>
-<p>这就是 &quot;观察者模式&quot; 了, &quot;一&quot; 的一方叫做 &quot;被观察者&quot;, &quot;多&quot; 的一方叫做 &quot;观察者&quot;, 也叫做: &quot;发布-订阅模型&quot;, 这时分别叫做 &quot;发布器&quot; 和 &quot;订阅器&quot;.</p>
-<ul>
-<li>Q: 为什么没有代码?</li>
-<li>A: 因为模式只是一种套路, 一种模板, 一种思想, 自然是没有代码的! 只要代码是按照这个模板去编写的, 就可以说使用了 &quot;观察者模式&quot;.</li>
-</ul>
-<h2 id="观察者模式的代码实现"><a href="#观察者模式的代码实现" class="headerlink" title="观察者模式的代码实现"></a>观察者模式的代码实现</h2><p>接下来就是代码实现环节了, 一共写了 3 种 <strong><code>链表, 委托, 事件</code></strong> 代码实现, 都是使用的 csharp 语言.</p>
-<p>Q: 需要记忆的代码是哪个呢?</p>
-<p>A: 没有! 对, 就是没有! 真正要记忆的是前面 <strong>观察者模式的内容是什么</strong> 中所提到的 3 点. 看完代码后可不要本末倒置了哦!</p>
-<p>下面代码实现的场景就是当被观察者使用 &quot;发令枪&quot; 开枪时, 观察者们全部开跑~</p>
-<h3 id="链表实现"><a href="#链表实现" class="headerlink" title="链表实现"></a>链表实现</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Exercise</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 被观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Publisher_List</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 保存所有的观察者对象</span></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">readonly</span> <span class="title">List</span>&lt;<span class="title">Subscriber_List</span>&gt; subscriberList</span> = <span class="keyword">new</span> List&lt;Subscriber_List&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 进入赛道</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">EnterGame</span>(<span class="params">Subscriber_List subscriber</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            subscriberList.Add(subscriber);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 发令枪</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">StartingGun</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;预备~ . . . 砰! \n&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 遍历所有的观察者 (这一步就是在通知每一个观察者)</span></span><br><span class="line">            <span class="keyword">foreach</span> (Subscriber_List t <span class="keyword">in</span> subscriberList)</span><br><span class="line">            &#123;</span><br><span class="line">                t.Run(); <span class="comment">// 自动更新</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Subscriber_List</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 运动员姓名</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="keyword">string</span> name;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 初始化</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Subscriber_List</span>(<span class="params">Publisher_List publisher, <span class="keyword">string</span> name</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            publisher.EnterGame(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开跑</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(name + <span class="string">&quot; 开跑啦~ \n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Program_List</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Publisher_List publisherList = <span class="keyword">new</span> Publisher_List();</span><br><span class="line">            <span class="keyword">new</span> Subscriber_List(publisherList, <span class="string">&quot;艾莉&quot;</span>);</span><br><span class="line">            <span class="keyword">new</span> Subscriber_List(publisherList, <span class="string">&quot;克里斯&quot;</span>);</span><br><span class="line"></span><br><span class="line">            publisherList.StartingGun();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 程序输出:</span></span><br><span class="line">预备~ . . . 砰!</span><br><span class="line"></span><br><span class="line">艾莉 开跑啦~</span><br><span class="line"></span><br><span class="line">克里斯 开跑啦~</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>上面就是一个最简单的观察者模式, 使用链表实现.</p>
-<table>
-<thead>
-<tr>
-<th align="left">特性</th>
-<th align="left">实现方式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">1. 一对多</td>
-<td align="left">被观察者只有一个实例, 使用链表保存所有的观察者实例</td>
-</tr>
-<tr>
-<td align="left">2. 全部通知</td>
-<td align="left">在方法中遍历所有的观察者, 每一个都进行特定的操作</td>
-</tr>
-<tr>
-<td align="left">3. 自动更新</td>
-<td align="left">在 &quot;被观察者&quot; 中调用 &quot;观察者&quot; 的方法, 对外界隐藏调用逻辑</td>
-</tr>
-</tbody></table>
-<p>再来看一下 Main 方法:</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Publisher_List publisherList = <span class="keyword">new</span> Publisher_List();</span><br><span class="line">    <span class="keyword">new</span> Subscriber_List(publisherList, <span class="string">&quot;艾莉&quot;</span>);</span><br><span class="line">    <span class="keyword">new</span> Subscriber_List(publisherList, <span class="string">&quot;克里斯&quot;</span>);</span><br><span class="line"></span><br><span class="line">    publisherList.StartingGun();</span><br><span class="line">    Console.ReadKey();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>此时对外界的 Main 方法而言, 我仅仅开了一下 &quot;发令枪&quot;, 艾莉和克里斯中的 Run 方法就 <font color='red'><strong>自动</strong></font> 被调用了. 如果不这么写, Main 方法就必须先调用发令枪方法, 然后再调用艾莉和克里斯的 Run 方法.</p>
-<h3 id="委托实现"><a href="#委托实现" class="headerlink" title="委托实现"></a>委托实现</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Exercise</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Publisher publisher = <span class="keyword">new</span> Publisher();</span><br><span class="line">            <span class="keyword">new</span> Subscriber(publisher, <span class="string">&quot;艾莉&quot;</span>);</span><br><span class="line">            <span class="keyword">new</span> Subscriber(publisher, <span class="string">&quot;克里斯&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 发令枪</span></span><br><span class="line">            publisher.StartingGun();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 被观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Publisher</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 委托, 保存所有的观察者</span></span><br><span class="line">        <span class="keyword">public</span> Action PublisherDelegate;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 发令枪</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">StartingGun</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;预备~ . . . 砰! \n&quot;</span>);</span><br><span class="line">            PublisherDelegate?.Invoke(); <span class="comment">// 判断 PublisherDelegate 是否是空, 如果不是空, 则调用里面的 Invoke 方法.</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Subscriber</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 运动员姓名</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="keyword">string</span> name;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 构造器</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;publisher&quot;&gt;</span>发布器<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;name&quot;&gt;</span>订阅器名称<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Subscriber</span>(<span class="params">Publisher publisher, <span class="keyword">string</span> name</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            publisher.PublisherDelegate += Run; <span class="comment">// 自动注册</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开跑</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(name + <span class="string">&quot; 开跑啦~ \n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 程序输出:</span></span><br><span class="line">预备~ . . . 砰!</span><br><span class="line"></span><br><span class="line">艾莉 开跑啦~</span><br><span class="line"></span><br><span class="line">克里斯 开跑啦~</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="使用委托实现观察者模式与使用链表时的不同"><a href="#使用委托实现观察者模式与使用链表时的不同" class="headerlink" title="使用委托实现观察者模式与使用链表时的不同"></a>使用委托实现观察者模式与使用链表时的不同</h4><ol>
-<li><p>不再使用链表保存所有的观察者, 而是使用委托的多播特性进行保存.</p>
-</li>
-<li><p>通知所有观察者的步骤不再使用遍历, 而是使用委托的多播特性进行逐个通知.</p>
-</li>
-<li><p>注册观察者时不再使用链表的 Add() 方法, 而是使用委托的 <strong>+=</strong> 和 <strong>-=</strong>.</p>
-</li>
-</ol>
-<p>直接使用委托实现观察者模式有几个不安要素:</p>
-<ol>
-<li><p>如果被观察者 Publisher 中的委托是 public 修饰, 那么外部便可以直接访问, 此时如果外部代码中使用了 <strong>=</strong> 进行委托的注册, 那么委托中已有的注册将被全部清空, 这种隐患是十分恐怖的.</p>
-</li>
-<li><p>如果被观察者 Publisher 中的委托是 public 修饰, 那么外部便可以直接调用此委托, 此时观察者们便无法收到任何通知, 这个隐患同样是致命的.</p>
-</li>
-</ol>
-<p>使用事件实现观察者模式便解决了上面两个致命隐患.</p>
-<h3 id="事件实现"><a href="#事件实现" class="headerlink" title="事件实现"></a>事件实现</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Exercise</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Publisher publisher = <span class="keyword">new</span> Publisher();</span><br><span class="line">            Subscriber subscriberA = <span class="keyword">new</span> Subscriber(publisher, <span class="string">&quot;艾莉&quot;</span>);</span><br><span class="line">            Subscriber subscriberB = <span class="keyword">new</span> Subscriber(publisher, <span class="string">&quot;克里斯&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 发令枪</span></span><br><span class="line">            publisher.StartingGun();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 对事件直接赋值 (不允许)</span></span><br><span class="line">            publisher.PublisherEvent = subscriberA.Run;</span><br><span class="line">            <span class="comment">// 对委托直接赋值 (允许)</span></span><br><span class="line">            publisher.PublisherDelegate = subscriberA.Run;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 外部直接调用事件 (不允许)</span></span><br><span class="line">            publisher.PublisherEvent();</span><br><span class="line">            <span class="comment">// 外部直接调用委托 (允许)</span></span><br><span class="line">            publisher.PublisherDelegate();</span><br><span class="line"></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 被观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Publisher</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 事件, 保存所有的观察者</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">event</span> Action PublisherEvent;</span><br><span class="line">        <span class="keyword">public</span> Action PublisherDelegate;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 发令枪</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">StartingGun</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;预备~ . . . 砰! \n&quot;</span>);</span><br><span class="line">            PublisherEvent?.Invoke(); <span class="comment">// 判断 PublisherEvent 是否是空, 如果不是空, 则调用里面的 Invoke 方法.</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Subscriber</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 运动员姓名</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="keyword">string</span> name;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 构造器</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;publisher&quot;&gt;</span>发布器<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;name&quot;&gt;</span>订阅器名称<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Subscriber</span>(<span class="params">Publisher publisher, <span class="keyword">string</span> name</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            publisher.PublisherEvent += Run; <span class="comment">// 自动注册</span></span><br><span class="line">            publisher.PublisherEvent = Run;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开跑</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(name + <span class="string">&quot; 开跑啦~ \n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面的代码直接粘贴到 VS 中其实是报错的, 其中第 18 行, 第 23 行以及第 65 行会报错! 报错信息是一样的:</p>
-<p><code>CS0070  事件 &quot;Publisher.PublisherEvent&quot; 只能出现在 += 或 -= 的左边(从类型 &quot;Publisher&quot; 中使用时除外)</code></p>
-<p>从这里也就可以得出结论, 委托和事件的不同.</p>
-<h1 id="🍀委托和事件的异同"><a href="#🍀委托和事件的异同" class="headerlink" title="🍀委托和事件的异同"></a>🍀委托和事件的异同</h1><ol>
-<li><p>一个使用 public 修饰的委托实例, 在声明类的外部可以直接调用. 而事件即使修饰为 public, 也仅能在声明类内部调用, 外部调用时编译器会直接报错, 发现隐患.</p>
-</li>
-<li><p>委托可以使用 = 进行赋值, 但是事件不可以, 无论任何时候, 事件都仅能使用 += 和 -= 进行注册, 使用 = 时编译器会直接报错, 发现隐患.</p>
-</li>
-<li><p>除此以外, 委托和事件一致.</p>
-</li>
-</ol>
-<h1 id="🌈参考链接"><a href="#🌈参考链接" class="headerlink" title="🌈参考链接"></a>🌈参考链接</h1><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVub29iLmNvbS9kZXNpZ24tcGF0dGVybi9vYnNlcnZlci1wYXR0ZXJuLmh0bWw=">菜鸟教程 - 观察者模式<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9kZXNpZ24tcGF0dGVybnMucmVhZHRoZWRvY3MuaW8vemhfQ04vbGF0ZXN0L2JlaGF2aW9yYWxfcGF0dGVybnMvb2JzZXJ2ZXIuaHRtbA==">Graphic Design Patterns - 观察者模式<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20va2tsbGRvZy9hcmNoaXZlLzIwMTIvMDEvMTcvMjMyNDIyOC5odG1s">C# 委托与事件区别简单总结<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ul>
 ]]></content>
       <categories>
         <category>CSharp</category>
