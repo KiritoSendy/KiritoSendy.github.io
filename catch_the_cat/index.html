@@ -31,8 +31,8 @@
 <meta property="og:site_name" content="二次元游宅客">
 <meta property="og:description" content="Catch The Cat              * {             padding: 0;             margin: 0         }         body {             background-color: #eeeeee;         }         #catch-the-cat {">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-11-30T03:23:11.656Z">
-<meta property="article:modified_time" content="2020-11-30T03:23:11.656Z">
+<meta property="article:published_time" content="2020-11-30T04:15:27.366Z">
+<meta property="article:modified_time" content="2020-11-30T04:15:27.366Z">
 <meta property="article:author" content="Kuroha">
 <meta property="article:tag" content="Unity,游戏,二次元,Kuroha,宅男,极客">
 <meta name="twitter:card" content="summary">
@@ -387,15 +387,22 @@
     <script src="/js/catch_the_cat/catch-the-cat.js"></script>
     <div id="catch-the-cat"></div>
     <script>
-      window.game = new CatchTheCatGame({
-        w: 12,
-        h: 12,
-        r: 20,
-        backgroundColor: 0xffffff,
-        parent: 'catch-the-cat',
-        statusBarAlign: 'center',
-        credit: '喵~ 喵~ 喵~'
-      });
+        var screenWidth = document.body.clientWidth;
+        var circle = 20;
+        var canvasSize = 12;
+        if (screenWidth < 700) {
+            canvasSize = 9;
+            circle = 15;
+        }
+        window.game = new CatchTheCatGame({
+            w: canvasSize,
+            h: canvasSize,
+            r: circle,
+            backgroundColor: 0xffffff,
+            parent: 'catch-the-cat',
+            statusBarAlign: 'center',
+            credit: '喵~ 喵~ 喵~'
+        });
     </script>
 </body>
 </html>
