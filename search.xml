@@ -4570,6 +4570,14 @@
 <h2 id="自定义单行代码段样式"><a href="#自定义单行代码段样式" class="headerlink" title="自定义单行代码段样式"></a>自定义单行代码段样式</h2><p>打开 <code>source/_data/styles.styl</code> 文件, 添加对 <code>Code</code> 标签的自定义配置即可. 下面是我博客使用的配置.</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line">// 文章``代码块的自定义样式</span><br><span class="line"><span class="selector-tag">code</span> &#123;</span><br><span class="line">    margin: 0px 0px;             // 外边距</span><br><span class="line">    border: 2px solid #00000099; // 边框厚度, 边框样式, 边框颜色</span><br><span class="line">    border-radius: 0px;          // 边框圆润度</span><br><span class="line">    color: #d0104c;              // 代码颜色</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="添加捉小猫游戏"><a href="#添加捉小猫游戏" class="headerlink" title="添加捉小猫游戏"></a>添加捉小猫游戏</h2><ol>
+<li><p>下载捉小猫游戏源文件并解压, 之后将解压好的文件夹 <code>source</code> 和博客目录下的 <code>source</code> 文件夹合并. <span class="exturl" data-url="aHR0cHM6Ly9vZC5say9kL056TmZNamN6TmpZM01UaGYvY2F0Y2hfdGhlX2NhdC43eg==">Catch The Cat<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>在主题配置文件的 menu 处添加新菜单项: 捉小猫! 仅需两步, 大功告成!</p>
+</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="string">捉小猫:</span> <span class="string">/catch_the_cat/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-cat</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="鼠标单击之心形图案特效"><a href="#鼠标单击之心形图案特效" class="headerlink" title="鼠标单击之心形图案特效"></a>鼠标单击之心形图案特效</h2><p>在 <code>source/js</code> 下创建 <code>love.js</code> 文件, 内容具体见我的另一篇博客: <a href="https://kuroha.vip/hexo/next_theme_beautify.html">Hexo + NexT 主题美化 (NexT v7.2.0)</a> 这里不再赘述!</p>
 <p>之后在 <code>source/_data/body-end.njk</code> 中添加: </p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!--心形图案效果--&gt;</span><br><span class="line">&#123;% <span class="keyword">if</span> theme.love %&#125;</span><br><span class="line">  &lt;script type=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;/js/love.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
