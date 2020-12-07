@@ -410,6 +410,13 @@
   </url>
   
   <url>
+    <loc>https://kuroha.vip/tags/CSharp/</loc>
+    <lastmod>2020-12-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kuroha.vip/tags/Diary/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
@@ -445,6 +452,13 @@
   </url>
   
   <url>
+    <loc>https://kuroha.vip/tags/Oracle/</loc>
+    <lastmod>2020-12-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kuroha.vip/tags/JSON/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
@@ -453,20 +467,6 @@
   
   <url>
     <loc>https://kuroha.vip/tags/Program/</loc>
-    <lastmod>2020-12-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuroha.vip/tags/Oracle/</loc>
-    <lastmod>2020-12-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuroha.vip/tags/CSharp/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -494,14 +494,14 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/TileMap/</loc>
+    <loc>https://kuroha.vip/tags/UGUI/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/UGUI/</loc>
+    <loc>https://kuroha.vip/tags/TileMap/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -545,6 +545,13 @@
   </url>
   
   <url>
+    <loc>https://kuroha.vip/categories/CSharp/</loc>
+    <lastmod>2020-12-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kuroha.vip/categories/Diary/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
@@ -573,13 +580,6 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/Program/</loc>
-    <lastmod>2020-12-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kuroha.vip/categories/Oracle/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
@@ -587,7 +587,7 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/CSharp/</loc>
+    <loc>https://kuroha.vip/categories/Program/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
