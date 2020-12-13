@@ -64,7 +64,9 @@
     </script>
 
 
+<!--动漫菜单-->
 
+    <link rel="stylesheet" href="../js/galmenu/css/GalMenu.css">
 
   <title>归档 | 二次元游宅客</title>
   
@@ -679,21 +681,23 @@
 
 <!--Aplayer 吸底式音乐播放功能-->
 
-    <link rel="stylesheet" href="/js/aplayer/APlayer.min.css">
+    <link rel="stylesheet" href="../js/aplayer/APlayer.min.css">
     <div id="aplayer_fixed"></div>
-    <script type="text/javascript" src="/js/aplayer/APlayer.min.js"></script>
-    <script type="text/javascript" src="/js/fixedAplayer.js"></script>
+    <script type="text/javascript" src="../js/aplayer/APlayer.min.js"></script>
+    <script type="text/javascript" src="../js/fixedAplayer.js"></script>
 
 
 <!--崩溃欺骗-->
 
-    <script type="text/javascript" src="/js/crash_cheat.js"></script>
+    <script type="text/javascript" src="../js/crash_cheat.js"></script>
 
 
 <!--究极看板娘效果-->
 
-    <script type="text/javascript" src="/js/live2d_demo/jquery-ui.js"></script><!-- 实现拖动效果，需引入 JQuery UI -->
-    <script type="text/javascript" src="/js/live2d_demo/autoload.js"></script><!-- 使用 autoload.js 引入看板娘 -->
+    <!-- 实现拖动效果，需引入 JQuery UI -->
+    <script type="text/javascript" src="../js/live2d_demo/jquery-ui.js"></script>
+    <!-- 使用 autoload.js 引入看板娘 -->
+    <script type="text/javascript" src="../js/live2d_demo/autoload.js"></script>
 
 
 <!--鼠标红心效果-->
@@ -702,7 +706,42 @@
 <!--烟花爆炸特效-->
 
     <canvas class="fireworks" style="position:fixed;left:0;top:0;z-index:99999999;pointer-events:none;"></canvas>
-    <script type="text/javascript" src="/js/fireworks.js"></script>
+    <script type="text/javascript" src="../js/fireworks.js"></script>
+
+
+<!--动漫菜单-->
+
+    <div class="GalMenu GalDropDown">
+        <div class="circle" id="gal">
+            <div class="ring">
+                <a href="/" class="menuItem">首页</a>
+                <a href="javascript:history.go(1);" class="menuItem">前进</a>
+                <a href="javascript:$('html,body').animate({scrollTop:0},500);" class="menuItem">顶部</a>
+                <a href="javascript:location.reload();" class="menuItem">刷新</a>
+                <a href="/about/" class="menuItem">留言</a>
+                <a href="javascript:history.go(-1);" class="menuItem">后退</a>
+            </div>
+            
+                <audio id="audio" src="../js/galmenu/audio/sao-menu.wav"></audio>
+            
+        </div>
+    </div>
+    <script type="text/javascript">
+        var items = document.querySelectorAll('.menuItem');
+        for (var i = 0, l = items.length; i < l; i++) {
+            items[i].style.left = (50 - 35 * Math.cos(- 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+            items[i].style.top = (50 + 35 * Math.sin(- 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+        }
+    </script>
+    <script>
+        window.jQuery || document.write('<script src="../js/galmenu/js/jquery.min.js"><\/script>')
+    </script>
+    <script src="../js/galmenu/js/GalMenu.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').GalMenu({'menu': 'GalDropDown'})
+        });
+    </script>
 
 </body>
 </html>
