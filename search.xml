@@ -80,76 +80,6 @@
       </tags>
   </entry>
   <entry>
-    <title>游戏开发笔试面试经历之字节跳动</title>
-    <url>/apply/game_apply_bytedance.html</url>
-    <content><![CDATA[<p>最近找工作, 那叫一个惨, 哈哈, 记录一下自己面试字节跳动时技术岗提问的问题吧! </p>
-<a id="more"></a> 
-
-<h2 id="字节跳动-2019-09-19-游戏客户端开发实习生-面试"><a href="#字节跳动-2019-09-19-游戏客户端开发实习生-面试" class="headerlink" title="字节跳动 2019.09.19 游戏客户端开发实习生 面试"></a>字节跳动 2019.09.19 游戏客户端开发实习生 面试</h2><p>面试方式: 使用 牛客网 在线面试, 但是由于自己的笔记本电脑不给力, 音频调试过了, 但是视频调试怎么也过不了, 于是换用了 Zoom 视频通话. 面试官是技术员, 怎么说呢～ 真 <strong>·</strong> 一拳超人! 一根都不剩! </p>
-<h3 id="1-自我介绍"><a href="#1-自我介绍" class="headerlink" title="1, 自我介绍"></a>1, 自我介绍</h3><p>说了自己的个人信息: 姓名, 年龄, 学校, 专业等. 之后说了些和自己的性格爱好相关的事, 再往后说了自己主要学习的课程, 最后说自己在校的一些经历. 不过可能是面试官不太想听我在学校的经历, 反正我就说了一点点, 面试官就直接问我了. (就是说我的自我介绍直接被打断了...)</p>
-<h4 id="教训"><a href="#教训" class="headerlink" title="教训"></a>教训</h4><blockquote>
-<p>说自我介绍的时候, 一定要只说自己已经充分准备了的东西.</p>
-</blockquote>
-<blockquote>
-<p>我就实在了, 因为学过C语言, 我就直接说了在校学过C语言, 但是我已经好几年没用过C语言了, 于是接下来的事可想而知, 太尴尬了...</p>
-</blockquote>
-<h3 id="2-专业知识"><a href="#2-专业知识" class="headerlink" title="2, 专业知识"></a>2, 专业知识</h3><ol>
-<li>C语言常量指针和指针常量的区别, 并写出一个常量指针和指针常量. </li>
-</ol>
-<blockquote>
-<p>马后炮解答: </p>
-<p>指针常量: 指针所指向的位置不能改变（p 不能改变）, 即指针本身是一个常量, 但是指针所指向的内容可以改变（*P 可以改变）. </p>
-<p>声明: int * const p = &a; (const 修饰的是 p)</p>
-<p>指针常量必须在声明的同时对其初始化, 不允许先声明一个指针常量随后再对其赋值, 这和声明一般的常量是一样的. </p>
-<p>常量指针: 具有只能够读取内存中数据（*P 不可以改变）, 却不能够修改内存中数据的属性的指针（P 可以改变）, 全称为: 指向常量的指针, 简称常量指针. </p>
-<p>声明: const int * p; int const * p; (const 修饰的是 *P)</p>
-<p>可以将一个常量的地址赋值给一个对应类型的常量指针, 因为常量指针不能够通过指针修改内部数据. 只能防止通过指针引用修改内存中的数据, 并不保护指针所指向的对象. </p>
-</blockquote>
-<ol start="2">
-<li>C语言程序运行时的内存分配情况. </li>
-</ol>
-<blockquote>
-<p>马后炮解答: </p>
-<p>对于一个由C语言编写的程序而言, 内存主要可以分为以下5个部分组成: 栈, 堆, BSS段, 数据段, 代码段. 栈和堆在程序运行中由系统分配空间, BSS段, 数据段, 代码段在程序编译期间由编译器分配空间. </p>
-<p>(运行时)栈: 栈是一种由高地址向低地址扩展的数据结构, 是一块连续的内存区域, 通常存放程序临时创建的局部变量, 其中还包括函数调用时所用到的形参, 调用后的返回值等. </p>
-<p>(运行时)堆: 堆是一种由低地址向高地址扩展的数据结构, 是一块不连续的内存区域. 通常存放程序运行中动态分配的存储空间. </p>
-<p>(编译时)BSS段: Block Started by Symbol 的简称, 通常是指用来存放程序中未初始化的全局变量和静态变量. </p>
-<p>(编译时)数据段: 数据段通常是指用来存放程序中已初始化的全局变量和静态变量以及字符串常量. </p>
-<p>(编译时)代码段: 通常是指用来存放程序执行代码的一块内存区域. 这部分区域的大小在程序运行前就已经确定. </p>
-</blockquote>
-<p>数据结构中, 怎么判断链表里面有环? </p>
-<blockquote>
-<p>马后炮解答: </p>
-<p><strong>如何判断一个链表中是否有环</strong>: 使用追赶法, 设定两个指针 slow, fast, 从头指针开始, 每次分别前进1步, 2步. 如存在环, 则两者必定相遇, 如不存在环, fast 遇到 NULL 退出. </p>
-<p><strong>如何知道环的长度</strong>: 依旧先使用追赶法(双指针法), 求出 slow, fast 两指针的碰撞点 P (相遇点), 之后 slow, fast 指针再次从碰撞点 P 出发, 直到两者再次碰撞, 期间 slow 经过的结点数量就是环的长度. <strong>碰撞点不一定是环的连接结点</strong></p>
-<p><strong>如何找出环的连接结点</strong>: 设置每次都只前进 1 步的两个指针, 分别从头结点和碰撞点出发, 他们所相遇的结点就是连接点. </p>
-<p><strong>如何求出头结点到连接点的长度</strong>: 求连接点的时候, 从头结点出发的指针直到和另外一个指针相遇, 中间经过的结点的数量就是头结点到连接点的长度. </p>
-<p><strong>带环链表的长度是多少</strong>: 头结点到连接点的长度 + 环的长度. </p>
-</blockquote>
-<p>数据结构中, 怎么取得链表的中间元素? </p>
-<blockquote>
-<p>马后炮解答: </p>
-<p>一般方法: 首先循环遍历链表获得链表长度 L, 然后再次循环遍历链表查找 L/2 处的中间节点. 在这种情况下, 其时间复杂度由两次循环决定: <code>O（L+L/2）=O(3L/2)</code>. </p>
-<p>优化方法: (双指针法)设置两个指针 <code>*search</code>, <code>*mid</code>, 初始时, 都指向头结点. 其中 <code>*search</code> 的移动速度为 <code>*mid</code> 的两倍（search 为 2, mid 为 1）. 相同时间内,  <code>*search</code> 经过的结点应该是 <code>*mid</code> 结点个数的 2 倍, 也就说, 当 <code>*search</code> 结点到达链表终点时, <code>*mid</code> 在链表中间结点处. </p>
-</blockquote>
-<p>什么是闭包?</p>
-<blockquote>
-<p> 闭包技术其实就是虽然使用的变量已经脱离其作用域了, 但是由于它和作用域存在上下文关系, 从而可以在当前环境中继续使用其上下文环境中所定义的一种函数对象. </p>
-</blockquote>
-<p>拆装箱是什么?</p>
-<blockquote>
-<p>C# 中, 将 对象类型 Object 赋值 给 值类型 int float double, 叫做拆箱. </p>
-<p>C# 中, 将 值类型 int float double 赋值 给 对象类型 Object, 叫做装箱. </p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Apply</category>
-      </categories>
-      <tags>
-        <tag>面试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>游戏开发笔试面试经历之多益网络</title>
     <url>/apply/game_apply_duoyi.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -475,6 +405,76 @@
 <p>1 + 0 + 0 = 1</p>
 </blockquote>
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line">namespace _02_判断一个数字是不是梦想数</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">string</span> numberStr;</span><br><span class="line">            <span class="keyword">int</span> number;</span><br><span class="line">            <span class="keyword">int</span> temp, result = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//读取一个数字字符串</span></span><br><span class="line">                numberStr = Console.ReadLine();</span><br><span class="line"></span><br><span class="line">                <span class="comment">//字符串转换为数字</span></span><br><span class="line">                number = Convert.ToInt32(numberStr);</span><br><span class="line">                <span class="keyword">if</span>(number == <span class="number">1</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//取出每一位数字并进行平方和运算</span></span><br><span class="line">                <span class="keyword">while</span> (<span class="literal">true</span>)<span class="comment">//只要结果不是个位数, 就一直无限循环, 进行平方和运算</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">while</span> (number &gt;  <span class="number">0</span>)<span class="comment">//进行一个平方和运算</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        temp = number % <span class="number">10</span>;<span class="comment">//对 10 取余, 取出当前的个位数</span></span><br><span class="line">                        number /= <span class="number">10</span>;<span class="comment">//除以 10, 舍弃个位数</span></span><br><span class="line"></span><br><span class="line">                        result += temp * temp;<span class="comment">//平方求和</span></span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> (result / <span class="number">10</span> != <span class="number">0</span>)<span class="comment">//只要结果还不是个位数, 就准备进行下次平方和计算</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        number = result;<span class="comment">//重点</span></span><br><span class="line">                        result = <span class="number">0</span>;<span class="comment">//重点</span></span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span><span class="comment">//如果结果是个位数了</span></span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="comment">//判断是不是 1</span></span><br><span class="line">                        <span class="keyword">if</span> (result == <span class="number">1</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            Console.WriteLine(<span class="string">&quot;是梦想数&quot;</span>);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">else</span> <span class="keyword">if</span> (result / <span class="number">10</span> == <span class="number">0</span>)</span><br><span class="line">                        &#123;</span><br><span class="line">                            Console.WriteLine(<span class="string">&quot;不是梦想数&quot;</span>);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                result = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            Console.WriteLine(<span class="string">&quot;按任意键结束&quot;</span>);</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Apply</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>游戏开发笔试面试经历之字节跳动</title>
+    <url>/apply/game_apply_bytedance.html</url>
+    <content><![CDATA[<p>最近找工作, 那叫一个惨, 哈哈, 记录一下自己面试字节跳动时技术岗提问的问题吧! </p>
+<a id="more"></a> 
+
+<h2 id="字节跳动-2019-09-19-游戏客户端开发实习生-面试"><a href="#字节跳动-2019-09-19-游戏客户端开发实习生-面试" class="headerlink" title="字节跳动 2019.09.19 游戏客户端开发实习生 面试"></a>字节跳动 2019.09.19 游戏客户端开发实习生 面试</h2><p>面试方式: 使用 牛客网 在线面试, 但是由于自己的笔记本电脑不给力, 音频调试过了, 但是视频调试怎么也过不了, 于是换用了 Zoom 视频通话. 面试官是技术员, 怎么说呢～ 真 <strong>·</strong> 一拳超人! 一根都不剩! </p>
+<h3 id="1-自我介绍"><a href="#1-自我介绍" class="headerlink" title="1, 自我介绍"></a>1, 自我介绍</h3><p>说了自己的个人信息: 姓名, 年龄, 学校, 专业等. 之后说了些和自己的性格爱好相关的事, 再往后说了自己主要学习的课程, 最后说自己在校的一些经历. 不过可能是面试官不太想听我在学校的经历, 反正我就说了一点点, 面试官就直接问我了. (就是说我的自我介绍直接被打断了...)</p>
+<h4 id="教训"><a href="#教训" class="headerlink" title="教训"></a>教训</h4><blockquote>
+<p>说自我介绍的时候, 一定要只说自己已经充分准备了的东西.</p>
+</blockquote>
+<blockquote>
+<p>我就实在了, 因为学过C语言, 我就直接说了在校学过C语言, 但是我已经好几年没用过C语言了, 于是接下来的事可想而知, 太尴尬了...</p>
+</blockquote>
+<h3 id="2-专业知识"><a href="#2-专业知识" class="headerlink" title="2, 专业知识"></a>2, 专业知识</h3><ol>
+<li>C语言常量指针和指针常量的区别, 并写出一个常量指针和指针常量. </li>
+</ol>
+<blockquote>
+<p>马后炮解答: </p>
+<p>指针常量: 指针所指向的位置不能改变（p 不能改变）, 即指针本身是一个常量, 但是指针所指向的内容可以改变（*P 可以改变）. </p>
+<p>声明: int * const p = &a; (const 修饰的是 p)</p>
+<p>指针常量必须在声明的同时对其初始化, 不允许先声明一个指针常量随后再对其赋值, 这和声明一般的常量是一样的. </p>
+<p>常量指针: 具有只能够读取内存中数据（*P 不可以改变）, 却不能够修改内存中数据的属性的指针（P 可以改变）, 全称为: 指向常量的指针, 简称常量指针. </p>
+<p>声明: const int * p; int const * p; (const 修饰的是 *P)</p>
+<p>可以将一个常量的地址赋值给一个对应类型的常量指针, 因为常量指针不能够通过指针修改内部数据. 只能防止通过指针引用修改内存中的数据, 并不保护指针所指向的对象. </p>
+</blockquote>
+<ol start="2">
+<li>C语言程序运行时的内存分配情况. </li>
+</ol>
+<blockquote>
+<p>马后炮解答: </p>
+<p>对于一个由C语言编写的程序而言, 内存主要可以分为以下5个部分组成: 栈, 堆, BSS段, 数据段, 代码段. 栈和堆在程序运行中由系统分配空间, BSS段, 数据段, 代码段在程序编译期间由编译器分配空间. </p>
+<p>(运行时)栈: 栈是一种由高地址向低地址扩展的数据结构, 是一块连续的内存区域, 通常存放程序临时创建的局部变量, 其中还包括函数调用时所用到的形参, 调用后的返回值等. </p>
+<p>(运行时)堆: 堆是一种由低地址向高地址扩展的数据结构, 是一块不连续的内存区域. 通常存放程序运行中动态分配的存储空间. </p>
+<p>(编译时)BSS段: Block Started by Symbol 的简称, 通常是指用来存放程序中未初始化的全局变量和静态变量. </p>
+<p>(编译时)数据段: 数据段通常是指用来存放程序中已初始化的全局变量和静态变量以及字符串常量. </p>
+<p>(编译时)代码段: 通常是指用来存放程序执行代码的一块内存区域. 这部分区域的大小在程序运行前就已经确定. </p>
+</blockquote>
+<p>数据结构中, 怎么判断链表里面有环? </p>
+<blockquote>
+<p>马后炮解答: </p>
+<p><strong>如何判断一个链表中是否有环</strong>: 使用追赶法, 设定两个指针 slow, fast, 从头指针开始, 每次分别前进1步, 2步. 如存在环, 则两者必定相遇, 如不存在环, fast 遇到 NULL 退出. </p>
+<p><strong>如何知道环的长度</strong>: 依旧先使用追赶法(双指针法), 求出 slow, fast 两指针的碰撞点 P (相遇点), 之后 slow, fast 指针再次从碰撞点 P 出发, 直到两者再次碰撞, 期间 slow 经过的结点数量就是环的长度. <strong>碰撞点不一定是环的连接结点</strong></p>
+<p><strong>如何找出环的连接结点</strong>: 设置每次都只前进 1 步的两个指针, 分别从头结点和碰撞点出发, 他们所相遇的结点就是连接点. </p>
+<p><strong>如何求出头结点到连接点的长度</strong>: 求连接点的时候, 从头结点出发的指针直到和另外一个指针相遇, 中间经过的结点的数量就是头结点到连接点的长度. </p>
+<p><strong>带环链表的长度是多少</strong>: 头结点到连接点的长度 + 环的长度. </p>
+</blockquote>
+<p>数据结构中, 怎么取得链表的中间元素? </p>
+<blockquote>
+<p>马后炮解答: </p>
+<p>一般方法: 首先循环遍历链表获得链表长度 L, 然后再次循环遍历链表查找 L/2 处的中间节点. 在这种情况下, 其时间复杂度由两次循环决定: <code>O（L+L/2）=O(3L/2)</code>. </p>
+<p>优化方法: (双指针法)设置两个指针 <code>*search</code>, <code>*mid</code>, 初始时, 都指向头结点. 其中 <code>*search</code> 的移动速度为 <code>*mid</code> 的两倍（search 为 2, mid 为 1）. 相同时间内,  <code>*search</code> 经过的结点应该是 <code>*mid</code> 结点个数的 2 倍, 也就说, 当 <code>*search</code> 结点到达链表终点时, <code>*mid</code> 在链表中间结点处. </p>
+</blockquote>
+<p>什么是闭包?</p>
+<blockquote>
+<p> 闭包技术其实就是虽然使用的变量已经脱离其作用域了, 但是由于它和作用域存在上下文关系, 从而可以在当前环境中继续使用其上下文环境中所定义的一种函数对象. </p>
+</blockquote>
+<p>拆装箱是什么?</p>
+<blockquote>
+<p>C# 中, 将 对象类型 Object 赋值 给 值类型 int float double, 叫做拆箱. </p>
+<p>C# 中, 将 值类型 int float double 赋值 给 对象类型 Object, 叫做装箱. </p>
+</blockquote>
+]]></content>
       <categories>
         <category>Apply</category>
       </categories>
@@ -3093,6 +3093,101 @@
       </tags>
   </entry>
   <entry>
+    <title>Oracle 全拼和首字母查询</title>
+    <url>/oracle/oracle_trigger.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h1><p>首先在 Oracle 数据库中建立 &quot;汉字转全拼&quot; 和 &quot;汉字转首字母&quot; 的方法, 网上的方法基本全部不可信, 支持的汉字很少, 我使用的是从 &quot;ItPub&quot; 论坛上下载的, 目前没有发现不支持的汉字.</p>
+<p><img data-src="/images/oracle_trigger/oracle_pinyin.png" alt="itpub"></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9vZC5say9kL056TmZNalUxT1RZeU1UZGYvb3JhY2xlX2NvZGUuN3o=">下载地址<i class="fa fa-external-link-alt"></i></span> 解压密码是: <code>https://kuroha.vip/</code></p>
+<p>解压之后, 直接执行里面的 sql 文件, 会建立一个 <code>package</code> 和一个 <code>package body</code>, 之后就可以使用 <code>hzpy.gethzfullpy()</code> 和 <code>hzpy.hzpycap()</code> 方法获取汉字的拼音和首字母了.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
+
+<h1 id="新思路"><a href="#新思路" class="headerlink" title="新思路"></a>新思路</h1><p>之前的思路是对人员表中的所有人员姓名进行转换, 将转换后的结果和用户的实时输入做 like 对比, 但是项目中的人员数动辄就近万条, 再加上用户如果使用全拼方式查询, 那速度真是~ 就像电脑要死机一样. 于是后来转换思路, 在人员表中加入两列, 一列用来保存姓名所对应的首字母形式, 另一列用来保存姓名所对应的全拼形式.</p>
+<p>使用 <code>update</code> 语句更新已存在人员的全拼和首字母信息, 新增人员使用触发器进行自动更新. 下面是触发器使用时的一些要点.</p>
+<h1 id="SQL-语句分类"><a href="#SQL-语句分类" class="headerlink" title="SQL 语句分类"></a>SQL 语句分类</h1><ul>
+<li><p><strong>DDL</strong>: 全称 Data Definition Languages, 译为 &quot;数据定义语言&quot;, 定义了不同的数据段, 数据库, 表, 列, 索引等数据库对象, 简单来说就是对数据库内部的对象进行创建, 删除和修改的操作语言, 常用的语句关键字主要包括 <code>create</code>, <code>drop</code>, <code>alter</code>.</p>
+</li>
+<li><p><strong>DML</strong>: 全称 Data Manipulation Language, 译为 &quot;数据操作语言&quot;, 用于添加, 删除, 更新和查询数据库记录, 并检查数据完整性, 简单来说就是对表内部数据的增删改查操作, 不涉及到表定义, 表结构的修改, 更不会涉及到其他对象, 常用的语句关键字主要包括 <code>insert</code>, <code>delete</code>, <code>udpate</code>, <code>select</code>.</p>
+</li>
+<li><p><strong>DCL</strong>: 全称 Data Control Language, 译为 &quot;数据控制语言&quot;, 用于控制不同数据段的访问许可和访问级别的语句, 这些语句定义了数据库, 表, 字段, 用户的访问权限和安全级别. 主要的语句关键字包括 <code>grant</code>, <code>revoke</code>.</p>
+</li>
+</ul>
+<h1 id="DML-触发器"><a href="#DML-触发器" class="headerlink" title="DML 触发器"></a>DML 触发器</h1><ol>
+<li><p>触发器不能接收参数.</p>
+</li>
+<li><p>触发器的执行顺序:</p>
+</li>
+</ol>
+<ul>
+<li><ul>
+<li>执行 before 语句级触发器</li>
+</ul>
+</li>
+<li><ul>
+<li>执行 before 行级触发器</li>
+</ul>
+</li>
+<li><ul>
+<li>执行 DML 语句</li>
+</ul>
+</li>
+<li><ul>
+<li>执行 after 行级触发器 </li>
+</ul>
+</li>
+<li><ul>
+<li>执行 after 语句级触发器</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><p>语句级触发器中, 不得使用 <code>:new</code> 和 <code>:old</code>, 行级触发器中, <code>:old</code> 为 &quot;操作前&quot; 的整行记录, <code>:new</code> 为 &quot;操作后&quot; 的整行记录.</p>
+<table>
+<thead>
+<tr>
+<th align="left">---</th>
+<th align="left">insert</th>
+<th align="left">update</th>
+<th align="left">delete</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">old</td>
+<td align="left">不允许使用</td>
+<td align="left">更新前记录</td>
+<td align="left">删除前记录</td>
+</tr>
+<tr>
+<td align="left">new</td>
+<td align="left">插入后记录</td>
+<td align="left">更新后记录</td>
+<td align="left">不允许使用</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><font color='red'><strong>只有 before 行级触发器可以修改 :new 记录的值.</strong></font></p>
+</li>
+<li><p><font color='red'><strong>在行级触发器中, 不得将 <code>insert</code>, <code>update</code>, <code>delete</code> 语句作用于 &quot;自身触发表&quot;!</strong></font></p>
+</li>
+</ol>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--在插入新纪录之前, 修改这条待插入记录的 szm 字段和 qp 字段.</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">trigger</span> trigger_ryb_pinyin</span><br><span class="line"><span class="keyword">before</span> <span class="keyword">insert</span> <span class="keyword">on</span> ryb</span><br><span class="line"><span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">:new.szm := <span class="keyword">lower</span>(hzpy.hzpycap(:new.xm));</span><br><span class="line">:new.qp := lower(hzpy.gethzfullpy(:new.xm));</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vSERLMjAxNi9wLzY5MTEwODcuaHRtbA==">详解ORACLE中的trigger<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cDovL2Jsb2cuaXRwdWIubmV0LzIyNTI1Njc2L3ZpZXdzcGFjZS0xMTE3MDYwLw==">关于oracle触发器中修改自身表字段的问题<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Oracle</category>
+      </categories>
+      <tags>
+        <tag>Oracle</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>常见的网络相关名词的含义 (一)</title>
     <url>/network/network_concept_mean_1.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -3255,101 +3350,6 @@
       </categories>
       <tags>
         <tag>Internet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Oracle 全拼和首字母查询</title>
-    <url>/oracle/oracle_trigger.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h1><p>首先在 Oracle 数据库中建立 &quot;汉字转全拼&quot; 和 &quot;汉字转首字母&quot; 的方法, 网上的方法基本全部不可信, 支持的汉字很少, 我使用的是从 &quot;ItPub&quot; 论坛上下载的, 目前没有发现不支持的汉字.</p>
-<p><img data-src="/images/oracle_trigger/oracle_pinyin.png" alt="itpub"></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9vZC5say9kL056TmZNalUxT1RZeU1UZGYvb3JhY2xlX2NvZGUuN3o=">下载地址<i class="fa fa-external-link-alt"></i></span> 解压密码是: <code>https://kuroha.vip/</code></p>
-<p>解压之后, 直接执行里面的 sql 文件, 会建立一个 <code>package</code> 和一个 <code>package body</code>, 之后就可以使用 <code>hzpy.gethzfullpy()</code> 和 <code>hzpy.hzpycap()</code> 方法获取汉字的拼音和首字母了.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
-
-<h1 id="新思路"><a href="#新思路" class="headerlink" title="新思路"></a>新思路</h1><p>之前的思路是对人员表中的所有人员姓名进行转换, 将转换后的结果和用户的实时输入做 like 对比, 但是项目中的人员数动辄就近万条, 再加上用户如果使用全拼方式查询, 那速度真是~ 就像电脑要死机一样. 于是后来转换思路, 在人员表中加入两列, 一列用来保存姓名所对应的首字母形式, 另一列用来保存姓名所对应的全拼形式.</p>
-<p>使用 <code>update</code> 语句更新已存在人员的全拼和首字母信息, 新增人员使用触发器进行自动更新. 下面是触发器使用时的一些要点.</p>
-<h1 id="SQL-语句分类"><a href="#SQL-语句分类" class="headerlink" title="SQL 语句分类"></a>SQL 语句分类</h1><ul>
-<li><p><strong>DDL</strong>: 全称 Data Definition Languages, 译为 &quot;数据定义语言&quot;, 定义了不同的数据段, 数据库, 表, 列, 索引等数据库对象, 简单来说就是对数据库内部的对象进行创建, 删除和修改的操作语言, 常用的语句关键字主要包括 <code>create</code>, <code>drop</code>, <code>alter</code>.</p>
-</li>
-<li><p><strong>DML</strong>: 全称 Data Manipulation Language, 译为 &quot;数据操作语言&quot;, 用于添加, 删除, 更新和查询数据库记录, 并检查数据完整性, 简单来说就是对表内部数据的增删改查操作, 不涉及到表定义, 表结构的修改, 更不会涉及到其他对象, 常用的语句关键字主要包括 <code>insert</code>, <code>delete</code>, <code>udpate</code>, <code>select</code>.</p>
-</li>
-<li><p><strong>DCL</strong>: 全称 Data Control Language, 译为 &quot;数据控制语言&quot;, 用于控制不同数据段的访问许可和访问级别的语句, 这些语句定义了数据库, 表, 字段, 用户的访问权限和安全级别. 主要的语句关键字包括 <code>grant</code>, <code>revoke</code>.</p>
-</li>
-</ul>
-<h1 id="DML-触发器"><a href="#DML-触发器" class="headerlink" title="DML 触发器"></a>DML 触发器</h1><ol>
-<li><p>触发器不能接收参数.</p>
-</li>
-<li><p>触发器的执行顺序:</p>
-</li>
-</ol>
-<ul>
-<li><ul>
-<li>执行 before 语句级触发器</li>
-</ul>
-</li>
-<li><ul>
-<li>执行 before 行级触发器</li>
-</ul>
-</li>
-<li><ul>
-<li>执行 DML 语句</li>
-</ul>
-</li>
-<li><ul>
-<li>执行 after 行级触发器 </li>
-</ul>
-</li>
-<li><ul>
-<li>执行 after 语句级触发器</li>
-</ul>
-</li>
-</ul>
-<ol start="3">
-<li><p>语句级触发器中, 不得使用 <code>:new</code> 和 <code>:old</code>, 行级触发器中, <code>:old</code> 为 &quot;操作前&quot; 的整行记录, <code>:new</code> 为 &quot;操作后&quot; 的整行记录.</p>
-<table>
-<thead>
-<tr>
-<th align="left">---</th>
-<th align="left">insert</th>
-<th align="left">update</th>
-<th align="left">delete</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">old</td>
-<td align="left">不允许使用</td>
-<td align="left">更新前记录</td>
-<td align="left">删除前记录</td>
-</tr>
-<tr>
-<td align="left">new</td>
-<td align="left">插入后记录</td>
-<td align="left">更新后记录</td>
-<td align="left">不允许使用</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><font color='red'><strong>只有 before 行级触发器可以修改 :new 记录的值.</strong></font></p>
-</li>
-<li><p><font color='red'><strong>在行级触发器中, 不得将 <code>insert</code>, <code>update</code>, <code>delete</code> 语句作用于 &quot;自身触发表&quot;!</strong></font></p>
-</li>
-</ol>
-<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--在插入新纪录之前, 修改这条待插入记录的 szm 字段和 qp 字段.</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">trigger</span> trigger_ryb_pinyin</span><br><span class="line"><span class="keyword">before</span> <span class="keyword">insert</span> <span class="keyword">on</span> ryb</span><br><span class="line"><span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">:new.szm := <span class="keyword">lower</span>(hzpy.hzpycap(:new.xm));</span><br><span class="line">:new.qp := lower(hzpy.gethzfullpy(:new.xm));</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
-
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vSERLMjAxNi9wLzY5MTEwODcuaHRtbA==">详解ORACLE中的trigger<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cDovL2Jsb2cuaXRwdWIubmV0LzIyNTI1Njc2L3ZpZXdzcGFjZS0xMTE3MDYwLw==">关于oracle触发器中修改自身表字段的问题<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Oracle</category>
-      </categories>
-      <tags>
-        <tag>Oracle</tag>
       </tags>
   </entry>
   <entry>
@@ -3918,6 +3918,64 @@
       </tags>
   </entry>
   <entry>
+    <title>如何让 Unity 走代理?</title>
+    <url>/unity/unity_proxy.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>最近在学习制作 Unity 游戏, 到了最后需要发布 Android 版本游戏程序的时候, 发现根本导不出来!!! </p>
+<p>每次都会卡在 Gradle 的构建上... 看了日志之后知道了原来是从仓库下载包的时候下载失败了...那我就更郁闷了, 我 24 小时全天开着梯子, 你跟我说现在还有我下载不下来的东西? 后来在这篇文章中找到了答案! <span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
+<p>原来 Unity 压根不吃梯子啊~ ~ !</p>
+<h1 id="解决方法一"><a href="#解决方法一" class="headerlink" title="解决方法一"></a>解决方法一</h1><p><strong><code>使用阿里的镜像源替代 Google 源</code></strong></p>
+<ol>
+<li><p>找到 Unity 的安装目录.</p>
+</li>
+<li><p>使用 VSCode 打开路径: <code>Editor\Data\PlaybackEngines\AndroidPlayer\Tools\GradleTemplates</code>.</p>
+</li>
+<li><p>对路径中的文件逐一修改, 将其中所有的</p>
+</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">google()</span><br><span class="line">jcenter()</span><br></pre></td></tr></table></figure>
+
+<p>修改为:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/google&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/jcenter&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><font color='red'><strong>重启 Unity 项目</strong></font>, 重新发布即可!</li>
+</ol>
+<p>[<strong>注</strong>]</p>
+<ol>
+<li><p>文件中要替换的 <code>google() jcenter()</code> 不止一处, 必须全部替换!</p>
+</li>
+<li><p>Unity 每次打开项目的时候, 都会从模板中复制文件, 在项目中建立缓存, 其中就包含我们刚刚修改的文件. 如果不重启项目, 那么项目中的缓存文件依旧使用的是修改前的文件, 此时发布依旧会失败, 所以必须重启 Unity 项目, 让 Unity 使用我们修改后的模板重新建立缓存!</p>
+</li>
+</ol>
+<h1 id="解决方法二"><a href="#解决方法二" class="headerlink" title="解决方法二"></a>解决方法二</h1><p><strong><code>为 Unity Hub 和 Unity 设置代理</code></strong></p>
+<p>Unity Hub 和 Unity 在连接网络时并不会读取浏览器配置, 因此梯子时无效的! 但是 Unity Hub 和 Unity 会读取环境变量中 <code>HTTP_PROXY</code> 和 <code>HTTPS_PROXY</code> 的值判断是否使用代理.</p>
+<p>因此只要配置好这两个环境变量就好了, 下面是引用的这篇博客 (<span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span>) 中的一段:</p>
+<blockquote>
+<p>Windows 下, 写一个 bat 脚本, 内容如下:</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;@<span class="built_in">echo</span> off</span><br><span class="line">&gt;<span class="built_in">set</span> HTTP_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">set</span> HTTPS_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">start</span> &quot;&quot; &quot;C:\Program Files\Unity Hub\Unity Hub.exe&quot;</span><br></pre></td></tr></table></figure>
+
+<p>注意, HTTPS_PROXY 的设置也是 &quot;<span class="exturl" data-url="aHR0cDovL3h4eHgmcXVvdDsv">http://xxxx&quot;<i class="fa fa-external-link-alt"></i></span>, 而不是 &quot;<span class="exturl" data-url="aHR0cHM6Ly94eHh4JnF1b3Q7Lw==">https://xxxx&quot;<i class="fa fa-external-link-alt"></i></span></p>
+<p>mac 下, 脚本如下:</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;<span class="built_in">echo</span> &#x27;#!/bin/bash</span><br><span class="line">&gt;export HTTP_PROXY=proxy-url</span><br><span class="line">&gt;export HTTPS_PROXY=proxy-url</span><br><span class="line">&gt;nohup &quot;/Applications/Unity Hub.app/Contents/MacOS/Unity Hub&quot; &amp;&gt;/dev/null &amp;&#x27; &gt; launchUnityHub.command</span><br><span class="line">&gt;chmod +x launchUnityHub.command</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>我用的方法是第一种方法, 确实可行! 第二种没用, 因为我不喜欢动环境变量! 😂</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYW5nZV9mcm9tX25vdy9hcnRpY2xlL2RldGFpbHMvMTAwNTE5NTQ2">Unity使用Gradle打包出错问题<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Unity 在脚本中修改 UGUI 中 UI 的位置和尺寸</title>
     <url>/unity/unity_rect_transform.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -4037,64 +4095,6 @@
       <tags>
         <tag>Unity</tag>
         <tag>UGUI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何让 Unity 走代理?</title>
-    <url>/unity/unity_proxy.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>最近在学习制作 Unity 游戏, 到了最后需要发布 Android 版本游戏程序的时候, 发现根本导不出来!!! </p>
-<p>每次都会卡在 Gradle 的构建上... 看了日志之后知道了原来是从仓库下载包的时候下载失败了...那我就更郁闷了, 我 24 小时全天开着梯子, 你跟我说现在还有我下载不下来的东西? 后来在这篇文章中找到了答案! <span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
-<p>原来 Unity 压根不吃梯子啊~ ~ !</p>
-<h1 id="解决方法一"><a href="#解决方法一" class="headerlink" title="解决方法一"></a>解决方法一</h1><p><strong><code>使用阿里的镜像源替代 Google 源</code></strong></p>
-<ol>
-<li><p>找到 Unity 的安装目录.</p>
-</li>
-<li><p>使用 VSCode 打开路径: <code>Editor\Data\PlaybackEngines\AndroidPlayer\Tools\GradleTemplates</code>.</p>
-</li>
-<li><p>对路径中的文件逐一修改, 将其中所有的</p>
-</li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">google()</span><br><span class="line">jcenter()</span><br></pre></td></tr></table></figure>
-
-<p>修改为:</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/google&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/jcenter&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><font color='red'><strong>重启 Unity 项目</strong></font>, 重新发布即可!</li>
-</ol>
-<p>[<strong>注</strong>]</p>
-<ol>
-<li><p>文件中要替换的 <code>google() jcenter()</code> 不止一处, 必须全部替换!</p>
-</li>
-<li><p>Unity 每次打开项目的时候, 都会从模板中复制文件, 在项目中建立缓存, 其中就包含我们刚刚修改的文件. 如果不重启项目, 那么项目中的缓存文件依旧使用的是修改前的文件, 此时发布依旧会失败, 所以必须重启 Unity 项目, 让 Unity 使用我们修改后的模板重新建立缓存!</p>
-</li>
-</ol>
-<h1 id="解决方法二"><a href="#解决方法二" class="headerlink" title="解决方法二"></a>解决方法二</h1><p><strong><code>为 Unity Hub 和 Unity 设置代理</code></strong></p>
-<p>Unity Hub 和 Unity 在连接网络时并不会读取浏览器配置, 因此梯子时无效的! 但是 Unity Hub 和 Unity 会读取环境变量中 <code>HTTP_PROXY</code> 和 <code>HTTPS_PROXY</code> 的值判断是否使用代理.</p>
-<p>因此只要配置好这两个环境变量就好了, 下面是引用的这篇博客 (<span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span>) 中的一段:</p>
-<blockquote>
-<p>Windows 下, 写一个 bat 脚本, 内容如下:</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;@<span class="built_in">echo</span> off</span><br><span class="line">&gt;<span class="built_in">set</span> HTTP_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">set</span> HTTPS_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">start</span> &quot;&quot; &quot;C:\Program Files\Unity Hub\Unity Hub.exe&quot;</span><br></pre></td></tr></table></figure>
-
-<p>注意, HTTPS_PROXY 的设置也是 &quot;<span class="exturl" data-url="aHR0cDovL3h4eHgmcXVvdDsv">http://xxxx&quot;<i class="fa fa-external-link-alt"></i></span>, 而不是 &quot;<span class="exturl" data-url="aHR0cHM6Ly94eHh4JnF1b3Q7Lw==">https://xxxx&quot;<i class="fa fa-external-link-alt"></i></span></p>
-<p>mac 下, 脚本如下:</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;<span class="built_in">echo</span> &#x27;#!/bin/bash</span><br><span class="line">&gt;export HTTP_PROXY=proxy-url</span><br><span class="line">&gt;export HTTPS_PROXY=proxy-url</span><br><span class="line">&gt;nohup &quot;/Applications/Unity Hub.app/Contents/MacOS/Unity Hub&quot; &amp;&gt;/dev/null &amp;&#x27; &gt; launchUnityHub.command</span><br><span class="line">&gt;chmod +x launchUnityHub.command</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>我用的方法是第一种方法, 确实可行! 第二种没用, 因为我不喜欢动环境变量! 😂</p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYW5nZV9mcm9tX25vdy9hcnRpY2xlL2RldGFpbHMvMTAwNTE5NTQ2">Unity使用Gradle打包出错问题<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
       </tags>
   </entry>
   <entry>
