@@ -452,6 +452,13 @@
   </url>
   
   <url>
+    <loc>https://kuroha.vip/tags/Internet/</loc>
+    <lastmod>2020-12-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kuroha.vip/tags/Oracle/</loc>
     <lastmod>2020-12-17</lastmod>
     <changefreq>daily</changefreq>
@@ -473,28 +480,7 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/Internet/</loc>
-    <lastmod>2020-12-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuroha.vip/tags/Algorithm/</loc>
-    <lastmod>2020-12-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kuroha.vip/tags/Unity/</loc>
-    <lastmod>2020-12-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuroha.vip/tags/TileMap/</loc>
     <lastmod>2020-12-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -508,7 +494,21 @@
   </url>
   
   <url>
+    <loc>https://kuroha.vip/tags/Algorithm/</loc>
+    <lastmod>2020-12-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kuroha.vip/tags/UGUI/</loc>
+    <lastmod>2020-12-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/tags/TileMap/</loc>
     <lastmod>2020-12-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -580,6 +580,13 @@
   </url>
   
   <url>
+    <loc>https://kuroha.vip/categories/NetWork/</loc>
+    <lastmod>2020-12-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kuroha.vip/categories/Oracle/</loc>
     <lastmod>2020-12-17</lastmod>
     <changefreq>daily</changefreq>
@@ -594,7 +601,7 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/NetWork/</loc>
+    <loc>https://kuroha.vip/categories/Unity/</loc>
     <lastmod>2020-12-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -602,13 +609,6 @@
   
   <url>
     <loc>https://kuroha.vip/categories/Algorithm/</loc>
-    <lastmod>2020-12-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuroha.vip/categories/Unity/</loc>
     <lastmod>2020-12-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
