@@ -3045,12 +3045,12 @@ mark.search-keyword {
 }
 code {
   background: #f8f8f8;
-  padding: 3px 5px;
+  padding: 1px 1px;
   border: 1px solid rgba(0,0,0,0.6);
-  border-radius: 2px;
+  border-radius: 1px;
   word-break: break-word;
   color: #e77700;
-  font-size: 12px;
-  margin: 0 2px;
+  font-size: 13px;
+  margin: 1 2px;
   font-family: "Roboto Mono", Monaco, courier, monospace;
 }

@@ -51,14 +51,15 @@
                     var add = 150;
                     var top = Coords.clientY - add,
                     left = ($('body')[0] === e.target) ? Coords.clickX - add: Coords.clientX - add;
-					//防止菜单超出可见区域，不需要可注释掉
+                    
+                    //防止菜单超出可见区域，不需要可注释掉
                     var bodyHe= document.documentElement.clientHeight;
                     var bodyWi = document.documentElement.clientWidth;
                     if(top<0) top=0;
                     if(bodyHe-Coords.clientY<150) top=bodyHe-300;
                     if(left<0) left=0;
                     if($('body')[0] === e.target){if(bodyWi-Coords.clickX<150) left=bodyWi-300} else {if(bodyWi-Coords.clientX<150) left=bodyWi-300};
-					//防止菜单超出可见区域，不需要可注释掉
+                    
                     $menu.css({
                         top: top + 'px',
                         left: left + 'px',
