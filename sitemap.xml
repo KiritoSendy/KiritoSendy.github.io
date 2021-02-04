@@ -333,14 +333,14 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/CSharp/</loc>
+    <loc>https://kuroha.vip/tags/Diary/</loc>
     <lastmod>2021-02-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/Diary/</loc>
+    <loc>https://kuroha.vip/tags/CSharp/</loc>
     <lastmod>2021-02-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -375,13 +375,6 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/Oracle/</loc>
-    <lastmod>2021-02-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kuroha.vip/tags/JSON/</loc>
     <lastmod>2021-02-04</lastmod>
     <changefreq>daily</changefreq>
@@ -390,6 +383,13 @@
   
   <url>
     <loc>https://kuroha.vip/tags/Program/</loc>
+    <lastmod>2021-02-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/tags/Oracle/</loc>
     <lastmod>2021-02-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -447,14 +447,14 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/CSharp/</loc>
+    <loc>https://kuroha.vip/categories/Diary/</loc>
     <lastmod>2021-02-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/Diary/</loc>
+    <loc>https://kuroha.vip/categories/CSharp/</loc>
     <lastmod>2021-02-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -482,14 +482,14 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/Oracle/</loc>
+    <loc>https://kuroha.vip/categories/Program/</loc>
     <lastmod>2021-02-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/Program/</loc>
+    <loc>https://kuroha.vip/categories/Oracle/</loc>
     <lastmod>2021-02-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
