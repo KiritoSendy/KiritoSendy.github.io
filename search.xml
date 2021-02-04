@@ -702,6 +702,119 @@
       </tags>
   </entry>
   <entry>
+    <title>委托(四) &quot;委托与事件的区别&quot; 以及 &quot;观察者模式&quot;</title>
+    <url>/csharp/delegate_04.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="🌴前言"><a href="#🌴前言" class="headerlink" title="🌴前言"></a>🌴前言</h1><p>最开始知道委托和事件是在 SiKi 的 C# 课程上(很抱歉, 大学就只上了 C 语言课, Java 课听了一节...😅), 由于之前没有接触过类似的语法, 又或是学习单片机的时候 C 语言语法在脑海中根深蒂固了 , 听课时就像是在听天书, 再加上之后也没有使用过这方面的语法, 基本全忘记了. 之前一段时间简单的了解了一下委托和事件, 然后网上都是用 &quot;观察者模式&quot; 去讲的...然而文章中连观察者都没有仔细去讲...所以这样更晕了好嘛...😑 于是自己抽时间多看了几篇文章, 做一下总结. 先说一下观察者模式吧, 毕竟委托和事件的区别用观察者去讲真的十分合适!</p>
+<h1 id="🍁声明"><a href="#🍁声明" class="headerlink" title="🍁声明"></a>🍁声明</h1><p>阅读下文需要对 &quot;委托&quot; 有基本了解, 如果未达到此基本要求, 请先打怪升级, 达到要求后再来挑战本副本! 推荐练级副本: </p>
+<ol>
+<li><p><a href="https://kuroha.vip/csharp/delegate_01.html">委托(一) 委托的基本用法</a></p>
+</li>
+<li><p><a href="https://kuroha.vip/csharp/delegate_02.html">委托(二) 委托与回调和回调函数</a></p>
+</li>
+<li><p><a href="https://kuroha.vip/csharp/delegate_03.html">委托(三) 委托的初始化</a></p>
+</li>
+</ol>
+<h1 id="👀观察者模式"><a href="#👀观察者模式" class="headerlink" title="👀观察者模式"></a>👀观察者模式</h1><h2 id="quot-模式-quot-是什么"><a href="#quot-模式-quot-是什么" class="headerlink" title="&quot;模式&quot; 是什么?"></a>&quot;模式&quot; 是什么?</h2><ul>
+<li>&quot;模式&quot; 这个东西和之前所学的大部分东西都不是一回事, &quot;模式&quot; 是一种套路, 对, 你没有听错, 套路, 或者说模板! 它是走在我们前面的那些码神们常年编写代码所总结出来的一种在特定场合下特别好用的代码模板. 就像是英语作文模板指导我们以怎样的结构去写英语作文一样, &quot;模式&quot; 是指导我们以一种怎样的结构去编写代码, 以达到减小编程时工作量以及减小日后维护成本的效果.</li>
+</ul>
+<h2 id="观察者模式的内容是什么"><a href="#观察者模式的内容是什么" class="headerlink" title="观察者模式的内容是什么?"></a>观察者模式的内容是什么?</h2><ol>
+<li><p>需要描述的是一种 &quot;一对多&quot; 的依赖关系!</p>
+</li>
+<li><p>当 &quot;一&quot; 的一方状态发生改变时, &quot;多&quot; 的一方中的全部成员都能够收到通知!</p>
+</li>
+<li><p>&quot;多&quot; 的一方收到通知后, 全部的成员都会自动进行更新操作, 而非被动!</p>
+</li>
+</ol>
+<p>这就是 &quot;观察者模式&quot; 了, &quot;一&quot; 的一方叫做 &quot;被观察者&quot;, &quot;多&quot; 的一方叫做 &quot;观察者&quot;, 也叫做: &quot;发布-订阅模型&quot;, 这时分别叫做 &quot;发布器&quot; 和 &quot;订阅器&quot;.</p>
+<ul>
+<li>Q: 为什么没有代码?</li>
+<li>A: 因为模式只是一种套路, 一种模板, 一种思想, 自然是没有代码的! 只要代码是按照这个模板去编写的, 就可以说使用了 &quot;观察者模式&quot;.</li>
+</ul>
+<h2 id="观察者模式的代码实现"><a href="#观察者模式的代码实现" class="headerlink" title="观察者模式的代码实现"></a>观察者模式的代码实现</h2><p>接下来就是代码实现环节了, 一共写了 3 种 <strong><code>链表, 委托, 事件</code></strong> 代码实现, 都是使用的 csharp 语言.</p>
+<p>Q: 需要记忆的代码是哪个呢?</p>
+<p>A: 没有! 对, 就是没有! 真正要记忆的是前面 <strong>观察者模式的内容是什么</strong> 中所提到的 3 点. 看完代码后可不要本末倒置了哦!</p>
+<p>下面代码实现的场景就是当被观察者使用 &quot;发令枪&quot; 开枪时, 观察者们全部开跑~</p>
+<h3 id="链表实现"><a href="#链表实现" class="headerlink" title="链表实现"></a>链表实现</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Exercise</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 被观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Publisher_List</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 保存所有的观察者对象</span></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">readonly</span> <span class="title">List</span>&lt;<span class="title">Subscriber_List</span>&gt; subscriberList</span> = <span class="keyword">new</span> List&lt;Subscriber_List&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 进入赛道</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">EnterGame</span>(<span class="params">Subscriber_List subscriber</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            subscriberList.Add(subscriber);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 发令枪</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">StartingGun</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;预备~ . . . 砰! \n&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 遍历所有的观察者 (这一步就是在通知每一个观察者)</span></span><br><span class="line">            <span class="keyword">foreach</span> (Subscriber_List t <span class="keyword">in</span> subscriberList)</span><br><span class="line">            &#123;</span><br><span class="line">                t.Run(); <span class="comment">// 自动更新</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Subscriber_List</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 运动员姓名</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="keyword">string</span> name;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 初始化</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Subscriber_List</span>(<span class="params">Publisher_List publisher, <span class="keyword">string</span> name</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            publisher.EnterGame(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开跑</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(name + <span class="string">&quot; 开跑啦~ \n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Program_List</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Publisher_List publisherList = <span class="keyword">new</span> Publisher_List();</span><br><span class="line">            <span class="keyword">new</span> Subscriber_List(publisherList, <span class="string">&quot;艾莉&quot;</span>);</span><br><span class="line">            <span class="keyword">new</span> Subscriber_List(publisherList, <span class="string">&quot;克里斯&quot;</span>);</span><br><span class="line"></span><br><span class="line">            publisherList.StartingGun();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 程序输出:</span></span><br><span class="line">预备~ . . . 砰!</span><br><span class="line"></span><br><span class="line">艾莉 开跑啦~</span><br><span class="line"></span><br><span class="line">克里斯 开跑啦~</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面就是一个最简单的观察者模式, 使用链表实现.</p>
+<table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">实现方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1. 一对多</td>
+<td align="left">被观察者只有一个实例, 使用链表保存所有的观察者实例</td>
+</tr>
+<tr>
+<td align="left">2. 全部通知</td>
+<td align="left">在方法中遍历所有的观察者, 每一个都进行特定的操作</td>
+</tr>
+<tr>
+<td align="left">3. 自动更新</td>
+<td align="left">在 &quot;被观察者&quot; 中调用 &quot;观察者&quot; 的方法, 对外界隐藏调用逻辑</td>
+</tr>
+</tbody></table>
+<p>再来看一下 Main 方法:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Publisher_List publisherList = <span class="keyword">new</span> Publisher_List();</span><br><span class="line">    <span class="keyword">new</span> Subscriber_List(publisherList, <span class="string">&quot;艾莉&quot;</span>);</span><br><span class="line">    <span class="keyword">new</span> Subscriber_List(publisherList, <span class="string">&quot;克里斯&quot;</span>);</span><br><span class="line"></span><br><span class="line">    publisherList.StartingGun();</span><br><span class="line">    Console.ReadKey();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时对外界的 Main 方法而言, 我仅仅开了一下 &quot;发令枪&quot;, 艾莉和克里斯中的 Run 方法就 <font color='red'><strong>自动</strong></font> 被调用了. 如果不这么写, Main 方法就必须先调用发令枪方法, 然后再调用艾莉和克里斯的 Run 方法.</p>
+<h3 id="委托实现"><a href="#委托实现" class="headerlink" title="委托实现"></a>委托实现</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Exercise</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Publisher publisher = <span class="keyword">new</span> Publisher();</span><br><span class="line">            <span class="keyword">new</span> Subscriber(publisher, <span class="string">&quot;艾莉&quot;</span>);</span><br><span class="line">            <span class="keyword">new</span> Subscriber(publisher, <span class="string">&quot;克里斯&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 发令枪</span></span><br><span class="line">            publisher.StartingGun();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 被观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Publisher</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 委托, 保存所有的观察者</span></span><br><span class="line">        <span class="keyword">public</span> Action PublisherDelegate;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 发令枪</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">StartingGun</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;预备~ . . . 砰! \n&quot;</span>);</span><br><span class="line">            PublisherDelegate?.Invoke(); <span class="comment">// 判断 PublisherDelegate 是否是空, 如果不是空, 则调用里面的 Invoke 方法.</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Subscriber</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 运动员姓名</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="keyword">string</span> name;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 构造器</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;publisher&quot;&gt;</span>发布器<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;name&quot;&gt;</span>订阅器名称<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Subscriber</span>(<span class="params">Publisher publisher, <span class="keyword">string</span> name</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            publisher.PublisherDelegate += Run; <span class="comment">// 自动注册</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开跑</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(name + <span class="string">&quot; 开跑啦~ \n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 程序输出:</span></span><br><span class="line">预备~ . . . 砰!</span><br><span class="line"></span><br><span class="line">艾莉 开跑啦~</span><br><span class="line"></span><br><span class="line">克里斯 开跑啦~</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="使用委托实现观察者模式与使用链表时的不同"><a href="#使用委托实现观察者模式与使用链表时的不同" class="headerlink" title="使用委托实现观察者模式与使用链表时的不同"></a>使用委托实现观察者模式与使用链表时的不同</h4><ol>
+<li><p>不再使用链表保存所有的观察者, 而是使用委托的多播特性进行保存.</p>
+</li>
+<li><p>通知所有观察者的步骤不再使用遍历, 而是使用委托的多播特性进行逐个通知.</p>
+</li>
+<li><p>注册观察者时不再使用链表的 Add() 方法, 而是使用委托的 <strong>+=</strong> 和 <strong>-=</strong>.</p>
+</li>
+</ol>
+<p>直接使用委托实现观察者模式有几个不安要素:</p>
+<ol>
+<li><p>如果被观察者 Publisher 中的委托是 public 修饰, 那么外部便可以直接访问, 此时如果外部代码中使用了 <strong>=</strong> 进行委托的注册, 那么委托中已有的注册将被全部清空, 这种隐患是十分恐怖的.</p>
+</li>
+<li><p>如果被观察者 Publisher 中的委托是 public 修饰, 那么外部便可以直接调用此委托, 此时观察者们便无法收到任何通知, 这个隐患同样是致命的.</p>
+</li>
+</ol>
+<p>使用事件实现观察者模式便解决了上面两个致命隐患.</p>
+<h3 id="事件实现"><a href="#事件实现" class="headerlink" title="事件实现"></a>事件实现</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Exercise</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Publisher publisher = <span class="keyword">new</span> Publisher();</span><br><span class="line">            Subscriber subscriberA = <span class="keyword">new</span> Subscriber(publisher, <span class="string">&quot;艾莉&quot;</span>);</span><br><span class="line">            Subscriber subscriberB = <span class="keyword">new</span> Subscriber(publisher, <span class="string">&quot;克里斯&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 发令枪</span></span><br><span class="line">            publisher.StartingGun();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 对事件直接赋值 (不允许)</span></span><br><span class="line">            publisher.PublisherEvent = subscriberA.Run;</span><br><span class="line">            <span class="comment">// 对委托直接赋值 (允许)</span></span><br><span class="line">            publisher.PublisherDelegate = subscriberA.Run;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 外部直接调用事件 (不允许)</span></span><br><span class="line">            publisher.PublisherEvent();</span><br><span class="line">            <span class="comment">// 外部直接调用委托 (允许)</span></span><br><span class="line">            publisher.PublisherDelegate();</span><br><span class="line"></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 被观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Publisher</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 事件, 保存所有的观察者</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">event</span> Action PublisherEvent;</span><br><span class="line">        <span class="keyword">public</span> Action PublisherDelegate;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 发令枪</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">StartingGun</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;预备~ . . . 砰! \n&quot;</span>);</span><br><span class="line">            PublisherEvent?.Invoke(); <span class="comment">// 判断 PublisherEvent 是否是空, 如果不是空, 则调用里面的 Invoke 方法.</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Subscriber</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 运动员姓名</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="keyword">string</span> name;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 构造器</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;publisher&quot;&gt;</span>发布器<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;name&quot;&gt;</span>订阅器名称<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Subscriber</span>(<span class="params">Publisher publisher, <span class="keyword">string</span> name</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            publisher.PublisherEvent += Run; <span class="comment">// 自动注册</span></span><br><span class="line">            publisher.PublisherEvent = Run;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开跑</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(name + <span class="string">&quot; 开跑啦~ \n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码直接粘贴到 VS 中其实是报错的, 其中第 18 行, 第 23 行以及第 65 行会报错! 报错信息是一样的:</p>
+<p><code>CS0070  事件 &quot;Publisher.PublisherEvent&quot; 只能出现在 += 或 -= 的左边(从类型 &quot;Publisher&quot; 中使用时除外)</code></p>
+<p>从这里也就可以得出结论, 委托和事件的不同.</p>
+<h1 id="🍀委托和事件的异同"><a href="#🍀委托和事件的异同" class="headerlink" title="🍀委托和事件的异同"></a>🍀委托和事件的异同</h1><ol>
+<li><p>一个使用 public 修饰的委托实例, 在声明类的外部可以直接调用. 而事件即使修饰为 public, 也仅能在声明类内部调用, 外部调用时编译器会直接报错, 发现隐患.</p>
+</li>
+<li><p>委托可以使用 = 进行赋值, 但是事件不可以, 无论任何时候, 事件都仅能使用 += 和 -= 进行注册, 使用 = 时编译器会直接报错, 发现隐患.</p>
+</li>
+<li><p>除此以外, 委托和事件一致.</p>
+</li>
+</ol>
+<h1 id="🌈参考链接"><a href="#🌈参考链接" class="headerlink" title="🌈参考链接"></a>🌈参考链接</h1><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVub29iLmNvbS9kZXNpZ24tcGF0dGVybi9vYnNlcnZlci1wYXR0ZXJuLmh0bWw=">菜鸟教程 - 观察者模式<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9kZXNpZ24tcGF0dGVybnMucmVhZHRoZWRvY3MuaW8vemhfQ04vbGF0ZXN0L2JlaGF2aW9yYWxfcGF0dGVybnMvb2JzZXJ2ZXIuaHRtbA==">Graphic Design Patterns - 观察者模式<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20va2tsbGRvZy9hcmNoaXZlLzIwMTIvMDEvMTcvMjMyNDIyOC5odG1s">C# 委托与事件区别简单总结<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CSharp</category>
+      </categories>
+      <tags>
+        <tag>CSharp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>委托(二) 委托与 &quot;回调和回调函数&quot;</title>
     <url>/csharp/delegate_02.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -865,119 +978,6 @@
 <td align="left">null</td>
 </tr>
 </tbody></table>
-]]></content>
-      <categories>
-        <category>CSharp</category>
-      </categories>
-      <tags>
-        <tag>CSharp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>委托(四) &quot;委托与事件的区别&quot; 以及 &quot;观察者模式&quot;</title>
-    <url>/csharp/delegate_04.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="🌴前言"><a href="#🌴前言" class="headerlink" title="🌴前言"></a>🌴前言</h1><p>最开始知道委托和事件是在 SiKi 的 C# 课程上(很抱歉, 大学就只上了 C 语言课, Java 课听了一节...😅), 由于之前没有接触过类似的语法, 又或是学习单片机的时候 C 语言语法在脑海中根深蒂固了 , 听课时就像是在听天书, 再加上之后也没有使用过这方面的语法, 基本全忘记了. 之前一段时间简单的了解了一下委托和事件, 然后网上都是用 &quot;观察者模式&quot; 去讲的...然而文章中连观察者都没有仔细去讲...所以这样更晕了好嘛...😑 于是自己抽时间多看了几篇文章, 做一下总结. 先说一下观察者模式吧, 毕竟委托和事件的区别用观察者去讲真的十分合适!</p>
-<h1 id="🍁声明"><a href="#🍁声明" class="headerlink" title="🍁声明"></a>🍁声明</h1><p>阅读下文需要对 &quot;委托&quot; 有基本了解, 如果未达到此基本要求, 请先打怪升级, 达到要求后再来挑战本副本! 推荐练级副本: </p>
-<ol>
-<li><p><a href="https://kuroha.vip/csharp/delegate_01.html">委托(一) 委托的基本用法</a></p>
-</li>
-<li><p><a href="https://kuroha.vip/csharp/delegate_02.html">委托(二) 委托与回调和回调函数</a></p>
-</li>
-<li><p><a href="https://kuroha.vip/csharp/delegate_03.html">委托(三) 委托的初始化</a></p>
-</li>
-</ol>
-<h1 id="👀观察者模式"><a href="#👀观察者模式" class="headerlink" title="👀观察者模式"></a>👀观察者模式</h1><h2 id="quot-模式-quot-是什么"><a href="#quot-模式-quot-是什么" class="headerlink" title="&quot;模式&quot; 是什么?"></a>&quot;模式&quot; 是什么?</h2><ul>
-<li>&quot;模式&quot; 这个东西和之前所学的大部分东西都不是一回事, &quot;模式&quot; 是一种套路, 对, 你没有听错, 套路, 或者说模板! 它是走在我们前面的那些码神们常年编写代码所总结出来的一种在特定场合下特别好用的代码模板. 就像是英语作文模板指导我们以怎样的结构去写英语作文一样, &quot;模式&quot; 是指导我们以一种怎样的结构去编写代码, 以达到减小编程时工作量以及减小日后维护成本的效果.</li>
-</ul>
-<h2 id="观察者模式的内容是什么"><a href="#观察者模式的内容是什么" class="headerlink" title="观察者模式的内容是什么?"></a>观察者模式的内容是什么?</h2><ol>
-<li><p>需要描述的是一种 &quot;一对多&quot; 的依赖关系!</p>
-</li>
-<li><p>当 &quot;一&quot; 的一方状态发生改变时, &quot;多&quot; 的一方中的全部成员都能够收到通知!</p>
-</li>
-<li><p>&quot;多&quot; 的一方收到通知后, 全部的成员都会自动进行更新操作, 而非被动!</p>
-</li>
-</ol>
-<p>这就是 &quot;观察者模式&quot; 了, &quot;一&quot; 的一方叫做 &quot;被观察者&quot;, &quot;多&quot; 的一方叫做 &quot;观察者&quot;, 也叫做: &quot;发布-订阅模型&quot;, 这时分别叫做 &quot;发布器&quot; 和 &quot;订阅器&quot;.</p>
-<ul>
-<li>Q: 为什么没有代码?</li>
-<li>A: 因为模式只是一种套路, 一种模板, 一种思想, 自然是没有代码的! 只要代码是按照这个模板去编写的, 就可以说使用了 &quot;观察者模式&quot;.</li>
-</ul>
-<h2 id="观察者模式的代码实现"><a href="#观察者模式的代码实现" class="headerlink" title="观察者模式的代码实现"></a>观察者模式的代码实现</h2><p>接下来就是代码实现环节了, 一共写了 3 种 <strong><code>链表, 委托, 事件</code></strong> 代码实现, 都是使用的 csharp 语言.</p>
-<p>Q: 需要记忆的代码是哪个呢?</p>
-<p>A: 没有! 对, 就是没有! 真正要记忆的是前面 <strong>观察者模式的内容是什么</strong> 中所提到的 3 点. 看完代码后可不要本末倒置了哦!</p>
-<p>下面代码实现的场景就是当被观察者使用 &quot;发令枪&quot; 开枪时, 观察者们全部开跑~</p>
-<h3 id="链表实现"><a href="#链表实现" class="headerlink" title="链表实现"></a>链表实现</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Exercise</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 被观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Publisher_List</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 保存所有的观察者对象</span></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">readonly</span> <span class="title">List</span>&lt;<span class="title">Subscriber_List</span>&gt; subscriberList</span> = <span class="keyword">new</span> List&lt;Subscriber_List&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 进入赛道</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">EnterGame</span>(<span class="params">Subscriber_List subscriber</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            subscriberList.Add(subscriber);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 发令枪</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">StartingGun</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;预备~ . . . 砰! \n&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 遍历所有的观察者 (这一步就是在通知每一个观察者)</span></span><br><span class="line">            <span class="keyword">foreach</span> (Subscriber_List t <span class="keyword">in</span> subscriberList)</span><br><span class="line">            &#123;</span><br><span class="line">                t.Run(); <span class="comment">// 自动更新</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Subscriber_List</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 运动员姓名</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="keyword">string</span> name;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 初始化</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Subscriber_List</span>(<span class="params">Publisher_List publisher, <span class="keyword">string</span> name</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            publisher.EnterGame(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开跑</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(name + <span class="string">&quot; 开跑啦~ \n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Program_List</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Publisher_List publisherList = <span class="keyword">new</span> Publisher_List();</span><br><span class="line">            <span class="keyword">new</span> Subscriber_List(publisherList, <span class="string">&quot;艾莉&quot;</span>);</span><br><span class="line">            <span class="keyword">new</span> Subscriber_List(publisherList, <span class="string">&quot;克里斯&quot;</span>);</span><br><span class="line"></span><br><span class="line">            publisherList.StartingGun();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 程序输出:</span></span><br><span class="line">预备~ . . . 砰!</span><br><span class="line"></span><br><span class="line">艾莉 开跑啦~</span><br><span class="line"></span><br><span class="line">克里斯 开跑啦~</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>上面就是一个最简单的观察者模式, 使用链表实现.</p>
-<table>
-<thead>
-<tr>
-<th align="left">特性</th>
-<th align="left">实现方式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">1. 一对多</td>
-<td align="left">被观察者只有一个实例, 使用链表保存所有的观察者实例</td>
-</tr>
-<tr>
-<td align="left">2. 全部通知</td>
-<td align="left">在方法中遍历所有的观察者, 每一个都进行特定的操作</td>
-</tr>
-<tr>
-<td align="left">3. 自动更新</td>
-<td align="left">在 &quot;被观察者&quot; 中调用 &quot;观察者&quot; 的方法, 对外界隐藏调用逻辑</td>
-</tr>
-</tbody></table>
-<p>再来看一下 Main 方法:</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Publisher_List publisherList = <span class="keyword">new</span> Publisher_List();</span><br><span class="line">    <span class="keyword">new</span> Subscriber_List(publisherList, <span class="string">&quot;艾莉&quot;</span>);</span><br><span class="line">    <span class="keyword">new</span> Subscriber_List(publisherList, <span class="string">&quot;克里斯&quot;</span>);</span><br><span class="line"></span><br><span class="line">    publisherList.StartingGun();</span><br><span class="line">    Console.ReadKey();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>此时对外界的 Main 方法而言, 我仅仅开了一下 &quot;发令枪&quot;, 艾莉和克里斯中的 Run 方法就 <font color='red'><strong>自动</strong></font> 被调用了. 如果不这么写, Main 方法就必须先调用发令枪方法, 然后再调用艾莉和克里斯的 Run 方法.</p>
-<h3 id="委托实现"><a href="#委托实现" class="headerlink" title="委托实现"></a>委托实现</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Exercise</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Publisher publisher = <span class="keyword">new</span> Publisher();</span><br><span class="line">            <span class="keyword">new</span> Subscriber(publisher, <span class="string">&quot;艾莉&quot;</span>);</span><br><span class="line">            <span class="keyword">new</span> Subscriber(publisher, <span class="string">&quot;克里斯&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 发令枪</span></span><br><span class="line">            publisher.StartingGun();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 被观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Publisher</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 委托, 保存所有的观察者</span></span><br><span class="line">        <span class="keyword">public</span> Action PublisherDelegate;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 发令枪</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">StartingGun</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;预备~ . . . 砰! \n&quot;</span>);</span><br><span class="line">            PublisherDelegate?.Invoke(); <span class="comment">// 判断 PublisherDelegate 是否是空, 如果不是空, 则调用里面的 Invoke 方法.</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Subscriber</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 运动员姓名</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="keyword">string</span> name;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 构造器</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;publisher&quot;&gt;</span>发布器<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;name&quot;&gt;</span>订阅器名称<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Subscriber</span>(<span class="params">Publisher publisher, <span class="keyword">string</span> name</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            publisher.PublisherDelegate += Run; <span class="comment">// 自动注册</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开跑</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(name + <span class="string">&quot; 开跑啦~ \n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 程序输出:</span></span><br><span class="line">预备~ . . . 砰!</span><br><span class="line"></span><br><span class="line">艾莉 开跑啦~</span><br><span class="line"></span><br><span class="line">克里斯 开跑啦~</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="使用委托实现观察者模式与使用链表时的不同"><a href="#使用委托实现观察者模式与使用链表时的不同" class="headerlink" title="使用委托实现观察者模式与使用链表时的不同"></a>使用委托实现观察者模式与使用链表时的不同</h4><ol>
-<li><p>不再使用链表保存所有的观察者, 而是使用委托的多播特性进行保存.</p>
-</li>
-<li><p>通知所有观察者的步骤不再使用遍历, 而是使用委托的多播特性进行逐个通知.</p>
-</li>
-<li><p>注册观察者时不再使用链表的 Add() 方法, 而是使用委托的 <strong>+=</strong> 和 <strong>-=</strong>.</p>
-</li>
-</ol>
-<p>直接使用委托实现观察者模式有几个不安要素:</p>
-<ol>
-<li><p>如果被观察者 Publisher 中的委托是 public 修饰, 那么外部便可以直接访问, 此时如果外部代码中使用了 <strong>=</strong> 进行委托的注册, 那么委托中已有的注册将被全部清空, 这种隐患是十分恐怖的.</p>
-</li>
-<li><p>如果被观察者 Publisher 中的委托是 public 修饰, 那么外部便可以直接调用此委托, 此时观察者们便无法收到任何通知, 这个隐患同样是致命的.</p>
-</li>
-</ol>
-<p>使用事件实现观察者模式便解决了上面两个致命隐患.</p>
-<h3 id="事件实现"><a href="#事件实现" class="headerlink" title="事件实现"></a>事件实现</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Exercise</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Publisher publisher = <span class="keyword">new</span> Publisher();</span><br><span class="line">            Subscriber subscriberA = <span class="keyword">new</span> Subscriber(publisher, <span class="string">&quot;艾莉&quot;</span>);</span><br><span class="line">            Subscriber subscriberB = <span class="keyword">new</span> Subscriber(publisher, <span class="string">&quot;克里斯&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 发令枪</span></span><br><span class="line">            publisher.StartingGun();</span><br><span class="line">            Console.ReadKey();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 对事件直接赋值 (不允许)</span></span><br><span class="line">            publisher.PublisherEvent = subscriberA.Run;</span><br><span class="line">            <span class="comment">// 对委托直接赋值 (允许)</span></span><br><span class="line">            publisher.PublisherDelegate = subscriberA.Run;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 外部直接调用事件 (不允许)</span></span><br><span class="line">            publisher.PublisherEvent();</span><br><span class="line">            <span class="comment">// 外部直接调用委托 (允许)</span></span><br><span class="line">            publisher.PublisherDelegate();</span><br><span class="line"></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 被观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Publisher</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 事件, 保存所有的观察者</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">event</span> Action PublisherEvent;</span><br><span class="line">        <span class="keyword">public</span> Action PublisherDelegate;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 发令枪</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">StartingGun</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;预备~ . . . 砰! \n&quot;</span>);</span><br><span class="line">            PublisherEvent?.Invoke(); <span class="comment">// 判断 PublisherEvent 是否是空, 如果不是空, 则调用里面的 Invoke 方法.</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 观察者</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Subscriber</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 运动员姓名</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">readonly</span> <span class="keyword">string</span> name;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 构造器</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;publisher&quot;&gt;</span>发布器<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;name&quot;&gt;</span>订阅器名称<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Subscriber</span>(<span class="params">Publisher publisher, <span class="keyword">string</span> name</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            publisher.PublisherEvent += Run; <span class="comment">// 自动注册</span></span><br><span class="line">            publisher.PublisherEvent = Run;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开跑</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(name + <span class="string">&quot; 开跑啦~ \n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面的代码直接粘贴到 VS 中其实是报错的, 其中第 18 行, 第 23 行以及第 65 行会报错! 报错信息是一样的:</p>
-<p><code>CS0070  事件 &quot;Publisher.PublisherEvent&quot; 只能出现在 += 或 -= 的左边(从类型 &quot;Publisher&quot; 中使用时除外)</code></p>
-<p>从这里也就可以得出结论, 委托和事件的不同.</p>
-<h1 id="🍀委托和事件的异同"><a href="#🍀委托和事件的异同" class="headerlink" title="🍀委托和事件的异同"></a>🍀委托和事件的异同</h1><ol>
-<li><p>一个使用 public 修饰的委托实例, 在声明类的外部可以直接调用. 而事件即使修饰为 public, 也仅能在声明类内部调用, 外部调用时编译器会直接报错, 发现隐患.</p>
-</li>
-<li><p>委托可以使用 = 进行赋值, 但是事件不可以, 无论任何时候, 事件都仅能使用 += 和 -= 进行注册, 使用 = 时编译器会直接报错, 发现隐患.</p>
-</li>
-<li><p>除此以外, 委托和事件一致.</p>
-</li>
-</ol>
-<h1 id="🌈参考链接"><a href="#🌈参考链接" class="headerlink" title="🌈参考链接"></a>🌈参考链接</h1><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cucnVub29iLmNvbS9kZXNpZ24tcGF0dGVybi9vYnNlcnZlci1wYXR0ZXJuLmh0bWw=">菜鸟教程 - 观察者模式<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9kZXNpZ24tcGF0dGVybnMucmVhZHRoZWRvY3MuaW8vemhfQ04vbGF0ZXN0L2JlaGF2aW9yYWxfcGF0dGVybnMvb2JzZXJ2ZXIuaHRtbA==">Graphic Design Patterns - 观察者模式<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20va2tsbGRvZy9hcmNoaXZlLzIwMTIvMDEvMTcvMjMyNDIyOC5odG1s">C# 委托与事件区别简单总结<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ul>
 ]]></content>
       <categories>
         <category>CSharp</category>
@@ -1407,6 +1407,29 @@
       </tags>
   </entry>
   <entry>
+    <title>日记系列--2020年06月</title>
+    <url>/diary/2020_06.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="2020-年-06-月-15-号"><a href="#2020-年-06-月-15-号" class="headerlink" title="2020 年 06 月 15 号"></a>2020 年 06 月 15 号</h1><h2 id="生活开始走上正轨了"><a href="#生活开始走上正轨了" class="headerlink" title="生活开始走上正轨了"></a>生活开始走上正轨了</h2><p>真的是好久好久没有写日记了, 最近还是发生了很多大事的:</p>
+<ol>
+<li>五一放假时给姐姐转养老费, 然后被银行黑了 4000 RMB!</li>
+<li>从五月十号开始直到六月十四号一直寄住在同事家里, 心里总不是滋味. </li>
+<li>六月十三号答辩结束, 老师还说我做的不错, 可是谁都不知道我只花了一周的事件准备毕设, 包括开题报告, 论文, PPT, 作品 (一款沙盒游戏)...</li>
+<li>六月十一号加班到凌晨两点, 真的服! 现在我都不知道当时咋坚持下来的, 哦, 对了, 是边听歌边敲代码坚持下来的...</li>
+</ol>
+<p>今天终于发工资了, 由于五月份请假太多, 导致工资只有 4174 元, 连这一个月的开销都不够: 1200 房租, 1000 花呗, 2000 爸爸的养老费... 不过还好, 下个月爸爸的养老费就是一月 1000 了, 由于不请假了, 工资也会上去, 总之生活在慢慢变好!</p>
+<p>还发现了一张当时玩 2048 游戏的分数记录, 我居然玩到了最大的方块到了 16384 !</p>
+<p><img data-src="/images/diary/2020_06/2048_MaxScore.jpg" alt="2048_MaxScore"></p>
+]]></content>
+      <categories>
+        <category>Diary</category>
+      </categories>
+      <tags>
+        <tag>Diary</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>日记系列--2020年04月</title>
     <url>/diary/2020_04.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -1445,29 +1468,6 @@
 </ol>
 <p><strong>这段时间和 Sakura 的相处 (不就是微信上聊天嘛, 还想处? 弄得跟真的似的!), 我好累啊, 虽然原因是自己太投入了, 忘记了自己的生活, 但是我还是好希望她能搭理一下我😂, Kuroha! Fight!</strong></p>
 <p><img data-src="/images/diary/2020_04/666.png" alt="对面表示不想和你说话, 并向你扔了一张 666 !"></p>
-]]></content>
-      <categories>
-        <category>Diary</category>
-      </categories>
-      <tags>
-        <tag>Diary</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>日记系列--2020年06月</title>
-    <url>/diary/2020_06.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="2020-年-06-月-15-号"><a href="#2020-年-06-月-15-号" class="headerlink" title="2020 年 06 月 15 号"></a>2020 年 06 月 15 号</h1><h2 id="生活开始走上正轨了"><a href="#生活开始走上正轨了" class="headerlink" title="生活开始走上正轨了"></a>生活开始走上正轨了</h2><p>真的是好久好久没有写日记了, 最近还是发生了很多大事的:</p>
-<ol>
-<li>五一放假时给姐姐转养老费, 然后被银行黑了 4000 RMB!</li>
-<li>从五月十号开始直到六月十四号一直寄住在同事家里, 心里总不是滋味. </li>
-<li>六月十三号答辩结束, 老师还说我做的不错, 可是谁都不知道我只花了一周的事件准备毕设, 包括开题报告, 论文, PPT, 作品 (一款沙盒游戏)...</li>
-<li>六月十一号加班到凌晨两点, 真的服! 现在我都不知道当时咋坚持下来的, 哦, 对了, 是边听歌边敲代码坚持下来的...</li>
-</ol>
-<p>今天终于发工资了, 由于五月份请假太多, 导致工资只有 4174 元, 连这一个月的开销都不够: 1200 房租, 1000 花呗, 2000 爸爸的养老费... 不过还好, 下个月爸爸的养老费就是一月 1000 了, 由于不请假了, 工资也会上去, 总之生活在慢慢变好!</p>
-<p>还发现了一张当时玩 2048 游戏的分数记录, 我居然玩到了最大的方块到了 16384 !</p>
-<p><img data-src="/images/diary/2020_06/2048_MaxScore.jpg" alt="2048_MaxScore"></p>
 ]]></content>
       <categories>
         <category>Diary</category>
@@ -2597,40 +2597,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JSON 参考手册</title>
-    <url>/program/json_notes.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在实现毕业设计游戏的存档读档功能时选用了 JSON 文件进行读取和存储, 于是赶紧学习了一下 JSON 是啥...</p>
-<h1 id="JSON-简介"><a href="#JSON-简介" class="headerlink" title="JSON 简介"></a>JSON 简介</h1><p>JSON 全称是: JavaScript Object Notation (JavaScript 对象表示法)</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;sites&quot;</span>:</span><br><span class="line">    [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;Kuroha&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;kuroha.vip&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;google&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;www.google.com&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="JSON-语法"><a href="#JSON-语法" class="headerlink" title="JSON 语法"></a>JSON 语法</h1><ol>
-<li><p>JSON 语法是 JavaScript 语法的子集.</p>
-</li>
-<li><p>JOSN 的数据使用 键值对 (Key/Value) 表示. Key 必须是 string, Value 可以是 string, 可以是 number, 可以是 bool 等等, 数据与数据之间使用 , 分割.</p>
- <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;aaa&quot;</span> : <span class="string">&quot;Kuroha&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;bbb&quot;</span> : <span class="number">1234</span>,</span><br><span class="line">    <span class="attr">&quot;ccc&quot;</span> : <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;ddd&quot;</span> : <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;eee&quot;</span> : <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>JSON 中的类使用 {} 表示. 一个类中可以包含多个数据. 这里的数据可以是 类, 数组, 单条数据等.</p>
- <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;sites1&quot;</span> : </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;google&quot;</span>,</span><br><span class="line"></span><br><span class="line">        <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;www.google.com&quot;</span>,</span><br><span class="line"></span><br><span class="line">        <span class="attr">&quot;二次元游宅客&quot;</span> : </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;Kuroha&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;kuroha.vip&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        <span class="attr">&quot;sites1_1&quot;</span> : </span><br><span class="line">        [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;Kirito&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;sao.com&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;Asuna&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;sao.online&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>JSON 中的数组使用 [] 表示. 一个数组中可以包含多个类, 此时只能有类中的数据, 不能有类名. 数组中只包含数据的时候, 不能有数据名(Key), 只能有数据(Value). 因为数组是: 值的集合. (不同于编程语言, 这些值的类型是可以不同的.)</p>
- <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;aaa&quot;</span> : </span><br><span class="line">    [</span><br><span class="line">        <span class="string">&quot;bbb&quot;</span>,</span><br><span class="line">        <span class="string">&quot;ccc&quot;</span>,</span><br><span class="line"></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span> : <span class="string">&quot;游宅客&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;url&quot;</span> : <span class="string">&quot;kuroha.vip&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Program</category>
-      </categories>
-      <tags>
-        <tag>JSON</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>正则表达式</title>
     <url>/program/regular_expression.html</url>
     <content><![CDATA[<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式?"></a>正则表达式?</h1><blockquote>
@@ -2931,90 +2897,37 @@
       </tags>
   </entry>
   <entry>
-    <title>Unity 中的坐标系</title>
-    <url>/unity/unity_coordinatesystem.html</url>
+    <title>JSON 参考手册</title>
+    <url>/program/json_notes.html</url>
     <content><![CDATA[<a id="more"></a>
 
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在制作魔剑镇魂曲的 TileMap 时用到了各种坐标系之间的转换, 当时被整得云里雾里的, 现在来回顾一下. 游戏中我只用到了笛卡尔坐标系, 没有用到极坐标系, 后面就直接简称为坐标系了.</p>
-<h1 id="坐标系与坐标"><a href="#坐标系与坐标" class="headerlink" title="坐标系与坐标"></a>坐标系与坐标</h1><ul>
-<li><p>首先需要强调一下坐标系和坐标完全不是一回事, 文章中有很多地方涉及到坐标系和坐标, 为了避免混淆, 一定要在脑海中清晰地区分两者. 坐标系是一个系统, 而坐标只是一个表示位置的数字.</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在实现毕业设计游戏的存档读档功能时选用了 JSON 文件进行读取和存储, 于是赶紧学习了一下 JSON 是啥...</p>
+<h1 id="JSON-简介"><a href="#JSON-简介" class="headerlink" title="JSON 简介"></a>JSON 简介</h1><p>JSON 全称是: JavaScript Object Notation (JavaScript 对象表示法)</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;sites&quot;</span>:</span><br><span class="line">    [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;Kuroha&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;kuroha.vip&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;google&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;www.google.com&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="JSON-语法"><a href="#JSON-语法" class="headerlink" title="JSON 语法"></a>JSON 语法</h1><ol>
+<li><p>JSON 语法是 JavaScript 语法的子集.</p>
 </li>
-<li><p>坐标是不可能独立存在的, 它必须依存于某个坐标系, 因此很多时候我们就直接简称为某某坐标. 比如在屏幕坐标系中一个点的坐标简称为 &quot;屏幕坐标&quot;, 在世界坐标系中一个点的坐标简称为 &quot;世界坐标&quot;.</p>
+<li><p>JOSN 的数据使用 键值对 (Key/Value) 表示. Key 必须是 string, Value 可以是 string, 可以是 number, 可以是 bool 等等, 数据与数据之间使用 , 分割.</p>
+ <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;aaa&quot;</span> : <span class="string">&quot;Kuroha&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;bbb&quot;</span> : <span class="number">1234</span>,</span><br><span class="line">    <span class="attr">&quot;ccc&quot;</span> : <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;ddd&quot;</span> : <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;eee&quot;</span> : <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><p>Unity 中的坐标大致分为 4 种:</p>
-<table>
-<thead>
-<tr>
-<th align="left">坐标</th>
-<th align="left">关键字</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">世界坐标</td>
-<td align="left">World Point</td>
-</tr>
-<tr>
-<td align="left">本地坐标</td>
-<td align="left">Local Point</td>
-</tr>
-<tr>
-<td align="left">屏幕坐标</td>
-<td align="left">Screen Point</td>
-</tr>
-<tr>
-<td align="left">视图坐标</td>
-<td align="left">View Point</td>
-</tr>
-</tbody></table>
-<h1 id="世界坐标-World-Point"><a href="#世界坐标-World-Point" class="headerlink" title="世界坐标 (World Point)"></a>世界坐标 (World Point)</h1><ul>
-<li><p>Unity 中有一个覆盖全部游戏物体的坐标系, 所有的游戏物体都靠这个坐标系来确定自身在游戏世界中的准确位置, 这个坐标系就是世界坐标系. 有时为了明显和 &quot;局部坐标系&quot; 相对应也被称为 &quot;全局坐标系&quot;. 在世界坐标系中得出的点的坐标称为世界坐标 (World Point).</p>
+<li><p>JSON 中的类使用 {} 表示. 一个类中可以包含多个数据. 这里的数据可以是 类, 数组, 单条数据等.</p>
+ <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;sites1&quot;</span> : </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;google&quot;</span>,</span><br><span class="line"></span><br><span class="line">        <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;www.google.com&quot;</span>,</span><br><span class="line"></span><br><span class="line">        <span class="attr">&quot;二次元游宅客&quot;</span> : </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;Kuroha&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;kuroha.vip&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        <span class="attr">&quot;sites1_1&quot;</span> : </span><br><span class="line">        [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;Kirito&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;sao.com&quot;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;Asuna&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;url&quot;</span>:<span class="string">&quot;sao.online&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>但是遗憾的是在游戏物体 Inspector 面板中, Transform 处显示的 Position 是<font color='red'><strong>在父物体坐标系中的坐标</strong></font>, 而不是在世界坐标系中的坐标. 只有当物体没有父物体的时候, Transform 处显示的 Position 才是在世界坐标系中的坐标.</p>
+<li><p>JSON 中的数组使用 [] 表示. 一个数组中可以包含多个类, 此时只能有类中的数据, 不能有类名. 数组中只包含数据的时候, 不能有数据名(Key), 只能有数据(Value). 因为数组是: 值的集合. (不同于编程语言, 这些值的类型是可以不同的.)</p>
+ <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;aaa&quot;</span> : </span><br><span class="line">    [</span><br><span class="line">        <span class="string">&quot;bbb&quot;</span>,</span><br><span class="line">        <span class="string">&quot;ccc&quot;</span>,</span><br><span class="line"></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span> : <span class="string">&quot;游宅客&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;url&quot;</span> : <span class="string">&quot;kuroha.vip&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
 </li>
-<li><p>但是在脚本中, 使用 transform.position 获取的却是游戏物体的世界坐标.</p>
-</li>
-</ul>
-<h1 id="本地坐标-Local-Point"><a href="#本地坐标-Local-Point" class="headerlink" title="本地坐标 (Local Point)"></a>本地坐标 (Local Point)</h1><ul>
-<li><p>Unity 中每个游戏物体都有其自身坐标系, 其子物体便是使用这个坐标系来确定与父物体的相对位置关系. 在父物体坐标系下得出的点的坐标称为本地坐标 (Local Point).</p>
-</li>
-<li><p>由于本地坐标系和物体绑定, 因此当游戏物体进行旋转, 移动的时候, 坐标系也会进行相应的旋转和移动. 但是本地坐标却有一个特点: <font color='red'><strong>不变性</strong></font>. 当游戏物体进行旋转, 移动的时候, 其子物体的本地坐标是不变的, 即子物体相对于自身的相对位置不会改变, 因此子物体会跟随其父物体旋转, 移动.</p>
-</li>
-<li><p>Unity 中模型 Mesh 保存的顶点坐标均为本地坐标, 因为本地坐标的不变性, 即使物体进行旋转或者移动, 也不会影响顶点的坐标.</p>
-</li>
-<li><p>在脚本中使用 transform.position 获取的是游戏物体的世界坐标, 使用 transform.localPosition 获取的便是游戏物体的本地坐标. 但是当物体没有父物体的时候,  transform.localPosition 获取的也是世界坐标.</p>
-</li>
-</ul>
-<h1 id="屏幕坐标-Screen-Point"><a href="#屏幕坐标-Screen-Point" class="headerlink" title="屏幕坐标 (Screen Point)"></a>屏幕坐标 (Screen Point)</h1><ul>
-<li><p>屏幕坐标系是基于游戏窗口建立的坐标系. </p>
-</li>
-<li><p>屏幕坐标系以像素为单位, 窗口的左下角坐标为 (0, 0), 右上角坐标为窗口大小. 脚本中可以通过 (Screen.width, Screen.height) 来获取窗口大小.</p>
-</li>
-<li><p>脚本中使用 Input.mousePosition 可以获得鼠标坐标, 这个坐标便是基于屏幕坐标系计算得来的. 另外使用 Input.GetTouch(0).position 可以获得单个手指触摸屏幕时手指的坐标, 这个坐标也是基于屏幕坐标系计算得来的.</p>
-</li>
-<li><p>需要注意的是屏幕坐标不是根据玩家显示器的大小建立的坐标系, 而是以游戏窗口建立的坐标系, 比如玩家屏幕为: 1920 X 1080, 但是游戏窗口是: 800 X 600, 那么右上角的坐标是 (800, 600).</p>
-</li>
-</ul>
-<h1 id="视图坐标-View-Point"><a href="#视图坐标-View-Point" class="headerlink" title="视图坐标 (View Point)"></a>视图坐标 (View Point)</h1><ul>
-<li><p>摄像机预览窗口显示的画面, 也是基于游戏窗口建立的坐标系.</p>
-</li>
-<li><p>视图坐标系的大小为单位 1, 窗口的左下角坐标为 (0, 0), 右上角坐标为 (1, 1).</p>
-</li>
-<li><p>屏幕坐标单位化后得到的就是视图坐标.</p>
-</li>
-</ul>
-<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0NTM2NTUxL2FydGljbGUvZGV0YWlscy85MDI2OTkwOA==">Unity中屏幕坐标、视口坐标和世界坐标、局部坐标与其之间的相互转换<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cDovL2xpdXFpbmd3ZW4ubWUvMjAxNy8wNy8zMS91bmRlcnN0YW5kaW5nLWNvb3JkaW5hdGUtc3lzdGVtLWluLXVuaXR5M2Qv">理解Unity3D中的四种坐标体系<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ul>
+</ol>
 ]]></content>
       <categories>
-        <category>Unity</category>
+        <category>Program</category>
       </categories>
       <tags>
-        <tag>Unity</tag>
+        <tag>JSON</tag>
       </tags>
   </entry>
   <entry>
@@ -3162,6 +3075,124 @@
       </tags>
   </entry>
   <entry>
+    <title>Unity 中的坐标系</title>
+    <url>/unity/unity_coordinatesystem.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在制作魔剑镇魂曲的 TileMap 时用到了各种坐标系之间的转换, 当时被整得云里雾里的, 现在来回顾一下. 游戏中我只用到了笛卡尔坐标系, 没有用到极坐标系, 后面就直接简称为坐标系了.</p>
+<h1 id="坐标系与坐标"><a href="#坐标系与坐标" class="headerlink" title="坐标系与坐标"></a>坐标系与坐标</h1><ul>
+<li><p>首先需要强调一下坐标系和坐标完全不是一回事, 文章中有很多地方涉及到坐标系和坐标, 为了避免混淆, 一定要在脑海中清晰地区分两者. 坐标系是一个系统, 而坐标只是一个表示位置的数字.</p>
+</li>
+<li><p>坐标是不可能独立存在的, 它必须依存于某个坐标系, 因此很多时候我们就直接简称为某某坐标. 比如在屏幕坐标系中一个点的坐标简称为 &quot;屏幕坐标&quot;, 在世界坐标系中一个点的坐标简称为 &quot;世界坐标&quot;.</p>
+</li>
+</ul>
+<h1 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h1><p>Unity 中的坐标大致分为 4 种:</p>
+<table>
+<thead>
+<tr>
+<th align="left">坐标</th>
+<th align="left">关键字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">世界坐标</td>
+<td align="left">World Point</td>
+</tr>
+<tr>
+<td align="left">本地坐标</td>
+<td align="left">Local Point</td>
+</tr>
+<tr>
+<td align="left">屏幕坐标</td>
+<td align="left">Screen Point</td>
+</tr>
+<tr>
+<td align="left">视图坐标</td>
+<td align="left">View Point</td>
+</tr>
+</tbody></table>
+<h1 id="世界坐标-World-Point"><a href="#世界坐标-World-Point" class="headerlink" title="世界坐标 (World Point)"></a>世界坐标 (World Point)</h1><ul>
+<li><p>Unity 中有一个覆盖全部游戏物体的坐标系, 所有的游戏物体都靠这个坐标系来确定自身在游戏世界中的准确位置, 这个坐标系就是世界坐标系. 有时为了明显和 &quot;局部坐标系&quot; 相对应也被称为 &quot;全局坐标系&quot;. 在世界坐标系中得出的点的坐标称为世界坐标 (World Point).</p>
+</li>
+<li><p>但是遗憾的是在游戏物体 Inspector 面板中, Transform 处显示的 Position 是<font color='red'><strong>在父物体坐标系中的坐标</strong></font>, 而不是在世界坐标系中的坐标. 只有当物体没有父物体的时候, Transform 处显示的 Position 才是在世界坐标系中的坐标.</p>
+</li>
+<li><p>但是在脚本中, 使用 transform.position 获取的却是游戏物体的世界坐标.</p>
+</li>
+</ul>
+<h1 id="本地坐标-Local-Point"><a href="#本地坐标-Local-Point" class="headerlink" title="本地坐标 (Local Point)"></a>本地坐标 (Local Point)</h1><ul>
+<li><p>Unity 中每个游戏物体都有其自身坐标系, 其子物体便是使用这个坐标系来确定与父物体的相对位置关系. 在父物体坐标系下得出的点的坐标称为本地坐标 (Local Point).</p>
+</li>
+<li><p>由于本地坐标系和物体绑定, 因此当游戏物体进行旋转, 移动的时候, 坐标系也会进行相应的旋转和移动. 但是本地坐标却有一个特点: <font color='red'><strong>不变性</strong></font>. 当游戏物体进行旋转, 移动的时候, 其子物体的本地坐标是不变的, 即子物体相对于自身的相对位置不会改变, 因此子物体会跟随其父物体旋转, 移动.</p>
+</li>
+<li><p>Unity 中模型 Mesh 保存的顶点坐标均为本地坐标, 因为本地坐标的不变性, 即使物体进行旋转或者移动, 也不会影响顶点的坐标.</p>
+</li>
+<li><p>在脚本中使用 transform.position 获取的是游戏物体的世界坐标, 使用 transform.localPosition 获取的便是游戏物体的本地坐标. 但是当物体没有父物体的时候,  transform.localPosition 获取的也是世界坐标.</p>
+</li>
+</ul>
+<h1 id="屏幕坐标-Screen-Point"><a href="#屏幕坐标-Screen-Point" class="headerlink" title="屏幕坐标 (Screen Point)"></a>屏幕坐标 (Screen Point)</h1><ul>
+<li><p>屏幕坐标系是基于游戏窗口建立的坐标系. </p>
+</li>
+<li><p>屏幕坐标系以像素为单位, 窗口的左下角坐标为 (0, 0), 右上角坐标为窗口大小. 脚本中可以通过 (Screen.width, Screen.height) 来获取窗口大小.</p>
+</li>
+<li><p>脚本中使用 Input.mousePosition 可以获得鼠标坐标, 这个坐标便是基于屏幕坐标系计算得来的. 另外使用 Input.GetTouch(0).position 可以获得单个手指触摸屏幕时手指的坐标, 这个坐标也是基于屏幕坐标系计算得来的.</p>
+</li>
+<li><p>需要注意的是屏幕坐标不是根据玩家显示器的大小建立的坐标系, 而是以游戏窗口建立的坐标系, 比如玩家屏幕为: 1920 X 1080, 但是游戏窗口是: 800 X 600, 那么右上角的坐标是 (800, 600).</p>
+</li>
+</ul>
+<h1 id="视图坐标-View-Point"><a href="#视图坐标-View-Point" class="headerlink" title="视图坐标 (View Point)"></a>视图坐标 (View Point)</h1><ul>
+<li><p>摄像机预览窗口显示的画面, 也是基于游戏窗口建立的坐标系.</p>
+</li>
+<li><p>视图坐标系的大小为单位 1, 窗口的左下角坐标为 (0, 0), 右上角坐标为 (1, 1).</p>
+</li>
+<li><p>屏幕坐标单位化后得到的就是视图坐标.</p>
+</li>
+</ul>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0NTM2NTUxL2FydGljbGUvZGV0YWlscy85MDI2OTkwOA==">Unity中屏幕坐标、视口坐标和世界坐标、局部坐标与其之间的相互转换<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cDovL2xpdXFpbmd3ZW4ubWUvMjAxNy8wNy8zMS91bmRlcnN0YW5kaW5nLWNvb3JkaW5hdGUtc3lzdGVtLWluLXVuaXR5M2Qv">理解Unity3D中的四种坐标体系<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unity - 2D 精灵 和 3D 物体的渲染顺序</title>
+    <url>/unity/unity_render_order.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h1><p>我在学习 SiKi 学院出的一款捕鱼达人的游戏教程时, 教程中使用了一个 3D 物体, 在其上面制作水波纹特效, 为了容易观察渲染层级, 我还特意将同一个层级 (Sorting Layer) 的精灵全部放到同一个 Z 位置上, 一共分了四层.</p>
+<p><img data-src="/images/unity_render_order/unity_render_order_1.png" alt="3D 游戏物体被遮挡"></p>
+<p>但是从相机预览效果中可以看出, 水波纹效果被遮挡了. 在这个场景中所有的 Canvas 的渲染层级都是一个自定义的 UI 层, 但是这个 3D 游戏物体的层级该怎么设置呢? 根本找不到设置的地方啊? 😥</p>
+<h1 id="MeshRenderer-与-SpriteRenderer-的渲染顺序"><a href="#MeshRenderer-与-SpriteRenderer-的渲染顺序" class="headerlink" title="MeshRenderer 与 SpriteRenderer 的渲染顺序"></a>MeshRenderer 与 SpriteRenderer 的渲染顺序</h1><p>3D 游戏物体使用的是 MeshRenderer, 2D 精灵使用的是 SpriteRenderer, 两者都是继承自 Renderer, 在 Renderer 中渲染层级是 <code>sortingLayerName</code> 字段, 渲染顺序是 <code>sortingOrder</code> 字段.</p>
+<ol>
+<li><p>SpriteRenderer 中的 <code>Sorting Layer</code> 对应的是 sortingLayerName 字段, <code>Order in Layer</code> 对应的是 sortingOrder 字段.</p>
+</li>
+<li><p>在 MeshrRenderer 中这两个字段并没有做处理, 只是在面板上隐藏了而已, 因此可以在脚本中直接使用.</p>
+ <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> MeshRenderer meshRenderer;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    meshRenderer = GetComponent&lt;MeshRenderer&gt;();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定 3D 游戏物体的渲染层级</span></span><br><span class="line">    meshRenderer.sortingLayerName = sortingLayer;</span><br><span class="line">    meshRenderer.sortingOrder = orderinLayer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 ParticleSystem 中同样也有 Renderer 组件控制粒子特效的渲染顺序, 同样可以使用脚本控制, 也可以直接在面板上设置.</p>
+ <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> ParticleSystem[] particleSystems;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定粒子特效的渲染层级</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; particleSystems.Length; index++)</span><br><span class="line">    &#123;</span><br><span class="line">        rendererParticle = particleSystems[index].GetComponent&lt;Renderer&gt;();</span><br><span class="line">        rendererParticle.sortingLayerName = sortingLayer;</span><br><span class="line">        rendererParticle.sortingOrder = orderinLayer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="问题解决后效果"><a href="#问题解决后效果" class="headerlink" title="问题解决后效果"></a>问题解决后效果</h1><p>使用上面脚本中的设置就可以让 MeshRenderer 也参与到 2D UI 的排序中来了, 效果还是不错的.</p>
+<p><img data-src="/images/unity_render_order/unity_render_order_2.png" alt="修复后效果"></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82YmNjZjc5ZmEzNjc=">SpriteRenderer 与 MeshRenderer的渲染排序层级<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何让 Unity 走代理?</title>
     <url>/unity/unity_proxy.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -3217,6 +3248,67 @@
       </categories>
       <tags>
         <tag>Unity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unity TileMap 瓦片与瓦片之间的线条</title>
+    <url>/unity/unity_tileborderline.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>在使用 TileMap 制作 2D 游戏的时候, 发现瓦片与瓦片之间总是存在一条缝隙, 这条缝隙什么颜色的都有, 可是我已经把所有素材的过滤方式都设置为了: &quot;Point (no filter)&quot;, 为什么还会有这个问题呢? 原本以为是瓦片之间没拼接好, 大小没设置对(原谅我没有图形学方面的知识), 后来查阅资料得知, 目前美工在制作 2D 游戏素材时, 基本都会将同类的精灵图放到一张贴图中, 这样紧贴着的两个精灵图在某种特殊情况下就会出现使用了相邻精灵图中像素的问题. </p>
+<p><img data-src="/images/unity_tileborderline/tileborderline0.png" alt="精灵图放到一张贴图中"></p>
+<p>从上面的素材图中可以看到, 多个精灵图组成了一张贴图, 其中中间位置的一张看似像 &quot;车轮印&quot; 的精灵图和右侧一张表示 &quot;海洋&quot; 的贴图相连, 于是在游戏中就会出现这种情况:</p>
+<p><img data-src="/images/unity_tileborderline/tileborderline1.png" alt="蓝色细线, 万恶之源"></p>
+<p>代表 &quot;车轮印&quot; 精灵图的右侧就会出现代表 &quot;海洋&quot; 精灵图的一个蓝色的像素, 导致出现了一条蓝色的细线. 实乃万恶之源!</p>
+<p>先说一下已经试过的网友们的方法.</p>
+<h1 id="将-TileMap-的-cell-大小设置为接近-1-的值"><a href="#将-TileMap-的-cell-大小设置为接近-1-的值" class="headerlink" title="将 TileMap 的 cell 大小设置为接近 1 的值"></a>将 TileMap 的 cell 大小设置为接近 1 的值</h1><p>默认情况下 TileMap 中 cell 的大小为 1 个单位, 瓦片在地图中的大小通常也是一个单位, 于是就想到将 cell 大小设置为比 1 个单位小那么一丢丢, 让最外围的一个像素不显示出来不就好了~ 赶紧尝试一下, 于是:</p>
+<p><img data-src="/images/unity_tileborderline/tileborderline2.png" alt="改变 cell 大小"></p>
+<p>乍看上去好像没有细线了, 但是放大一下就会发现, 不仅是右侧有蓝色的细线, 现在上方也有了...呃...看来这种方法不适合我啊~</p>
+<h1 id="建立图集"><a href="#建立图集" class="headerlink" title="建立图集"></a>建立图集</h1><p>听另一位大佬说, 将精灵图添加到图集时, Unity 会自动补全像素, 因此可以作为一个解决此问题的办法, 于是赶紧照着大佬说的操作一番~ 然后:</p>
+<p><img data-src="/images/unity_tileborderline/tileborderline3.png" alt="建立图集"></p>
+<p>关于图集的知识我也不是很懂, 总之依旧没有实现比较完美的效果, 或者是让我满意的效果...可以看到图中确实已经没有了蓝色的细线, 但是会发现瓦片与瓦片之间的衔接变得很不自然, 有一条明显的分界线...呃...看来这种方法同样不适合我~</p>
+<hr>
+<h1 id="素材分辨率"><a href="#素材分辨率" class="headerlink" title="素材分辨率"></a>素材分辨率</h1><p>后来我想到了之前做泰拉瑞亚的仿制 demo 时曾出现过的一个情况, 当时自己从网上搞来一批素材, 开始搭建人物. 人物的素材是拆成很多部分的, 我在拼接这些部分的时候发现像素对应不起来, 当时我的解决办法是把图片的分辨率改成了 2 的幂, 当时改成了 64, 然后像素就能对应上了. 同时我也发现 Unity 中有一项 Max Size 的设置, 这里也只支持 2 的幂, 会不会就是这里导致 Unity 会自动补全像素呢? 于是我赶紧将素材都改为了 2 的幂, 256 X 256, 重新导入并设置好后, 神奇的一幕发生了: </p>
+<p><img data-src="/images/unity_tileborderline/tileborderline4.png" alt="处理素材"></p>
+<p>而且瓦片与瓦片之间也衔接的不错, 虽然仔细观察还是有瑕疵, 但是这应该是素材自身的问题了!</p>
+<p><img data-src="/images/unity_tileborderline/tileborderline5.png" alt="瓦片之间的衔接"></p>
+<h1 id="MSAA-多重采样"><a href="#MSAA-多重采样" class="headerlink" title="MSAA 多重采样"></a>MSAA 多重采样</h1><p>再到后来编写摄像机脚本的时候, 发现摄像机中有一个 MSAA 的设置选项, 忽然想起之前大佬提到过 MSAA 啊! 赶紧查一下 MSAA 是啥!</p>
+<p>MSAA 是 &quot;多重采样&quot; 技术, 用来实现 &quot;抗锯齿&quot; 的效果. 在不规则图形的渲染中需求比较大. 下面是一张简单表示 MSAA 效果的图片. (引用自文章: <span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zMjgyMzM3MA==">深入剖析MSAA<i class="fa fa-external-link-alt"></i></span>)</p>
+<p><img data-src="/images/unity_tileborderline/msaa.png" alt="MSAA"></p>
+<p>由此可见在没有开启 MSAA 时, 一条斜线上的锯齿感非常明显, 开始 MSAA 之后, 斜线上的锯齿感便开始弱化. 理想状态下可以无限接近于真正的斜线.</p>
+<p>但是在我这个项目中, MSAA 反而会形成困扰, 导致瓦片之间衔接不好, 甚至出现前面所说的细线, 毕竟游戏本就是像素风格嘛~ 于是我开始好奇将 MSAA 关闭后会有什么效果呢?</p>
+<p><img data-src="/images/unity_tileborderline/tileborderline6.png" alt="关闭 MSAA"></p>
+<p>于是我回退到之前没有修改素材分辨率的版本, 找到摄像机中的 MSAA 选项, 选择 &quot;Off&quot;, 然后神奇的一幕又发生了, 关闭 MSAA 后, 也实现了近乎完美的瓦片衔接...</p>
+<p>那我之前耗费那么多时间处理素材是图啥子嘞~ 😭 又吃了没文化的亏~</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>如果你的项目中也出现了文章中所提到的问题, 不妨尝试尝试这几种方法:</p>
+<ol>
+<li><p>将 TileMap 的 cell 大小设置为接近 1 的值.</p>
+</li>
+<li><p>建立图集, 在图集的 Padding 处设置自动补全的像素值, 可选: 2 4 8.</p>
+<p> <img data-src="/images/unity_tileborderline/tileborderline7.png" alt="图集自动补全像素"></p>
+</li>
+<li><p>处理素材的分辨率为 2 的幂.</p>
+</li>
+<li><p>关闭 MSAA</p>
+</li>
+</ol>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTAyNzU5MzIvYXJ0aWNsZS9kZXRhaWxzLzEwNjYwODE0Mw==">3D 瓦片地图采坑录<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zMjgyMzM3MA==">深入剖析 MSAA<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RhcmtyYWJiaXQvYXJ0aWNsZS9kZXRhaWxzLzc5MTgxOTQ1">绘制地图(Tile Map)<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RhcmtyYWJiaXQvYXJ0aWNsZS9kZXRhaWxzLzc5MjEyNjI1">图集(Atlas)<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>TileMap</tag>
       </tags>
   </entry>
   <entry>
@@ -3339,98 +3431,6 @@
       <tags>
         <tag>Unity</tag>
         <tag>UGUI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Unity - 2D 精灵 和 3D 物体的渲染顺序</title>
-    <url>/unity/unity_render_order.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h1><p>我在学习 SiKi 学院出的一款捕鱼达人的游戏教程时, 教程中使用了一个 3D 物体, 在其上面制作水波纹特效, 为了容易观察渲染层级, 我还特意将同一个层级 (Sorting Layer) 的精灵全部放到同一个 Z 位置上, 一共分了四层.</p>
-<p><img data-src="/images/unity_render_order/unity_render_order_1.png" alt="3D 游戏物体被遮挡"></p>
-<p>但是从相机预览效果中可以看出, 水波纹效果被遮挡了. 在这个场景中所有的 Canvas 的渲染层级都是一个自定义的 UI 层, 但是这个 3D 游戏物体的层级该怎么设置呢? 根本找不到设置的地方啊? 😥</p>
-<h1 id="MeshRenderer-与-SpriteRenderer-的渲染顺序"><a href="#MeshRenderer-与-SpriteRenderer-的渲染顺序" class="headerlink" title="MeshRenderer 与 SpriteRenderer 的渲染顺序"></a>MeshRenderer 与 SpriteRenderer 的渲染顺序</h1><p>3D 游戏物体使用的是 MeshRenderer, 2D 精灵使用的是 SpriteRenderer, 两者都是继承自 Renderer, 在 Renderer 中渲染层级是 <code>sortingLayerName</code> 字段, 渲染顺序是 <code>sortingOrder</code> 字段.</p>
-<ol>
-<li><p>SpriteRenderer 中的 <code>Sorting Layer</code> 对应的是 sortingLayerName 字段, <code>Order in Layer</code> 对应的是 sortingOrder 字段.</p>
-</li>
-<li><p>在 MeshrRenderer 中这两个字段并没有做处理, 只是在面板上隐藏了而已, 因此可以在脚本中直接使用.</p>
- <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> MeshRenderer meshRenderer;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    meshRenderer = GetComponent&lt;MeshRenderer&gt;();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定 3D 游戏物体的渲染层级</span></span><br><span class="line">    meshRenderer.sortingLayerName = sortingLayer;</span><br><span class="line">    meshRenderer.sortingOrder = orderinLayer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 ParticleSystem 中同样也有 Renderer 组件控制粒子特效的渲染顺序, 同样可以使用脚本控制, 也可以直接在面板上设置.</p>
- <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> orderinLayer = <span class="number">15</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> sortingLayer = <span class="string">&quot;UI&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> ParticleSystem[] particleSystems;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//设定粒子特效的渲染层级</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; particleSystems.Length; index++)</span><br><span class="line">    &#123;</span><br><span class="line">        rendererParticle = particleSystems[index].GetComponent&lt;Renderer&gt;();</span><br><span class="line">        rendererParticle.sortingLayerName = sortingLayer;</span><br><span class="line">        rendererParticle.sortingOrder = orderinLayer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h1 id="问题解决后效果"><a href="#问题解决后效果" class="headerlink" title="问题解决后效果"></a>问题解决后效果</h1><p>使用上面脚本中的设置就可以让 MeshRenderer 也参与到 2D UI 的排序中来了, 效果还是不错的.</p>
-<p><img data-src="/images/unity_render_order/unity_render_order_2.png" alt="修复后效果"></p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuamlhbnNodS5jb20vcC82YmNjZjc5ZmEzNjc=">SpriteRenderer 与 MeshRenderer的渲染排序层级<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Unity TileMap 瓦片与瓦片之间的线条</title>
-    <url>/unity/unity_tileborderline.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>在使用 TileMap 制作 2D 游戏的时候, 发现瓦片与瓦片之间总是存在一条缝隙, 这条缝隙什么颜色的都有, 可是我已经把所有素材的过滤方式都设置为了: &quot;Point (no filter)&quot;, 为什么还会有这个问题呢? 原本以为是瓦片之间没拼接好, 大小没设置对(原谅我没有图形学方面的知识), 后来查阅资料得知, 目前美工在制作 2D 游戏素材时, 基本都会将同类的精灵图放到一张贴图中, 这样紧贴着的两个精灵图在某种特殊情况下就会出现使用了相邻精灵图中像素的问题. </p>
-<p><img data-src="/images/unity_tileborderline/tileborderline0.png" alt="精灵图放到一张贴图中"></p>
-<p>从上面的素材图中可以看到, 多个精灵图组成了一张贴图, 其中中间位置的一张看似像 &quot;车轮印&quot; 的精灵图和右侧一张表示 &quot;海洋&quot; 的贴图相连, 于是在游戏中就会出现这种情况:</p>
-<p><img data-src="/images/unity_tileborderline/tileborderline1.png" alt="蓝色细线, 万恶之源"></p>
-<p>代表 &quot;车轮印&quot; 精灵图的右侧就会出现代表 &quot;海洋&quot; 精灵图的一个蓝色的像素, 导致出现了一条蓝色的细线. 实乃万恶之源!</p>
-<p>先说一下已经试过的网友们的方法.</p>
-<h1 id="将-TileMap-的-cell-大小设置为接近-1-的值"><a href="#将-TileMap-的-cell-大小设置为接近-1-的值" class="headerlink" title="将 TileMap 的 cell 大小设置为接近 1 的值"></a>将 TileMap 的 cell 大小设置为接近 1 的值</h1><p>默认情况下 TileMap 中 cell 的大小为 1 个单位, 瓦片在地图中的大小通常也是一个单位, 于是就想到将 cell 大小设置为比 1 个单位小那么一丢丢, 让最外围的一个像素不显示出来不就好了~ 赶紧尝试一下, 于是:</p>
-<p><img data-src="/images/unity_tileborderline/tileborderline2.png" alt="改变 cell 大小"></p>
-<p>乍看上去好像没有细线了, 但是放大一下就会发现, 不仅是右侧有蓝色的细线, 现在上方也有了...呃...看来这种方法不适合我啊~</p>
-<h1 id="建立图集"><a href="#建立图集" class="headerlink" title="建立图集"></a>建立图集</h1><p>听另一位大佬说, 将精灵图添加到图集时, Unity 会自动补全像素, 因此可以作为一个解决此问题的办法, 于是赶紧照着大佬说的操作一番~ 然后:</p>
-<p><img data-src="/images/unity_tileborderline/tileborderline3.png" alt="建立图集"></p>
-<p>关于图集的知识我也不是很懂, 总之依旧没有实现比较完美的效果, 或者是让我满意的效果...可以看到图中确实已经没有了蓝色的细线, 但是会发现瓦片与瓦片之间的衔接变得很不自然, 有一条明显的分界线...呃...看来这种方法同样不适合我~</p>
-<hr>
-<h1 id="素材分辨率"><a href="#素材分辨率" class="headerlink" title="素材分辨率"></a>素材分辨率</h1><p>后来我想到了之前做泰拉瑞亚的仿制 demo 时曾出现过的一个情况, 当时自己从网上搞来一批素材, 开始搭建人物. 人物的素材是拆成很多部分的, 我在拼接这些部分的时候发现像素对应不起来, 当时我的解决办法是把图片的分辨率改成了 2 的幂, 当时改成了 64, 然后像素就能对应上了. 同时我也发现 Unity 中有一项 Max Size 的设置, 这里也只支持 2 的幂, 会不会就是这里导致 Unity 会自动补全像素呢? 于是我赶紧将素材都改为了 2 的幂, 256 X 256, 重新导入并设置好后, 神奇的一幕发生了: </p>
-<p><img data-src="/images/unity_tileborderline/tileborderline4.png" alt="处理素材"></p>
-<p>而且瓦片与瓦片之间也衔接的不错, 虽然仔细观察还是有瑕疵, 但是这应该是素材自身的问题了!</p>
-<p><img data-src="/images/unity_tileborderline/tileborderline5.png" alt="瓦片之间的衔接"></p>
-<h1 id="MSAA-多重采样"><a href="#MSAA-多重采样" class="headerlink" title="MSAA 多重采样"></a>MSAA 多重采样</h1><p>再到后来编写摄像机脚本的时候, 发现摄像机中有一个 MSAA 的设置选项, 忽然想起之前大佬提到过 MSAA 啊! 赶紧查一下 MSAA 是啥!</p>
-<p>MSAA 是 &quot;多重采样&quot; 技术, 用来实现 &quot;抗锯齿&quot; 的效果. 在不规则图形的渲染中需求比较大. 下面是一张简单表示 MSAA 效果的图片. (引用自文章: <span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zMjgyMzM3MA==">深入剖析MSAA<i class="fa fa-external-link-alt"></i></span>)</p>
-<p><img data-src="/images/unity_tileborderline/msaa.png" alt="MSAA"></p>
-<p>由此可见在没有开启 MSAA 时, 一条斜线上的锯齿感非常明显, 开始 MSAA 之后, 斜线上的锯齿感便开始弱化. 理想状态下可以无限接近于真正的斜线.</p>
-<p>但是在我这个项目中, MSAA 反而会形成困扰, 导致瓦片之间衔接不好, 甚至出现前面所说的细线, 毕竟游戏本就是像素风格嘛~ 于是我开始好奇将 MSAA 关闭后会有什么效果呢?</p>
-<p><img data-src="/images/unity_tileborderline/tileborderline6.png" alt="关闭 MSAA"></p>
-<p>于是我回退到之前没有修改素材分辨率的版本, 找到摄像机中的 MSAA 选项, 选择 &quot;Off&quot;, 然后神奇的一幕又发生了, 关闭 MSAA 后, 也实现了近乎完美的瓦片衔接...</p>
-<p>那我之前耗费那么多时间处理素材是图啥子嘞~ 😭 又吃了没文化的亏~</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>如果你的项目中也出现了文章中所提到的问题, 不妨尝试尝试这几种方法:</p>
-<ol>
-<li><p>将 TileMap 的 cell 大小设置为接近 1 的值.</p>
-</li>
-<li><p>建立图集, 在图集的 Padding 处设置自动补全的像素值, 可选: 2 4 8.</p>
-<p> <img data-src="/images/unity_tileborderline/tileborderline7.png" alt="图集自动补全像素"></p>
-</li>
-<li><p>处理素材的分辨率为 2 的幂.</p>
-</li>
-<li><p>关闭 MSAA</p>
-</li>
-</ol>
-<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTAyNzU5MzIvYXJ0aWNsZS9kZXRhaWxzLzEwNjYwODE0Mw==">3D 瓦片地图采坑录<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zMjgyMzM3MA==">深入剖析 MSAA<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RhcmtyYWJiaXQvYXJ0aWNsZS9kZXRhaWxzLzc5MTgxOTQ1">绘制地图(Tile Map)<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RhcmtyYWJiaXQvYXJ0aWNsZS9kZXRhaWxzLzc5MjEyNjI1">图集(Atlas)<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>TileMap</tag>
       </tags>
   </entry>
   <entry>
@@ -6264,6 +6264,182 @@ const dp_update = new DPlayer({
       <tags>
         <tag>JavaScript</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/funny/unet_demo/unet_demo.html</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>这次试用期 demo 的目标是做一个简单的多人在线 fps 游戏.</p>
+<ol>
+<li><p>移动方面除了 XZ 平面移动之外, Y 轴方向的移动是使用了一种类似机甲喷射上升的行为模式, 这样玩家可以有更久的滞空时间, 更大的操作空间, 当然更多的还是因为我是一名高达粉. 设定上喷射行为具有燃料值, 喷射时会快速消耗燃料值, 其他时刻都会缓慢恢复.</p>
+</li>
+<li><p>枪支方面目前实现了步枪和狙击枪, 步枪是连射模式, 狙击枪为单发模式, 另外狙击枪可以开镜瞄准.</p>
+</li>
+<li><p>本来打算添加几个简单的 AI, 目标是做成在视野范围内, AI 会主动追击或射击玩家, 没有检测到玩家时, AI 便会在给定的坐标来回巡逻的效果, 目前基本效果已在客户端实现, 但是同步还没有实现.</p>
+</li>
+</ol>
+<div id="video1"></div>
+<script src="/js/dplayer/DPlayer.min.js"></script>
+
+<script>
+const video1 = new DPlayer({
+    container: document.getElementById('video1'),
+    screenshot: true,
+    video:
+    {
+        url: '/video/unet_demo/整体演示.mp4',
+    },
+});
+</script>
+
+<h1 id="讲解图"><a href="#讲解图" class="headerlink" title="讲解图"></a>讲解图</h1><p><img data-src="/images/unet_demo/%E8%AE%B2%E8%A7%A3%E5%9B%BE.png" alt="讲解图"></p>
+<h1 id="制作-demo-需要的素材"><a href="#制作-demo-需要的素材" class="headerlink" title="制作 demo 需要的素材"></a>制作 demo 需要的素材</h1><p><img data-src="/images/unet_demo/%E8%B5%84%E6%BA%90%E7%9B%AE%E5%BD%95.png" alt="资源目录"></p>
+<p>demo 中用到的模型以及 UI 资源是在 <span class="exturl" data-url="aHR0cHM6Ly93d3cua2VubmV5Lm5sL2Fzc2V0cz9xPTJk">Kenney<i class="fa fa-external-link-alt"></i></span> 网站以及 Unity Asset Store 下载的免费资源.</p>
+<p>目前 demo 中使用到的包括火焰特效, UI 图标 (FPS), 场景模型 (FPS), 枪械模型 (FPS).</p>
+<ul>
+<li>AssetsPackages: 存放引用的资源包<ul>
+<li>Fire Effect: 火焰特效</li>
+<li>FPS Icons: FPS UI 图标</li>
+<li>FPS Terrains: FPS 场景模型</li>
+<li>FPS Weapons: FPS 枪械模型</li>
+</ul>
+</li>
+<li>Resources: 存放动态资源文件<ul>
+<li>Audios: 音频文件</li>
+<li>Materials: 材质球</li>
+<li>Prefabs: 预制体</li>
+<li>Sprites: 精灵图</li>
+</ul>
+</li>
+<li>Scenes: 存放场景文件</li>
+<li>Scripts: 存放脚本文件</li>
+</ul>
+<h1 id="场景构成"><a href="#场景构成" class="headerlink" title="场景构成"></a>场景构成</h1><p><img data-src="/images/unet_demo/%E5%9C%BA%E6%99%AF.png" alt="场景构成"></p>
+<h1 id="demo-中的脚本构成"><a href="#demo-中的脚本构成" class="headerlink" title="demo 中的脚本构成"></a>demo 中的脚本构成</h1><p><img data-src="/images/unet_demo/%E8%84%9A%E6%9C%AC.png" alt="脚本构成"></p>
+<p>当时写脚本之前, 为了方便后期的维护, 于是尽量将各个功能独立编写, 单独创建了音频管理器, 特效管理器, 游戏管理器, 服务器逻辑等脚本, 下面是每个脚本具体的行为概括.</p>
+<ul>
+<li>AudioManager: 负责音效资源的管理以及音效资源池中资源的生成与回收.</li>
+<li>EffectManager: 负责特效资源的管理以及特效资源池中资源的生成与回收.</li>
+<li>Player: 玩家相关脚本<ul>
+<li>Player: 保存玩家的生命值数据以及与生命值相关的逻辑处理, 包括受伤, 死亡, 重生等.</li>
+<li>PlayerController: 玩家的控制脚本, 保存玩家运动相关的数据, 包括移动速度, 镜头旋转速度, 燃料量, 燃料的消耗速度与补充速度, 并负责检测玩家的所有输入, 与其他脚本配合共同实现用户逻辑, 是运动逻辑的核心.</li>
+<li>PlayerMotor: 玩家运动的实质驱动脚本, 包括玩家的 XZ 平面移动, 镜头的上下及左右旋转, 玩家的喷射上升运动等.</li>
+<li>PlayerSetup: 玩家初始化脚本, 主要功能有对场景摄像机的控制, 取消远程玩家身上的组件, 设置玩家 Layer, 固定鼠标, UI 初始化, 玩家注册等, 由于初始化项较多, 所以有很多与其他脚本的交互.</li>
+<li>PlayerShoot: 负责玩家射击的相关逻辑, 包括射线检测, 射击特效的控制, 击中特效的控制等.</li>
+<li>PlayerUI: 负责更新玩家 UI.</li>
+<li>Weapon: 武器的数据类, 只存储武器数据, 同时关联武器的模型和击中特效, 以达到不同的武器可以使用不同的模型以及击中特效, 方便武器的扩展.</li>
+<li>PlayerWeapon: 玩家的武器管理类, 管理玩家手中的武器, 并向外部提供与武器交互的方法.</li>
+</ul>
+</li>
+<li>ServerManager: 服务器逻辑脚本,  所有和服务器相关的逻辑都在这个脚本中, 主要功能有调用 Client 的受伤方法, 调用 Client 生成射击特效和击中特效的方法等.</li>
+<li>GameManager: 游戏管理器, 负责初始化地图场景, 管理所有的玩家, 提供玩家注册和取消注册方法, 另外也用来存储游戏的全局数据以及提供一些通用的工具方法.</li>
+</ul>
+<p><span class="exturl" data-url="aHR0cHM6Ly92aWV3ZXIuZGlhZ3JhbXMubmV0Lz9oaWdobGlnaHQ9MDAwMGZmJmVkaXQ9X2JsYW5rJmxheWVycz0xJm5hdj0xJnRpdGxlPVVudGl0bGVkJTIwRGlhZ3JhbS5kcmF3aW8jUjdWMXBVJTJCTzRGdjAxcVdJJTJCME9VdDI4ZHNEZW1CaGlFd1BmMiUyQlVDSVdpYnR0SyUyQk1GeVB6Nko4bVdWOGxMT2dxOE42NmlpbGk1a2hjZEhSJTJGZGU2WDA5Sm56ZHVHQjNmWWFtZER1YVlyNTF0UG5QVTFUeHlNViUyRnlNbCUyQjdoRTFiV29aT05aWmx5V0ZxeXNmMkJjcU1TbG9XVkNQMmNZSUdRSDFpNWZ1RWF1QzlkQnJneDRIbnJObXowak8zJTJGV0hkakFVc0ZxRGV4eTZUZkxETFp4cWFFbzZSZVgwTnBzMmFtSDdCc0hNT3U0d044Q0U3MW1pdlJGVDU5NUNBWFJKJTJCZHRCbTN5JTJCTmlEJTJCYmJjZjdPdmZnNHV2dnpoJTJGdzBlcHIlMkZmZiUyRjN6UEdyc2M1c3F5VDE0MEEwT2J0cnhuWmZmZjV6JTJGOWZ0azl4UDk1JTJGckh6eGZ2QzJ2NkJkaGglMkZNQW1vV21oYSUyQkRpNSUyQkxGOXgzczJkUDBYeTNIQmk0JTJCbWo0ak4xakYzNmo0R05qV3hzV2YxJTJGZ2FjVTE5JTJCZ0s5d01JZE1ZbSUyRkNOQU9sNjYzbG0xZWdUMEt5WjM0QVZqJTJGWkVmVExmS3NmM0N6d0k3YnhGOTdRWXdwYlpDeldKR2F1RmpCcFI3MHNjMHRlenhxb2VnYXZPVU1yNEFmeEFWclpOdGc1MXRQeVcwNHdOdFk3aFFGQVhKaW8lMkZnUjRkdUJid1ZRMVhTSW1xQUVEekNJSEJoNGUxd3ZibVZzeE1CaVkwc2J4QVd2S1ZKMWhyNXRGcVNqdUJERW8yT1ROSjZjN3c2UEp1QnU4STBsSjlUeTU5UEtaMU1WenRud2s4JTJCZEROaTRnMTBRd0NrS1hkUFBnZzUlMkZ5TnhwV2tTaDJBS1dXZ21XUFcxS0xvR0FjNFZDYjQyTEo1UE1FYmxJWFkyNks3R2MyZFp1dGFVRE5ESW1CUm5UODk1TTYwM3dwZGd3MHhhJTJCemNrZklReEpvemJCWmY0OG00Q2VKTk9JcGhBU3VQZUE2ejhqRDhObWtuN08yMWt1aHJTYlhud3l6b3FYbEwlMkY4T2JRQmZweVRiOEFLUGlOdkJURmJ4ZzglMkJPem94UGdNNmFqejBFODZRamZBd25Mc29HcTZXYlJlSzJJaTE0WE1nSEslMkYlMkJEcXd0ZDNORmJlWkdXbklYQTRRVUlWejMyYWJjdUxWTUU3cGtyS0VBQkNBYVdPVEdkc2h5QTRxZyUyRmhUJTJGWVp6TmxFJTJGOVhoOWYlMkJBd2ZxJTJCa3glMkZpUG1YakJEJTJCSEY1d0tKakRPSlIlMkJ3cjlvT21BRk5OZGVVRHU4MEN2RzM1alF6ejZjaU9oTGV4MUR1d0xmV3hidE8lMkJpUG1adk5QV2dEblp3VjlrdzdkRjcwdUh6YzdYVTYzcTUxM1ZPRDl2Z0NkcTN5TGNDQzVIMnZjaTIwUFB2MWJrcWglMkI2NHZUdVMxTG1HZ05OdThkaW1vJTJGenNUMHpaeU5QSnZiS25pTWNHRmowMkFnR3BpdXpRZ2I5aEluaEIlMkJGUjVhcm1BUVlhbnpuNFQ4aU14WHJ4QiUyRkg3WXIyMU1FeDUlMkIlMkJXSlFuZVdzRlo5JTJCSUswc0Z5NCUyQnF3ZndwWFdNYzNSUWpwcUJzcTlKUW1XJTJGaE1vTDRNQk8lMkY1MUElMkY0MzZCVDNXNXpEVWtBTUdYYTJRZjclMkJFaG9HQW82NG0zeGQzajFjM3M4blY0eTA5d0lYVUFGJTJGSjRPJTJCUUtLenBGY0s5VGRpTUNwcTRFQlBJbWd3cWlpTVBqJTJCS1NVb3Zhdmx0YzM5d3Z4STNmUVFjRjhORFdveXYlMkZ0cGpjM253VlhmazNDSGFFY1p1M0hWM3M0M0wlMkJlSHUzJTJCTHo4aTlOeWRNR1BiVnBkZkYxY2Y2OXNkT0ZDWjklMkJxemRYbHpjMzk0JTJGWE5mUEc0V242OXVGcHdXdTB0JTJCcjNSdkRmdTB3JTJCZmUyTTFlNFpwVlp0M2s5dmxuTnZrcURmRkxTMUlrNWlBUjBaMWszaDg3c0NyUyUyQlh1dmVVUW1SeSUyRiUyQndxR0R0amRldkFaUEdFTHdsYzNUeiUyQkk4NkJvdHFOUCUyRjJHSnJXN1pSNkVneiUyRkZlemlocWhrd0w1dGFhdkpZQkdXclIzSUE5OEZuOEpxZVZOJTJCazdvM3RadG5oWjlsdkxjeDQ5cWlOWiUyQm56WTZYTjV2YXMyZlB2SjB1Y2p3YnZ2RG00c0gwdWFhSFNmc1FHdnVEQlltdm1CSHpNRlI2RkhUVDI0b3NhaWlrdFRXQlhMJTJCNm82Q2ZVVU9KclZlbGllcFF5b2hKYndQTGhHU3FoWDlJUlpnbFUybVlOWjVvV2pWTiUyRjVqWHVCTHlIOXVxUEdJdzhlemp5Q04zakdzdVlSYXRsM3NYaCUyQnhqRHBwaEx2NFVvMmhodzIxZHU2a244TkVTS0h4OVlLSW1qVTY3ekV0RnJ0RlpRY3JwTEJYYzRxZjI2T1N6WGZKbjclMkZYcklhSmJkdzdsSmFlb1U3JTJGbXZyUjlGYmEwTWUzS1c1YnRXeUk2WFRoa2ZyWHE3emx0ZSUyRnNzU2hLdktNSk43YmlDU0VQdHkwM01VRUFHeXhGJTJGZUFob1NreVBQejV1UWNwQ2ZyM0x6UzhjdlJaeno4U3ZQemF1VklQM040TlJObXlpOHJMZzVTJTJGcjlFMkRBdndvYThBUHY0ZU9GODFSZ1hITWpsODQwNHAzdVBlTDRtb005WGlzR3ZnR3BBZ2ZQUzhtZkFYYTNSanRnOElXU1hnJTJGMjJQUTF0RzVJNFB4blV4ZSUyQmY2SmRUOURZRGhHT0N2Y0J1SFhvRUFaVnRtY0NoS1VmY0w3SEFFMzduazdmRTByMXhZU1EycTh5aWR3Q1oxd1BDblRaYzdmMEFPaTMxY2NmaUxWbGNhNTBmd0IlMkZQZlZrcVV5dXJUT2I1NmFiWEVpTjFCWjRkbDRrMkNkN2xtRmFSTmJuV3lucVU2RDNUOHNtWXVuSHhlQ0JYTnBuQ0xYaXhVT2pGJTJCajB2RDElMkJCdjNCSkJaTXhLOCUyRktBVyUyQlhFTDhrdGowVzRTRnBZa1gySXBZJTJCOVBERFp6TnZmYkxLSFJjbXgzQ1Z4SHE2MUtZamNGZnI0QWtYc3RKaUoxb1hQSkhZdlNvbmVzTHZYMW5kS3dxZnJHQVE3czRFZ1FHYTYzaTNXOSUyQkRuM0JPaGRVWlpaVllaUWtteWJqSk9aWTdvUjN3MmlVV2N3dnl2NHBPR0ZIUFdXbmFHJTJGbjFTaTdCTHB3ckNiUGxTVEVmczlJbXhXT0JuTUxQQW5jcm5nVjB3a3Fxc0Jya2hkVlk1N0FZejAyaTkyVUpLM2EyZ3JEeWR4Q2ExM2prT2ZSMkJlRUthblZIaGlKOVNVeDZTZTVtbGVFTUVBSVMyZ1piTHlRaDQ4OGh0Q2NPbnFJSEhOUHpyQ0dLMHVQcnpIQjdEejZtUWtqbFh3UHJpV2xXV0xNN0kzUDRhJTJCQmpaRTVvJTJGSmglMkJ6amY2ZzdEVGlscUt6MHlOTUhETHQ5TVJjVnNpSHJmV2h0eFlvYlI1clY3MlRuYmk4R2o5bSUyRmdYNnpwWWxqaGthd1lMcElwMVhFUUMlMkJFT0ElMkYlMkZsbkxOTTlReERpUU1uUzNZVUI0MlNSRW1SMmpHeWIya1drWEdmOUpYUzQyalpyTTlzU3AlMkJCRldIdnF5SERLZkpWMTV0R2FnUnFqbXgyTVhLY2l3eSUyQlkzYU1ITGJLNFJxRVBZMEhVWmZCSUhLUWNOY3hsNFlFc09heVhjM2dpT1V6bmNKMFNscW1FRFQwdmhYbEsyT0M1R09VcDRYTCUyQkRxR0RKJTJCWlI5TyUyRlJQSEkzRXFWbmtmVHphUDZjJTJCaHo1YVRFTzlMZDMwRFdoUjUyRTE5bERYdUwxekVPJTJCJTJGN0NzVHdIS21WY1olMkJoaVhNSmJkJTJCb1RwYjA1YlZhbmprVVVtOTdKanhKYU1xTGZPNmVFT0FWV1JKa3U3cEI2SiUyRmFzMjVUaHBzcFFmUk1GdnU4eFNKcEVzd2xiWk5VbGlUeVNseUZYS09DTExwV3RsejV0TGw4NFpYbG9tekJqT01CVWo0Zmx2M1BnS1JDNVlZcklpcjlhWmJlVjFkTWRueDhZN1IlMkJGeENVMlZwdkRLUVpoWTRkRmRFanFGSjFQaEZYTzBlZE55YmxKWUlnYVBqd2RSMU1ieWs1bGpPZWttbzdVcU5aUlQ3UVdNbW9pejBKaU1TbFpoSGhwWDNoVWQlMkJLemxDcDklMkJSMjIxMURac0s5Vk9tMzZ0bHlNNW5WSTdXdmUlMkJlJTJGcTFVWTdLeE5GbGtST01yZDN6UXdjS0hXQ3glMkZxbnlrU1ZCN0JxTHU5MTZqcktKNE5XV3lhcVNBeExHTyUyRkk2TnJvYkptZXJpaXhkWnBUakg5Rkw2eHJ4OHZFN1hTWlJsNDA0MDFKdW1xYzhXV2J3NHlVdjBFWWtlemtUaDA1WUlxZUJtR0VtRk0wM1hGUFpSczNnSW96VUVpOFdHeWRHejVxYVolMkJ5dUxNZmlSY3g1RVd2JTJCUlRhUm1wRU5aaWZMZkVKa3M4cEolMkJya2p6TGFFYVJ3cEQxcVRKZmVNYnFjMGlmMnJjallpNG5hd05MbkhEejNjNHVHRHRWQmR5RGMycTR2NEZzeXFuWE94OFgyV3NEcFhtVVFFbGlVWkY0RkRhWXBNdE5LQ3hJRTZPU1pSanJHVjFERVVERjd5Q205cml5U1o4UGhZRUMzJTJCNWFUbVllR0JSUXh2JTJGOWU0Q3FhR2VEV0ZQcmtuUE1Hem1CVVdvZ2tOSjVtVmIxeWpjRW5qb2RYN1pJWExsV3Z0NHRCcGt5MjFhdHhyM0RyaVhXcWlSWUNwZXklMkZ2Q2V5NHRTMjN0bDhKd3QxR1M1ZW0zcnFsSUJMN1YlMkJYc0lzN3RZR25xcldJcENHV1lzeWllb0ZoJTJCUkR2aUNHdEtyRWxxSUtDSDRpcVp5R2pFczBuTkxUMXNWRFBIdjBrRDY4Wm5UbWhaVkxjanRXT0RuaE5iUGVrR1dJWm9MVW03YlJZNjBYaUlhRXglMkJ0S08xRDAlMkZhQ3QyJTJCS0dTeDh5ejhaUFpKM0xOQ2JQbDBDVnExNVhraW9DNlJiVkw5SlByMWdkaUxsN1IzU0t5MUk2NjJ4TlY2N1FYZjFTSkxqUFc3cFJjU3U1ZTNMdmVrcmpTMm9WQjVXOVBkdW5KbFFtVFYyS1J5MlVLeWhla3N5MERVa3N0QkpCVXVZOU5KSmpuUWJPaGprN2I4bGkwbnklMkZRcU5EZVFTU0g4VUxab2cxeGdMOUpTJTJGS2hEMXlSckVPbURUbTJ1RUdVU1FpUSUyRllCRHNZNjBEd2dBUnRSTTRUQWxGNXlRbk9rQ0JzQiUyRkdxTGdydHRnSkM2NE5yT3dmZzk4JTJGSHJSQllMM2tMMCUyQjROZFRFODhBJTJCWXhCREwyMzVGa1ZMNm1QMDZJVk5vMVNXZ3ZpNWFRVWxEdXVrWFI5ZHcxRjNqT3IzM3dNYkdBSGUlMkZxJTJCNFBqMzRUZzd3VUkwUDUyJTJGWkwlMkJmN25LNzlDSmhTJTJGamN4cGZmSEo4QlUyVEh4NE1NeXpseHpRbjU1a01Cc1IlMkJrZGw4U1FVZkVqbUpyQTMxS1VxUUwwcUhuMGFIWHdnVzlXUUZIM3lSanI4WEZVZFR3ZXhNZHBWWEtRclhrTDhZd0MwcG5pYWNBNGFBaEcwZjRQMlJjT2MxYTFBMmdKVUZyaHQxUU1OaDFuVFVSM0ZkZXFRS2FoMWpRVTNYV3BvYU5odE94R2tJVFJUNHFpNVhFNkhOYmhsQndWNFphQ1YxZU5ESGpQRlh3RzljT2hsd1gyNnRFN09CbDZqZkVvRDdxUmVoaDZkVlhOTjFSMGIwaEc3NkRzOUpDRDNzd3IlMkJYc09xdSUyRjBmbTVLaVNJM3BnUlFEWlFpa3ltSGdXbzRxR2xJTnFqS0RvbCUyRnN4UnNDclhSTHlyQlg1cmFsZDlpMVg3RXpodCUyQlJHOTRjU1BpTVclMkJoRVclMkJqclNUdDV2ajdwNHU4NFpZJTJGaHlEWmZsS3dJVyUyQlNNRkc3YWU4c1RzSmdWTlI1ak5wNGpGcTdxcmtva3JaTGtOcTVxdVgxYmxPT2tNWVFJa2YxekRGVEwzVHh4NiUyRm1ZcmUwWTlMbE9JSmZ6WnBIcTJ4cWRwdk1OOVh1N0pjV3AwSnhiVSUyQjM1dWQ5d001WjhjTUQlMkIxQ1JoSGFXcnZCT21wYk96Zlc4c0IwYmlVbWI2YjlzdmNzbUc3VjZOeUtRVTdzJTJCeDBySmsxbnQlMkJpeFZZSGwyVWwyZkRNamRIS29WcHQ0bFFqTWFGaUUxcklaVXFZS2huZ0pTYWdlcFEyaEs0RmFVakNtOWlLbHhEYWFLRlFhbmlQcXg1Unp2aENuaUU4JTJGN0ZUOWhmdjZJYjBXbWxqOW9RTERFU0N3UHBqR0ZzUVhZY3VGV1htZDJrb0NnWkxLcUJZVXVBSVVVTDNTJTJGZ0lUaWoxMDFkVU1QU3Z2bmFJV1dKUHVoaCUyQlVsWVhMUVF0WDVNQThaUXp1RWhsaHNqb1hoTXZBVEJ1VmtVMWUlMkY2WnRTRXdoNkNTZ2RGMzdoWjhTMlFtMEwwaFRlcktWVGc3UzhWazFTQk81alVacDZPa29iRlpKWHhzVWdhMk93S0FXd3FNcUo0N1ZEMlJreFNXNUFQOHRBbGZ6elVSVSUyQjJ6dXZGb3I5MCUyRkhXc0Y4RVVIRVJiRk1zanRXNmxtUkQ4VlNKTCUyRjllNGhvVSUyQiUyRmhnTFZhYUhhckZ2WEFrbzJWVURnVkpJcTQ0U3lvVlQzcTFmTXFrcUF4R2d4eldEbFZ3cDU1Y2ZzUmtsb0w0MTR1ZSUyQmFiSTdSY1RCWXREUURad3RWUFJYTHNNcVk4NFV6QWFBMUVRN1pIeHh0WHklMkJCa1U5WDFqQ2gzVk5DUWJpT1V0bFA0VnZvOFRwbldPQ2x5akY5TnJHbWZnRFlzTkhRc3IlMkJOQWpPejluekQydzIxNGpFeEtMJTJGd0klM0Q=">demo 类图<i class="fa fa-external-link-alt"></i></span></p>
+<h1 id="学习基础知识-UNet"><a href="#学习基础知识-UNet" class="headerlink" title="学习基础知识: UNet"></a>学习基础知识: UNet</h1><p>在做自己的 demo 之前学习了如何使用 UNet 编写网络游戏, 使用的是 Unity 官方的 UNet 教程, 做了下面一个简单的 demo.</p>
+<p><img data-src="/images/unet_demo/UnityUnet.png" alt="UNet官方教程"></p>
+<p>总结一下用到的知识:</p>
+<ul>
+<li><p>远程调用</p>
+<ul>
+<li><code>[Command]</code> : CCSR, Client Call Server Run, 使用 Command 修饰的方法是在客户端被调用, 之后在服务器端执行.</li>
+<li><code>[ClientRpc]</code>: SCCR, Server Call Client Run, 使用 ClientRpc 修饰的方法是在服务器端被调用, 之后在所有的客户端执行.</li>
+</ul>
+</li>
+<li><p>数据同步</p>
+<p>使用 <code>[SyncVar]</code> 实现基本类型的数据同步. 这类数据需要在服务器逻辑中进行修改, 之后服务器才能将数据同步给所有 Client. 另外 <code>SyncVar</code> 还可以使用钩子方便地触发方法.</p>
+</li>
+<li><p><code>isLocalPlayer</code>: 区分当前执行逻辑的是否是本地玩家.</p>
+</li>
+<li><p><code>isServer</code>: 区分当前执行逻辑的是否是服务器端.</p>
+</li>
+<li><p><code>[Client]</code>: 可以修饰代码, 使其仅在 Client 执行.</p>
+</li>
+</ul>
+<h1 id="第一视角的实现"><a href="#第一视角的实现" class="headerlink" title="第一视角的实现"></a>第一视角的实现</h1><p>demo 中最开始制作的是视角.</p>
+<p><img data-src="/images/unet_demo/%E7%AC%AC%E4%B8%80%E8%A7%86%E8%A7%92%E5%AE%9E%E7%8E%B0%E5%9B%BE.png" alt="第一视角的实现"></p>
+<p>从网上查阅资料得知, 可以通过让玩家携带一个用于渲染玩家第一视角的相机来实现第一视角. </p>
+<p>将相机设置为玩家的子物体, 这样只要对玩家模型进行左右旋转时, 其下的子物体相机也会跟着左右旋转.</p>
+<p>上下视角的旋转就是通过旋转相机来实现. 同时 demo 中将武器设置为玩家视角相机的子物体, 这样上下旋转相机时武器也会跟着进行旋转.</p>
+<h2 id="实现第一视角时遇到的问题"><a href="#实现第一视角时遇到的问题" class="headerlink" title="实现第一视角时遇到的问题"></a>实现第一视角时遇到的问题</h2><ol>
+<li><p>为了实现较好的第一视角, 枪支和玩家重合了, 虽然本地玩家自身的视角没有问题, 但是联机之后其他玩家看到自己时就会相当奇怪.</p>
+</li>
+<li><p>当人物离墙面特别近的时候, 枪管会出现穿模现象. [<strong>重</strong>]</p>
+</li>
+</ol>
+<p><img data-src="/images/unet_demo/%E7%AC%AC%E4%B8%80%E8%A7%86%E8%A7%92%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%981.png" alt="第一视角问题"></p>
+<p>解决这两个问题的办法是使用了两个摄像机, 这两个摄像机一个渲染除武器以外的第一视角, 另一个仅渲染武器.</p>
+<p><img data-src="/images/unet_demo/%E7%AC%AC%E4%B8%80%E8%A7%86%E8%A7%92%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%981%E8%A7%A3%E5%86%B3.png" alt="第一视角问题"></p>
+<h1 id="运动逻辑的实现和同步"><a href="#运动逻辑的实现和同步" class="headerlink" title="运动逻辑的实现和同步"></a>运动逻辑的实现和同步</h1><p>之后实现运动逻辑, 运动逻辑的运行时序大概是这样子的:</p>
+<p><img data-src="/images/unet_demo/%E8%BF%90%E5%8A%A8%E9%80%BB%E8%BE%91%E6%97%B6%E5%BA%8F%E5%9B%BE.png" alt="运动逻辑"></p>
+<p><a href="video/%E7%A7%BB%E5%8A%A8%E5%90%8C%E6%AD%A5.mp4">移动同步视频演示</a></p>
+<h2 id="喷射效果实现"><a href="#喷射效果实现" class="headerlink" title="喷射效果实现"></a>喷射效果实现</h2><p>喷射效果使用了 <code>Configuration Joint</code> 组件实现的. 很早之前做的一个愤怒的小鸟 demo 中用到过, 这里就拿来直接用了. 设置好锚点, 拉力, 阻力, 物理效果如下:</p>
+<p><a href="video/%E5%96%B7%E5%B0%84%E7%89%A9%E7%90%86%E6%95%88%E6%9E%9C.mp4">喷射物理效果视频演示</a></p>
+<h3 id="实现喷射效果时遇到的问题"><a href="#实现喷射效果时遇到的问题" class="headerlink" title="实现喷射效果时遇到的问题"></a>实现喷射效果时遇到的问题</h3><p>最开始的代码是下面这个样子写的, 出现了一个不该出现的效果: 玩家只要一直按着喷射按钮, 没有燃料的时候, 玩家便会一直悬浮在那个高度.</p>
+<p><img data-src="/images/unet_demo/%E5%96%B7%E5%B0%84%E6%95%88%E6%9E%9C%E9%97%AE%E9%A2%98.png" alt="喷射物理效果"></p>
+<p>排查了好久才彻底理清思路, 在赋予上升力之前再加一层判断就解决了.</p>
+<p><img data-src="/images/unet_demo/%E5%96%B7%E5%B0%84%E6%95%88%E6%9E%9C%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3.png" alt="喷射物理效果"></p>
+<p><img data-src="/images/unet_demo/%E5%96%B7%E5%B0%84%E6%95%88%E6%9E%9C%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="喷射物理效果"></p>
+<h1 id="射击逻辑的实现和同步"><a href="#射击逻辑的实现和同步" class="headerlink" title="射击逻辑的实现和同步"></a>射击逻辑的实现和同步</h1><p><img data-src="/images/unet_demo/%E5%B0%84%E5%87%BB%E9%80%BB%E8%BE%91%E6%97%B6%E5%BA%8F%E5%9B%BE.png" alt="射击逻辑"></p>
+<p><a href="video/%E5%B0%84%E5%87%BB%E5%90%8C%E6%AD%A5.mp4">射击效果视频演示</a></p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>由于直接使用的射线检测, 并没有使用子弹, 所以接下来需要添加子弹的实现.</p>
+<h1 id="简易资源池实现"><a href="#简易资源池实现" class="headerlink" title="简易资源池实现"></a>简易资源池实现</h1><p>实现射击音效的时候, 由于每次开枪的音效必须独立播放, 所以最开始使用的是 <code>AudioSource.PlayClipAtPoint()</code> 方法实现的. 不过发现每次播放音效都会生成和销毁游戏物体, 比较耗资源, 同样在生成击中特效的时候也会出现同样大量创建销毁的情况, 于是学习了一下如何设计一个简单的资源池.</p>
+<p><img data-src="/images/unet_demo/%E8%B5%84%E6%BA%90%E6%B1%A0%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="资源池流程图"></p>
+<ul>
+<li><p>使用 Queue  队列保存所有的资源, 初始化时设置好初始容量, 同时也可以创建一部分资源或不创建.</p>
+</li>
+<li><p>实现两个方法: 获取资源 (Get), 回收资源 (ExeRecycle).</p>
+<ul>
+<li><p>GetAudioSource()</p>
+<p>  首先检测队列中是否还具有资源, 如果有, 则直接取出并启用资源, 没有则新建资源.</p>
+<p>  <img data-src="/images/unet_demo/GetAudioSource.png" alt="GetAudioSource"></p>
+</li>
+<li><p>ExeRecycleCoroutine()</p>
+<p>  首先使用协程等待一段时间, 之后将资源禁用, 回收至队列中.</p>
+<p>  <img data-src="/images/unet_demo/ExeRecycleCoroutine.png" alt="ExeRecycleCoroutine"></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>[<strong>注</strong>] 协程中的 <code>WaitForSeconds</code> 最好提前定义, 否则每次迭代进来都会重新申请一次内存, 造成内存泄漏.</p>
+<h1 id="UI-系统的实现"><a href="#UI-系统的实现" class="headerlink" title="UI 系统的实现"></a>UI 系统的实现</h1><p>我是用的方法是 UI 类中有一个 Update 方法以及一整份所有需要展示的数据, 同时具有 Player, PlayerWeapon, PlayerController 的引用, 所以所有的逻辑都是只在 PlayerUI 中实现的.</p>
+<p>问题是 UI 的展示并不需要每时每刻进行更新, 这里可以改进为触发时更新, PlayerUI 向外提供修改 UI 数据的方法, 外部只要在响应的时机使用相应的方法修改数据即可, 数据的更新会直接反映到 UI 上.</p>
+<h2 id="喷射器-UI-的实现"><a href="#喷射器-UI-的实现" class="headerlink" title="喷射器 UI 的实现"></a>喷射器 UI 的实现</h2><p>本来打算使用 Slider 组件实现的, 后来在网上看教程的时候偶尔遇到了类似 UI 的制作, 教程并没有使用 Slider, 而是使用两张图片, 通过修改子图片的 Pivot 实现的, 我也是使用了这种方法.</p>
+<p><a href="video/%E5%96%B7%E5%B0%84UI.mp4">喷射 UI</a></p>
+<h2 id="狙击镜-UI-的实现"><a href="#狙击镜-UI-的实现" class="headerlink" title="狙击镜 UI 的实现"></a>狙击镜 UI 的实现</h2><p>狙击镜是通过修改相机的 <code>fieldOfView</code> 实现的, fieldOfView 值越小, 看到的物体越大.</p>
+<p>[<strong>注</strong>] 实现的时候需要注意的是当开镜之后, 相机的旋转速度就必须变小, 不然过于灵敏, 玩家很难瞄准.</p>
+<h1 id="其他的一些问题"><a href="#其他的一些问题" class="headerlink" title="其他的一些问题"></a>其他的一些问题</h1><ul>
+<li><p>快速切枪导致 Client 之间数据不匹配</p>
+<ul>
+<li><p>解决: 对切枪添加计时器, 1 秒内只能切枪 3 次.</p>
+<p>  <img data-src="/images/unet_demo/%E5%BF%AB%E9%80%9F%E5%88%87%E6%9E%AA.png" alt="快速切枪"></p>
+</li>
+</ul>
+</li>
+<li><p>NetworkAnimator 不同步触发器类型数据.</p>
+<ul>
+<li>解决: 将射击的触发改为使用 bool 类型, 因为射击的逻辑是使用动画事件触发的, 所以在触发的事件中将 bool 数据设置回 false, 实现一个简易的触发器.</li>
+</ul>
+</li>
+<li><p>将 ServerManager 独立至一个新的游戏物体上, 并挂载 NetworkIdentity, Host 上的 Client 数据可以正常同步, 但是其他 Client 无法进行 <code>[Command]</code> 调用.</p>
+<ul>
+<li>未解决. 目前是将 ServerManager 挂载到了 Player 身上.</li>
+</ul>
+</li>
+<li><p>无论是 Host 还是 Client, Stop 之后无法重新连接.</p>
+<ul>
+<li>未解决.</li>
+</ul>
+</li>
+</ul>
+<h1 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h1><ul>
+<li><code>[SerializeField]</code> 特性可以将私有的基础字段显示在 Inspector 面板中.</li>
+<li><code>[Header(&quot;&quot;)]</code> 特性可以在 Unity 的 Inspector 面板中显示标签信息.</li>
+<li><code>[Tooltip(&quot;&quot;)]</code> 特性可以让 Inspector 面板中的数据当鼠标悬浮时出现提示.</li>
+<li><code>[RequireComponent(typeof(Animator))]</code> 特性可以让脚本被挂载时必须同时挂载指定的组件.</li>
+<li>属性和字典无法在 Inspector 面板中序列化显示.</li>
+<li>对 N 取余可以将一个整型数限制在 [0, N]] 之间.</li>
+<li><a href="video/AI.mp4">AI 视频演示</a></li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>Hexo + NexT 主题美化 (NexT v7.2.0)</title>
