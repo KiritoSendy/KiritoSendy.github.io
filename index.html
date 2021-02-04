@@ -358,7 +358,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/funny/unet_demo/unet_demo.html" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/funny/unet_demo/unet_demo.html" class="post-title-link" itemprop="url">简易联机 FPS 游戏 Demo</a>
         </h2>
 
         <div class="post-meta">
@@ -369,7 +369,16 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-02-04 17:46:48 / 修改时间：18:23:18" itemprop="dateCreated datePublished" datetime="2021-02-04T17:46:48+08:00">2021-02-04</time>
+              <time title="创建时间：2021-02-04 18:13:20 / 修改时间：22:15:39" itemprop="dateCreated datePublished" datetime="2021-02-04T18:13:20+08:00">2021-02-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a>
+                </span>
             </span>
 
           <br>
@@ -395,178 +404,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>这次试用期 demo 的目标是做一个简单的多人在线 fps 游戏.</p>
-<ol>
-<li><p>移动方面除了 XZ 平面移动之外, Y 轴方向的移动是使用了一种类似机甲喷射上升的行为模式, 这样玩家可以有更久的滞空时间, 更大的操作空间, 当然更多的还是因为我是一名高达粉. 设定上喷射行为具有燃料值, 喷射时会快速消耗燃料值, 其他时刻都会缓慢恢复.</p>
-</li>
-<li><p>枪支方面目前实现了步枪和狙击枪, 步枪是连射模式, 狙击枪为单发模式, 另外狙击枪可以开镜瞄准.</p>
-</li>
-<li><p>本来打算添加几个简单的 AI, 目标是做成在视野范围内, AI 会主动追击或射击玩家, 没有检测到玩家时, AI 便会在给定的坐标来回巡逻的效果, 目前基本效果已在客户端实现, 但是同步还没有实现.</p>
-</li>
-</ol>
-<div id="video1"></div>
-<script src="/js/dplayer/DPlayer.min.js"></script>
-
-<script>
-const video1 = new DPlayer({
-    container: document.getElementById('video1'),
-    screenshot: true,
-    video:
-    {
-        url: '/video/unet_demo/整体演示.mp4',
-    },
-});
-</script>
-
-<h1 id="讲解图"><a href="#讲解图" class="headerlink" title="讲解图"></a>讲解图</h1><p><img data-src="/images/unet_demo/%E8%AE%B2%E8%A7%A3%E5%9B%BE.png" alt="讲解图"></p>
-<h1 id="制作-demo-需要的素材"><a href="#制作-demo-需要的素材" class="headerlink" title="制作 demo 需要的素材"></a>制作 demo 需要的素材</h1><p><img data-src="/images/unet_demo/%E8%B5%84%E6%BA%90%E7%9B%AE%E5%BD%95.png" alt="资源目录"></p>
-<p>demo 中用到的模型以及 UI 资源是在 <span class="exturl" data-url="aHR0cHM6Ly93d3cua2VubmV5Lm5sL2Fzc2V0cz9xPTJk">Kenney<i class="fa fa-external-link-alt"></i></span> 网站以及 Unity Asset Store 下载的免费资源.</p>
-<p>目前 demo 中使用到的包括火焰特效, UI 图标 (FPS), 场景模型 (FPS), 枪械模型 (FPS).</p>
-<ul>
-<li>AssetsPackages: 存放引用的资源包<ul>
-<li>Fire Effect: 火焰特效</li>
-<li>FPS Icons: FPS UI 图标</li>
-<li>FPS Terrains: FPS 场景模型</li>
-<li>FPS Weapons: FPS 枪械模型</li>
-</ul>
-</li>
-<li>Resources: 存放动态资源文件<ul>
-<li>Audios: 音频文件</li>
-<li>Materials: 材质球</li>
-<li>Prefabs: 预制体</li>
-<li>Sprites: 精灵图</li>
-</ul>
-</li>
-<li>Scenes: 存放场景文件</li>
-<li>Scripts: 存放脚本文件</li>
-</ul>
-<h1 id="场景构成"><a href="#场景构成" class="headerlink" title="场景构成"></a>场景构成</h1><p><img data-src="/images/unet_demo/%E5%9C%BA%E6%99%AF.png" alt="场景构成"></p>
-<h1 id="demo-中的脚本构成"><a href="#demo-中的脚本构成" class="headerlink" title="demo 中的脚本构成"></a>demo 中的脚本构成</h1><p><img data-src="/images/unet_demo/%E8%84%9A%E6%9C%AC.png" alt="脚本构成"></p>
-<p>当时写脚本之前, 为了方便后期的维护, 于是尽量将各个功能独立编写, 单独创建了音频管理器, 特效管理器, 游戏管理器, 服务器逻辑等脚本, 下面是每个脚本具体的行为概括.</p>
-<ul>
-<li>AudioManager: 负责音效资源的管理以及音效资源池中资源的生成与回收.</li>
-<li>EffectManager: 负责特效资源的管理以及特效资源池中资源的生成与回收.</li>
-<li>Player: 玩家相关脚本<ul>
-<li>Player: 保存玩家的生命值数据以及与生命值相关的逻辑处理, 包括受伤, 死亡, 重生等.</li>
-<li>PlayerController: 玩家的控制脚本, 保存玩家运动相关的数据, 包括移动速度, 镜头旋转速度, 燃料量, 燃料的消耗速度与补充速度, 并负责检测玩家的所有输入, 与其他脚本配合共同实现用户逻辑, 是运动逻辑的核心.</li>
-<li>PlayerMotor: 玩家运动的实质驱动脚本, 包括玩家的 XZ 平面移动, 镜头的上下及左右旋转, 玩家的喷射上升运动等.</li>
-<li>PlayerSetup: 玩家初始化脚本, 主要功能有对场景摄像机的控制, 取消远程玩家身上的组件, 设置玩家 Layer, 固定鼠标, UI 初始化, 玩家注册等, 由于初始化项较多, 所以有很多与其他脚本的交互.</li>
-<li>PlayerShoot: 负责玩家射击的相关逻辑, 包括射线检测, 射击特效的控制, 击中特效的控制等.</li>
-<li>PlayerUI: 负责更新玩家 UI.</li>
-<li>Weapon: 武器的数据类, 只存储武器数据, 同时关联武器的模型和击中特效, 以达到不同的武器可以使用不同的模型以及击中特效, 方便武器的扩展.</li>
-<li>PlayerWeapon: 玩家的武器管理类, 管理玩家手中的武器, 并向外部提供与武器交互的方法.</li>
-</ul>
-</li>
-<li>ServerManager: 服务器逻辑脚本,  所有和服务器相关的逻辑都在这个脚本中, 主要功能有调用 Client 的受伤方法, 调用 Client 生成射击特效和击中特效的方法等.</li>
-<li>GameManager: 游戏管理器, 负责初始化地图场景, 管理所有的玩家, 提供玩家注册和取消注册方法, 另外也用来存储游戏的全局数据以及提供一些通用的工具方法.</li>
-</ul>
-<p><span class="exturl" data-url="aHR0cHM6Ly92aWV3ZXIuZGlhZ3JhbXMubmV0Lz9oaWdobGlnaHQ9MDAwMGZmJmVkaXQ9X2JsYW5rJmxheWVycz0xJm5hdj0xJnRpdGxlPVVudGl0bGVkJTIwRGlhZ3JhbS5kcmF3aW8jUjdWMXBVJTJCTzRGdjAxcVdJJTJCME9VdDI4ZHNEZW1CaGlFd1BmMiUyQlVDSVdpYnR0SyUyQk1GeVB6Nko4bVdWOGxMT2dxOE42NmlpbGk1a2hjZEhSJTJGZGU2WDA5Sm56ZHVHQjNmWWFtZER1YVlyNTF0UG5QVTFUeHlNViUyRnlNbCUyQjdoRTFiV29aT05aWmx5V0ZxeXNmMkJjcU1TbG9XVkNQMmNZSUdRSDFpNWZ1RWF1QzlkQnJneDRIbnJObXowak8zJTJGV0hkakFVc0ZxRGV4eTZUZkxETFp4cWFFbzZSZVgwTnBzMmFtSDdCc0hNT3U0d044Q0U3MW1pdlJGVDU5NUNBWFJKJTJCZHRCbTN5JTJCTmlEJTJCYmJjZjdPdmZnNHV2dnpoJTJGdzBlcHIlMkZmZiUyRjN6UEdyc2M1c3F5VDE0MEEwT2J0cnhuWmZmZjV6JTJGOWZ0azl4UDk1JTJGckh6eGZ2QzJ2NkJkaGglMkZNQW1vV21oYSUyQkRpNSUyQkxGOXgzczJkUDBYeTNIQmk0JTJCbWo0ak4xakYzNmo0R05qV3hzV2YxJTJGZ2FjVTE5JTJCZ0s5d01JZE1ZbSUyRkNOQU9sNjYzbG0xZWdUMEt5WjM0QVZqJTJGWkVmVExmS3NmM0N6d0k3YnhGOTdRWXdwYlpDeldKR2F1RmpCcFI3MHNjMHRlenhxb2VnYXZPVU1yNEFmeEFWclpOdGc1MXRQeVcwNHdOdFk3aFFGQVhKaW8lMkZnUjRkdUJid1ZRMVhTSW1xQUVEekNJSEJoNGUxd3ZibVZzeE1CaVkwc2J4QVd2S1ZKMWhyNXRGcVNqdUJERW8yT1ROSjZjN3c2UEp1QnU4STBsSjlUeTU5UEtaMU1WenRud2s4JTJCZEROaTRnMTBRd0NrS1hkUFBnZzUlMkZ5TnhwV2tTaDJBS1dXZ21XUFcxS0xvR0FjNFZDYjQyTEo1UE1FYmxJWFkyNks3R2MyZFp1dGFVRE5ESW1CUm5UODk1TTYwM3dwZGd3MHhhJTJCemNrZklReEpvemJCWmY0OG00Q2VKTk9JcGhBU3VQZUE2ejhqRDhObWtuN08yMWt1aHJTYlhud3l6b3FYbEwlMkY4T2JRQmZweVRiOEFLUGlOdkJURmJ4ZzglMkJPem94UGdNNmFqejBFODZRamZBd25Mc29HcTZXYlJlSzJJaTE0WE1nSEslMkYlMkJEcXd0ZDNORmJlWkdXbklYQTRRVUlWejMyYWJjdUxWTUU3cGtyS0VBQkNBYVdPVEdkc2h5QTRxZyUyRmhUJTJGWVp6TmxFJTJGOVhoOWYlMkJBd2ZxJTJCa3glMkZpUG1YakJEJTJCSEY1d0tKakRPSlIlMkJ3cjlvT21BRk5OZGVVRHU4MEN2RzM1alF6ejZjaU9oTGV4MUR1d0xmV3hidE8lMkJpUG1adk5QV2dEblp3VjlrdzdkRjcwdUh6YzdYVTYzcTUxM1ZPRDl2Z0NkcTN5TGNDQzVIMnZjaTIwUFB2MWJrcWglMkI2NHZUdVMxTG1HZ05OdThkaW1vJTJGenNUMHpaeU5QSnZiS25pTWNHRmowMkFnR3BpdXpRZ2I5aEluaEIlMkJGUjVhcm1BUVlhbnpuNFQ4aU14WHJ4QiUyRkg3WXIyMU1FeDUlMkIlMkJXSlFuZVdzRlo5JTJCSUswc0Z5NCUyQnF3ZndwWFdNYzNSUWpwcUJzcTlKUW1XJTJGaE1vTDRNQk8lMkY1MUElMkY0MzZCVDNXNXpEVWtBTUdYYTJRZjclMkJFaG9HQW82NG0zeGQzajFjM3M4blY0eTA5d0lYVUFGJTJGSjRPJTJCUUtLenBGY0s5VGRpTUNwcTRFQlBJbWd3cWlpTVBqJTJCS1NVb3Zhdmx0YzM5d3Z4STNmUVFjRjhORFdveXYlMkZ0cGpjM253VlhmazNDSGFFY1p1M0hWM3M0M0wlMkJlSHUzJTJCTHo4aTlOeWRNR1BiVnBkZkYxY2Y2OXNkT0ZDWjklMkJxemRYbHpjMzk0JTJGWE5mUEc0V242OXVGcHdXdTB0JTJCcjNSdkRmdTB3JTJCZmUyTTFlNFpwVlp0M2s5dmxuTnZrcURmRkxTMUlrNWlBUjBaMWszaDg3c0NyUyUyQlh1dmVVUW1SeSUyRiUyQndxR0R0amRldkFaUEdFTHdsYzNUeiUyQkk4NkJvdHFOUCUyRjJHSnJXN1pSNkVneiUyRkZlemlocWhrd0w1dGFhdkpZQkdXclIzSUE5OEZuOEpxZVZOJTJCazdvM3RadG5oWjlsdkxjeDQ5cWlOWiUyQm56WTZYTjV2YXMyZlB2SjB1Y2p3YnZ2RG00c0gwdWFhSFNmc1FHdnVEQlltdm1CSHpNRlI2RkhUVDI0b3NhaWlrdFRXQlhMJTJCNm82Q2ZVVU9KclZlbGllcFF5b2hKYndQTGhHU3FoWDlJUlpnbFUybVlOWjVvV2pWTiUyRjVqWHVCTHlIOXVxUEdJdzhlemp5Q04zakdzdVlSYXRsM3NYaCUyQnhqRHBwaEx2NFVvMmhodzIxZHU2a244TkVTS0h4OVlLSW1qVTY3ekV0RnJ0RlpRY3JwTEJYYzRxZjI2T1N6WGZKbjclMkZYcklhSmJkdzdsSmFlb1U3JTJGbXZyUjlGYmEwTWUzS1c1YnRXeUk2WFRoa2ZyWHE3emx0ZSUyRnNzU2hLdktNSk43YmlDU0VQdHkwM01VRUFHeXhGJTJGZUFob1NreVBQejV1UWNwQ2ZyM0x6UzhjdlJaeno4U3ZQemF1VklQM040TlJObXlpOHJMZzVTJTJGcjlFMkRBdndvYThBUHY0ZU9GODFSZ1hITWpsODQwNHAzdVBlTDRtb005WGlzR3ZnR3BBZ2ZQUzhtZkFYYTNSanRnOElXU1hnJTJGMjJQUTF0RzVJNFB4blV4ZSUyQmY2SmRUOURZRGhHT0N2Y0J1SFhvRUFaVnRtY0NoS1VmY0w3SEFFMzduazdmRTByMXhZU1EycTh5aWR3Q1oxd1BDblRaYzdmMEFPaTMxY2NmaUxWbGNhNTBmd0IlMkZQZlZrcVV5dXJUT2I1NmFiWEVpTjFCWjRkbDRrMkNkN2xtRmFSTmJuV3lucVU2RDNUOHNtWXVuSHhlQ0JYTnBuQ0xYaXhVT2pGJTJCajB2RDElMkJCdjNCSkJaTXhLOCUyRktBVyUyQlhFTDhrdGowVzRTRnBZa1gySXBZJTJCOVBERFp6TnZmYkxLSFJjbXgzQ1Z4SHE2MUtZamNGZnI0QWtYc3RKaUoxb1hQSkhZdlNvbmVzTHZYMW5kS3dxZnJHQVE3czRFZ1FHYTYzaTNXOSUyQkRuM0JPaGRVWlpaVllaUWtteWJqSk9aWTdvUjN3MmlVV2N3dnl2NHBPR0ZIUFdXbmFHJTJGbjFTaTdCTHB3ckNiUGxTVEVmczlJbXhXT0JuTUxQQW5jcm5nVjB3a3Fxc0Jya2hkVlk1N0FZejAyaTkyVUpLM2EyZ3JEeWR4Q2ExM2prT2ZSMkJlRUthblZIaGlKOVNVeDZTZTVtbGVFTUVBSVMyZ1piTHlRaDQ4OGh0Q2NPbnFJSEhOUHpyQ0dLMHVQcnpIQjdEejZtUWtqbFh3UHJpV2xXV0xNN0kzUDRhJTJCQmpaRTVvJTJGSmglMkJ6amY2ZzdEVGlscUt6MHlOTUhETHQ5TVJjVnNpSHJmV2h0eFlvYlI1clY3MlRuYmk4R2o5bSUyRmdYNnpwWWxqaGthd1lMcElwMVhFUUMlMkJFT0ElMkYlMkZsbkxOTTlReERpUU1uUzNZVUI0MlNSRW1SMmpHeWIya1drWEdmOUpYUzQyalpyTTlzU3AlMkJCRldIdnF5SERLZkpWMTV0R2FnUnFqbXgyTVhLY2l3eSUyQlkzYU1ITGJLNFJxRVBZMEhVWmZCSUhLUWNOY3hsNFlFc09heVhjM2dpT1V6bmNKMFNscW1FRFQwdmhYbEsyT0M1R09VcDRYTCUyQkRxR0RKJTJCWlI5TyUyRlJQSEkzRXFWbmtmVHphUDZjJTJCaHo1YVRFTzlMZDMwRFdoUjUyRTE5bERYdUwxekVPJTJCJTJGN0NzVHdIS21WY1olMkJoaVhNSmJkJTJCb1RwYjA1YlZhbmprVVVtOTdKanhKYU1xTGZPNmVFT0FWV1JKa3U3cEI2SiUyRmFzMjVUaHBzcFFmUk1GdnU4eFNKcEVzd2xiWk5VbGlUeVNseUZYS09DTExwV3RsejV0TGw4NFpYbG9tekJqT01CVWo0Zmx2M1BnS1JDNVlZcklpcjlhWmJlVjFkTWRueDhZN1IlMkJGeENVMlZwdkRLUVpoWTRkRmRFanFGSjFQaEZYTzBlZE55YmxKWUlnYVBqd2RSMU1ieWs1bGpPZWttbzdVcU5aUlQ3UVdNbW9pejBKaU1TbFpoSGhwWDNoVWQlMkJLemxDcDklMkJSMjIxMURac0s5Vk9tMzZ0bHlNNW5WSTdXdmUlMkJlJTJGcTFVWTdLeE5GbGtST01yZDN6UXdjS0hXQ3glMkZxbnlrU1ZCN0JxTHU5MTZqcktKNE5XV3lhcVNBeExHTyUyRkk2TnJvYkptZXJpaXhkWnBUakg5Rkw2eHJ4OHZFN1hTWlJsNDA0MDFKdW1xYzhXV2J3NHlVdjBFWWtlemtUaDA1WUlxZUJtR0VtRk0wM1hGUFpSczNnSW96VUVpOFdHeWRHejVxYVolMkJ5dUxNZmlSY3g1RVd2JTJCUlRhUm1wRU5aaWZMZkVKa3M4cEolMkJya2p6TGFFYVJ3cEQxcVRKZmVNYnFjMGlmMnJjallpNG5hd05MbkhEejNjNHVHRHRWQmR5RGMycTR2NEZzeXFuWE94OFgyV3NEcFhtVVFFbGlVWkY0RkRhWXBNdE5LQ3hJRTZPU1pSanJHVjFERVVERjd5Q205cml5U1o4UGhZRUMzJTJCNWFUbVllR0JSUXh2JTJGOWU0Q3FhR2VEV0ZQcmtuUE1Hem1CVVdvZ2tOSjVtVmIxeWpjRW5qb2RYN1pJWExsV3Z0NHRCcGt5MjFhdHhyM0RyaVhXcWlSWUNwZXklMkZ2Q2V5NHRTMjN0bDhKd3QxR1M1ZW0zcnFsSUJMN1YlMkJYc0lzN3RZR25xcldJcENHV1lzeWllb0ZoJTJCUkR2aUNHdEtyRWxxSUtDSDRpcVp5R2pFczBuTkxUMXNWRFBIdjBrRDY4Wm5UbWhaVkxjanRXT0RuaE5iUGVrR1dJWm9MVW03YlJZNjBYaUlhRXglMkJ0S08xRDAlMkZhQ3QyJTJCS0dTeDh5ejhaUFpKM0xOQ2JQbDBDVnExNVhraW9DNlJiVkw5SlByMWdkaUxsN1IzU0t5MUk2NjJ4TlY2N1FYZjFTSkxqUFc3cFJjU3U1ZTNMdmVrcmpTMm9WQjVXOVBkdW5KbFFtVFYyS1J5MlVLeWhla3N5MERVa3N0QkpCVXVZOU5KSmpuUWJPaGprN2I4bGkwbnklMkZRcU5EZVFTU0g4VUxab2cxeGdMOUpTJTJGS2hEMXlSckVPbURUbTJ1RUdVU1FpUSUyRllCRHNZNjBEd2dBUnRSTTRUQWxGNXlRbk9rQ0JzQiUyRkdxTGdydHRnSkM2NE5yT3dmZzk4JTJGSHJSQllMM2tMMCUyQjROZFRFODhBJTJCWXhCREwyMzVGa1ZMNm1QMDZJVk5vMVNXZ3ZpNWFRVWxEdXVrWFI5ZHcxRjNqT3IzM3dNYkdBSGUlMkZxJTJCNFBqMzRUZzd3VUkwUDUyJTJGWkwlMkJmN25LNzlDSmhTJTJGamN4cGZmSEo4QlUyVEh4NE1NeXpseHpRbjU1a01Cc1IlMkJrZGw4U1FVZkVqbUpyQTMxS1VxUUwwcUhuMGFIWHdnVzlXUUZIM3lSanI4WEZVZFR3ZXhNZHBWWEtRclhrTDhZd0MwcG5pYWNBNGFBaEcwZjRQMlJjT2MxYTFBMmdKVUZyaHQxUU1OaDFuVFVSM0ZkZXFRS2FoMWpRVTNYV3BvYU5odE94R2tJVFJUNHFpNVhFNkhOYmhsQndWNFphQ1YxZU5ESGpQRlh3RzljT2hsd1gyNnRFN09CbDZqZkVvRDdxUmVoaDZkVlhOTjFSMGIwaEc3NkRzOUpDRDNzd3IlMkJYc09xdSUyRjBmbTVLaVNJM3BnUlFEWlFpa3ltSGdXbzRxR2xJTnFqS0RvbCUyRnN4UnNDclhSTHlyQlg1cmFsZDlpMVg3RXpodCUyQlJHOTRjU1BpTVclMkJoRVclMkJqclNUdDV2ajdwNHU4NFpZJTJGaHlEWmZsS3dJVyUyQlNNRkc3YWU4c1RzSmdWTlI1ak5wNGpGcTdxcmtva3JaTGtOcTVxdVgxYmxPT2tNWVFJa2YxekRGVEwzVHh4NiUyRm1ZcmUwWTlMbE9JSmZ6WnBIcTJ4cWRwdk1OOVh1N0pjV3AwSnhiVSUyQjM1dWQ5d001WjhjTUQlMkIxQ1JoSGFXcnZCT21wYk96Zlc4c0IwYmlVbWI2YjlzdmNzbUc3VjZOeUtRVTdzJTJCeDBySmsxbnQlMkJpeFZZSGwyVWwyZkRNamRIS29WcHQ0bFFqTWFGaUUxcklaVXFZS2huZ0pTYWdlcFEyaEs0RmFVakNtOWlLbHhEYWFLRlFhbmlQcXg1Unp2aENuaUU4JTJGN0ZUOWhmdjZJYjBXbWxqOW9RTERFU0N3UHBqR0ZzUVhZY3VGV1htZDJrb0NnWkxLcUJZVXVBSVVVTDNTJTJGZ0lUaWoxMDFkVU1QU3Z2bmFJV1dKUHVoaCUyQlVsWVhMUVF0WDVNQThaUXp1RWhsaHNqb1hoTXZBVEJ1VmtVMWUlMkY2WnRTRXdoNkNTZ2RGMzdoWjhTMlFtMEwwaFRlcktWVGc3UzhWazFTQk81alVacDZPa29iRlpKWHhzVWdhMk93S0FXd3FNcUo0N1ZEMlJreFNXNUFQOHRBbGZ6elVSVSUyQjJ6dXZGb3I5MCUyRkhXc0Y4RVVIRVJiRk1zanRXNmxtUkQ4VlNKTCUyRjllNGhvVSUyQiUyRmhnTFZhYUhhckZ2WEFrbzJWVURnVkpJcTQ0U3lvVlQzcTFmTXFrcUF4R2d4eldEbFZ3cDU1Y2ZzUmtsb0w0MTR1ZSUyQmFiSTdSY1RCWXREUURad3RWUFJYTHNNcVk4NFV6QWFBMUVRN1pIeHh0WHklMkJCa1U5WDFqQ2gzVk5DUWJpT1V0bFA0VnZvOFRwbldPQ2x5akY5TnJHbWZnRFlzTkhRc3IlMkJOQWpPejluekQydzIxNGpFeEtMJTJGd0klM0Q=">demo 类图<i class="fa fa-external-link-alt"></i></span></p>
-<h1 id="学习基础知识-UNet"><a href="#学习基础知识-UNet" class="headerlink" title="学习基础知识: UNet"></a>学习基础知识: UNet</h1><p>在做自己的 demo 之前学习了如何使用 UNet 编写网络游戏, 使用的是 Unity 官方的 UNet 教程, 做了下面一个简单的 demo.</p>
-<p><img data-src="/images/unet_demo/UnityUnet.png" alt="UNet官方教程"></p>
-<p>总结一下用到的知识:</p>
-<ul>
-<li><p>远程调用</p>
-<ul>
-<li><code>[Command]</code> : CCSR, Client Call Server Run, 使用 Command 修饰的方法是在客户端被调用, 之后在服务器端执行.</li>
-<li><code>[ClientRpc]</code>: SCCR, Server Call Client Run, 使用 ClientRpc 修饰的方法是在服务器端被调用, 之后在所有的客户端执行.</li>
-</ul>
-</li>
-<li><p>数据同步</p>
-<p>使用 <code>[SyncVar]</code> 实现基本类型的数据同步. 这类数据需要在服务器逻辑中进行修改, 之后服务器才能将数据同步给所有 Client. 另外 <code>SyncVar</code> 还可以使用钩子方便地触发方法.</p>
-</li>
-<li><p><code>isLocalPlayer</code>: 区分当前执行逻辑的是否是本地玩家.</p>
-</li>
-<li><p><code>isServer</code>: 区分当前执行逻辑的是否是服务器端.</p>
-</li>
-<li><p><code>[Client]</code>: 可以修饰代码, 使其仅在 Client 执行.</p>
-</li>
-</ul>
-<h1 id="第一视角的实现"><a href="#第一视角的实现" class="headerlink" title="第一视角的实现"></a>第一视角的实现</h1><p>demo 中最开始制作的是视角.</p>
-<p><img data-src="/images/unet_demo/%E7%AC%AC%E4%B8%80%E8%A7%86%E8%A7%92%E5%AE%9E%E7%8E%B0%E5%9B%BE.png" alt="第一视角的实现"></p>
-<p>从网上查阅资料得知, 可以通过让玩家携带一个用于渲染玩家第一视角的相机来实现第一视角. </p>
-<p>将相机设置为玩家的子物体, 这样只要对玩家模型进行左右旋转时, 其下的子物体相机也会跟着左右旋转.</p>
-<p>上下视角的旋转就是通过旋转相机来实现. 同时 demo 中将武器设置为玩家视角相机的子物体, 这样上下旋转相机时武器也会跟着进行旋转.</p>
-<h2 id="实现第一视角时遇到的问题"><a href="#实现第一视角时遇到的问题" class="headerlink" title="实现第一视角时遇到的问题"></a>实现第一视角时遇到的问题</h2><ol>
-<li><p>为了实现较好的第一视角, 枪支和玩家重合了, 虽然本地玩家自身的视角没有问题, 但是联机之后其他玩家看到自己时就会相当奇怪.</p>
-</li>
-<li><p>当人物离墙面特别近的时候, 枪管会出现穿模现象. [<strong>重</strong>]</p>
-</li>
-</ol>
-<p><img data-src="/images/unet_demo/%E7%AC%AC%E4%B8%80%E8%A7%86%E8%A7%92%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%981.png" alt="第一视角问题"></p>
-<p>解决这两个问题的办法是使用了两个摄像机, 这两个摄像机一个渲染除武器以外的第一视角, 另一个仅渲染武器.</p>
-<p><img data-src="/images/unet_demo/%E7%AC%AC%E4%B8%80%E8%A7%86%E8%A7%92%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%981%E8%A7%A3%E5%86%B3.png" alt="第一视角问题"></p>
-<h1 id="运动逻辑的实现和同步"><a href="#运动逻辑的实现和同步" class="headerlink" title="运动逻辑的实现和同步"></a>运动逻辑的实现和同步</h1><p>之后实现运动逻辑, 运动逻辑的运行时序大概是这样子的:</p>
-<p><img data-src="/images/unet_demo/%E8%BF%90%E5%8A%A8%E9%80%BB%E8%BE%91%E6%97%B6%E5%BA%8F%E5%9B%BE.png" alt="运动逻辑"></p>
-<p><a href="video/%E7%A7%BB%E5%8A%A8%E5%90%8C%E6%AD%A5.mp4">移动同步视频演示</a></p>
-<h2 id="喷射效果实现"><a href="#喷射效果实现" class="headerlink" title="喷射效果实现"></a>喷射效果实现</h2><p>喷射效果使用了 <code>Configuration Joint</code> 组件实现的. 很早之前做的一个愤怒的小鸟 demo 中用到过, 这里就拿来直接用了. 设置好锚点, 拉力, 阻力, 物理效果如下:</p>
-<p><a href="video/%E5%96%B7%E5%B0%84%E7%89%A9%E7%90%86%E6%95%88%E6%9E%9C.mp4">喷射物理效果视频演示</a></p>
-<h3 id="实现喷射效果时遇到的问题"><a href="#实现喷射效果时遇到的问题" class="headerlink" title="实现喷射效果时遇到的问题"></a>实现喷射效果时遇到的问题</h3><p>最开始的代码是下面这个样子写的, 出现了一个不该出现的效果: 玩家只要一直按着喷射按钮, 没有燃料的时候, 玩家便会一直悬浮在那个高度.</p>
-<p><img data-src="/images/unet_demo/%E5%96%B7%E5%B0%84%E6%95%88%E6%9E%9C%E9%97%AE%E9%A2%98.png" alt="喷射物理效果"></p>
-<p>排查了好久才彻底理清思路, 在赋予上升力之前再加一层判断就解决了.</p>
-<p><img data-src="/images/unet_demo/%E5%96%B7%E5%B0%84%E6%95%88%E6%9E%9C%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3.png" alt="喷射物理效果"></p>
-<p><img data-src="/images/unet_demo/%E5%96%B7%E5%B0%84%E6%95%88%E6%9E%9C%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="喷射物理效果"></p>
-<h1 id="射击逻辑的实现和同步"><a href="#射击逻辑的实现和同步" class="headerlink" title="射击逻辑的实现和同步"></a>射击逻辑的实现和同步</h1><p><img data-src="/images/unet_demo/%E5%B0%84%E5%87%BB%E9%80%BB%E8%BE%91%E6%97%B6%E5%BA%8F%E5%9B%BE.png" alt="射击逻辑"></p>
-<p><a href="video/%E5%B0%84%E5%87%BB%E5%90%8C%E6%AD%A5.mp4">射击效果视频演示</a></p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>由于直接使用的射线检测, 并没有使用子弹, 所以接下来需要添加子弹的实现.</p>
-<h1 id="简易资源池实现"><a href="#简易资源池实现" class="headerlink" title="简易资源池实现"></a>简易资源池实现</h1><p>实现射击音效的时候, 由于每次开枪的音效必须独立播放, 所以最开始使用的是 <code>AudioSource.PlayClipAtPoint()</code> 方法实现的. 不过发现每次播放音效都会生成和销毁游戏物体, 比较耗资源, 同样在生成击中特效的时候也会出现同样大量创建销毁的情况, 于是学习了一下如何设计一个简单的资源池.</p>
-<p><img data-src="/images/unet_demo/%E8%B5%84%E6%BA%90%E6%B1%A0%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="资源池流程图"></p>
-<ul>
-<li><p>使用 Queue  队列保存所有的资源, 初始化时设置好初始容量, 同时也可以创建一部分资源或不创建.</p>
-</li>
-<li><p>实现两个方法: 获取资源 (Get), 回收资源 (ExeRecycle).</p>
-<ul>
-<li><p>GetAudioSource()</p>
-<p>  首先检测队列中是否还具有资源, 如果有, 则直接取出并启用资源, 没有则新建资源.</p>
-<p>  <img data-src="/images/unet_demo/GetAudioSource.png" alt="GetAudioSource"></p>
-</li>
-<li><p>ExeRecycleCoroutine()</p>
-<p>  首先使用协程等待一段时间, 之后将资源禁用, 回收至队列中.</p>
-<p>  <img data-src="/images/unet_demo/ExeRecycleCoroutine.png" alt="ExeRecycleCoroutine"></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>[<strong>注</strong>] 协程中的 <code>WaitForSeconds</code> 最好提前定义, 否则每次迭代进来都会重新申请一次内存, 造成内存泄漏.</p>
-<h1 id="UI-系统的实现"><a href="#UI-系统的实现" class="headerlink" title="UI 系统的实现"></a>UI 系统的实现</h1><p>我是用的方法是 UI 类中有一个 Update 方法以及一整份所有需要展示的数据, 同时具有 Player, PlayerWeapon, PlayerController 的引用, 所以所有的逻辑都是只在 PlayerUI 中实现的.</p>
-<p>问题是 UI 的展示并不需要每时每刻进行更新, 这里可以改进为触发时更新, PlayerUI 向外提供修改 UI 数据的方法, 外部只要在响应的时机使用相应的方法修改数据即可, 数据的更新会直接反映到 UI 上.</p>
-<h2 id="喷射器-UI-的实现"><a href="#喷射器-UI-的实现" class="headerlink" title="喷射器 UI 的实现"></a>喷射器 UI 的实现</h2><p>本来打算使用 Slider 组件实现的, 后来在网上看教程的时候偶尔遇到了类似 UI 的制作, 教程并没有使用 Slider, 而是使用两张图片, 通过修改子图片的 Pivot 实现的, 我也是使用了这种方法.</p>
-<p><a href="video/%E5%96%B7%E5%B0%84UI.mp4">喷射 UI</a></p>
-<h2 id="狙击镜-UI-的实现"><a href="#狙击镜-UI-的实现" class="headerlink" title="狙击镜 UI 的实现"></a>狙击镜 UI 的实现</h2><p>狙击镜是通过修改相机的 <code>fieldOfView</code> 实现的, fieldOfView 值越小, 看到的物体越大.</p>
-<p>[<strong>注</strong>] 实现的时候需要注意的是当开镜之后, 相机的旋转速度就必须变小, 不然过于灵敏, 玩家很难瞄准.</p>
-<h1 id="其他的一些问题"><a href="#其他的一些问题" class="headerlink" title="其他的一些问题"></a>其他的一些问题</h1><ul>
-<li><p>快速切枪导致 Client 之间数据不匹配</p>
-<ul>
-<li><p>解决: 对切枪添加计时器, 1 秒内只能切枪 3 次.</p>
-<p>  <img data-src="/images/unet_demo/%E5%BF%AB%E9%80%9F%E5%88%87%E6%9E%AA.png" alt="快速切枪"></p>
-</li>
-</ul>
-</li>
-<li><p>NetworkAnimator 不同步触发器类型数据.</p>
-<ul>
-<li>解决: 将射击的触发改为使用 bool 类型, 因为射击的逻辑是使用动画事件触发的, 所以在触发的事件中将 bool 数据设置回 false, 实现一个简易的触发器.</li>
-</ul>
-</li>
-<li><p>将 ServerManager 独立至一个新的游戏物体上, 并挂载 NetworkIdentity, Host 上的 Client 数据可以正常同步, 但是其他 Client 无法进行 <code>[Command]</code> 调用.</p>
-<ul>
-<li>未解决. 目前是将 ServerManager 挂载到了 Player 身上.</li>
-</ul>
-</li>
-<li><p>无论是 Host 还是 Client, Stop 之后无法重新连接.</p>
-<ul>
-<li>未解决.</li>
-</ul>
-</li>
-</ul>
-<h1 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h1><ul>
-<li><code>[SerializeField]</code> 特性可以将私有的基础字段显示在 Inspector 面板中.</li>
-<li><code>[Header(&quot;&quot;)]</code> 特性可以在 Unity 的 Inspector 面板中显示标签信息.</li>
-<li><code>[Tooltip(&quot;&quot;)]</code> 特性可以让 Inspector 面板中的数据当鼠标悬浮时出现提示.</li>
-<li><code>[RequireComponent(typeof(Animator))]</code> 特性可以让脚本被挂载时必须同时挂载指定的组件.</li>
-<li>属性和字典无法在 Inspector 面板中序列化显示.</li>
-<li>对 N 取余可以将一个整型数限制在 [0, N]] 之间.</li>
-<li><a href="video/AI.mp4">AI 视频演示</a></li>
-</ul>
-
+          <p>一个简单的多人在线 fps 游戏.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/funny/unet_demo/unet_demo.html">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
