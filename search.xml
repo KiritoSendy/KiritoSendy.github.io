@@ -625,6 +625,49 @@
       </tags>
   </entry>
   <entry>
+    <title>委托(二) 委托与 &quot;回调和回调函数&quot;</title>
+    <url>/csharp/delegate_02.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="回调与回调函数"><a href="#回调与回调函数" class="headerlink" title="回调与回调函数"></a>回调与回调函数</h1><p>我也不太清楚为什么会出来一个 &quot;<font color='red'>回调函数</font>&quot; 的概念, 回调函数不就是一个参数吗? </p>
+<blockquote>
+<p>将方法 A 作为 方法 B 的一个参数传入到方法 B 中, 那么方法 A 就是方法 B 的回调函数.</p>
+</blockquote>
+<p>可以这样理解:</p>
+<ol>
+<li><p>&quot;回调&quot; 是一种技术: <font color='red'>将方法作为参数传入另一个方法!</font> 在各大编程语言, 脚本语言中都有实现这门技术! </p>
+</li>
+<li><p>&quot;回调函数&quot; 就是作为参数的方法!</p>
+</li>
+</ol>
+<p>强调: <strong>回调是一项技术! 回调函数是一个参数!</strong></p>
+<h1 id="quot-回调-quot-的用途"><a href="#quot-回调-quot-的用途" class="headerlink" title="&quot;回调&quot; 的用途"></a>&quot;回调&quot; 的用途</h1><ol>
+<li><p>因为 A 是作为参数传入 B 的, 那么在 B 中就可以编写很多的判断逻辑来准确控制 A 的执行时机, 当然用 retuan 返回执行标志, 通过执行标志来控制 A 的执行也是可以的, 但是这样不是还得对执行标志进行一次判断吗? 当然这个没什么影响, 但是万一这个执行标志无法返回呢, 对吧?</p>
+</li>
+<li><p>如果 B 中需要处理很复杂的数据, 而且这个数据很难使用 return 返回, 甚至可能根本无法使用 return, 但是 A 又必须要用到这个数据, 此时就可以利用 &quot;回调&quot; 这项技术了, 将 A 传入 B, 在 B 的内部执行 A, 这样 A 就可以获取到需要的数据了.</p>
+</li>
+<li><p>假设方法 B 可以随机获得一种食材, 食材有多种多样烹饪方法, 可以红烧, 可以清蒸, 可以煎炸, 此时就可以给 B 添加一个 &quot;回调函数&quot; 参数, 这个参数就是烹饪方法 A, 那么在执行方法 B 获取食材的同时就可以将烹饪方法 A 一并传入, 这样一道菜就直接做好了! 而且只要传入不同的 A 就可以做出不同的菜, 甚至在 B 里面还可以写判断方法, 控制某些食材只能用某些特定的烹饪方法!</p>
+</li>
+</ol>
+<p>总结: &quot;回调&quot; 可以做菜~! </p>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>csharp 中由于方法无法作为参数进行传递, 所以想要在 csharp 中实现 &quot;回调&quot; 需要使用委托来实现, 下面是一个简单的示例.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">namespace_CallBackTest</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">CallBackTest</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 随机器</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">readonly</span> Random random = <span class="keyword">new</span> Random();</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            CallBackTest callBackTest = <span class="keyword">new</span> CallBackTest();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 获取食材的同时将烹饪方法作为参数传入, 实现内部调用 -- 这就是 &quot;回调&quot; !</span></span><br><span class="line">            <span class="comment">// 含义为: 先获取食材, 之后使用参数内的烹饪方式对食材进行处理, 得到烹饪后的食物.</span></span><br><span class="line">            callBackTest.GetIngredients(callBackTest.Cook1);<span class="comment">//烧烤</span></span><br><span class="line">            callBackTest.GetIngredients(callBackTest.Cook1);<span class="comment">//烧烤</span></span><br><span class="line">            callBackTest.GetIngredients(callBackTest.Cook2);<span class="comment">//清蒸</span></span><br><span class="line">            callBackTest.GetIngredients(callBackTest.Cook1);<span class="comment">//烧烤</span></span><br><span class="line">            callBackTest.GetIngredients(callBackTest.Cook3);<span class="comment">//煎炸</span></span><br><span class="line">            callBackTest.GetIngredients(callBackTest.Cook1);<span class="comment">//烧烤</span></span><br><span class="line"></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 获取食材</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;cook&quot;&gt;</span>烹饪方法<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GetIngredients</span>(<span class="params">Action&lt;<span class="keyword">string</span>&gt; cook</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">string</span> str_ingredient = <span class="keyword">string</span>.Empty;</span><br><span class="line">            <span class="keyword">int</span> int_ingredient = random.Next(<span class="number">1</span>, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (int_ingredient &gt; <span class="number">75</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                str_ingredient = <span class="string">&quot;大棒肉(&quot;</span> + int_ingredient + <span class="string">&quot;)&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(int_ingredient &gt; <span class="number">25</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                str_ingredient = <span class="string">&quot;鲈鱼(&quot;</span> + int_ingredient + <span class="string">&quot;)&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (int_ingredient == <span class="number">25</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                str_ingredient = <span class="string">&quot;杂烩兔肉块(&quot;</span> + int_ingredient + <span class="string">&quot;)&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">string</span>.IsNullOrEmpty(str_ingredient))</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(<span class="string">&quot;白忙了一天, 没有获得任何食材(&quot;</span> + int_ingredient + <span class="string">&quot;) !&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                cook(str_ingredient);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 烧烤</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;ingredient&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Cook1</span>(<span class="params"><span class="keyword">string</span> ingredient</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;获得了 &lt;烧烤&quot;</span> + ingredient + <span class="string">&quot;&gt; !&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 清蒸</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;ingredient&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Cook2</span>(<span class="params"><span class="keyword">string</span> ingredient</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;获得了 &lt;清蒸&quot;</span> + ingredient + <span class="string">&quot;&gt; !&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 煎炸</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;ingredient&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Cook3</span>(<span class="params"><span class="keyword">string</span> ingredient</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;获得了 &lt;炸&quot;</span> + ingredient + <span class="string">&quot;&gt; !&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzE5ODAxMTMx">回调函数（callback）是什么？<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL3EvMTAxMDAwMDAwNDE0OTEzMQ==">js的回调函数一般都用来做什么<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CSharp</category>
+      </categories>
+      <tags>
+        <tag>CSharp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>委托(一) 委托的基本用法</title>
     <url>/csharp/delegate_01.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -696,49 +739,6 @@
 </li>
 </ol>
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC50ZW5jZW50LmNvbS9kZXZlbG9wZXIvYXJ0aWNsZS8xMzMxNTkw">理解委托类型<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>CSharp</category>
-      </categories>
-      <tags>
-        <tag>CSharp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>委托(二) 委托与 &quot;回调和回调函数&quot;</title>
-    <url>/csharp/delegate_02.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="回调与回调函数"><a href="#回调与回调函数" class="headerlink" title="回调与回调函数"></a>回调与回调函数</h1><p>我也不太清楚为什么会出来一个 &quot;<font color='red'>回调函数</font>&quot; 的概念, 回调函数不就是一个参数吗? </p>
-<blockquote>
-<p>将方法 A 作为 方法 B 的一个参数传入到方法 B 中, 那么方法 A 就是方法 B 的回调函数.</p>
-</blockquote>
-<p>可以这样理解:</p>
-<ol>
-<li><p>&quot;回调&quot; 是一种技术: <font color='red'>将方法作为参数传入另一个方法!</font> 在各大编程语言, 脚本语言中都有实现这门技术! </p>
-</li>
-<li><p>&quot;回调函数&quot; 就是作为参数的方法!</p>
-</li>
-</ol>
-<p>强调: <strong>回调是一项技术! 回调函数是一个参数!</strong></p>
-<h1 id="quot-回调-quot-的用途"><a href="#quot-回调-quot-的用途" class="headerlink" title="&quot;回调&quot; 的用途"></a>&quot;回调&quot; 的用途</h1><ol>
-<li><p>因为 A 是作为参数传入 B 的, 那么在 B 中就可以编写很多的判断逻辑来准确控制 A 的执行时机, 当然用 retuan 返回执行标志, 通过执行标志来控制 A 的执行也是可以的, 但是这样不是还得对执行标志进行一次判断吗? 当然这个没什么影响, 但是万一这个执行标志无法返回呢, 对吧?</p>
-</li>
-<li><p>如果 B 中需要处理很复杂的数据, 而且这个数据很难使用 return 返回, 甚至可能根本无法使用 return, 但是 A 又必须要用到这个数据, 此时就可以利用 &quot;回调&quot; 这项技术了, 将 A 传入 B, 在 B 的内部执行 A, 这样 A 就可以获取到需要的数据了.</p>
-</li>
-<li><p>假设方法 B 可以随机获得一种食材, 食材有多种多样烹饪方法, 可以红烧, 可以清蒸, 可以煎炸, 此时就可以给 B 添加一个 &quot;回调函数&quot; 参数, 这个参数就是烹饪方法 A, 那么在执行方法 B 获取食材的同时就可以将烹饪方法 A 一并传入, 这样一道菜就直接做好了! 而且只要传入不同的 A 就可以做出不同的菜, 甚至在 B 里面还可以写判断方法, 控制某些食材只能用某些特定的烹饪方法!</p>
-</li>
-</ol>
-<p>总结: &quot;回调&quot; 可以做菜~! </p>
-<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>csharp 中由于方法无法作为参数进行传递, 所以想要在 csharp 中实现 &quot;回调&quot; 需要使用委托来实现, 下面是一个简单的示例.</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">namespace_CallBackTest</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">CallBackTest</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 随机器</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">readonly</span> Random random = <span class="keyword">new</span> Random();</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            CallBackTest callBackTest = <span class="keyword">new</span> CallBackTest();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 获取食材的同时将烹饪方法作为参数传入, 实现内部调用 -- 这就是 &quot;回调&quot; !</span></span><br><span class="line">            <span class="comment">// 含义为: 先获取食材, 之后使用参数内的烹饪方式对食材进行处理, 得到烹饪后的食物.</span></span><br><span class="line">            callBackTest.GetIngredients(callBackTest.Cook1);<span class="comment">//烧烤</span></span><br><span class="line">            callBackTest.GetIngredients(callBackTest.Cook1);<span class="comment">//烧烤</span></span><br><span class="line">            callBackTest.GetIngredients(callBackTest.Cook2);<span class="comment">//清蒸</span></span><br><span class="line">            callBackTest.GetIngredients(callBackTest.Cook1);<span class="comment">//烧烤</span></span><br><span class="line">            callBackTest.GetIngredients(callBackTest.Cook3);<span class="comment">//煎炸</span></span><br><span class="line">            callBackTest.GetIngredients(callBackTest.Cook1);<span class="comment">//烧烤</span></span><br><span class="line"></span><br><span class="line">            Console.ReadKey();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 获取食材</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;cook&quot;&gt;</span>烹饪方法<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">GetIngredients</span>(<span class="params">Action&lt;<span class="keyword">string</span>&gt; cook</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            <span class="keyword">string</span> str_ingredient = <span class="keyword">string</span>.Empty;</span><br><span class="line">            <span class="keyword">int</span> int_ingredient = random.Next(<span class="number">1</span>, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (int_ingredient &gt; <span class="number">75</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                str_ingredient = <span class="string">&quot;大棒肉(&quot;</span> + int_ingredient + <span class="string">&quot;)&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(int_ingredient &gt; <span class="number">25</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                str_ingredient = <span class="string">&quot;鲈鱼(&quot;</span> + int_ingredient + <span class="string">&quot;)&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (int_ingredient == <span class="number">25</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                str_ingredient = <span class="string">&quot;杂烩兔肉块(&quot;</span> + int_ingredient + <span class="string">&quot;)&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">string</span>.IsNullOrEmpty(str_ingredient))</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(<span class="string">&quot;白忙了一天, 没有获得任何食材(&quot;</span> + int_ingredient + <span class="string">&quot;) !&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                cook(str_ingredient);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 烧烤</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;ingredient&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Cook1</span>(<span class="params"><span class="keyword">string</span> ingredient</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;获得了 &lt;烧烤&quot;</span> + ingredient + <span class="string">&quot;&gt; !&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 清蒸</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;ingredient&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Cook2</span>(<span class="params"><span class="keyword">string</span> ingredient</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;获得了 &lt;清蒸&quot;</span> + ingredient + <span class="string">&quot;&gt; !&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 煎炸</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;ingredient&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Cook3</span>(<span class="params"><span class="keyword">string</span> ingredient</span>)</span></span><br><span class="line"><span class="function"></span>        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;获得了 &lt;炸&quot;</span> + ingredient + <span class="string">&quot;&gt; !&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3F1ZXN0aW9uLzE5ODAxMTMx">回调函数（callback）是什么？<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9zZWdtZW50ZmF1bHQuY29tL3EvMTAxMDAwMDAwNDE0OTEzMQ==">js的回调函数一般都用来做什么<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ul>
 ]]></content>
       <categories>
         <category>CSharp</category>
@@ -1340,6 +1340,29 @@
       </tags>
   </entry>
   <entry>
+    <title>日记系列--2020年06月</title>
+    <url>/diary/2020_06.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="2020-年-06-月-15-号"><a href="#2020-年-06-月-15-号" class="headerlink" title="2020 年 06 月 15 号"></a>2020 年 06 月 15 号</h1><h2 id="生活开始走上正轨了"><a href="#生活开始走上正轨了" class="headerlink" title="生活开始走上正轨了"></a>生活开始走上正轨了</h2><p>真的是好久好久没有写日记了, 最近还是发生了很多大事的:</p>
+<ol>
+<li>五一放假时给姐姐转养老费, 然后被银行黑了 4000 RMB!</li>
+<li>从五月十号开始直到六月十四号一直寄住在同事家里, 心里总不是滋味. </li>
+<li>六月十三号答辩结束, 老师还说我做的不错, 可是谁都不知道我只花了一周的事件准备毕设, 包括开题报告, 论文, PPT, 作品 (一款沙盒游戏)...</li>
+<li>六月十一号加班到凌晨两点, 真的服! 现在我都不知道当时咋坚持下来的, 哦, 对了, 是边听歌边敲代码坚持下来的...</li>
+</ol>
+<p>今天终于发工资了, 由于五月份请假太多, 导致工资只有 4174 元, 连这一个月的开销都不够: 1200 房租, 1000 花呗, 2000 爸爸的养老费... 不过还好, 下个月爸爸的养老费就是一月 1000 了, 由于不请假了, 工资也会上去, 总之生活在慢慢变好!</p>
+<p>还发现了一张当时玩 2048 游戏的分数记录, 我居然玩到了最大的方块到了 16384 !</p>
+<p><img data-src="/images/diary/2020_06/2048_MaxScore.jpg" alt="2048_MaxScore"></p>
+]]></content>
+      <categories>
+        <category>Diary</category>
+      </categories>
+      <tags>
+        <tag>Diary</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>日记系列--2020年03月</title>
     <url>/diary/2020_03.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -1448,29 +1471,6 @@
 </ol>
 <p><strong>这段时间和 Sakura 的相处 (不就是微信上聊天嘛, 还想处? 弄得跟真的似的!), 我好累啊, 虽然原因是自己太投入了, 忘记了自己的生活, 但是我还是好希望她能搭理一下我😂, Kuroha! Fight!</strong></p>
 <p><img data-src="/images/diary/2020_04/666.png" alt="对面表示不想和你说话, 并向你扔了一张 666 !"></p>
-]]></content>
-      <categories>
-        <category>Diary</category>
-      </categories>
-      <tags>
-        <tag>Diary</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>日记系列--2020年06月</title>
-    <url>/diary/2020_06.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="2020-年-06-月-15-号"><a href="#2020-年-06-月-15-号" class="headerlink" title="2020 年 06 月 15 号"></a>2020 年 06 月 15 号</h1><h2 id="生活开始走上正轨了"><a href="#生活开始走上正轨了" class="headerlink" title="生活开始走上正轨了"></a>生活开始走上正轨了</h2><p>真的是好久好久没有写日记了, 最近还是发生了很多大事的:</p>
-<ol>
-<li>五一放假时给姐姐转养老费, 然后被银行黑了 4000 RMB!</li>
-<li>从五月十号开始直到六月十四号一直寄住在同事家里, 心里总不是滋味. </li>
-<li>六月十三号答辩结束, 老师还说我做的不错, 可是谁都不知道我只花了一周的事件准备毕设, 包括开题报告, 论文, PPT, 作品 (一款沙盒游戏)...</li>
-<li>六月十一号加班到凌晨两点, 真的服! 现在我都不知道当时咋坚持下来的, 哦, 对了, 是边听歌边敲代码坚持下来的...</li>
-</ol>
-<p>今天终于发工资了, 由于五月份请假太多, 导致工资只有 4174 元, 连这一个月的开销都不够: 1200 房租, 1000 花呗, 2000 爸爸的养老费... 不过还好, 下个月爸爸的养老费就是一月 1000 了, 由于不请假了, 工资也会上去, 总之生活在慢慢变好!</p>
-<p>还发现了一张当时玩 2048 游戏的分数记录, 我居然玩到了最大的方块到了 16384 !</p>
-<p><img data-src="/images/diary/2020_06/2048_MaxScore.jpg" alt="2048_MaxScore"></p>
 ]]></content>
       <categories>
         <category>Diary</category>
@@ -1685,6 +1685,62 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>游戏笔记</title>
+    <url>/game/game_note.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="游戏网站"><a href="#游戏网站" class="headerlink" title="游戏网站"></a>游戏网站</h1><ul>
+<li><p>DOS 游戏集合: <span class="exturl" data-url="aHR0cHM6Ly9kb3MuemN6Yy5jei8=">DOS<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>魔塔游戏集合: <span class="exturl" data-url="aHR0cHM6Ly9oNW1vdGEuY29tLw==">HTML 5 魔塔<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+<h1 id="游戏王"><a href="#游戏王" class="headerlink" title="游戏王"></a>游戏王</h1><ul>
+<li><p>网盘: <span class="exturl" data-url="aHR0cDovL3lnb2NvcmUueXMxNjguY29tLw==">娱乐力量全开<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>服务器: <span class="exturl" data-url="aHR0cHM6Ly95Z28yMzMuY29tLw==">223<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>开源: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xsbHlhc3ZpZWwvWUdPUHJvVW5pdHlfVjI=">YGOPro2<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>更新: <span class="exturl" data-url="aHR0cHM6Ly95Z29wcm8yLmxpbmsvZG93bmxvYWRzLmh0bWw=">YGOPro2<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>联机: 主机地址的两个空分别填入 <code>s1.ygo233.com</code> 和 <code>233</code>, 密码留空</p>
+</li>
+<li><p>AI 对战: 主机地址的两个空分别填入 <code>s1.ygo233.com</code> 和 <code>233</code>, 密码: <code>AI</code></p>
+</li>
+<li><p>约战: 房间密码输入任意其他文字, 房间名前加 M# 设置为比赛模式, 加 T# 设置为 2V2 模式. 详细查阅: <span class="exturl" data-url="aHR0cHM6Ly95Z28yMzMuY29tL3VzYWdl">房间设置<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+<h1 id="泰拉瑞亚"><a href="#泰拉瑞亚" class="headerlink" title="泰拉瑞亚"></a>泰拉瑞亚</h1><ul>
+<li><p>官网: <span class="exturl" data-url="aHR0cHM6Ly90ZXJyYXJpYS5vcmcv">Terraria<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>MOD: <span class="exturl" data-url="aHR0cHM6Ly9mczQ5Lm9yZy8=">制作教程<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+<h1 id="星露谷物语"><a href="#星露谷物语" class="headerlink" title="星露谷物语"></a>星露谷物语</h1><ul>
+<li><p>MOD 加载器: <span class="exturl" data-url="aHR0cHM6Ly9zbWFwaS5pby8=">SMAPI<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>MOD 搜索器: <span class="exturl" data-url="aHR0cHM6Ly9zbWFwaS5pby9tb2RzLw==">SMAPI Search<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>手册: <span class="exturl" data-url="aHR0cHM6Ly94aW5nbHVndS5odWlqaXdpa2kuY29tL3dpa2kvJUU5JUE2JTk2JUU5JUExJUI1">WiKi<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>农场上传: <span class="exturl" data-url="aHR0cHM6Ly91cGxvYWQuZmFybS8=">星露谷物语农场<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p>MOD 网站: <span class="exturl" data-url="aHR0cHM6Ly93d3cubmV4dXNtb2RzLmNvbS9zdGFyZGV3dmFsbGV5">N 站<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+<h1 id="维诺之战"><a href="#维诺之战" class="headerlink" title="维诺之战"></a>维诺之战</h1><ul>
+<li>手册: <span class="exturl" data-url="aHR0cDovL3d3dy53ZXNub3RoLm9yZy9tYW51YWwvZGV2L21hbnVhbC56aF9DTi5odG1sI19wcmVmYWNl">WiKi<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Game</category>
+      </categories>
+      <tags>
+        <tag>Game</tag>
       </tags>
   </entry>
   <entry>
@@ -3055,6 +3111,64 @@
       </tags>
   </entry>
   <entry>
+    <title>如何让 Unity 走代理?</title>
+    <url>/unity/unity_proxy.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>最近在学习制作 Unity 游戏, 到了最后需要发布 Android 版本游戏程序的时候, 发现根本导不出来!!! </p>
+<p>每次都会卡在 Gradle 的构建上... 看了日志之后知道了原来是从仓库下载包的时候下载失败了...那我就更郁闷了, 我 24 小时全天开着梯子, 你跟我说现在还有我下载不下来的东西? 后来在这篇文章中找到了答案! <span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
+<p>原来 Unity 压根不吃梯子啊~ ~ !</p>
+<h1 id="解决方法一"><a href="#解决方法一" class="headerlink" title="解决方法一"></a>解决方法一</h1><p><strong><code>使用阿里的镜像源替代 Google 源</code></strong></p>
+<ol>
+<li><p>找到 Unity 的安装目录.</p>
+</li>
+<li><p>使用 VSCode 打开路径: <code>Editor\Data\PlaybackEngines\AndroidPlayer\Tools\GradleTemplates</code>.</p>
+</li>
+<li><p>对路径中的文件逐一修改, 将其中所有的</p>
+</li>
+</ol>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">google()</span><br><span class="line">jcenter()</span><br></pre></td></tr></table></figure>
+
+<p>修改为:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/google&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/jcenter&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><font color='red'><strong>重启 Unity 项目</strong></font>, 重新发布即可!</li>
+</ol>
+<p>[<strong>注</strong>]</p>
+<ol>
+<li><p>文件中要替换的 <code>google() jcenter()</code> 不止一处, 必须全部替换!</p>
+</li>
+<li><p>Unity 每次打开项目的时候, 都会从模板中复制文件, 在项目中建立缓存, 其中就包含我们刚刚修改的文件. 如果不重启项目, 那么项目中的缓存文件依旧使用的是修改前的文件, 此时发布依旧会失败, 所以必须重启 Unity 项目, 让 Unity 使用我们修改后的模板重新建立缓存!</p>
+</li>
+</ol>
+<h1 id="解决方法二"><a href="#解决方法二" class="headerlink" title="解决方法二"></a>解决方法二</h1><p><strong><code>为 Unity Hub 和 Unity 设置代理</code></strong></p>
+<p>Unity Hub 和 Unity 在连接网络时并不会读取浏览器配置, 因此梯子时无效的! 但是 Unity Hub 和 Unity 会读取环境变量中 <code>HTTP_PROXY</code> 和 <code>HTTPS_PROXY</code> 的值判断是否使用代理.</p>
+<p>因此只要配置好这两个环境变量就好了, 下面是引用的这篇博客 (<span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span>) 中的一段:</p>
+<blockquote>
+<p>Windows 下, 写一个 bat 脚本, 内容如下:</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;@<span class="built_in">echo</span> off</span><br><span class="line">&gt;<span class="built_in">set</span> HTTP_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">set</span> HTTPS_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">start</span> &quot;&quot; &quot;C:\Program Files\Unity Hub\Unity Hub.exe&quot;</span><br></pre></td></tr></table></figure>
+
+<p>注意, HTTPS_PROXY 的设置也是 &quot;<span class="exturl" data-url="aHR0cDovL3h4eHgmcXVvdDsv">http://xxxx&quot;<i class="fa fa-external-link-alt"></i></span>, 而不是 &quot;<span class="exturl" data-url="aHR0cHM6Ly94eHh4JnF1b3Q7Lw==">https://xxxx&quot;<i class="fa fa-external-link-alt"></i></span></p>
+<p>mac 下, 脚本如下:</p>
+<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;<span class="built_in">echo</span> &#x27;#!/bin/bash</span><br><span class="line">&gt;export HTTP_PROXY=proxy-url</span><br><span class="line">&gt;export HTTPS_PROXY=proxy-url</span><br><span class="line">&gt;nohup &quot;/Applications/Unity Hub.app/Contents/MacOS/Unity Hub&quot; &amp;&gt;/dev/null &amp;&#x27; &gt; launchUnityHub.command</span><br><span class="line">&gt;chmod +x launchUnityHub.command</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>我用的方法是第一种方法, 确实可行! 第二种没用, 因为我不喜欢动环境变量! 😂</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYW5nZV9mcm9tX25vdy9hcnRpY2xlL2RldGFpbHMvMTAwNTE5NTQ2">Unity使用Gradle打包出错问题<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>战棋游戏中使用 Flood Fill 算法计算行动范围</title>
     <url>/unity/unity_floodfill.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -3156,64 +3270,6 @@
 </li>
 </ol>
 <p><img data-src="/images/closure/closure.png" alt="closure"></p>
-]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何让 Unity 走代理?</title>
-    <url>/unity/unity_proxy.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<p>最近在学习制作 Unity 游戏, 到了最后需要发布 Android 版本游戏程序的时候, 发现根本导不出来!!! </p>
-<p>每次都会卡在 Gradle 的构建上... 看了日志之后知道了原来是从仓库下载包的时候下载失败了...那我就更郁闷了, 我 24 小时全天开着梯子, 你跟我说现在还有我下载不下来的东西? 后来在这篇文章中找到了答案! <span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
-<p>原来 Unity 压根不吃梯子啊~ ~ !</p>
-<h1 id="解决方法一"><a href="#解决方法一" class="headerlink" title="解决方法一"></a>解决方法一</h1><p><strong><code>使用阿里的镜像源替代 Google 源</code></strong></p>
-<ol>
-<li><p>找到 Unity 的安装目录.</p>
-</li>
-<li><p>使用 VSCode 打开路径: <code>Editor\Data\PlaybackEngines\AndroidPlayer\Tools\GradleTemplates</code>.</p>
-</li>
-<li><p>对路径中的文件逐一修改, 将其中所有的</p>
-</li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">google()</span><br><span class="line">jcenter()</span><br></pre></td></tr></table></figure>
-
-<p>修改为:</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/google&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">maven</span><br><span class="line">&#123;</span><br><span class="line">    url <span class="string">&quot;https://maven.aliyun.com/repository/jcenter&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><font color='red'><strong>重启 Unity 项目</strong></font>, 重新发布即可!</li>
-</ol>
-<p>[<strong>注</strong>]</p>
-<ol>
-<li><p>文件中要替换的 <code>google() jcenter()</code> 不止一处, 必须全部替换!</p>
-</li>
-<li><p>Unity 每次打开项目的时候, 都会从模板中复制文件, 在项目中建立缓存, 其中就包含我们刚刚修改的文件. 如果不重启项目, 那么项目中的缓存文件依旧使用的是修改前的文件, 此时发布依旧会失败, 所以必须重启 Unity 项目, 让 Unity 使用我们修改后的模板重新建立缓存!</p>
-</li>
-</ol>
-<h1 id="解决方法二"><a href="#解决方法二" class="headerlink" title="解决方法二"></a>解决方法二</h1><p><strong><code>为 Unity Hub 和 Unity 设置代理</code></strong></p>
-<p>Unity Hub 和 Unity 在连接网络时并不会读取浏览器配置, 因此梯子时无效的! 但是 Unity Hub 和 Unity 会读取环境变量中 <code>HTTP_PROXY</code> 和 <code>HTTPS_PROXY</code> 的值判断是否使用代理.</p>
-<p>因此只要配置好这两个环境变量就好了, 下面是引用的这篇博客 (<span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span>) 中的一段:</p>
-<blockquote>
-<p>Windows 下, 写一个 bat 脚本, 内容如下:</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;@<span class="built_in">echo</span> off</span><br><span class="line">&gt;<span class="built_in">set</span> HTTP_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">set</span> HTTPS_PROXY = http://<span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">1080</span></span><br><span class="line">&gt;<span class="built_in">start</span> &quot;&quot; &quot;C:\Program Files\Unity Hub\Unity Hub.exe&quot;</span><br></pre></td></tr></table></figure>
-
-<p>注意, HTTPS_PROXY 的设置也是 &quot;<span class="exturl" data-url="aHR0cDovL3h4eHgmcXVvdDsv">http://xxxx&quot;<i class="fa fa-external-link-alt"></i></span>, 而不是 &quot;<span class="exturl" data-url="aHR0cHM6Ly94eHh4JnF1b3Q7Lw==">https://xxxx&quot;<i class="fa fa-external-link-alt"></i></span></p>
-<p>mac 下, 脚本如下:</p>
-<figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">&gt;<span class="built_in">echo</span> &#x27;#!/bin/bash</span><br><span class="line">&gt;export HTTP_PROXY=proxy-url</span><br><span class="line">&gt;export HTTPS_PROXY=proxy-url</span><br><span class="line">&gt;nohup &quot;/Applications/Unity Hub.app/Contents/MacOS/Unity Hub&quot; &amp;&gt;/dev/null &amp;&#x27; &gt; launchUnityHub.command</span><br><span class="line">&gt;chmod +x launchUnityHub.command</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>我用的方法是第一种方法, 确实可行! 第二种没用, 因为我不喜欢动环境变量! 😂</p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cueW9tdW5jaGFuLm1vZS9hcmNoaXZlcy8zMjAjc2VhcmNo">解决Unity的网络水土不服问题<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NoYW5nZV9mcm9tX25vdy9hcnRpY2xlL2RldGFpbHMvMTAwNTE5NTQ2">Unity使用Gradle打包出错问题<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ol>
 ]]></content>
       <categories>
         <category>Unity</category>
