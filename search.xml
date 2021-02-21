@@ -80,37 +80,6 @@
       </tags>
   </entry>
   <entry>
-    <title>使用 csharp 时遇到的一些问题</title>
-    <url>/csharp/csharp_experience.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="如何从字典中删除符合要求的特定值"><a href="#如何从字典中删除符合要求的特定值" class="headerlink" title="如何从字典中删除符合要求的特定值"></a>如何从字典中删除符合要求的特定值</h1><p>由于使用 <code>foreach</code> 遍历的过程中, 被遍历的集合必须保持不变, 因此直接遍历原字典并对原字典进行移除的方法行不通. 使用 foreach 要解决的问题就是让被遍历的集合保持不变, 因此用原字典数据的一个 Copy 即可.</p>
-<h2 id="字典扩展"><a href="#字典扩展" class="headerlink" title="字典扩展"></a>字典扩展</h2><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 字典扩展</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">DictionaryExt</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 移除字典中所有符合特定规则的数据</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;K&quot;&gt;</span>键的数据类型<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;V&quot;&gt;</span>值的数据类型<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;dict&quot;&gt;</span>字典<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;predicate&quot;&gt;</span>规则<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">RemoveAll</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt;(<span class="params"><span class="keyword">this</span> IDictionary&lt;K, V&gt; dict, Func&lt;K, V, <span class="keyword">bool</span>&gt; predicate</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">var</span> key <span class="keyword">in</span> dict.Keys.ToArray().Where(key =&gt; predicate(key, dict[key])))</span><br><span class="line">        &#123;</span><br><span class="line">            dict.Remove(key);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><p>将字典所有的键转换为数组.</p>
-</li>
-<li><p>将键和值作为参数发送给规则方法进行判断.</p>
-</li>
-<li><p>挑选出符合规则的键.</p>
-</li>
-<li><p>从字典中移除这些键值对.</p>
-</li>
-</ol>
-<h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt; dictionary = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt;();</span><br><span class="line">        dictionary.Add(<span class="string">&quot;1&quot;</span>, <span class="number">1</span>);</span><br><span class="line">        dictionary.Add(<span class="string">&quot;2&quot;</span>, <span class="number">2</span>);</span><br><span class="line">        dictionary.Add(<span class="string">&quot;3&quot;</span>, <span class="number">3</span>);</span><br><span class="line">        dictionary.Add(<span class="string">&quot;4&quot;</span>, <span class="number">4</span>);</span><br><span class="line">        dictionary.Add(<span class="string">&quot;5&quot;</span>, <span class="number">1</span>);</span><br><span class="line">        dictionary.Add(<span class="string">&quot;6&quot;</span>, <span class="number">2</span>);</span><br><span class="line">        dictionary.Add(<span class="string">&quot;7&quot;</span>, <span class="number">3</span>);</span><br><span class="line">        dictionary.Add(<span class="string">&quot;8&quot;</span>, <span class="number">4</span>);</span><br><span class="line">        dictionary.Add(<span class="string">&quot;9&quot;</span>, <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 可以这样进行调用</span></span><br><span class="line">        DictionaryExt.RemoveAll(dictionary, (key, <span class="keyword">value</span>) =&gt; <span class="keyword">value</span> &lt; <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">var</span> item <span class="keyword">in</span> dictionary)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.Write(item.Key + <span class="string">&quot;, &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Console.ReadKey();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
-<li><span class="exturl" data-url="aHR0cHM6Ly9zdGFja29vbS5jb20vcXVlc3Rpb24vMmhUZ3kvJUU0JUJEJUJGJUU3JTk0JUE4TGlucSVFNCVCQiU4RSVFNSVBRCU5NyVFNSU4NSVCOEMtJUU0JUI4JUFEJUU1JTg4JUEwJUU5JTk5JUE0JUU3JTg5JUI5JUU1JUFFJTlBJUU1JTgwJUJD">使用Linq从字典C＃中删除特定值<i class="fa fa-external-link-alt"></i></span></li>
-</ul>
-]]></content>
-      <categories>
-        <category>CSharp</category>
-      </categories>
-      <tags>
-        <tag>CSharp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>电脑使用技巧及常见问题</title>
     <url>/computer/computer_issues.html</url>
     <content><![CDATA[<h1 id="PowerShell-出现-quot-因为在此系统中禁止执行脚本-quot-的解决方法"><a href="#PowerShell-出现-quot-因为在此系统中禁止执行脚本-quot-的解决方法" class="headerlink" title="PowerShell 出现 &quot;因为在此系统中禁止执行脚本&quot; 的解决方法"></a>PowerShell 出现 &quot;因为在此系统中禁止执行脚本&quot; 的解决方法</h1><p>新装的系统在 Powershell 直接执行 hexo 命令的时候可能会出现这种情况: <code>****, 因为在此系统中禁止执行脚本. 有关详细信息, 请参阅 &quot;get-help about_signing&quot;</code>. 这是由于脚本的签名不符合 Windows PowerShell 的执行策略导致的, 我们要做的就是修改 Windows PowerShell 的脚本执行策略. Windows PowerShell 提供了六种执行策略: <code>Restricted</code>, <code>AllSigned</code>, <code>RemoteSigned</code>, <code>Unrestricted</code>, <code>Bypass</code>, <code>Undefined</code>.</p>
@@ -338,6 +307,37 @@
       </categories>
       <tags>
         <tag>电脑技巧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 csharp 时遇到的一些问题</title>
+    <url>/csharp/csharp_experience.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="如何从字典中删除符合要求的特定值"><a href="#如何从字典中删除符合要求的特定值" class="headerlink" title="如何从字典中删除符合要求的特定值"></a>如何从字典中删除符合要求的特定值</h1><p>由于使用 <code>foreach</code> 遍历的过程中, 被遍历的集合必须保持不变, 因此直接遍历原字典并对原字典进行移除的方法行不通. 使用 foreach 要解决的问题就是让被遍历的集合保持不变, 因此用原字典数据的一个 Copy 即可.</p>
+<h2 id="字典扩展"><a href="#字典扩展" class="headerlink" title="字典扩展"></a>字典扩展</h2><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 字典扩展</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">DictionaryExt</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 移除字典中所有符合特定规则的数据</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;K&quot;&gt;</span>键的数据类型<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;typeparam name=&quot;V&quot;&gt;</span>值的数据类型<span class="doctag">&lt;/typeparam&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;dict&quot;&gt;</span>字典<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;predicate&quot;&gt;</span>规则<span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">RemoveAll</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt;(<span class="params"><span class="keyword">this</span> IDictionary&lt;K, V&gt; dict, Func&lt;K, V, <span class="keyword">bool</span>&gt; predicate</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">var</span> key <span class="keyword">in</span> dict.Keys.ToArray().Where(key =&gt; predicate(key, dict[key])))</span><br><span class="line">        &#123;</span><br><span class="line">            dict.Remove(key);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>将字典所有的键转换为数组.</p>
+</li>
+<li><p>将键和值作为参数发送给规则方法进行判断.</p>
+</li>
+<li><p>挑选出符合规则的键.</p>
+</li>
+<li><p>从字典中移除这些键值对.</p>
+</li>
+</ol>
+<h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt; dictionary = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">string</span>, <span class="keyword">int</span>&gt;();</span><br><span class="line">        dictionary.Add(<span class="string">&quot;1&quot;</span>, <span class="number">1</span>);</span><br><span class="line">        dictionary.Add(<span class="string">&quot;2&quot;</span>, <span class="number">2</span>);</span><br><span class="line">        dictionary.Add(<span class="string">&quot;3&quot;</span>, <span class="number">3</span>);</span><br><span class="line">        dictionary.Add(<span class="string">&quot;4&quot;</span>, <span class="number">4</span>);</span><br><span class="line">        dictionary.Add(<span class="string">&quot;5&quot;</span>, <span class="number">1</span>);</span><br><span class="line">        dictionary.Add(<span class="string">&quot;6&quot;</span>, <span class="number">2</span>);</span><br><span class="line">        dictionary.Add(<span class="string">&quot;7&quot;</span>, <span class="number">3</span>);</span><br><span class="line">        dictionary.Add(<span class="string">&quot;8&quot;</span>, <span class="number">4</span>);</span><br><span class="line">        dictionary.Add(<span class="string">&quot;9&quot;</span>, <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 可以这样进行调用</span></span><br><span class="line">        DictionaryExt.RemoveAll(dictionary, (key, <span class="keyword">value</span>) =&gt; <span class="keyword">value</span> &lt; <span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">var</span> item <span class="keyword">in</span> dictionary)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.Write(item.Key + <span class="string">&quot;, &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Console.ReadKey();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9zdGFja29vbS5jb20vcXVlc3Rpb24vMmhUZ3kvJUU0JUJEJUJGJUU3JTk0JUE4TGlucSVFNCVCQiU4RSVFNSVBRCU5NyVFNSU4NSVCOEMtJUU0JUI4JUFEJUU1JTg4JUEwJUU5JTk5JUE0JUU3JTg5JUI5JUU1JUFFJTlBJUU1JTgwJUJD">使用Linq从字典C＃中删除特定值<i class="fa fa-external-link-alt"></i></span></li>
+</ul>
+]]></content>
+      <categories>
+        <category>CSharp</category>
+      </categories>
+      <tags>
+        <tag>CSharp</tag>
       </tags>
   </entry>
   <entry>
