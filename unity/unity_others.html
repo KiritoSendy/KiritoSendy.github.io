@@ -33,7 +33,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://kuroha.vip/images/closure/closure.png">
 <meta property="article:published_time" content="2020-12-11T15:11:30.000Z">
-<meta property="article:modified_time" content="2021-02-05T06:08:58.477Z">
+<meta property="article:modified_time" content="2021-02-21T09:49:02.857Z">
 <meta property="article:author" content="Kuroha">
 <meta property="article:tag" content="Unity">
 <meta name="twitter:card" content="summary">
@@ -160,7 +160,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">40</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">41</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -255,7 +255,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -380,7 +380,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-05 14:08:58" itemprop="dateModified" datetime="2021-02-05T14:08:58+08:00">2021-02-05</time>
+                <time title="修改时间：2021-02-21 17:49:02" itemprop="dateModified" datetime="2021-02-21T17:49:02+08:00">2021-02-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -437,7 +437,7 @@
 <h2 id="答案解析"><a href="#答案解析" class="headerlink" title="答案解析"></a>答案解析</h2><p>在上面的代码中, 每次循环都会创建一个菜单项, 并将 gameObject 变量作为参数绑定事件, 所以最后的结果就是 菜单项 0, 菜单项 1, 菜单项 2, 菜单项 3 都使用了 gameObject 变量作为参数, 而 gameObject 是一个变量啊, 不是一个常量, 创建菜单项 0 的时候, gameObject 确实是菜单项 0, 但是等到了创建菜单项 3 的时候, gameObject 也就变成菜单项 3 了, 因此调用事件的瞬间, 使用的也是那个瞬间的 gameObject 值, 也就是 3.</p>
 <h2 id="纠正"><a href="#纠正" class="headerlink" title="纠正"></a>纠正</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    characterPackage = characterDataScript.characterData.Package;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; characterPackage.Count; index++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 生成菜单项, 并设置父物体</span></span><br><span class="line">        GameObject gameObject = Instantiate(itemMenuItemPrefab, itemMenuItemParent.transform);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 修改菜单项的名称</span></span><br><span class="line">        gameObject.name = index.ToString();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 修改菜单项的图标</span></span><br><span class="line">        gameObject.transform.Find(<span class="string">&quot;Icon&quot;</span>).Find(<span class="string">&quot;Image&quot;</span>).GetComponent&lt;Image&gt;().sprite = characterPackage[index].Icon;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 修改菜单项的文本</span></span><br><span class="line">        gameObject.transform.Find(<span class="string">&quot;Name&quot;</span>).Find(<span class="string">&quot;Text&quot;</span>).GetComponent&lt;Text&gt;().text = characterPackage[index].Name;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 给菜单项的按钮注册事件, [UnityAction: 一个无参的委托, 返回值无所谓]</span></span><br><span class="line">        gameObject.GetComponent&lt;Button&gt;().onClick.AddListener(() =&gt; Event_ItemSelected(gameObject));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>使用这段代码就可以纠正那个错误, 两段代码只有一个区别, 就是 gameObject 变量定义的位置不同. 一个在 for 循环外, 一个在 for 循环内. </p>
+<p>使用这段代码就可以纠正那个错误, 两段代码只有一个区别, 就是 gameObject 变量定义的位置不同. 一个在 for 循环外, 一个在 for 循环内.</p>
 <ol>
 <li><p>在 for 循环<strong>外部</strong>定义时, 每一个菜单项使用的都是同一个 gameObject;</p>
 </li>
@@ -609,13 +609,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">192k</span>
+    <span title="站点总字数">198k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:55</span>
+    <span title="站点阅读时长">3:01</span>
 </div>
 
     <div id="days"></div>

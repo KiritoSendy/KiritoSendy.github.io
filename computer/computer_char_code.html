@@ -33,7 +33,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://kuroha.vip/images/computer_char_code/ascii.png">
 <meta property="article:published_time" content="2020-03-27T15:12:47.000Z">
-<meta property="article:modified_time" content="2021-02-05T06:08:58.468Z">
+<meta property="article:modified_time" content="2021-02-21T09:49:02.860Z">
 <meta property="article:author" content="Kuroha">
 <meta property="article:tag" content="计算机基础">
 <meta name="twitter:card" content="summary">
@@ -160,7 +160,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">40</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">41</span></a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -255,7 +255,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -380,7 +380,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-05 14:08:58" itemprop="dateModified" datetime="2021-02-05T14:08:58+08:00">2021-02-05</time>
+                <time title="修改时间：2021-02-21 17:49:02" itemprop="dateModified" datetime="2021-02-21T17:49:02+08:00">2021-02-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -417,15 +417,15 @@
     
     <div class="post-body" itemprop="articleBody">
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天再一次体会到了 <strong>基础知识不扎实会带来无数的问题与困扰</strong> 这句话是多么地真实 ! ! 事情起因是我想巩固一下 SQL 知识, 于是用 SQL Developer 工具开始写 SQL, 但是当我用 SQL Developer 打开一个之前在 PL/SQL 上编辑的 SQL 文件的时候, 里面所有的中文全部乱码了 ! ! 我就知道我必须要解决 <code>编码</code> 这个困扰我许久的问题了. 于是上网搜索资料, 最后总结如下, 我使用了编码的发展顺序来组织文章结构 ( 大概, 或许, 应该, 差不多是这么个发展顺序吧, 哈哈 ! ), OK, 我们开始.</p>
-<h1 id="字符集-和-编码规则"><a href="#字符集-和-编码规则" class="headerlink" title="字符集 和 编码规则"></a>字符集 和 编码规则</h1><p>这两个概念必须在最开始就要点出, 这也是这篇文章的重心所在. 字符集和编码规则是完全不同的两种事物: </p>
-<p><strong>字符集</strong>: 为每一个字符分配一个唯一的 ID. </p>
-<p><strong>编码规则</strong>: 定义如何将之前定义的 ID 转换为计算机中的字节序列的一整套规则. </p>
+<h1 id="字符集-和-编码规则"><a href="#字符集-和-编码规则" class="headerlink" title="字符集 和 编码规则"></a>字符集 和 编码规则</h1><p>这两个概念必须在最开始就要点出, 这也是这篇文章的重心所在. 字符集和编码规则是完全不同的两种事物:</p>
+<p><strong>字符集</strong>: 为每一个字符分配一个唯一的 ID.</p>
+<p><strong>编码规则</strong>: 定义如何将之前定义的 ID 转换为计算机中的字节序列的一整套规则.</p>
 <p>这里不需要特别明白, 只需要知道有这样一个区别即可, 后面根据实例来理解它们会更容易.</p>
 <h1 id="计算机基础"><a href="#计算机基础" class="headerlink" title="计算机基础"></a>计算机基础</h1><p>在计算机内部, 所有信息最终都是一个二进制值. 每一个二进制位 (bit) 有 0 和 1 两种状态, 因此八个二进制位就可以组合出 256 种状态, 这被称为一个字节 (byte). 也就是说, 从 <code>0X00</code> 到 <code>0XFF</code> 的一个字节一共可以用来表示 256 种不同的状态, 如果让每一个状态对应一个符号, 就是 256 个符号.</p>
-<h1 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h1><p>于是美国就率先制定了一套字符编码, 来解决英语字符与二进制位之间的关系, 并做了统一规定. 这被称为 <code>ASCII</code>, 即 <code>美国信息交换标准代码</code>, 一直沿用至今. </p>
+<h1 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h1><p>于是美国就率先制定了一套字符编码, 来解决英语字符与二进制位之间的关系, 并做了统一规定. 这被称为 <code>ASCII</code>, 即 <code>美国信息交换标准代码</code>, 一直沿用至今.</p>
 <p>由于 <code>ASCII</code> 提出的时候, 字符集和编码规则这两个概念尚未区分, 于是 <code>ASCII</code> 既表示字符集又表示编码规则. 不过为了好理解, 我们这里来一波强行解释! 上图!</p>
 <p><img data-src="/images/computer_char_code/ascii.png" alt="ASCII"></p>
-<h2 id="ASCII-字符集"><a href="#ASCII-字符集" class="headerlink" title="ASCII 字符集"></a>ASCII 字符集</h2><p>上图中的 <code>Bin</code> 和 <code>缩写/字符</code> 这两列就是字符集, 一共规定了 128 个字符以及这 128 个字符的 ID. </p>
+<h2 id="ASCII-字符集"><a href="#ASCII-字符集" class="headerlink" title="ASCII 字符集"></a>ASCII 字符集</h2><p>上图中的 <code>Bin</code> 和 <code>缩写/字符</code> 这两列就是字符集, 一共规定了 128 个字符以及这 128 个字符的 ID.</p>
 <p>字符集就只是负责这个工作, 即给每个要表示的字符分配一个 ID, 至于这个 ID 在计算机中怎么表示, 是用 1 个字节还是 2 个字节还是可变长度字节是不需要字符集去考虑的. 即使是仅仅只有 128 个字符的 ASCII 字符集, 我在电脑中就喜欢用 2 个字节表示, 我硬盘空间有的是, 我就喜欢 1 个字节表示字符, 另 1 个字节在旁边站岗, 谁又管的着呢? 虽然这很蠢!</p>
 <h2 id="ASCII-编码规则"><a href="#ASCII-编码规则" class="headerlink" title="ASCII 编码规则"></a>ASCII 编码规则</h2><ul>
 <li>① 每个字符都使用 1 个字节表示.</li>
@@ -435,31 +435,31 @@
 <p>这样应该就有点明白字符集和编码规则的区别了吧. 其实当时那个年代 <code>字符集</code> 和 <code>编码规则</code> 这两个概念还没有明确建立, 因为没必要区分开, 默认情况下, 字符集所定义的 ID 的二进制形式就直接是编码规则, 但是随着时代的发展, 明确建立这两个概念就很有必要了. 比如后来提出的 Unicode 字符集, 在 2020 年 3 月的 <code>ISO/IEC 10646:2020</code> 版本中, 总共有 143924 个字符, 其中部分字符会占用 4 个字节, 总不能还是使用 <code>字符集所定义的 ID 的二进制形式就直接是编码规则</code> 这种简单的对应了吧, 因为这样的话所有的字符都要用 4 个字节, 原来只需 1 个字节的英文字母现在需要 4 个字节, 原来只需要 2 个字节的汉字现在也需要 4 个字节, 而且 Unicode 编码还在不断地补充进化, 所以这样实在是太浪费空间了! 我还要用硬盘存放珍贵的电影资源呢! 更大的影响是在网络传输方面, 原本只需传输 1 MB 的数据量, 现在却要传输 4 MB, 这太浪费资源了!</p>
 <p>[注] ASCII 是后面一切编码的基础, 因此即使字符编码不断发展, 发展后的它们也都会考虑到和 ASCII 的兼容性, 因此你会看到后面的编码都会做出一些相应的措施来兼容 ASCII.</p>
 <h1 id="扩展版-ASCII"><a href="#扩展版-ASCII" class="headerlink" title="扩展版 ASCII"></a>扩展版 ASCII</h1><p>随着计算机的普及, 计算机进入了欧洲国家, 但是 ASCII 中不包含其他语言的字符啊! 像希腊字母, 罗马字母等. 那么这些欧洲国家就很难受啊! 正好 ASCII 只使用了 1 个字节的后 7 位, 于是, 一些欧洲国家就决定, 利用 ASCII 编码规则中闲置的最高位编入新的符号 ( 你美国人不是才用了半个字节吗, 那好, 剩下的半个字节由我们来定义 ). 这样一来, 这些欧洲国家使用的编码体系, 就可以表示 256 个字符, 我们称之为 <code>扩展版 ASCII</code>.</p>
-<h2 id="扩展版-ASCII-字符集"><a href="#扩展版-ASCII-字符集" class="headerlink" title="扩展版 ASCII 字符集"></a>扩展版 ASCII 字符集</h2><p>扩展版 ASCII 字符集规定了 256 个字符. 其中 128 个字符直接沿用了 ASCII, 以达到兼容的目的, 剩下的 128 个字符是欧洲国家自己定义的字符. 当然由于每个国家语言不同, 对于这 128 个字符, 不同的国家自然有不同的定义, 那么肯定也会有它们独特的称呼, 但本质上它们都属于扩展版 ASCII 字符集🤣. (是不是感觉开始出现了混乱的味道? 嗯哼~) 但是不管怎样, 所有这些扩展版 ASCII 字符集中, 0 ~ 127 表示的符号是一样的, 不一样的只是 128 ~ 255 这些字符. </p>
+<h2 id="扩展版-ASCII-字符集"><a href="#扩展版-ASCII-字符集" class="headerlink" title="扩展版 ASCII 字符集"></a>扩展版 ASCII 字符集</h2><p>扩展版 ASCII 字符集规定了 256 个字符. 其中 128 个字符直接沿用了 ASCII, 以达到兼容的目的, 剩下的 128 个字符是欧洲国家自己定义的字符. 当然由于每个国家语言不同, 对于这 128 个字符, 不同的国家自然有不同的定义, 那么肯定也会有它们独特的称呼, 但本质上它们都属于扩展版 ASCII 字符集🤣. (是不是感觉开始出现了混乱的味道? 嗯哼~) 但是不管怎样, 所有这些扩展版 ASCII 字符集中, 0 ~ 127 表示的符号是一样的, 不一样的只是 128 ~ 255 这些字符.</p>
 <h2 id="扩展版-ASCII-编码规则"><a href="#扩展版-ASCII-编码规则" class="headerlink" title="扩展版 ASCII 编码规则"></a>扩展版 ASCII 编码规则</h2><ul>
 <li>① 每个字符使用 1 个字节表示.</li>
 </ul>
-<p>于是扩展版 ASCII  字符集经过编码规则的限制之后, 在计算机中就表示为了: 0000.0000 到 1111.1111. ASCII 和扩展版 ASCII 两者之间互不冲突, 相安无事. </p>
+<p>于是扩展版 ASCII  字符集经过编码规则的限制之后, 在计算机中就表示为了: 0000.0000 到 1111.1111. ASCII 和扩展版 ASCII 两者之间互不冲突, 相安无事.</p>
 <p>从扩展版 ASCII 开始, 这种命名就具有了表示一个大类的意味, 在这个大类下, 具体会细分成很多字符集, 比如, 意大利有意大利的扩展版 ASCII, 法国有法国的扩展版 ASCII, 瑞士有瑞士的扩展版 ASCII. 其中最优秀的字符集扩展方案是 <code>ISO 8859-1</code>, 通常称之为 <code>Latin-1</code>, Latin-1 利用 128 ~ 255 这 128 个二进制数, 包括了足够的附加字符集来涵盖基本的西欧语言, 同时在 0 ~ 127 的范围内兼容 ASCII 编码规则.</p>
-<h1 id="ANSI"><a href="#ANSI" class="headerlink" title="ANSI"></a>ANSI</h1><p>之后, 计算机进入了亚洲国家, 亚洲国家使用的符号就更多了, 其中我国的汉字就接近十万个! 常用字也有四千多个. 由于前面的 ASCII 和扩展版 ASCII 的单字节字符集只能表示 256 种符号, 这对于我们博大精深的汉语来说是肯定不够的, 于是单字节不行, 就必须使用多字节. 于是就诞生了一系列的多字节字符集, 其中一类就叫做 <code>ANSI 字符集</code>. </p>
-<p>ANSI 字符集是从 0X0000 定义到 0XFFFF, 理论上来说, 只要全部的字符都使用 2 个字节表示, 就可以包含 65536 个字符 (但是实际的编码规则不会这么简单直接), 这对于任何单个国家的字符需求来说, 都能基本满足了. </p>
-<p>ANSI 字符集定义了要表示的字符以及对应的 ID, 但是并不意味着将这些字符编到计算机中的时候会遵守 <code>字符集所定义的 ID 的二进制形式就直接是编码规则</code> 的游戏规则. 就比如后面会提到的 <code>GB 2312</code> 字符集使用的 <code>EUC-CN</code> 编码规则, 半角字符只占 1 个字节, 汉字和全角字符才会占用 2 个字节 (是不是已经开始有点晕了😵). </p>
+<h1 id="ANSI"><a href="#ANSI" class="headerlink" title="ANSI"></a>ANSI</h1><p>之后, 计算机进入了亚洲国家, 亚洲国家使用的符号就更多了, 其中我国的汉字就接近十万个! 常用字也有四千多个. 由于前面的 ASCII 和扩展版 ASCII 的单字节字符集只能表示 256 种符号, 这对于我们博大精深的汉语来说是肯定不够的, 于是单字节不行, 就必须使用多字节. 于是就诞生了一系列的多字节字符集, 其中一类就叫做 <code>ANSI 字符集</code>.</p>
+<p>ANSI 字符集是从 0X0000 定义到 0XFFFF, 理论上来说, 只要全部的字符都使用 2 个字节表示, 就可以包含 65536 个字符 (但是实际的编码规则不会这么简单直接), 这对于任何单个国家的字符需求来说, 都能基本满足了.</p>
+<p>ANSI 字符集定义了要表示的字符以及对应的 ID, 但是并不意味着将这些字符编到计算机中的时候会遵守 <code>字符集所定义的 ID 的二进制形式就直接是编码规则</code> 的游戏规则. 就比如后面会提到的 <code>GB 2312</code> 字符集使用的 <code>EUC-CN</code> 编码规则, 半角字符只占 1 个字节, 汉字和全角字符才会占用 2 个字节 (是不是已经开始有点晕了😵).</p>
 <p>[注] 网络上有人说 ANSI 字符集是 ASCII 字符集 的扩展, 我想他应该是把我前面所提到的 ASCII 字符集和 ASCII 扩展字符集都统称为了 ASCII 字符集, 于是得出了他的这个结论. 我认为我的说法和他的说法没有绝对的谁对谁错, 只是不同的两种理解. 在现在这个信息交流如此便利的时代, 我也希望大家在非原则问题上不要过于较真. 不过本文中一直采用的是我自己的看法, 即 ASCII 字符集和 ASCII 扩展字符集不统称为 ASCII 字符集. 接下来让我们回到正题.</p>
 <h2 id="ANSI-字符集"><a href="#ANSI-字符集" class="headerlink" title="ANSI 字符集"></a>ANSI 字符集</h2><p>ANSI 字符集中包含的字符具体是什么不好说, 因为不同国家的 ANSI 字符集包含的字符是不一样的, 和当时的 ASCII 扩展字符集的发展轨迹相同, 对于 ANSI 字符集, 不同的亚洲国家同样设计了他们各自的字符集 (这里我终于搜索到这些细分的 ANSI 字符集所对应的名字了 😂), 比如日本的 ANSI 字符集叫做 <code>JIS X 0208</code>, 韩国的叫做 <code>KS X 1001</code>, 我国的 ANSI 字符集叫做 <code>GB 2312</code>, 释义为: <strong><code>信息处理交换用汉字编码字符集基本集</code></strong>. 下面简单说一下 GB 2312 中所规定的字符集内容.</p>
-<p>GB 2312 共收录 6763 个汉字, 其中一级汉字 3755 个, 二级汉字 3008 个, 同时收录了包括拉丁字母, 希腊字母, 日文平假名及片假名字母, 俄语西里尔字母在内的 682 个字符. </p>
+<p>GB 2312 共收录 6763 个汉字, 其中一级汉字 3755 个, 二级汉字 3008 个, 同时收录了包括拉丁字母, 希腊字母, 日文平假名及片假名字母, 俄语西里尔字母在内的 682 个字符.</p>
 <p>GB 2312 的出现, 基本满足了汉字的计算机处理需要, 它所收录的汉字已经覆盖中国大陆 99.75% 的使用频率.</p>
 <h2 id="ANSI-编码规则"><a href="#ANSI-编码规则" class="headerlink" title="ANSI 编码规则"></a>ANSI 编码规则</h2><ul>
-<li>① 不同的 ANSI 字符集会规定其独特的编码规则. </li>
+<li>① 不同的 ANSI 字符集会规定其独特的编码规则.</li>
 </ul>
 <p>这个还真的都不一样, 但是也都是有基准的. 比如我国的 GB 2312 字符集使用的 ANSI 编码规则叫做 <code>EUC-CN</code>, 日本的 JIS X 0208 字符集在 Windows 上使用的 ANSI 编码规则叫做 <code>EUC-JP</code>, 韩国的 KS X 1001 字符集使用的 ANSI 编码规则叫做 <code>EUC-KR</code>. 这些编码规则都是 <code>EUC</code> 类的编码规则.</p>
-<p>是不是头都大了? 😂 只要知道不同的 <code>ANSI 字符集</code> 会采用一些不同的编码规则即可. </p>
+<p>是不是头都大了? 😂 只要知道不同的 <code>ANSI 字符集</code> 会采用一些不同的编码规则即可.</p>
 <p>总结一下, <code>ANSI</code> 是一类字符集的统称, 不同的国家有其自己的 ANSI 字符集, 不同的字符集也会对应不同的编码规则, 同样编码规则也都有各自的名称.</p>
 <p>有人可能会问, 后面不是会出现 Unicode 这种全球统一的字符集吗, 那为什么还要继续使用和发展 ASNI 这种国家之间无法兼容的字符集呢? 这个问题呢我后面会解答.</p>
-<h1 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h1><p>ASNI 出现之后, 各个国家的字符需求基本都解决了, 但是因为每个国家制定了他们各自的字符集和对应的编码方案, 所以各个国家之间的字符集不通用, 于是制定一套全球统一编码的呼声越加强烈! 最后 <code>ISO</code> 即 <code>国际标准化组织</code> 实在看不下去了, 为了解决不同国家 ANSI 的冲突问题, ISO 就制定了一套全球统一编码, 即 <code>Unicode</code>. </p>
+<h1 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h1><p>ASNI 出现之后, 各个国家的字符需求基本都解决了, 但是因为每个国家制定了他们各自的字符集和对应的编码方案, 所以各个国家之间的字符集不通用, 于是制定一套全球统一编码的呼声越加强烈! 最后 <code>ISO</code> 即 <code>国际标准化组织</code> 实在看不下去了, 为了解决不同国家 ANSI 的冲突问题, ISO 就制定了一套全球统一编码, 即 <code>Unicode</code>.</p>
 <p><code>Unicode</code> 时代的时候, 字符集和编码规则就已经很明确了, Unicode 仅仅只是一种字符集. 其中定义了全世界所有符号的唯一标识 ID, 并且一直在不断地修订. 2020 年 3 月的 <code>ISO/IEC 10646:2020</code> 标准中, 已经包含了 143924 个字符.</p>
 <p>如果使用简单的 <code>字符集所定义的 ID 的二进制形式就直接是编码规则</code> 的方法来存储 Unicode 字符集, 将会造成极大的浪费, 于是为了解决 Unicode 这个庞大字符集的存储和网络传输问题, 对应 Unicode 字符集的编码规则就出现了. 其中最常用的就是 <code>UTF-8</code> 编码规则了. 其他的编码规则还有 <code>UTF-16 BE</code>, (Big-Endian 大端序) <code>UTF-16 LE</code> (Little-Endian 小端序), <code>UTF-32</code>, <code>UTF-7</code>, <code>Punycode</code>, <code>CESU-8</code>, <code>SCSU</code>, <code>GB18030</code> 等等.</p>
-<p>对于之前说的为什么还要继续使用 ANSI 字符集的原因是, Unicode 下的各种编码规则, 对于常用汉字, 基本上都是占用 3 个字节, 生僻汉字可能占用到 6 个字节. 对于 <code>GB2312</code> 和 <code>GBK</code> 来讲, UTF-8 无疑造成了浪费, 所以, UTF-8 可以说是对英文友好, 但对中文不友好的一种编码方式. 所以在中文界,  GB2312 与 GBK 依旧有自己的市场. 但是按照目前的趋势来看, 硬盘都是白菜价, 电脑性能也已经足够无视这点性能的消耗了. 所以推荐所有的网页使用统一编码: UTF-8. </p>
-<p>其中关于 UTF-8, GB18030 内部的具体编码规则就不展开说了 (其实我也不会, 哈哈), 有兴趣的可以自己搜索资料, 维基百科就是一个比较好的选择. </p>
+<p>对于之前说的为什么还要继续使用 ANSI 字符集的原因是, Unicode 下的各种编码规则, 对于常用汉字, 基本上都是占用 3 个字节, 生僻汉字可能占用到 6 个字节. 对于 <code>GB2312</code> 和 <code>GBK</code> 来讲, UTF-8 无疑造成了浪费, 所以, UTF-8 可以说是对英文友好, 但对中文不友好的一种编码方式. 所以在中文界,  GB2312 与 GBK 依旧有自己的市场. 但是按照目前的趋势来看, 硬盘都是白菜价, 电脑性能也已经足够无视这点性能的消耗了. 所以推荐所有的网页使用统一编码: UTF-8.</p>
+<p>其中关于 UTF-8, GB18030 内部的具体编码规则就不展开说了 (其实我也不会, 哈哈), 有兴趣的可以自己搜索资料, 维基百科就是一个比较好的选择.</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
 <li>美国人为了表示日常用的字符, 制定了 ASCII.</li>
 <li>欧洲人为了表示日常用的字符, 扩充了 ASCII.</li>
@@ -648,13 +648,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">192k</span>
+    <span title="站点总字数">198k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:55</span>
+    <span title="站点阅读时长">3:01</span>
 </div>
 
     <div id="days"></div>

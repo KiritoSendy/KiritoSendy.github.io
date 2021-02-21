@@ -181,7 +181,7 @@ body {
 body {
   background: var(--body-bg-color);
   color: var(--text-color);
-  font-family: Arial Bold, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: Arial Bold, "Noto Serif SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 1em;
   line-height: 2;
   transition: all 0.2s ease-in-out;
@@ -192,7 +192,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Arial Bold, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: Arial Bold, "Noto Serif SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   font-weight: bold;
   line-height: 1.5;
   margin: 20px 0 15px;
@@ -1213,7 +1213,7 @@ pre code {
   color: var(--brand-hover-color);
 }
 .site-title {
-  font-family: Arial Bold, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: Arial Bold, "Noto Serif SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 1.375em;
   font-weight: normal;
   margin: 0;
@@ -1805,7 +1805,7 @@ pre code {
   top: 0;
 }
 .post-body {
-  font-family: Arial Bold, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: Arial Bold, "Noto Serif SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   overflow-wrap: break-word;
 }
 @media (min-width: 1200px) {
@@ -2121,7 +2121,7 @@ pre code {
 }
 .posts-expand .post-meta {
   color: #999;
-  font-family: Arial Bold, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: Arial Bold, "Noto Serif SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 0.75em;
   margin-top: 3px;
 }
@@ -3044,13 +3044,10 @@ mark.search-keyword {
   }
 }
 code {
-  background: #f8f8f8;
-  padding: 1px 1px;
-  border: 1px solid rgba(0,0,0,0.6);
-  border-radius: 1px;
+  font-size: 20px;
+  color: #c71585;
+  background: #fffafa;
   word-break: break-word;
-  color: #e77700;
-  font-size: 13px;
-  margin: 1 2px;
-  font-family: "Roboto Mono", Monaco, courier, monospace;
+  padding: 2px 4px;
+  margin: 0px;
 }
