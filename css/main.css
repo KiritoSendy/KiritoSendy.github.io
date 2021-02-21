@@ -3051,3 +3051,21 @@ code {
   padding: 2px 4px;
   margin: 0px;
 }
+/*
+// 鼠标样式, 格式: *.ani (动态), *.cur (静态)
+body {
+    cursor: url('/cursor/arrow.cur'), default;
+}
+a:link {
+    cursor: url('/cursor/link.cur'), pointer;
+}
+a:hover {
+    cursor: url('/cursor/link.cur'), pointer;
+}
+a:visited {
+    cursor: url('/cursor/arrow.cur'),
+}
+a:active {
+    cursor: url('/cursor/arrow.cur'),
+}
+*/
