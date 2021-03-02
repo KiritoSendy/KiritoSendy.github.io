@@ -1,8 +1,7 @@
 /* global instantsearch, algoliasearch, CONFIG */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const algoliaSettings = CONFIG.algolia;
-  const { indexName, appID, apiKey } = algoliaSettings;
+  const { indexName, appID, apiKey, hits } = CONFIG.algolia;
 
   const search = instantsearch({
     indexName,
@@ -15,18 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   window.pjax && search.on('render', () => {
-    window.pjax.refresh(document.getElementById('algolia-hits'));
+    window.pjax.refresh(document.querySelector('.algolia-hits'));
   });
 
   // Registering Widgets
   search.addWidgets([
     instantsearch.widgets.configure({
-      hitsPerPage: algoliaSettings.hits.per_page || 10
+      hitsPerPage: hits.per_page || 10
     }),
 
     instantsearch.widgets.searchBox({
       container           : '.search-input-container',
-      placeholder         : algoliaSettings.labels.input_placeholder,
+      placeholder         : CONFIG.i18n.placeholder,
       // Hide default icons of algolia search
       showReset           : false,
       showSubmit          : false,
@@ -37,41 +36,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }),
 
     instantsearch.widgets.stats({
-      container: '#algolia-stats',
+      container: '.algolia-stats',
       templates: {
         text: data => {
-          const stats = algoliaSettings.labels.hits_stats
+          const stats = CONFIG.i18n.hits_time
             .replace(/\$\{hits}/, data.nbHits)
             .replace(/\$\{time}/, data.processingTimeMS);
-          return `${stats}
-            <span class="algolia-powered">
-              <img src="${CONFIG.root}images/algolia_logo.svg" alt="Algolia">
-            </span>
-            <hr>`;
+          return `<span>${stats}</span>
+            <img src="${CONFIG.images}/logo-algolia-nebula-blue-full.svg" alt="Algolia">`;
         }
+      },
+      cssClasses: {
+        text: 'search-stats'
       }
     }),
 
     instantsearch.widgets.hits({
-      container: '#algolia-hits',
-      templates: {
+      container : '.algolia-hits',
+      escapeHTML: false,
+      templates : {
         item: data => {
-          const link = data.permalink ? data.permalink : CONFIG.root + data.path;
-          return `<a href="${link}" class="algolia-hit-item-link">${data._highlightResult.title.value}</a>`;
+          const { title, excerpt, excerptStrip, contentStripTruncate } = data._highlightResult;
+          let result = `<a href="${data.permalink}" class="search-result-title">${title.value}</a>`;
+          const content = excerpt || excerptStrip || contentStripTruncate;
+          if (content && content.value) {
+            const div = document.createElement('div');
+            div.innerHTML = content.value;
+            result += `<a href="${data.permalink}"><p class="search-result">${div.textContent.substr(0, 100)}...</p></a>`;
+          }
+          return result;
         },
         empty: data => {
-          return `<div id="algolia-hits-empty">
-              ${algoliaSettings.labels.hits_empty.replace(/\$\{query}/, data.query)}
+          return `<div class="algolia-hits-empty">
+              ${CONFIG.i18n.empty.replace(/\$\{query}/, data.query)}
             </div>`;
         }
       },
       cssClasses: {
-        item: 'algolia-hit-item'
+        list: 'search-result-list'
       }
     }),
 
     instantsearch.widgets.pagination({
-      container: '#algolia-pagination',
+      container: '.algolia-pagination',
       scrollTo : false,
       showFirst: false,
       showLast : false,

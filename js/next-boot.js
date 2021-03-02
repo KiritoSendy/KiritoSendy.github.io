@@ -12,10 +12,10 @@ NexT.boot.registerEvents = function() {
     event.currentTarget.classList.toggle('toggle-close');
     const siteNav = document.querySelector('.site-nav');
     if (!siteNav) return;
-    const animateAction = siteNav.classList.contains('site-nav-on');
+    const animateAction = document.body.classList.contains('site-nav-on');
     const height = NexT.utils.getComputedStyle(siteNav);
     siteNav.style.height = animateAction ? height : 0;
-    const toggle = () => siteNav.classList.toggle('site-nav-on');
+    const toggle = () => document.body.classList.toggle('site-nav-on');
     const begin = () => {
       siteNav.style.overflow = 'hidden';
     };
@@ -48,12 +48,12 @@ NexT.boot.registerEvents = function() {
     element.addEventListener('click', () => {
       if (element.matches('.sidebar-toc-active .sidebar-nav-toc, .sidebar-overview-active .sidebar-nav-overview')) return;
       const sidebar = document.querySelector('.sidebar-inner');
-      const panel = document.querySelectorAll('.sidebar-panel');
+      const panel = document.querySelector('.sidebar-panel-container');
       const activeClassName = ['sidebar-toc-active', 'sidebar-overview-active'];
 
       window.anime({
         duration,
-        targets   : panel[1 - index],
+        targets   : panel,
         easing    : 'linear',
         opacity   : 0,
         translateY: [0, -20],
@@ -62,7 +62,7 @@ NexT.boot.registerEvents = function() {
           sidebar.classList.replace(activeClassName[1 - index], activeClassName[index]);
           window.anime({
             duration,
-            targets   : panel[index],
+            targets   : panel,
             easing    : 'linear',
             opacity   : [0, 1],
             translateY: [-20, 0]

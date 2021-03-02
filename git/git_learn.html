@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.1.1">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/icon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/icon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/icon/favicon-16x16.png">
@@ -14,17 +16,16 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  
-  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"kuroha.vip","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"kuroha.vip","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-
-  <meta name="description" content="作为一名程序员, Git 这种分布式版本管理工具真的是太好用了, 必须学会!">
+<meta name="description" content="作为一名程序员, Git 这种分布式版本管理工具真的是太好用了, 必须学会!">
 <meta property="og:type" content="article">
 <meta property="og:title" content="学习 Git 以及相关软件的使用">
 <meta property="og:url" content="https://kuroha.vip/git/git_learn.html">
@@ -44,11 +45,12 @@
 <meta property="og:image" content="https://kuroha.vip/images/git_learn/git-squash-1.png">
 <meta property="og:image" content="https://kuroha.vip/images/git_learn/reset-commit-1.png">
 <meta property="article:published_time" content="2021-03-02T07:13:22.000Z">
-<meta property="article:modified_time" content="2021-03-02T07:40:28.288Z">
+<meta property="article:modified_time" content="2021-03-02T12:41:35.870Z">
 <meta property="article:author" content="Kuroha">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://kuroha.vip/images/git_learn/file-struct.png">
+
 
 <link rel="canonical" href="https://kuroha.vip/git/git_learn.html">
 
@@ -62,7 +64,6 @@
     lang   : 'zh-CN'
   };
 </script>
-
 
     <script>
         (function () {
@@ -83,10 +84,8 @@
 
     <link rel="stylesheet" href="../js/galmenu/css/GalMenu.css">
 
-  <title>学习 Git 以及相关软件的使用 | 二次元游宅客</title>
+<title>学习 Git 以及相关软件的使用 | 二次元游宅客</title>
   
-
-
 
 
 
@@ -128,15 +127,14 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-    <main class="main">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-        <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -163,37 +161,13 @@
 
 
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">42</span></a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-捉小猫">
-
-    <a href="/catch_the_cat/" rel="section"><i class="fa fa-cat fa-fw"></i>捉小猫</a>
-
-  </li>
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">42</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-捉小猫"><a href="/catch_the_cat/" rel="section"><i class="fa fa-cat fa-fw"></i>捉小猫</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -204,8 +178,7 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
@@ -214,12 +187,12 @@
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
@@ -228,9 +201,9 @@
   </div>
 
 </div>
-          
+        
   
-  <div class="toggle sidebar-toggle">
+  <div class="toggle sidebar-toggle" role="button">
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
@@ -248,20 +221,21 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF-Windows"><span class="nav-number">1.</span> <span class="nav-text">用户信息 (Windows)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%BA%A7%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-number">1.1.</span> <span class="nav-text">系统级用户信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E7%BA%A7%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-number">1.2.</span> <span class="nav-text">全局级用户信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%93%E5%BA%93%E7%BA%A7%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-number">1.3.</span> <span class="nav-text">仓库级用户信息</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">Git 版本控制结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#branch-name-%E5%92%8C-HEAD"><span class="nav-number">3.</span> <span class="nav-text">branch-name 和 HEAD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-GitHub-%E5%92%8C-GitLab"><span class="nav-number">4.</span> <span class="nav-text">Git, GitHub 和 GitLab</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.</span> <span class="nav-text">Git 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%AF%B9%E5%BC%95%E7%94%A8-HEAD-position"><span class="nav-number">4.2.</span> <span class="nav-text">相对引用 (HEAD-position)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E5%AE%A2%E6%88%B7%E7%AB%AF-Fork"><span class="nav-number">5.</span> <span class="nav-text">图形客户端 Fork</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.1.</span> <span class="nav-text">用户信息设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"><span class="nav-number">5.2.</span> <span class="nav-text">添加本地仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%B7%A5%E4%BD%9C%E5%8C%BA"><span class="nav-number">5.3.</span> <span class="nav-text">多工作区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="nav-number">5.4.</span> <span class="nav-text">添加远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Lunch"><span class="nav-number">5.5.</span> <span class="nav-text">Quick Lunch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fetch"><span class="nav-number">5.6.</span> <span class="nav-text">Fetch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pull"><span class="nav-number">5.7.</span> <span class="nav-text">Pull</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Push"><span class="nav-number">5.8.</span> <span class="nav-text">Push</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#checkout"><span class="nav-number">5.9.</span> <span class="nav-text">checkout</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">6.</span> <span class="nav-text">进阶操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cherry-pick"><span class="nav-number">6.1.</span> <span class="nav-text">cherry-pick</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rebase-interactive"><span class="nav-number">6.2.</span> <span class="nav-text">rebase interactive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tags-amp-amp-describe"><span class="nav-number">6.3.</span> <span class="nav-text">tags &amp;&amp; describe</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86"><span class="nav-number">7.</span> <span class="nav-text">问题处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%B6%88%E9%99%A4%E5%86%97%E4%BD%99%E6%8F%90%E4%BA%A4-Squash-amp-amp-Reset"><span class="nav-number">7.1.</span> <span class="nav-text">如何消除冗余提交 Squash &amp;&amp; Reset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E4%BA%A7%E7%94%9F%E5%86%97%E4%BD%99%E6%8F%90%E4%BA%A4-commit-amend"><span class="nav-number">7.2.</span> <span class="nav-text">如何避免产生冗余提交 commit --amend</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9%E4%B9%8B%E5%89%8D%E6%8F%90%E4%BA%A4%E7%9A%84%E5%90%8C%E6%97%B6%E9%81%BF%E5%85%8D%E4%BA%A7%E7%94%9F%E5%86%97%E4%BD%99%E6%8F%90%E4%BA%A4"><span class="nav-number">7.3.</span> <span class="nav-text">如何修改之前提交的同时避免产生冗余提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-merge-%E8%BF%98%E6%98%AF-rebase"><span class="nav-number">7.4.</span> <span class="nav-text">使用 merge 还是 rebase</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%9C%89%E6%95%88%E9%81%BF%E5%85%8D-git-%E6%96%87%E4%BB%B6%E4%BD%93%E7%A7%AF%E5%A2%9E%E5%A4%A7"><span class="nav-number">7.5.</span> <span class="nav-text">如何有效避免 .git 文件体积增大</span></a></li></ol></li></ol></div>
-      </section>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF-Windows"><span class="nav-number">1.</span> <span class="nav-text">用户信息 (Windows)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%BA%A7%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-number">1.1.</span> <span class="nav-text">系统级用户信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E7%BA%A7%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-number">1.2.</span> <span class="nav-text">全局级用户信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%93%E5%BA%93%E7%BA%A7%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-number">1.3.</span> <span class="nav-text">仓库级用户信息</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">Git 版本控制结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#branch-name-%E5%92%8C-HEAD"><span class="nav-number">3.</span> <span class="nav-text">branch-name 和 HEAD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-GitHub-%E5%92%8C-GitLab"><span class="nav-number">4.</span> <span class="nav-text">Git, GitHub 和 GitLab</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.</span> <span class="nav-text">Git 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%AF%B9%E5%BC%95%E7%94%A8-HEAD-position"><span class="nav-number">4.2.</span> <span class="nav-text">相对引用 (HEAD-position)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E5%AE%A2%E6%88%B7%E7%AB%AF-Fork"><span class="nav-number">5.</span> <span class="nav-text">图形客户端 Fork</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.1.</span> <span class="nav-text">用户信息设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"><span class="nav-number">5.2.</span> <span class="nav-text">添加本地仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%B7%A5%E4%BD%9C%E5%8C%BA"><span class="nav-number">5.3.</span> <span class="nav-text">多工作区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="nav-number">5.4.</span> <span class="nav-text">添加远程仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Lunch"><span class="nav-number">5.5.</span> <span class="nav-text">Quick Lunch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fetch"><span class="nav-number">5.6.</span> <span class="nav-text">Fetch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pull"><span class="nav-number">5.7.</span> <span class="nav-text">Pull</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Push"><span class="nav-number">5.8.</span> <span class="nav-text">Push</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#checkout"><span class="nav-number">5.9.</span> <span class="nav-text">checkout</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">6.</span> <span class="nav-text">进阶操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cherry-pick"><span class="nav-number">6.1.</span> <span class="nav-text">cherry-pick</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rebase-interactive"><span class="nav-number">6.2.</span> <span class="nav-text">rebase interactive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tags-amp-amp-describe"><span class="nav-number">6.3.</span> <span class="nav-text">tags &amp;&amp; describe</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86"><span class="nav-number">7.</span> <span class="nav-text">问题处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%B6%88%E9%99%A4%E5%86%97%E4%BD%99%E6%8F%90%E4%BA%A4-Squash-amp-amp-Reset"><span class="nav-number">7.1.</span> <span class="nav-text">如何消除冗余提交 Squash &amp;&amp; Reset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E4%BA%A7%E7%94%9F%E5%86%97%E4%BD%99%E6%8F%90%E4%BA%A4-commit-amend"><span class="nav-number">7.2.</span> <span class="nav-text">如何避免产生冗余提交 commit --amend</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9%E4%B9%8B%E5%89%8D%E6%8F%90%E4%BA%A4%E7%9A%84%E5%90%8C%E6%97%B6%E9%81%BF%E5%85%8D%E4%BA%A7%E7%94%9F%E5%86%97%E4%BD%99%E6%8F%90%E4%BA%A4"><span class="nav-number">7.3.</span> <span class="nav-text">如何修改之前提交的同时避免产生冗余提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-merge-%E8%BF%98%E6%98%AF-rebase"><span class="nav-number">7.4.</span> <span class="nav-text">使用 merge 还是 rebase</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%9C%89%E6%95%88%E9%81%BF%E5%85%8D-git-%E6%96%87%E4%BB%B6%E4%BD%93%E7%A7%AF%E5%A2%9E%E5%A4%A7"><span class="nav-number">7.5.</span> <span class="nav-text">如何有效避免 .git 文件体积增大</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Kuroha"
       src="/images/avatar/avatar.gif">
   <p class="site-author-name" itemprop="name">Kuroha</p>
   <div class="site-description" itemprop="description">本人是一个热爱二次元和游戏开发的宅极客, 这是我的个人博客! 主要记录我学习的经历以及自己喜欢的动漫, 音乐, 偶尔也会写一些异想天开的脑洞, 哈哈!</div>
 </div>
-<div class="site-state-wrap animated">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -284,7 +258,7 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author animated">
+  <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
         <span class="exturl" data-url="aHR0cHM6Ly90Lm1lL0t1cm9oYUtpcml0bw==" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;KurohaKirito"><i class="fab fa-telegram fa-fw"></i>Telegram</span>
       </span>
@@ -306,7 +280,7 @@
   </div>
 
 
-  <div class="links-of-blogroll animated">
+  <div class="links-of-blogroll site-overview-item animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
       我的朋友们
     </div>
@@ -326,39 +300,41 @@
         <script type="text/javascript" src="/js/clock.js"></script>
     </div>
 
-      </section>
-        <div class="back-to-top animated">
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </header>
+    </header>
 
-      
+    
   <div class="reading-progress-bar"></div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
   <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2t1cm9oYWtpcml0bw==" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
 
 <noscript>
-  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
 
 
-      <div class="main-inner">
-        
+    <div class="main-inner post posts-expand">
 
-        <div class="content post posts-expand">
-          
 
-    
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://kuroha.vip/git/git_learn.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -370,50 +346,52 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="二次元游宅客">
     </span>
-
-    
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           学习 Git 以及相关软件的使用
         </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
 
-              <time title="创建时间：2021-03-02 15:13:22 / 修改时间：15:40:28" itemprop="dateCreated datePublished" datetime="2021-03-02T15:13:22+08:00">2021-03-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2021-03-02 15:13:22 / 修改时间：20:41:35" itemprop="dateCreated datePublished" datetime="2021-03-02T15:13:22+08:00">2021-03-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+        </span>
+    </span>
 
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>8.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
-            </span>
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>8.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
             <div class="post-description">作为一名程序员, Git 这种分布式版本管理工具真的是太好用了, 必须学会!</div>
-
         </div>
       </header>
 
@@ -423,6 +401,7 @@
     <div class="post-body" itemprop="articleBody">
         <a id="more"></a>
 
+<p>首先推荐一个 Git 的学习网站, 以游戏的方式来学习 Git. <span class="exturl" data-url="aHR0cHM6Ly9sZWFybmdpdGJyYW5jaGluZy5qcy5vcmcvP2xvY2FsZT16aF9DTg==">点我<i class="fa fa-external-link-alt"></i></span></p>
 <h1 id="用户信息-Windows"><a href="#用户信息-Windows" class="headerlink" title="用户信息 (Windows)"></a>用户信息 (Windows)</h1><p>Windows 系统的用户文件夹下有一个 <strong>.gitconfig</strong> 文件, 这个文件中存储了 git 的全局设置, 包括提交时的用户名以及邮件地址, 还可以设置一些 git 长命令的别名, 用于简化操作.</p>
 <p>Git 版本库中每一个 commit 节点都有一个提交者, 这个提交者<strong>默认</strong>就是用户文件夹下 <strong>.gitconfig</strong> 文件中配置的用户名和邮件地址. 但是如果不同的仓库需要不同的提交者怎么办呢?</p>
 <p>Git 版本库在所使用的提交者信息有 3 个层级, 分别是: <strong>仓库级 local</strong>, <strong>全局级 global</strong>, <strong>系统级 system</strong>.</p>
@@ -599,31 +578,32 @@
     
     
     
-        <div class="reward-container">
+
+    <footer class="post-footer">
+          <div class="reward-container">
   <div>咕噜咕噜~</div>
-  <button onclick="document.getElementById('post-reward').classList.toggle('active');">
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
     赞赏
   </button>
-  <div id="post-reward">
-      
+  <div class="post-reward">
       <div>
         <img src="/images/donate/alipay.png" alt="Kuroha 支付宝">
-        <p>支付宝</p>
+        <span>支付宝</span>
       </div>
 
   </div>
 </div>
 
-        
+          
 
-<div>
-<ul class="post-copyright">
+<div class="post-copyright">
+<ul>
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>Kuroha
+      <strong>本文作者： </strong>Kuroha
   </li>
   <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://kuroha.vip/git/git_learn.html" title="学习 Git 以及相关软件的使用">https://kuroha.vip/git/git_learn.html</a>
+      <strong>本文链接：</strong>
+      <a href="https://kuroha.vip/git/git_learn.html" title="学习 Git 以及相关软件的使用">https://kuroha.vip/git/git_learn.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aF9DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -631,84 +611,78 @@
 </ul>
 </div>
 
-        
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
 
-  <div class="followme">
-    <p>欢迎关注我的其它发布渠道</p>
+  <div class="social-list">
 
-    <div class="social-list">
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://twitter.com/KurohaKirito">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
 
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="https://twitter.com/KurohaKirito">
-            <span class="icon">
-              <i class="fab fa-twitter"></i>
-            </span>
+          <span class="label">Twitter</span>
+        </a>
+      </div>
 
-            <span class="label">Twitter</span>
-          </a>
-        </div>
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://t.me/KurohaKirito">
+          <span class="icon">
+            <i class="fab fa-telegram"></i>
+          </span>
 
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="https://t.me/KurohaKirito">
-            <span class="icon">
-              <i class="fab fa-telegram"></i>
-            </span>
+          <span class="label">Telegram</span>
+        </a>
+      </div>
 
-            <span class="label">Telegram</span>
-          </a>
-        </div>
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/followme/wechat.png">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
 
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="/images/followme/wechat.png">
-            <span class="icon">
-              <i class="fab fa-weixin"></i>
-            </span>
+          <span class="label">WeChat</span>
+        </a>
+      </div>
 
-            <span class="label">WeChat</span>
-          </a>
-        </div>
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/atom.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
 
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="/atom.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-
-            <span class="label">RSS</span>
-          </a>
-        </div>
-    </div>
+          <span class="label">RSS</span>
+        </a>
+      </div>
   </div>
+</div>
 
-
-      <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Git/" rel="tag"><i class="fa fa-tag"></i> Git</a>
           </div>
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/unity/unity_load_assets.html" rel="prev" title="Unity 中的动态资源加载">
-      <i class="fa fa-chevron-left"></i> Unity 中的动态资源加载
-    </a></div>
-      <div class="post-nav-item"></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/unity/unity_load_assets.html" rel="prev" title="Unity 中的动态资源加载">
+                  <i class="fa fa-chevron-left"></i> Unity 中的动态资源加载
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
-  
-  
-  
+</div>
 
 
 
-        </div>
-        
-    <div class="comments" id="gitalk-container"></div>
+
+
+
+    <div class="comments gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -717,7 +691,7 @@
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
     if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
       if (activeTab) {
         activeTab.click();
       }
@@ -726,81 +700,57 @@
   if (CONFIG.comments.storage) {
     window.addEventListener('tabs:click', event => {
       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
+      const commentClass = event.target.classList[1];
       localStorage.setItem('comments_active', commentClass);
     });
   }
 </script>
+</div>
+  </main>
 
-      </div>
-    </main>
+  <footer class="footer">
+    <div class="footer-inner">
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
 
 <div class="copyright">
-  
   &copy; 2019 – 
   <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-leaf"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Kuroha</span>
-    <span class="post-meta-divider">|</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
-      <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">207k</span>
-    <span class="post-meta-divider">|</span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">209k</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:08</span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:10</span>
+  </span>
 </div>
 
     <div id="days"></div>
     <script type="text/javascript" src="/js/website_runtime.js"></script>
 
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/npm/ribbon.js@1/dist/ribbon.min.js"></script>
-  <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-<script src="/js/bookmark.js"></script>
-
-
-  
-
-
-
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
   
 <script src="/js/local-search.js"></script>
@@ -810,22 +760,17 @@
 
 
 
-
-
-
-
-
-
-
   
 
-  
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.css">
 
 <script>
-NexT.utils.loadComments('#gitalk-container', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+NexT.utils.loadComments('.gitalk-container', () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
       clientID    : '29ff88cf54f1cbcbc7b5',
       clientSecret: 'e68fb1037811f8fb3acd5ca30d3c6a955e1c90e0',
@@ -833,11 +778,11 @@ NexT.utils.loadComments('#gitalk-container', () => {
       owner       : 'KurohaKirito',
       admin       : ['KurohaKirito'],
       id          : 'e14ec7fa3ce78c604bc1715fa3d5af8b',
-      proxy       : '',
+      proxy       : 'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token',
         language: 'zh-CN',
       distractionFreeMode: true
     });
-    gitalk.render('gitalk-container');
+    gitalk.render(document.querySelector('.gitalk-container'));
   }, window.Gitalk);
 });
 </script>
@@ -907,4 +852,3 @@ NexT.utils.loadComments('#gitalk-container', () => {
 
 </body>
 </html>
-

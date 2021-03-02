@@ -2404,6 +2404,101 @@
       </tags>
   </entry>
   <entry>
+    <title>Oracle 全拼和首字母查询</title>
+    <url>/oracle/oracle_trigger.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h1><p>首先在 Oracle 数据库中建立 &quot;汉字转全拼&quot; 和 &quot;汉字转首字母&quot; 的方法, 网上的方法基本全部不可信, 支持的汉字很少, 我使用的是从 &quot;ItPub&quot; 论坛上下载的, 目前没有发现不支持的汉字.</p>
+<p><img data-src="/images/oracle_trigger/oracle_pinyin.png" alt="itpub"></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9vZC5say9kL056TmZNalUxT1RZeU1UZGYvb3JhY2xlX2NvZGUuN3o=">下载地址<i class="fa fa-external-link-alt"></i></span> 解压密码是: <code>https://kuroha.vip/</code></p>
+<p>解压之后, 直接执行里面的 sql 文件, 会建立一个 <code>package</code> 和一个 <code>package body</code>, 之后就可以使用 <code>hzpy.gethzfullpy()</code> 和 <code>hzpy.hzpycap()</code> 方法获取汉字的拼音和首字母了.</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
+
+<h1 id="新思路"><a href="#新思路" class="headerlink" title="新思路"></a>新思路</h1><p>之前的思路是对人员表中的所有人员姓名进行转换, 将转换后的结果和用户的实时输入做 like 对比, 但是项目中的人员数动辄就近万条, 再加上用户如果使用全拼方式查询, 那速度真是~ 就像电脑要死机一样. 于是后来转换思路, 在人员表中加入两列, 一列用来保存姓名所对应的首字母形式, 另一列用来保存姓名所对应的全拼形式.</p>
+<p>使用 <code>update</code> 语句更新已存在人员的全拼和首字母信息, 新增人员使用触发器进行自动更新. 下面是触发器使用时的一些要点.</p>
+<h1 id="SQL-语句分类"><a href="#SQL-语句分类" class="headerlink" title="SQL 语句分类"></a>SQL 语句分类</h1><ul>
+<li><p><strong>DDL</strong>: 全称 Data Definition Languages, 译为 &quot;数据定义语言&quot;, 定义了不同的数据段, 数据库, 表, 列, 索引等数据库对象, 简单来说就是对数据库内部的对象进行创建, 删除和修改的操作语言, 常用的语句关键字主要包括 <code>create</code>, <code>drop</code>, <code>alter</code>.</p>
+</li>
+<li><p><strong>DML</strong>: 全称 Data Manipulation Language, 译为 &quot;数据操作语言&quot;, 用于添加, 删除, 更新和查询数据库记录, 并检查数据完整性, 简单来说就是对表内部数据的增删改查操作, 不涉及到表定义, 表结构的修改, 更不会涉及到其他对象, 常用的语句关键字主要包括 <code>insert</code>, <code>delete</code>, <code>udpate</code>, <code>select</code>.</p>
+</li>
+<li><p><strong>DCL</strong>: 全称 Data Control Language, 译为 &quot;数据控制语言&quot;, 用于控制不同数据段的访问许可和访问级别的语句, 这些语句定义了数据库, 表, 字段, 用户的访问权限和安全级别. 主要的语句关键字包括 <code>grant</code>, <code>revoke</code>.</p>
+</li>
+</ul>
+<h1 id="DML-触发器"><a href="#DML-触发器" class="headerlink" title="DML 触发器"></a>DML 触发器</h1><ol>
+<li><p>触发器不能接收参数.</p>
+</li>
+<li><p>触发器的执行顺序:</p>
+</li>
+</ol>
+<ul>
+<li><ul>
+<li>执行 before 语句级触发器</li>
+</ul>
+</li>
+<li><ul>
+<li>执行 before 行级触发器</li>
+</ul>
+</li>
+<li><ul>
+<li>执行 DML 语句</li>
+</ul>
+</li>
+<li><ul>
+<li>执行 after 行级触发器</li>
+</ul>
+</li>
+<li><ul>
+<li>执行 after 语句级触发器</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><p>语句级触发器中, 不得使用 <code>:new</code> 和 <code>:old</code>, 行级触发器中, <code>:old</code> 为 &quot;操作前&quot; 的整行记录, <code>:new</code> 为 &quot;操作后&quot; 的整行记录.</p>
+<table>
+<thead>
+<tr>
+<th align="left">---</th>
+<th align="left">insert</th>
+<th align="left">update</th>
+<th align="left">delete</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">old</td>
+<td align="left">不允许使用</td>
+<td align="left">更新前记录</td>
+<td align="left">删除前记录</td>
+</tr>
+<tr>
+<td align="left">new</td>
+<td align="left">插入后记录</td>
+<td align="left">更新后记录</td>
+<td align="left">不允许使用</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><font color='red'><strong>只有 before 行级触发器可以修改 :new 记录的值.</strong></font></p>
+</li>
+<li><p><font color='red'><strong>在行级触发器中, 不得将 <code>insert</code>, <code>update</code>, <code>delete</code> 语句作用于 &quot;自身触发表&quot;!</strong></font></p>
+</li>
+</ol>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--在插入新纪录之前, 修改这条待插入记录的 szm 字段和 qp 字段.</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">trigger</span> trigger_ryb_pinyin</span><br><span class="line"><span class="keyword">before</span> <span class="keyword">insert</span> <span class="keyword">on</span> ryb</span><br><span class="line"><span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">:new.szm := <span class="keyword">lower</span>(hzpy.hzpycap(:new.xm));</span><br><span class="line">:new.qp := lower(hzpy.gethzfullpy(:new.xm));</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
+<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vSERLMjAxNi9wLzY5MTEwODcuaHRtbA==">详解ORACLE中的trigger<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+<li><p><span class="exturl" data-url="aHR0cDovL2Jsb2cuaXRwdWIubmV0LzIyNTI1Njc2L3ZpZXdzcGFjZS0xMTE3MDYwLw==">关于oracle触发器中修改自身表字段的问题<i class="fa fa-external-link-alt"></i></span></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Oracle</category>
+      </categories>
+      <tags>
+        <tag>Oracle</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>常见的网络相关名词的含义 (一)</title>
     <url>/network/network_concept_mean_1.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -2566,101 +2661,6 @@
       </categories>
       <tags>
         <tag>Internet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Oracle 全拼和首字母查询</title>
-    <url>/oracle/oracle_trigger.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h1><p>首先在 Oracle 数据库中建立 &quot;汉字转全拼&quot; 和 &quot;汉字转首字母&quot; 的方法, 网上的方法基本全部不可信, 支持的汉字很少, 我使用的是从 &quot;ItPub&quot; 论坛上下载的, 目前没有发现不支持的汉字.</p>
-<p><img data-src="/images/oracle_trigger/oracle_pinyin.png" alt="itpub"></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9vZC5say9kL056TmZNalUxT1RZeU1UZGYvb3JhY2xlX2NvZGUuN3o=">下载地址<i class="fa fa-external-link-alt"></i></span> 解压密码是: <code>https://kuroha.vip/</code></p>
-<p>解压之后, 直接执行里面的 sql 文件, 会建立一个 <code>package</code> 和一个 <code>package body</code>, 之后就可以使用 <code>hzpy.gethzfullpy()</code> 和 <code>hzpy.hzpycap()</code> 方法获取汉字的拼音和首字母了.</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.hzpycap(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">lower</span>(hzpy.gethzfullpy(<span class="string">&#x27;又双叒叕&#x27;</span>)) <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
-
-<h1 id="新思路"><a href="#新思路" class="headerlink" title="新思路"></a>新思路</h1><p>之前的思路是对人员表中的所有人员姓名进行转换, 将转换后的结果和用户的实时输入做 like 对比, 但是项目中的人员数动辄就近万条, 再加上用户如果使用全拼方式查询, 那速度真是~ 就像电脑要死机一样. 于是后来转换思路, 在人员表中加入两列, 一列用来保存姓名所对应的首字母形式, 另一列用来保存姓名所对应的全拼形式.</p>
-<p>使用 <code>update</code> 语句更新已存在人员的全拼和首字母信息, 新增人员使用触发器进行自动更新. 下面是触发器使用时的一些要点.</p>
-<h1 id="SQL-语句分类"><a href="#SQL-语句分类" class="headerlink" title="SQL 语句分类"></a>SQL 语句分类</h1><ul>
-<li><p><strong>DDL</strong>: 全称 Data Definition Languages, 译为 &quot;数据定义语言&quot;, 定义了不同的数据段, 数据库, 表, 列, 索引等数据库对象, 简单来说就是对数据库内部的对象进行创建, 删除和修改的操作语言, 常用的语句关键字主要包括 <code>create</code>, <code>drop</code>, <code>alter</code>.</p>
-</li>
-<li><p><strong>DML</strong>: 全称 Data Manipulation Language, 译为 &quot;数据操作语言&quot;, 用于添加, 删除, 更新和查询数据库记录, 并检查数据完整性, 简单来说就是对表内部数据的增删改查操作, 不涉及到表定义, 表结构的修改, 更不会涉及到其他对象, 常用的语句关键字主要包括 <code>insert</code>, <code>delete</code>, <code>udpate</code>, <code>select</code>.</p>
-</li>
-<li><p><strong>DCL</strong>: 全称 Data Control Language, 译为 &quot;数据控制语言&quot;, 用于控制不同数据段的访问许可和访问级别的语句, 这些语句定义了数据库, 表, 字段, 用户的访问权限和安全级别. 主要的语句关键字包括 <code>grant</code>, <code>revoke</code>.</p>
-</li>
-</ul>
-<h1 id="DML-触发器"><a href="#DML-触发器" class="headerlink" title="DML 触发器"></a>DML 触发器</h1><ol>
-<li><p>触发器不能接收参数.</p>
-</li>
-<li><p>触发器的执行顺序:</p>
-</li>
-</ol>
-<ul>
-<li><ul>
-<li>执行 before 语句级触发器</li>
-</ul>
-</li>
-<li><ul>
-<li>执行 before 行级触发器</li>
-</ul>
-</li>
-<li><ul>
-<li>执行 DML 语句</li>
-</ul>
-</li>
-<li><ul>
-<li>执行 after 行级触发器</li>
-</ul>
-</li>
-<li><ul>
-<li>执行 after 语句级触发器</li>
-</ul>
-</li>
-</ul>
-<ol start="3">
-<li><p>语句级触发器中, 不得使用 <code>:new</code> 和 <code>:old</code>, 行级触发器中, <code>:old</code> 为 &quot;操作前&quot; 的整行记录, <code>:new</code> 为 &quot;操作后&quot; 的整行记录.</p>
-<table>
-<thead>
-<tr>
-<th align="left">---</th>
-<th align="left">insert</th>
-<th align="left">update</th>
-<th align="left">delete</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">old</td>
-<td align="left">不允许使用</td>
-<td align="left">更新前记录</td>
-<td align="left">删除前记录</td>
-</tr>
-<tr>
-<td align="left">new</td>
-<td align="left">插入后记录</td>
-<td align="left">更新后记录</td>
-<td align="left">不允许使用</td>
-</tr>
-</tbody></table>
-</li>
-<li><p><font color='red'><strong>只有 before 行级触发器可以修改 :new 记录的值.</strong></font></p>
-</li>
-<li><p><font color='red'><strong>在行级触发器中, 不得将 <code>insert</code>, <code>update</code>, <code>delete</code> 语句作用于 &quot;自身触发表&quot;!</strong></font></p>
-</li>
-</ol>
-<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">--在插入新纪录之前, 修改这条待插入记录的 szm 字段和 qp 字段.</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">trigger</span> trigger_ryb_pinyin</span><br><span class="line"><span class="keyword">before</span> <span class="keyword">insert</span> <span class="keyword">on</span> ryb</span><br><span class="line"><span class="keyword">for</span> <span class="keyword">each</span> <span class="keyword">row</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">:new.szm := <span class="keyword">lower</span>(hzpy.hzpycap(:new.xm));</span><br><span class="line">:new.qp := lower(hzpy.gethzfullpy(:new.xm));</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
-
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
-<li><p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vSERLMjAxNi9wLzY5MTEwODcuaHRtbA==">详解ORACLE中的trigger<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-<li><p><span class="exturl" data-url="aHR0cDovL2Jsb2cuaXRwdWIubmV0LzIyNTI1Njc2L3ZpZXdzcGFjZS0xMTE3MDYwLw==">关于oracle触发器中修改自身表字段的问题<i class="fa fa-external-link-alt"></i></span></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Oracle</category>
-      </categories>
-      <tags>
-        <tag>Oracle</tag>
       </tags>
   </entry>
   <entry>
@@ -3738,6 +3738,7 @@
     <url>/git/git_learn.html</url>
     <content><![CDATA[<a id="more"></a>
 
+<p>首先推荐一个 Git 的学习网站, 以游戏的方式来学习 Git. <span class="exturl" data-url="aHR0cHM6Ly9sZWFybmdpdGJyYW5jaGluZy5qcy5vcmcvP2xvY2FsZT16aF9DTg==">点我<i class="fa fa-external-link-alt"></i></span></p>
 <h1 id="用户信息-Windows"><a href="#用户信息-Windows" class="headerlink" title="用户信息 (Windows)"></a>用户信息 (Windows)</h1><p>Windows 系统的用户文件夹下有一个 <strong>.gitconfig</strong> 文件, 这个文件中存储了 git 的全局设置, 包括提交时的用户名以及邮件地址, 还可以设置一些 git 长命令的别名, 用于简化操作.</p>
 <p>Git 版本库中每一个 commit 节点都有一个提交者, 这个提交者<strong>默认</strong>就是用户文件夹下 <strong>.gitconfig</strong> 文件中配置的用户名和邮件地址. 但是如果不同的仓库需要不同的提交者怎么办呢?</p>
 <p>Git 版本库在所使用的提交者信息有 3 个层级, 分别是: <strong>仓库级 local</strong>, <strong>全局级 global</strong>, <strong>系统级 system</strong>.</p>
@@ -4119,7 +4120,7 @@
 
 <p>[<strong>题外话</strong>] 新版的 NexT 推荐用户不要再修改主题目录中的任何文件, 虽然我是一个前端纯小白, 但是我也在尽力去遵守这条约定, 但是我发现如果我想要实现这个标签云, 就必须修改主题目录中的文件! 如果有人知道可以不修改主题目录中的文件便可以实现相同的效果, 请务必告知, 十分感谢!</p>
 <p>打开文件 <code>node_modules\hexo-theme-next\layout\page.njk</code>, 在这个 <code>&lt;div class=&quot;tag-cloud-tags&quot;&gt;</code> 的前面加上如下代码:</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;# 球形云标签 #&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;tags&quot;</span> <span class="attr">id</span>=<span class="string">&quot;myTags&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">width</span>=<span class="string">&quot;720&quot;</span> <span class="attr">height</span>=<span class="string">&quot;720&quot;</span> <span class="attr">id</span>=<span class="string">&quot;my3DTags&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;tags&quot;</span> <span class="attr">id</span>=<span class="string">&quot;tags&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&quot;display: none&quot;</span>&gt;</span></span><br><span class="line">    &#123;&#123; tagcloud(&#123;</span><br><span class="line">        min_font   : 16,</span><br><span class="line">        max_font   : 35,</span><br><span class="line">        amount     : 999,</span><br><span class="line">        color      : true,</span><br><span class="line">        start_color: &#x27;black&#x27;,</span><br><span class="line">        end_color  : &#x27;green&#x27;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;/js/tagcanvas.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;/js/tagcloud.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&#123;# 普通云标签 #&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;# 球形云标签 #&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;tags&quot;</span> <span class="attr">id</span>=<span class="string">&quot;myTags&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">width</span>=<span class="string">&quot;720&quot;</span> <span class="attr">height</span>=<span class="string">&quot;720&quot;</span> <span class="attr">id</span>=<span class="string">&quot;my3DTags&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;tags&quot;</span> <span class="attr">id</span>=<span class="string">&quot;tags&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&quot;display: none&quot;</span>&gt;</span></span><br><span class="line">    &#123;&#123; tagcloud(&#123;</span><br><span class="line">        min_font   : 16,</span><br><span class="line">        max_font   : 35,</span><br><span class="line">        amount     : 999,</span><br><span class="line">        color      : true,</span><br><span class="line">        start_color: &#x27;black&#x27;,</span><br><span class="line">        end_color  : &#x27;green&#x27;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;/js/tagcanvas.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;/js/tagcloud.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&#123;# 普通云标签 #&#125;</span><br></pre></td></tr></table></figure>
 
 <p>最后在 <strong>主题配置文件</strong> 中写入 <code>crashcheat: true</code>.<code>tagcanvas: true</code>.</p>
 <blockquote>
@@ -4127,6 +4128,9 @@
 <p>另外, 执行上面的操作后, 球形标签云和普通标签云是同时存在的, 如果只想要显示球形标签云, 把后面那个 <code>普通云标签</code> 的 <code>div</code> 标签注释掉就行了. 就像这样:</p>
 </blockquote>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;# 普通云标签 #&#125;</span><br><span class="line">&#123;# <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;tag-cloud-tags&quot;</span>&gt;</span></span><br><span class="line">    &#123;&#123; tagcloud(&#123;</span><br><span class="line">      min_font: theme.tagcloud.min,</span><br><span class="line">      max_font: theme.tagcloud.max,</span><br><span class="line">      amount  : theme.tagcloud.amount,</span><br><span class="line">      orderby : theme.tagcloud.orderby,</span><br><span class="line">      order   : theme.tagcloud.order,</span><br><span class="line">      class   : &#x27;tag-cloud&#x27;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span> #&#125;</span><br></pre></td></tr></table></figure>
+
+<p>[<strong>注</strong>] 如果使用的是 NexT 8.2.2 版本是找不到 <code>node_modules\hexo-theme-next\layout\page.njk</code> 文件的, 而是需要修改 <code>node_modules\hexo-theme-next\layout\_partials\page\tags.njk</code> 文件, 将此文件中的内容全部修改为:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;tag-cloud&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;tag-cloud-title&quot;</span>&gt;</span></span><br><span class="line">    &#123;&#123; _p(&#x27;counter.tag_cloud&#x27;, site.tags.length) &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  &#123;# 球形云标签 #&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;tags&quot;</span> <span class="attr">id</span>=<span class="string">&quot;myTags&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">width</span>=<span class="string">&quot;720&quot;</span> <span class="attr">height</span>=<span class="string">&quot;720&quot;</span> <span class="attr">id</span>=<span class="string">&quot;my3DTags&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display: block;margin: 0 auto;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;tags&quot;</span> <span class="attr">id</span>=<span class="string">&quot;tags&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">style</span>=<span class="string">&quot;display: none&quot;</span>&gt;</span></span><br><span class="line">      &#123;&#123; tagcloud(&#123;</span><br><span class="line">          min_font   : 16,</span><br><span class="line">          max_font   : 35,</span><br><span class="line">          amount     : 999,</span><br><span class="line">          color      : true,</span><br><span class="line">          start_color: &#x27;black&#x27;,</span><br><span class="line">          end_color  : &#x27;green&#x27;</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;/js/tagcanvas.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;/js/tagcloud.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  &#123;# 球形云标签 #&#125;</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;tag-cloud-tags&quot;</span>&gt;</span></span><br><span class="line">    &#123;&#123; tagcloud(&#123;</span><br><span class="line">      min_font: theme.tagcloud.min,</span><br><span class="line">      max_font: theme.tagcloud.max,</span><br><span class="line">      amount  : theme.tagcloud.amount,</span><br><span class="line">      orderby : theme.tagcloud.orderby,</span><br><span class="line">      order   : theme.tagcloud.order,</span><br><span class="line">      class   : &#x27;tag-cloud&#x27;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="粒子时钟"><a href="#粒子时钟" class="headerlink" title="粒子时钟"></a>粒子时钟</h2><p>下载文件 <a href="https://kuroha.vip/js/clock.js">clock.js</a>, 可以直接在链接上 &quot;右键 =&gt; 链接另存为&quot;, 放到 <code>source/js/</code> 路径下.</p>
 <p>之后在 <code>source/_data/sidebar.njk</code> 中添加:</p>

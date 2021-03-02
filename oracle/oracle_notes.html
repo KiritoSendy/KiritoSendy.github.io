@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.1.1">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/icon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/icon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/icon/favicon-16x16.png">
@@ -14,17 +16,16 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  
-  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"kuroha.vip","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"kuroha.vip","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-
-  <meta name="description" content="第一份工作主要和数据库打交道, 使用的是 Oracle 数据库, 由于自己对数据库也不是很熟悉, 于是就抽空整理了一下基础知识, 让自己的知识更加系统化.">
+<meta name="description" content="第一份工作主要和数据库打交道, 使用的是 Oracle 数据库, 由于自己对数据库也不是很熟悉, 于是就抽空整理了一下基础知识, 让自己的知识更加系统化.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Oracle SQL 基础">
 <meta property="og:url" content="https://kuroha.vip/oracle/oracle_notes.html">
@@ -39,6 +40,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://kuroha.vip/images/oracle_notes/sql_join.png">
 
+
 <link rel="canonical" href="https://kuroha.vip/oracle/oracle_notes.html">
 
 
@@ -51,7 +53,6 @@
     lang   : 'zh-CN'
   };
 </script>
-
 
     <script>
         (function () {
@@ -72,10 +73,8 @@
 
     <link rel="stylesheet" href="../js/galmenu/css/GalMenu.css">
 
-  <title>Oracle SQL 基础 | 二次元游宅客</title>
+<title>Oracle SQL 基础 | 二次元游宅客</title>
   
-
-
 
 
 
@@ -117,15 +116,14 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-    <main class="main">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-        <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -152,37 +150,13 @@
 
 
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">42</span></a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-捉小猫">
-
-    <a href="/catch_the_cat/" rel="section"><i class="fa fa-cat fa-fw"></i>捉小猫</a>
-
-  </li>
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">42</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-捉小猫"><a href="/catch_the_cat/" rel="section"><i class="fa fa-cat fa-fw"></i>捉小猫</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -193,8 +167,7 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
@@ -203,12 +176,12 @@
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
@@ -217,9 +190,9 @@
   </div>
 
 </div>
-          
+        
   
-  <div class="toggle sidebar-toggle">
+  <div class="toggle sidebar-toggle" role="button">
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
@@ -237,20 +210,21 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.</span> <span class="nav-text">Oracle 中常用的功能语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9B%B8%E5%85%B3"><span class="nav-number">2.</span> <span class="nav-text">Oracle 触发器相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E9%94%81%E7%9B%B8%E5%85%B3"><span class="nav-number">3.</span> <span class="nav-text">Oracle 锁相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E7%9B%B8%E5%85%B3%E8%AF%AD%E5%8F%A5"><span class="nav-number">4.</span> <span class="nav-text">Oracle 时间格式相关语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E7%9A%84%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5"><span class="nav-number">5.</span> <span class="nav-text">Oracle 用户相关的操作语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E8%A1%A8%E7%A9%BA%E9%97%B4%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5"><span class="nav-number">6.</span> <span class="nav-text">Oracle 表空间操作语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-impdp-%E5%92%8C-expdp-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">7.</span> <span class="nav-text">Oracle impdp 和 expdp 的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%86%99"><span class="nav-number">8.</span> <span class="nav-text">SQL 的大小写</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">9.</span> <span class="nav-text">SQL 中的运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84-order-by"><span class="nav-number">10.</span> <span class="nav-text">SQL 中的 order by</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84-insert-into"><span class="nav-number">11.</span> <span class="nav-text">SQL 中的 insert into</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84-update-set"><span class="nav-number">12.</span> <span class="nav-text">SQL 中的 update set</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84-delete-from"><span class="nav-number">13.</span> <span class="nav-text">SQL 中的 delete from</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E4%B8%89%E7%A7%8D%E5%88%A0%E9%99%A4-drop-delete-truncate-%E7%9A%84%E4%B8%8D%E5%90%8C%E4%B9%8B%E5%A4%84"><span class="nav-number">14.</span> <span class="nav-text">SQL 中三种删除 (drop, delete, truncate) 的不同之处</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D-join-on"><span class="nav-number">15.</span> <span class="nav-text">SQL 中的各种 join on</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84-union-%E5%92%8C-union-all"><span class="nav-number">16.</span> <span class="nav-text">SQL 中的 union 和 union all</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84-select-into"><span class="nav-number">17.</span> <span class="nav-text">SQL 中的 select into</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84-create"><span class="nav-number">18.</span> <span class="nav-text">SQL 中的 create</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD-select-%E6%97%B6%E5%8F%AA%E8%BF%94%E5%9B%9E%E5%89%8D-n-%E6%9D%A1%E6%95%B0%E6%8D%AE"><span class="nav-number">19.</span> <span class="nav-text">SQL 中 select 时只返回前 n 条数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84%E7%BA%A6%E6%9D%9F"><span class="nav-number">20.</span> <span class="nav-text">SQL 中的约束</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#not-null"><span class="nav-number">20.1.</span> <span class="nav-text">not null</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unique"><span class="nav-number">20.2.</span> <span class="nav-text">unique</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#primary-key"><span class="nav-number">20.3.</span> <span class="nav-text">primary key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#foreign-key"><span class="nav-number">20.4.</span> <span class="nav-text">foreign key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#check"><span class="nav-number">20.5.</span> <span class="nav-text">check</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#default"><span class="nav-number">20.6.</span> <span class="nav-text">default</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84%E8%87%AA%E5%8A%A8%E5%A2%9E%E5%8A%A0-auto-increment"><span class="nav-number">21.</span> <span class="nav-text">SQL 中的自动增加 (auto_increment)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%97%A5%E6%9C%9F%E6%93%8D%E4%BD%9C"><span class="nav-number">22.</span> <span class="nav-text">SQL 中常用的日期操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">23.</span> <span class="nav-text">SQL 中常用的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E6%8D%A2"><span class="nav-number">23.1.</span> <span class="nav-text">SQL 中的大小写转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0"><span class="nav-number">23.2.</span> <span class="nav-text">Oracle 中的字符串操作函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle-%E4%B8%AD%E7%9A%84%E4%BF%9D%E7%95%99%E4%BD%8D%E6%95%B0%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0"><span class="nav-number">23.3.</span> <span class="nav-text">Oracle 中的保留位数操作函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E6%9F%A5%E7%9C%8B%E6%9C%80%E8%BF%91%E6%89%A7%E8%A1%8C%E7%9A%84%E8%AF%AD%E5%8F%A5"><span class="nav-number">24.</span> <span class="nav-text">Oracle 查看最近执行的语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E6%8B%BC%E6%8E%A5%E6%95%B4%E5%88%97%E6%95%B0%E6%8D%AE%E4%B8%BA%E4%B8%80%E4%B8%AA%E4%BB%A5%E9%80%97%E5%8F%B7%E5%88%86%E5%89%B2%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">25.</span> <span class="nav-text">Oracle 拼接整列数据为一个以逗号分割的字符串</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows-%E5%88%A0%E9%99%A4%E6%97%A0%E7%94%A8%E7%9A%84-Oracle-%E6%9C%8D%E5%8A%A1"><span class="nav-number">26.</span> <span class="nav-text">Windows 删除无用的 Oracle 服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E8%BF%98%E5%8E%9F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8C%85"><span class="nav-number">27.</span> <span class="nav-text">Oracle 还原数据库包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E4%B8%AD%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2"><span class="nav-number">28.</span> <span class="nav-text">Oracle 中递归查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-Server-%E4%B8%AD%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2"><span class="nav-number">29.</span> <span class="nav-text">SQL Server 中递归查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PL-SQL-%E4%B8%AD-DECODE-%E6%96%B9%E6%B3%95%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">30.</span> <span class="nav-text">PL&#x2F;SQL 中 DECODE() 方法的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95"><span class="nav-number">30.1.</span> <span class="nav-text">基础用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E9%85%8D-SIGN-%E5%87%BD%E6%95%B0"><span class="nav-number">30.2.</span> <span class="nav-text">搭配 SIGN() 函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%B1%BB%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">30.3.</span> <span class="nav-text">实现类三目运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E9%85%8D-SUM-%E5%87%BD%E6%95%B0-%E4%B8%80%E6%AC%A1%E6%B1%82%E5%87%BA%E5%A4%9A%E4%B8%AA%E6%95%B0%E9%87%8F"><span class="nav-number">30.4.</span> <span class="nav-text">搭配 SUM() 函数, 一次求出多个数量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E9%85%8D-ORDER-BY-%E5%AF%B9%E5%AD%97%E7%AC%A6%E5%88%97%E8%BF%9B%E8%A1%8C%E7%89%B9%E5%AE%9A%E7%9A%84%E6%8E%92%E5%BA%8F"><span class="nav-number">30.5.</span> <span class="nav-text">搭配 ORDER BY, 对字符列进行特定的排序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E4%B8%AD%E7%AE%80%E5%8D%95%E7%9A%84%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="nav-number">31.</span> <span class="nav-text">Oracle 中简单的分页查询实现方式</span></a></li></ol></div>
-      </section>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.</span> <span class="nav-text">Oracle 中常用的功能语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9B%B8%E5%85%B3"><span class="nav-number">2.</span> <span class="nav-text">Oracle 触发器相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E9%94%81%E7%9B%B8%E5%85%B3"><span class="nav-number">3.</span> <span class="nav-text">Oracle 锁相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E7%9B%B8%E5%85%B3%E8%AF%AD%E5%8F%A5"><span class="nav-number">4.</span> <span class="nav-text">Oracle 时间格式相关语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E7%9A%84%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5"><span class="nav-number">5.</span> <span class="nav-text">Oracle 用户相关的操作语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E8%A1%A8%E7%A9%BA%E9%97%B4%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5"><span class="nav-number">6.</span> <span class="nav-text">Oracle 表空间操作语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-impdp-%E5%92%8C-expdp-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">7.</span> <span class="nav-text">Oracle impdp 和 expdp 的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%86%99"><span class="nav-number">8.</span> <span class="nav-text">SQL 的大小写</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">9.</span> <span class="nav-text">SQL 中的运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84-order-by"><span class="nav-number">10.</span> <span class="nav-text">SQL 中的 order by</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84-insert-into"><span class="nav-number">11.</span> <span class="nav-text">SQL 中的 insert into</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84-update-set"><span class="nav-number">12.</span> <span class="nav-text">SQL 中的 update set</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84-delete-from"><span class="nav-number">13.</span> <span class="nav-text">SQL 中的 delete from</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E4%B8%89%E7%A7%8D%E5%88%A0%E9%99%A4-drop-delete-truncate-%E7%9A%84%E4%B8%8D%E5%90%8C%E4%B9%8B%E5%A4%84"><span class="nav-number">14.</span> <span class="nav-text">SQL 中三种删除 (drop, delete, truncate) 的不同之处</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D-join-on"><span class="nav-number">15.</span> <span class="nav-text">SQL 中的各种 join on</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84-union-%E5%92%8C-union-all"><span class="nav-number">16.</span> <span class="nav-text">SQL 中的 union 和 union all</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84-select-into"><span class="nav-number">17.</span> <span class="nav-text">SQL 中的 select into</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84-create"><span class="nav-number">18.</span> <span class="nav-text">SQL 中的 create</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD-select-%E6%97%B6%E5%8F%AA%E8%BF%94%E5%9B%9E%E5%89%8D-n-%E6%9D%A1%E6%95%B0%E6%8D%AE"><span class="nav-number">19.</span> <span class="nav-text">SQL 中 select 时只返回前 n 条数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84%E7%BA%A6%E6%9D%9F"><span class="nav-number">20.</span> <span class="nav-text">SQL 中的约束</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#not-null"><span class="nav-number">20.1.</span> <span class="nav-text">not null</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unique"><span class="nav-number">20.2.</span> <span class="nav-text">unique</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#primary-key"><span class="nav-number">20.3.</span> <span class="nav-text">primary key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#foreign-key"><span class="nav-number">20.4.</span> <span class="nav-text">foreign key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#check"><span class="nav-number">20.5.</span> <span class="nav-text">check</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#default"><span class="nav-number">20.6.</span> <span class="nav-text">default</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84%E8%87%AA%E5%8A%A8%E5%A2%9E%E5%8A%A0-auto-increment"><span class="nav-number">21.</span> <span class="nav-text">SQL 中的自动增加 (auto_increment)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E6%97%A5%E6%9C%9F%E6%93%8D%E4%BD%9C"><span class="nav-number">22.</span> <span class="nav-text">SQL 中常用的日期操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">23.</span> <span class="nav-text">SQL 中常用的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-%E4%B8%AD%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E6%8D%A2"><span class="nav-number">23.1.</span> <span class="nav-text">SQL 中的大小写转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle-%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0"><span class="nav-number">23.2.</span> <span class="nav-text">Oracle 中的字符串操作函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle-%E4%B8%AD%E7%9A%84%E4%BF%9D%E7%95%99%E4%BD%8D%E6%95%B0%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0"><span class="nav-number">23.3.</span> <span class="nav-text">Oracle 中的保留位数操作函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E6%9F%A5%E7%9C%8B%E6%9C%80%E8%BF%91%E6%89%A7%E8%A1%8C%E7%9A%84%E8%AF%AD%E5%8F%A5"><span class="nav-number">24.</span> <span class="nav-text">Oracle 查看最近执行的语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E6%8B%BC%E6%8E%A5%E6%95%B4%E5%88%97%E6%95%B0%E6%8D%AE%E4%B8%BA%E4%B8%80%E4%B8%AA%E4%BB%A5%E9%80%97%E5%8F%B7%E5%88%86%E5%89%B2%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">25.</span> <span class="nav-text">Oracle 拼接整列数据为一个以逗号分割的字符串</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows-%E5%88%A0%E9%99%A4%E6%97%A0%E7%94%A8%E7%9A%84-Oracle-%E6%9C%8D%E5%8A%A1"><span class="nav-number">26.</span> <span class="nav-text">Windows 删除无用的 Oracle 服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E8%BF%98%E5%8E%9F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8C%85"><span class="nav-number">27.</span> <span class="nav-text">Oracle 还原数据库包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E4%B8%AD%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2"><span class="nav-number">28.</span> <span class="nav-text">Oracle 中递归查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-Server-%E4%B8%AD%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2"><span class="nav-number">29.</span> <span class="nav-text">SQL Server 中递归查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PL-SQL-%E4%B8%AD-DECODE-%E6%96%B9%E6%B3%95%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">30.</span> <span class="nav-text">PL&#x2F;SQL 中 DECODE() 方法的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95"><span class="nav-number">30.1.</span> <span class="nav-text">基础用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E9%85%8D-SIGN-%E5%87%BD%E6%95%B0"><span class="nav-number">30.2.</span> <span class="nav-text">搭配 SIGN() 函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%B1%BB%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">30.3.</span> <span class="nav-text">实现类三目运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E9%85%8D-SUM-%E5%87%BD%E6%95%B0-%E4%B8%80%E6%AC%A1%E6%B1%82%E5%87%BA%E5%A4%9A%E4%B8%AA%E6%95%B0%E9%87%8F"><span class="nav-number">30.4.</span> <span class="nav-text">搭配 SUM() 函数, 一次求出多个数量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E9%85%8D-ORDER-BY-%E5%AF%B9%E5%AD%97%E7%AC%A6%E5%88%97%E8%BF%9B%E8%A1%8C%E7%89%B9%E5%AE%9A%E7%9A%84%E6%8E%92%E5%BA%8F"><span class="nav-number">30.5.</span> <span class="nav-text">搭配 ORDER BY, 对字符列进行特定的排序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Oracle-%E4%B8%AD%E7%AE%80%E5%8D%95%E7%9A%84%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="nav-number">31.</span> <span class="nav-text">Oracle 中简单的分页查询实现方式</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Kuroha"
       src="/images/avatar/avatar.gif">
   <p class="site-author-name" itemprop="name">Kuroha</p>
   <div class="site-description" itemprop="description">本人是一个热爱二次元和游戏开发的宅极客, 这是我的个人博客! 主要记录我学习的经历以及自己喜欢的动漫, 音乐, 偶尔也会写一些异想天开的脑洞, 哈哈!</div>
 </div>
-<div class="site-state-wrap animated">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -273,7 +247,7 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author animated">
+  <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
         <span class="exturl" data-url="aHR0cHM6Ly90Lm1lL0t1cm9oYUtpcml0bw==" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;KurohaKirito"><i class="fab fa-telegram fa-fw"></i>Telegram</span>
       </span>
@@ -295,7 +269,7 @@
   </div>
 
 
-  <div class="links-of-blogroll animated">
+  <div class="links-of-blogroll site-overview-item animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
       我的朋友们
     </div>
@@ -315,39 +289,41 @@
         <script type="text/javascript" src="/js/clock.js"></script>
     </div>
 
-      </section>
-        <div class="back-to-top animated">
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </header>
+    </header>
 
-      
+    
   <div class="reading-progress-bar"></div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
   <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2t1cm9oYWtpcml0bw==" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
 
 <noscript>
-  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
 
 
-      <div class="main-inner">
-        
+    <div class="main-inner post posts-expand">
 
-        <div class="content post posts-expand">
-          
 
-    
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://kuroha.vip/oracle/oracle_notes.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -359,56 +335,58 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="二次元游宅客">
     </span>
-
-    
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           Oracle SQL 基础
         </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-04-24 07:07:06" itemprop="dateCreated datePublished" datetime="2020-04-24T07:07:06+08:00">2020-04-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-26 08:27:13" itemprop="dateModified" datetime="2021-02-26T08:27:13+08:00">2021-02-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Oracle/" itemprop="url" rel="index"><span itemprop="name">Oracle</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2020-04-24 07:07:06" itemprop="dateCreated datePublished" datetime="2020-04-24T07:07:06+08:00">2020-04-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-26 08:27:13" itemprop="dateModified" datetime="2021-02-26T08:27:13+08:00">2021-02-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Oracle/" itemprop="url" rel="index"><span itemprop="name">Oracle</span></a>
+        </span>
+    </span>
 
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>16k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>15 分钟</span>
-            </span>
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>16k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>15 分钟</span>
+    </span>
+</div>
+
             <div class="post-description">第一份工作主要和数据库打交道, 使用的是 Oracle 数据库, 由于自己对数据库也不是很熟悉, 于是就抽空整理了一下基础知识, 让自己的知识更加系统化.</div>
-
         </div>
       </header>
 
@@ -827,31 +805,32 @@
     
     
     
-        <div class="reward-container">
+
+    <footer class="post-footer">
+          <div class="reward-container">
   <div>咕噜咕噜~</div>
-  <button onclick="document.getElementById('post-reward').classList.toggle('active');">
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
     赞赏
   </button>
-  <div id="post-reward">
-      
+  <div class="post-reward">
       <div>
         <img src="/images/donate/alipay.png" alt="Kuroha 支付宝">
-        <p>支付宝</p>
+        <span>支付宝</span>
       </div>
 
   </div>
 </div>
 
-        
+          
 
-<div>
-<ul class="post-copyright">
+<div class="post-copyright">
+<ul>
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>Kuroha
+      <strong>本文作者： </strong>Kuroha
   </li>
   <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://kuroha.vip/oracle/oracle_notes.html" title="Oracle SQL 基础">https://kuroha.vip/oracle/oracle_notes.html</a>
+      <strong>本文链接：</strong>
+      <a href="https://kuroha.vip/oracle/oracle_notes.html" title="Oracle SQL 基础">https://kuroha.vip/oracle/oracle_notes.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aF9DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -859,87 +838,81 @@
 </ul>
 </div>
 
-        
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
 
-  <div class="followme">
-    <p>欢迎关注我的其它发布渠道</p>
+  <div class="social-list">
 
-    <div class="social-list">
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://twitter.com/KurohaKirito">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
 
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="https://twitter.com/KurohaKirito">
-            <span class="icon">
-              <i class="fab fa-twitter"></i>
-            </span>
+          <span class="label">Twitter</span>
+        </a>
+      </div>
 
-            <span class="label">Twitter</span>
-          </a>
-        </div>
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://t.me/KurohaKirito">
+          <span class="icon">
+            <i class="fab fa-telegram"></i>
+          </span>
 
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="https://t.me/KurohaKirito">
-            <span class="icon">
-              <i class="fab fa-telegram"></i>
-            </span>
+          <span class="label">Telegram</span>
+        </a>
+      </div>
 
-            <span class="label">Telegram</span>
-          </a>
-        </div>
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/followme/wechat.png">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
 
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="/images/followme/wechat.png">
-            <span class="icon">
-              <i class="fab fa-weixin"></i>
-            </span>
+          <span class="label">WeChat</span>
+        </a>
+      </div>
 
-            <span class="label">WeChat</span>
-          </a>
-        </div>
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/atom.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
 
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="/atom.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-
-            <span class="label">RSS</span>
-          </a>
-        </div>
-    </div>
+          <span class="label">RSS</span>
+        </a>
+      </div>
   </div>
+</div>
 
-
-      <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Oracle/" rel="tag"><i class="fa fa-tag"></i> Oracle</a>
           </div>
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/diary/2020_04.html" rel="prev" title="日记系列--2020年04月">
-      <i class="fa fa-chevron-left"></i> 日记系列--2020年04月
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/diary/2020_06.html" rel="next" title="日记系列--2020年06月">
-      日记系列--2020年06月 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/diary/2020_04.html" rel="prev" title="日记系列--2020年04月">
+                  <i class="fa fa-chevron-left"></i> 日记系列--2020年04月
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/diary/2020_06.html" rel="next" title="日记系列--2020年06月">
+                  日记系列--2020年06月 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-  
-  
-  
+</div>
 
 
 
-        </div>
-        
-    <div class="comments" id="gitalk-container"></div>
+
+
+
+    <div class="comments gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -948,7 +921,7 @@
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
     if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
       if (activeTab) {
         activeTab.click();
       }
@@ -957,81 +930,57 @@
   if (CONFIG.comments.storage) {
     window.addEventListener('tabs:click', event => {
       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
+      const commentClass = event.target.classList[1];
       localStorage.setItem('comments_active', commentClass);
     });
   }
 </script>
+</div>
+  </main>
 
-      </div>
-    </main>
+  <footer class="footer">
+    <div class="footer-inner">
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
 
 <div class="copyright">
-  
   &copy; 2019 – 
   <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-leaf"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Kuroha</span>
-    <span class="post-meta-divider">|</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
-      <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">207k</span>
-    <span class="post-meta-divider">|</span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">209k</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:08</span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:10</span>
+  </span>
 </div>
 
     <div id="days"></div>
     <script type="text/javascript" src="/js/website_runtime.js"></script>
 
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/npm/ribbon.js@1/dist/ribbon.min.js"></script>
-  <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-<script src="/js/bookmark.js"></script>
-
-
-  
-
-
-
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
   
 <script src="/js/local-search.js"></script>
@@ -1041,22 +990,17 @@
 
 
 
-
-
-
-
-
-
-
   
 
-  
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.css">
 
 <script>
-NexT.utils.loadComments('#gitalk-container', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+NexT.utils.loadComments('.gitalk-container', () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
       clientID    : '29ff88cf54f1cbcbc7b5',
       clientSecret: 'e68fb1037811f8fb3acd5ca30d3c6a955e1c90e0',
@@ -1064,11 +1008,11 @@ NexT.utils.loadComments('#gitalk-container', () => {
       owner       : 'KurohaKirito',
       admin       : ['KurohaKirito'],
       id          : '56b4de5718e8138594ef4dff8c2e4332',
-      proxy       : '',
+      proxy       : 'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token',
         language: 'zh-CN',
       distractionFreeMode: true
     });
-    gitalk.render('gitalk-container');
+    gitalk.render(document.querySelector('.gitalk-container'));
   }, window.Gitalk);
 });
 </script>
@@ -1138,4 +1082,3 @@ NexT.utils.loadComments('#gitalk-container', () => {
 
 </body>
 </html>
-

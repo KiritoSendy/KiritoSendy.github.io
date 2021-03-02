@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.1.1">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/icon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/icon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/icon/favicon-16x16.png">
@@ -14,17 +16,16 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  
-  <link rel="stylesheet" href="/lib/animate-css/animate.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"kuroha.vip","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"path":"search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"kuroha.vip","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-
-  <meta name="description" content="这博客! ? 好简单啊 ... 看到了别人的博客后, 哇! 这功能好, 加上! ~~~ 哇, 这个功能也超棒, 加上! 加上!">
+<meta name="description" content="这博客! ? 好简单啊 ... 看到了别人的博客后, 哇! 这功能好, 加上! ~~~ 哇, 这个功能也超棒, 加上! 加上!">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo + NexT 主题美化 (NexT v7.2.0)">
 <meta property="og:url" content="https://kuroha.vip/hexo/next_theme_beautify.html">
@@ -45,6 +46,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://kuroha.vip/images/next_theme_beautify/Sword_Art_Online.png">
 
+
 <link rel="canonical" href="https://kuroha.vip/hexo/next_theme_beautify.html">
 
 
@@ -57,7 +59,6 @@
     lang   : 'zh-CN'
   };
 </script>
-
 
     <script>
         (function () {
@@ -78,10 +79,8 @@
 
     <link rel="stylesheet" href="../js/galmenu/css/GalMenu.css">
 
-  <title>Hexo + NexT 主题美化 (NexT v7.2.0) | 二次元游宅客</title>
+<title>Hexo + NexT 主题美化 (NexT v7.2.0) | 二次元游宅客</title>
   
-
-
 
 
 
@@ -123,15 +122,14 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-    <main class="main">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-        <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -158,37 +156,13 @@
 
 
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">42</span></a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-捉小猫">
-
-    <a href="/catch_the_cat/" rel="section"><i class="fa fa-cat fa-fw"></i>捉小猫</a>
-
-  </li>
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">42</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-捉小猫"><a href="/catch_the_cat/" rel="section"><i class="fa fa-cat fa-fw"></i>捉小猫</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -199,8 +173,7 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
@@ -209,12 +182,12 @@
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
   </div>
 </div>
@@ -223,9 +196,9 @@
   </div>
 
 </div>
-          
+        
   
-  <div class="toggle sidebar-toggle">
+  <div class="toggle sidebar-toggle" role="button">
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
@@ -243,20 +216,21 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">更换主题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NexT-%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="nav-number">1.1.</span> <span class="nav-text">NexT 项目地址</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E9%A2%84%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">知识预备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">自定义站点配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">自定义主题配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E8%87%AA%E5%AE%9A%E4%B9%89-swig-%E6%96%87%E4%BB%B6%E5%8A%9F%E8%83%BD"><span class="nav-number">4.1.</span> <span class="nav-text">开启自定义 swig 文件功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%90%AF-RSS-%E8%AE%A2%E9%98%85"><span class="nav-number">4.2.</span> <span class="nav-text">开启 RSS 订阅</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%9C%B0%E5%9D%80%E6%A0%8F%E7%9A%84-Favicon-%E5%9B%BE%E6%A0%87"><span class="nav-number">4.3.</span> <span class="nav-text">设置地址栏的 Favicon 图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E9%A1%B5%E8%84%9A%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.4.</span> <span class="nav-text">博客网站页脚设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E6%96%87%E7%AB%A0%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E5%88%9B%E4%BD%9C%E5%8D%8F%E8%AE%AE"><span class="nav-number">4.5.</span> <span class="nav-text">在文章末尾添加创作协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0-Github-%E5%BF%AB%E6%8D%B7%E5%85%B3%E6%B3%A8"><span class="nav-number">4.6.</span> <span class="nav-text">添加 Github 快捷关注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E7%A4%BE%E4%BA%A4%E9%93%BE%E6%8E%A5"><span class="nav-number">4.7.</span> <span class="nav-text">添加社交链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5"><span class="nav-number">4.8.</span> <span class="nav-text">添加友情链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%AB%99%E5%A4%B4%E5%83%8F%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.9.</span> <span class="nav-text">网站头像设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%99%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E7%9B%AE%E5%BD%95"><span class="nav-number">4.10.</span> <span class="nav-text">给文章添加目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%A7%E8%BE%B9%E6%A0%8F%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.11.</span> <span class="nav-text">侧边栏属性设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%85%E8%AF%BB%E8%BF%9B%E5%BA%A6%E7%99%BE%E5%88%86%E6%AF%94%E6%98%BE%E7%A4%BA"><span class="nav-number">4.12.</span> <span class="nav-text">阅读进度百分比显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E9%A2%84%E8%AE%A1%E9%98%85%E8%AF%BB%E6%97%B6%E9%97%B4%E5%8A%9F%E8%83%BD"><span class="nav-number">4.13.</span> <span class="nav-text">添加预计阅读时间功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E5%BA%95%E9%83%A8%E6%A0%87%E7%AD%BE%E5%89%8D%E6%B7%BB%E5%8A%A0%E5%9B%BE%E6%A0%87"><span class="nav-number">4.14.</span> <span class="nav-text">文章底部标签前添加图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E6%96%87%E7%AB%A0%E5%BA%95%E9%83%A8%E6%B7%BB%E5%8A%A0%E6%89%93%E8%B5%8F"><span class="nav-number">4.15.</span> <span class="nav-text">在文章底部添加打赏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%9C%80%E5%8F%97%E6%AC%A2%E8%BF%8E%E6%96%87%E7%AB%A0%E5%8A%9F%E8%83%BD"><span class="nav-number">4.16.</span> <span class="nav-text">添加最受欢迎文章功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E9%A3%8E%E6%A0%BC%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.17.</span> <span class="nav-text">代码高亮风格设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%9C%8D%E5%8A%A1%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">第三方服务设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%88%E5%8A%9F%E8%83%BD"><span class="nav-number">5.1.</span> <span class="nav-text">添加图片浏览功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0-lazyload-%E6%87%92%E5%8A%A0%E8%BD%BD"><span class="nav-number">5.2.</span> <span class="nav-text">添加 lazyload (懒加载)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E9%98%85%E8%AF%BB%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="nav-number">5.3.</span> <span class="nav-text">添加阅读进度条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.4.</span> <span class="nav-text">添加评论系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Gitalk-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.4.1.</span> <span class="nav-text">使用 Gitalk 评论系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%BB%E6%8E%89%E4%BE%A7%E8%BE%B9%E6%A0%8F%E7%9A%84%E8%99%9A%E7%BA%BF"><span class="nav-number">5.5.</span> <span class="nav-text">去掉侧边栏的虚线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E5%88%86%E4%BA%AB%E5%8A%9F%E8%83%BD"><span class="nav-number">5.6.</span> <span class="nav-text">文章分享功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E6%94%B6%E5%BD%95"><span class="nav-number">5.7.</span> <span class="nav-text">搜索引擎收录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2"><span class="nav-number">5.7.1.</span> <span class="nav-text">百度搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%B7%E6%AD%8C%E6%90%9C%E7%B4%A2"><span class="nav-number">5.7.2.</span> <span class="nav-text">谷歌搜索</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E5%BA%95%E9%83%A8%E6%89%93%E5%88%86%E5%8A%9F%E8%83%BD"><span class="nav-number">5.8.</span> <span class="nav-text">文章底部打分功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E8%92%9C%E5%AD%90%E7%BB%9F%E8%AE%A1"><span class="nav-number">5.9.</span> <span class="nav-text">不蒜子统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD"><span class="nav-number">5.10.</span> <span class="nav-text">本地搜索功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B3%E6%97%B6%E8%81%8A%E5%A4%A9%E5%8A%9F%E8%83%BD"><span class="nav-number">5.11.</span> <span class="nav-text">即时聊天功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E8%83%8C%E6%99%AF%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C"><span class="nav-number">5.12.</span> <span class="nav-text">博客背景动画效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E5%8A%A0%E8%BD%BD%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="nav-number">5.13.</span> <span class="nav-text">博客加载进度条</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E6%B7%BB%E5%8A%A0%E5%8D%8E%E4%B8%BD%E6%95%88%E6%9E%9C"><span class="nav-number">6.</span> <span class="nav-text">手动添加华丽效果</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9C%8B%E6%9D%BF%E5%A8%98-Live2D"><span class="nav-number">6.1.</span> <span class="nav-text">看板娘 Live2D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8-Aplayer"><span class="nav-number">6.2.</span> <span class="nav-text">音乐播放器 Aplayer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BC%A0%E6%A0%87%E7%BA%A2%E5%BF%83%E6%95%88%E6%9E%9C"><span class="nav-number">6.3.</span> <span class="nav-text">鼠标红心效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E6%A0%87%E9%A2%98%E6%AC%BA%E8%AF%88"><span class="nav-number">6.4.</span> <span class="nav-text">页面标题欺诈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%83%E5%BD%A2%E6%A0%87%E7%AD%BE%E4%BA%91"><span class="nav-number">6.5.</span> <span class="nav-text">球形标签云</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E5%86%99%E4%BD%9C%E9%83%A8%E5%88%86"><span class="nav-number">7.</span> <span class="nav-text">文章写作部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Markdown"><span class="nav-number">7.1.</span> <span class="nav-text">Markdown</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown-%E6%94%AF%E6%8C%81%E9%83%A8%E5%88%86-html-%E6%A0%87%E7%AD%BE"><span class="nav-number">7.1.1.</span> <span class="nav-text">Markdown 支持部分 html 标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE"><span class="nav-number">7.2.</span> <span class="nav-text">Hexo 博客的属性设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitpages-%E6%94%AF%E6%8C%81%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8"><span class="nav-number">7.3.</span> <span class="nav-text">Gitpages 支持任务列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F"><span class="nav-number">7.3.1.</span> <span class="nav-text">语法格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C"><span class="nav-number">7.3.2.</span> <span class="nav-text">效果</span></a></li></ol></li></ol></li></ol></div>
-      </section>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">更换主题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#NexT-%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="nav-number">1.1.</span> <span class="nav-text">NexT 项目地址</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E9%A2%84%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">知识预备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">自定义站点配置文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">自定义主题配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E8%87%AA%E5%AE%9A%E4%B9%89-swig-%E6%96%87%E4%BB%B6%E5%8A%9F%E8%83%BD"><span class="nav-number">4.1.</span> <span class="nav-text">开启自定义 swig 文件功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%90%AF-RSS-%E8%AE%A2%E9%98%85"><span class="nav-number">4.2.</span> <span class="nav-text">开启 RSS 订阅</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%9C%B0%E5%9D%80%E6%A0%8F%E7%9A%84-Favicon-%E5%9B%BE%E6%A0%87"><span class="nav-number">4.3.</span> <span class="nav-text">设置地址栏的 Favicon 图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E9%A1%B5%E8%84%9A%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.4.</span> <span class="nav-text">博客网站页脚设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E6%96%87%E7%AB%A0%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E5%88%9B%E4%BD%9C%E5%8D%8F%E8%AE%AE"><span class="nav-number">4.5.</span> <span class="nav-text">在文章末尾添加创作协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0-Github-%E5%BF%AB%E6%8D%B7%E5%85%B3%E6%B3%A8"><span class="nav-number">4.6.</span> <span class="nav-text">添加 Github 快捷关注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E7%A4%BE%E4%BA%A4%E9%93%BE%E6%8E%A5"><span class="nav-number">4.7.</span> <span class="nav-text">添加社交链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5"><span class="nav-number">4.8.</span> <span class="nav-text">添加友情链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%AB%99%E5%A4%B4%E5%83%8F%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.9.</span> <span class="nav-text">网站头像设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%99%E6%96%87%E7%AB%A0%E6%B7%BB%E5%8A%A0%E7%9B%AE%E5%BD%95"><span class="nav-number">4.10.</span> <span class="nav-text">给文章添加目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%A7%E8%BE%B9%E6%A0%8F%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.11.</span> <span class="nav-text">侧边栏属性设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%85%E8%AF%BB%E8%BF%9B%E5%BA%A6%E7%99%BE%E5%88%86%E6%AF%94%E6%98%BE%E7%A4%BA"><span class="nav-number">4.12.</span> <span class="nav-text">阅读进度百分比显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E9%A2%84%E8%AE%A1%E9%98%85%E8%AF%BB%E6%97%B6%E9%97%B4%E5%8A%9F%E8%83%BD"><span class="nav-number">4.13.</span> <span class="nav-text">添加预计阅读时间功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E5%BA%95%E9%83%A8%E6%A0%87%E7%AD%BE%E5%89%8D%E6%B7%BB%E5%8A%A0%E5%9B%BE%E6%A0%87"><span class="nav-number">4.14.</span> <span class="nav-text">文章底部标签前添加图标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E6%96%87%E7%AB%A0%E5%BA%95%E9%83%A8%E6%B7%BB%E5%8A%A0%E6%89%93%E8%B5%8F"><span class="nav-number">4.15.</span> <span class="nav-text">在文章底部添加打赏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%9C%80%E5%8F%97%E6%AC%A2%E8%BF%8E%E6%96%87%E7%AB%A0%E5%8A%9F%E8%83%BD"><span class="nav-number">4.16.</span> <span class="nav-text">添加最受欢迎文章功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E9%A3%8E%E6%A0%BC%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.17.</span> <span class="nav-text">代码高亮风格设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E6%9C%8D%E5%8A%A1%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">第三方服务设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%88%E5%8A%9F%E8%83%BD"><span class="nav-number">5.1.</span> <span class="nav-text">添加图片浏览功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0-lazyload-%E6%87%92%E5%8A%A0%E8%BD%BD"><span class="nav-number">5.2.</span> <span class="nav-text">添加 lazyload (懒加载)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E9%98%85%E8%AF%BB%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="nav-number">5.3.</span> <span class="nav-text">添加阅读进度条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.4.</span> <span class="nav-text">添加评论系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Gitalk-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F"><span class="nav-number">5.4.1.</span> <span class="nav-text">使用 Gitalk 评论系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%BB%E6%8E%89%E4%BE%A7%E8%BE%B9%E6%A0%8F%E7%9A%84%E8%99%9A%E7%BA%BF"><span class="nav-number">5.5.</span> <span class="nav-text">去掉侧边栏的虚线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E5%88%86%E4%BA%AB%E5%8A%9F%E8%83%BD"><span class="nav-number">5.6.</span> <span class="nav-text">文章分享功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E6%94%B6%E5%BD%95"><span class="nav-number">5.7.</span> <span class="nav-text">搜索引擎收录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2"><span class="nav-number">5.7.1.</span> <span class="nav-text">百度搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%B7%E6%AD%8C%E6%90%9C%E7%B4%A2"><span class="nav-number">5.7.2.</span> <span class="nav-text">谷歌搜索</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E5%BA%95%E9%83%A8%E6%89%93%E5%88%86%E5%8A%9F%E8%83%BD"><span class="nav-number">5.8.</span> <span class="nav-text">文章底部打分功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E8%92%9C%E5%AD%90%E7%BB%9F%E8%AE%A1"><span class="nav-number">5.9.</span> <span class="nav-text">不蒜子统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD"><span class="nav-number">5.10.</span> <span class="nav-text">本地搜索功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B3%E6%97%B6%E8%81%8A%E5%A4%A9%E5%8A%9F%E8%83%BD"><span class="nav-number">5.11.</span> <span class="nav-text">即时聊天功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E8%83%8C%E6%99%AF%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C"><span class="nav-number">5.12.</span> <span class="nav-text">博客背景动画效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E5%8A%A0%E8%BD%BD%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="nav-number">5.13.</span> <span class="nav-text">博客加载进度条</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E6%B7%BB%E5%8A%A0%E5%8D%8E%E4%B8%BD%E6%95%88%E6%9E%9C"><span class="nav-number">6.</span> <span class="nav-text">手动添加华丽效果</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9C%8B%E6%9D%BF%E5%A8%98-Live2D"><span class="nav-number">6.1.</span> <span class="nav-text">看板娘 Live2D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8-Aplayer"><span class="nav-number">6.2.</span> <span class="nav-text">音乐播放器 Aplayer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BC%A0%E6%A0%87%E7%BA%A2%E5%BF%83%E6%95%88%E6%9E%9C"><span class="nav-number">6.3.</span> <span class="nav-text">鼠标红心效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B5%E9%9D%A2%E6%A0%87%E9%A2%98%E6%AC%BA%E8%AF%88"><span class="nav-number">6.4.</span> <span class="nav-text">页面标题欺诈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%83%E5%BD%A2%E6%A0%87%E7%AD%BE%E4%BA%91"><span class="nav-number">6.5.</span> <span class="nav-text">球形标签云</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E5%86%99%E4%BD%9C%E9%83%A8%E5%88%86"><span class="nav-number">7.</span> <span class="nav-text">文章写作部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Markdown"><span class="nav-number">7.1.</span> <span class="nav-text">Markdown</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown-%E6%94%AF%E6%8C%81%E9%83%A8%E5%88%86-html-%E6%A0%87%E7%AD%BE"><span class="nav-number">7.1.1.</span> <span class="nav-text">Markdown 支持部分 html 标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE"><span class="nav-number">7.2.</span> <span class="nav-text">Hexo 博客的属性设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitpages-%E6%94%AF%E6%8C%81%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8"><span class="nav-number">7.3.</span> <span class="nav-text">Gitpages 支持任务列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F"><span class="nav-number">7.3.1.</span> <span class="nav-text">语法格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C"><span class="nav-number">7.3.2.</span> <span class="nav-text">效果</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Kuroha"
       src="/images/avatar/avatar.gif">
   <p class="site-author-name" itemprop="name">Kuroha</p>
   <div class="site-description" itemprop="description">本人是一个热爱二次元和游戏开发的宅极客, 这是我的个人博客! 主要记录我学习的经历以及自己喜欢的动漫, 音乐, 偶尔也会写一些异想天开的脑洞, 哈哈!</div>
 </div>
-<div class="site-state-wrap animated">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -279,7 +253,7 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author animated">
+  <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
         <span class="exturl" data-url="aHR0cHM6Ly90Lm1lL0t1cm9oYUtpcml0bw==" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;KurohaKirito"><i class="fab fa-telegram fa-fw"></i>Telegram</span>
       </span>
@@ -301,7 +275,7 @@
   </div>
 
 
-  <div class="links-of-blogroll animated">
+  <div class="links-of-blogroll site-overview-item animated">
     <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
       我的朋友们
     </div>
@@ -321,39 +295,41 @@
         <script type="text/javascript" src="/js/clock.js"></script>
     </div>
 
-      </section>
-        <div class="back-to-top animated">
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button">
           <i class="fa fa-arrow-up"></i>
           <span>0%</span>
         </div>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </header>
+    </header>
 
-      
+    
   <div class="reading-progress-bar"></div>
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
   <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2t1cm9oYWtpcml0bw==" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
 
 <noscript>
-  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
 </noscript>
 
 
-      <div class="main-inner">
-        
+    <div class="main-inner post posts-expand">
 
-        <div class="content post posts-expand">
-          
 
-    
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://kuroha.vip/hexo/next_theme_beautify.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -365,56 +341,58 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="二次元游宅客">
     </span>
-
-    
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           Hexo + NexT 主题美化 (NexT v7.2.0)
         </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2019-07-18 22:09:50" itemprop="dateCreated datePublished" datetime="2019-07-18T22:09:50+08:00">2019-07-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-26 08:27:13" itemprop="dateModified" datetime="2021-02-26T08:27:13+08:00">2021-02-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2019-07-18 22:09:50" itemprop="dateCreated datePublished" datetime="2019-07-18T22:09:50+08:00">2019-07-18</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-26 08:27:13" itemprop="dateModified" datetime="2021-02-26T08:27:13+08:00">2021-02-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+        </span>
+    </span>
 
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>20k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>18 分钟</span>
-            </span>
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>20k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>18 分钟</span>
+    </span>
+</div>
+
             <div class="post-description">这博客! ? 好简单啊 ... 看到了别人的博客后, 哇! 这功能好, 加上! ~~~ 哇, 这个功能也超棒, 加上! 加上!</div>
-
         </div>
       </header>
 
@@ -784,31 +762,32 @@
     
     
     
-        <div class="reward-container">
+
+    <footer class="post-footer">
+          <div class="reward-container">
   <div>咕噜咕噜~</div>
-  <button onclick="document.getElementById('post-reward').classList.toggle('active');">
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
     赞赏
   </button>
-  <div id="post-reward">
-      
+  <div class="post-reward">
       <div>
         <img src="/images/donate/alipay.png" alt="Kuroha 支付宝">
-        <p>支付宝</p>
+        <span>支付宝</span>
       </div>
 
   </div>
 </div>
 
-        
+          
 
-<div>
-<ul class="post-copyright">
+<div class="post-copyright">
+<ul>
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>Kuroha
+      <strong>本文作者： </strong>Kuroha
   </li>
   <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://kuroha.vip/hexo/next_theme_beautify.html" title="Hexo + NexT 主题美化 (NexT v7.2.0)">https://kuroha.vip/hexo/next_theme_beautify.html</a>
+      <strong>本文链接：</strong>
+      <a href="https://kuroha.vip/hexo/next_theme_beautify.html" title="Hexo + NexT 主题美化 (NexT v7.2.0)">https://kuroha.vip/hexo/next_theme_beautify.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aF9DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -816,87 +795,81 @@
 </ul>
 </div>
 
-        
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
 
-  <div class="followme">
-    <p>欢迎关注我的其它发布渠道</p>
+  <div class="social-list">
 
-    <div class="social-list">
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://twitter.com/KurohaKirito">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
 
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="https://twitter.com/KurohaKirito">
-            <span class="icon">
-              <i class="fab fa-twitter"></i>
-            </span>
+          <span class="label">Twitter</span>
+        </a>
+      </div>
 
-            <span class="label">Twitter</span>
-          </a>
-        </div>
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://t.me/KurohaKirito">
+          <span class="icon">
+            <i class="fab fa-telegram"></i>
+          </span>
 
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="https://t.me/KurohaKirito">
-            <span class="icon">
-              <i class="fab fa-telegram"></i>
-            </span>
+          <span class="label">Telegram</span>
+        </a>
+      </div>
 
-            <span class="label">Telegram</span>
-          </a>
-        </div>
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/followme/wechat.png">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
 
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="/images/followme/wechat.png">
-            <span class="icon">
-              <i class="fab fa-weixin"></i>
-            </span>
+          <span class="label">WeChat</span>
+        </a>
+      </div>
 
-            <span class="label">WeChat</span>
-          </a>
-        </div>
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/atom.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
 
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="/atom.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-
-            <span class="label">RSS</span>
-          </a>
-        </div>
-    </div>
+          <span class="label">RSS</span>
+        </a>
+      </div>
   </div>
+</div>
 
-
-      <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
           </div>
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/hexo/hexo_blog.html" rel="prev" title="Hexo + Github Pages 搭建个人博客">
-      <i class="fa fa-chevron-left"></i> Hexo + Github Pages 搭建个人博客
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/computer/computer_issues.html" rel="next" title="电脑使用技巧及常见问题">
-      电脑使用技巧及常见问题 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/hexo/hexo_blog.html" rel="prev" title="Hexo + Github Pages 搭建个人博客">
+                  <i class="fa fa-chevron-left"></i> Hexo + Github Pages 搭建个人博客
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/computer/computer_issues.html" rel="next" title="电脑使用技巧及常见问题">
+                  电脑使用技巧及常见问题 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-  
-  
-  
+</div>
 
 
 
-        </div>
-        
-    <div class="comments" id="gitalk-container"></div>
+
+
+
+    <div class="comments gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -905,7 +878,7 @@
       activeClass = localStorage.getItem('comments_active') || activeClass;
     }
     if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
       if (activeTab) {
         activeTab.click();
       }
@@ -914,81 +887,57 @@
   if (CONFIG.comments.storage) {
     window.addEventListener('tabs:click', event => {
       if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
+      const commentClass = event.target.classList[1];
       localStorage.setItem('comments_active', commentClass);
     });
   }
 </script>
+</div>
+  </main>
 
-      </div>
-    </main>
+  <footer class="footer">
+    <div class="footer-inner">
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
 
 <div class="copyright">
-  
   &copy; 2019 – 
   <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-leaf"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Kuroha</span>
-    <span class="post-meta-divider">|</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
-      <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">207k</span>
-    <span class="post-meta-divider">|</span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">209k</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:08</span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:10</span>
+  </span>
 </div>
 
     <div id="days"></div>
     <script type="text/javascript" src="/js/website_runtime.js"></script>
 
 
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/npm/ribbon.js@1/dist/ribbon.min.js"></script>
-  <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-<script src="/js/bookmark.js"></script>
-
-
-  
-
-
-
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
   
 <script src="/js/local-search.js"></script>
@@ -998,22 +947,17 @@
 
 
 
-
-
-
-
-
-
-
   
 
-  
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.css">
 
 <script>
-NexT.utils.loadComments('#gitalk-container', () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+NexT.utils.loadComments('.gitalk-container', () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
       clientID    : '29ff88cf54f1cbcbc7b5',
       clientSecret: 'e68fb1037811f8fb3acd5ca30d3c6a955e1c90e0',
@@ -1021,11 +965,11 @@ NexT.utils.loadComments('#gitalk-container', () => {
       owner       : 'KurohaKirito',
       admin       : ['KurohaKirito'],
       id          : '07a6bbacbbc7a58f22faffcaae606821',
-      proxy       : '',
+      proxy       : 'https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token',
         language: 'zh-CN',
       distractionFreeMode: true
     });
-    gitalk.render('gitalk-container');
+    gitalk.render(document.querySelector('.gitalk-container'));
   }, window.Gitalk);
 });
 </script>
@@ -1095,4 +1039,3 @@ NexT.utils.loadComments('#gitalk-container', () => {
 
 </body>
 </html>
-

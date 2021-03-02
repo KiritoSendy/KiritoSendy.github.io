@@ -2,7 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kuroha.vip/hexo/hexo_update.html</loc>
+    
+    <lastmod>2021-03-02</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://kuroha.vip/git/git_learn.html</loc>
+    
+    <lastmod>2021-03-02</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://kuroha.vip/computer/computer_issues.html</loc>
     
     <lastmod>2021-03-02</lastmod>
     
@@ -170,13 +184,6 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/hexo/hexo_update.html</loc>
-    
-    <lastmod>2021-02-26</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://kuroha.vip/hexo/hexo_blog.html</loc>
     
     <lastmod>2021-02-26</lastmod>
@@ -296,13 +303,6 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/computer/computer_issues.html</loc>
-    
-    <lastmod>2021-02-26</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://kuroha.vip/computer/computer_char_code.html</loc>
     
     <lastmod>2021-02-26</lastmod>
@@ -396,14 +396,14 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/Internet/</loc>
+    <loc>https://kuroha.vip/tags/Oracle/</loc>
     <lastmod>2021-03-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kuroha.vip/tags/Oracle/</loc>
+    <loc>https://kuroha.vip/tags/Internet/</loc>
     <lastmod>2021-03-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -517,14 +517,14 @@
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/NetWork/</loc>
+    <loc>https://kuroha.vip/categories/Oracle/</loc>
     <lastmod>2021-03-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kuroha.vip/categories/Oracle/</loc>
+    <loc>https://kuroha.vip/categories/NetWork/</loc>
     <lastmod>2021-03-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

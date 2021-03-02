@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   if (!CONFIG.path) {
+    // Search DB path
     console.warn('`hexo-generator-searchdb` plugin is not installed!');
     return;
   }
@@ -164,16 +165,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isfetched) return;
     const searchText = input.value.trim().toLowerCase();
     const keywords = searchText.split(/[-\s]+/);
-    const resultContent = document.getElementById('search-result');
+    const container = document.querySelector('.search-result-container');
     let resultItems = [];
     if (searchText.length > 0) {
       // Perform local searching
       resultItems = getResultItems(keywords);
     }
     if (keywords.length === 1 && keywords[0] === '') {
-      resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>';
+      container.classList.add('no-result');
+      container.innerHTML = '<div class="search-result-icon"><i class="fa fa-search fa-5x"></i></div>';
     } else if (resultItems.length === 0) {
-      resultContent.innerHTML = '<div id="no-result"><i class="far fa-frown fa-5x"></i></div>';
+      container.classList.add('no-result');
+      container.innerHTML = '<div class="search-result-icon"><i class="far fa-frown fa-5x"></i></div>';
     } else {
       resultItems.sort((left, right) => {
         if (left.includedCount !== right.includedCount) {
@@ -183,16 +186,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return right.id - left.id;
       });
-      resultContent.innerHTML = `<ul class="search-result-list">${resultItems.map(result => result.item).join('')}</ul>`;
-      window.pjax && window.pjax.refresh(resultContent);
+      const stats = CONFIG.i18n.hits.replace(/\$\{hits}/, resultItems.length);
+
+      container.classList.remove('no-result');
+      container.innerHTML = `<div class="search-stats">${stats}</div>
+        <hr>
+        <ul class="search-result-list">${resultItems.map(result => result.item).join('')}</ul>`;
+      window.pjax && window.pjax.refresh(container);
     }
   };
 
   const fetchData = () => {
-    // Search DB path
-    const searchPath = CONFIG.root + CONFIG.path;
     const isXml = !CONFIG.path.endsWith('json');
-    fetch(searchPath)
+    fetch(CONFIG.path)
       .then(response => response.text())
       .then(res => {
         // Get the contents from search data
@@ -216,26 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   };
 
-  /**
-   * This function returns the parsed url parameters of the
-   * current request. Multiple values per key are supported,
-   * it will always return arrays of strings for the value parts.
-   */
-  const getQueryParameters = () => {
-    const s = location.search;
-    const parts = s.substr(s.indexOf('?') + 1).split('&');
-    const result = {};
-    for (const part of parts) {
-      const [key, value] = part.split('=', 2);
-      if (key in result) {
-        result[key].push(value);
-      } else {
-        result[key] = [value];
-      }
-    }
-    return result;
-  };
-
   // Highlight by wrapping node in mark elements with the given class name
   const highlightText = (node, slice, className) => {
     const val = node.nodeValue;
@@ -257,11 +243,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Highlight the search words provided in the url in the text
   const highlightSearchWords = () => {
-    const params = getQueryParameters();
-    const keywords = params.highlight ? params.highlight[0].split(/\+/).map(decodeURIComponent) : [];
+    const params = new URL(location.href).searchParams.get('highlight');
+    const keywords = params ? params.split(' ') : [];
     const body = document.querySelector('.post-body');
     if (!keywords.length || !body) return;
-    const walk = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, null, false);
+    const walk = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, null);
     const allNodes = [];
     while (walk.nextNode()) {
       if (!walk.currentNode.parentNode.matches('button, select, textarea')) allNodes.push(walk.currentNode);
@@ -274,6 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  highlightSearchWords();
   if (CONFIG.localsearch.preload) {
     fetchData();
   }
