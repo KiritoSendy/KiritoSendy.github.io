@@ -2998,40 +2998,6 @@
       </tags>
   </entry>
   <entry>
-    <title>如何创建自定义瓦片</title>
-    <url>/unity/unity_customizeTile.html</url>
-    <content><![CDATA[<a id="more"></a>
-
-<h1 id="选用待继承的瓦片"><a href="#选用待继承的瓦片" class="headerlink" title="选用待继承的瓦片"></a>选用待继承的瓦片</h1><p>编写自定义瓦片其实就是通过继承 Unity 原有瓦片, 并添加新数据来创建自己的瓦片, 因此首先需要选用待继承的瓦片, 这个根据项目的需要选择即可.</p>
-<p>如果瓦片需要播放动画, 便需要继承动画瓦片, 需要使用预制体就继承预制体瓦片, 需要使用普通瓦片, 随机瓦片, 规则瓦片时都可以继承自规则瓦片.</p>
-<h1 id="添加自定义数据"><a href="#添加自定义数据" class="headerlink" title="添加自定义数据"></a>添加自定义数据</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 魔剑镇魂曲瓦片, 继承自 RuleTile</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">Serializable</span>]</span><br><span class="line">[<span class="meta">CreateAssetMenu(fileName = <span class="meta-string">&quot;New Sword Requiem Tile.asset&quot;</span>, menuName = <span class="meta-string">&quot;Sword Requiem Tile&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SwordRequiemTile</span> : <span class="title">RuleTile</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 枚举: 地形类型</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> EM_Terrain defaultTerrainType;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面是我自定义的 <code>Sword Requiem Tile</code>, 只添加了一个简单的枚举类型数据.</p>
-<ul>
-<li><p>Serializable: 标记此类可以被序列化.</p>
-</li>
-<li><p>CreateAssetMenu: 标记此脚本可以在资源菜单中直接创建, 菜单项为: <code>New Sword Requiem Tile.asset</code>, 菜单项的路径为: <code>Sword Requiem Tile</code>.</p>
-</li>
-<li><p>SwordRequiemTile: 继承自规则瓦片, 自定义的瓦片类型.</p>
-</li>
-<li><p>defaultTerrainType: 自定义数据-默认地形类型.</p>
-</li>
-</ul>
-<p>[<strong>注</strong>] 这个地方有一个挺大的坑, 可以看到我这里的自定义数据使用的是 &#39;字段&#39; 而非 &#39;属性&#39;, 因为使用属性, Inspector 面板中便无法持久保存瓦片属性.</p>
-<p>表现在项目中就是, 首先创建枚举, &#39;森林&#39; 的枚举值为 0, &#39;断层&#39; 为 1, 我创建了一个 Sword Requiem Tile, 默认地形类型自动初始化为 &#39;森林&#39;, 然后修改瓦片的地形类型为 &#39;断层&#39;, 之后绘制地形, 运行游戏, 发现一切正常, 但是一旦关闭 Unity, 再次打开时所有瓦片的自定义数据全部会被重置为 &#39;森林&#39;, 即默认值, 想想这个多可怕!</p>
-<p>以上情况不知道是不是我自己的失误, 总之这里使用原始的字段不会有任何问题.</p>
-<h1 id="编写自定义瓦片的-Inspector-面板"><a href="#编写自定义瓦片的-Inspector-面板" class="headerlink" title="编写自定义瓦片的 Inspector 面板"></a>编写自定义瓦片的 Inspector 面板</h1><p>之前使用 &#39;属性&#39; 作为自定义数据的时候编写了 Inspector 面板的脚本, 后来改用了 &#39;字段&#39; 之后就发现根本不用单独编写脚本了, Unity 会自动进行渲染...😅 这里就先不写 Inspector 面板该如何自定义了, 因为我也不会啊~ 留一个链接, 以便日后捡起来用.</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zNDIzNDMxNQ==">自定义属性面板<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>Unity</category>
-      </categories>
-      <tags>
-        <tag>Unity</tag>
-        <tag>Tile</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Unity 中的坐标系</title>
     <url>/unity/unity_coordinatesystem.html</url>
     <content><![CDATA[<a id="more"></a>
@@ -3116,6 +3082,40 @@
       </categories>
       <tags>
         <tag>Unity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何创建自定义瓦片</title>
+    <url>/unity/unity_customizeTile.html</url>
+    <content><![CDATA[<a id="more"></a>
+
+<h1 id="选用待继承的瓦片"><a href="#选用待继承的瓦片" class="headerlink" title="选用待继承的瓦片"></a>选用待继承的瓦片</h1><p>编写自定义瓦片其实就是通过继承 Unity 原有瓦片, 并添加新数据来创建自己的瓦片, 因此首先需要选用待继承的瓦片, 这个根据项目的需要选择即可.</p>
+<p>如果瓦片需要播放动画, 便需要继承动画瓦片, 需要使用预制体就继承预制体瓦片, 需要使用普通瓦片, 随机瓦片, 规则瓦片时都可以继承自规则瓦片.</p>
+<h1 id="添加自定义数据"><a href="#添加自定义数据" class="headerlink" title="添加自定义数据"></a>添加自定义数据</h1><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 魔剑镇魂曲瓦片, 继承自 RuleTile</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">[<span class="meta">Serializable</span>]</span><br><span class="line">[<span class="meta">CreateAssetMenu(fileName = <span class="meta-string">&quot;New Sword Requiem Tile.asset&quot;</span>, menuName = <span class="meta-string">&quot;Sword Requiem Tile&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SwordRequiemTile</span> : <span class="title">RuleTile</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 枚举: 地形类型</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> EM_Terrain defaultTerrainType;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面是我自定义的 <code>Sword Requiem Tile</code>, 只添加了一个简单的枚举类型数据.</p>
+<ul>
+<li><p>Serializable: 标记此类可以被序列化.</p>
+</li>
+<li><p>CreateAssetMenu: 标记此脚本可以在资源菜单中直接创建, 菜单项为: <code>New Sword Requiem Tile.asset</code>, 菜单项的路径为: <code>Sword Requiem Tile</code>.</p>
+</li>
+<li><p>SwordRequiemTile: 继承自规则瓦片, 自定义的瓦片类型.</p>
+</li>
+<li><p>defaultTerrainType: 自定义数据-默认地形类型.</p>
+</li>
+</ul>
+<p>[<strong>注</strong>] 这个地方有一个挺大的坑, 可以看到我这里的自定义数据使用的是 &#39;字段&#39; 而非 &#39;属性&#39;, 因为使用属性, Inspector 面板中便无法持久保存瓦片属性.</p>
+<p>表现在项目中就是, 首先创建枚举, &#39;森林&#39; 的枚举值为 0, &#39;断层&#39; 为 1, 我创建了一个 Sword Requiem Tile, 默认地形类型自动初始化为 &#39;森林&#39;, 然后修改瓦片的地形类型为 &#39;断层&#39;, 之后绘制地形, 运行游戏, 发现一切正常, 但是一旦关闭 Unity, 再次打开时所有瓦片的自定义数据全部会被重置为 &#39;森林&#39;, 即默认值, 想想这个多可怕!</p>
+<p>以上情况不知道是不是我自己的失误, 总之这里使用原始的字段不会有任何问题.</p>
+<h1 id="编写自定义瓦片的-Inspector-面板"><a href="#编写自定义瓦片的-Inspector-面板" class="headerlink" title="编写自定义瓦片的 Inspector 面板"></a>编写自定义瓦片的 Inspector 面板</h1><p>之前使用 &#39;属性&#39; 作为自定义数据的时候编写了 Inspector 面板的脚本, 后来改用了 &#39;字段&#39; 之后就发现根本不用单独编写脚本了, Unity 会自动进行渲染...😅 这里就先不写 Inspector 面板该如何自定义了, 因为我也不会啊~ 留一个链接, 以便日后捡起来用.</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly96aHVhbmxhbi56aGlodS5jb20vcC8zNDIzNDMxNQ==">自定义属性面板<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>Unity</tag>
+        <tag>Tile</tag>
       </tags>
   </entry>
   <entry>
