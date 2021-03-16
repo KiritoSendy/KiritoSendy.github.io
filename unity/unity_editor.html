@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/icon/logo.svg" color="#222">
+  <meta name="google-site-verification" content="UtyDAPkH1wac_9oyOpkJSRJ1JE7hPHvMFl9d2jPe5cQ">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kuroha.vip","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"width":280},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="Unity 强大的自定义编辑器功能可以满足我们进行工业化生产的需求.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unity 自定义编辑器">
+<meta property="og:url" content="https://kuroha.vip/unity/unity_editor.html">
+<meta property="og:site_name" content="二次元游宅客">
+<meta property="og:description" content="Unity 强大的自定义编辑器功能可以满足我们进行工业化生产的需求.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-11T09:51:53.000Z">
+<meta property="article:modified_time" content="2021-03-16T02:40:07.569Z">
+<meta property="article:author" content="Kuroha">
+<meta property="article:tag" content="Unity">
+<meta property="article:tag" content="Editor">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://kuroha.vip/unity/unity_editor.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+    <script>
+        (function () {
+            if ('') {
+                var str = prompt('😈 私密日记, 查看请输入密码!');
+                if (str == "" || str == null) {
+                    history.back();
+                } else if (str !== '') {
+                    alert('😥 这个密码好像不太对, 再试试...');
+                    history.back();
+                }
+            }
+        })();
+    </script>
+
+
+<!--动漫菜单-->
+
+    <link rel="stylesheet" href="../js/galmenu/css/GalMenu.css">
+
+<title>Unity 自定义编辑器 | 二次元游宅客</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">二次元游宅客</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个热爱二次元和游戏开发的宅极客!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">43</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">20</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-捉小猫"><a href="/catch_the_cat/" rel="section"><i class="fa fa-cat fa-fw"></i>捉小猫</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Unity-Selection-%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">Unity Selection 类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Selection-activeTransform"><span class="nav-number">1.1.</span> <span class="nav-text">Selection.activeTransform</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selection-activeGameObject"><span class="nav-number">1.2.</span> <span class="nav-text">Selection.activeGameObject</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selection-activeObject"><span class="nav-number">1.3.</span> <span class="nav-text">Selection.activeObject</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selection-transforms"><span class="nav-number">1.4.</span> <span class="nav-text">Selection.transforms</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selection-gameObjects"><span class="nav-number">1.5.</span> <span class="nav-text">Selection.gameObjects</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selection-objects"><span class="nav-number">1.6.</span> <span class="nav-text">Selection.objects</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selection-selectionChanged"><span class="nav-number">1.7.</span> <span class="nav-text">Selection.selectionChanged</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84-C-%E7%89%B9%E6%80%A7-MenuItem"><span class="nav-number">2.</span> <span class="nav-text">常用的 C# 特性: MenuItem()</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MenuItem-%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%82%E6%95%B0%E4%B8%BA%E8%8F%9C%E5%8D%95%E9%A1%B9%E7%9A%84%E8%B7%AF%E5%BE%84%E5%92%8C%E5%90%8D%E7%A7%B0"><span class="nav-number">2.1.</span> <span class="nav-text">MenuItem 的第一个参数为菜单项的路径和名称.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MenuItem-%E7%9A%84%E7%AC%AC%E4%BA%8C%E4%B8%AA%E5%8F%82%E6%95%B0%E5%BA%94%E7%94%A8%E4%BA%8E%E8%BF%94%E5%9B%9E%E5%80%BC%E7%B1%BB%E5%9E%8B%E4%B8%BA-bool-%E7%9A%84%E8%8F%9C%E5%8D%95%E9%A1%B9"><span class="nav-number">2.2.</span> <span class="nav-text">MenuItem 的第二个参数应用于返回值类型为 bool 的菜单项.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MenuItem-%E7%9A%84%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%8F%82%E6%95%B0%E6%98%AF%E6%98%BE%E7%A4%BA%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">2.3.</span> <span class="nav-text">MenuItem 的第三个参数是显示优先级.</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%A9%E5%B1%95-Project-%E8%A7%86%E5%9B%BE"><span class="nav-number">3.</span> <span class="nav-text">扩展 Project 视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A9%E5%B1%95-Project-%E8%A7%86%E5%9B%BE%E7%9A%84%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95"><span class="nav-number">3.1.</span> <span class="nav-text">扩展 Project 视图的右键菜单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A9%E5%B1%95-Project-%E5%B8%83%E5%B1%80"><span class="nav-number">3.2.</span> <span class="nav-text">扩展 Project 布局</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%A9%E5%B1%95-Hierarchy-%E8%A7%86%E5%9B%BE"><span class="nav-number">4.</span> <span class="nav-text">扩展 Hierarchy 视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A9%E5%B1%95-Hierarchy-%E8%A7%86%E5%9B%BE%E7%9A%84%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95"><span class="nav-number">4.1.</span> <span class="nav-text">扩展 Hierarchy 视图的右键菜单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A9%E5%B1%95-Hierarchy-%E5%B8%83%E5%B1%80"><span class="nav-number">4.2.</span> <span class="nav-text">扩展 Hierarchy 布局</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%A9%E5%B1%95-Inspector-%E8%A7%86%E5%9B%BE"><span class="nav-number">5.</span> <span class="nav-text">扩展 Inspector 视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E5%8E%9F%E7%94%9F%E7%B1%BB%E7%BB%84%E4%BB%B6"><span class="nav-number">5.1.</span> <span class="nav-text">扩展原生类组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E7%BB%A7%E6%89%BF%E7%B1%BB%E7%BB%84%E4%BB%B6"><span class="nav-number">5.2.</span> <span class="nav-text">扩展继承类组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE-Inspector-%E9%9D%A2%E6%9D%BF%E4%B8%BA%E5%8F%AA%E8%AF%BB"><span class="nav-number">5.3.</span> <span class="nav-text">设置 Inspector 面板为只读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%98%E5%88%B6-Inspector-%E9%9D%A2%E6%9D%BF%E6%97%B6%E8%AE%BE%E7%BD%AE%E5%8F%AA%E8%AF%BB"><span class="nav-number">5.3.1.</span> <span class="nav-text">绘制 Inspector 面板时设置只读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E8%84%9A%E6%9C%AC%E8%AE%BE%E7%BD%AE%E5%8F%AA%E8%AF%BB"><span class="nav-number">5.3.2.</span> <span class="nav-text">通过脚本设置只读</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A9%E5%B1%95-Inspector-%E9%9D%A2%E6%9D%BF%E7%9A%84%E8%AE%BE%E7%BD%AE%E8%8F%9C%E5%8D%95"><span class="nav-number">5.4.</span> <span class="nav-text">扩展 Inspector 面板的设置菜单</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%A9%E5%B1%95-Scene-%E8%A7%86%E5%9B%BE"><span class="nav-number">6.</span> <span class="nav-text">扩展 Scene 视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E4%BA%A4%E4%BA%92%E7%9A%84%E8%BE%85%E5%8A%A9%E5%85%83%E7%B4%A0"><span class="nav-number">6.1.</span> <span class="nav-text">不可交互的辅助元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E4%BA%A4%E4%BA%92%E7%9A%84%E8%BE%85%E5%8A%A9-UI"><span class="nav-number">6.2.</span> <span class="nav-text">可交互的辅助 UI</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-number">7.</span> <span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84%E5%BC%80%E5%A4%B4%E6%80%BB%E7%BB%93"><span class="nav-number">7.1.</span> <span class="nav-text">路径开头总结</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kuroha"
+      src="/images/avatar/avatar.gif">
+  <p class="site-author-name" itemprop="name">Kuroha</p>
+  <div class="site-description" itemprop="description">本人是一个热爱二次元和游戏开发的宅极客, 这是我的个人博客! 主要记录我学习的经历以及自己喜欢的动漫, 音乐, 偶尔也会写一些异想天开的脑洞, 哈哈!</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly90Lm1lL0t1cm9oYUtpcml0bw==" title="Telegram → https:&#x2F;&#x2F;t.me&#x2F;KurohaKirito"><i class="fab fa-telegram fa-fw"></i>Telegram</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="dGVuY2VudDovL0FkZENvbnRhY3QvP2Zyb21JZD00NSZmcm9tU3ViSWQ9MSZzdWJjbWQ9YWxsJnVpbj0xODMyNjEzMDAx" title="QQ → tencent:&#x2F;&#x2F;AddContact&#x2F;?fromId&#x3D;45&amp;fromSubId&#x3D;1&amp;subcmd&#x3D;all&amp;uin&#x3D;1832613001"><i class="fab fa-qq fa-fw"></i>QQ</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9zdGVhbWNvbW11bml0eS5jb20vcHJvZmlsZXMvNzY1NjExOTgzOTQxNDcwMDUv" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;profiles&#x2F;76561198394147005&#x2F;"><i class="fab fa-steam fa-fw"></i>Steam</span>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://kuroha.vip/images/weixin.png" title="WeChat → https:&#x2F;&#x2F;kuroha.vip&#x2F;images&#x2F;weixin.png"><i class="fab fa-weixin fa-fw"></i>WeChat</a>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmt1cm9oYWtpcml0b0BnbWFpbC5jb20=" title="E-Mail → mailto:kurohakirito@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL0t1cm9oYUtpcml0bw==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;KurohaKirito"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      我的朋友们
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <span class="exturl" data-url="aHR0cHM6Ly9zaHlhcmNoZXIuZ2l0aHViLmlvLw==" title="https:&#x2F;&#x2F;shyarcher.github.io&#x2F;">ShyArcher</span>
+        </li>
+        <li class="links-of-blogroll-item">
+          <span class="exturl" data-url="aHR0cHM6Ly9ub2FoYXBwcy5naXRodWIuaW8v" title="https:&#x2F;&#x2F;noahapps.github.io&#x2F;">Noah</span>
+        </li>
+    </ul>
+  </div>
+
+
+    <div>
+        <canvas id="canvasDiyBlock" style="width:60%;">您的浏览器不支持 Canvas, 请更换浏览器!</canvas>
+        <script type="text/javascript" src="/js/clock.js"></script>
+    </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2t1cm9oYWtpcml0bw==" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://kuroha.vip/unity/unity_editor.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar.gif">
+      <meta itemprop="name" content="Kuroha">
+      <meta itemprop="description" content="本人是一个热爱二次元和游戏开发的宅极客, 这是我的个人博客! 主要记录我学习的经历以及自己喜欢的动漫, 音乐, 偶尔也会写一些异想天开的脑洞, 哈哈!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="二次元游宅客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Unity 自定义编辑器
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-11 17:51:53" itemprop="dateCreated datePublished" datetime="2021-03-11T17:51:53+08:00">2021-03-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-16 10:40:07" itemprop="dateModified" datetime="2021-03-16T10:40:07+08:00">2021-03-16</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Unity/" itemprop="url" rel="index"><span itemprop="name">Unity</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>8.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">Unity 强大的自定义编辑器功能可以满足我们进行工业化生产的需求.</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <a id="more"></a>
+
+<h1 id="Unity-Selection-类"><a href="#Unity-Selection-类" class="headerlink" title="Unity Selection 类"></a>Unity Selection 类</h1><p>先说一下 Unity.Selection 类, 这个类可以获取我们在编辑器模式下的输入, 因为编辑器模式下各种方法逻辑的触发更多的是使用按钮的方法, 所以<strong>获取输入</strong>是排在第一位的.</p>
+<h2 id="Selection-activeTransform"><a href="#Selection-activeTransform" class="headerlink" title="Selection.activeTransform"></a><code>Selection.activeTransform</code></h2><p>仅在 Hierarchy 面板中生效;</p>
+<p>这个静态字段会返回在 Hierarchy 面板中选中的游戏物体;</p>
+<p>如果选择多个则只返回第一个; 如果没有选择, 则返回 null; null 可以直接在 if 中进行判断, 相等于 false.</p>
+<h2 id="Selection-activeGameObject"><a href="#Selection-activeGameObject" class="headerlink" title="Selection.activeGameObject"></a><code>Selection.activeGameObject</code></h2><p>在 Hierarchy 面板和 Project 面板中都有效;</p>
+<p>在 Hierarchy 面板中返回的是当前选中的游戏物体(任意物体);</p>
+<p>在 Project 面板中返回的是当前选中的<strong>预制体</strong>(Prefab);</p>
+<p>如果选择多个则只返回第一个; 如果没有选择或者选择的目标不符合上述条件的都会返回 null.</p>
+<h2 id="Selection-activeObject"><a href="#Selection-activeObject" class="headerlink" title="Selection.activeObject"></a><code>Selection.activeObject</code></h2><p>在 Hierarchy 面板和 Project 面板中都有效;</p>
+<p>在 Hierarchy 面板中返回的是当前选中的游戏物体(任意物体);</p>
+<p>在 Project 面板中返回的是当前选中的<strong>任意资源</strong>;</p>
+<p>如果选择多个则只返回第一个; 如果没有选择或者选择的目标不符合上述条件的都会返回 null.</p>
+<h2 id="Selection-transforms"><a href="#Selection-transforms" class="headerlink" title="Selection.transforms"></a><code>Selection.transforms</code></h2><p>Selection.activeTransform 方法的复数版本, 返回一个数组, 包含所有符合 Selection.activeTransform 条件的物体.</p>
+<h2 id="Selection-gameObjects"><a href="#Selection-gameObjects" class="headerlink" title="Selection.gameObjects"></a><code>Selection.gameObjects</code></h2><p>Selection.activeGameObject 方法的复数版本, 返回一个数组, 包含所有符合 Selection.activeGameObject 条件的物体.</p>
+<h2 id="Selection-objects"><a href="#Selection-objects" class="headerlink" title="Selection.objects"></a><code>Selection.objects</code></h2><p>Selection.activeObject 方法的复数版本, 返回一个数组, 包含所有符合 Selection.activeObject 条件的物体.</p>
+<h2 id="Selection-selectionChanged"><a href="#Selection-selectionChanged" class="headerlink" title="Selection.selectionChanged"></a><code>Selection.selectionChanged</code></h2><p>一个委托, 当选择的东西发生变化的时候会自动调用. 可以用来监测选择的游戏物体是否发生了改变.</p>
+<h1 id="常用的-C-特性-MenuItem"><a href="#常用的-C-特性-MenuItem" class="headerlink" title="常用的 C# 特性: MenuItem()"></a>常用的 C# 特性: MenuItem()</h1><p>MenuItem 特性用于向主菜单 (Unity 标题栏下的一行菜单) 和检视面板上下文菜单 (也就是 Inspector 的设置菜单 CONTEXT 菜单) 添加菜单项.</p>
+<p>能够将任何<strong>静态函数</strong>转变为菜单命令, <strong>仅静态函数可使用 MenuItem 特性</strong>, 另外 Unity 还支持创建带有热键的菜单项哦.</p>
+<table>
+<thead>
+<tr>
+<th align="left">代码示例</th>
+<th align="left">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">%</td>
+<td align="left">Ctrl</td>
+</tr>
+<tr>
+<td align="left">#</td>
+<td align="left">Shift</td>
+</tr>
+<tr>
+<td align="left">&amp;</td>
+<td align="left">Alt</td>
+</tr>
+<tr>
+<td align="left">LEFT, RIGHT, UP, DOWN</td>
+<td align="left">LEFT, RIGHT, UP, DOWN</td>
+</tr>
+<tr>
+<td align="left">F1 .. F12</td>
+<td align="left">F1 .. F12</td>
+</tr>
+<tr>
+<td align="left">HOME, END, PGUP, PGDN</td>
+<td align="left">HOME, END, PGUP, PGDN</td>
+</tr>
+<tr>
+<td align="left">MyMenu/Do Something #&amp;g</td>
+<td align="left">Shift + Alt + g</td>
+</tr>
+<tr>
+<td align="left">MyMenu/Do Something _g</td>
+<td align="left">g</td>
+</tr>
+</tbody></table>
+<h2 id="MenuItem-的第一个参数为菜单项的路径和名称"><a href="#MenuItem-的第一个参数为菜单项的路径和名称" class="headerlink" title="MenuItem 的第一个参数为菜单项的路径和名称."></a>MenuItem 的第一个参数为菜单项的路径和名称.</h2><ul>
+<li>如果要扩展 Project 面板的右键菜单, 则路径必须以 Assets 开头.</li>
+<li>如果要扩展 Hierarchy 面板的右键菜单, 则路径必须以 GameObject 开头.</li>
+<li>以其他名称开头时, 创建的菜单会显示在主菜单上.</li>
+</ul>
+<h2 id="MenuItem-的第二个参数应用于返回值类型为-bool-的菜单项"><a href="#MenuItem-的第二个参数应用于返回值类型为-bool-的菜单项" class="headerlink" title="MenuItem 的第二个参数应用于返回值类型为 bool 的菜单项."></a>MenuItem 的第二个参数应用于返回值类型为 bool 的菜单项.</h2><ul>
+<li>true: 当菜单项函数返回 false 时, 菜单项会隐藏.</li>
+<li>false: 使用于所有返回值不是 bool 类型的菜单项.</li>
+</ul>
+<h2 id="MenuItem-的第三个参数是显示优先级"><a href="#MenuItem-的第三个参数是显示优先级" class="headerlink" title="MenuItem 的第三个参数是显示优先级."></a>MenuItem 的第三个参数是显示优先级.</h2><ul>
+<li>优先级打开主菜单查看当前有多少菜单项, 依次向后排序即可.</li>
+<li>如果想要让菜单项在 Hierarchy 面板的右键菜单中也显示出来的话, 需要将优先级设置为大于等于 10, 因为前 9 个优先级都已经被占用了.</li>
+</ul>
+<h1 id="扩展-Project-视图"><a href="#扩展-Project-视图" class="headerlink" title="扩展 Project 视图"></a>扩展 Project 视图</h1><h2 id="扩展-Project-视图的右键菜单"><a href="#扩展-Project-视图的右键菜单" class="headerlink" title="扩展 Project 视图的右键菜单"></a>扩展 Project 视图的右键菜单</h2><ul>
+<li>定义静态行为类: 无继承关系, 放到 Editor 文件夹下.</li>
+<li>定义菜单项: <code>[MenuItem(&quot;Menu Item Path&quot;, false, 1)]</code>.</li>
+<li>扩展 Project 视图时, 菜单项的路径必须以 <strong>Assets/</strong> 开头, 原因是 Project 视图的右键菜单就是标题栏中的 Assets 菜单.</li>
+<li>如果以标题栏中没有的名称作为路径开头, 则标题栏中会出现一个新的对应名称的菜单.</li>
+<li>定义菜单行为方法: 菜单行为方法推荐是 <code>private static void FunctionName()</code> 类型.</li>
+</ul>
+<h2 id="扩展-Project-布局"><a href="#扩展-Project-布局" class="headerlink" title="扩展 Project 布局"></a>扩展 Project 布局</h2><p>扩展 Project 布局的原理就是 Unity 会监听 <code>EditorApplication.projectWindowItemOnGUI</code> 渲染回调, 因此脚本代码的思路就是写一个方法用来对委托 <code>EditorApplication.projectWindowItemOnGUI</code> 进行注册. 并且这个方法必须在 C# 代码编译完成后立即自动执行.</p>
+<p>Unity 中提供了实现这个效果的属性, 使用 <code>[InitializeOnLoadMethod]</code> 属性可以让被修饰的方法在代码编译完成后自动执行.</p>
+<p>有了自动执行的方法了, 那么我们就可以在这个方法中, 对 <code>EditorApplication.projectWindowItemOnGUI</code> 委托进行注册. 注册的内容就是我们想要实现的操作.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 扩展 Project 布局</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="comment">// 由于扩展布局的方法无法进行手动调用, 所以使用这个属性进行自动调用</span></span><br><span class="line">[<span class="meta">InitializeOnLoadMethod</span>]</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InitializeOnLoadMethod</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">// 对 projectWindowItemOnGUI 进行注册</span></span><br><span class="line">    EditorApplication.projectWindowItemOnGUI += (guid, selectionRect) =&gt; &#123;</span><br><span class="line">        <span class="comment">// 前提是必须选中预制体 Prefab</span></span><br><span class="line">        <span class="keyword">if</span> (!Selection.activeGameObject) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (guid != AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(Selection.activeGameObject))) <span class="keyword">return</span>;</span><br><span class="line">        <span class="comment">// 定义绘制按钮时需要用到的矩形, selectionRect 原本是当前选中时 Unity 中的蓝色的高亮矩形框.</span></span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">float</span> WIDTH = <span class="number">50f</span>;</span><br><span class="line">        Rect projectRect = <span class="keyword">new</span> Rect(</span><br><span class="line">            selectionRect.x += selectionRect.width - WIDTH,</span><br><span class="line">            selectionRect.y,</span><br><span class="line">            WIDTH,</span><br><span class="line">            selectionRect.height);</span><br><span class="line">        <span class="comment">// 设置接下来绘制按钮时要使用的颜色</span></span><br><span class="line">        GUI.color = Color.red;</span><br><span class="line">        <span class="comment">// 绘制按钮, 显示文本: click</span></span><br><span class="line">        <span class="keyword">if</span> (GUI.Button(projectRect, <span class="string">&quot;click&quot;</span>)) &#123;</span><br><span class="line">            <span class="comment">// 定义按钮点击后的行为</span></span><br><span class="line">            Debug.Log(<span class="string">$&quot;click: <span class="subst">&#123;Selection.activeObject.name&#125;</span>&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 绘制完成后将颜色重置</span></span><br><span class="line">        GUI.color = Color.white;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="扩展-Hierarchy-视图"><a href="#扩展-Hierarchy-视图" class="headerlink" title="扩展 Hierarchy 视图"></a>扩展 Hierarchy 视图</h1><h2 id="扩展-Hierarchy-视图的右键菜单"><a href="#扩展-Hierarchy-视图的右键菜单" class="headerlink" title="扩展 Hierarchy 视图的右键菜单"></a>扩展 Hierarchy 视图的右键菜单</h2><p>[<strong>注</strong>] 扩展 Project 视图的脚本和扩展 Hierarchy 视图的脚本不能是一个, 必须分开.</p>
+<ul>
+<li>扩展 Hierarchy 视图和扩展 Project 视图的操作相同, 只是菜单项的路径必须以 <strong>GameObject/</strong> 开头, 原因是 Hierarchy 视图的右键菜单就是标题栏中的 GameObject 菜单.</li>
+</ul>
+<h2 id="扩展-Hierarchy-布局"><a href="#扩展-Hierarchy-布局" class="headerlink" title="扩展 Hierarchy 布局"></a>扩展 Hierarchy 布局</h2><ul>
+<li>扩展 Hierarchy 布局和扩展 Project 布局是一样的原理, 只不过监听的是另一个委托: <code>EditorApplication.hierarchyWindowItemOnGUI</code>.</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">InitializeOnLoadMethod</span>]</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">InitOnLoad</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    EditorApplication.hierarchyWindowItemOnGUI += (instanceID, selectionRect) =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (!Selection.activeObject) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (instanceID != Selection.activeObject.GetInstanceID()) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">string</span> PREFAB_PATH = <span class="string">&quot;Assets/1.prefab&quot;</span>;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">string</span> TEXTURE_PATH = <span class="string">&quot;Assets/unity.png&quot;</span>;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">float</span> WIDTH = <span class="number">32f</span>;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">float</span> HEIGHT = <span class="number">16f</span>;</span><br><span class="line">        <span class="keyword">var</span> hierarchyRect = <span class="keyword">new</span> Rect(</span><br><span class="line">            selectionRect.width - WIDTH, selectionRect.y,</span><br><span class="line">            WIDTH, HEIGHT);</span><br><span class="line">        <span class="comment">// 加载资源: AssetDatabase.LoadAssetAtPath</span></span><br><span class="line">        <span class="keyword">var</span> texture = AssetDatabase.LoadAssetAtPath&lt;Texture&gt;(TEXTURE_PATH);</span><br><span class="line">        <span class="keyword">if</span> (!GUI.Button(hierarchyRect, texture)) <span class="keyword">return</span>;</span><br><span class="line">        <span class="comment">// 更新或者创建 Prefab</span></span><br><span class="line">        PrefabUtility.SaveAsPrefabAssetAndConnect(Selection.activeGameObject, PREFAB_PATH, InteractionMode.AutomatedAction);</span><br><span class="line">        AssetDatabase.Refresh();</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="扩展-Inspector-视图"><a href="#扩展-Inspector-视图" class="headerlink" title="扩展 Inspector 视图"></a>扩展 Inspector 视图</h1><p>扩展 Inspector 视图就和上面两种完全不一样了. Inspector 视图是用来显示类 (组件本质就是一个类) 中的信息的, 由于类中会有各种各样的千奇百怪的数据类型, 因此 Unity 提供了大量的控件来帮助开发者自定义 Inspector 视图.</p>
+<p>重写 Inspector 面板需要做的事情:</p>
+<ol>
+<li>继承 UnityEditor.Editor 类.</li>
+<li>使用特性 CustomEditor(typeof()) 关联要显示的类.</li>
+<li>重写 OnInspectorGUI() 方法.</li>
+<li>绘制各种组件.</li>
+</ol>
+<h2 id="扩展原生类组件"><a href="#扩展原生类组件" class="headerlink" title="扩展原生类组件"></a>扩展原生类组件</h2><p>扩展原生类组件的 Inspector 面板就是重写 <code>OnInspectorGUI()</code> 方法, 这个方法就是用来绘制 Inspector 面板的.</p>
+<p>如果需要显示原本组件的的 Inspector 面板信息, 可以调用父类的方法: <code>base.OnInspectorGUI();</code>.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">CustomEditor(typeof(Camera))</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ExpendInspector</span> : <span class="title">Editor</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnInspectorGUI</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;扩展按钮&quot;</span>)) &#123;</span><br><span class="line">            Debug.Log(<span class="string">&quot;测试按钮&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">base</span>.OnInspectorGUI();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="扩展继承类组件"><a href="#扩展继承类组件" class="headerlink" title="扩展继承类组件"></a>扩展继承类组件</h2><p>对于我们重写界面而言, <strong>继承类组件</strong>与<strong>原生类组件</strong>的不同之处就是不能调用 <code>base.OnInspectorGUI();</code> 方法, 或者调用 <code>base.OnInspectorGUI();</code> 时不会出现组件原本的显示效果, 显示效果会变得很糟糕. 因此我们需要使用<strong>反射</strong>机制来实现调用<strong>真正的</strong> OnInspectorGUI() 方法.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">CustomEditor(typeof(Transform))</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ExpendInspector</span> : <span class="title">Editor</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Editor editor;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnEnable</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        editor = Editor.CreateEditor(target,</span><br><span class="line">            Assembly.GetAssembly(<span class="keyword">typeof</span>(Editor)).GetType(<span class="string">&quot;UnityEditor.TransformInspector&quot;</span>, <span class="literal">true</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnInspectorGUI</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;扩展按钮&quot;</span>)) &#123;</span><br><span class="line">            Debug.Log(<span class="string">&quot;测试按钮&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        editor.OnInspectorGUI();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置-Inspector-面板为只读"><a href="#设置-Inspector-面板为只读" class="headerlink" title="设置 Inspector 面板为只读"></a>设置 Inspector 面板为只读</h2><p>设置 Inspector 面板为只读可以让某些设置不被任意修改, 尤其是多人合作开发项目的时候尤其有用.</p>
+<h3 id="绘制-Inspector-面板时设置只读"><a href="#绘制-Inspector-面板时设置只读" class="headerlink" title="绘制 Inspector 面板时设置只读"></a>绘制 Inspector 面板时设置只读</h3><p>设置自定义 Inspector 面板为只读, 只需要在绘制 Inspector 面板的时候设置 GUI.enabled 为 false 即可将特定的区域设置为只读.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">CustomEditor(typeof(Transform))</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ExpendInspector</span> : <span class="title">Editor</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Editor editor;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnEnable</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        editor = Editor.CreateEditor(target,</span><br><span class="line">            Assembly.GetAssembly(<span class="keyword">typeof</span>(Editor)).GetType(<span class="string">&quot;UnityEditor.TransformInspector&quot;</span>, <span class="literal">true</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnInspectorGUI</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">&quot;扩展按钮&quot;</span>)) &#123;</span><br><span class="line">            Debug.Log(<span class="string">&quot;测试按钮&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        GUI.enabled = <span class="literal">false</span>;</span><br><span class="line">        editor.OnInspectorGUI();</span><br><span class="line">        GUI.enabled = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过脚本设置只读"><a href="#通过脚本设置只读" class="headerlink" title="通过脚本设置只读"></a>通过脚本设置只读</h3><p>即使不直接修改 Inspector 面板, 也可以设置其为只读, 只要设置物体的 hideFlags 属性即可.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Reflection;</span><br><span class="line"><span class="keyword">using</span> UnityEditor;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ExpendInspector</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> MENU_LUCK = <span class="string">&quot;GameObject/3D Object/Lock/Lock&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> MENU_UNLUCK = <span class="string">&quot;GameObject/3D Object/Lock/Unlock&quot;</span>;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">MenuItem(MENU_LUCK, false, 0)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">GameObjectLock</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (Selection.objects != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">foreach</span> (<span class="keyword">var</span> item <span class="keyword">in</span> Selection.objects) &#123;</span><br><span class="line">                item.hideFlags = HideFlags.NotEditable;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">MenuItem(MENU_UNLUCK, false, 0)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">GameObjectUnlock</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (Selection.objects != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">foreach</span> (Object item <span class="keyword">in</span> Selection.objects) &#123;</span><br><span class="line">                item.hideFlags = HideFlags.None;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="扩展-Inspector-面板的设置菜单"><a href="#扩展-Inspector-面板的设置菜单" class="headerlink" title="扩展 Inspector 面板的设置菜单"></a>扩展 Inspector 面板的设置菜单</h2><p>Inspector 的设置菜单位于 <code>CONTEXT</code> 层级下, 因此路径必须以这个开头. 另外, 这个菜单在扩展时的方法必须有一个 <code>MenuCommand</code> 类型的参数, 里面包含了<strong>挂载当前组件的游戏物体</strong>的信息.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Reflection;</span><br><span class="line"><span class="keyword">using</span> UnityEditor;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ExpendInspector</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> MENU_1 = <span class="string">&quot;CONTEXT/Transform/PrintName&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> MENU_2 = <span class="string">&quot;CONTEXT/Camera/PrintName&quot;</span>;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">MenuItem(MENU_1, false, 0)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Menu1</span>(<span class="params">MenuCommand command</span>)</span> &#123;</span><br><span class="line">        Debug.Log(command.context.name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">MenuItem(MENU_2, false, 0)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Menu2</span>(<span class="params">MenuCommand command</span>)</span> &#123;</span><br><span class="line">        Debug.Log(command.context.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="扩展-Scene-视图"><a href="#扩展-Scene-视图" class="headerlink" title="扩展 Scene 视图"></a>扩展 Scene 视图</h1><p>Scene 视图是开发者搭建游戏场景的视图, 搭建场景的时候可以利用一些辅助元素来更加规范地快捷地搭建游戏场景. 扩展 Scene 视图的时候有两种, 一种是仅作为辅助元素来方便开发者搭建场景, 这一类元素是无法进行交互的, 类似于辅助线的功能, 当时辅助元素不仅仅只有线. 另一种就是绘制可交互的辅助 UI.</p>
+<h2 id="不可交互的辅助元素"><a href="#不可交互的辅助元素" class="headerlink" title="不可交互的辅助元素"></a>不可交互的辅助元素</h2><p>Unity 中有一个 Gimos 类, 这个类中的 API 就是用来给 Scene 视图绘制辅助元素的. Gizmos 类元素是在 On 类事件中绘制的, 这一类 On 事件的触发需要继承 MonoBehavior, 之后会在编辑器模式下每一帧调用. 也正是因为这个机制导致 Gizmos 绘制脚本不能放到 Editor 文件夹下.</p>
+<p>事件方法:</p>
+<p><code>OnDrawGizmosSelected()</code> : 依赖特定的物体, 因此需要将脚本挂载在特定的游戏物体上, 当选中这个游戏物体时, 这个事件会被触发.</p>
+<p><code>OnDrawGizmos()</code> : 不依赖任何游戏物体, 事件会在编辑器模式下的每一帧触发.</p>
+<p>绘制方法:</p>
+<p><code>Gizmos.color</code> : 设置绘制元素时画笔的颜色.</p>
+<p><code>Gizmos.DrawLine</code>, <code>Gizmos.DrawCube</code>, <code>Gizmos.DrawSphere</code> 等方法可以用来绘制线段, 长方体, 球体等.</p>
+<h2 id="可交互的辅助-UI"><a href="#可交互的辅助-UI" class="headerlink" title="可交互的辅助 UI"></a>可交互的辅助 UI</h2><p>这一类的扩展代码编写方法和扩展 Inspector 面板时是一样的.</p>
+<p>需要使用属性 <code>CustomEditor(typeof())</code> 来修饰类, 同时继承 <code>Editor</code>, 绘制 UI 的时候, 绘制用的代码必须放在 <code>Handles.BeginGUI()</code> 和 <code>Handles.EndedGUI()</code> 之间.</p>
+<p><code>Handles.color</code> 可以修改绘制 UI 时的颜色.</p>
+<p><code>Handles.Line()</code> </p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="路径开头总结"><a href="#路径开头总结" class="headerlink" title="路径开头总结"></a>路径开头总结</h2><table>
+<thead>
+<tr>
+<th align="left">路径内容</th>
+<th align="left">开头</th>
+<th align="left">原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">AssetDatabase 访问资源路径</td>
+<td align="left">Assets</td>
+<td align="left">Unity 中资源的顶级目录为: Assets</td>
+</tr>
+<tr>
+<td align="left">Resources 动态加载资源路径</td>
+<td align="left">无</td>
+<td align="left">Resources.Load() 方法中参数是相对路径的文件名, 所以不能加任何开头</td>
+</tr>
+<tr>
+<td align="left">Project 面板菜单</td>
+<td align="left">Assets</td>
+<td align="left">Project 面板菜单就是标题栏中的 Assets 菜单</td>
+</tr>
+<tr>
+<td align="left">Hierarchy 面板菜单</td>
+<td align="left">GameObject</td>
+<td align="left">Hierarchy 面板菜单就是标题栏中的 GameObject 菜单</td>
+</tr>
+<tr>
+<td align="left">Inspector 面板中单个组件的设置菜单</td>
+<td align="left">CONTEXT</td>
+<td align="left">Inspector 面板中的组件设置菜单就是在 CONTEXT 目录下</td>
+</tr>
+<tr>
+<td align="left">Inspector 面板中所有组件的设置菜单</td>
+<td align="left">CONTEXT/Component</td>
+<td align="left">设置特定组件就在 CONTEXT 后加特定组件, 如果要设置全部组件, 就加 Component</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>咕噜咕噜~</div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/donate/alipay.png" alt="Kuroha 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Kuroha
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://kuroha.vip/unity/unity_editor.html" title="Unity 自定义编辑器">https://kuroha.vip/unity/unity_editor.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aF9DTg=="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://twitter.com/KurohaKirito">
+          <span class="icon">
+            <i class="fab fa-twitter"></i>
+          </span>
+
+          <span class="label">Twitter</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="https://t.me/KurohaKirito">
+          <span class="icon">
+            <i class="fab fa-telegram"></i>
+          </span>
+
+          <span class="label">Telegram</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/images/followme/wechat.png">
+          <span class="icon">
+            <i class="fab fa-weixin"></i>
+          </span>
+
+          <span class="label">WeChat</span>
+        </a>
+      </div>
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/atom.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Unity/" rel="tag"><i class="fa fa-tag"></i> Unity</a>
+              <a href="/tags/Editor/" rel="tag"><i class="fa fa-tag"></i> Editor</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/git/git_learn.html" rel="prev" title="学习 Git 以及相关软件的使用">
+                  <i class="fa fa-chevron-left"></i> 学习 Git 以及相关软件的使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-leaf"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kuroha</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">218k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:18</span>
+  </span>
+</div>
+
+    <div id="days"></div>
+    <script type="text/javascript" src="/js/website_runtime.js"></script>
+
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+<!--Aplayer 吸底式音乐播放功能-->
+
+    <link rel="stylesheet" href="../js/aplayer/APlayer.min.css">
+    <div id="aplayer_fixed"></div>
+    <script type="text/javascript" src="../js/aplayer/APlayer.min.js"></script>
+    <script type="text/javascript" src="../js/fixedAplayer.js"></script>
+
+
+<!--崩溃欺骗-->
+
+    <script type="text/javascript" src="../js/crash_cheat.js"></script>
+
+
+<!--究极看板娘效果-->
+
+    <!-- 实现拖动效果，需引入 JQuery UI -->
+    <script type="text/javascript" src="../js/live2d_demo/jquery-ui.js"></script>
+    <!-- 使用 autoload.js 引入看板娘 -->
+    <script type="text/javascript" src="../js/live2d_demo/autoload.js"></script>
+
+
+<!--鼠标红心效果-->
+
+
+<!--烟花爆炸特效-->
+
+    <canvas class="fireworks" style="position:fixed;left:0;top:0;z-index:99999999;pointer-events:none;"></canvas>
+    <script type="text/javascript" src="../js/fireworks.js"></script>
+
+
+<!--动漫菜单-->
+
+    <div class="GalMenu GalDropDown">
+        <div class="circle" id="gal">
+            <div class="ring">
+                <a href="/" class="menuItem">首页</a>
+                <a href="javascript:history.go(1);" class="menuItem">前进</a>
+                <a href="javascript:$('html,body').animate({scrollTop:0},500);" class="menuItem">顶部</a>
+                <a href="javascript:location.reload();" class="menuItem">刷新</a>
+                <a href="/about/" class="menuItem">留言</a>
+                <a href="javascript:history.go(-1);" class="menuItem">后退</a>
+            </div>
+            
+                <audio id="audio" src="../js/galmenu/audio/sao-menu.wav"></audio>
+            
+        </div>
+    </div>
+    <script type="text/javascript">
+        var items = document.querySelectorAll('.menuItem');
+        for (var i = 0, l = items.length; i < l; i++) {
+            items[i].style.left = (50 - 35 * Math.cos(- 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+            items[i].style.top = (50 + 35 * Math.sin(- 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+        }
+    </script>
+    <script>
+        window.jQuery || document.write('<script src="../js/galmenu/js/jquery.min.js"><\/script>')
+    </script>
+    <script src="../js/galmenu/js/GalMenu.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').GalMenu({'menu': 'GalDropDown'})
+        });
+    </script>
+
+</body>
+</html>
